@@ -1,9 +1,9 @@
 {
   "nav": {
     "home": "Home",
-    "cropDiagnosis": "Crop Diagnosis",
-    "marketHub": "Market Hub",
-    "expertPanel": "Expert Panel",
+    "cropDiagnosis": "Crop Health",
+    "marketHub": "Market Prices",
+    "expertPanel": "Crop Planning",
     "smartIrrigation": "Smart Irrigation",
     "agriMarketplace": "Agri Marketplace",
     "features": "Features",
@@ -27,15 +27,15 @@
     "title": "Everything You Need for Smart Farming",
     "subtitle": "Powerful AI-driven tools designed for modern agriculture",
     "cropDiagnosis": {
-      "title": "Crop Diagnosis",
+      "title": "Crop Health",
       "description": "Upload crop images and get instant AI-powered disease detection with treatment recommendations."
     },
     "marketHub": {
-      "title": "Market Hub",
+      "title": "Market Prices",
       "description": "Access real-time mandi prices and sell your yield directly to buyers without middlemen."
     },
     "expertPanel": {
-      "title": "Expert Panel",
+      "title": "Crop Planning",
       "description": "Get AI-powered crop planning and yield predictions based on your specific conditions."
     },
     "smartIrrigation": {
@@ -125,7 +125,7 @@
     "noDiagnosis": "Upload an image to get started"
   },
   "marketHub": {
-    "title": "Market Hub",
+    "title": "Market Prices",
     "subtitle": "Real-time market intelligence and direct selling platform",
     "livePrices": "Live Mandi Prices",
     "sellYield": "Sell Your Yield",
@@ -155,7 +155,7 @@
     "selectCrop": "Select Crop"
   },
   "expertPanel": {
-    "title": "AI Expert Panel",
+    "title": "Crop Planning",
     "subtitle": "Advanced AI analytics for precision farming",
     "smartCropPlanner": "Smart Crop Planner",
     "yieldPredictor": "Yield Predictor",

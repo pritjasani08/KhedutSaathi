@@ -102,7 +102,7 @@ export default function CropDiagnosis() {
   };
 
   return (
-    <div className="min-h-screen gradient-bg pt-24 pb-16">
+    <div className="min-h-screen gradient-bg pt-24 pb-16 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       <div className="container-custom px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -111,13 +111,13 @@ export default function CropDiagnosis() {
           variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
           className="text-center mb-12"
         >
-          <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-100/60 text-primary text-sm font-semibold mb-4">
+          <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-100/60 dark:bg-primary-900/40 text-primary text-sm font-semibold mb-4">
             <Pill className="w-4 h-4" /> AI Disease Detection
           </motion.div>
-          <motion.h1 variants={fadeUp} custom={1} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
+          <motion.h1 variants={fadeUp} custom={1} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4">
             {t('cropDiagnosis.title')}
           </motion.h1>
-          <motion.p variants={fadeUp} custom={2} className="text-slate-500 text-lg max-w-2xl mx-auto">
+          <motion.p variants={fadeUp} custom={2} className="text-slate-500 dark:text-slate-400 text-lg max-w-2xl mx-auto">
             {t('cropDiagnosis.subtitle')}
           </motion.p>
         </motion.div>
@@ -131,7 +131,7 @@ export default function CropDiagnosis() {
             transition={{ duration: 0.6 }}
             className="glass-card p-6 md:p-8"
           >
-            <h2 className="font-display text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+            <h2 className="font-display text-xl font-bold text-slate-800 dark:text-slate-100 mb-6 flex items-center gap-2">
               <Upload className="w-5 h-5 text-primary" />
               {t('cropDiagnosis.uploadTitle')}
             </h2>
@@ -143,11 +143,11 @@ export default function CropDiagnosis() {
                 onDrop={handleDrop}
                 className={`border-2 border-dashed rounded-2xl p-12 text-center transition-all duration-300 cursor-pointer ${
                   dragActive
-                    ? 'border-primary bg-primary-50 scale-[1.02]'
-                    : 'border-slate-200 hover:border-primary/50 hover:bg-primary-50/30'
+                    ? 'border-primary bg-primary-50 dark:bg-primary-900/20 scale-[1.02]'
+                    : 'border-slate-200 dark:border-slate-700 hover:border-primary/50 hover:bg-primary-50/30 dark:hover:bg-primary-900/10'
                 }`}
               >
-                <div className="w-20 h-20 bg-primary-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <div className="w-20 h-20 bg-primary-50 dark:bg-primary-900/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
                   <Image className="w-10 h-10 text-primary" />
                 </div>
                 <p className="text-slate-700 font-semibold mb-2">{t('cropDiagnosis.dragDrop')}</p>
@@ -208,7 +208,7 @@ export default function CropDiagnosis() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="glass-card p-6 md:p-8"
           >
-            <h2 className="font-display text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+            <h2 className="font-display text-xl font-bold text-slate-800 dark:text-slate-100 mb-6 flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-primary" />
               {t('cropDiagnosis.results')}
             </h2>
@@ -229,20 +229,20 @@ export default function CropDiagnosis() {
             ) : (
               <div className="space-y-5">
                 {/* Disease Name */}
-                <div className="bg-red-50 border border-red-100 rounded-xl p-4">
+                <div className="bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-900/50 rounded-xl p-4">
                   <div className="flex items-start gap-3">
                     <AlertTriangle className="w-6 h-6 text-red-500 shrink-0 mt-0.5" />
                     <div>
                       <p className="text-xs text-red-500 font-medium mb-1">{t('cropDiagnosis.diseaseName')}</p>
-                      <p className="font-display font-bold text-lg text-slate-800">{result.disease}</p>
+                      <p className="font-display font-bold text-lg text-slate-800 dark:text-slate-100">{result.disease}</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Confidence & Severity */}
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-slate-50 rounded-xl p-4 text-center">
-                    <p className="text-xs text-slate-500 mb-1">{t('cropDiagnosis.confidence')}</p>
+                  <div className="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-4 text-center">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mb-1">{t('cropDiagnosis.confidence')}</p>
                     <p className="font-display text-2xl font-bold gradient-text">{result.confidence}%</p>
                     <div className="mt-2 h-2 bg-slate-200 rounded-full overflow-hidden">
                       <motion.div
@@ -253,8 +253,8 @@ export default function CropDiagnosis() {
                       />
                     </div>
                   </div>
-                  <div className="bg-slate-50 rounded-xl p-4 text-center">
-                    <p className="text-xs text-slate-500 mb-1">{t('cropDiagnosis.severity')}</p>
+                  <div className="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-4 text-center">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mb-1">{t('cropDiagnosis.severity')}</p>
                     <span className={`${severityColor(result.severity)} text-lg`}>{result.severity}</span>
                     <ShieldAlert className="w-5 h-5 text-red-400 mx-auto mt-2" />
                   </div>
@@ -304,7 +304,7 @@ export default function CropDiagnosis() {
           transition={{ duration: 0.6 }}
           className="glass-card p-6 md:p-8"
         >
-          <h2 className="font-display text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+          <h2 className="font-display text-xl font-bold text-slate-800 dark:text-slate-100 mb-6 flex items-center gap-2">
             <Clock className="w-5 h-5 text-primary" />
             {t('cropDiagnosis.history')}
           </h2>

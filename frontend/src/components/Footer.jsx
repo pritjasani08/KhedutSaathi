@@ -8,11 +8,11 @@ export default function Footer() {
 
   const quickLinks = [
     { path: '/', label: t('nav.home') },
-    { path: '/crop-diagnosis', label: t('nav.cropDiagnosis') },
-    { path: '/market-hub', label: t('nav.marketHub') },
-    { path: '/expert-panel', label: t('nav.expertPanel') },
-    { path: '/smart-irrigation', label: t('nav.smartIrrigation') },
-    { path: '/agri-marketplace', label: t('nav.agriMarketplace') },
+    { path: '/crop-health', label: 'Crop Health' },
+    { path: '/crop-planning', label: 'Crop Planning' },
+    { path: '/market-prices', label: 'Market Prices' },
+    { path: '/expert-help', label: 'Expert Help' },
+    { path: '/resources', label: 'News & Schemes' },
   ];
 
   const resources = [
@@ -31,27 +31,6 @@ export default function Footer() {
       </div>
 
       <div className="container-custom relative">
-        {/* CTA Section */}
-        <div className="px-4 sm:px-6 lg:px-8 pt-16">
-          <div className="bg-gradient-to-r from-primary to-primary-light rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div>
-              <h3 className="font-display text-2xl md:text-3xl font-bold text-white mb-2">
-                Ready to Transform Your Farming?
-              </h3>
-              <p className="text-white/80 text-lg">
-                Join thousands of farmers already using KhedutSaathi
-              </p>
-            </div>
-            <Link
-              to="/features"
-              className="shrink-0 bg-white text-primary font-semibold px-8 py-4 rounded-xl hover:bg-primary-50 hover:scale-105 transition-all duration-300 flex items-center gap-2"
-            >
-              {t('nav.getStarted')}
-              <ArrowUpRight className="w-5 h-5" />
-            </Link>
-          </div>
-        </div>
-
         {/* Main Footer */}
         <div className="px-4 sm:px-6 lg:px-8 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}

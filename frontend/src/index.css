@@ -21,6 +21,7 @@
     -moz-osx-font-smoothing: grayscale;
     background-color: #f8fafc;
     color: #1e293b;
+    @apply dark:bg-slate-900 dark:text-slate-200;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -30,11 +31,11 @@
 
 @layer components {
   .glass-card {
-    @apply bg-white/70 backdrop-blur-xl border border-white/20 rounded-2xl shadow-glass;
+    @apply bg-white/70 backdrop-blur-xl border border-white/20 rounded-2xl shadow-glass dark:bg-slate-800/70 dark:border-slate-700/30;
   }
 
   .glass-card-dark {
-    @apply bg-slate-800/70 backdrop-blur-xl border border-slate-700/30 rounded-2xl shadow-glass;
+    @apply bg-slate-800/70 backdrop-blur-xl border border-slate-700/30 rounded-2xl shadow-glass dark:bg-slate-900/70 dark:border-slate-800/30;
   }
 
   .gradient-text {
@@ -42,7 +43,7 @@
   }
 
   .gradient-bg {
-    @apply bg-gradient-to-br from-primary-50 via-white to-primary-100;
+    @apply bg-gradient-to-br from-primary-50 via-white to-primary-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900;
   }
 
   .btn-primary {
@@ -78,13 +79,13 @@
   .input-field {
     @apply w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-800 
            placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/30 
-           focus:border-primary transition-all duration-300;
+           focus:border-primary transition-all duration-300 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-200 dark:placeholder:text-slate-500;
   }
 
   .select-field {
     @apply w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-800 
            focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary 
-           transition-all duration-300 appearance-none cursor-pointer;
+           transition-all duration-300 appearance-none cursor-pointer dark:bg-slate-800 dark:border-slate-700 dark:text-slate-200;
   }
 
   .badge {
