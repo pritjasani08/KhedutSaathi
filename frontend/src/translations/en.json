@@ -1,0 +1,274 @@
+{
+  "nav": {
+    "home": "Home",
+    "cropDiagnosis": "Crop Diagnosis",
+    "marketHub": "Market Hub",
+    "expertPanel": "Expert Panel",
+    "smartIrrigation": "Smart Irrigation",
+    "agriMarketplace": "Agri Marketplace",
+    "features": "Features",
+    "login": "Login",
+    "getStarted": "Get Started"
+  },
+  "hero": {
+    "title": "AI Powered Farming Companion for Every Farmer",
+    "subtitle": "Helping farmers diagnose crop diseases, access market prices, predict yields, optimize irrigation, and sell produce directly.",
+    "getStarted": "Get Started",
+    "exploreFeatures": "Explore Features"
+  },
+  "stats": {
+    "title": "Platform Impact",
+    "farmersHelped": "Farmers Helped",
+    "diseasesSupported": "Diseases Supported",
+    "marketListings": "Market Listings",
+    "supportedLanguages": "Supported Languages"
+  },
+  "featureShowcase": {
+    "title": "Everything You Need for Smart Farming",
+    "subtitle": "Powerful AI-driven tools designed for modern agriculture",
+    "cropDiagnosis": {
+      "title": "Crop Diagnosis",
+      "description": "Upload crop images and get instant AI-powered disease detection with treatment recommendations."
+    },
+    "marketHub": {
+      "title": "Market Hub",
+      "description": "Access real-time mandi prices and sell your yield directly to buyers without middlemen."
+    },
+    "expertPanel": {
+      "title": "Expert Panel",
+      "description": "Get AI-powered crop planning and yield predictions based on your specific conditions."
+    },
+    "smartIrrigation": {
+      "title": "Smart Irrigation",
+      "description": "Weather-intelligent irrigation recommendations to optimize water usage and crop health."
+    },
+    "agriMarketplace": {
+      "title": "Agri Marketplace",
+      "description": "Buy seeds, fertilizers, and pesticides from verified sellers at competitive prices."
+    },
+    "chatbot": {
+      "title": "Khedut AI Assistant",
+      "description": "Your 24/7 AI farming companion supporting voice input in English, Hindi, and Gujarati."
+    },
+    "learnMore": "Learn More"
+  },
+  "howItWorks": {
+    "title": "How It Works",
+    "subtitle": "Simple 4-step process to transform your farming",
+    "step1": {
+      "title": "Upload Data",
+      "description": "Share crop images, soil data, or farm details through our intuitive interface."
+    },
+    "step2": {
+      "title": "AI Analysis",
+      "description": "Our advanced AI models analyze your data using cutting-edge machine learning algorithms."
+    },
+    "step3": {
+      "title": "Smart Recommendation",
+      "description": "Receive personalized recommendations, predictions, and actionable insights."
+    },
+    "step4": {
+      "title": "Improved Farming",
+      "description": "Make data-driven decisions that improve yield, reduce costs, and maximize profit."
+    }
+  },
+  "benefits": {
+    "title": "Farmer Benefits",
+    "subtitle": "How KhedutSaathi transforms farming outcomes",
+    "betterCropHealth": {
+      "title": "Better Crop Health",
+      "description": "Early disease detection and treatment recommendations for healthier crops."
+    },
+    "higherYield": {
+      "title": "Higher Yield",
+      "description": "Data-driven farming practices that significantly increase crop productivity."
+    },
+    "waterSaving": {
+      "title": "Water Saving",
+      "description": "Smart irrigation reduces water usage by up to 40% while maintaining crop quality."
+    },
+    "betterMarketPrice": {
+      "title": "Better Market Price",
+      "description": "Real-time market intelligence helps you sell at the best possible price."
+    },
+    "reducedMiddlemen": {
+      "title": "Reduced Middlemen",
+      "description": "Direct buyer-seller connections eliminate intermediaries and increase farmer income."
+    },
+    "aiGuidance": {
+      "title": "AI Guidance",
+      "description": "24/7 AI-powered farming advice in your preferred language."
+    }
+  },
+  "cropDiagnosis": {
+    "title": "AI Crop Disease Detection",
+    "subtitle": "Upload a crop image and let our AI instantly diagnose diseases with treatment plans",
+    "uploadTitle": "Upload Crop Image",
+    "dragDrop": "Drag & Drop your crop image here",
+    "orBrowse": "or browse files",
+    "camera": "Open Camera",
+    "supportedFormats": "Supports JPG, PNG, WEBP (Max 10MB)",
+    "analyzing": "Analyzing...",
+    "results": "Diagnosis Results",
+    "diseaseName": "Disease Name",
+    "confidence": "Confidence Score",
+    "severity": "Severity",
+    "treatment": "Treatment Recommendation",
+    "prevention": "Prevention Tips",
+    "history": "Diagnosis History",
+    "date": "Date",
+    "crop": "Crop",
+    "disease": "Disease",
+    "status": "Status",
+    "action": "Action",
+    "viewDetails": "View Details",
+    "noDiagnosis": "Upload an image to get started"
+  },
+  "marketHub": {
+    "title": "Market Hub",
+    "subtitle": "Real-time market intelligence and direct selling platform",
+    "livePrices": "Live Mandi Prices",
+    "sellYield": "Sell Your Yield",
+    "state": "State",
+    "district": "District",
+    "mandi": "Mandi",
+    "crop": "Crop",
+    "search": "Search",
+    "minPrice": "Min Price",
+    "maxPrice": "Max Price",
+    "avgPrice": "Avg Price",
+    "trend": "Trend",
+    "cropName": "Crop Name",
+    "quantity": "Quantity (Quintals)",
+    "price": "Expected Price (₹)",
+    "description": "Description",
+    "uploadImages": "Upload Images",
+    "location": "Location",
+    "postListing": "Post Listing",
+    "marketplaceFeed": "Marketplace Feed",
+    "farmer": "Farmer",
+    "expectedPrice": "Expected Price",
+    "placeBid": "Place Bid",
+    "selectState": "Select State",
+    "selectDistrict": "Select District",
+    "selectMandi": "Select Mandi",
+    "selectCrop": "Select Crop"
+  },
+  "expertPanel": {
+    "title": "AI Expert Panel",
+    "subtitle": "Advanced AI analytics for precision farming",
+    "smartCropPlanner": "Smart Crop Planner",
+    "yieldPredictor": "Yield Predictor",
+    "location": "Location",
+    "soilType": "Soil Type",
+    "waterAvailability": "Water Availability",
+    "landSize": "Land Size (Acres)",
+    "duration": "Crop Duration",
+    "getRecommendations": "Get Recommendations",
+    "recommendedCrops": "Recommended Crops",
+    "cropName": "Crop Name",
+    "expectedProfit": "Expected Profit",
+    "waterNeed": "Water Need",
+    "cropDuration": "Crop Duration",
+    "suitabilityScore": "Suitability Score",
+    "cropType": "Crop Type",
+    "landArea": "Land Area (Acres)",
+    "fertilizerUsage": "Fertilizer Usage",
+    "irrigationMethod": "Irrigation Method",
+    "plantSpacing": "Plant Spacing",
+    "predict": "Predict Yield",
+    "expectedYield": "Expected Yield",
+    "expectedRevenue": "Expected Revenue",
+    "riskScore": "Risk Score",
+    "successProbability": "Success Probability",
+    "months": {
+      "1": "1 Month",
+      "2": "2 Months",
+      "3": "3 Months",
+      "6": "6 Months",
+      "9": "9 Months",
+      "12": "12 Months"
+    }
+  },
+  "smartIrrigation": {
+    "title": "Smart Irrigation Dashboard",
+    "subtitle": "Weather-intelligent irrigation management for optimal water usage",
+    "currentConditions": "Current Weather Conditions",
+    "temperature": "Temperature",
+    "humidity": "Humidity",
+    "rainfall": "Rainfall",
+    "windSpeed": "Wind Speed",
+    "recommendations": "Irrigation Recommendations",
+    "irrigateToday": "Irrigate Today?",
+    "rainExpected": "Rain Expected?",
+    "waterRequirement": "Water Requirement",
+    "bestTime": "Best Irrigation Time"
+  },
+  "agriMarketplace": {
+    "title": "Agri Marketplace",
+    "subtitle": "Quality agricultural inputs from verified sellers",
+    "seeds": "Seeds",
+    "fertilizers": "Fertilizers",
+    "pesticides": "Pesticides",
+    "search": "Search products...",
+    "priceRange": "Price Range",
+    "category": "Category",
+    "allCategories": "All Categories",
+    "sortBy": "Sort By",
+    "priceLowHigh": "Price: Low to High",
+    "priceHighLow": "Price: High to Low",
+    "rating": "Rating",
+    "newest": "Newest",
+    "seller": "Seller",
+    "distance": "Distance",
+    "contactSeller": "Contact Seller",
+    "addToCart": "Add to Cart",
+    "filters": "Filters",
+    "noProducts": "No products found"
+  },
+  "features": {
+    "title": "Platform Features",
+    "subtitle": "Comprehensive AI-powered tools for every aspect of modern farming",
+    "exploreAll": "Explore All Features"
+  },
+  "chatbot": {
+    "title": "Khedut AI Assistant",
+    "placeholder": "Type your farming question...",
+    "send": "Send",
+    "voice": "Voice Input",
+    "quickActions": {
+      "diagnose": "Diagnose Disease",
+      "prices": "Market Prices",
+      "crops": "Crop Suggestions",
+      "irrigation": "Irrigation Help"
+    },
+    "greeting": "Hello! I'm your AI farming assistant. How can I help you today?",
+    "language": "Language"
+  },
+  "footer": {
+    "description": "AI-powered farming companion helping millions of Indian farmers make smarter decisions.",
+    "quickLinks": "Quick Links",
+    "resources": "Resources",
+    "contact": "Contact Us",
+    "documentation": "Documentation",
+    "apiReference": "API Reference",
+    "community": "Community",
+    "blog": "Blog",
+    "email": "support@khedutsaathi.in",
+    "phone": "+91 1800-XXX-XXXX",
+    "address": "Ahmedabad, Gujarat, India",
+    "rights": "© 2026 KhedutSaathi. All rights reserved.",
+    "madeWith": "Made with ❤️ for Indian Farmers"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Retry",
+    "save": "Save",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "reset": "Reset",
+    "viewAll": "View All",
+    "close": "Close"
+  }
+}

@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #f8fafc;
+    color: #1e293b;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-xl border border-white/20 rounded-2xl shadow-glass;
+  }
+
+  .glass-card-dark {
+    @apply bg-slate-800/70 backdrop-blur-xl border border-slate-700/30 rounded-2xl shadow-glass;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-light;
+  }
+
+  .gradient-bg {
+    @apply bg-gradient-to-br from-primary-50 via-white to-primary-100;
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary to-primary-light text-white font-semibold py-3 px-6 rounded-xl 
+           shadow-green hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] 
+           transition-all duration-300 ease-out;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-primary border-2 border-primary/20 font-semibold py-3 px-6 rounded-xl 
+           hover:bg-primary-50 hover:border-primary/40 hover:scale-[1.02] active:scale-[0.98] 
+           transition-all duration-300 ease-out;
+  }
+
+  .btn-accent {
+    @apply bg-gradient-to-r from-secondary to-secondary-light text-white font-semibold py-3 px-6 rounded-xl 
+           shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] 
+           transition-all duration-300 ease-out;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24 px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .card-hover {
+    @apply transition-all duration-500 ease-out hover:shadow-card-hover hover:-translate-y-1;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-800 
+           placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/30 
+           focus:border-primary transition-all duration-300;
+  }
+
+  .select-field {
+    @apply w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-800 
+           focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary 
+           transition-all duration-300 appearance-none cursor-pointer;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold;
+  }
+
+  .badge-success {
+    @apply badge bg-green-100 text-green-700;
+  }
+
+  .badge-warning {
+    @apply badge bg-amber-100 text-amber-700;
+  }
+
+  .badge-danger {
+    @apply badge bg-red-100 text-red-700;
+  }
+
+  .badge-info {
+    @apply badge bg-blue-100 text-blue-700;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-in {
+    animation: animateIn 0.5s ease-out forwards;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Page transition */
+@keyframes animateIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Gradient mesh background */
+.mesh-gradient {
+  background: 
+    radial-gradient(at 80% 20%, rgba(34, 197, 94, 0.08) 0px, transparent 60%),
+    radial-gradient(at 20% 80%, rgba(245, 158, 11, 0.06) 0px, transparent 60%),
+    radial-gradient(at 50% 50%, rgba(22, 163, 74, 0.04) 0px, transparent 60%);
+}
+
+/* Shimmer effect */
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}

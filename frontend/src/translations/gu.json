@@ -1,0 +1,274 @@
+{
+  "nav": {
+    "home": "હોમ",
+    "cropDiagnosis": "પાક નિદાન",
+    "marketHub": "માર્કેટ હબ",
+    "expertPanel": "નિષ્ણાત પેનલ",
+    "smartIrrigation": "સ્માર્ટ સિંચાઈ",
+    "agriMarketplace": "કૃષિ બજાર",
+    "features": "સુવિધાઓ",
+    "login": "લૉગિન",
+    "getStarted": "શરૂ કરો"
+  },
+  "hero": {
+    "title": "દરેક ખેડૂત માટે AI સંચાલિત ખેતી સાથી",
+    "subtitle": "ખેડૂતોને પાક રોગ નિદાન, બજાર ભાવ, ઉપજ આગાહી, સિંચાઈ ઑપ્ટિમાઇઝેશન અને સીધી ઉપજ વેચાણમાં મદદ.",
+    "getStarted": "શરૂ કરો",
+    "exploreFeatures": "સુવિધાઓ જુઓ"
+  },
+  "stats": {
+    "title": "પ્લેટફોર્મની અસર",
+    "farmersHelped": "ખેડૂતોને મદદ",
+    "diseasesSupported": "સમર્થિત રોગો",
+    "marketListings": "બજાર લિસ્ટિંગ",
+    "supportedLanguages": "સમર્થિત ભાષાઓ"
+  },
+  "featureShowcase": {
+    "title": "સ્માર્ટ ખેતી માટે બધું",
+    "subtitle": "આધુનિક ખેતી માટે શક્તિશાળી AI-સંચાલિત સાધનો",
+    "cropDiagnosis": {
+      "title": "પાક નિદાન",
+      "description": "પાકની તસવીરો અપલોડ કરો અને સારવારની ભલામણો સાથે તરત AI-સંચાલિત રોગ ઓળખ મેળવો."
+    },
+    "marketHub": {
+      "title": "માર્કેટ હબ",
+      "description": "રીયલ-ટાઇમ મંડી ભાવ મેળવો અને વચેટિયા વિના સીધા ખરીદદારોને ઉપજ વેચો."
+    },
+    "expertPanel": {
+      "title": "નિષ્ણાત પેનલ",
+      "description": "તમારી ચોક્કસ પરિસ્થિતિઓ પર આધારિત AI-સંચાલિત પાક આયોજન અને ઉપજ આગાહી મેળવો."
+    },
+    "smartIrrigation": {
+      "title": "સ્માર્ટ સિંચાઈ",
+      "description": "પાણીના ઉપયોગ અને પાક આરોગ્યને ઑપ્ટિમાઇઝ કરવા માટે હવામાન-બુદ્ધિશાળી સિંચાઈ ભલામણો."
+    },
+    "agriMarketplace": {
+      "title": "કૃષિ બજાર",
+      "description": "ચકાસાયેલા વિક્રેતાઓ પાસેથી સ્પર્ધાત્મક ભાવે બીજ, ખાતર અને જંતુનાશકો ખરીદો."
+    },
+    "chatbot": {
+      "title": "ખેડૂત AI સહાયક",
+      "description": "અંગ્રેજી, હિન્દી અને ગુજરાતીમાં વૉઇસ ઇનપુટ સપોર્ટ સાથે તમારો 24/7 AI ખેતી સાથી."
+    },
+    "learnMore": "વધુ જાણો"
+  },
+  "howItWorks": {
+    "title": "કેવી રીતે કામ કરે છે",
+    "subtitle": "તમારી ખેતી બદલવા માટે સરળ 4-પગલાં પ્રક્રિયા",
+    "step1": {
+      "title": "ડેટા અપલોડ કરો",
+      "description": "અમારા સહજ ઇન્ટરફેસ દ્વારા પાક તસવીરો, માટી ડેટા અથવા ખેતરની વિગતો શેર કરો."
+    },
+    "step2": {
+      "title": "AI વિશ્લેષણ",
+      "description": "અમારા અદ્યતન AI મોડેલ્સ અત્યાધુનિક મશીન લર્નિંગ એલ્ગોરિધમ્સનો ઉપયોગ કરીને તમારા ડેટાનું વિશ્લેષણ કરે છે."
+    },
+    "step3": {
+      "title": "સ્માર્ટ ભલામણ",
+      "description": "વ્યક્તિગત ભલામણો, આગાહીઓ અને કાર્યવાહી યોગ્ય આંતરદૃષ્ટિ પ્રાપ્ત કરો."
+    },
+    "step4": {
+      "title": "સુધારેલી ખેતી",
+      "description": "ડેટા-સંચાલિત નિર્ણયો લો જે ઉપજ સુધારે, ખર્ચ ઘટાડે અને નફો વધારે."
+    }
+  },
+  "benefits": {
+    "title": "ખેડૂત લાભ",
+    "subtitle": "KhedutSaathi ખેતીના પરિણામો કેવી રીતે બદલે છે",
+    "betterCropHealth": {
+      "title": "વધુ સારું પાક આરોગ્ય",
+      "description": "તંદુરસ્ત પાક માટે વહેલી રોગ ઓળખ અને સારવાર ભલામણો."
+    },
+    "higherYield": {
+      "title": "વધુ ઉપજ",
+      "description": "ડેટા-સંચાલિત ખેતી પ્રથાઓ જે પાક ઉત્પાદકતા નોંધપાત્ર રીતે વધારે છે."
+    },
+    "waterSaving": {
+      "title": "પાણીની બચત",
+      "description": "સ્માર્ટ સિંચાઈ પાક ગુણવત્તા જાળવીને પાણીના ઉપયોગને 40% સુધી ઘટાડે છે."
+    },
+    "betterMarketPrice": {
+      "title": "વધુ સારો બજાર ભાવ",
+      "description": "રીયલ-ટાઇમ માર્કેટ ઇન્ટેલિજન્સ તમને શ્રેષ્ઠ સંભવિત ભાવે વેચવામાં મદદ કરે છે."
+    },
+    "reducedMiddlemen": {
+      "title": "ઓછા વચેટિયા",
+      "description": "સીધા ખરીદદાર-વિક્રેતા જોડાણો વચેટિયાને દૂર કરે છે અને ખેડૂત આવક વધારે છે."
+    },
+    "aiGuidance": {
+      "title": "AI માર્ગદર્શન",
+      "description": "તમારી પસંદીદા ભાષામાં 24/7 AI-સંચાલિત ખેતી સલાહ."
+    }
+  },
+  "cropDiagnosis": {
+    "title": "AI પાક રોગ ઓળખ",
+    "subtitle": "પાકની તસવીર અપલોડ કરો અને અમારા AI થી સારવાર યોજનાઓ સાથે તરત રોગ નિદાન મેળવો",
+    "uploadTitle": "પાકની તસવીર અપલોડ કરો",
+    "dragDrop": "તમારી પાકની તસવીર અહીં ખેંચો અને છોડો",
+    "orBrowse": "અથવા ફાઈલો બ્રાઉઝ કરો",
+    "camera": "કેમેરા ખોલો",
+    "supportedFormats": "JPG, PNG, WEBP સપોર્ટેડ (મહત્તમ 10MB)",
+    "analyzing": "વિશ્લેષણ થઈ રહ્યું છે...",
+    "results": "નિદાન પરિણામો",
+    "diseaseName": "રોગનું નામ",
+    "confidence": "વિશ્વાસ સ્કોર",
+    "severity": "ગંભીરતા",
+    "treatment": "સારવાર ભલામણ",
+    "prevention": "નિવારણ સૂચનો",
+    "history": "નિદાન ઇતિહાસ",
+    "date": "તારીખ",
+    "crop": "પાક",
+    "disease": "રોગ",
+    "status": "સ્થિતિ",
+    "action": "ક્રિયા",
+    "viewDetails": "વિગતો જુઓ",
+    "noDiagnosis": "શરૂ કરવા માટે તસવીર અપલોડ કરો"
+  },
+  "marketHub": {
+    "title": "માર્કેટ હબ",
+    "subtitle": "રીયલ-ટાઇમ માર્કેટ ઇન્ટેલિજન્સ અને ડાયરેક્ટ સેલિંગ પ્લેટફોર્મ",
+    "livePrices": "લાઈવ મંડી ભાવ",
+    "sellYield": "તમારી ઉપજ વેચો",
+    "state": "રાજ્ય",
+    "district": "જિલ્લો",
+    "mandi": "મંડી",
+    "crop": "પાક",
+    "search": "શોધો",
+    "minPrice": "ન્યૂનતમ ભાવ",
+    "maxPrice": "મહત્તમ ભાવ",
+    "avgPrice": "સરેરાશ ભાવ",
+    "trend": "ટ્રેન્ડ",
+    "cropName": "પાકનું નામ",
+    "quantity": "જથ્થો (ક્વિન્ટલ)",
+    "price": "અપેક્ષિત ભાવ (₹)",
+    "description": "વિગત",
+    "uploadImages": "તસવીરો અપલોડ કરો",
+    "location": "સ્થાન",
+    "postListing": "લિસ્ટિંગ પોસ્ટ કરો",
+    "marketplaceFeed": "માર્કેટપ્લેસ ફીડ",
+    "farmer": "ખેડૂત",
+    "expectedPrice": "અપેક્ષિત ભાવ",
+    "placeBid": "બિડ મૂકો",
+    "selectState": "રાજ્ય પસંદ કરો",
+    "selectDistrict": "જિલ્લો પસંદ કરો",
+    "selectMandi": "મંડી પસંદ કરો",
+    "selectCrop": "પાક પસંદ કરો"
+  },
+  "expertPanel": {
+    "title": "AI નિષ્ણાત પેનલ",
+    "subtitle": "ચોક્કસ ખેતી માટે અદ્યતન AI વિશ્લેષણ",
+    "smartCropPlanner": "સ્માર્ટ પાક આયોજક",
+    "yieldPredictor": "ઉપજ આગાહીકર્તા",
+    "location": "સ્થાન",
+    "soilType": "માટીનો પ્રકાર",
+    "waterAvailability": "પાણીની ઉપલબ્ધતા",
+    "landSize": "જમીનનું કદ (એકર)",
+    "duration": "પાક અવધિ",
+    "getRecommendations": "ભલામણો મેળવો",
+    "recommendedCrops": "ભલામણ કરેલ પાક",
+    "cropName": "પાકનું નામ",
+    "expectedProfit": "અપેક્ષિત નફો",
+    "waterNeed": "પાણીની જરૂરિયાત",
+    "cropDuration": "પાક અવધિ",
+    "suitabilityScore": "ઉપયુક્તતા સ્કોર",
+    "cropType": "પાકનો પ્રકાર",
+    "landArea": "જમીન વિસ્તાર (એકર)",
+    "fertilizerUsage": "ખાતર ઉપયોગ",
+    "irrigationMethod": "સિંચાઈ પદ્ધતિ",
+    "plantSpacing": "છોડ અંતર",
+    "predict": "ઉપજની આગાહી કરો",
+    "expectedYield": "અપેક્ષિત ઉપજ",
+    "expectedRevenue": "અપેક્ષિત આવક",
+    "riskScore": "જોખમ સ્કોર",
+    "successProbability": "સફળતાની સંભાવના",
+    "months": {
+      "1": "1 મહિનો",
+      "2": "2 મહિના",
+      "3": "3 મહિના",
+      "6": "6 મહિના",
+      "9": "9 મહિના",
+      "12": "12 મહિના"
+    }
+  },
+  "smartIrrigation": {
+    "title": "સ્માર્ટ સિંચાઈ ડેશબોર્ડ",
+    "subtitle": "શ્રેષ્ઠ પાણી ઉપયોગ માટે હવામાન-બુદ્ધિશાળી સિંચાઈ વ્યવસ્થાપન",
+    "currentConditions": "વર્તમાન હવામાન પરિસ્થિતિઓ",
+    "temperature": "તાપમાન",
+    "humidity": "ભેજ",
+    "rainfall": "વરસાદ",
+    "windSpeed": "પવનની ગતિ",
+    "recommendations": "સિંચાઈ ભલામણો",
+    "irrigateToday": "આજે સિંચાઈ કરવી?",
+    "rainExpected": "વરસાદની અપેક્ષા?",
+    "waterRequirement": "પાણીની જરૂરિયાત",
+    "bestTime": "શ્રેષ્ઠ સિંચાઈ સમય"
+  },
+  "agriMarketplace": {
+    "title": "કૃષિ બજાર",
+    "subtitle": "ચકાસાયેલા વિક્રેતાઓ પાસેથી ગુણવત્તા કૃષિ ઇનપુટ",
+    "seeds": "બીજ",
+    "fertilizers": "ખાતર",
+    "pesticides": "જંતુનાશકો",
+    "search": "ઉત્પાદનો શોધો...",
+    "priceRange": "ભાવ શ્રેણી",
+    "category": "શ્રેણી",
+    "allCategories": "બધી શ્રેણીઓ",
+    "sortBy": "ક્રમ",
+    "priceLowHigh": "ભાવ: ઓછાથી વધુ",
+    "priceHighLow": "ભાવ: વધુથી ઓછા",
+    "rating": "રેટિંગ",
+    "newest": "નવીનતમ",
+    "seller": "વિક્રેતા",
+    "distance": "અંતર",
+    "contactSeller": "વિક્રેતાનો સંપર્ક કરો",
+    "addToCart": "કાર્ટમાં ઉમેરો",
+    "filters": "ફિલ્ટર્સ",
+    "noProducts": "કોઈ ઉત્પાદનો મળ્યાં નથી"
+  },
+  "features": {
+    "title": "પ્લેટફોર્મ સુવિધાઓ",
+    "subtitle": "આધુનિક ખેતીના દરેક પાસા માટે વ્યાપક AI-સંચાલિત સાધનો",
+    "exploreAll": "બધી સુવિધાઓ જુઓ"
+  },
+  "chatbot": {
+    "title": "ખેડૂત AI સહાયક",
+    "placeholder": "તમારો ખેતીનો પ્રશ્ન લખો...",
+    "send": "મોકલો",
+    "voice": "વૉઇસ ઇનપુટ",
+    "quickActions": {
+      "diagnose": "રોગ નિદાન",
+      "prices": "બજાર ભાવ",
+      "crops": "પાક સૂચનો",
+      "irrigation": "સિંચાઈ સહાય"
+    },
+    "greeting": "નમસ્તે! હું તમારો AI ખેતી સહાયક છું. આજે હું તમને કેવી રીતે મદદ કરી શકું?",
+    "language": "ભાષા"
+  },
+  "footer": {
+    "description": "લાખો ભારતીય ખેડૂતોને સ્માર્ટ નિર્ણયો લેવામાં મદદ કરનાર AI-સંચાલિત ખેતી સાથી.",
+    "quickLinks": "ઝડપી લિંક્સ",
+    "resources": "સંસાધનો",
+    "contact": "સંપર્ક કરો",
+    "documentation": "દસ્તાવેજીકરણ",
+    "apiReference": "API સંદર્ભ",
+    "community": "સમુદાય",
+    "blog": "બ્લોગ",
+    "email": "support@khedutsaathi.in",
+    "phone": "+91 1800-XXX-XXXX",
+    "address": "અમદાવાદ, ગુજરાત, ભારત",
+    "rights": "© 2026 KhedutSaathi. સર્વાધિકાર સુરક્ષિત.",
+    "madeWith": "ભારતીય ખેડૂતો માટે ❤️ થી બનાવેલ"
+  },
+  "common": {
+    "loading": "લોડ થઈ રહ્યું છે...",
+    "error": "કંઈક ખોટું થયું",
+    "retry": "ફરી પ્રયાસ કરો",
+    "save": "સાચવો",
+    "cancel": "રદ કરો",
+    "submit": "સબમિટ કરો",
+    "reset": "રીસેટ",
+    "viewAll": "બધું જુઓ",
+    "close": "બંધ કરો"
+  }
+}
