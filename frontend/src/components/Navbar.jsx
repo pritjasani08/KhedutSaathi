@@ -2,8 +2,9 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Globe, LogIn, Sun, Moon } from 'lucide-react';
+import { Menu, X, Globe, LogIn, Sun, Moon, User, LogOut } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import { useAuth } from '../context/AuthContext';
 
 const languages = [
   { code: 'en', label: 'English' },
@@ -18,6 +19,11 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [langDropdown, setLangDropdown] = useState(false);
   const langRef = useRef(null);
+  
+  const { user, logout } = useAuth();
+  const [profileDropdown, setProfileDropdown] = useState(false);
+  const profileRef = useRef(null);
+  
   const { isDarkMode, toggleTheme } = useTheme();
 
   useEffect(() => {
@@ -30,6 +36,9 @@ export default function Navbar() {
     const handleClickOutside = (event) => {
       if (langRef.current && !langRef.current.contains(event.target)) {
         setLangDropdown(false);
+      }
+      if (profileRef.current && !profileRef.current.contains(event.target)) {
+        setProfileDropdown(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -138,14 +147,62 @@ export default function Navbar() {
               {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
 
-            {/* Login Button */}
-            <Link 
-              to="/login"
-              className="hidden lg:flex items-center gap-2 px-4 py-2 rounded-xl bg-surface hover:bg-surface-muted border border-transparent hover:border-subtle text-slate-700 dark:text-slate-200 text-sm font-medium transition-all duration-300"
-            >
-              <LogIn className="w-4 h-4" />
-              Log In
-            </Link>
+            {/* Login / Profile Button */}
+            {user ? (
+              <div className="relative hidden lg:block" ref={profileRef}>
+                <button
+                  onClick={() => setProfileDropdown(!profileDropdown)}
+                  className="flex items-center gap-2 px-3 py-2 rounded-xl bg-primary-50 dark:bg-primary-900/30 border border-transparent hover:border-primary-200 dark:hover:border-primary-800 text-primary dark:text-primary-light text-sm font-medium transition-all duration-300"
+                >
+                  <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
+                    <User className="w-3.5 h-3.5" />
+                  </div>
+                  {user.first_name}
+                </button>
+                <AnimatePresence>
+                  {profileDropdown && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -8, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -8, scale: 0.95 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute right-0 top-full mt-2 w-48 bg-surface/90 backdrop-blur-xl rounded-xl shadow-glass border border-subtle overflow-hidden"
+                    >
+                      <div className="px-4 py-3 border-b border-subtle">
+                        <p className="text-sm font-medium text-heading">{user.first_name} {user.last_name}</p>
+                        <p className="text-xs text-body opacity-80">{user.email}</p>
+                      </div>
+                      <Link 
+                        to="/profile"
+                        onClick={() => setProfileDropdown(false)}
+                        className="w-full flex items-center gap-2 px-4 py-2.5 text-left text-sm font-medium text-body hover:bg-surface-muted transition-colors"
+                      >
+                        <User className="w-4 h-4" />
+                        My Profile
+                      </Link>
+                      <button
+                        onClick={() => {
+                          logout();
+                          setProfileDropdown(false);
+                        }}
+                        className="w-full flex items-center gap-2 px-4 py-2.5 text-left text-sm font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/10 transition-colors"
+                      >
+                        <LogOut className="w-4 h-4" />
+                        Log Out
+                      </button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ) : (
+              <Link 
+                to="/login"
+                className="hidden lg:flex items-center gap-2 px-4 py-2 rounded-xl bg-surface hover:bg-surface-muted border border-transparent hover:border-subtle text-slate-700 dark:text-slate-200 text-sm font-medium transition-all duration-300"
+              >
+                <LogIn className="w-4 h-4" />
+                Log In
+              </Link>
+            )}
 
             {/* Mobile Menu Button */}
             <button

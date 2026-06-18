@@ -63,20 +63,24 @@ function ScrollToTop() {
   return null;
 }
 
+import { AuthProvider } from './context/AuthContext';
+
 export default function App() {
   return (
     <ThemeProvider>
-      <Router>
-        <ScrollToTop />
-        <div className="min-h-screen flex flex-col bg-background transition-colors duration-300">
-          <Navbar />
-          <main className="flex-1">
-            <AnimatedRoutes />
-          </main>
-          <Footer />
-          <ChatbotWidget />
-        </div>
-      </Router>
+      <AuthProvider>
+        <Router>
+          <ScrollToTop />
+          <div className="min-h-screen flex flex-col bg-background transition-colors duration-300">
+            <Navbar />
+            <main className="flex-1">
+              <AnimatedRoutes />
+            </main>
+            <Footer />
+            <ChatbotWidget />
+          </div>
+        </Router>
+      </AuthProvider>
     </ThemeProvider>
   );
 }

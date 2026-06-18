@@ -7,11 +7,14 @@
     "dev": "node --watch index.js"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.108.2",
     "axios": "^1.18.0",
+    "bcrypt": "^6.0.0",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "india-states-districts": "^1.8.0",
-    "node-cache": "^5.1.2"
+    "node-cache": "^5.1.2",
+    "nodemailer": "^9.0.1"
   }
 }
