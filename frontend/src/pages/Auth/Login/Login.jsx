@@ -1,16 +1,46 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, LogIn, ArrowRight, Eye, EyeOff } from 'lucide-react';
+import { useAuth } from '../../../context/AuthContext';
 
 export default function Login() {
+  const navigate = useNavigate();
+  const { login } = useAuth();
+  
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({ email: '', password: '' });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Auth logic placeholder
-    console.log('Login attempt:', formData);
+    setLoading(true);
+    setError('');
+
+    try {
+      const response = await fetch('http://localhost:5000/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Login failed');
+      }
+
+      // Context login
+      login(data.user);
+      
+      // Redirect to home
+      navigate('/');
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -26,6 +56,12 @@ export default function Login() {
             <h1 className="font-display text-3xl font-bold text-heading mb-3">Welcome Back</h1>
             <p className="text-body opacity-80">Log in to continue to your dashboard.</p>
           </div>
+
+          {error && (
+            <div className="mb-6 p-3 bg-red-500/10 border border-red-500/50 rounded-lg text-red-600 dark:text-red-400 text-sm text-center">
+              {error}
+            </div>
+          )}
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
@@ -76,28 +112,15 @@ export default function Login() {
 
             <button
               type="submit"
-              className="w-full btn-primary flex items-center justify-center gap-2 group mt-6"
+              disabled={loading}
+              className="w-full btn-primary flex items-center justify-center gap-2 group mt-6 disabled:opacity-70"
             >
               <LogIn className="w-5 h-5" />
-              Sign In
-              <ArrowRight className="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />
+              {loading ? 'Signing In...' : 'Sign In'}
+              {!loading && <ArrowRight className="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />}
             </button>
           </form>
 
-          <div className="mt-6 flex items-center gap-4">
-            <div className="flex-1 h-px bg-slate-200 dark:bg-slate-700"></div>
-            <span className="text-sm text-slate-500 dark:text-slate-400 font-medium">OR</span>
-            <div className="flex-1 h-px bg-slate-200 dark:bg-slate-700"></div>
-          </div>
-
-          <div className="mt-6">
-            <button
-              type="button"
-              className="w-full btn-secondary flex items-center justify-center gap-3 bg-surface hover:bg-surface-muted border border-subtle hover:border-slate-300 dark:hover:border-slate-600 text-heading py-3"
-            >
-              Continue with Google
-            </button>
-          </div>
 
           <p className="text-center mt-8 text-sm text-body opacity-80">
             Don't have an account?{' '}
