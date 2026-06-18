@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { TrendingUp, Search, ArrowUpRight, ArrowDownRight, Minus } from 'lucide-react';
+import { Search, ArrowUpRight, ArrowDownRight, Minus } from 'lucide-react';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -110,7 +110,7 @@ export default function LivePrices() {
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="bg-slate-50 border-b border-slate-200">
+              <tr className="bg-surface-muted border-b border-slate-200">
                 <th className="text-left py-4 px-6 text-xs font-semibold text-slate-500 uppercase tracking-wider">{t('marketHub.crop')}</th>
                 <th className="text-left py-4 px-6 text-xs font-semibold text-slate-500 uppercase tracking-wider">{t('marketHub.minPrice')}</th>
                 <th className="text-left py-4 px-6 text-xs font-semibold text-slate-500 uppercase tracking-wider">{t('marketHub.maxPrice')}</th>
@@ -127,10 +127,10 @@ export default function LivePrices() {
                   transition={{ delay: 0.4 + i * 0.05 }}
                   className="border-b border-slate-100 hover:bg-primary-50/30 transition-colors duration-200"
                 >
-                  <td className="py-4 px-6 font-semibold text-slate-800">{row.crop}</td>
+                  <td className="py-4 px-6 font-semibold text-body">{row.crop}</td>
                   <td className="py-4 px-6 text-slate-600">₹{row.min.toLocaleString()}</td>
                   <td className="py-4 px-6 text-slate-600">₹{row.max.toLocaleString()}</td>
-                  <td className="py-4 px-6 font-semibold text-slate-800">₹{row.avg.toLocaleString()}</td>
+                  <td className="py-4 px-6 font-semibold text-body">₹{row.avg.toLocaleString()}</td>
                   <td className="py-4 px-6"><TrendIcon trend={row.trend} /></td>
                 </motion.tr>
               ))}

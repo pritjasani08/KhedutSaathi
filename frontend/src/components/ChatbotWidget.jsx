@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  MessageCircle, X, Send, Mic, MicOff, Globe,
+  MessageCircle, X, Send, Mic, MicOff,
   Stethoscope, TrendingUp, Sprout, Droplets, Bot, User
 } from 'lucide-react';
 
@@ -107,12 +107,12 @@ export default function ChatbotWidget() {
             animate={{ opacity: 1, x: 0, scale: 1 }}
             exit={{ opacity: 0, x: 100, scale: 0.9 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="fixed bottom-6 right-6 z-50 w-[380px] h-[600px] max-h-[80vh] bg-white rounded-2xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden"
+            className="fixed bottom-6 right-6 z-50 w-[380px] h-[600px] max-h-[80vh] bg-surface rounded-2xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden"
           >
             {/* Header */}
             <div className="bg-gradient-to-r from-primary to-primary-light px-5 py-4 flex items-center justify-between shrink-0">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
+                <div className="w-10 h-10 bg-surface/20 rounded-xl flex items-center justify-center">
                   <Bot className="w-6 h-6 text-white" />
                 </div>
                 <div>
@@ -129,15 +129,15 @@ export default function ChatbotWidget() {
                 <select
                   value={i18n.language}
                   onChange={(e) => i18n.changeLanguage(e.target.value)}
-                  className="bg-white/20 text-white text-xs rounded-lg px-2 py-1.5 border-0 outline-none cursor-pointer"
+                  className="bg-surface/20 text-white text-xs rounded-lg px-2 py-1.5 border-0 outline-none cursor-pointer"
                 >
-                  <option value="en" className="text-slate-800">English</option>
-                  <option value="hi" className="text-slate-800">हिंदी</option>
-                  <option value="gu" className="text-slate-800">ગુજરાતી</option>
+                  <option value="en" className="text-body">English</option>
+                  <option value="hi" className="text-body">हिंदी</option>
+                  <option value="gu" className="text-body">ગુજરાતી</option>
                 </select>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="w-8 h-8 rounded-lg bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors duration-300"
+                  className="w-8 h-8 rounded-lg bg-surface/20 hover:bg-surface/30 flex items-center justify-center transition-colors duration-300"
                 >
                   <X className="w-4 h-4 text-white" />
                 </button>

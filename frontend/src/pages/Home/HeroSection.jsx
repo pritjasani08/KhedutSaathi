@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Sprout, ArrowRight, Upload, Bot, CheckCircle2 } from 'lucide-react';
+import { Sprout, Upload, Bot, CheckCircle2 } from 'lucide-react';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -46,7 +46,7 @@ export default function HeroSection() {
             <motion.h1
               variants={fadeUp}
               custom={1}
-              className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-slate-900 dark:text-white leading-[1.1] mb-6 text-balance"
+              className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-heading leading-[1.1] mb-6 text-balance"
             >
               {t('hero.title').split(' ').map((word, i) => (
                 <span key={i}>
@@ -105,7 +105,7 @@ export default function HeroSection() {
               {/* Central circle */}
               <div className="absolute inset-12 bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-900/50 dark:to-primary-800/50 rounded-full animate-pulse-slow" />
               <div className="absolute inset-16 bg-gradient-to-br from-primary-200 to-primary-300 dark:from-primary-800/50 dark:to-primary-700/50 rounded-full" />
-              <div className="absolute inset-20 bg-white dark:bg-slate-800 rounded-full shadow-card flex items-center justify-center">
+              <div className="absolute inset-20 bg-surface rounded-full shadow-card flex items-center justify-center">
                 <span className="text-8xl">🌾</span>
               </div>
 

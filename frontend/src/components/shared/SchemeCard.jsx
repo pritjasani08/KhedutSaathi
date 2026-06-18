@@ -24,7 +24,7 @@ export default function SchemeCard({ title, description, eligibility, deadline, 
         )}
       </div>
       
-      <h3 className="font-display text-xl font-bold text-slate-800 dark:text-slate-100 mb-3">
+      <h3 className="font-display text-xl font-bold text-body mb-3">
         {title}
       </h3>
       

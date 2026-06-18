@@ -114,7 +114,7 @@ export default function CropDiagnosis() {
           <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-100/60 dark:bg-primary-900/40 text-primary text-sm font-semibold mb-4">
             <Pill className="w-4 h-4" /> AI Disease Detection
           </motion.div>
-          <motion.h1 variants={fadeUp} custom={1} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+          <motion.h1 variants={fadeUp} custom={1} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-heading mb-4">
             {t('cropDiagnosis.title')}
           </motion.h1>
           <motion.p variants={fadeUp} custom={2} className="text-slate-500 dark:text-slate-400 text-lg max-w-2xl mx-auto">
@@ -131,7 +131,7 @@ export default function CropDiagnosis() {
             transition={{ duration: 0.6 }}
             className="glass-card p-6 md:p-8"
           >
-            <h2 className="font-display text-xl font-bold text-slate-800 dark:text-slate-100 mb-6 flex items-center gap-2">
+            <h2 className="font-display text-xl font-bold text-body mb-6 flex items-center gap-2">
               <Upload className="w-5 h-5 text-primary" />
               {t('cropDiagnosis.uploadTitle')}
             </h2>
@@ -144,7 +144,7 @@ export default function CropDiagnosis() {
                 className={`border-2 border-dashed rounded-2xl p-12 text-center transition-all duration-300 cursor-pointer ${
                   dragActive
                     ? 'border-primary bg-primary-50 dark:bg-primary-900/20 scale-[1.02]'
-                    : 'border-slate-200 dark:border-slate-700 hover:border-primary/50 hover:bg-primary-50/30 dark:hover:bg-primary-900/10'
+                    : 'border-subtle hover:border-primary/50 hover:bg-primary-50/30 dark:hover:bg-primary-900/10'
                 }`}
               >
                 <div className="w-20 h-20 bg-primary-50 dark:bg-primary-900/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
@@ -174,7 +174,7 @@ export default function CropDiagnosis() {
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
                   <button
                     onClick={clearImage}
-                    className="absolute top-3 right-3 w-10 h-10 bg-white/90 rounded-xl flex items-center justify-center hover:bg-red-50 transition-colors duration-300"
+                    className="absolute top-3 right-3 w-10 h-10 bg-surface/90 rounded-xl flex items-center justify-center hover:bg-red-50 transition-colors duration-300"
                   >
                     <X className="w-5 h-5 text-slate-700" />
                   </button>
@@ -208,7 +208,7 @@ export default function CropDiagnosis() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="glass-card p-6 md:p-8"
           >
-            <h2 className="font-display text-xl font-bold text-slate-800 dark:text-slate-100 mb-6 flex items-center gap-2">
+            <h2 className="font-display text-xl font-bold text-body mb-6 flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-primary" />
               {t('cropDiagnosis.results')}
             </h2>
@@ -234,14 +234,14 @@ export default function CropDiagnosis() {
                     <AlertTriangle className="w-6 h-6 text-red-500 shrink-0 mt-0.5" />
                     <div>
                       <p className="text-xs text-red-500 font-medium mb-1">{t('cropDiagnosis.diseaseName')}</p>
-                      <p className="font-display font-bold text-lg text-slate-800 dark:text-slate-100">{result.disease}</p>
+                      <p className="font-display font-bold text-lg text-body">{result.disease}</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Confidence & Severity */}
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-4 text-center">
+                  <div className="bg-surface-muted rounded-xl p-4 text-center">
                     <p className="text-xs text-slate-500 dark:text-slate-400 mb-1">{t('cropDiagnosis.confidence')}</p>
                     <p className="font-display text-2xl font-bold gradient-text">{result.confidence}%</p>
                     <div className="mt-2 h-2 bg-slate-200 rounded-full overflow-hidden">
@@ -253,7 +253,7 @@ export default function CropDiagnosis() {
                       />
                     </div>
                   </div>
-                  <div className="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-4 text-center">
+                  <div className="bg-surface-muted rounded-xl p-4 text-center">
                     <p className="text-xs text-slate-500 dark:text-slate-400 mb-1">{t('cropDiagnosis.severity')}</p>
                     <span className={`${severityColor(result.severity)} text-lg`}>{result.severity}</span>
                     <ShieldAlert className="w-5 h-5 text-red-400 mx-auto mt-2" />
@@ -304,7 +304,7 @@ export default function CropDiagnosis() {
           transition={{ duration: 0.6 }}
           className="glass-card p-6 md:p-8"
         >
-          <h2 className="font-display text-xl font-bold text-slate-800 dark:text-slate-100 mb-6 flex items-center gap-2">
+          <h2 className="font-display text-xl font-bold text-body mb-6 flex items-center gap-2">
             <Clock className="w-5 h-5 text-primary" />
             {t('cropDiagnosis.history')}
           </h2>
@@ -322,9 +322,9 @@ export default function CropDiagnosis() {
               </thead>
               <tbody>
                 {mockHistory.map((row) => (
-                  <tr key={row.id} className="border-b border-slate-100 hover:bg-slate-50/50 transition-colors duration-200">
+                  <tr key={row.id} className="border-b border-slate-100 hover:bg-surface-muted/50 transition-colors duration-200">
                     <td className="py-4 px-4 text-sm text-slate-600">{row.date}</td>
-                    <td className="py-4 px-4 text-sm font-medium text-slate-800">{row.crop}</td>
+                    <td className="py-4 px-4 text-sm font-medium text-body">{row.crop}</td>
                     <td className="py-4 px-4 text-sm text-slate-600">{row.disease}</td>
                     <td className="py-4 px-4"><span className={statusColor(row.status)}>{row.status}</span></td>
                     <td className="py-4 px-4">

@@ -45,7 +45,7 @@ export default function SchemesSection() {
   ];
 
   return (
-    <section className="section-padding bg-white dark:bg-slate-900">
+    <section className="section-padding bg-surface">
       <div className="container-custom px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16 gap-4">
           <SectionHeader 

@@ -17,7 +17,7 @@ export default function SectionHeader({ title, subtitle, center = true }) {
       variants={fadeUp}
       className={`mb-12 md:mb-16 ${center ? 'text-center' : 'text-left'}`}
     >
-      <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+      <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-heading mb-4">
         {title}
       </h2>
       {subtitle && (

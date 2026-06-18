@@ -34,7 +34,7 @@ export default function NewsSection() {
   ];
 
   return (
-    <section className="section-padding bg-slate-50 dark:bg-slate-900/50">
+    <section className="section-padding bg-surface-muted">
       <div className="container-custom px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16 gap-4">
           <SectionHeader 

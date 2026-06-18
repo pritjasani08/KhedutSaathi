@@ -1,14 +1,8 @@
 import { motion } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Newspaper, Landmark } from 'lucide-react';
 import NewsCard from '../../components/shared/NewsCard';
 import SchemeCard from '../../components/shared/SchemeCard';
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-};
 
 const MOCK_NEWS = [
   {
@@ -49,10 +43,9 @@ const MOCK_SCHEMES = [
 ];
 
 export default function NewsAndSchemesSection() {
-  const { t } = useTranslation();
-
+  
   return (
-    <section className="py-20 bg-slate-50 dark:bg-slate-800/50 relative overflow-hidden transition-colors duration-300">
+    <section className="py-20 bg-surface-muted relative overflow-hidden transition-colors duration-300">
       <div className="container-custom px-4 sm:px-6 lg:px-8">
         
         <div className="text-center mb-16">
@@ -60,7 +53,7 @@ export default function NewsAndSchemesSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-display text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4"
+            className="font-display text-3xl md:text-4xl font-bold text-heading mb-4"
           >
             Latest News & Government Schemes
           </motion.h2>
@@ -84,7 +77,7 @@ export default function NewsAndSchemesSection() {
             transition={{ duration: 0.6 }}
           >
             <div className="flex items-center justify-between mb-8">
-              <h3 className="font-display text-2xl font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
+              <h3 className="font-display text-2xl font-bold text-body flex items-center gap-2">
                 <Newspaper className="w-6 h-6 text-primary" />
                 Latest News
               </h3>
@@ -106,7 +99,7 @@ export default function NewsAndSchemesSection() {
             transition={{ duration: 0.6 }}
           >
             <div className="flex items-center justify-between mb-8">
-              <h3 className="font-display text-2xl font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
+              <h3 className="font-display text-2xl font-bold text-body flex items-center gap-2">
                 <Landmark className="w-6 h-6 text-primary" />
                 Government Schemes
               </h3>
@@ -129,7 +122,7 @@ export default function NewsAndSchemesSection() {
           transition={{ delay: 0.4 }}
           className="mt-16 text-center"
         >
-          <Link to="/resources" className="inline-flex items-center gap-2 px-8 py-4 bg-white dark:bg-slate-800 text-primary border border-slate-200 dark:border-slate-700 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700/50 shadow-sm transition-all duration-300 font-semibold text-lg hover:shadow-md hover:-translate-y-1">
+          <Link to="/resources" className="inline-flex items-center gap-2 px-8 py-4 bg-surface text-primary border border-subtle rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700/50 shadow-sm transition-all duration-300 font-semibold text-lg hover:shadow-md hover:-translate-y-1">
             View All News & Schemes
             <ArrowRight className="w-5 h-5" />
           </Link>

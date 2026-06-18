@@ -1,8 +1,6 @@
 import { motion } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { TrendingUp, ArrowRight, LineChart, IndianRupee } from 'lucide-react';
-import SectionHeader from '../../components/shared/SectionHeader';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -10,10 +8,9 @@ const fadeUp = {
 };
 
 export default function MarketPricesSection() {
-  const { t } = useTranslation();
-
+  
   return (
-    <section className="py-20 bg-white dark:bg-slate-900 relative overflow-hidden transition-colors duration-300">
+    <section className="py-20 bg-surface relative overflow-hidden transition-colors duration-300">
       <div className="container-custom relative px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           
@@ -28,7 +25,7 @@ export default function MarketPricesSection() {
               <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100/60 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400 text-sm font-semibold mb-4">
                 <TrendingUp className="w-4 h-4" /> Market Intelligence
               </motion.div>
-              <motion.h2 variants={fadeUp} className="font-display text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6">
+              <motion.h2 variants={fadeUp} className="font-display text-3xl md:text-4xl font-bold text-heading mb-6">
                 Never Undersell Your Hard Work Again
               </motion.h2>
               <motion.p variants={fadeUp} className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
@@ -46,7 +43,7 @@ export default function MarketPricesSection() {
                     <feature.icon className="w-6 h-6 text-amber-600 dark:text-amber-400" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-slate-900 dark:text-white mb-1">{feature.title}</h4>
+                    <h4 className="font-semibold text-heading mb-1">{feature.title}</h4>
                     <p className="text-sm text-slate-500 dark:text-slate-400">{feature.desc}</p>
                   </div>
                 </div>
@@ -71,7 +68,7 @@ export default function MarketPricesSection() {
             className="relative"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-amber-100 to-amber-200 dark:from-amber-900/30 dark:to-amber-800/30 rounded-[2.5rem] transform rotate-3" />
-            <div className="relative bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2.5rem] p-8 shadow-glass transform -rotate-3 transition-transform hover:rotate-0 duration-500">
+            <div className="relative bg-surface border border-subtle rounded-[2.5rem] p-8 shadow-glass transform -rotate-3 transition-transform hover:rotate-0 duration-500">
               
               <div className="space-y-4">
                 {[
@@ -85,19 +82,19 @@ export default function MarketPricesSection() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.2 }}
-                    className="flex justify-between items-center p-4 bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-700 rounded-xl"
+                    className="flex justify-between items-center p-4 bg-background border border-subtle rounded-xl"
                   >
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-lg">
                         {item.crop.includes('Wheat') ? '🌾' : item.crop.includes('Cotton') ? '☁️' : '🌱'}
                       </div>
                       <div>
-                        <p className="font-semibold text-slate-800 dark:text-slate-100">{item.crop}</p>
+                        <p className="font-semibold text-body">{item.crop}</p>
                         <p className="text-xs text-slate-500 dark:text-slate-400">Rajkot Mandi</p>
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className="font-bold text-slate-900 dark:text-white">{item.price}</p>
+                      <p className="font-bold text-heading">{item.price}</p>
                       <p className={`text-xs font-semibold ${item.up ? 'text-green-500' : 'text-red-500'} flex items-center justify-end gap-1`}>
                         <TrendingUp className={`w-3 h-3 ${!item.up && 'rotate-180'}`} />
                         {item.trend}

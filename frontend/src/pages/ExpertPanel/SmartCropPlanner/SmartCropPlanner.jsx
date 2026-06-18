@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import {
   MapPin, Droplets, Ruler, Clock, Sprout, IndianRupee,
-  Gauge, CheckCircle2, Leaf, Loader2
+  Gauge, Leaf, Loader2
 } from 'lucide-react';
 
 const fadeUp = {
@@ -141,7 +141,7 @@ export default function SmartCropPlanner() {
 
       {results && (
         <div>
-          <h3 className="font-display text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+          <h3 className="font-display text-xl font-bold text-body mb-6 flex items-center gap-2">
             <Leaf className="w-5 h-5 text-primary" />
             {t('expertPanel.recommendedCrops')}
           </h3>
@@ -158,7 +158,7 @@ export default function SmartCropPlanner() {
                   <div className="flex items-center gap-3">
                     <span className="text-3xl">{crop.icon}</span>
                     <div>
-                      <h4 className="font-display font-bold text-lg text-slate-800">{crop.crop}</h4>
+                      <h4 className="font-display font-bold text-lg text-body">{crop.crop}</h4>
                       <p className="text-sm text-slate-500">{t('expertPanel.cropName')}</p>
                     </div>
                   </div>
@@ -180,7 +180,7 @@ export default function SmartCropPlanner() {
                     <p className="text-xs text-amber-600 flex items-center gap-1"><Clock className="w-3 h-3" />{t('expertPanel.cropDuration')}</p>
                     <p className="font-bold text-amber-700 mt-1">{crop.duration}</p>
                   </div>
-                  <div className="bg-slate-50 rounded-xl p-3">
+                  <div className="bg-surface-muted rounded-xl p-3">
                     <p className="text-xs text-slate-500 flex items-center gap-1"><Gauge className="w-3 h-3" />{t('expertPanel.suitabilityScore')}</p>
                     <div className="mt-1 h-2 bg-slate-200 rounded-full overflow-hidden">
                       <motion.div

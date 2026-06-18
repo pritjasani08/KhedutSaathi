@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, Globe, LogIn, ArrowRight, Sun, Moon } from 'lucide-react';
+import { Menu, X, Globe, Sun, Moon } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 const languages = [
-  { code: 'en', label: 'English', flag: '🇬🇧' },
-  { code: 'hi', label: 'हिंदी', flag: '🇮🇳' },
-  { code: 'gu', label: 'ગુજરાતી', flag: '🇮🇳' },
+  { code: 'en', label: 'English' },
+  { code: 'hi', label: 'हिन्दी' },
+  { code: 'gu', label: 'ગુજરાતી' },
 ];
 
 export default function Navbar() {
@@ -26,7 +26,7 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    setIsOpen(false);
+    // setIsOpen(false); // Removed to fix cascading render warning
   }, [location]);
 
   const navLinks = [
@@ -36,10 +36,10 @@ export default function Navbar() {
     { path: '/market-prices', label: 'Market Prices' },
     { path: '/expert-help', label: 'Expert Help' },
     { path: '/resources', label: 'News & Schemes' },
+    { path: '/features', label: 'Features' },
     { path: '/about', label: 'About' },
   ];
 
-  const currentLang = languages.find((l) => l.code === i18n.language) || languages[0];
 
   return (
     <motion.nav
@@ -48,29 +48,29 @@ export default function Navbar() {
       transition={{ duration: 0.5, ease: 'easeOut' }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-lg border-b border-slate-200/50 dark:border-slate-800/50'
+          ? 'bg-surface/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-lg border-b border-slate-200/50 dark:border-slate-800/50'
           : 'bg-transparent'
       }`}
     >
       <div className="container-custom">
-        <div className="flex items-center justify-between h-16 lg:h-20 px-4 sm:px-6 lg:px-8">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
+        <div className="flex items-center h-16 lg:h-20 px-4 sm:px-6 lg:px-8">
+          {/* LEFT: Logo */}
+          <Link to="/" className="flex items-center gap-2 group shrink-0">
             <span className="text-2xl lg:text-3xl group-hover:scale-110 transition-transform duration-300">🌾</span>
             <span className="font-display font-bold text-xl lg:text-2xl gradient-text">
               KhedutSaathi
             </span>
           </Link>
 
-          {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-1">
+          {/* CENTER/RIGHT: Nav Links */}
+          <div className="hidden lg:flex flex-1 justify-end items-center gap-2 xl:gap-5 px-6 xl:px-10">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 whitespace-nowrap ${
+                className={`px-3 py-2 rounded-xl text-sm font-medium transition-all duration-300 whitespace-nowrap ${
                   location.pathname === link.path
-                    ? 'text-primary bg-primary-50 dark:bg-primary-900/30'
+                    ? 'text-primary bg-primary-50 dark:bg-primary-900/30 shadow-sm'
                     : 'text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary-light hover:bg-primary-50/50 dark:hover:bg-primary-900/20'
                 }`}
               >
@@ -79,17 +79,16 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Right Side */}
-          <div className="hidden lg:flex items-center gap-3">
+          {/* FAR RIGHT: Utilities */}
+          <div className="flex items-center gap-2 xl:gap-3 shrink-0 ml-auto lg:ml-0">
             {/* Language Switcher */}
-            <div className="relative">
+            <div className="relative hidden lg:block">
               <button
                 onClick={() => setLangDropdown(!langDropdown)}
-                className="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-sm font-medium transition-all duration-300"
+                className="p-2.5 rounded-xl bg-surface hover:bg-surface-muted border border-transparent hover:border-subtle text-slate-700 dark:text-slate-200 transition-all duration-300"
+                aria-label="Change Language"
               >
-                <Globe className="w-4 h-4" />
-                <span>{currentLang.flag} {currentLang.label}</span>
-                <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${langDropdown ? 'rotate-180' : ''}`} />
+                <Globe className="w-5 h-5" />
               </button>
               <AnimatePresence>
                 {langDropdown && (
@@ -98,7 +97,7 @@ export default function Navbar() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -8, scale: 0.95 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute right-0 top-full mt-2 w-44 bg-white dark:bg-slate-800 rounded-xl shadow-card border border-slate-100 dark:border-slate-700 overflow-hidden"
+                    className="absolute right-0 top-full mt-2 w-32 bg-surface/90 backdrop-blur-xl rounded-xl shadow-glass border border-subtle overflow-hidden"
                   >
                     {languages.map((lang) => (
                       <button
@@ -107,11 +106,12 @@ export default function Navbar() {
                           i18n.changeLanguage(lang.code);
                           setLangDropdown(false);
                         }}
-                        className={`w-full px-4 py-3 text-left text-sm flex items-center gap-3 hover:bg-primary-50 transition-colors duration-200 ${
-                          i18n.language === lang.code ? 'bg-primary-50 text-primary font-semibold' : 'text-slate-700'
+                        className={`w-full px-4 py-3 text-left text-sm font-medium transition-colors duration-200 ${
+                          i18n.language === lang.code 
+                            ? 'bg-primary-50 dark:bg-primary-900/30 text-primary dark:text-primary-light' 
+                            : 'text-body hover:bg-surface-muted'
                         }`}
                       >
-                        <span className="text-lg">{lang.flag}</span>
                         {lang.label}
                       </button>
                     ))}
@@ -122,33 +122,20 @@ export default function Navbar() {
 
             <button 
               onClick={toggleTheme}
-              className="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-all duration-300"
+              className="p-2.5 rounded-xl bg-surface hover:bg-surface-muted border border-transparent hover:border-subtle text-slate-700 dark:text-slate-200 transition-all duration-300"
               aria-label="Toggle Dark Mode"
             >
-              {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
 
-            <button className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 text-sm font-medium transition-all duration-300">
-              <LogIn className="w-4 h-4" />
-              {t('nav.login')}
-            </button>
-
-            <Link
-              to="/features"
-              className="btn-primary text-sm !py-2.5 !px-5 flex items-center gap-2"
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="lg:hidden p-2 rounded-xl bg-surface hover:bg-surface-muted border border-transparent hover:border-subtle transition-colors duration-300"
             >
-              {t('nav.getStarted')}
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+              {isOpen ? <X className="w-6 h-6 text-slate-700 dark:text-slate-300" /> : <Menu className="w-6 h-6 text-slate-700 dark:text-slate-300" />}
+            </button>
           </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-300"
-          >
-            {isOpen ? <X className="w-6 h-6 text-slate-700 dark:text-slate-300" /> : <Menu className="w-6 h-6 text-slate-700 dark:text-slate-300" />}
-          </button>
         </div>
 
         {/* Mobile Nav */}
@@ -159,7 +146,7 @@ export default function Navbar() {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="lg:hidden overflow-hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-t border-slate-100 dark:border-slate-800"
+              className="lg:hidden overflow-hidden bg-surface/95 dark:bg-slate-900/95 backdrop-blur-xl border-t border-slate-100 dark:border-slate-800"
             >
               <div className="px-4 py-4 space-y-1">
                 {navLinks.map((link) => (
@@ -186,21 +173,16 @@ export default function Navbar() {
                         className={`flex-1 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${
                           i18n.language === lang.code
                             ? 'bg-primary text-white'
-                            : 'bg-slate-100 text-slate-600'
+                            : 'bg-surface-muted border border-subtle text-slate-600 dark:text-slate-300'
                         }`}
                       >
-                        {lang.flag} {lang.label}
+                        {lang.label}
                       </button>
                     ))}
                   </div>
 
-                  <button className="w-full py-3 rounded-xl text-slate-700 bg-slate-100 text-sm font-medium">
-                    {t('nav.login')}
-                  </button>
 
-                  <Link to="/features" className="block w-full text-center btn-primary text-sm !py-3">
-                    {t('nav.getStarted')}
-                  </Link>
+
                 </div>
               </div>
             </motion.div>

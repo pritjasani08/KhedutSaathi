@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import {
   Search, SlidersHorizontal, Star, MapPin, Phone,
-  ShoppingCart, Sprout, FlaskConical, Bug, X, ChevronDown
+  ShoppingCart, Sprout, FlaskConical, Bug, X
 } from 'lucide-react';
 
 const fadeUp = {
@@ -63,7 +63,7 @@ export default function AgriMarketplace() {
           <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100/60 text-amber-600 text-sm font-semibold mb-4">
             <ShoppingCart className="w-4 h-4" /> Agricultural E-Commerce
           </motion.div>
-          <motion.h1 variants={fadeUp} custom={1} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
+          <motion.h1 variants={fadeUp} custom={1} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-heading mb-4">
             {t('agriMarketplace.title')}
           </motion.h1>
           <motion.p variants={fadeUp} custom={2} className="text-slate-500 text-lg max-w-2xl mx-auto">
@@ -81,7 +81,7 @@ export default function AgriMarketplace() {
           <button
             onClick={() => setSelectedCategory('all')}
             className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${
-              selectedCategory === 'all' ? 'bg-primary text-white shadow-green' : 'bg-white text-slate-600 hover:bg-slate-50 shadow-card'
+              selectedCategory === 'all' ? 'bg-primary text-white shadow-green' : 'bg-surface text-slate-600 hover:bg-surface-muted shadow-card'
             }`}
           >
             🛒 {t('agriMarketplace.allCategories')}
@@ -91,7 +91,7 @@ export default function AgriMarketplace() {
               key={cat.key}
               onClick={() => setSelectedCategory(cat.key)}
               className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${
-                selectedCategory === cat.key ? 'bg-primary text-white shadow-green' : 'bg-white text-slate-600 hover:bg-slate-50 shadow-card'
+                selectedCategory === cat.key ? 'bg-primary text-white shadow-green' : 'bg-surface text-slate-600 hover:bg-surface-muted shadow-card'
               }`}
             >
               {cat.emoji} {t(`agriMarketplace.${cat.key}`)}
@@ -148,7 +148,7 @@ export default function AgriMarketplace() {
             className="glass-card p-6 mb-8"
           >
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-display font-bold text-slate-800">{t('agriMarketplace.filters')}</h3>
+              <h3 className="font-display font-bold text-body">{t('agriMarketplace.filters')}</h3>
               <button onClick={() => setShowFilters(false)} className="text-slate-400 hover:text-slate-600">
                 <X className="w-5 h-5" />
               </button>
@@ -232,7 +232,7 @@ export default function AgriMarketplace() {
                     {t(`agriMarketplace.${product.category}`)}
                   </span>
 
-                  <h3 className="font-display font-bold text-slate-800 mb-2 line-clamp-2">{product.name}</h3>
+                  <h3 className="font-display font-bold text-body mb-2 line-clamp-2">{product.name}</h3>
 
                   {/* Rating */}
                   <div className="flex items-center gap-1 mb-3">

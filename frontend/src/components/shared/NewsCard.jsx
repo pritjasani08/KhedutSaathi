@@ -21,7 +21,7 @@ export default function NewsCard({ title, date, category, excerpt, image, index 
           </div>
         )}
         <div className="absolute top-4 left-4">
-          <span className="px-3 py-1 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm text-primary text-xs font-bold rounded-full">
+          <span className="px-3 py-1 bg-surface/90 dark:bg-slate-800/90 backdrop-blur-sm text-primary text-xs font-bold rounded-full">
             {category}
           </span>
         </div>
@@ -33,7 +33,7 @@ export default function NewsCard({ title, date, category, excerpt, image, index 
           <span>{date}</span>
         </div>
         
-        <h3 className="font-display text-xl font-bold text-slate-800 dark:text-slate-100 mb-3 line-clamp-2">
+        <h3 className="font-display text-xl font-bold text-body mb-3 line-clamp-2">
           {title}
         </h3>
         

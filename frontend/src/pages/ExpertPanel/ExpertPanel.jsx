@@ -31,7 +31,7 @@ export default function ExpertPanel() {
           <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-100/60 text-violet-600 text-sm font-semibold mb-4">
             <Brain className="w-4 h-4" /> AI Analytics Dashboard
           </motion.div>
-          <motion.h1 variants={fadeUp} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
+          <motion.h1 variants={fadeUp} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-heading mb-4">
             {t('expertPanel.title')}
           </motion.h1>
           <motion.p variants={fadeUp} className="text-slate-500 text-lg max-w-2xl mx-auto">
@@ -46,7 +46,7 @@ export default function ExpertPanel() {
           transition={{ delay: 0.3 }}
           className="flex justify-center mb-8"
         >
-          <div className="inline-flex bg-white rounded-2xl p-1.5 shadow-card">
+          <div className="inline-flex bg-surface rounded-2xl p-1.5 shadow-card">
             {tabs.map((tab) => (
               <button
                 key={tab.key}
@@ -54,7 +54,7 @@ export default function ExpertPanel() {
                 className={`flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 ${
                   activeTab === tab.key
                     ? 'bg-primary text-white shadow-green'
-                    : 'text-slate-600 hover:bg-slate-50'
+                    : 'text-slate-600 hover:bg-surface-muted'
                 }`}
               >
                 <tab.icon className="w-4 h-4" />

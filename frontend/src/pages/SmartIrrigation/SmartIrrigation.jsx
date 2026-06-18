@@ -87,7 +87,7 @@ export default function SmartIrrigation() {
           <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sky-100/60 text-sky-600 text-sm font-semibold mb-4">
             <Droplets className="w-4 h-4" /> Weather Intelligence
           </motion.div>
-          <motion.h1 variants={fadeUp} custom={1} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
+          <motion.h1 variants={fadeUp} custom={1} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-heading mb-4">
             {t('smartIrrigation.title')}
           </motion.h1>
           <motion.p variants={fadeUp} custom={2} className="text-slate-500 text-lg max-w-2xl mx-auto">
@@ -101,7 +101,7 @@ export default function SmartIrrigation() {
           variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
           className="mb-12"
         >
-          <motion.h2 variants={fadeUp} className="font-display text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+          <motion.h2 variants={fadeUp} className="font-display text-xl font-bold text-body mb-6 flex items-center gap-2">
             <CloudSun className="w-5 h-5 text-primary" />
             {t('smartIrrigation.currentConditions')}
           </motion.h2>
@@ -118,7 +118,7 @@ export default function SmartIrrigation() {
                   <data.icon className={`w-7 h-7 ${data.color}`} />
                 </div>
                 <p className="text-xs text-slate-500 font-medium mb-1">{t(`smartIrrigation.${key}`)}</p>
-                <p className="font-display text-2xl font-bold text-slate-800">{data.value}</p>
+                <p className="font-display text-2xl font-bold text-body">{data.value}</p>
                 <p className={`text-sm font-medium mt-1 ${data.color}`}>{data.trend}</p>
               </motion.div>
             ))}
@@ -133,7 +133,7 @@ export default function SmartIrrigation() {
           transition={{ duration: 0.5 }}
           className="glass-card p-6 mb-12"
         >
-          <h3 className="font-display text-lg font-bold text-slate-800 mb-5">5-Day Forecast</h3>
+          <h3 className="font-display text-lg font-bold text-body mb-5">5-Day Forecast</h3>
           <div className="grid grid-cols-5 gap-4">
             {forecast.map((day, i) => (
               <motion.div
@@ -143,12 +143,12 @@ export default function SmartIrrigation() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 className={`text-center p-4 rounded-xl transition-all duration-300 ${
-                  i === 0 ? 'bg-primary-50 border border-primary/20' : 'hover:bg-slate-50'
+                  i === 0 ? 'bg-primary-50 border border-primary/20' : 'hover:bg-surface-muted'
                 }`}
               >
                 <p className={`text-sm font-semibold mb-2 ${i === 0 ? 'text-primary' : 'text-slate-600'}`}>{day.day}</p>
                 <day.icon className={`w-8 h-8 mx-auto mb-2 ${i === 0 ? 'text-primary' : 'text-slate-400'}`} />
-                <p className="font-bold text-slate-800">{day.temp}</p>
+                <p className="font-bold text-body">{day.temp}</p>
                 <p className="text-xs text-slate-500 mt-1">Rain: {day.rain}</p>
               </motion.div>
             ))}
@@ -160,7 +160,7 @@ export default function SmartIrrigation() {
           initial="hidden" whileInView="visible" viewport={{ once: true }}
           variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
         >
-          <motion.h2 variants={fadeUp} className="font-display text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+          <motion.h2 variants={fadeUp} className="font-display text-xl font-bold text-body mb-6 flex items-center gap-2">
             <Gauge className="w-5 h-5 text-primary" />
             {t('smartIrrigation.recommendations')}
           </motion.h2>

@@ -33,7 +33,7 @@ export default function SellYield() {
         variants={{ visible: { transition: { staggerChildren: 0.05 } } }}
         className="glass-card p-6 md:p-8"
       >
-        <h3 className="font-display text-lg font-bold text-slate-800 mb-6 flex items-center gap-2">
+        <h3 className="font-display text-lg font-bold text-body mb-6 flex items-center gap-2">
           <Package className="w-5 h-5 text-primary" />
           Post Your Yield for Sale
         </h3>
@@ -114,7 +114,7 @@ export default function SellYield() {
 
       {/* Marketplace Feed */}
       <div>
-        <h3 className="font-display text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+        <h3 className="font-display text-xl font-bold text-body mb-6 flex items-center gap-2">
           <FileText className="w-5 h-5 text-primary" />
           {t('marketHub.marketplaceFeed')}
         </h3>
@@ -130,7 +130,7 @@ export default function SellYield() {
             >
               <div className="flex items-start justify-between mb-4">
                 <div>
-                  <h4 className="font-display font-bold text-lg text-slate-800">{listing.crop}</h4>
+                  <h4 className="font-display font-bold text-lg text-body">{listing.crop}</h4>
                   <p className="text-sm text-slate-500 flex items-center gap-1 mt-1">
                     <User className="w-3.5 h-3.5" /> {listing.farmer}
                   </p>
@@ -139,11 +139,11 @@ export default function SellYield() {
               </div>
 
               <div className="grid grid-cols-2 gap-3 mb-5">
-                <div className="bg-slate-50 rounded-lg p-3">
+                <div className="bg-surface-muted rounded-lg p-3">
                   <p className="text-xs text-slate-500">{t('marketHub.quantity')}</p>
-                  <p className="font-semibold text-slate-800 text-sm">{listing.quantity}</p>
+                  <p className="font-semibold text-body text-sm">{listing.quantity}</p>
                 </div>
-                <div className="bg-slate-50 rounded-lg p-3">
+                <div className="bg-surface-muted rounded-lg p-3">
                   <p className="text-xs text-slate-500">{t('marketHub.expectedPrice')}</p>
                   <p className="font-semibold text-primary text-sm">{listing.price}</p>
                 </div>

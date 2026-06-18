@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Newspaper, Landmark } from 'lucide-react';
 import PageHero from '../../components/shared/PageHero';
@@ -109,8 +108,7 @@ const MOCK_SCHEMES = [
 ];
 
 export default function Resources() {
-  const { t } = useTranslation();
-  const [activeTab, setActiveTab] = useState('news');
+    const [activeTab, setActiveTab] = useState('news');
 
   const tabs = [
     { key: 'news', label: 'Latest News', icon: Newspaper },
@@ -118,7 +116,7 @@ export default function Resources() {
   ];
 
   return (
-    <div className="min-h-screen pt-20 bg-slate-50 dark:bg-slate-900 transition-colors duration-300 pb-16">
+    <div className="min-h-screen pt-20 bg-background transition-colors duration-300 pb-16">
       <PageHero 
         title="News & Schemes"
         subtitle="Stay updated with the latest agricultural news and government schemes to empower your farming journey."
@@ -132,7 +130,7 @@ export default function Resources() {
           animate={{ opacity: 1, y: 0 }}
           className="flex justify-center mb-12"
         >
-          <div className="inline-flex bg-white dark:bg-slate-800 rounded-2xl p-1.5 shadow-card">
+          <div className="inline-flex bg-surface rounded-2xl p-1.5 shadow-card">
             {tabs.map((tab) => (
               <button
                 key={tab.key}

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import {
   BarChart3, Sprout, Ruler, FlaskConical, Droplets,
   Grid3X3, Loader2, TrendingUp, IndianRupee, AlertTriangle,
-  CheckCircle2, Target
+  Target
 } from 'lucide-react';
 
 const fadeUp = {
@@ -45,7 +45,7 @@ export default function YieldPredictor() {
       case 'Low': return 'text-green-600 bg-green-50 border-green-200';
       case 'Medium': return 'text-amber-600 bg-amber-50 border-amber-200';
       case 'High': return 'text-red-600 bg-red-50 border-red-200';
-      default: return 'text-slate-600 bg-slate-50 border-slate-200';
+      default: return 'text-slate-600 bg-surface-muted border-slate-200';
     }
   };
 
@@ -147,7 +147,7 @@ export default function YieldPredictor() {
               <TrendingUp className="w-7 h-7 text-green-600" />
             </div>
             <p className="text-xs text-slate-500 mb-1">{t('expertPanel.expectedYield')}</p>
-            <p className="font-display text-2xl font-bold text-slate-800">{result.yield}</p>
+            <p className="font-display text-2xl font-bold text-body">{result.yield}</p>
           </div>
 
           {/* Expected Revenue */}
@@ -156,7 +156,7 @@ export default function YieldPredictor() {
               <IndianRupee className="w-7 h-7 text-blue-600" />
             </div>
             <p className="text-xs text-slate-500 mb-1">{t('expertPanel.expectedRevenue')}</p>
-            <p className="font-display text-2xl font-bold text-slate-800">{result.revenue}</p>
+            <p className="font-display text-2xl font-bold text-body">{result.revenue}</p>
           </div>
 
           {/* Risk Score */}

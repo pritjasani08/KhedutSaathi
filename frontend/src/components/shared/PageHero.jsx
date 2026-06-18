@@ -10,7 +10,7 @@ const fadeUp = {
 
 export default function PageHero({ title, subtitle, icon: Icon, colorClass = "from-primary to-primary-light", bgClass = "bg-primary-50 dark:bg-primary-900/30", textClass = "text-primary" }) {
   return (
-    <div className="relative py-16 md:py-24 bg-white dark:bg-slate-900 overflow-hidden border-b border-slate-100 dark:border-slate-800">
+    <div className="relative py-16 md:py-24 bg-surface overflow-hidden border-b border-slate-100 dark:border-slate-800">
       {/* Background decorations */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className={`absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br ${colorClass} opacity-5 blur-[100px] rounded-full translate-x-1/3 -translate-y-1/3`} />
@@ -28,7 +28,7 @@ export default function PageHero({ title, subtitle, icon: Icon, colorClass = "fr
               <Icon className={`w-8 h-8 ${textClass}`} />
             </div>
           )}
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-6">
+          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-heading mb-6">
             {title}
           </h1>
           {subtitle && (

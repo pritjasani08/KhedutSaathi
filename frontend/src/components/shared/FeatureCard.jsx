@@ -24,7 +24,7 @@ export default function FeatureCard({ icon: Icon, title, desc, path, color, bg, 
             <Icon className={`w-7 h-7 ${color}`} />
           )}
         </div>
-        <h3 className="font-display text-xl font-bold text-slate-800 dark:text-slate-100 mb-3">
+        <h3 className="font-display text-xl font-bold text-body mb-3">
           {title}
         </h3>
         <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-5">

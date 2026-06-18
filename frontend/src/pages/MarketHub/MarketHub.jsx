@@ -31,7 +31,7 @@ export default function MarketHub() {
           <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100/60 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 text-sm font-semibold mb-4">
             <TrendingUp className="w-4 h-4" /> Market Intelligence
           </motion.div>
-          <motion.h1 variants={fadeUp} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+          <motion.h1 variants={fadeUp} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-heading mb-4">
             {t('marketHub.title')}
           </motion.h1>
           <motion.p variants={fadeUp} className="text-slate-500 dark:text-slate-400 text-lg max-w-2xl mx-auto">
@@ -46,7 +46,7 @@ export default function MarketHub() {
           transition={{ delay: 0.3 }}
           className="flex justify-center mb-8"
         >
-          <div className="inline-flex bg-white dark:bg-slate-800 rounded-2xl p-1.5 shadow-card">
+          <div className="inline-flex bg-surface rounded-2xl p-1.5 shadow-card">
             {tabs.map((tab) => (
               <button
                 key={tab.key}

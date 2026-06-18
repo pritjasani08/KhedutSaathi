@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
-import { Bot, MessageSquare, Sparkles, ArrowRight } from 'lucide-react';
+import { Bot, Sparkles, ArrowRight } from 'lucide-react';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -8,10 +7,9 @@ const fadeUp = {
 };
 
 export default function AIAssistantSection() {
-  const { t } = useTranslation();
-
+  
   return (
-    <section className="py-24 bg-white dark:bg-slate-900 relative overflow-hidden transition-colors duration-300">
+    <section className="py-24 bg-surface relative overflow-hidden transition-colors duration-300">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-full max-h-[800px] bg-primary/5 rounded-full blur-[100px]" />
       </div>
@@ -28,7 +26,7 @@ export default function AIAssistantSection() {
               <Sparkles className="w-4 h-4" /> 24/7 Expert Support
             </motion.div>
             
-            <motion.h2 variants={fadeUp} className="font-display text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight">
+            <motion.h2 variants={fadeUp} className="font-display text-4xl md:text-5xl font-extrabold text-heading leading-tight">
               Have farming questions? <br />
               <span className="gradient-text">Ask Your AI Agronomist</span>
             </motion.h2>
@@ -53,7 +51,7 @@ export default function AIAssistantSection() {
                 { title: 'Personalized Advice', desc: 'Context-aware agricultural guidance.' }
               ].map((feature, i) => (
                 <div key={i} className="pt-6">
-                  <h4 className="font-semibold text-slate-900 dark:text-white mb-2">{feature.title}</h4>
+                  <h4 className="font-semibold text-heading mb-2">{feature.title}</h4>
                   <p className="text-sm text-slate-500 dark:text-slate-400">{feature.desc}</p>
                 </div>
               ))}

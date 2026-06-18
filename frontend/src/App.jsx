@@ -50,7 +50,7 @@ function AnimatedRoutes() {
 }
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  useLocation();
   
   if (typeof window !== 'undefined') {
     window.scrollTo(0, 0);
@@ -64,7 +64,7 @@ export default function App() {
     <ThemeProvider>
       <Router>
         <ScrollToTop />
-        <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
+        <div className="min-h-screen flex flex-col bg-background transition-colors duration-300">
           <Navbar />
           <main className="flex-1">
             <AnimatedRoutes />

@@ -1,8 +1,6 @@
 import { motion } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Upload, ArrowRight, ShieldCheck, Activity, Pill } from 'lucide-react';
-import SectionHeader from '../../components/shared/SectionHeader';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -10,10 +8,9 @@ const fadeUp = {
 };
 
 export default function CropHealthSection() {
-  const { t } = useTranslation();
-
+  
   return (
-    <section className="py-20 bg-white dark:bg-slate-900 relative overflow-hidden transition-colors duration-300">
+    <section className="py-20 bg-surface relative overflow-hidden transition-colors duration-300">
       <div className="container-custom relative px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Text Content */}
@@ -27,7 +24,7 @@ export default function CropHealthSection() {
               <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-100/60 dark:bg-green-900/40 text-green-700 dark:text-green-400 text-sm font-semibold mb-4">
                 <Activity className="w-4 h-4" /> AI Diagnostics
               </motion.div>
-              <motion.h2 variants={fadeUp} className="font-display text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6">
+              <motion.h2 variants={fadeUp} className="font-display text-3xl md:text-4xl font-bold text-heading mb-6">
                 Protect Your Yield with Instant AI Diagnosis
               </motion.h2>
               <motion.p variants={fadeUp} className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
@@ -45,7 +42,7 @@ export default function CropHealthSection() {
                     <feature.icon className="w-6 h-6 text-green-600 dark:text-green-400" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-slate-900 dark:text-white mb-1">{feature.title}</h4>
+                    <h4 className="font-semibold text-heading mb-1">{feature.title}</h4>
                     <p className="text-sm text-slate-500 dark:text-slate-400">{feature.desc}</p>
                   </div>
                 </div>
@@ -70,9 +67,9 @@ export default function CropHealthSection() {
             className="relative"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-green-100 to-green-200 dark:from-green-900/30 dark:to-green-800/30 rounded-[2.5rem] transform rotate-3" />
-            <div className="relative bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2.5rem] p-8 shadow-glass transform -rotate-3 transition-transform hover:rotate-0 duration-500">
+            <div className="relative bg-surface border border-subtle rounded-[2.5rem] p-8 shadow-glass transform -rotate-3 transition-transform hover:rotate-0 duration-500">
               {/* Mock App UI */}
-              <div className="bg-slate-50 dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-700">
+              <div className="bg-background rounded-2xl overflow-hidden border border-subtle">
                 <div className="h-48 bg-green-100 dark:bg-green-900/20 flex items-center justify-center relative overflow-hidden">
                   <div className="absolute inset-0 border-4 border-dashed border-green-500/30 dark:border-green-400/20 rounded-xl m-4" />
                   <span className="text-6xl animate-pulse">🌿</span>

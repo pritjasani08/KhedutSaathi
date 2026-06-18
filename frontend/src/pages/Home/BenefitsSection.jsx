@@ -28,7 +28,7 @@ export default function BenefitsSection() {
   ];
 
   return (
-    <section className="section-padding bg-slate-50 dark:bg-slate-900/50">
+    <section className="section-padding bg-surface-muted">
       <div className="container-custom px-4 sm:px-6 lg:px-8">
         <SectionHeader 
           title={t('benefits.title')} 
@@ -52,7 +52,7 @@ export default function BenefitsSection() {
               <div className={`w-14 h-14 rounded-2xl ${benefit.bg} dark:bg-slate-800 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-500`}>
                 <benefit.icon className={`w-7 h-7 ${benefit.color}`} />
               </div>
-              <h3 className="font-display text-lg font-bold text-slate-800 dark:text-slate-100 mb-2">
+              <h3 className="font-display text-lg font-bold text-body mb-2">
                 {benefit.title}
               </h3>
               <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">

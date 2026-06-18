@@ -2,7 +2,7 @@ import PageHero from '../../components/shared/PageHero';
 
 export default function About() {
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
+    <div className="min-h-screen bg-background">
       <PageHero 
         title="About KhedutSaathi" 
         subtitle="Empowering farmers with AI-driven insights for a sustainable and profitable agricultural future."
