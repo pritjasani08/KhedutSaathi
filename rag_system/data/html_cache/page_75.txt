@@ -1,0 +1,83 @@
+TNAU Agritech Portal :: Crop Protection
+Home
+|
+About Us
+|
+Success Stories
+|
+Farmers Association
+|
+Farmers' Innovation
+|
+Publications
+|
+Contact
+Nematode Management : Biochemicals
+DiTera
+The nematode-parasitic fungusÂ
+Myrothecium verrucariaÂ
+produces a mixture of compounds registered in 1996 as a biologically based nematicide named DiTera. Toxicity apparently results from the synergistic action of lowmolecular- weight, water-soluble compounds. DiTera is active against many plant-parasitic nematodes but not the free-living and mammalian-parasitic nematodes studied thus far (30). Toxic effects observed withÂ
+G. rostochiensisÂ
+include disruption of hatching, movement, and response to potato root diffusate; toxicity toÂ
+M. incognitaÂ
+did not involve inhibition of hatching (31,32). DiTera is available as granules, a powder, and an emulsifiable suspension.
+ClandoSan
+ClandoSan is a granular product made from processed crab and crawfish exoskeletons. The material contains large amounts of chitin and urea and was registered in the United States in 1998 as a nematicide. Its nematicidal activity (33) is believed to result from the stimulation of populations of nematode-antagonistic microorganisms, particularly those that produce chitinase, a major component of nematode eggshells. Proper application is
+necessary to avoid phytotoxicity (33).
+Sincocin
+Sincocin is the trade name of the mixture registered in 1997 as ‘‘Plant Extract 620’’ with the U.S. EPA. It consists of a blend of extracts from the prickly pearÂ
+Opuntia lindheimeri
+, the oakÂ
+Quercus falcata
+, the sumacÂ
+Rhus aromatica
+, and the mangrove
+Rhizophora mangle
+. Sincocin has provided control of the citrus nematode on orange roots (34), the reniform nematode on sunflower (35), and the sugarbeet cyst nematode (36); but control ofÂ
+M. incognitaÂ
+on cassava andÂ
+R. similisÂ
+on anthurium was less successful than that provided by other methods (37,38). Its mode of action has not been fully elucidated.
+MODE OF ACTION
+In general, nematode developmental stages that are active are more susceptible to nematicides than are resting stages (12,39). The detailed 20-year-old review by Wright (40) on nematicidal mode of action remains relevant because few new nematicides have been introduced since its publication. Moreover, the broad-spectrum activity of most nematicides has resulted in much of their basic biochemical effects being documented in insects or mammals instead of nematodes.
+Fumigants
+A primary effect of halogenated hydrocarbons is to serve as alkylating agents. The sulfhydryl groups of proteins, in particular, are labile to methyl bromideâinduced methylation (41).With respect to research performed with nematodes, EDB alkylated proteins and oxidized Fe+2 centers in the cytochrome-mediated electron transport chain, thereby blocking respiration (40). The mode of action of methyl isothiocyanate generators in nematodes is even more poorly understood (42); amino and hydroxyl groups have been speculated as sites of attack (40). Beyond a minimal threshold lethal concentration of a fumigant, the susceptibility of a nematode to a fumigant has long been known to be proportional to the product of the concentration of the fumigant and the duration of exposure, i.e., the concentration-time product.
+Nonfumigants
+Carbamates and organophosphates are well-known reversible inhibitors of acetylcholinesterase activity in insects. Several nonfumigant nematicides have been demonstrated to inhibit cholinesterase in nematodes, e.g., aldicarb, carbofuran, fenamiphos, and oxamyl inÂ
+M. incognitaÂ
+andÂ
+M. javanicaÂ
+(43) andÂ
+Aphelenchus avenae
+(44). Interestingly, although carbofuran inhibitsÂ
+MeloidogyneÂ
+cholinesterase approximately 10,000 times higher than fenamiphos (43), the latter has greater nematicidal activity againstÂ
+Meloidogyne
+; this discrepancy is correlated with a much quicker metabolism of fenamiphos than carbofuran by root-knot nematodes (45).
+Chang and Opperman (46) discovered five molecular forms of acetylcholinesterase inÂ
+M. arenariaÂ
+andÂ
+M. incognita
+; the forms could be divided into three classes, one of which was highly resistant to aldicarb and fenamiphos. Given that nonfumigant nematicides inhibit nematode acetylcholinesterase, it is not surprising that many of the symptoms induced in nematodes reflect nervous system dysfunction. These symptoms include stylet thrusting, twitching, trembling, convulsions, soiling and uncoiling, other uncoordinated movements, inhibited penetration, and eventual paralysis if the concentration is sufficiently high (39,47,48). Nematode recovery from acetylcholinesterase inhibitor treatment can occur within a short time, even for the case of the stem and bulb nematode,Â
+Ditylenchus dipsaci
+, exposed to 10-mg/ml oxamyl for a day (48). In some cases, however, recovery may not occur, as withÂ
+A. avenaeÂ
+exposed to fenamiphos, but not carbofuran (49). The speed of recovery from acetylcholinesterase inhibition varies among inhibitors, and nematodes that grossly appear fully recovered still can exhibit pronounced acetylcholinesterase inhibition in enzyme assays. Because contact nematicide concentration in agricultural soils following application is usually not sufficiently high to kill nematodes, the primary organismal mode of action may be temporary paralysis, interference with host finding, inhibition of hatching, or disruption of some other process (10). For example, the three carbamates aldicarb, carbofuran, and cloethocarb inhibitedÂ
+H. schachtiiÂ
+juvenile mobility at concentrations of nematicide that occur in field situations, whereas inhibition of hatching occurred at concentrations not likely to occur in the field (50). Because soil is a heterogeneous mixture, complete eradication of a nematode population with a chemical nematicide, even a fumigant, is an unlikely achievement. Moreover, contact nematicides are used at levels insufficient to induce immediate death. Nonetheless, the inhibition of movement and penetration is usually substantial enough to result in lack of economic damage. Sometimes the reduction in nematode populations is not sufficiently long to eliminate the need for postplant reapplication of nematicides, however, especially for perennials or crops with long growing seasons. Nonetheless, higher initial nematicide application rates are often not cost-effective and may be associated with increased environmental or other risks. The metabolism of nematicides by nematodes has not been extensively studied. In one interesting investigation of the metabolism of carbofuran and fenamiphos by root-knot nematodes, detected metabolites included 3-hydroxycarbofuran, 3-ketocarbofuran, fenamiphos sulfoxide, and various unidentified watersoluble products (45).
+Mammalian Anthelmintics
+Although the purpose of this review is not to focus on nematicides of veterinary or human medical importance, the modes of action of these compounds have been reviewed (4) and are relevant. Representatives of the most popular classes of compounds include the following: 1) nicotinic agonists such as the imidazothiazole levamisole, the tetrahydropyrimidines pyrantel and morantel, and the pyrimidine methyridine, which act as agonists on muscle acetylcholine receptors and induce paralysis; 2) the GABA agonist piperazine, which induces muscular paralysis, particularly in large nematodes in oxygen-poor environments; 3) macrocyclic lactones such as avermectins and milbemycins, with mode of action as discussed in this review; 4) benzimidazoles such as thiabendazole and mebendazole, which bind toÂ
+Î²
+-tubulin and interfere with nematode microtubule formation; and 5) diethylcarbamazine, which appears to interfere with host and possibly nematode arachidonic acid metabolism.
+Home
+|
+About Us
+|
+Success Stories
+|
+Farmers Association
+|
+Publications
+|
+Contact Us
+Â© TNAU 2008 - 2024 All Rights Reserved.

@@ -1,0 +1,90 @@
+Agriculture :: Home
+Home |
+Seasons & Varieties |
+Tillage |
+Nutrient Mgmnt |
+Irrigation Mgmnt |
+Weed Mgmnt |
+Crop Protection |
+Cost of Cultivation
+|
+Photobank
+Dairy Cattle Nutrition ::
+QUANTITY OF CONCENTRATE FEED AND GREEN FODDER FOR CROSS BRED MILCH CATTLE
+Milk Yield /No.of animals
+Qty.of Concentrates to be fed (kg)
+Qty.of green fodder to be fed (kg)
+Dry fodder (kg)
+upto
+5 Litres
+2.500
+40
+4-6 kg
+upto
+5 Litres (Pregnant)
+3.500
+40
+Above5-Below8 litres
+3.500
+40
+Above8-Below10 litres
+4.500
+40
+Above10-Below 12 litres
+5.500
+45
+Above12-Below15 litres
+6.500
+45
+Above15-Below18 litres
+8.000
+50
+Above18-Below21 litres
+9.000
+50
+Above21-Below24 litres
+10.000
+50
+Pregnant
+3.500
+45
+Heifer Pregnant
+3.000
+40
+Above 1 year
+2.000
+30
+Above 3m below 12months
+1.000
+20
+Above2m below 3 m
+0.625
+0
+one month
+0.125
+0
+Dry
+1.500
+40
+Content Validator:
+Dr. K. N. Ganesan, Prof & Head , Dept. of Forage Crops, TNAU, Coimbatore.
+Updated on Apr 2023
+|
+Home
+|
+Seasons & Varieties
+|
+Tillage
+|
+Nutrient Management
+|
+Irrigation Management
+|
+Weed Management
+|
+Crop Protection
+|
+Cost of Cultivation
+|
+Disclaimer
+© All Rights Reserved.TNAU 2008 - 2023.

@@ -1,0 +1,33 @@
+Glossary :: Y
+Yield components
+:
+Components
+which finally make up or control yield of any crop. For example, yield
+components of cereal grain yield are grain weight per grain number/ear, ear
+number/plant and plant number/unit area.
+Yield evaluation
+:
+Yield
+evaluation is the estimation of yield per hectare of principal crops. It is
+conducted by the Bureau of Economics and Statistics in collaboration with the
+state departments of agriculture. The process of yield evaluation is through a
+systematic survey. Yield is estimated by harvesting threshing, cleaning and
+weighing a measured sample area. The size of the sample area depends on the
+uniformity of the stand of the crop. If it is quite uniform, the field is
+divided into 4 quadrants. A sample of 1 metre is then taken per quadrants. A
+sample of 1*1 metre is then taken per quadrant as also from the central section
+of the field. Sometimes, the harvested crop from all 5 areas of the field is
+mixed together, the yield is then estimated from this sample. If the stand is
+uneven then two samples of 1 m * 1 are taken from each class. Two from the good
+patch, two from the moderate patch and two from the poor patch. The yield is
+then estimated from the sample.
+Yield potential
+:
+Full production capacity
+of crop.
+Yield stability
+:
+The
+maintenance of yield at desired level over a period of time. Its index is
+measured by inverse of coefficient of variation, regression between yield and
+environmental index and disaster level estimated by probability of a system.

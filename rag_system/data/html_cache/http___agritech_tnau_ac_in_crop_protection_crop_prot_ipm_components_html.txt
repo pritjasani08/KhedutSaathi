@@ -1,0 +1,125 @@
+TNAU Agritech Portal :: Crop Protection
+Home
+|
+About Us
+|
+Success Stories
+|
+Farmers Association
+|
+Farmers' Innovation
+|
+Publications
+|
+Contact
+Crop protection :: IPM :: Components
+The major components of IPM in increasing order of complexity are as under:
+Cultural practices.
+Mechanical practices
+Genetical practices.
+Regulatory practices
+Biological practices
+Chemical practices.
+Cultural practices
+Cultural methods of pest control consists of regular farm operations in such a way which either destroy the pests or prevent them from causing economic loss. The various cultural practices have been grouped as under.
+Preparation of nurseries or main fields free from pest infestation by removing plant debris, trimming of bunds, treating of soil and deep summer ploughing which kills various stages of pests. Proper drainage system in field be adopted.
+Testing of soil for nutrients deficiencies on the basis of which fertilizers should be applied.
+Selection of clean and certified seeds and treating seeds with fungicide or biopesticides before sowing for seed borne disease control.
+Selection of seeds of relatively pest resistant/tolerant varieties which play a significant role in pest suppression.
+Adjustment of time of sowing and harvesting to escape peak season of pest attack.
+Rotation of crops with non-host crops. It helps in reduction of incidence of soil borne diseases.
+Proper plant spacing which makes plants more healthy and less susceptible to pests.
+Optimum use of fertilizer. Use of FYM and biofertilizers should be encouraged.
+Proper water management (alternate wetting and drying to avoid water stagnation) as the high moisture in soil for prolonged period is conducive for development of pests especially soil borne diseases.
+Proper weed management. It is well known fact that most of weeds besides competing with crop for micronutrients also harbour many pests.
+Setting up yellow pan sticky traps for white flies and aphids at far above canopy height.
+Synchronized sowing. Here community approach is required to sow the crops simultaneously in vast area so that pest may not get different staged crops suitable for its population build up and if pest appears in damaging proportion, control operation could be applied effectively in whole area.
+Growing trap crops on the borders or peripheries of fields. There are certain crops which are preferred more by a pest species are known as trap crops for that pest. By growing such crops on the border of the fields, pest population develop there which can be either killed by using pesticides or its natural enemies are allowed to develop there for natural control.
+Root dip or seedling treatment in pest infested area.
+Inter-cropping or multiple cropping wherever possible. All the crops are not preferred by each pest species and certain crops act as repellents, thus keeping the pest species away from preferred crops resulting in reduction of pest incidence.
+Harvesting as close as to ground level. This is because certain developmental stages of insect pests/diseases remain on the plant parts which act as primary inoculum for the next crop season. Hence, harvesting crops at ground level will lessen the incidence of pests in next season.
+Before planting, nursery plants be sprayed/dipped in copper fungicide/biopesticide solutions to protect the plants from soil borne diseases.
+While pruning fruit trees, remove crowded/dead/broken/diseased branches and destroy them. Do not pile them in the orchards which may act as source of pest infestation.
+Large pruning wounds should be covered with Bordeaux paste/paint to protect the plants from pest/disease attack.
+For excellent fruit set, pollinizer cultivars should be planted in required proportion in the orchards.
+Keeping bee hives or placing flower bouquets of pollinizer cultivars facilitate better pollination and subsequent fruit set.
+Regulatory practices
+Top
+In this process, regulatory rules framed by Govt. are brought into force under which seeds and infested plant materials are not allowed to enter the country or from one part to other parts of the country. These are known as quarantine methods and are of two types
+i.e.
+domestic and foreign quarantine.
+Mechanical practices
+Top
+Removal and destruction of egg masses, larvae, pupae and adults of insect pests and diseased parts of plants wherever possible.
+Installation of bamboo cage cum bird perchers in the field and placing parasitized egg masses inside them for conservation of natural enemies and withholding of pest species wherever possible.
+Use of light traps and destruction of trapped insects.
+Use of rope for dislodging leaf feeding larvae e.g. caseworm and leaf folders.
+Installation of bird scarer in the field where required.
+Installation of bird perchers in the field for allowing birds to sit and feed on insects and their immature stages viz., eggs, larvae and pupae.
+Use of pheromones for mating disruption and kill zone creation.
+Use of pheromone traps for monitoring and suppression of pest population.
+Use of pheromen traps fr mass traping.
+Genetical practices
+Top
+Selection of high yeilding varieties for different crops
+Selection of comparatively pest resistant/tolerant varieties
+Use of genetically modified seeds e.g. B.t. cotton
+Release of sterile males of insects in sufficient number in field to compete with fertile males. Sterility in males is induced in laboratory either through chemosterilants or through radiation.
+Biological practices
+Top
+Biological control of insect pests and diseases through biological means is most important component of IPM. In broader sense, biocontrol is use of living organisms to control unwanted living organisms (pests). In other words, deliberate use of parasitoids, predators   and pathogens to maintain pest population at level blow those causing economic loss either by introducing a new bioagent into the environment of pest or by increasing effectiveness of those already preset in the field.
+Parasitoids:
+These are the organisms which lay eggs in or on the bodies of their hosts and complete their life cycles on host bodies as a result of which hosts die. A parasitoid may be of different type depending on the host developmental stage in or on which it completes its life cycle. For example, egg, larval, pupal, adult, egg-larval and larval pupal parasitoids. Example are different species of
+Trichogramma, Apanteles, Bracon, Chelonus, Brachemeria, Pseudogonotopus
+etc.
+Predators:
+These are free living organisms which prey upon other organisms for their food. Examples are different species of spiders, dragon flies, damsel flies, lady bird beetles, Chrysopa species, birds etc.
+Pathogens:
+These are micro-organisims which infest and cause diseases in their hosts as a result of which hosts are killed. Major groups of pathogens are fungi, viruses and bacteria.  Some nematodes also cause diseases in some insect pests. Important examples of fungi are different species of
+Hirsutella, Beauveria, Nomurae and Metarhizium
+which have been reported to infest and kill large number of insects (upto 90%) in the fields. Among viruses, most important examples are of nuclear polyhedrosis virus (NPV) and granulosis viruses. Outbreak of viruses in armyworms, cut worms, leaf folders, hairy caterpillars and plant hoppers have been reported many times. Among bacteria,
+Bacillus thuringiensis (B.t.)
+and
+B. popillae
+are very common examples.
+Biocontrol Practices
+Diseases of pests can be mass multiplied in the laboratory at a low cost in liquid or powdered formulations that can be sprayed like ordinary chemical pesticides. These formulations are known as biopesticides. The different types of biocontrol practices are grouped as under:
+a.
+Introduction
+In this process, a new species of bioagent is introduced into a locality for its establishment against its host. This is done only after thorough laboratory examination and field trials for its efficacy.
+b.
+Augmentation
+In this process, the population of natural enemies already present in the area is increased by releasing either laboratory reared or field collected bioagents of same species in such number as would require to suppress the pest population in that area.
+c.
+Conservation
+This is most important component of biological control and plays a major role in pest suppression. In this process, natural enemies present in the nature are protected from being killed. The different practices required to protect the natural enemies are as below.
+Collection of parasitised egg masses and placing them in bamboo cage-cum-bird perchers for allowing emergence of parasitoids and withholding of pest larvae.
+Educating farmers through field days, radios & TV to differentiate pests and defenders and sparing the defenders during field sprays.
+Chemical spray should be adopted as last resort and that too after observing pest defender ratio and economic threshold level (ETL).
+Use of broad spectrum pesticides should be avoided.
+Only selective and relatively environmental friendly (REF) pesticides should be used where necessary.
+As far as possible strip or spot application of pesticides be carried out.
+Adjustment of time of sowing and harvesting to avoid the peak season of pest attack.
+Growing trap crop on the borders of main fields before the actual sowing of crop to trap pest and develop natural enemies.
+Root dip/seedling treatment for gall midge prone area.
+Crop rotation and inter-cropping also help in conservation of defenders.
+Recommended dose and concentration of pesticides should be used.
+Chemical practices
+Top
+Use of chemical pesticides is the last resort when all other methods fail to keep the pest population below economic loss. Although there is a great advancement in pest management research, yet pesticides would continue to play an important role in crop protection in view of complexity of pest problems. Therefore, use of pesticides should be need based, judicious, based on pest surveillance and economic threshold level (ETL) to minimise not only the cost involved, but also to reduce associated problems. While going for chemical control, we must understand thoroughly what to spray, when to spray, where to spray and how to spray, keeping in mind the following points.
+ETL and pest defender ratio must be observed
+Relatively safer pesticides should be selected e.g. neem based and biopesticides.
+If pest is present in strips or isolated patches, whole field should net be sprayed.
+Relevance of IPM practices are more important in vegetable and fruit crops because of their unique mode of consumption by human being. Pesticides which are generally highly toxic and are known to have toxic residual effects could not be recommended off hand. To get more profit, farmers do not wait until waiting periods of pesticides and harvest the crop to market the same. This leads to pesticides poisoning, chronic effects, in some cases even deaths. Thus, we have to be more careful and cautious in applying pest control practices in field crops.
+Home
+|
+About Us
+|
+Success Stories
+|
+Farmers Association
+|
+Publications
+|
+Contact Us
+© TNAU 2008-2024 All Rights Reserved.

@@ -1,0 +1,5 @@
+Horti_intex
+// Provide alternate content for browsers that do not support scripting
+// or for those that have scripting disabled.
+Sorry, this photo gallery requires that scripting be enabled on your web browser and that the Adobe Flash Player be installed.
+Download the Adobe Flash Player

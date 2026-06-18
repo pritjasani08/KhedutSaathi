@@ -1,0 +1,435 @@
+Nutrient Management :: Nutrient Content of Solid Fertilizers
+|
+Home
+|
+Seasons & Varieties
+|
+Tillage
+|
+Nutrient Management
+|
+Irrigation Management
+|
+Weed Management
+|
+Crop Protection
+|
+Cost of Cultivation
+|
+Nutrient Management
+:: Nutrient Content of Solid Fertilizers
+Nutrient
+Content of Solid Fertilisers
+(Per cent
+by wt. min.)
+Material
+Total
+Nitrogen
+(N)
+Ammoniacal
+nitrogen
+(N)
+Nitrogen
+Nitrate
+(N)
+Nitrogen
+in form of urea
+(amide) (N)
+Neutral
+ammonium
+citrate
+soluble
+phosphate (P
+2
+O
+5
+)
+Water
+soluble
+phosphate
+(P
+2
+O
+5
+)
+Water
+soluble
+potash
+(K
+2
+O)
+(1)
+(2)
+(3)
+(4)
+(5)
+(6)
+(7)
+(8)
+I
+Nitrogenous
+fertilisers
+1.
+Ammonium
+Sulphate
+20.6
+20.6
+2.
+Ammonium
+chloride
+25.0
+25.0
+3.
+Calcium
+Ammonium Nitrate
+25.0
+12.5
+12.5(max)
+4.
+Calcium
+Ammonium Nitrate
+26.0
+13.0
+13.0(max)
+5.
+Calcium
+Nitrate
+15.5
+1.1(max)
+14.4
+6.
+Urea
+46.0
+46.0
+II
+Phosphatic
+fertilisers
+7.
+SSP 14%
+SSP 16%
+14.0
+16.0
+8.
+Rock
+Phosphate (powder/granular)
+18.0
+III
+Potassic
+fertilizers
+9.
+Potassium
+chloride (powder/granular)
+60.0
+10.
+Potassium
+Sulphate
+50.0
+11.
+Potassium
+Magnesium Sulphate
+22.0
+12.
+Potassium
+Schoenite
+23.0
+IV
+Complex fertilizers
+13.
+Ammonium
+Phosphate
+11-52-0
+11.0
+11.0
+52.0
+44.2
+1846-0
+18.0
+15.5
+2.5(max)
+46.0
+41.0
+14.
+Ammonium
+Phosphate Sulphate
+16-20-0
+16.0
+16.0
+20.0
+19.5
+20-20-0
+20.0
+18.0
+2.0(max)
+20.0
+17.0
+18-9-0
+18.0
+18.0
+9.0
+8.5
+15.
+Ammonium Phosphate Sulphate Nitrate
+20-20-0
+20.0
+17.0
+3.0(max)
+20.0
+17.0
+16.
+Nitrophosphate
+20-20-0
+23-23-0
+20.0
+23.0
+10.0
+11.5
+10.0(max)
+11.5(max)
+23.0
+23.0
+12.0
+18.5
+17.
+Ammonium Nitrate Phosphate
+23-23-0
+23.0
+13.0
+10.0(max)
+23.0
+20.5
+18.
+Urea Ammonium Phosphate
+28-28-0
+24-24-0
+20-20-0
+28.0
+24.0
+20.0
+9.0
+7.5
+6.4
+16.5(max)
+28.0
+24.0
+20.0
+25.2
+20.4
+17.0
+19.
+Potassium Nitrate
+(cystalline/prilled)
+(13-0-45)
+13.0
+13.0
+45.0
+20.
+Mono Potassium Phosphate
+(0-52-34)
+52.0
+34.0
+21.
+NPK fertilisers
+15-15-15
+10-26-26
+12-32-16
+22-22-11
+14-35-14
+17-17-17
+14-28-14
+19-19-19
+17-17-17
+20-10-10
+15.0.
+10.0
+12.0
+22.0
+17.0
+14.0
+19.0
+17.0
+20.0
+7.5
+7.0
+9.0
+7.0
+14.0
+5.0
+8.0
+5.6
+8.5
+3.9
+7.5
+8.5
+3.0(max)
+3.0(max)
+15.0(max)
+12.0(max)
+6.0(max)
+13.4(max)
+17.1(max)
+15.0
+26.0
+32.0
+22.0
+35.0
+17.0
+28.0
+19.0
+17.0
+10.0
+4.0
+22.1
+27.2
+18.7
+29.0
+14.5
+23.8
+16.2
+13.6
+8.5
+15.0
+26.0
+16.0
+11.0
+14.0
+17.0
+14.0
+19.0
+17.0
+10.0
+Table 1.2(b) - Nutrient Content of
+Liquid Fertilisers
+(Per cent
+by wt. min.)
+Material
+Total
+Nitrogen
+(N)
+Ammoniacal
+nitrogen
+(N)
+Nitrogen
+Nitrate
+(N)
+Urea
+Nitrogen
+(N)
+Total
+phosphate (P2O5)
+Poly
+phosphate
+(P2O5)
+Maganesium
+(MgO)
+1.
+Urea
+Ammonium Nitrate
+32.0
+7.7
+7.7
+16.6(max)
+2.
+Superphosphoric
+Acid
+70.0
+18.9
+0.5(max)
+3.
+Ammonium
+Polyphosphate
+10.0
+10.0
+34.0
+22.1
+0.5(max)
+Nutrient
+Contents of Micronutrient Fertilisers
+SI. No
+Name
+Formula
+Element/Forms
+Contents(%)
+1.
+Zinc
+Sulphate*
+ZnSO4.7H2O
+Zn
+21.0
+2.
+Mangnese
+Sulphate*
+MnSO4
+Mn
+30.5
+3.
+Ammonium
+Molybdate
+(NH4)5
+Mo7)244H2O
+Mo
+52.0
+4.
+Borax(for
+soil application)
+Na2B4O7.5H2O
+B
+10.5
+5.
+Solubor(foilar
+spray)
+Na2B4O7.5H2O
++ Na2B10O16.10H2O
+B
+19.0
+6.
+Copper
+Sulphate*
+CuSO4.5H2O
+Cu
+24.0
+7.
+Ferrous
+Sulphate*
+FeSO4.7H2O
+Fe
+19.5
+8.
+Chelated Zn
+as Zn-EDTA
+Zn
+12.0
+9.
+Chelated Fe
+as Fe-EDTA
+Fe
+12.0
+10.
+Zinc
+Sulphate monohydrate
+ZnSO4.H2O
+Zn
+33.0
+* Average sulphur content
+i) ZnSO4 = 15%
+ii) MnSO4 = 17%
+iii) CuSO4= 13%
+iv) FeSO4 = 19%
+Source: http://fert.nic.in/aboutfert/nutrient_content.asp
+|
+Home
+|
+Seasons & Varieties
+|
+Tillage
+|
+Nutrient Management
+|
+Irrigation Management
+|
+Weed Management
+|
+Crop Protection
+|
+Cost of Cultivation
+|
+© All Rights Reserved. TNAU-2014.

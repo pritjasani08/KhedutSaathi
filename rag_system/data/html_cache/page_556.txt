@@ -1,0 +1,52 @@
+Agriculture :: Home
+Home |
+Seasons & Varieties |
+Tillage |
+Nutrient Mgmnt |
+Irrigation Mgmnt |
+Weed Mgmnt |
+Crop Protection |
+Cost of Cultivation
+|
+Photobank
+Dairy Cattle Nutrition :: Feed Requirement for Work Bullock
+Feed Requirement for Work Bullock
+Feeding depends of type work
+Normal  2-4 hours
+Heavy  - 8 hours (Ploughing, pulling loaded cart)
+Maintenance  1.5Kg. Concentrate
+Body weight (kg)
+Normal work (kg)
+Heavy work (kg)
+300
+2
+2.5
+400
+2.5
+3
+500
+3
+3.5
+In addition 25 - 30 Kg of green fodder and 5 to 10 Kg of dry fodder should be given
+Content Validator:
+Dr. K. N. Ganesan, Prof & Head , Dept. of Forage Crops, TNAU, Coimbatore.
+Updated on Apr 2023
+|
+Home
+|
+Seasons & Varieties
+|
+Tillage
+|
+Nutrient Management
+|
+Irrigation Management
+|
+Weed Management
+|
+Crop Protection
+|
+Cost of Cultivation
+|
+Disclaimer
+© All Rights Reserved.TNAU 2008 - 2023.

@@ -1,0 +1,410 @@
+Agriculture :: Mineral Nutrition :: Introduction
+|
+Home
+|
+Seasons & Varieties
+|
+Tillage
+|
+Nutrient Management
+|
+Irrigation Management
+|
+Weed Management
+|
+Crop Protection
+|
+Cost of Cultivation
+|
+Plant Nutrition :: Mineral Nutrition
+Sampling of plant
+material
+Sampling
+techniques vary with the crop. In some cases, such as cereal crops, leaf
+samples are taken. In a few cases, for example suspected boron deficiency in
+sugar beet, the roots should be sampled.
+In any sampling of plant material
+great care should be taken to avoid soil contamination. This is true when
+sampling for major element analysis but it is critically important when trace
+element analysis is concerned because the contaminating soil may contain very
+much more of some trace elements than does the crop and a false result will be
+obtained.
+It is essential to take a
+representative sample of the crop. One or two whole plants taken from an area
+may be completely unrepresentative. Samples should be taken from 50-100 plants in
+a given area. The advisory services, if called in may wish to take samples
+themselves, or may advise on which part of the plant to sample.
+If a deficiency or toxicity condition
+is suspected in only a part of a field, 'good' and 'poor' areas should be sampled
+for comparison in the laboratory. Leaves or other parts of the plant, of the
+same age or growth stage, should be taken at the same time.
+It is extremely important to use
+containers for transporting the samples which will not contaminate them. Tins,
+other metal containers and even some paper bags can cause serious contamination
+of the sample. The best container is a clean polythene bag. After taking the
+sample, labels should be attached, the bag sealed and transferred to the
+laboratory as quickly as possible.
+The
+basic principle behind this technique is that the nutrient concentration of
+plants is related to the amount of nutrient element available in soil.  General range of nutrient content in fully
+developed leaves of vegetable crops is given in table.  If the nutrient level in the tissues falls
+below the critical concentration, the soil may be deficient in that element for
+optimum plant growth.
+Different plant parts of the same
+plant contain different concentrations of the same nutrient.  Nutrient concentration again varies with the
+stage of the crop.  So, leaf samples for
+analyses should be selected on the basis of physiological age, i.e.,
+developmental stage.  Stages of leaf
+sampling for the vegetable crops have been presented in table.  It is important that the sample must be free
+from diseases, insect damage and physical or chemical injury.  Leaf near the fruit should not be sampled as
+the nutrients, it might have contained, are often translocated to the fruits.
+Table . Sampling procedures for collecting
+leaf and plant tissue for a plant analysis (Plank, 1979)
+Stage of growth
+Plant
+part to sample
+Number
+of plants to sample
+Field
+crops
+Maize*
+Seedling
+stage (less than 30 cm)
+All
+the above ground portion
+20-30
+Prior
+to tasseling
+The
+entire leaf blade fully developed below the whorl
+15-25
+or
+From
+tasseling and shooting to silking
+The
+entire leaf blade at the ear node (or immediately above or below it)
+15-25
+*
+Sampling after silking occurs is not recommended
+Soybeans
+or Other Beans*
+Seedling
+stage (less than 30 cm)
+All
+the above ground portion
+20-30
+or
+Prior
+to or during initial flowering
+The
+leaflets on 2 or 3 fully developed leaves at the top of the plant
+20-30
+*
+Sampling after pods begin to set not recommended.
+Small
+Grains (including rice)*
+Seedling
+stage (less than 30 cm)
+All
+the above ground portion
+50-100
+or
+Prior
+to heading
+The
+4 uppermost leaf blades
+*
+Sampling after pods begin to set not recommended.
+Hay Pasture, or Forage Grasses
+Prior
+to seed head emergence or at the optimum stage for best quality forage
+The
+4 uppermost leaf blades
+40-50
+Alfalfa
+Prior
+to or at 1/10 bloom stage
+Mature
+leaf blades taken about 1/3 of the way down the plant
+40-50
+Clover and Other
+Legumes
+Prior
+to bloom
+Mature
+leaf blades taken about 1/3 of the way down from top of the plant
+40-50
+Cotton
+Prior
+to or at first bloom or when first squares appear
+Youngest
+fully mature leaf blades on main stem.
+30-40
+Tobacco
+Before
+bloom
+Uppermost
+fully developed leaf blade
+8-12
+Sorghum
+Prior
+to or at bloom stage
+Leaflets
+of mature leaves from both the main stem and either cotyledon lateral branch
+15-25
+Peanuts (Groundnuts)
+Prior
+to or at bloom stage
+Leaflets
+of mature leaves from both the main stem and either cotyledon lateral branch
+40-50
+Potato
+Fourth to sixth leaf from growing tip
+Early growth (35-40 days after planting)
+20-30
+Tomato
+Fourth to sixth leaf from growing tip
+Early bloom
+20-25
+Chilli and
+Sweet pepper
+Young mature leaves
+Early fruit set
+20-25
+Cauliflower
+Young mature outside leaves
+Button stage of curd
+10-20
+Cabbage
+First mature leaf from central whort
+Prior to heading
+10-20
+Broccoli
+Young mature leaves
+First bud formation stage
+10-20
+Brussels
+sprouts
+Young mature leaves
+Mid growth
+10-20
+Watermelon,
+Muskmelon,
+Cucumber,
+Pumpkin, etc.
+Mature leaves near the base portion of plant on main
+stem.
+Early growth prior to fruit set
+20-30
+Beans
+(French bean, Cowpea, Lima bean, Hyacinth bean, etc.)
+Two to three fully developed leaves at top of the
+plant
+Initial flowering
+20-30
+Pea
+Leaves form third node down from top of the plant
+Initial flowering
+30-60
+Root crops
+(Carrot, Radish, Beet, Turnip)
+Young from third node down from top of the plant
+Initial flowering
+20-30
+Bulb crops
+(Onion, Garlic etc.)
+Young mature leaves from centre
+Prior to bulbing
+20-30
+Celery
+Petiole of youngest fully elongated leaf
+Midgrowth (30-35 cm tall)
+10-20
+Lettuce
+(leaf type)
+Midrib of wrapper leaf
+Heading
+30-40
+Lettuce
+(leaf type)
+Youngest mature leaf
+Midgrowth
+30-40
+Leafy
+greens (Palak, Spinach, etc.)
+Youngest mature leaf
+Midgrowth
+30-40
+Sweet
+potato
+Fourth to sixth leaf from the growing tip
+Prior to root enlargement
+20-30
+Asparagus
+Top 10 cm of the new fern branch
+Midgrowth of the ferm
+20-30
+Sweet com
+Entire leaf at the ear node
+Tasseling
+20-30
+FRUITS
+AND NUTS
+Apple, Apricot, Almond, Prune, Peach, Pear, Cherry
+Mid
+season
+Leaf
+blade near base of current year's growth or from spurs
+50-100
+Strawberry
+Mid
+season
+Youngest
+fully expanded mature leaves, without petioles
+50-75
+Pecan
+6 to
+8 weeks after bloom
+Leaflets
+from terminal shoots, (taking the pairs from the middle of the leaf)
+30-45
+Walnut
+6 to
+8 weeks after bloom
+Middle
+leaflet pairs from mature shoots
+30-35
+Grapes
+End
+of bloom period
+Petioles
+from leaves adjacent to fruit clusters
+60-100
+Raspberry
+Mid
+season
+Youngest
+mature leaves on laterals or "primo" canes (without leaf petioles)
+20-40
+Ornamentals
+and Flowers
+Ornamental
+trees
+Current
+year's growth
+Fully
+developed leaves (without petioles)
+30-100
+Ornamental
+Shrubs
+Current
+year's growth
+Fully
+developed leaves
+30-100
+Turf
+During
+normal growing season
+Leaf
+blades. Clip by hand to avoid contamination with soil or other material
+½
+liter of material
+Roses
+During
+flower production
+Upper
+leaves on the flowering stem, without petioles
+20-30
+Chrysanthemums
+Prior
+to or at flowering
+Upper
+leaves on flowering stem
+20-30
+Carnations
+1.
+Unpinched plants
+4th
+or 5th leaf pairs from base of plant
+20-30
+Pinched
+plants
+5th
+or 6th leaf pairs from top of primary laterals
+20-30
+Poinsettias
+Prior
+to or at flowering
+Most
+recently mature, fully expanded leaf blades
+15-20
+Taking plant
+samples for analyses of nutrient content
+Mailing Kit.
+Many laboratories have plant
+analysis mailing kits. Instructions for sampling and submitting samples
+should be followed specifically.
+What to sample.
+The sampling procedures for
+collecting leaf and plant tissue for analysis is shown in Table 3.4. When
+no specific sampling instructions are given for a particular crop, the
+general rule of thumb is to sample the upper, recently matured leaves. The
+recommended stage of growth to sample is just prior to the beginning of
+the reproductive stage for many plants. Roots from total plant sample
+should be removed. It is well to take a soil sample from the same area at
+the same time.
+Comparison samples.
+Where a deficiency is
+suspected, take samples from normal plants in an adjacent area as well as
+from the affected plants. Take a soil sample from each area also.
+Washing to remove contaminants.
+Dusty plants
+should be avoided but if dust is present, brushing or wiping with a clean
+damp cloth may be sufficient. If not, rinse briefly in running water while
+the material is still fresh.
+What not to sample.
+Diseased or dead plant material, damaged by insects, or
+mechanically injured.
+Plants stressed severely by cold, heat, moisture
+deficiency or excess.
+If roots are damaged by nematodes, insects or diseases.
+The questionnaire.
+This is the means of
+communication between the sample and the laboratory. Completion of the
+questionnaire is important if the interpreter is to evaluate properly the
+analysis and make a recommendation.
+Packaging the plant tissue.
+Partially air dry
+and put in a clean paper bag or envelope. Do not put in polyethylene bags
+or tightly sealed containers, since this permits molding.
+Selection of the tissue to be tested in various plants
+and interpretation of the analyses under the varying environmental conditions
+of any given plant and conditions of any given plant are much more complex.
+Since the plant is a dynamic system growing in a dynamic soil system and
+subject to other ecological influences, many factors will influence the level
+of the soluble or unassimilated nutrients in a given plant at any given time.
+Some of the most pertinent of these which should be considered in the
+interpretation of the tests are: first general performance and vigor of the
+plant; Second, level of other nutrients in the plants; third, occurrence of
+insect damage, disease or other known disturbances; forth, climatic condition
+at the time of testing; and fifth, time of day at which tests are made.  In other words, the plant diagnostician must
+be well versed with the physiology of the plant if he is to make most effective
+use of plant – tissue tests.
+|
+Home
+|
+Seasons & Varieties
+|
+Tillage
+|
+Nutrient Management
+|
+Irrigation Management
+|
+Weed Management
+|
+Crop Protection
+|
+Cost of Cultivation
+|
+© All Rights Reserved. TNAU-2014.
