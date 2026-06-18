@@ -1,286 +1,227 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Search, ArrowUpRight, ArrowDownRight, Minus, AlertCircle, Loader2 } from 'lucide-react';
-import { mandiAPI } from '../../../services/api';
+import { motion } from 'framer-motion';
+import { Database, AlertCircle, FileText, TrendingUp, IndianRupee, MapPin } from 'lucide-react';
+import MarketPriceFilters from '../../../components/market-prices/MarketPriceFilters';
+import MarketPriceTable from '../../../components/market-prices/MarketPriceTable';
+import MarketPriceCard from '../../../components/market-prices/MarketPriceCard';
+import MarketPricePagination from '../../../components/market-prices/MarketPricePagination';
+import LoadingSkeleton from '../../../components/market-prices/LoadingSkeleton';
+import { fetchMarketPrices } from '../../../services/marketPriceService';
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i = 0) => ({ opacity: 1, y: 0, transition: { delay: i * 0.05, duration: 0.4 } }),
-};
+const ITEMS_PER_PAGE = 20;
 
 export default function LivePrices() {
   const { t } = useTranslation();
-  const [filters, setFilters] = useState({ state: '', district: '', mandi: '', crop: '' });
-  
-  // Dynamic API lists
-  const [statesList, setStatesList] = useState([]);
-  const [districtsList, setDistrictsList] = useState([]);
-  const [mandisList, setMandisList] = useState([]);
-  const [cropsList, setCropsList] = useState([]);
-  const [pricesList, setPricesList] = useState([]);
 
-  // UX states
+  // ALL records returned from API (after mandi selection)
+  const [allData, setAllData] = useState([]);
+  const [meta, setMeta] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [mandiSelected, setMandiSelected] = useState(false);
 
-  // Fetch initial data (states, crops, and default prices) on mount
-  useEffect(() => {
-    let active = true;
+  const [filters, setFilters] = useState({
+    state: '',
+    district: '',
+    market: '',
+    commodity: '',
+    sortBy: 'modal_price',
+    order: 'desc',
+    page: 1
+  });
 
-    async function fetchInitialData() {
+  // Only fetch data when a mandi is selected
+  const loadData = async () => {
+    if (!filters.state || !filters.district || !filters.market) {
+      setAllData([]);
+      setMeta(null);
+      setMandiSelected(false);
+      return;
+    }
+
+    try {
       setLoading(true);
       setError(null);
-      try {
-        const [statesData, cropsData, pricesData] = await Promise.all([
-          mandiAPI.getStates(),
-          mandiAPI.getCrops(),
-          mandiAPI.getPrices()
-        ]);
-        if (active) {
-          setStatesList(statesData);
-          setCropsList(cropsData);
-          setPricesList(pricesData);
-        }
-      } catch (err) {
-        console.error('Error fetching initial market data:', err);
-        if (active) {
-          setError('Could not connect to live market data. Using offline fallback.');
-          // Hardcoded fallback data to keep UI functional
-          setStatesList(['Gujarat', 'Maharashtra', 'Rajasthan', 'Madhya Pradesh', 'Punjab', 'Uttar Pradesh']);
-          setCropsList(['Wheat', 'Rice', 'Cotton', 'Groundnut', 'Cumin', 'Mustard', 'Potato', 'Onion']);
-          setPricesList([
-            { crop: 'Wheat', min: 2150, max: 2450, avg: 2300, trend: 'up', state: 'Gujarat', district: 'Ahmedabad', mandi: 'Ahmedabad APMC' },
-            { crop: 'Rice', min: 1940, max: 2280, avg: 2100, trend: 'up', state: 'Maharashtra', district: 'Nagpur', mandi: 'Nagpur APMC' },
-            { crop: 'Cotton', min: 6200, max: 6800, avg: 6500, trend: 'down', state: 'Gujarat', district: 'Rajkot', mandi: 'Rajkot APMC' },
-            { crop: 'Groundnut', min: 5400, max: 5950, avg: 5680, trend: 'up', state: 'Gujarat', district: 'Rajkot', mandi: 'Rajkot APMC' },
-            { crop: 'Cumin', min: 32000, max: 36500, avg: 34200, trend: 'stable', state: 'Gujarat', district: 'Mehsana', mandi: 'Unjha APMC' },
-            { crop: 'Mustard', min: 4800, max: 5200, avg: 5000, trend: 'down', state: 'Rajasthan', district: 'Jaipur', mandi: 'Jaipur APMC' },
-            { crop: 'Potato', min: 800, max: 1200, avg: 1000, trend: 'up', state: 'Gujarat', district: 'Ahmedabad', mandi: 'Ahmedabad APMC' },
-            { crop: 'Onion', min: 1200, max: 1800, avg: 1500, trend: 'stable', state: 'Gujarat', district: 'Bhavnagar', mandi: 'Mahuva APMC' },
-          ]);
-        }
-      } finally {
-        if (active) setLoading(false);
-      }
-    }
+      setMandiSelected(true);
 
-    fetchInitialData();
-    return () => {
-      active = false;
-    };
-  }, []);
-
-  // Handle state filter selection
-  const handleStateChange = async (e) => {
-    const selectedState = e.target.value;
-    setFilters(prev => ({ ...prev, state: selectedState, district: '', mandi: '' }));
-    setDistrictsList([]);
-    setMandisList([]);
-
-    if (!selectedState) return;
-
-    try {
-      const districtsData = await mandiAPI.getDistricts(selectedState);
-      setDistrictsList(districtsData);
-    } catch (err) {
-      console.error('Error loading districts:', err);
-    }
-  };
-
-  // Handle district filter selection
-  const handleDistrictChange = async (e) => {
-    const selectedDistrict = e.target.value;
-    setFilters(prev => ({ ...prev, district: selectedDistrict, mandi: '' }));
-    setMandisList([]);
-
-    if (!selectedDistrict) return;
-
-    try {
-      const mandisData = await mandiAPI.getMandis(selectedDistrict);
-      setMandisList(mandisData);
-    } catch (err) {
-      console.error('Error loading mandis:', err);
-    }
-  };
-
-  // Search/Filter prices
-  const handleSearch = async (e) => {
-    if (e) e.preventDefault();
-    setLoading(true);
-    setError(null);
-    try {
-      const pricesData = await mandiAPI.getPrices({
+      const res = await fetchMarketPrices({
         state: filters.state,
         district: filters.district,
-        mandi: filters.mandi,
-        crop: filters.crop,
+        market: filters.market,
+        commodity: filters.commodity,
+        sortBy: filters.sortBy,
+        order: filters.order
       });
-      setPricesList(pricesData);
+
+      // res = { success, data: [...], meta: {...} }
+      const fetchedData = Array.isArray(res.data) ? res.data : [];
+      setAllData(fetchedData);
+      if (res.meta) setMeta(res.meta);
     } catch (err) {
-      console.error('Error searching mandi prices:', err);
-      setError('Failed to fetch filtered prices. Please try again.');
+      console.error('Failed to load prices:', err);
+      setError(err.message || 'Failed to connect to the market price database.');
     } finally {
       setLoading(false);
     }
   };
 
-  const TrendIcon = ({ trend }) => {
-    if (trend === 'up') return <span className="flex items-center gap-1 text-green-600 text-sm font-semibold"><ArrowUpRight className="w-4 h-4" /> Up</span>;
-    if (trend === 'down') return <span className="flex items-center gap-1 text-red-500 text-sm font-semibold"><ArrowDownRight className="w-4 h-4" /> Down</span>;
-    return <span className="flex items-center gap-1 text-slate-500 text-sm font-semibold"><Minus className="w-4 h-4" /> Stable</span>;
+  // Trigger fetch when mandi or commodity or sort changes
+  useEffect(() => {
+    if (filters.market) {
+      loadData();
+    } else {
+      setAllData([]);
+      setMeta(null);
+      setMandiSelected(false);
+    }
+  }, [filters.state, filters.district, filters.market, filters.commodity, filters.sortBy, filters.order]);
+
+  // UI-only pagination: slice allData for the current page
+  const paginatedData = useMemo(() => {
+    const start = (filters.page - 1) * ITEMS_PER_PAGE;
+    return allData.slice(start, start + ITEMS_PER_PAGE);
+  }, [allData, filters.page]);
+
+  const totalPages = Math.ceil(allData.length / ITEMS_PER_PAGE);
+
+  // Reset page to 1 when filters change
+  useEffect(() => {
+    setFilters(prev => ({ ...prev, page: 1 }));
+  }, [filters.state, filters.district, filters.market, filters.commodity, filters.sortBy, filters.order]);
+
+  const handleExportCSV = () => {
+    if (!allData.length) return;
+
+    const headers = ['Commodity', 'State', 'District', 'Market', 'Arrival Date', 'Min Price', 'Max Price', 'Modal Price'];
+    const csvContent = [
+      headers.join(','),
+      ...allData.map(row =>
+        [row.commodity, row.state, row.district, row.market, row.arrival_date, row.min_price, row.max_price, row.modal_price]
+        .map(field => `"${field}"`).join(',')
+      )
+    ].join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    link.setAttribute('href', url);
+    link.setAttribute('download', `market_prices_${filters.market}_${new Date().toISOString().split('T')[0]}.csv`);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
+  // Calculate analytics from ALL data (not paginated)
+  const totalCommodities = meta?.totalCommodities || new Set(allData.map(d => d.commodity)).size;
+  const avgPrice = allData.length > 0
+    ? Math.round(allData.reduce((acc, curr) => acc + (parseFloat(curr.modal_price) || 0), 0) / allData.length)
+    : 0;
+  const totalRecords = allData.length;
+
   return (
-    <div className="space-y-6">
-      {/* Filters Form */}
-      <motion.div
-        initial="hidden" animate="visible"
-        variants={{ visible: { transition: { staggerChildren: 0.05 } } }}
-        className="glass-card p-6"
-      >
-        <form onSubmit={handleSearch} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-          <motion.div variants={fadeUp}>
-            <label className="text-xs font-semibold text-slate-500 mb-1.5 block">{t('marketHub.state')}</label>
-            <select
-              value={filters.state}
-              onChange={handleStateChange}
-              className="select-field w-full"
-            >
-              <option value="">All States</option>
-              {statesList.map((s) => <option key={s} value={s}>{s}</option>)}
-            </select>
-          </motion.div>
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="max-w-7xl mx-auto space-y-6"
+    >
+      {/* Filters — always visible */}
+      <MarketPriceFilters
+        filters={filters}
+        setFilters={setFilters}
+        onRefresh={loadData}
+        onExport={handleExportCSV}
+      />
 
-          <motion.div variants={fadeUp} custom={1}>
-            <label className="text-xs font-semibold text-slate-500 mb-1.5 block">{t('marketHub.district')}</label>
-            <select
-              value={filters.district}
-              onChange={handleDistrictChange}
-              disabled={!filters.state}
-              className="select-field w-full disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              <option value="">All Districts</option>
-              {districtsList.map((d) => <option key={d} value={d}>{d}</option>)}
-            </select>
-          </motion.div>
-
-          <motion.div variants={fadeUp} custom={2}>
-            <label className="text-xs font-semibold text-slate-500 mb-1.5 block">{t('marketHub.mandi')}</label>
-            <select
-              value={filters.mandi}
-              onChange={(e) => setFilters({ ...filters, mandi: e.target.value })}
-              disabled={!filters.district}
-              className="select-field w-full disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              <option value="">All Mandis</option>
-              {mandisList.map((m) => <option key={m} value={m}>{m}</option>)}
-            </select>
-          </motion.div>
-
-          <motion.div variants={fadeUp} custom={3}>
-            <label className="text-xs font-semibold text-slate-500 mb-1.5 block">{t('marketHub.crop')}</label>
-            <select
-              value={filters.crop}
-              onChange={(e) => setFilters({ ...filters, crop: e.target.value })}
-              className="select-field w-full"
-            >
-              <option value="">All Crops</option>
-              {cropsList.map((c) => <option key={c} value={c}>{c}</option>)}
-            </select>
-          </motion.div>
-
-          <motion.div variants={fadeUp} custom={4} className="flex items-end">
-            <button
-              type="submit"
-              disabled={loading}
-              className="btn-primary w-full flex items-center justify-center gap-2 disabled:opacity-75"
-            >
-              {loading ? (
-                <Loader2 className="w-4 h-4 animate-spin" />
-              ) : (
-                <Search className="w-4 h-4" />
-              )}
-              {loading ? 'Searching...' : t('marketHub.search')}
-            </button>
-          </motion.div>
-        </form>
-      </motion.div>
-
-      {/* Error alert */}
-      <AnimatePresence>
-        {error && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-300 flex items-center gap-3 text-sm"
-          >
-            <AlertCircle className="w-5 h-5 flex-shrink-0 text-amber-600 dark:text-amber-400" />
-            <span>{error}</span>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Prices Table */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-        className="glass-card overflow-hidden"
-      >
-        <div className="overflow-x-auto">
-          {loading ? (
-            <div className="flex flex-col items-center justify-center py-20 gap-3">
-              <Loader2 className="w-8 h-8 text-primary animate-spin" />
-              <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">Fetching latest mandi prices...</p>
-            </div>
-          ) : pricesList.length === 0 ? (
-            <div className="text-center py-16 text-slate-500 dark:text-slate-400">
-              <AlertCircle className="w-10 h-10 mx-auto mb-3 text-slate-400" />
-              <p className="font-semibold text-lg">No records found</p>
-              <p className="text-sm mt-1">Try adjusting your filters or search options.</p>
-            </div>
-          ) : (
-            <table className="w-full">
-              <thead>
-                <tr className="bg-surface-muted border-b border-slate-200 dark:border-slate-700">
-                  <th className="text-left py-4 px-6 text-xs font-semibold text-slate-500 uppercase tracking-wider">{t('marketHub.crop')}</th>
-                  <th className="text-left py-4 px-6 text-xs font-semibold text-slate-500 uppercase tracking-wider">Mandi</th>
-                  <th className="text-left py-4 px-6 text-xs font-semibold text-slate-500 uppercase tracking-wider">{t('marketHub.minPrice')}</th>
-                  <th className="text-left py-4 px-6 text-xs font-semibold text-slate-500 uppercase tracking-wider">{t('marketHub.maxPrice')}</th>
-                  <th className="text-left py-4 px-6 text-xs font-semibold text-slate-500 uppercase tracking-wider">{t('marketHub.avgPrice')}</th>
-                  <th className="text-left py-4 px-6 text-xs font-semibold text-slate-500 uppercase tracking-wider">{t('marketHub.trend')}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {pricesList.map((row, i) => (
-                  <motion.tr
-                    key={`${row.state}-${row.mandi}-${row.crop}-${i}`}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.03 }}
-                    className="border-b border-slate-100 dark:border-slate-800 hover:bg-primary-50/20 dark:hover:bg-primary-950/20 transition-colors duration-200"
-                  >
-                    <td className="py-4 px-6 font-semibold text-body">
-                      <div>{row.crop}</div>
-                      <div className="text-xs text-slate-400 font-normal">{row.variety} | {row.grade}</div>
-                    </td>
-                    <td className="py-4 px-6 text-slate-600 dark:text-slate-300">
-                      <div>{row.mandi}</div>
-                      <div className="text-xs text-slate-400">{row.district}, {row.state}</div>
-                    </td>
-                    <td className="py-4 px-6 text-slate-600 dark:text-slate-300">₹{row.min.toLocaleString()}</td>
-                    <td className="py-4 px-6 text-slate-600 dark:text-slate-300">₹{row.max.toLocaleString()}</td>
-                    <td className="py-4 px-6 font-semibold text-body">₹{row.avg.toLocaleString()}</td>
-                    <td className="py-4 px-6"><TrendIcon trend={row.trend} /></td>
-                  </motion.tr>
-                ))}
-              </tbody>
-            </table>
-          )}
+      {/* Before mandi selection: show instruction prompt */}
+      {!mandiSelected && !loading && (
+        <div className="bg-white dark:bg-slate-800 rounded-2xl p-12 text-center border border-slate-100 dark:border-slate-700 shadow-sm">
+          <MapPin className="w-16 h-16 text-primary/30 mx-auto mb-4" />
+          <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2">Select a Mandi to View Prices</h3>
+          <p className="text-slate-500 dark:text-slate-400 max-w-md mx-auto">
+            Choose a <strong>State</strong>, then <strong>District</strong>, then <strong>Market (Mandi)</strong> above to see all available commodity prices for that market.
+          </p>
         </div>
-      </motion.div>
-    </div>
+      )}
+
+      {/* After mandi selection: show analytics + data */}
+      {mandiSelected && (
+        <>
+          {/* Analytics Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-white dark:bg-slate-800 rounded-3xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 flex items-center">
+              <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mr-4 text-blue-600 dark:text-blue-400">
+                <Database className="w-6 h-6" />
+              </div>
+              <div>
+                <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">Total Commodities Found</p>
+                <h3 className="text-2xl font-bold text-slate-800 dark:text-white">{loading ? '-' : totalCommodities}</h3>
+              </div>
+            </div>
+            <div className="bg-white dark:bg-slate-800 rounded-3xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 flex items-center">
+              <div className="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mr-4 text-green-600 dark:text-green-400">
+                <IndianRupee className="w-6 h-6" />
+              </div>
+              <div>
+                <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">Avg Modal Price</p>
+                <h3 className="text-2xl font-bold text-slate-800 dark:text-white">{loading ? '-' : `₹${avgPrice}`}</h3>
+              </div>
+            </div>
+            <div className="bg-white dark:bg-slate-800 rounded-3xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 flex items-center">
+              <div className="w-12 h-12 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center mr-4 text-amber-600 dark:text-amber-400">
+                <TrendingUp className="w-6 h-6" />
+              </div>
+              <div>
+                <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">Total Records</p>
+                <h3 className="text-2xl font-bold text-slate-800 dark:text-white">{loading ? '-' : totalRecords}</h3>
+              </div>
+            </div>
+          </div>
+
+          {/* Data Area */}
+          {error ? (
+            <div className="bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 p-6 rounded-2xl border border-red-100 dark:border-red-900/50 flex flex-col items-center justify-center text-center">
+              <AlertCircle className="w-12 h-12 mb-4 text-red-500 opacity-80" />
+              <h3 className="text-lg font-semibold mb-2">Error Loading Market Data</h3>
+              <p className="text-sm mb-4 max-w-md">{error}</p>
+              <button
+                onClick={loadData}
+                className="px-6 py-2 bg-white dark:bg-slate-800 text-red-600 dark:text-red-400 font-semibold rounded-xl border border-red-200 dark:border-red-800 hover:bg-red-50 dark:hover:bg-red-900/40 transition-colors"
+              >
+                Try Again
+              </button>
+            </div>
+          ) : loading ? (
+            <LoadingSkeleton />
+          ) : paginatedData.length > 0 ? (
+            <>
+              <MarketPriceTable data={paginatedData} />
+
+              <div className="md:hidden space-y-4">
+                {paginatedData.map((item, index) => (
+                  <MarketPriceCard key={`${item.commodity}-${index}`} item={item} />
+                ))}
+              </div>
+
+              <MarketPricePagination
+                currentPage={filters.page}
+                totalPages={totalPages}
+                totalRecords={allData.length}
+                onPageChange={(page) => setFilters(prev => ({ ...prev, page }))}
+              />
+            </>
+          ) : (
+            <div className="bg-white dark:bg-slate-800 rounded-2xl p-12 text-center border border-slate-100 dark:border-slate-700 shadow-sm">
+              <FileText className="w-16 h-16 text-slate-300 dark:text-slate-600 mx-auto mb-4" />
+              <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2">No Market Data Found</h3>
+              <p className="text-slate-500 dark:text-slate-400 max-w-md mx-auto">
+                No recent price data found for this mandi. The market might be closed today, or the data hasn't been uploaded yet by the APMC.
+              </p>
+            </div>
+          )}
+        </>
+      )}
+    </motion.div>
   );
 }
