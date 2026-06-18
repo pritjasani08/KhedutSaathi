@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Globe, Sun, Moon } from 'lucide-react';
+import { Menu, X, Globe, LogIn, Sun, Moon } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 const languages = [
@@ -17,6 +17,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [langDropdown, setLangDropdown] = useState(false);
+  const langRef = useRef(null);
   const { isDarkMode, toggleTheme } = useTheme();
 
   useEffect(() => {
@@ -26,14 +27,21 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    // setIsOpen(false); // Removed to fix cascading render warning
-  }, [location]);
+    const handleClickOutside = (event) => {
+      if (langRef.current && !langRef.current.contains(event.target)) {
+        setLangDropdown(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const navLinks = [
     { path: '/', label: t('nav.home') },
     { path: '/crop-health', label: 'Crop Health' },
     { path: '/crop-planning', label: 'Crop Planning' },
     { path: '/market-prices', label: 'Market Prices' },
+    { path: '/ai-assistant', label: 'AI Assistant' },
     { path: '/expert-help', label: 'Expert Help' },
     { path: '/resources', label: 'News & Schemes' },
     { path: '/features', label: 'Features' },
@@ -52,23 +60,25 @@ export default function Navbar() {
           : 'bg-transparent'
       }`}
     >
-      <div className="container-custom">
-        <div className="flex items-center h-16 lg:h-20 px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-[1920px] mx-auto">
+        <div className="flex items-center justify-between h-16 lg:h-20 px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
           {/* LEFT: Logo */}
-          <Link to="/" className="flex items-center gap-2 group shrink-0">
-            <span className="text-2xl lg:text-3xl group-hover:scale-110 transition-transform duration-300">🌾</span>
-            <span className="font-display font-bold text-xl lg:text-2xl gradient-text">
-              KhedutSaathi
-            </span>
-          </Link>
+          <div className="flex-1 flex justify-start">
+            <Link to="/" className="inline-flex items-center gap-2 group shrink-0">
+              <span className="text-2xl lg:text-3xl group-hover:scale-110 transition-transform duration-300">🌾</span>
+              <span className="font-display font-bold text-xl lg:text-2xl gradient-text">
+                KhedutSaathi
+              </span>
+            </Link>
+          </div>
 
-          {/* CENTER/RIGHT: Nav Links */}
-          <div className="hidden lg:flex flex-1 justify-end items-center gap-2 xl:gap-5 px-6 xl:px-10">
+          {/* CENTER: Nav Links */}
+          <div className="hidden lg:flex items-center justify-center gap-1 xl:gap-2 2xl:gap-4 shrink w-full max-w-fit">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`px-3 py-2 rounded-xl text-sm font-medium transition-all duration-300 whitespace-nowrap ${
+                className={`px-2 xl:px-3 py-2 rounded-xl text-[13px] xl:text-sm font-medium transition-all duration-300 whitespace-nowrap ${
                   location.pathname === link.path
                     ? 'text-primary bg-primary-50 dark:bg-primary-900/30 shadow-sm'
                     : 'text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary-light hover:bg-primary-50/50 dark:hover:bg-primary-900/20'
@@ -80,9 +90,9 @@ export default function Navbar() {
           </div>
 
           {/* FAR RIGHT: Utilities */}
-          <div className="flex items-center gap-2 xl:gap-3 shrink-0 ml-auto lg:ml-0">
+          <div className="flex items-center justify-end gap-2 xl:gap-3 flex-1 shrink-0">
             {/* Language Switcher */}
-            <div className="relative hidden lg:block">
+            <div className="relative hidden lg:block" ref={langRef}>
               <button
                 onClick={() => setLangDropdown(!langDropdown)}
                 className="p-2.5 rounded-xl bg-surface hover:bg-surface-muted border border-transparent hover:border-subtle text-slate-700 dark:text-slate-200 transition-all duration-300"
@@ -126,6 +136,12 @@ export default function Navbar() {
               aria-label="Toggle Dark Mode"
             >
               {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            </button>
+
+            {/* Login Button */}
+            <button className="hidden lg:flex items-center gap-2 px-4 py-2 rounded-xl bg-surface hover:bg-surface-muted border border-transparent hover:border-subtle text-slate-700 dark:text-slate-200 text-sm font-medium transition-all duration-300">
+              <LogIn className="w-4 h-4" />
+              Log In
             </button>
 
             {/* Mobile Menu Button */}

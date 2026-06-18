@@ -124,7 +124,7 @@ export default function NewsAndSchemesSection() {
         >
           <Link to="/resources" className="inline-flex items-center gap-2 px-8 py-4 bg-surface text-primary border border-subtle rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700/50 shadow-sm transition-all duration-300 font-semibold text-lg hover:shadow-md hover:-translate-y-1">
             View All News & Schemes
-            <ArrowRight className="w-5 h-5" />
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
           </Link>
         </motion.div>
 

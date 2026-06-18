@@ -51,7 +51,7 @@ export default function SchemeCard({ title, description, eligibility, deadline, 
         className="w-full btn-secondary py-2 text-sm flex items-center justify-center gap-2 mt-auto"
       >
         Apply Now
-        <ArrowRight className="w-4 h-4" />
+        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
       </a>
     </motion.div>
   );

@@ -53,7 +53,7 @@ export default function CropHealthSection() {
               <Link to="/crop-health" className="inline-flex items-center gap-2 btn-primary">
                 <Upload className="w-5 h-5" />
                 Check Crop Health
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
               </Link>
             </motion.div>
           </motion.div>

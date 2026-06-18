@@ -33,7 +33,7 @@ export default function FeatureCard({ icon: Icon, title, desc, path, color, bg, 
         {learnMoreText && (
           <span className="text-primary font-semibold text-sm flex items-center gap-1 group-hover:gap-3 transition-all duration-300">
             {learnMoreText}
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
           </span>
         )}
       </Link>

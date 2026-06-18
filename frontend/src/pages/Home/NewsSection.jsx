@@ -44,7 +44,7 @@ export default function NewsSection() {
           />
           <Link to="/news" className="btn-secondary text-sm flex items-center justify-center gap-2 whitespace-nowrap mb-12 md:mb-16">
             View All News
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
           </Link>
         </div>
 

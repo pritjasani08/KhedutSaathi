@@ -96,7 +96,7 @@ export default function CropPlanningSection() {
               <Link to="/crop-planning" className="inline-flex items-center gap-2 btn-primary bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 shadow-indigo-500/30">
                 <Target className="w-5 h-5" />
                 Start Crop Planner
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
               </Link>
             </motion.div>
           </motion.div>

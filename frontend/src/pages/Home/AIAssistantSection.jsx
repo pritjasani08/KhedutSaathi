@@ -40,7 +40,7 @@ export default function AIAssistantSection() {
               <button className="inline-flex items-center gap-3 px-8 py-5 rounded-2xl bg-gradient-to-r from-primary to-primary-light text-white font-semibold text-lg hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 hover:-translate-y-1 group">
                 <Bot className="w-6 h-6 animate-bounce-slow" />
                 Chat with AI Assistant
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
               </button>
             </motion.div>
 

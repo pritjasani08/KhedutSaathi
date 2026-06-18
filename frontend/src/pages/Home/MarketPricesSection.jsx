@@ -54,7 +54,7 @@ export default function MarketPricesSection() {
               <Link to="/market-prices" className="inline-flex items-center gap-2 btn-primary bg-amber-500 hover:bg-amber-600 border-amber-500 hover:border-amber-600 shadow-amber-500/30">
                 <IndianRupee className="w-5 h-5" />
                 Check Market Prices
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
               </Link>
             </motion.div>
           </motion.div>

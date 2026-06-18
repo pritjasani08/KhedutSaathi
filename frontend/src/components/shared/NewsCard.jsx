@@ -43,7 +43,7 @@ export default function NewsCard({ title, date, category, excerpt, image, index 
         
         <button className="text-primary font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all duration-300 mt-auto">
           Read More
-          <ArrowRight className="w-4 h-4" />
+          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
         </button>
       </div>
     </motion.div>

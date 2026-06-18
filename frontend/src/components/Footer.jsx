@@ -66,7 +66,7 @@ export default function Footer() {
                     className="text-slate-400 hover:text-primary text-sm transition-colors duration-300 flex items-center gap-1 group"
                   >
                     {link.label}
-                    <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />
                   </Link>
                 </li>
               ))}
@@ -84,7 +84,7 @@ export default function Footer() {
                     className="text-slate-400 hover:text-primary text-sm transition-colors duration-300 flex items-center gap-1 group"
                   >
                     {link.label}
-                    <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />
                   </a>
                 </li>
               ))}
