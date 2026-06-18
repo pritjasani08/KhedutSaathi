@@ -1,9 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import {
-  Sprout, TrendingUp, Users, FileText,
-  Activity, ArrowRight, Sparkles
-} from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -14,57 +11,115 @@ const fadeUp = {
 };
 
 export default function Features() {
-  const features = [
+  const featureCategories = [
     {
-      icon: Activity,
-      title: 'Crop Health',
-      desc: 'Disease Detection & Crop Health Analysis. Upload an image of your crop to get instant AI diagnosis and treatment recommendations.',
-      path: '/crop-health',
-      gradient: 'from-green-500 to-emerald-500',
-      bg: 'bg-green-50 dark:bg-green-900/30',
-      hoverBg: 'hover:bg-green-50 dark:hover:bg-green-900/40',
-      emoji: '🌱',
+      title: 'Crop Management',
+      features: [
+        {
+          title: 'Crop Health',
+          desc: 'Get comprehensive crop health analysis and instantly identify issues before they spread.',
+          path: '/crop-health',
+          bg: 'bg-green-50 dark:bg-green-900/30',
+          hoverBg: 'hover:bg-green-50 dark:hover:bg-green-900/40',
+          emoji: '🌿',
+        },
+        {
+          title: 'Disease Detection',
+          desc: 'Upload an image of your crop to get instant AI diagnosis and treatment recommendations.',
+          path: '/crop-health',
+          bg: 'bg-emerald-50 dark:bg-emerald-900/30',
+          hoverBg: 'hover:bg-emerald-50 dark:hover:bg-emerald-900/40',
+          emoji: '🔍',
+        },
+        {
+          title: 'Crop Planning',
+          desc: 'Get AI-powered recommendations based on your soil, location, and water availability.',
+          path: '/crop-planning',
+          bg: 'bg-blue-50 dark:bg-blue-900/30',
+          hoverBg: 'hover:bg-blue-50 dark:hover:bg-blue-900/40',
+          emoji: '📋',
+        },
+        {
+          title: 'Yield Predictor',
+          desc: 'Forecast your crop yield intelligently using historical data and current conditions.',
+          path: '/crop-planning',
+          bg: 'bg-indigo-50 dark:bg-indigo-900/30',
+          hoverBg: 'hover:bg-indigo-50 dark:hover:bg-indigo-900/40',
+          emoji: '📈',
+        },
+        {
+          title: 'Smart Irrigation',
+          desc: 'Monitor irrigation requirements and optimize water usage using AI-powered recommendations.',
+          path: '/smart-irrigation',
+          bg: 'bg-cyan-50 dark:bg-cyan-900/30',
+          hoverBg: 'hover:bg-cyan-50 dark:hover:bg-cyan-900/40',
+          emoji: '💧',
+        },
+      ]
     },
     {
-      icon: Sprout,
-      title: 'Crop Planning',
-      desc: 'Smart Crop Planner, Yield Predictor & Smart Irrigation. Get AI-powered recommendations based on your soil, location, and water availability.',
-      path: '/crop-planning',
-      gradient: 'from-blue-500 to-cyan-500',
-      bg: 'bg-blue-50 dark:bg-blue-900/30',
-      hoverBg: 'hover:bg-blue-50 dark:hover:bg-blue-900/40',
-      emoji: '📊',
+      title: 'Market & Commerce',
+      features: [
+        {
+          title: 'Market Prices',
+          desc: 'Access live Mandi prices across different states and districts, and analyze market trends.',
+          path: '/market-prices',
+          bg: 'bg-amber-50 dark:bg-amber-900/30',
+          hoverBg: 'hover:bg-amber-50 dark:hover:bg-amber-900/40',
+          emoji: '📊',
+        },
+        {
+          title: 'Market Intelligence',
+          desc: 'Advanced insights and demand forecasting to help you sell at the best time.',
+          path: '/market-prices',
+          bg: 'bg-orange-50 dark:bg-orange-900/30',
+          hoverBg: 'hover:bg-orange-50 dark:hover:bg-orange-900/40',
+          emoji: '🧠',
+        },
+        {
+          title: 'Agri Marketplace',
+          desc: 'Buy and sell agricultural products, tools, fertilizers, seeds, and farming equipment.',
+          path: '/agri-marketplace',
+          bg: 'bg-yellow-50 dark:bg-yellow-900/30',
+          hoverBg: 'hover:bg-yellow-50 dark:hover:bg-yellow-900/40',
+          emoji: '🛒',
+        },
+      ]
     },
     {
-      icon: TrendingUp,
-      title: 'Market Prices',
-      desc: 'Market Intelligence & Price Tracking. Access live Mandi prices across different states and districts, and analyze market trends.',
-      path: '/market-prices',
-      gradient: 'from-amber-500 to-orange-500',
-      bg: 'bg-amber-50 dark:bg-amber-900/30',
-      hoverBg: 'hover:bg-amber-50 dark:hover:bg-amber-900/40',
-      emoji: '📈',
+      title: 'AI & Support',
+      features: [
+        {
+          title: 'AI Assistant',
+          desc: 'Your personal 24/7 farming assistant ready to answer your agricultural questions.',
+          path: '/ai-assistant',
+          bg: 'bg-purple-50 dark:bg-purple-900/30',
+          hoverBg: 'hover:bg-purple-50 dark:hover:bg-purple-900/40',
+          emoji: '🤖',
+        },
+        {
+          title: 'Expert Help',
+          desc: 'Connect with agricultural experts for personalized advice and advanced crop planning.',
+          path: '/expert-help',
+          bg: 'bg-violet-50 dark:bg-violet-900/30',
+          hoverBg: 'hover:bg-violet-50 dark:hover:bg-violet-900/40',
+          emoji: '🧑‍🌾',
+        },
+      ]
     },
     {
-      icon: Users,
-      title: 'Expert Help',
-      desc: 'Expert Consultation & Agricultural Guidance. Connect with agricultural experts for personalized advice and advanced crop planning.',
-      path: '/expert-help',
-      gradient: 'from-violet-500 to-purple-500',
-      bg: 'bg-violet-50 dark:bg-violet-900/30',
-      hoverBg: 'hover:bg-violet-50 dark:hover:bg-violet-900/40',
-      emoji: '🧑‍🌾',
-    },
-    {
-      icon: FileText,
-      title: 'News & Schemes',
-      desc: 'Agriculture News & Government Schemes. Stay updated with the latest agricultural news and beneficial government initiatives.',
-      path: '/resources',
-      gradient: 'from-indigo-500 to-blue-500',
-      bg: 'bg-indigo-50 dark:bg-indigo-900/30',
-      hoverBg: 'hover:bg-indigo-50 dark:hover:bg-indigo-900/40',
-      emoji: '📰',
-    },
+      title: 'Resources',
+      features: [
+        {
+          title: 'News & Schemes',
+          desc: 'Stay updated with the latest agricultural news and beneficial government initiatives.',
+          path: '/resources',
+          bg: 'bg-rose-50 dark:bg-rose-900/30',
+          hoverBg: 'hover:bg-rose-50 dark:hover:bg-rose-900/40',
+          emoji: '📰',
+        },
+      ]
+    }
   ];
 
   return (
@@ -87,42 +142,54 @@ export default function Features() {
           </motion.p>
         </motion.div>
 
-        {/* Features Grid */}
-        <motion.div
-          initial="hidden" whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
-          variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          {features.map((feature, i) => (
-            <motion.div key={i} variants={fadeUp} custom={i}>
-              <Link
-                to={feature.path}
-                className={`block glass-card p-8 card-hover group h-full border border-transparent hover:border-primary/20 dark:hover:border-primary/40 transition-all duration-500 ${feature.hoverBg}`}
+        {/* Feature Categories */}
+        <div className="space-y-16">
+          {featureCategories.map((category) => (
+            <motion.section
+              key={category.title}
+              initial="hidden" whileInView="visible"
+              viewport={{ once: true, margin: '-50px' }}
+              variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
+            >
+              <motion.h2 
+                variants={fadeUp} 
+                className="font-display text-2xl font-bold text-heading mb-6 pb-2 border-b border-subtle"
               >
-                <div className="flex items-start gap-4 mb-5">
-                  <div className={`w-16 h-16 ${feature.bg} rounded-2xl flex items-center justify-center text-3xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}>
-                    {feature.emoji}
-                  </div>
-                </div>
+                {category.title}
+              </motion.h2>
+              
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {category.features.map((feature, i) => (
+                  <motion.div key={i} variants={fadeUp} custom={i}>
+                    <Link
+                      to={feature.path}
+                      className={`block glass-card p-8 card-hover group h-full border border-transparent hover:border-primary/20 dark:hover:border-primary/40 transition-all duration-500 ${feature.hoverBg}`}
+                    >
+                      <div className="flex items-start gap-4 mb-5">
+                        <div className={`w-16 h-16 ${feature.bg} rounded-2xl flex items-center justify-center text-3xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}>
+                          {feature.emoji}
+                        </div>
+                      </div>
 
-                <h3 className="font-display text-xl font-bold text-heading mb-3 group-hover:text-primary dark:group-hover:text-primary-light transition-colors duration-300">
-                  {feature.title}
-                </h3>
-                <p className="text-body text-sm leading-relaxed mb-6 opacity-80">
-                  {feature.desc}
-                </p>
+                      <h3 className="font-display text-xl font-bold text-heading mb-3 group-hover:text-primary dark:group-hover:text-primary-light transition-colors duration-300">
+                        {feature.title}
+                      </h3>
+                      <p className="text-body text-sm leading-relaxed mb-6 opacity-80">
+                        {feature.desc}
+                      </p>
 
-                <span className="text-primary dark:text-primary-light font-semibold text-sm flex items-center gap-1 group-hover:gap-3 transition-all duration-300">
-                  Explore Feature
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                </span>
-              </Link>
-            </motion.div>
+                      <span className="text-primary dark:text-primary-light font-semibold text-sm flex items-center gap-1 group-hover:gap-3 transition-all duration-300">
+                        Open {feature.title}
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                      </span>
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.section>
           ))}
-        </motion.div>
+        </div>
       </div>
     </div>
   );
 }
-

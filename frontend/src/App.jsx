@@ -13,6 +13,8 @@ import AgriMarketplace from './pages/AgriMarketplace/AgriMarketplace';
 import Features from './pages/Features/Features';
 import Resources from './pages/Resources/Resources';
 import About from './pages/About/About';
+import Login from './pages/Auth/Login/Login';
+import Register from './pages/Auth/Register/Register';
 
 /* Page transition wrapper */
 function PageWrapper({ children }) {
@@ -44,6 +46,8 @@ function AnimatedRoutes() {
         <Route path="/features" element={<PageWrapper><Features /></PageWrapper>} />
         <Route path="/resources" element={<PageWrapper><Resources /></PageWrapper>} />
         <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
+        <Route path="/login" element={<PageWrapper><Login /></PageWrapper>} />
+        <Route path="/register" element={<PageWrapper><Register /></PageWrapper>} />
       </Routes>
     </AnimatePresence>
   );

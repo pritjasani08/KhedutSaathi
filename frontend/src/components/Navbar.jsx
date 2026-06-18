@@ -139,10 +139,13 @@ export default function Navbar() {
             </button>
 
             {/* Login Button */}
-            <button className="hidden lg:flex items-center gap-2 px-4 py-2 rounded-xl bg-surface hover:bg-surface-muted border border-transparent hover:border-subtle text-slate-700 dark:text-slate-200 text-sm font-medium transition-all duration-300">
+            <Link 
+              to="/login"
+              className="hidden lg:flex items-center gap-2 px-4 py-2 rounded-xl bg-surface hover:bg-surface-muted border border-transparent hover:border-subtle text-slate-700 dark:text-slate-200 text-sm font-medium transition-all duration-300"
+            >
               <LogIn className="w-4 h-4" />
               Log In
-            </button>
+            </Link>
 
             {/* Mobile Menu Button */}
             <button
