@@ -159,8 +159,46 @@ const login = async (req, res) => {
   }
 };
 
+const updateProfile = async (req, res) => {
+  try {
+    const { email, firstName, lastName, mobile, userType } = req.body;
+
+    if (!email) {
+      return res.status(400).json({ message: 'Email is required to identify the user' });
+    }
+
+    // Update the user record in Supabase
+    const { data: updatedUser, error: updateError } = await supabase
+      .from('users')
+      .update({
+        first_name: firstName,
+        last_name: lastName,
+        mobile: mobile,
+        user_type: userType
+      })
+      .eq('email', email)
+      .select('id, first_name, last_name, email, mobile, user_type')
+      .single();
+
+    if (updateError) {
+      console.error('Supabase Update Error:', updateError);
+      return res.status(500).json({ message: 'Failed to update profile' });
+    }
+
+    res.status(200).json({
+      message: 'Profile updated successfully',
+      user: updatedUser
+    });
+
+  } catch (error) {
+    console.error('Error in updateProfile:', error);
+    res.status(500).json({ message: 'Failed to process update profile request' });
+  }
+};
+
 module.exports = {
   sendOTP,
   verifyOTPAndRegister,
-  login
+  login,
+  updateProfile
 };

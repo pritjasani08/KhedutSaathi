@@ -30,6 +30,8 @@ function PageWrapper({ children }) {
   );
 }
 
+import Profile from './pages/Profile/Profile';
+
 function AnimatedRoutes() {
   const location = useLocation();
 
@@ -48,6 +50,7 @@ function AnimatedRoutes() {
         <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
         <Route path="/login" element={<PageWrapper><Login /></PageWrapper>} />
         <Route path="/register" element={<PageWrapper><Register /></PageWrapper>} />
+        <Route path="/profile" element={<PageWrapper><Profile /></PageWrapper>} />
       </Routes>
     </AnimatePresence>
   );
