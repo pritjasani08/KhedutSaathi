@@ -1,4 +1,6 @@
-console.log("DATA_GOV_API_KEY =579b464db66ec23bdd0000016eb26dadfef345fc54b6829950204ee6", process.env.DATA_GOV_API_KEY);
+if (!process.env.DATA_GOV_API_KEY) {
+  console.error("DATA_GOV_API_KEY is missing");
+}
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
@@ -38,11 +40,19 @@ app.get('/', (req, res) => {
 
 // Global error handler
 app.use((err, req, res, next) => {
-  console.error('Unhandled Server Error:', err);
-  res.status(err.status || 500).json({
-    message: err.message || 'An unexpected error occurred on the server',
-    error: process.env.NODE_ENV === 'development' ? err : {},
-  });
+  console.error('Unhandled Server Error:', err.message);
+  
+  const response = {
+    message: process.env.NODE_ENV === 'development' 
+      ? (err.message || 'An unexpected error occurred on the server')
+      : 'An unexpected error occurred on the server'
+  };
+
+  if (process.env.NODE_ENV === 'development') {
+    response.error = err.stack || err;
+  }
+
+  res.status(err.status || 500).json(response);
 });
 
 app.listen(PORT, () => {
