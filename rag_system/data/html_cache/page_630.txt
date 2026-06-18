@@ -1,0 +1,187 @@
+TNAU Agritech Portal :: Crop Improvement
+Home
+|
+About Us
+|
+Success Stories
+|
+Farmers Association
+|
+Farmers' Innovation
+|
+Publications
+|
+Photo Bank
+|
+Contact
+Crop Improvement :: About Plant Breeding
+Plant breeding
+Â is the art and science of changing the genetics of plants for the benefit of humankind. Plant breeding can be accomplished through many different techniques ranging from simply selecting plants with desirable characteristics for propagation, to more complex molecular techniques Plant breeding has been practiced for thousands of years, since near the beginning of human civilization. It is now practiced worldwide by individuals such as gardeners and farmers, or by professional plant breeders employed by organizations such asÂ
+government
+Â institutions, universities, crop-specific industry associations or research centers.
+International development agencies believe that breeding new crops is important for ensuringÂ
+food security
+Â by developing new varieties that are higher-yielding, resistant to pests and diseases, drought-resistant or regionally adapted to different environments and growing conditions.
+Contents
+1. DomesticationÂ
+2. Classical plant breedingÂ
+3. Modern plant breedingÂ
+4. Genetic modification
+1. Domestication
+This map shows the sites of domestication for a number of crops. Places where crops were initially domesticated are called centers of origin
+Plant breeding in certain situations may lead theÂ
+domestication
+Â of wild plants.Â
+Domestication
+Â of plants is anÂ
+artificial selection
+Â process conducted byÂ
+humans
+Â to produce plants that have more desirable traits than wild plants, and which renders them dependent on artificial (usually enhanced) environments for their continued existence. The practice is estimated to date back 9,000-11,000 years. Many crops in present day cultivation are the result of domestication in ancient times, about 5,000 years ago in theÂ
+Old World
+Â and 3,000 years ago in theÂ
+New World
+. In theÂ
+Neolithic
+Â period, domestication took a minimum of 1,000 years and a maximum of 7,000 years. Today, all of our principalÂ
+food
+Â crops come from domesticated varieties.
+A plant whose origin or selection is due primarily to intentional human activity is called aÂ
+cultigen
+, and a cultivated crop
+species
+Â that has evolved fromÂ
+wild
+Â populations due to selective pressures from traditionalÂ
+farmers
+Â is called aÂ
+landrace
+. Landraces, which can be the result of natural forces or domestication, are plants (orÂ
+animals
+) that are ideally suited to a particular region or environment. An example are the landraces ofÂ
+rice
+,Â
+Oryza sativa
+Â
+subspecies
+Â
+indica
+, which was developed inÂ
+South Asia
+, andÂ
+Oryza sativa
+Â subspeciesÂ
+japonica
+, which was developed inÂ
+China
+.
+Classical plant breeding
+Classical plant breeding uses deliberate interbreeding (
+crossing
+) of closely or distantly related individuals to produce new crop varieties or lines with desirable properties. Plants are crossbred to introduceÂ
+traits
+/
+genes
+Â from one variety or line into a new genetic background. Progeny from the cross would then be crossed with the high-yielding parent to ensure that the progeny were most like the high-yielding parent, (
+backcrossing
+). The progeny from that cross would then be tested for yield and mildew resistance and high-yielding resistant plants would be further developed. Plants may also be crossed with themselves to produceÂ
+inbred
+Â varieties for breeding.
+Classical breeding relies largely onÂ
+homologous recombination
+Â between chromosomes to generateÂ
+genetic diversity
+. The classical plant breeder may also makes use of a number ofÂ
+in vitro
+Â techniques such as protoplast fusion, embryo rescue or mutagenesis to generate diversity and produce hybrid plants that would not exist inÂ
+nature
+.
+Traits that breeders have tried to incorporate into crop plants in the last 100 years include:
+IncreasedÂ
+quality
+Â andÂ
+yield
+Â of the crop
+IncreasedÂ
+tolerance
+Â of environmental pressures (
+salinity
+, extremeÂ
+temperature
+,Â
+drought
+)
+Resistance toÂ
+viruses
+,Â
+fungi
+Â andÂ
+bacteria
+Increased tolerance toÂ
+insect
+Â pests
+Increased tolerance ofÂ
+herbicides
+Modern plant breeding
+Modern plant breeding uses techniques of molecular biology to select, or in the case of genetic modification, to insert, desirable traits into plants.
+Modern facilities in molecular biology has converted classical plant breeding to molecular plant breed
+Steps of Plant Breeding
+Â
+Major activities of plant breeding are following;
+Creation - variation
+Selection
+Evaluation
+Release
+Multiplication
+Distribution of the new variet
+Marker assisted selection
+Marker assisted selection
+Â orÂ
+marker aided selection
+Â
+(MAS)
+Â is a process whereby a marker (morphological, biochemical or one based on DNA/RNA variation) is used for indirectÂ
+selection
+Â of a genetic determinant or determinants of a trait of interest (i.e. productivity, disease resistance, abiotic stress tolerance, and/or quality). This process is used in
+plant
+Â and animal breeding. Â
+Genetic modification
+Genetic modification of plants is achieved by adding a specific gene or genes to a plant, or by knocking out a gene with RNAi, to produce a desirableÂ
+phenotype
+. The plants resulting from adding a gene are often referred to as transgenic plants. Genetic modification can produce a plant with the desired trait or traits faster than classical breeding because the majority of the plant's genome is not altered.
+The majority of commercially released transgenic plants, are currently limited to plants that have introduced resistance toÂ
+insect
+Â
+pests
+Â and herbicides. Insect resistance is achieved through incorporation of a gene fromÂ
+Bacillus thuringiensis
+(
+Bt
+) that encodes aÂ
+protein
+Â that is toxic to some insects. For example, theÂ
+cotton bollworm
+, a common cotton pest, feeds on Bt cotton it will ingest the toxin and die. Herbicides usually work by binding to certain plant enzymes and inhibiting their action. The enzymes that the herbicide inhibits are known as the herbicidesÂ
+target site
+. Herbicide resistance can be engineered into crops by expressing a version ofÂ
+target site
+Â protein that is not inhibited by the herbicide. This is the method used to produce glyphosate resistant crop plants Genetic modification of plants that can produce pharmaceuticals (and industrial chemicals), sometimes calledÂ
+pharmacrops
+, is a rather radical new area of plant breeding.
+Source: "http://en.wikipedia.org/wiki/Plant_breeding"
+Home
+|
+About Us
+|
+Success Stories
+|
+Farmers Association
+|
+Publications
+|
+Site Map
+|
+Disclaimer
+|
+Contact Us
+Â© 2008-2024 TNAU. All Rights Reserved.

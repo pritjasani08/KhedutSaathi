@@ -1,0 +1,226 @@
+Agriculture :: Home
+|
+Home
+|
+Seasons &
+Varieties
+|
+Tillage
+|
+Nutrient Management
+|
+Irrigation
+Management
+|
+Weed
+Management
+|
+Crop Protection
+|
+Cost of Cultivation
+|
+Crop Production :: Pulses ::
+Cowpea
+COWPEA (
+Vigna unguiculata
+(L.) Walp.aggreg.)
+SEASON AND  VARIETIES
+DISTRICT/SEASON
+VARIETIES
+Adipattam    (June-August)
+For all districts except Kanyakumari    and Nilgiris
+Co 6, Co(CP) 7, Paiyur 1, VBN 1
+Purattasipattam    (September - November)
+Vellore, Thiruvannamalai, Dharmapuri,    Salem, Namakkal, Perembalur, Erode, Coimbatore,    Madurai, Dindigul, Theni and Virudhunagar
+Co 6, Co(CP) 7, Paiyur 1
+Margazhi -    Thaipattam (December – February)
+Kanchipuram, Thiruvallur, Vellore,    Thiruvannamalai, Dharmapuri, Salem, Namakkal, Coimbatore, Erode,    Madurai, Dindigul, Theni, Tiruchirappalli, Perambalur,    Ariyalur, Karur, Pudukkottai, Tirunelveli and Thoothukudi
+Co 2, Co 6, Co(CP) 7, VBN 2
+PARTICULARS  OF VARIETIES
+Source:  www.21food.com/userImages/jyglobe/jyglobe$38164046.jpg
+Particulars
+CO    2
+Paiyur    1
+CO    6
+VBN    1
+VBN    2
+CO(CP)    7
+Parentage
+Hybrid derivative (C521 x    C49)
+Selection from VM 16
+MS    9804 x
+C 152
+Selection    from
+T    85F 2020
+Selection    from IT 81-D-1228-10
+Gamma    mutant of CO 4 (20  Kr)
+Year    of release
+1972
+1985
+1993
+1997
+1998
+2002
+50%    flowering(days)
+45
+75
+35
+35    – 40
+40-45
+40    – 45
+Duration    (days)
+90
+90
+65    – 70
+55    – 65
+75    - 80
+70    – 75
+Grain    yield(kg/ha) Rainfed
+...
+900
+671
+950
+-
+1000
+Irrigated
+1375
+--
+-
+-
+-
+1600
+Vegetable    (Kg/ha)
+9400
+...
+-
+10580
+-
+Plant    height (cm)
+30    - 40
+60    - 70
+34.5
+25    - 30
+45    - 60
+40    – 55
+Stem,    branches
+Green    stem purple wash at   nodes,
+3-4    branches
+Erect
+Green    stem purple wash   at nodes,   3-4 branches
+Erect    green,
+2    – 4 branches
+Green    erect,
+2    – 3    branches
+Green    with purple ring at fruiting nodes,
+5    – 8 branches
+Leaves
+Trifoliate,    broad and long petioles
+Dark    green leaflets possessing tri­angular white spots
+Trifoliate    entire, green, purple spot at the abse of leaflet
+Light    green
+Dark    green trifoliate
+Ovote,    trifoliate, entire, green and glabrous
+Colour    of pods
+Tender    greenish white
+Green
+Dark green pigmented tip
+Greenish white
+Light green
+Green
+Dry
+Greyish    white
+Brown
+Brown at maturity
+Cream
+Cream
+Light brown
+Colour    of grain
+Reddish    brown with irregular patches
+Brick    red
+Light    cream
+White
+Ivory    white, hilum with tan ring surrounded by brown band
+Brownish    white and squire shape
+100    grain wt (g)
+12.5
+9.9
+9.9
+12    - 15
+13    - 15
+12    - 14
+CROP  MANAGEMENT
+IV. MANAGEMENT OF FIELD OPERATIONS
+1. FIELD PREPARATION
+Prepare the land to  fine tilth and form beds and channels.
+SEED RATE
+STRAIN
+Quantity    of seed required (kg/ha)
+Pure    crop
+Mixed    crop
+Paiyur 1, VBN 1, VBN 2,     CO 6,  CO(CP) 7
+25
+12.5
+Optimum  plant population 3,50,000/ha.
+2. SEED TREATMENT
+Treat the seeds with Carbendazim or Thiram 2 g/kg of seed 24 hours  before sowing (or) with talc formulation of
+Trichoderma  viride
+@ 4g/kg of seed (or) Pseudomonas fluorescens @ 10 g/kg seed.
+Biocontrol agents are compatible with biofertilizers.
+First treat the seeds with biocontrol agents and then with  Rhizobium.
+Fungicides and biocontrol agents are incompatible.
+3. SEED  TREATMENT WITH BIOFERTILIZER
+Fungicide-treated    seeds, should be again treated with a bacterial culture. There should be an    interval of atleast 24 hours between fungicidal and biofertilizer treatments.
+The improved rhizobial strain COC 10 is more    effective in increasing the yield.
+Treat    the seeds with 3 packets (600 g/ha) of Rhizobial culture COC 10  and 3 packets (600 g/ha)  of Phosphobacteria developed at TNAU using    rice kanji as binder. If the seed treatment is not carried out apply    10packets of Rhizobium (2000 g/ha)  and    10 packets(2000 g)  of Phosphobacteria    with 25 kg of FYM and 25 kg of soil before sowing.   Dry the biofertilizer treated seeds in    shade for 15 minutes before sowing.
+4. FERTILIZER APPLICATION
+a)    Apply fertilizers basally before sowing.
+Rainfed : 12.5 kg N + 25 kg P2O5   + 12.5 kg K2O +10 kg S*/ha
+Irrigated : 25 kg N + 50 kg P2O5   + 25 kg K2O + 20 kg S*/ha
+*Note :   Applied in the form of gypsum if Single Super Phospate is not applied as a   source of phosphorus
+b)    Soil application of 25 kg ZnSo4/ha under irrigated   condition
+5. SOWING
+Dibble the seeds   adopting the following spacing.
+Varieties
+Sole crop
+Mixed crop
+CO     6, VBN 1, Paiyur     1
+30 cm X 15 cm
+200 cm X 15 cm
+Co 6, CO (CP) 7, VBN 2, Co 2
+45 cm x 15 cm
+..
+Cowpea   CO 6 at a spacing of 30cm X 15 cm
+6. WATER MANAGEMENT
+Irrigate immediately after sowing followed by life irrigation on   the third day. Irrigate at intervals of 7 to 10 days depending upon soil and   climatic conditions. Flowering and pod formation stages are critical periods   when irrigation is a must. Avoid water stagnation at all stages. . Apply KCl   at 0.5 per cent as foliar spray during vegetative stage if there is moisture   stress.
+7. SPRAYING OF DIAMMONIUM PHOSPHATE OR   UREA,  NAA AND SALICYLIC ACID
+Foliar spray of Spray of NAA 40 mg/litre and   Salicylic acid 100 mg/litre once at pre-flowering and another at 15 days   thereafter
+Foliar spray of DAP 20 g/litre  or urea 20 g/litre once at flowering and   another at 15 days thereafter
+8.WEED MANAGEMENT
+Pre emergence   application of Pendimethalin 2 litres on 3 days after sowing using Backpack/   Knapsack/Rocker sprayer fitted with flat fan nozzle using 500 l of water for   spraying one ha. After this, one hand weeding on 30 days after sowing gives   weed free environment throughout the crop period.
+If herbicides are not   applied give two hand weedings on 15 and 30 days after sowing.
+9.  Crop Protection
+Pests of Cow pea
+Diseases of Cowpea
+10. Post Harvest Technology
+Updated on : March 2014
+|
+Home
+|
+Seasons &
+Varieties
+|
+Tillage
+|
+Nutrient Management
+|
+Irrigation
+Management
+|
+Weed
+Management
+|
+Crop Protection
+|
+Cost of Cultivation
+|
+© TNAU 2008 - 2024 All Rights Reserved.

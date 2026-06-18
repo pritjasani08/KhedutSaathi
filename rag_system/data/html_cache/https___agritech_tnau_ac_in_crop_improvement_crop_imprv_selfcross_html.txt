@@ -1,0 +1,75 @@
+TNAU Agritech Portal :: Crop Improvement
+Home
+|
+About Us
+|
+Success Stories
+|
+Farmers Association
+|
+Farmers' Innovation
+|
+Publications
+|
+Photo Bank
+|
+Contact
+Crop Improvement :: Selfing and Crossing Techniques
+Selfing and crossing are the essential procedures in crop improvement process. The exact procedures used to ensure self or cross-pollination of specific plants will depend on the floral structure and normal manner of pollination.  Generally effecting cross-pollination in a strictly self-pollinating species is more difficult than vice-versa because for instance preventing self-pollination occurring inside the unopened flowers is cumbersome.
+Selfing
+In the selfing of cross-pollinated species, it is essential that the flower are bagged or otherwise protected to prevent natural cross-pollination.  Selfing and crossing are essential in crop breeding.  It is important that the breeder, master these techniques in order to manipulate the pollination according to his needs.  The exact procedure that he may use to ensure self or cross pollination of specific plants will depend on the particular species with which he is working.  The structure of the flowers in the species determine manner of pollination.  For these reasons, the breeder should acquaint himself with the
+flowering habit
+of the crop.
+In the case of wheat, rice, barely, groundnut etc., the plant is permitted to have self pollination and the seeds are harvested.  It is necessary to know the mode of pollination.  If the extent of natural cross pollination is more, then the flowers should be protected by bagging.  This will prevent the foreign pollen to reach the stigma.  Seed set is frequently reduced in ear heads enclosed in bags because of excessive temperature and humidity inside the bags.  In crops like cotton which have larger flowers the petals may fold down the sexual organs and fasten, there by pollen and pollen carrying insects may be excluded.
+In certain legumes which are almost insect pollinated, the plants may be caged to prevent the insect pollination.  In maize, a paper bag is placed over the tassel to collect pollen and the
+cob
+is bagged to protect from foreign pollen.  The pollen collected from the
+tassel
+is transferred to the cob.
+Emasculation
+Removal of stamens or anthers or killing the pollen of a flower without the female reproductive organ is known as emasculation.  In bisexual flowers, emasculation is essential to prevent of self-pollination.  In monoecious plants, male flowers are removed. (castor, coconut) or male inflorescence is removed (maize).  In species with large flowers e.g. (cotton, pulses) hand emasculation is accurate and it is adequate.
+Methods of Emasculation
+1. Hand Emasculation
+In species with large flowers, removal of anthers is possible with the help of forceps.  It is done before anther dehiscence.  It is generally done between 4 and 6 PM one day before anthers dehisce.  It is always desirable to remove other young flowers located close to the emasculated flower to avoid confusion.  The corolla of the selected flower is opened with the help of forceps and the anthers are carefully removed with the help of forceps.  Sometimes corolla may be totally removed along with
+epipetalous stamens
+e.g. gingelly.
+In cereals, one third of the empty glumes will be clipped off with scissors to expose anthers.  In wheat and oats, the florets are retained after removing the anthers without damaging the spikelets.  In all cases, gynoecium should not be injured.  An efficient emasculation technique should prevent self pollination and produce high percentage of seed set on cross pollination.
+2. Suction Method
+It is useful in species with small flowers.  Emasculation is done in the morning immediately after the flowers open.  A thin rubber or a glass tube attached to a suction hose is used to suck the anthers from the flowers.  The amount of suction used is very important which should be sufficient to suck the pollen and anthers but not gynoecium.  In this method considerable self-pollination, upto 10% is like to occur.  Washing the stigma with a jet of water may help in reducing self-pollination, However self pollination can not be eliminated in this method.
+3. Hot Water Treatment
+Pollen grains are more sensitive than female reproductive organs to both genetic and environmental factors.  In case of hot water emasculation, the temperature of water and duration of treatment vary from crop to crop.  It is determined for every species.  For sorghum 42-48OC for 10 minutes is found to be suitable.   In the case of rice, 10 minutes treatments with 40-44OC is adequate.  Treatment is given before the anthers dehiscence and prior to the opening of the flower. Hot water is generally carried in thermos flask and whole inflorescence is immersed in hot water.
+4. Alcohol Treatment
+It is not commonly used.  The method consists of immersing the inflorescence in alcohol of suitable concentration for a brief period followed by rinsing with water.  In Lucerne the inflorescence immersed in 57% alcohol for10 second was highly effective.  It is better method of emasculation than suction method.
+5. Cold Treatment
+Cold treatment like hot water treatment kills the pollen grains without damaging gynoecium.  In the case of rice, treatment with cold water 0.6OC kills the pollen grains without affecting the gynoecium.  This is less effective than hot water treatment.
+6. Genetic Emasculation
+Genetic/ cytoplasmic male sterility may be used to eliminate the process of emasculation.  This is useful in the commercial production of hybrids in maize, sorghum pearlmillet, onion, cotton, and rice, etc.,
+In many species of self-incompatible cases, also emasculation is not necessary, because self-fertilization will not take place.  Protogyny will also facilitate crossing without emasculation (e.g.) Cumbu.
+7. Use of Gametocide
+Also known as chemical hybridizing agents (CHA) chemicals which selectively kills the male gamete without affecting the female gamete.  eg. Ethrel, Sodium methyl arsenate, Zinc methyl arsenate in rice, Maleic hydrazide for cotton and wheat.
+Bagging
+Immediately after emasculation the flower or inflorescence enclosed with suitable bags of appropriate size to prevent random cross-pollination.
+Pollination
+The pollen grains collected from a desired male parent should be transferred to the emasculated flower.  This is normally done in the morning hours during anthesis.  The flowers are bagged immediately after artificial crossing.
+Tagging
+The flowers are tagged just after bagging.  They are attached to the inflorescence or to the flower with the help of a thread.  The following may be recorded on the tag with pencil.
+Date of emasculation
+Date of pollination
+Parentage
+No. of flowers emasculate
+Home
+|
+About Us
+|
+Success Stories
+|
+Farmers Association
+|
+Publications
+|
+Site Map
+|
+Disclaimer
+|
+Contact Us
+© 2008-2024 TNAU. All Rights Reserved.

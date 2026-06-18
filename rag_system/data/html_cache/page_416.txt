@@ -1,0 +1,96 @@
+Irrigation Management :: Suitability of water for irrigation
+Home |
+Seasons & Varieties |
+Tillage |
+Nutrient Mgmnt |
+Irrigation Mgmnt |
+Weed Mgmnt |
+Crop Protection |
+Cost of Cultivation
+|
+Photobank
+Irrigation Management  :: Suitability of Water for Irrigation
+SUITABILITY  OF WATER FOR IRRIGATION
+Quality of  irrigation water
+The suitability of irrigation  water is mainly depends on the amounts and type of salts present in water. The  main soluble constituents are calcium, magnesium, sodium as cations and  chloride, sulphate, biocarbonate as anions. The other ions are present in  minute quantities are boron, selenium, molybdenum and fluorine which are  harmful to animals fed on plants grown with excess concentration of these ions.
+Quality of irrigation is judged with three  parameters:
+Total salt concentration
+Sodium Adsorption ratio water
+Boron content
+Total salt concentration
+Salt concentration of irrigation  water is measured as electrical conductivity (EC). Conventionally, water  containing total dissolved salts to the extent of more than 1.5 m mhos/cm has  been classified as saline. Saline waters are those which have sodium chloride  as the predominant salt.
+Classification  of irrigation water based on total salt content
+Class
+EC
+(ds/m)
+Quality    characterisation
+Soils    for which suitable
+C1
+C2
+C3
+C4
+C5
+<1.5
+1.5    – 3
+3    – 5
+5    – 10
+>    10
+Normal waters
+Low salinity    waters
+Medium    salinity waters
+Saline waters
+High salinity    waters
+All soils
+Light and    medium textured soils
+Light and    medium textured soils for semi – tolerant crops
+Light and    medium textured soils for tolerant crops
+Not suitable
+Sodium  Adsorption ratio
+Sodium Adsorption ratio (SAR) and  residual sodium carbonate (RSC) are also the main criterion to determine the  quality of irrigation water.
+Boron content
+Irrigation water which contains more  than 3 ppm boron is harmful to crops, especially on light soils.
+Classification  of irrigation water based on boron content
+Class
+Boron
+(ppm)
+Characterisation
+Soils    suitable
+B1
+B2
+B3
+B4
+B5
+3
+3    – 4
+4    – 5
+5    – 10
+>    10
+Normal waters
+Low boron    waters
+Medium boron    waters
+Boron waters
+High boron    waters
+All soils
+Clay soils and    medium textured soils
+Heavy textured    soils
+Heavy textured    soils
+Not suitable
+|
+Home
+|
+Seasons & Varieties
+|
+Tillage
+|
+Nutrient Management
+|
+Irrigation Management
+|
+Weed Management
+|
+Crop Protection
+|
+Cost of Cultivation
+|
+Disclaimer
+© All Rights Reserved. TNAU-2016.

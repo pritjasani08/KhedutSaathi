@@ -1,0 +1,222 @@
+Agriculture :: Mineral Nutrition :: Introduction
+|
+Home
+|
+Seasons & Varieties
+|
+Tillage
+|
+Nutrient Management
+|
+Irrigation Management
+|
+Weed Management
+|
+Crop Protection
+|
+Cost of Cultivation
+|
+Photobank
+Plant Nutrition :: Mineral Nutrition
+Table 1.
+Soil conditions inducing nutrient deficiencies for crop plants
+Nutrient
+Conditions
+inducing deficiency
+N
+Excess
+leaching with heavy rainfall, low organic matter content of soils, burning
+the crop residue
+P
+Acidic
+condition, calcareous soils
+K
+Sandy,
+organic, leached and eroded soils; intensive cropping system without addition
+of fertilizer
+Ca
+Acidic,
+Alkali, or sodic soils
+Mg
+Similar
+to  Calcium
+S
+Low
+organic matter content of soils ; use of N and P fertilizers containing no
+sulfur, burning the crop residue
+Fe
+Calcareous
+silt and clays, high organic matter, calcareous soils
+Zn
+Highly
+leached acidic soils, calcareous soils, high levels of Ca, Mg, and P in the
+soils
+Mn
+Calcareous
+silt and clays, high organic matter, Calcareous soil
+B
+Sandy
+soils, naturally acidic leached soils, alkaline soils with free lime
+Mo
+Highly
+podzolized soils ; well drained calcareous soils
+Source:
+http://www.plantstress.com/Articles/min_deficiency_i/impact.htm
+Table
+2. Range in nutrient content commonly found in soils
+Nutrient
+Normal range
+Per cent (%)
+Parts per million (ppm)
+Nitrogen
+0.02-0.50
+200-5000
+Phosphorus
+0.01-0.20
+100-2000
+Potassium
+0.17-3.30
+1700-33000
+Calcium
+0.07-3.60
+700-36000
+Magnesium
+0.12-1.50
+1200-15000
+Sulphur
+0.01-0.20
+100-2000
+Iron
+0.50-5.00
+5000-50000
+Manganese
+0.02-1.00
+200-10000
+Zinc
+0.001-0.025
+10-250
+Boron
+0.0005-0.015
+5-150
+Copper
+0.0005-0.015
+5-150
+Chlorine
+0.001-0.10
+10-1000
+Cobalt
+0.0001-0.005
+1-50
+Molybdenum
+0.00002-0.0005
+0.2-5
+Nutrient mobility in soil
+Very Mobile
+– (prone to leaching) nitrate Nitrogen, sulfate Sulfur, Boron
+Moderately Mobile
+– Ammonium Nitrogen (Ammonium Nitrogen is temporarily immobile), Potassium, Calcium, Magnesium, Molybdenum
+Immobile
+– Organic Nitrogen, Phosphorus, Copper, Iron, Manganese, Zinc (Chelated forms of Copper, Iron, Manganese and Zinc are mobile and resistant to leaching)
+Nutrient mobility in plants
+Very mobile
+– Nitrogen, Phosphorus, Potassium, Magnesium
+(Deficiency symptoms appear first in older leaves and quickly spread throughout the plant)
+Moderately mobile
+– Sulfur, Copper, Iron, Manganese, Molybdenum, Zinc
+(Deficiency symptoms first appear in new growth but do not readily translocate to old growth)
+Immobile
+– Boron, Calcium (Calcium is very immobile)
+Table 3. Ranges of the major elements and micronutrients in mature leaf tissue generalized as deficient, sufficient or excessive for various plant species
+Essential
+elements
+%
+Deficient
+% Sufficient or
+Normal
+% Excessive or
+Toxic
+Major Elements
+Nitrogen (N)
+<2.50
+2.50 - 4.50
+>6.00
+Phosphorus (P)
+<0.15
+0.20 - 0.75
+>1.00
+Potassium (K)
+<1.00
+1.50 - 5.50
+>6.00
+Calcium (Ca)
+<0.50
+1.00 - 4.00
+>5.00
+Magnesium (Mg)
+<0.20
+0.25 - 1.00
+>1.50
+Sulfur(S)
+<0.20
+0.25 - 1.00
+>3.00
+Micronutrients
+ppm
+ppm
+ppm
+Boron (B)
+5 - 30
+10 - 200
+50 - 200
+Chlonne (Cl)
+<100
+100 - 500
+500 - 1,000
+Copper (Cu)
+2 - 5
+5 - 30
+20 - 100
+Iron (Fe)
+<50
+100 - 500
+>500
+Manganese (Mn)
+15 - 25
+20 - 300
+300 - 500
+Molybdenum (Mo)
+0.03 - 0.15
+0.1 - 2.0
+>100
+Zinc(Zn)
+10 - 20
+27 - 100
+100 - 400
+Source:
+Growth and
+Mineral Nutrition of Field Crops, Third Edition.  By
+Nand Kumar Fageria, Virupax C. Baligar, Charles Allan Jones, 2011. CRC Press,
+Taylor and Francis Group.
+http://www.cropnutrition.com/efu-plant-analysis#diagnosis-of-nutrient-status
+Last Update:June 2014
+|
+Home
+|
+Seasons & Varieties
+|
+Tillage
+|
+Nutrient Management
+|
+Irrigation Management
+|
+Weed Management
+|
+Crop Protection
+|
+Cost of Cultivation
+|
+Photobank
+|
+Disclaimer
+© All Rights Reserved. TNAU-2016.

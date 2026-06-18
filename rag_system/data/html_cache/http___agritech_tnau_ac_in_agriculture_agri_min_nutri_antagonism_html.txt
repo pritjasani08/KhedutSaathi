@@ -1,0 +1,70 @@
+Agriculture :: Mineral Nutrition ::Nutrient antagonism and interaction
+|
+Home
+|
+Seasons & Varieties
+|
+Tillage
+|
+Nutrient Management
+|
+Irrigation Management
+|
+Weed Management
+|
+Crop Protection
+|
+Cost of Cultivation
+|
+Photobank
+Plant Nutrition ::
+Nutrient
+antagonism and interaction
+Nitrogen
+:
+When high levels of Nitrogen induce accelerated growth rates, levels of micronutrients that would normally be marginal can become deficient. High soil levels of Nitrogen can assist Phosphorus, Calcium, Boron, Iron and Zinc but an excess can dilute these elements. Low soil levels can reduce Phosphorus, Calcium, Boron, Iron and Zinc uptake. Ammonium Nitrogen can make Molybdenum deficiency appear less obvious.
+Phosphorus
+:
+High levels of Phosphorus reduce Zinc and, to a lesser degree, Calcium uptake. It is antagonistic to Boron in low pH soils.
+Potassium
+:
+High levels of Potassium reduce Magnesium and to lesser extent Calcium, Iron, Copper, Manganese and Zinc uptake. Boron levels can either be low or toxic. Low levels can accentuate Iron deficiency.
+Calcium:
+High levels of Calcium can accentuate Boron deficiency. Liming can decrease the uptake of Boron, Copper, Iron, Manganese and Zinc by raising soil pH.
+Copper:
+High levels of Copper can accentuate Molybdenum and to a lesser degree Iron, Manganese and Zinc deficiency.
+Iron:
+Iron deficiency can be accentuated by liming, low Potassium levels or high levels of Copper, Manganese or Zinc.
+Manganese:
+High levels of Copper, Iron or Zinc can accentuate Manganese deficiency – especially repeated soil applications of Iron. Uptake can be decreased by liming or increased by Sulfur applications (because of the affects on pH)
+Molybdenum:
+Deficiencies can be accentuated by high levels of Copper and to a lesser degree Mnaganese. Uptake can be adversely affected by sulfates. Uptake can be increased by phosphates and liming.
+Molybdenum can increase Copper deficiencies in animals.
+Zinc:
+Uptake can be decreased by high Phosphorus levels, liming or high levels of Copper, Iron or Manganese. Zinc deficiencies are often associated with Manganese deficiencies, especially in citrus.
+Source:
+Growth and Mineral Nutrition of Field Crops, Third Edition.
+By Nand Kumar Fageria, Virupax C. Baligar, Charles Allan Jones, 2011. CRC Press, Taylor and Francis Group.
+http://www.cropnutrition.com/efu-plant-analysis#diagnosis-of-nutrient-status
+Last Update:June 2014
+|
+Home
+|
+Seasons & Varieties
+|
+Tillage
+|
+Nutrient Management
+|
+Irrigation Management
+|
+Weed Management
+|
+Crop Protection
+|
+Cost of Cultivation
+|
+Photobank
+|
+Disclaimer
+© All Rights Reserved. TNAU-2016.

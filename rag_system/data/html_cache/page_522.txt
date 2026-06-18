@@ -1,0 +1,85 @@
+Stress Management :: Temperature
+|
+Home
+|
+Seasons & Varieties
+|
+Tillage
+|
+Nutrient Management
+|
+Irrigation Management
+|
+Weed Management
+|
+Crop Protection
+|
+Cost of Cultivation
+|
+Stress Management  :: Temperature
+I. Low temperature stress tolerance mechanism
+Cold Adaptation
+Small flowering plants spend the winter as seeds. The  vegetative growth renews itself annually and dies off in the autumn. The seeds  are low in water content and are able to avoid extremes in temperature by  laying on the ground under the insulated snow-cover. Deciduous trees lose their  leaves in the fall, thereby stopping transpiration for the winter so that they  are not affected by the freeze-induced drought.
+Freeze Avoidance
+Avoiding ice formation within the plant; Plant sap  exists in a super cooled state.
+Water - retained in the cells does not freeze  but super cools. Barriers exist which isolate the cells from external  nucleation and prevent water loss to surrounding ice.
+The barriers are not well understood, but in  peach flower buds, some conifer buds and seeds freezing occurs in preferred  sites which act as sinks for ice formation.
+Dry regions   created by water withdrawal to preferred freezing sites prevent ice  spread.
+The presence of starch in xylem and phloem  tissues are responsible for water retention and deep supercooling.
+Deep supercooling  in woody plants was reported in 33 families  of angiosperms and 1 family of gymnosperms.
+Freeze Tolerance
+Increase in cytoplasmic  solutes –
+to act as a cryoprotectant
+to buffer any freeze concentration of other solutes
+Membrane alterations that increase the fluidity  of membranes at low temperatures & increase the stability of the membranes  to low water contents.
+Sugars possesses cryoprotective effect. Sucrose  is the predominant one and is closely associated with tolerance
+In some plant species, sugar molecules such a  fructans, raffinose, sorbitol and mannitol also serve the same functions-  normally accumulates in cell walls of tissues-protect extracellular ice  formation.
+Glycoproteins also possess cryoprotective effect  -protect the thylakoid membrane against damage caused by freezing and thawing.
+ABA  accumulation imparts tolerance to cold i
+njury
+II. High
+temperature stress tolerance
+mechanism
+Acclimation to high temperature
+Morphological Adaptations
+Reflective leaf hair
+Leaf waxes
+Leaf orientation
+Maximize conductive or convective loss of heat
+Synthesis of Zeaxanthin  decreases membrane fluidity and stabilises the membrane
+Heat Shock Proteins  (HSPs)
+Plants have the capacity to interact with the environment in  many different ways and to survive under extreme abiotic and perhaps also  biotic stress conditions. The response to heat stress (hs) is highly conserved  in organisms but owing to the sessile life style it is of utmost importance to  plants. The hs-response is characterised by (i) a transient alteration of gene  expression (synthesis of heat shock proteins: HSP) and (ii) by the acquisition  of a higher level of stress tolerance (acclimation). The induction of  HSP-expression is not restricted to high temperature stress, HSPs are also  linked to a number of other abiotic stresses including cold, freezing, drought,  dehydration, heavy metal, and oxidative stresses. HSP are molecular chaperones,  which either prevent complete denaturation (small HSP: sHSP) or are supporting  proper folding (other HSP) of enzymes under or after protein denaturing  conditions. Manipulation of the hs-response has the potential to improve common  stress tolerance that may lead to a more efficient exploitation of the inherent  genetic potential of agriculturally important plants.
+HSPs  are classified into  different families and designated by  molecular weight in kDa.
+HSP 100 k Da
+HSP 90
+HSP 70
+HSP 60
+15 – 30   kDa low molecular mass HSPs or Small HSPs.
+Functions
+HSPs 60, 70 and 90: act as molecular chaperons,  involving ATP dependent stabilization and folding of proteins and assembly of  oligomeric proteins.
+Some HSPs: assist in polypeptide transport  across membranes into cellular compartments.
+Some HSPS: temporarily bind and stabilize an  enzyme at a particular stage in cell development, later releasing the enzyme to  become active.
+Binding of HSP with particular polypeptide  within subcellular compartment avoid denaturation of many proteins at high  temperatures.
+Related links:
+http://www.plantstress.com/Articles/heat_m/heat_m.htm
+Source:
+Dept. of Crop Physiology, TNAU, Coimbatore
+Dept. of Biotechnology, CPMB, TNAU, Coimbatore.
+|
+Home
+|
+Seasons & Varieties
+|
+Tillage
+|
+Nutrient Management
+|
+Irrigation Management
+|
+Weed Management
+|
+Crop Protection
+|
+Cost of Cultivation
+|
+© All Rights Reserved. TNAU 2008-2024.

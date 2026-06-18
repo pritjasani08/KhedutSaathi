@@ -1,0 +1,208 @@
+TNAU Agritech Portal :: Crop Protection
+Home
+|
+About Us
+|
+Success Stories
+|
+Farmers Association
+|
+Farmers' Innovation
+|
+Publications
+|
+Contact
+Crop protection :: Plant Protection Equipments :: Working Principle
+Working principle of spray equipment
+Conversion of spray liquid into droplets is achieved using some form of energies.
+Various forms of kinetic energies such as hydraulic, gaseous and centrifugal are utilized in this process.
+The type of sprayer and nozzles or atomizers can be classified according to the energy used.
+Hydraulic Energy
+A reciprocrating pump operated mechanically by a lever. Pressurised by compression.
+This pressure forces the liquid out of nozzle in the form of spray particles.
+Gaseous energy
+A blower generates high wind velocity air. A liquid or dust is fed into air stream to be carried to the target.
+Centrifugal energy
+A high speed spinning disc (flat, concave or cage or perforated cylinder atomizes the spray liquid to fine droplets.
+Spray Volume
+Theoretically speaking if ideal droplet diameter and the desirable droplet density are known, the minimum volume of pesticide spray per unit area can be calculated. Such a calculation of optimum droplet density is difficult because the effectiveness of the droplet is dependent on many other factors.
+However, the following broad indications can serve a general guideline:
+5-10 droplets/cm2 â for translocated herbicides.
+20 droplets/cm2 â for most insecticides and systemic fungi-cides.
+50-70 droplets/cm2 â for non systemic fungicides
+In case of insecticides, to achieve satisfactory biological efficacy atleast 20 droplets are required per square centimeter irrespective of their size.
+To achieve effifient deposition a narrower droplet spectrum is needed to minimize losses caused by the droplets which are larger than 300 microns and also which are smaller than 100 microns.
+Most wastage of pesticide is undoubtedly due to the largest droplets which have high terminal velocity and fall rapidly.
+Even if large droplets fall on target they are liable to bounce off.
+A 400 micron droplet will contain 1000 times the dose to a 40 micron droplet. If this is not retained on the target there will be considerable wastage.
+In actual practice, spray volume applied is always more than the value obtained from the theoretical calculation, the reasons being the loss of spray volume due to drip and drift, the deposition of spray on non-target areas and also due to erratic distribution of droplets on target surfaces.
+Spraying efficiency can be represented as follows:
+Spraying efficiency (%) =Â
+Minimum spray volume required
+Â  X 100%
+Actual spray volume appliedÂ Â Â Â Â Â Â Â
+Spray Application Area
+The target infested by an insect, pest, disease or weed needs to be sprayed.
+Generally the spray application area differs from the land area except in the case where pre-sowing treatment is required on soil where land area equals the area to be sprayed.
+The area required to be sprayed varies with the distance between the rows of plants, distance between the plants in the same row and growth of the crop.
+This is being illustrated diagrammatically.
+Spray calibration
+In order to ensure uniform application of pesticide on crops, it is essential to carry out sprayer calibration exercise before undertaking actual spraying work. Required spray volume can also be marked out by sprayer calibration.
+The spray volume can be found out theoretically by using formula.
+However, practical method known as Area/Volume (Volume used on marked area) is easier for a normal farmer to follow.
+Application Rate in Litre per Acre or Hectare =Â
+Plot AreaÂ Â
+Â Â Â  XÂ  Spray Volume used for marked area.Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  Marked AreaÂ Â Â Â Â Â Â Â Â Â Â Â Â Â
+Spray droplets
+Pesticides are mostly applied on the target in the form of spray droplets. Droplets produced by hydraulic nozzle are not uniform in size.
+Sprays contain both fine and coarse droplets. They are defined in term of their diameter and density on the target.
+Coarse Droplets
+Narrow swath
+Less under leaf coverage
+More spray volume is required
+Particles coalesce and run off
+Poor penetration into the crop
+Less loss due to wind, thermal current.
+Poor biological efficacy
+Spray pattern like rain.
+Fine Droplets
+Wider swath
+More under leaf coverage
+Less spray volume is required
+Particles do not coalesce and run off
+Good penetration into the crop
+More loss due to wind, thermal current
+Good biological efficacy
+Spray pattern like mist
+To understand how spray application equipment delivers pesticides to a target, it is necessary to know a little about the physical properties and behaviour of droplets.
+Droplet size and density (number of droplets per unit area of target) are two important factors for effective spraying.
+Knowledge of droplet diameter and density is important for efficient use of pesticides.
+The droplets diameter of a given spray can be measured as the median of either the volume or number of droplets.
+The Volume Median Diameter
+The Volume Median Diameter (VMD) is defined as that droplet diameter which divides the volume of spray into two equal parts i.e. the volume of spray with droplets of a diameter less then VMD equals the volume of droplets with a diameter greater than the VMD.
+The Number Median Diameter (NMD)
+The Number Median Diameter (NMD) is the droplet diameter where the number of droplets above the NMD is equal to the number of droplets below the NMD.
+The NMD is usually smaller than the VMD because most pesticide sprays usually contain a large number of very small droplets.
+The VMD is affected by relatively few large droplets whereas the NMD is more influenced by small droplets.
+The more uniform the size of droplets, the closer the ratio of VMD and NMD approaches.
+In a normal course, the spray droplets are in a spherical shape.
+To understand the mathematical logic and for simplicity in calculations the droplets may be considered in the shape of a cube and not a sphere.
+Imagine that the ideal spraying has been carried out which has produced all droplets of same size in cube shape having all sides of equal dimensions say 2 mm.
+The volume of a droplet is the sum arrived at after multiplication of length, breadth and height i.e. a cubic relation.
+If the droplet size is reduced from 2 mm to 1 mm, number of droplets produced will increase by 8 times from the same volume.
+The area occupied by the droplets is the sum arrived at after multiplying length and breadth i.e. a square relation.
+Similarly when the size of a droplet is reduced the contact area of droplets on the target increases.
+Thus by reducing the droplet size from 2 mm3 to 1 mm3, double contact area can be achieved from the same amount of spray volume.
+Conclusively, if the droplet size is reduced from 2 mm3 to 1 mm3 in other words by a factor of two, from the same volume of pesticide:
+Eight times more droplets can be produced. This means number of droplets increase by the cube of the factor of size reduction.
+Double contact area of droplets on targets can be achieved. This means the contact area increases by the same factor of size reduction.
+Spray droplets density will be eight, time more, in other words, it increases by the cube of the factor of size reduction.
+Optimum Droplet Size
+Optimum droplet size for application of pesticide are generally specified within a range of droplet diameter.
+More precise definition of optimum droplet size in application of pesticide on Agricultural Pests may not be possible, due to biological complexity of target.
+Besides this, the fate of droplets from the time of their formation by a nozzle until their deposition onto a target is influenced by several factors such as:
+Velocity of droplet ejection
+Gravitational force
+Wind velocity
+Air Turbulence caused by thermal movement
+Volatility of the spray liquid and
+Characteristics of target surface
+Droplet size is most important for efficient application with minimum contamination of environment. A 500 micron droplet will contain 1000 times the Lethal dose of a 50 micron droplet. To reduce wastage, narrow range of droplet spectrum is essential.
+Coarse droplets are largely influenced by gravitational force and relatively unaffected by turbulence. Fine droplets will be influenced by wind and turbulence and have a tendency to drift.
+Target
+Droplet sizes (Microns)
+Flying Insects
+10-50
+Insects on foliage
+30-50
+Foliage
+40-100
+Soil application (avoidance to drift)
+250-500
+Different spraying techniques like High Volume (HV), Low Volume (LV) and Ultra Low Volume (ULV) are most commonly used.
+In these spraying techniques a range of droplets is produced as shown in the diagram.
+Droplet sizes more than 300 microns are lost by drip whereas the droplet sizes less than 100 microns are lost by drift.
+Loss of spray by drip and drift are more prominent in HV and ULV spraying technique respectively.
+Leaf Area Index (LAI)
+The target leaf area requiring treatment may be much greater than the ground area. The Leaf Area Index (LAI) is the ratio of Leaf Area to Ground Area.
+Leaf Area Index (LAI) =Â Â Â Â Â Â Â Â Â Â Â
+Â  Â Leaf AreaÂ Â
+Ground Area
+It will vary with different crops according to the plant growth.
+The LAI ratio seldom exceeds about 6 â 7 depending upon the crop.
+This is the reason why per acre requirement of water in a spray solution varies from crop to crop depending upon the total leaf area to be covered.
+The total leaf area required to be covered with droplets depends upon the actual pest i.e. whether it is the leaf of a weed, a highly mobile foliage insect or non-mobile fungus infection on the leaf and the mode of action of the pesticides.
+Theoretical droplet density from 1 litre of pesticide sprayed over 1 hectare (assuming even distribution and no loss onto non-target surfaces)
+Droplet diameter
+Â Â
+Â Droplet density per cm2 at LAI values 1-7*
+Â
+1
+2
+3
+4
+5
+6
+7
+10
+19,100
+9,550
+6,364
+4,773
+3,818
+3,182
+2,717
+20
+2,380
+1,190
+795
+596
+477
+398
+341
+50
+153
+77
+51
+38
+31
+26
+22
+100
+19
+9.5
+6
+5
+4
+3.2
+2.7
+200
+2.4
+1.2
+0.8
+0.6
+0.5
+0.4
+0.3
+400
+0.3
+0.15
+0.1
+0.08
+0.06
+0.05
+0.04
+* If both upper and lower surfaces are considered, the droplet density per cm2 dhould be halved.
+To demonstrate the relationships between droplet diameter, droplet density, LAI and spray volume it is assumed that all droplets are of one size, distribution on the target is uniform and that no loss of pesticide occurs on non-target surface. In practice, of course, this is never achieved.
+Home
+|
+About Us
+|
+Success Stories
+|
+Farmers Association
+|
+Publications
+|
+Contact Us
+Â© TNAU 2008-2024 All Rights Reserved.

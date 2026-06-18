@@ -83,3 +83,17 @@ yarn-error.log*
 .Trashes
 ehthumbs.db
 Thumbs.db
+.env
+
+vector_db/
+
+__pycache__/
+*.pyc
+
+html_cache/
+
+.vscode/
+
+*.log
+
+.cache/

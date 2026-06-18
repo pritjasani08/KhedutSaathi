@@ -1,0 +1,117 @@
+TNAU Agritech Portal :: Crop Improvement
+Home
+|
+About Us
+|
+Success Stories
+|
+Farmers Association
+|
+Farmers' Innovation
+|
+Publications
+|
+Photo Bank
+|
+Contact
+Crop Improvement :: Mode of Reproduction
+In the sexually reproducing crop plants definite male and female sexual organs namely androecium and gynoecium produce male gametes and female gametes respectively.  The male gametes are formed from a haploid cell called microspore and the female gametes are formed from a haploid cell, megaspore.
+MODE OF REPRODUCTION
+Knowledge of the mode of reproduction and pollination is essential for a plant breeder, because these aspects help in deciding the breeding procedures to be used for the genetic improvement of a crop species.  Choice of breeding procedure depends on the mode of reproduction and pollination of a crop species.
+Reproduction refers to the process by which living organisms give rise to the offspring of similar kind (species).  In crop plants, the mode of reproduction is of two types: viz. 1) sexual reproduction and 2) asexual reproduction
+I. Sexual reproduction
+Multiplication of plants through embryos which have developed by fusion of male and female gametes is known as sexual reproduction.  All the seed propagating species belong to this group.
+Sporogenesis
+Production of microspores and megaspores is known as sporogenesis.  In anthers, microspores are formed through microsporogensis and in ovules, the megaspores are formed through megasporogenesis.
+Microsporogenesis
+The sporophytic cells in the pollen sacs of anther which undergo meiotic division to form haploid i.e., microspores are called microspore (MMC) or pollen mother cell (PMC) and the process is called microsporogenesis.  Each PMC produce four microspores and each microspore after thickening of the wall transforms into pollen grain.
+Megasporogenesis
+A single sporophytic cell inside the ovule, which undergo meiotic division to form haploid megaspore, is called megaspore mother cell (MMC) and the process is called megasporogenesis.  Each MMC produces four megaspores out of which three degenerate resulting in a single functional megaspore.
+Gametogenesis
+The production of male and female gametes in the microspores and megaspores is known as gametogenesis.
+Microgametogenesis
+This is nothing but the production of male gametes or sperm.  On maturation of the pollen, the microspore nucleus divides mitotically to produce a generative and a vegetative or tube nucleus.  The pollen is generally released in this binucleate stage.  The reach of pollen over the stigma is called pollination.  After the pollination, the pollen germinates.  The pollen tube enters the stigma and travels down the style.  The generative nucleus at this phase undergoes another mitotic division to produce two male gametes or sperm nuclei.  The pollen along with the pollen tube possessing a pair of sperm nuclei is called microgametophyte.  The pollen tube enters the embryo sac through micropyle and discharges the two sperm nuclei.
+Megagametogenesis
+The nucleus of the functional megaspore undergoes three mitotic divisions to produce eight or more nuclei.  The exact number of nuclei and their arrangement varies from one species to another.  The megaspore nucleus divides thrice to produce eight nuclei.  Three of these nuclei move to one pole and produce a central egg cell and two synergid cells on either side.  Another three nuclei migrate to the opposite pole to develop into three antipodal cells.
+The two nuclei remaining in the center, the polar nuclei,  fuse to form the secondary nucleus.  The megaspore thus develops into a mature female gametophyte called megagametophyte or embryo sac.  The development of embryo sac from a megaspore is known as megagametogeneis.  The embryo sac generally contains one egg cell, two synergids with the apparent function of guiding the sperm nucleus towards the egg cell and three antipodals which forms the prothalamus cells and one diploid secondary nucleus.
+Fertilization:
+The fusion of one of the two sperms with the egg cell producing a diploid zygote is known as fertilization.  The fusion of the remaining sperm with the secondary nucleus leading to the formation of a triploid primary endosperm nucleus is termed as
+triple fusion
+.  The primary endosperm nucleus after several mitotic divisions develops into mature
+endosperm
+, which nourishes the developing embryo.
+II. Asexual reproduction
+Multiplication of plants without the fusion of male and female gametes is known as asexual reproduction.  Asexual reproduction can occur either by vegetative plant parts or by vegetative embryos which develop without sexual fusion (apomixis).  Thus asexual reproduction is of two types: viz. a) vegetative reproduction and b) apomixis.
+Vegetative reproduction refers to multiplication of plants by means of various vegetative plant parts.  Vegetative reproduction is again of two types: viz. i) natural vegetative reproduction and ii) artificial vegetative reproduction.
+Natural vegetative reproduction
+In nature, multiplication of certain plants occurs by underground stems, sub aerial stems, roots and bulbils.  In some crop species, underground stems (a modified group of stems) give rise to new plants.  Underground stems are of four types: viz. rhizome, tuber, corm and bulb.  The examples of plants which reproduce by means of underground stems are given below:
+Rhizome:
+Turmeric (
+Curcuma domestica),
+Ginger (
+Zingiber officinale)
+Tuber:
+Potato
+(Solanum tuberosum)
+Corm:
+Arvi
+(Colocasia esculenta
+), Bunda (
+C. antiquorum
+)
+Bulb:
+Garlic (
+Allium sativum)
+, onion (
+A. cepa)
+Rhizome: Turmeric
+Tuber: Potato
+Bulb: Onion
+Sub aerial stems include runner, sucker, stolon, etc.  These stems lead to vegetative reproduction in mint (
+Mentha
+sp) rose, strawberry, banana, etc.
+Bulbils
+are modified forms of flower.  They develop into plants when fall on the ground.  Bulbils are found in garlic.
+Artificial vegetative reproduction
+Multiplication of plants by vegetative parts through artificial method is known as artificial vegetative reproduction.  Such reproduction occurs by cuttings of stem and roots, and by layering and grafting.  Examples of such reproduction are given below:
+Stem cuttings:
+Sugarcane (
+Saccharum
+sp.) grapes (
+Vitis vinifera
+), roses, etc.
+Root cuttings:
+Sweet potato, citrus, lemon, etc.
+Layering and grafting are used in fruit and ornamental crops.
+Apomixis
+Apomixis refers to the development of seed without sexual fusion (fertilization).  In apomixis embryo develops without fertilization.  Thus apomixis is an asexual means of reproduction.  Apomixis is found in many crop species.  Reproduction in some species occurs only by apomixis.  This apomixis is termed as
+obligate apomixis
+.  But in some species sexual reproduction also occurs in addition to apomixis.  Such apomixis is known as
+facultative apomixis
+.
+There are four types of apomixis: viz.
+1) parthenogenesis, 2) apogamy, 3) apospory and 4) adventive embryony.
+1. Parthenogenesis.
+Parthenogenesis refers to development of embryo from the egg cell without fertilization.
+2. Apogamy.
+The origin of embryo from either synergids or antipodal cells of the embryosac is called as apogamy.
+3. Apospory.
+In apospory, first diploid cell of ovule lying outside the embryosac develops into another embryosac without reduction.  The embryo then develops directly from the diploid egg cell without fertilization.
+4. Adventive embryony.
+The development of embryo directly from the diploid cells of ovule lying outside the embryosac belonging to either nucellus or integuments is referred to as adventive embryony.
+Home
+|
+About Us
+|
+Success Stories
+|
+Farmers Association
+|
+Publications
+|
+Site Map
+|
+Disclaimer
+|
+Contact Us
+© 2008-2024 TNAU. All Rights Reserved.

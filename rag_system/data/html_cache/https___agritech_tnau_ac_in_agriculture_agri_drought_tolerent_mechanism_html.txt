@@ -1,0 +1,219 @@
+Stress Management :: Flood
+|
+Home
+|
+Seasons & Varieties
+|
+Tillage
+|
+Nutrient Management
+|
+Irrigation Management
+|
+Weed Management
+|
+Crop Protection
+|
+Cost of Cultivation
+|
+Photobank
+Stress Management
+::Drought
+Response of Plants to
+Drought Stress
+Plants
+growing in drought stress may have the ability to control / avoid stress by
+escaping (Enduring Drought) or tolerating stress (by developing succulent or
+Non-succulent habit). These two capabilities are collectively termed as Drought
+Tolerance.
+i.
+Drought Evading Plants
+These plants
+remain under dormant / perennation to avoid stress period by seeds and shoots.
+Such plants complete their life-cycle in few weeks within the rainy season (eg.
+CO 16 variety of sorghum). They are called as Ephemerals. These plants also
+prolong their life cycle for some time based on the necessity. They reduce
+water loss by certain mechanism.
+ii. Succulents
+These (CAM) plants store enough water in their tissues. Their
+stomata open at night. They have thick leaves and possess modifications (such
+as phyllodes and phylloclades) under water stress conditions. They fix carbon
+during day time with the help of malic acid and CO2, which is
+released internally during respiration.
+iii. Non-succulents
+These plants endure drought with the following
+adaptive features:
+Smaller leaves with thick cuticle
+Sunken stomata with hair (pubescence) eg.
+Nerium
+Shedding their leaves during summer to avoid
+excess water loss
+Dehydration of protoplasm
+Reducing enzyme activity
+Favouring the syntheses of ABA (stress hormone) and Ethylene
+(senescence hormone)
+Closing stomata due to increase ABA concentration,
+thereby reducing water loss
+Thus,
+because of these special features, succulents and non-succulents grow well
+under drought conditions. They are not or least affected by stress. Similarly,
+the arid zone plants also develop mechanisms to tolerate water stress, hence
+they are not adversely affected in terms of growth and yield. But, the non-arid
+zone plants suffer heavy loss in growth and yield because they do not have
+above said mechanisms to tolerate the stress.
+iv. Drought Resistant
+Plants
+These plants
+resist the water stress situations due to the following adaptive features /
+mechanisms. Therefore, these plants can be grown in drought facing / arid-zone
+areas.
+Higher rate
+of photosynthesis because of efficient carboxylating systems (increased
+activities of RuBPCase, PEPCase, Malic Enzyme etc.)
+Store much
+water for proper hydration of protoplasm
+Fix carbon
+by C4 pathway rather than usual C3
+Producing
+“Aquaporins” – an intrinsic membrane protein in water-stressed plants, which enhance
+the water flow by 10 – 20 folds (Chrispeels and Maurel, 1994).
+Drought Resistance
+Mechanism
+The ability of a crop species or variety to grow and yield satisfactorily
+in areas subjected to periodic water deficits is termed as drought resistance
+Types of drought resistance
+Drought escape
+:
+The ability of a plant to complete the lifecycle before serious soil and
+plant water deficits develop.
+Drought tolerance
+with high tissue water potential
+: The ability of the plant to endure
+periods of drought whilst maintaining a high plant water stress. This is
+also referred to as
+drought
+avoidance
+(Levitt, 1972).
+Drought tolerance
+with low tissue water potential:
+The ability of the plant to endure
+periods without significant rainfall and to endure low tissue water
+potential.
+I. Drought Escape
+Two features of desert ephemerals that are important in drought
+resistance are
+Rapid
+phonological development
+Developmental
+plasticity.
+1. Rapid phonological development
+Ability to produce
+flowers with a minimum of vegetative structure enables them to produce seeds on
+a limited water supply.
+2. Developmental plasticity
+This feature enable
+the plants to produce an abundance of vegetative growth, flowers and seeds in
+seasons of abundant rain, enables the desert ephemerals to both escape drought
+and survive long periods without rain.
+In crop plants, the
+greatest advance in breeding for water limited environment is achieved by a
+shortening of life cycle, thereby allowing the crops to escape drought.
+Therefore, there is a strong consistent negative correlation between grain
+yield and days to first ear emergence and 40-90% variation in wheat yield under
+drought condition was accounted for by earliness. In wheat it was observed that
+drought resistance is greater in early lines than late ones even at the same
+intensity of drought. However, under adequate water supply, yield is often
+positively correlated with maturity date in determinate annual crops such as
+maize, sorghum and sunflower.
+An important aspect
+of developmental plasticity is the ability of plants to transfer assimilates
+accumulated prior to seed-filling to the grain during the seed filling stage.
+It was also suggested that when water supply is adequate only a small
+proportion of grain dry weight comes from the store of prior assimilate in the
+stems and roots, but when stress occurs in the seed filling stage, an increased
+proportion of the prior assimilate is transferred to the seed.
+To achieve the
+developmental plasticity, plants frequently have an indeterminate habit. This
+is an important survival mechanism in that it enables the large amounts of seed
+produced in wet years to carry the species through prolonged drought periods.
+Selection of rapid
+phonological development is the most rewarding approach in breeding for drought
+resistance in crops. In cereals, drought resistance varieties of wheat and
+barley flowered early than the others. However earliness is often negatively
+correlated with yield in year of adequate rainfall.
+II. Drought Tolerance at High Tissue Water Potential
+Ability of the plant
+to endure periods of drought by maintaining high tissue water potential. This
+mechanism is also called as
+drought avoidance
+.
+To maintain a high
+water status during a period of high evaporative demand / or increasing soil
+water deficit, the plant has two options. It must either reduce
+the water loss or maintain its supply of water.
+A. Reducing Water Los
+s
+i) Increased pubescence and ii) Increased leaf waxiness
+Leaf pubescence
+Leaf waxiness
+B. Maintenance of water uptake
+i) Deeper root system
+ii)
+Hydraulic conductance of plants (increasing either the diameter of xylem
+vessels or their numbers).
+III. Drought Tolerance at low tissue water potential
+It is the ability of the plant to endure periods
+of drought and endure low tissue water potentials. This tolerance can be
+achieved by
+Desiccation Tolerance
+Based on the
+desiccation tolerance of the protoplasm, plants can be classified as
+poikilohydric or homohydric plants.
+1) Poikilohydric (resurrection
+plants)
+The
+protoplasm of poikilohydric plants can withstand almost complete dehydration
+and can also withstand dehydration and rehydration in concert with available
+water without damage.
+2) Homoiohydric plants
+Majority
+of the plants are homoiohydric plants. During growth and development, the
+protoplasm of homoiohydric plants cannot withstand low water potential without
+injury. Dehydration caused mechanical injury to the protoplast by physical
+tearing and destruction during water extraction and shrinkage. Small cells with
+no vacuoles and also the cells that lose their vacuoles and also the cells that
+lose their vacuoles during dehydration can withstand the most severe
+desiccation without mechanical injury. The changes in viscosity o the
+protoplasm and permeability of the membrane play a role in desiccation  tolerance. It was also observed that
+cytoplasmic proteins are more stable to denaturation, coagulation or hydrolysis
+in desiccation resistant plants and that enzymes are less susceptible to
+inactivation by stress. RNA-DNA complex through which enzymes are manufactured
+is generally susceptible to desiccation and sugars play a role in protecting
+this mechanism in desiccation resistant species and varieties. Sugars may also
+provide protection against desiccation.
+Biochemical effect of drought tolerance
+1)
+Accumulation of Proline, Glycinebetaines
+etc.
+2)
+Synthisis of Abscisic acid (ABA)
+etc.
+|
+Home
+|
+Seasons & Varieties
+|
+Tillage
+|
+Nutrient Management
+|
+Irrigation Management
+|
+Weed Management
+|
+Crop Protection
+|
+Cost of Cultivation
+|
+Disclaimer
+© All Rights Reserved. TNAU 2008-2024
