@@ -1,16 +1,84 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { User, Mail, Lock, UserPlus, ArrowRight, Eye, EyeOff } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { User, Mail, Lock, UserPlus, ArrowRight, Eye, EyeOff, Phone, Users, ShieldCheck } from 'lucide-react';
 
 export default function Register() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', password: '' });
+  const navigate = useNavigate();
+  const [step, setStep] = useState(1);
+  const [otp, setOtp] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [formData, setFormData] = useState({ 
+    firstName: '', 
+    lastName: '', 
+    mobile: '', 
+    email: '', 
+    password: '', 
+    confirmPassword: '', 
+    userType: 'farmer' 
+  });
+
+  const handleSendOTP = async (e) => {
     e.preventDefault();
-    // Auth logic placeholder
-    console.log('Register attempt:', formData);
+    if (formData.password !== formData.confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+
+    setLoading(true);
+    setError('');
+
+    try {
+      const response = await fetch('http://localhost:5000/api/auth/send-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to send OTP');
+      }
+
+      setStep(2);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleVerifyOTP = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+
+    try {
+      const response = await fetch('http://localhost:5000/api/auth/verify-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: formData.email, otp }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to verify OTP');
+      }
+
+      // Success
+      alert('Registration successful! Please sign in.');
+      navigate('/login');
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -23,38 +91,87 @@ export default function Register() {
           className="glass-card p-8 sm:p-10"
         >
           <div className="text-center mb-8">
-            <h1 className="font-display text-3xl font-bold text-heading mb-3">Create Account</h1>
-            <p className="text-body opacity-80">Join KhedutSaathi and empower your farming journey.</p>
+            <h1 className="font-display text-3xl font-bold text-heading mb-3">
+              {step === 1 ? 'Create Account' : 'Verify Email'}
+            </h1>
+            <p className="text-body opacity-80">
+              {step === 1 
+                ? 'Join KhedutSaathi and empower your farming journey.' 
+                : `We sent a 6-digit OTP to ${formData.email}`}
+            </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-5">
+          {error && (
+            <div className="mb-6 p-3 bg-red-500/10 border border-red-500/50 rounded-lg text-red-600 dark:text-red-400 text-sm text-center">
+              {error}
+            </div>
+          )}
+
+          {step === 1 ? (
+            <form onSubmit={handleSendOTP} className="space-y-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label className="block text-sm font-semibold text-heading mb-2">First Name</label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                    <User className="w-5 h-5" />
+                  </div>
+                  <input
+                    type="text"
+                    required
+                    placeholder="First name"
+                    className="input-field pl-11"
+                    value={formData.firstName}
+                    onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-heading mb-2">Last Name</label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                    <User className="w-5 h-5" />
+                  </div>
+                  <input
+                    type="text"
+                    required
+                    placeholder="Last name"
+                    className="input-field pl-11"
+                    value={formData.lastName}
+                    onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                  />
+                </div>
+              </div>
+            </div>
+
             <div>
-              <label className="block text-sm font-semibold text-heading mb-2">Full Name</label>
+              <label className="block text-sm font-semibold text-heading mb-2">Mobile Number</label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
-                  <User className="w-5 h-5" />
+                  <Phone className="w-5 h-5" />
                 </div>
                 <input
-                  type="text"
+                  type="tel"
                   required
-                  placeholder="Enter your full name"
+                  placeholder="Enter your mobile number"
                   className="input-field pl-11"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  value={formData.mobile}
+                  onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-heading mb-2">Email or Mobile Number</label>
+              <label className="block text-sm font-semibold text-heading mb-2">Email</label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
                   <Mail className="w-5 h-5" />
                 </div>
                 <input
-                  type="text"
+                  type="email"
                   required
-                  placeholder="Enter your email or number"
+                  placeholder="Enter your email"
                   className="input-field pl-11"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -86,30 +203,99 @@ export default function Register() {
               </div>
             </div>
 
+            <div>
+              <label className="block text-sm font-semibold text-heading mb-2">Confirm Password</label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                  <Lock className="w-5 h-5" />
+                </div>
+                <input
+                  type={showConfirmPassword ? "text" : "password"}
+                  required
+                  placeholder="Confirm your password"
+                  className="input-field pl-11 pr-11"
+                  value={formData.confirmPassword}
+                  onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"
+                >
+                  {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-heading mb-2">User Type</label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                  <Users className="w-5 h-5" />
+                </div>
+                <select
+                  required
+                  className="input-field pl-11 appearance-none bg-white dark:bg-slate-800"
+                  value={formData.userType}
+                  onChange={(e) => setFormData({ ...formData, userType: e.target.value })}
+                >
+                  <option value="farmer">Farmer</option>
+                  <option value="buyer">Buyer</option>
+                </select>
+              </div>
+            </div>
+
             <button
               type="submit"
-              className="w-full btn-primary flex items-center justify-center gap-2 group mt-6"
+              disabled={loading}
+              className="w-full btn-primary flex items-center justify-center gap-2 group mt-6 disabled:opacity-70"
             >
               <UserPlus className="w-5 h-5" />
-              Create Account
-              <ArrowRight className="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />
+              {loading ? 'Sending OTP...' : 'Create Account'}
+              {!loading && <ArrowRight className="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />}
             </button>
           </form>
+          ) : (
+            <form onSubmit={handleVerifyOTP} className="space-y-5">
+              <div>
+                <label className="block text-sm font-semibold text-heading mb-2">Enter OTP</label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                    <ShieldCheck className="w-5 h-5" />
+                  </div>
+                  <input
+                    type="text"
+                    required
+                    placeholder="123456"
+                    maxLength={6}
+                    className="input-field pl-11 text-center tracking-widest text-lg font-bold"
+                    value={otp}
+                    onChange={(e) => setOtp(e.target.value.replace(/[^0-9]/g, ''))}
+                  />
+                </div>
+              </div>
 
-          <div className="mt-6 flex items-center gap-4">
-            <div className="flex-1 h-px bg-slate-200 dark:bg-slate-700"></div>
-            <span className="text-sm text-slate-500 dark:text-slate-400 font-medium">OR</span>
-            <div className="flex-1 h-px bg-slate-200 dark:bg-slate-700"></div>
-          </div>
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full btn-primary flex items-center justify-center gap-2 group mt-6 disabled:opacity-70"
+              >
+                <ShieldCheck className="w-5 h-5" />
+                {loading ? 'Verifying...' : 'Verify OTP & Register'}
+              </button>
 
-          <div className="mt-6">
-            <button
-              type="button"
-              className="w-full btn-secondary flex items-center justify-center gap-3 bg-surface hover:bg-surface-muted border border-subtle hover:border-slate-300 dark:hover:border-slate-600 text-heading py-3"
-            >
-              Sign up with Google
-            </button>
-          </div>
+              <div className="text-center mt-4">
+                <button
+                  type="button"
+                  onClick={() => setStep(1)}
+                  className="text-sm text-primary hover:text-primary-dark font-semibold transition-colors"
+                >
+                  Change Email / Back
+                </button>
+              </div>
+            </form>
+          )}
+
 
           <p className="text-center mt-8 text-sm text-body opacity-80">
             Already have an account?{' '}
