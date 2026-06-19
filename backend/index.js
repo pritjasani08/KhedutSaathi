@@ -15,6 +15,7 @@ const authRoutes = require('./routes/auth');
 const irrigationRoutes = require('./routes/irrigationRoutes');
 const resourcesRoutes = require('./routes/resourcesRoutes');
 const marketplaceRoutes = require('./routes/marketplaceRoutes');
+const profileRoutes = require('./routes/profileRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -51,6 +52,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/irrigation', irrigationRoutes);
 app.use('/api/resources', resourcesRoutes);
 app.use('/api/marketplace', marketplaceRoutes);
+app.use('/api/profile', profileRoutes);
 
 // Health check endpoint
 app.get('/health', (req, res) => {
