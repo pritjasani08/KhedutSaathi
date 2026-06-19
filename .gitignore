@@ -64,7 +64,10 @@ Thumbs.db
 # *.pkl
 # *.onnx
 # *.h5
-# ai_models/crop_disease/dataset/
+ai_models/crop_disease/dataset/*
+!ai_models/crop_disease/dataset/.gitkeep
+ai_models/crop_disease/raw_datasets/*
+!ai_models/crop_disease/raw_datasets/.gitkeep
 # ai_models/yield_predictor/dataset/
 # rag_system/data/pdfs/
 
