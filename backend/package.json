@@ -18,6 +18,7 @@
     "india-states-districts": "^1.8.0",
     "jsonwebtoken": "^9.0.3",
     "node-cache": "^5.1.2",
-    "nodemailer": "^9.0.1"
+    "nodemailer": "^9.0.1",
+    "rss-parser": "^3.13.0"
   }
 }

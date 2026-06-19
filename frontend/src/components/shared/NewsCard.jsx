@@ -9,7 +9,7 @@ const fadeUp = {
   }),
 };
 
-export default function NewsCard({ title, date, category, excerpt, image, index = 0 }) {
+export default function NewsCard({ title, date, category, excerpt, image, source, link, index = 0 }) {
   return (
     <motion.div variants={fadeUp} custom={index} className="glass-card overflow-hidden card-hover group flex flex-col h-full">
       <div className="relative h-48 overflow-hidden">
@@ -31,6 +31,12 @@ export default function NewsCard({ title, date, category, excerpt, image, index 
         <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-xs mb-3">
           <Calendar className="w-4 h-4" />
           <span>{date}</span>
+          {source && (
+            <>
+              <span className="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+              <span className="font-medium truncate">{source}</span>
+            </>
+          )}
         </div>
         
         <h3 className="font-display text-xl font-bold text-body mb-3 line-clamp-2">
@@ -41,10 +47,15 @@ export default function NewsCard({ title, date, category, excerpt, image, index 
           {excerpt}
         </p>
         
-        <button className="text-primary font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all duration-300 mt-auto">
+        <a 
+          href={link || "#"}
+          target={link ? "_blank" : "_self"}
+          rel="noopener noreferrer"
+          className="text-primary font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all duration-300 mt-auto"
+        >
           Read More
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-        </button>
+        </a>
       </div>
     </motion.div>
   );
