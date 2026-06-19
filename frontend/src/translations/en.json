@@ -101,7 +101,7 @@
     }
   },
   "cropDiagnosis": {
-    "title": "AI Crop Disease Detection",
+    "title": "Crop Health",
     "subtitle": "Upload a crop image and let our AI instantly diagnose diseases with treatment plans",
     "uploadTitle": "Upload Crop Image",
     "dragDrop": "Drag & Drop your crop image here",
