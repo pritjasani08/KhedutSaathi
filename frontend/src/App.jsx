@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ThemeProvider } from './context/ThemeContext';
+import { AuthProvider } from './context/AuthContext';
+import { ChatProvider } from './context/ChatContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ChatbotWidget from './components/ChatbotWidget';
@@ -15,6 +17,8 @@ import Resources from './pages/Resources/Resources';
 import About from './pages/About/About';
 import Login from './pages/Auth/Login/Login';
 import Register from './pages/Auth/Register/Register';
+import PlaceholderPage from './pages/Placeholder/PlaceholderPage';
+import KhedutAI from './pages/KhedutAI/KhedutAI';
 
 /* Page transition wrapper */
 function PageWrapper({ children }) {
@@ -37,10 +41,9 @@ function AnimatedRoutes() {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageWrapper><Home /></PageWrapper>} />
+        <Route path="/crop-recommendation" element={<PageWrapper><ExpertPanel /></PageWrapper>} />
         <Route path="/crop-health" element={<PageWrapper><CropDiagnosis /></PageWrapper>} />
         <Route path="/market-prices" element={<PageWrapper><MarketHub /></PageWrapper>} />
-        <Route path="/crop-planning" element={<PageWrapper><ExpertPanel /></PageWrapper>} />
-        <Route path="/expert-help" element={<PageWrapper><ExpertPanel /></PageWrapper>} />
         <Route path="/smart-irrigation" element={<PageWrapper><SmartIrrigation /></PageWrapper>} />
         <Route path="/agri-marketplace" element={<PageWrapper><AgriMarketplace /></PageWrapper>} />
         <Route path="/features" element={<PageWrapper><Features /></PageWrapper>} />
@@ -48,6 +51,11 @@ function AnimatedRoutes() {
         <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
         <Route path="/login" element={<PageWrapper><Login /></PageWrapper>} />
         <Route path="/register" element={<PageWrapper><Register /></PageWrapper>} />
+        <Route path="/khedut-ai" element={<PageWrapper><KhedutAI /></PageWrapper>} />
+        
+        {/* Placeholder Routes */}
+        <Route path="/weather" element={<PageWrapper><PlaceholderPage title="Weather Advisory" /></PageWrapper>} />
+        <Route path="/expert-help" element={<PageWrapper><PlaceholderPage title="Expert Help" /></PageWrapper>} />
       </Routes>
     </AnimatePresence>
   );
@@ -63,23 +71,23 @@ function ScrollToTop() {
   return null;
 }
 
-import { AuthProvider } from './context/AuthContext';
-
 export default function App() {
   return (
     <ThemeProvider>
       <AuthProvider>
-        <Router>
-          <ScrollToTop />
-          <div className="min-h-screen flex flex-col bg-background transition-colors duration-300">
-            <Navbar />
-            <main className="flex-1">
-              <AnimatedRoutes />
-            </main>
-            <Footer />
-            <ChatbotWidget />
-          </div>
-        </Router>
+        <ChatProvider>
+          <Router>
+            <ScrollToTop />
+            <div className="min-h-screen flex flex-col bg-background transition-colors duration-300">
+              <Navbar />
+              <main className="flex-1">
+                <AnimatedRoutes />
+              </main>
+              <Footer />
+              <ChatbotWidget />
+            </div>
+          </Router>
+        </ChatProvider>
       </AuthProvider>
     </ThemeProvider>
   );
