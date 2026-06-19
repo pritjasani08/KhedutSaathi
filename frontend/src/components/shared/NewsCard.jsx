@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, ArrowRight } from 'lucide-react';
 
@@ -9,19 +10,68 @@ const fadeUp = {
   }),
 };
 
+// Simple string hasher for deterministic fallback selection
+function hashString(str) {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = str.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  return Math.abs(hash);
+}
+
+// Map categories to their specific fallback images using title hash for variety
+const getFallbackImage = (category, title) => {
+  const normalizedCat = category?.toLowerCase() || '';
+  const hash = hashString(title || '');
+  
+  if (normalizedCat.includes('agriculture')) {
+    return `/images/news-fallbacks/agriculture-${(hash % 5) + 1}.jpg`;
+  }
+  if (normalizedCat.includes('weather')) {
+    return `/images/news-fallbacks/weather-${(hash % 4) + 1}.jpg`;
+  }
+  if (normalizedCat.includes('market')) {
+    return `/images/news-fallbacks/market-${(hash % 4) + 1}.jpg`;
+  }
+  if (normalizedCat.includes('government')) {
+    return `/images/news-fallbacks/government-${(hash % 3) + 1}.jpg`;
+  }
+  if (normalizedCat.includes('health') || normalizedCat.includes('disease') || normalizedCat.includes('pest')) {
+    return `/images/news-fallbacks/crop-health-${(hash % 4) + 1}.jpg`;
+  }
+  
+  // Generic fallback
+  return '/images/news-fallbacks/default.jpg';
+};
+
 export default function NewsCard({ title, date, category, excerpt, image, source, link, index = 0 }) {
+  const fallbackImg = getFallbackImage(category, title);
+  const [imgSrc, setImgSrc] = useState(image || fallbackImg);
+  const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    setImgSrc(image || fallbackImg);
+    setHasError(false);
+  }, [image, fallbackImg]);
+
+  const handleError = () => {
+    if (!hasError) {
+      setImgSrc(fallbackImg);
+      setHasError(true);
+    }
+  };
+
   return (
     <motion.div variants={fadeUp} custom={index} className="glass-card overflow-hidden card-hover group flex flex-col h-full">
-      <div className="relative h-48 overflow-hidden">
-        {image ? (
-          <img src={image} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-        ) : (
-          <div className="w-full h-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center">
-            <span className="text-slate-400 dark:text-slate-500 text-4xl">📰</span>
-          </div>
-        )}
+      <div className="relative h-48 overflow-hidden bg-slate-200 dark:bg-slate-800">
+        <img 
+          src={imgSrc} 
+          alt={title} 
+          onError={handleError}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 dark:brightness-90" 
+        />
         <div className="absolute top-4 left-4">
-          <span className="px-3 py-1 bg-surface/90 dark:bg-slate-800/90 backdrop-blur-sm text-primary text-xs font-bold rounded-full">
+          <span className="px-3 py-1 bg-surface/90 dark:bg-slate-800/90 backdrop-blur-sm text-primary text-xs font-bold rounded-full shadow-sm">
             {category}
           </span>
         </div>

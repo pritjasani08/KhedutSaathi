@@ -46,19 +46,137 @@ function extractImage(item) {
   return null;
 }
 
+// Simple string hasher for deterministic fallback selection
+function hashString(str) {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = str.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  return Math.abs(hash);
+}
+
+// Map categories to their specific fallback images using title hash for consistency
+function getFallbackImage(category, title) {
+  const normalizedCat = category?.toLowerCase() || '';
+  const hash = hashString(title || '');
+  
+  if (normalizedCat.includes('agriculture')) {
+    return `/images/news-fallbacks/agriculture-${(hash % 5) + 1}.jpg`;
+  }
+  if (normalizedCat.includes('weather')) {
+    return `/images/news-fallbacks/weather-${(hash % 4) + 1}.jpg`;
+  }
+  if (normalizedCat.includes('market')) {
+    return `/images/news-fallbacks/market-${(hash % 4) + 1}.jpg`;
+  }
+  if (normalizedCat.includes('government')) {
+    return `/images/news-fallbacks/government-${(hash % 3) + 1}.jpg`;
+  }
+  if (normalizedCat.includes('health') || normalizedCat.includes('disease') || normalizedCat.includes('pest')) {
+    return `/images/news-fallbacks/crop-health-${(hash % 4) + 1}.jpg`;
+  }
+  
+  return '/images/news-fallbacks/default.jpg';
+}
+
+// Detect language using Unicode ranges
+function detectLanguage(text) {
+  const gujaratiRegex = /[\u0A80-\u0AFF]/;
+  const hindiRegex = /[\u0900-\u097F]/;
+  
+  if (gujaratiRegex.test(text)) {
+    return 'gu';
+  } else if (hindiRegex.test(text)) {
+    return 'hi';
+  }
+  return 'en';
+}
+
+// Calculate language relevance score
+function getLanguageScore(itemLang, selectedLang) {
+  if (selectedLang === 'gu') {
+    if (itemLang === 'gu') return 3;
+    if (itemLang === 'hi') return 2;
+    return 1;
+  } else if (selectedLang === 'hi') {
+    if (itemLang === 'hi') return 3;
+    if (itemLang === 'en') return 2;
+    return 1;
+  } else { // en
+    if (itemLang === 'en') return 3;
+    if (itemLang === 'en') return 3;
+    if (itemLang === 'hi') return 2;
+    return 1;
+  }
+}
+
+// Filter out low quality social media sources
+function isLowQualitySource(source) {
+  const normalized = source.toLowerCase();
+  return (
+    normalized.includes('facebook') || 
+    normalized.includes('instagram') || 
+    normalized.includes('twitter') || 
+    normalized.includes('x.com') ||
+    normalized.includes('youtube')
+  );
+}
+
+// Calculate source credibility score
+function getSourceScore(source) {
+  const normalized = source.toLowerCase();
+  
+  if (normalized.includes('sandesh') || 
+      normalized.includes('divya bhaskar') || 
+      normalized.includes('vtv') || 
+      normalized.includes('bbc') || 
+      normalized.includes('agriculture') || 
+      normalized.includes('government') ||
+      normalized.includes('kisan') ||
+      normalized.includes('krishi') ||
+      normalized.includes('icar')) {
+    return 3;
+  }
+  
+  return 1;
+}
+
 const getNews = async (req, res) => {
   try {
-    const cachedNews = cache.get('agri_news');
+    const language = req.query.language || 'gu';
+    const region = req.query.region || 'Gujarat';
+
+    const cacheKey = `agri_news_${language}_${region}`;
+    const cachedNews = cache.get(cacheKey);
     if (cachedNews) {
       return res.status(200).json({ success: true, data: cachedNews, cached: true });
     }
 
-    // Google News RSS Feed tailored for Agriculture in India
-    const feedUrl = 'https://news.google.com/rss/search?q=agriculture+OR+farming+OR+crop+OR+irrigation+IN&hl=en-IN&gl=IN&ceid=IN:en';
+    let hl, gl, ceid;
+    if (language === 'hi') {
+      hl = 'hi'; gl = 'IN'; ceid = 'IN:hi';
+    } else if (language === 'en') {
+      hl = 'en-IN'; gl = 'IN'; ceid = 'IN:en';
+    } else { // gu
+      hl = 'gu'; gl = 'IN'; ceid = 'IN:gu';
+    }
+
+    let regionQuery = region === 'All India' ? 'IN' : region;
+    
+    // Group keywords with parentheses so the region is strictly applied to any of them
+    const q = encodeURIComponent(`(agriculture OR farming OR crop OR irrigation) ${regionQuery}`);
+
+    const feedUrl = `https://news.google.com/rss/search?q=${q}&hl=${hl}&gl=${gl}&ceid=${ceid}`;
     
     const feed = await parser.parseURL(feedUrl);
     
-    const formattedNews = feed.items.slice(0, 20).map((item, index) => {
+    // Filter out low quality sources
+    const validItems = feed.items.filter(item => {
+      let source = item.source || item.title || '';
+      return !isLowQualitySource(source);
+    });
+    
+    const allNews = validItems.map((item, index) => {
       // Create a short excerpt from content snippet or title
       let excerpt = item.contentSnippet || item.content || item.title;
       if (excerpt.length > 150) {
@@ -75,6 +193,12 @@ const getNews = async (req, res) => {
         title = parts.join(' - ');
       }
 
+      const itemLang = detectLanguage(`${title} ${excerpt}`);
+      const category = determineCategory(title, excerpt);
+      const extractedImg = extractImage(item);
+      // Assign fallback image directly on backend if missing
+      const finalImage = extractedImg ? extractedImg : getFallbackImage(category, title);
+
       return {
         id: `news-${index}-${Date.now()}`,
         title: title,
@@ -84,20 +208,42 @@ const getNews = async (req, res) => {
           year: 'numeric'
         }),
         source: source,
-        category: determineCategory(title, excerpt),
+        category: category,
         excerpt: excerpt,
         link: item.link,
-        image: extractImage(item) // May be null, frontend should handle fallback
+        image: finalImage,
+        itemLang: itemLang,
+        sourceScore: getSourceScore(source)
       };
     });
 
+    // Re-rank based on language AND source credibility
+    allNews.sort((a, b) => {
+      const langScoreA = getLanguageScore(a.itemLang, language);
+      const langScoreB = getLanguageScore(b.itemLang, language);
+      
+      if (langScoreA !== langScoreB) {
+        return langScoreB - langScoreA; // Primary sort by language
+      }
+      
+      // Secondary sort by source credibility
+      return b.sourceScore - a.sourceScore;
+    });
+
+    // Limit to top 20 and remove temporary fields
+    const formattedNews = allNews.slice(0, 20).map(item => {
+      delete item.itemLang;
+      delete item.sourceScore;
+      return item;
+    });
+
     // Save to cache
-    cache.set('agri_news', formattedNews);
+    cache.set(cacheKey, formattedNews);
 
     res.status(200).json({ success: true, data: formattedNews, cached: false });
   } catch (error) {
     console.error('Error fetching RSS news:', error);
-    res.status(500).json({ success: false, message: 'Failed to fetch agricultural news.' });
+    res.status(200).json({ success: false, data: [], message: 'Failed to fetch agricultural news.' });
   }
 };
 
