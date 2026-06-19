@@ -1,11 +1,18 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import joblib
 import pandas as pd
 
-
-
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 # Load model
 model = joblib.load("model/yield_model.pkl")
 
@@ -23,8 +30,10 @@ def find_match(user_input, encoder):
         if item.lower() == user_input:
             return item
 
-    raise ValueError(f"'{user_input}' not found in dataset")
-
+    raise HTTPException(
+        status_code=400,
+        detail=f"'{user_input}' not found in dataset"
+    )
 class PredictionRequest(BaseModel):
     state: str
     district: str
