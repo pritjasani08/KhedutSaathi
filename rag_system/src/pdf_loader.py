@@ -2,7 +2,7 @@ import logging
 from pathlib import Path
 from typing import List, Dict
 from langchain_community.document_loaders import PyPDFLoader
-from src.config import PDF_DIR
+from rag_system.src.config import PDF_DIR
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

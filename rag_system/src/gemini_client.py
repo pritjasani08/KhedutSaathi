@@ -1,6 +1,6 @@
 import logging
 import google.generativeai as genai
-from src.config import GEMINI_API_KEY, GEMINI_MODEL
+from rag_system.src.config import GEMINI_API_KEY, GEMINI_MODEL
 
 logger = logging.getLogger(__name__)
 
@@ -12,33 +12,6 @@ class GeminiClient:
             
         genai.configure(api_key=GEMINI_API_KEY)
         self.model = genai.GenerativeModel(GEMINI_MODEL)
-
-    def classify_intent(self, query: str) -> str:
-        """Classifies if the query is AGRICULTURE or NON_AGRICULTURE."""
-        prompt = f"""
-Classify the following user query into one of two categories: 'AGRICULTURE' or 'NON_AGRICULTURE'.
-Respond with EXACTLY ONE WORD (the category name), nothing else.
-
-Examples:
-"કપાસમાં યુરિયા ક્યારે આપવી?" -> AGRICULTURE
-"Who is Narendra Modi?" -> NON_AGRICULTURE
-"What is Python?" -> NON_AGRICULTURE
-"ટામેટામાં બ્લાઇટનું નિયંત્રણ કેવી રીતે કરવું?" -> AGRICULTURE
-
-Query: "{query}"
-"""
-        try:
-            logger.info("Classifying query intent...")
-            response = self.model.generate_content(prompt)
-            result = response.text.strip().upper()
-            if "NON_AGRICULTURE" in result:
-                return "NON_AGRICULTURE"
-            elif "AGRICULTURE" in result:
-                return "AGRICULTURE"
-            return "NON_AGRICULTURE"
-        except Exception as e:
-            logger.error(f"Error classifying intent: {e}")
-            return "AGRICULTURE"  # Safe fallback
 
     def generate_rag_answer(self, query: str, context_chunks: list) -> str:
         """Generates an answer using Gemini based on the retrieved context."""
@@ -69,6 +42,8 @@ User Question: {query}
             return response.text.strip()
         except Exception as e:
             logger.error(f"Error generating RAG answer with Gemini: {e}")
+            if "429" in str(e) or "Quota" in str(e):
+                return "AI service is temporarily unavailable. Please try again later."
             return "Error: Could not generate answer at this time."
 
     def generate_direct_answer(self, query: str) -> str:
@@ -86,4 +61,6 @@ User Question: {query}
             return response.text.strip()
         except Exception as e:
             logger.error(f"Error generating direct answer with Gemini: {e}")
+            if "429" in str(e) or "Quota" in str(e):
+                return "AI service is temporarily unavailable. Please try again later."
             return "Error: Could not generate answer at this time."

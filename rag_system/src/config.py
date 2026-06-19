@@ -42,4 +42,4 @@ COLLECTION_NAME = "khedut_saathi_rag"
 CHUNK_SIZE = int(os.getenv("CHUNK_SIZE", "1000"))
 CHUNK_OVERLAP = int(os.getenv("CHUNK_OVERLAP", "200"))
 TOP_K_RETRIEVAL = int(os.getenv("TOP_K", "5"))
-RAG_CONFIDENCE_THRESHOLD = float(os.getenv("RAG_CONFIDENCE_THRESHOLD", "0.65"))
+RAG_CONFIDENCE_THRESHOLD = float(os.getenv("RAG_CONFIDENCE_THRESHOLD", "0.40"))

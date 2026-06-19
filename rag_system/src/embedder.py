@@ -1,6 +1,6 @@
 import logging
 from sentence_transformers import SentenceTransformer
-from src.config import EMBEDDING_MODEL_NAME
+from rag_system.src.config import EMBEDDING_MODEL_NAME
 
 logger = logging.getLogger(__name__)
 

@@ -1,7 +1,7 @@
 import logging
 from typing import List, Dict
-from src.chroma_manager import ChromaDBManager
-from src.config import TOP_K_RETRIEVAL
+from rag_system.src.chroma_manager import ChromaDBManager
+from rag_system.src.config import TOP_K_RETRIEVAL
 
 logger = logging.getLogger(__name__)
 

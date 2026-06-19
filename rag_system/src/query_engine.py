@@ -1,7 +1,7 @@
 import logging
-from src.retriever import Retriever
-from src.gemini_client import GeminiClient
-from src.config import RAG_CONFIDENCE_THRESHOLD
+from rag_system.src.retriever import Retriever
+from rag_system.src.gemini_client import GeminiClient
+from rag_system.src.config import RAG_CONFIDENCE_THRESHOLD
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -14,23 +14,13 @@ class QueryEngine:
     def query(self, user_question: str) -> str:
         """
         End-to-end RAG pipeline:
-        1.c Classify intent
-        2. IF NON_AGRICULTURE -> Direct Gemini
-        3. IF AGRICULTURE -> Vector Search
+        1. Vector Search
            - IF Score >= Threshold -> RAG + Gemini
            - ELSE -> Direct Gemini
         """
         logger.info(f"Processing query: {user_question}")
         
-        # 1. Intent Classification
-        intent = self.llm.classify_intent(user_question)
-        logger.info(f"Classified Intent: {intent}")
-        
-        if intent == "NON_AGRICULTURE":
-            logger.info("Using Direct Gemini (Non-Agriculture Intent).")
-            return self.llm.generate_direct_answer(user_question)
-            
-        # 2. Vector Search
+        # 1. Vector Search
         context_chunks = self.retriever.retrieve(user_question)
         
         # Determine highest similarity score

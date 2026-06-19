@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-import { askRagApi } from '../services/ragApi';
+import { askRag } from '../services/ragApi';
 
 const ChatContext = createContext();
 
@@ -17,12 +17,12 @@ export const ChatProvider = ({ children }) => {
     setIsTyping(true);
 
     try {
-      const responseText = await askRagApi(text);
+      const responseText = await askRag(text);
       const botMessage = { id: Date.now() + 1, type: 'bot', text: responseText, time: new Date() };
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
       console.error("Error communicating with Khedut AI", error);
-      const errorMessage = { id: Date.now() + 1, type: 'bot', text: "Sorry, I am having trouble connecting to the server. Please try again later.", time: new Date() };
+      const errorMessage = { id: Date.now() + 1, type: 'bot', text: "Sorry, I am unable to answer right now. Please try again.", time: new Date() };
       setMessages((prev) => [...prev, errorMessage]);
     } finally {
       setIsTyping(false);
