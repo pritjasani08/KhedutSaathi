@@ -1,12 +1,13 @@
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+
 if (!process.env.DATA_GOV_API_KEY) {
   console.error("DATA_GOV_API_KEY is missing");
 }
 const express = require('express');
 const cors = require('cors');
-const path = require('path');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
-require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
 const mandiRoutes = require('./routes/mandi');
 const marketPriceRoutes = require('./routes/marketPriceRoutes');

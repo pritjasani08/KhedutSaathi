@@ -53,6 +53,7 @@ function AnimatedRoutes() {
         <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
         <Route path="/login" element={<PageWrapper><Login /></PageWrapper>} />
         <Route path="/register" element={<PageWrapper><Register /></PageWrapper>} />
+        <Route path="/profile" element={<PageWrapper><Profile /></PageWrapper>} />
         <Route path="/khedut-ai" element={<PageWrapper><KhedutAI /></PageWrapper>} />
         
         {/* Placeholder Routes */}
