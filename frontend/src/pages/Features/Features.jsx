@@ -32,22 +32,6 @@ export default function Features() {
           emoji: '🔍',
         },
         {
-          title: 'Crop Planning',
-          desc: 'Get AI-powered recommendations based on your soil, location, and water availability.',
-          path: '/crop-planning',
-          bg: 'bg-blue-50 dark:bg-blue-900/30',
-          hoverBg: 'hover:bg-blue-50 dark:hover:bg-blue-900/40',
-          emoji: '📋',
-        },
-        {
-          title: 'Yield Predictor',
-          desc: 'Forecast your crop yield intelligently using historical data and current conditions.',
-          path: '/crop-planning',
-          bg: 'bg-indigo-50 dark:bg-indigo-900/30',
-          hoverBg: 'hover:bg-indigo-50 dark:hover:bg-indigo-900/40',
-          emoji: '📈',
-        },
-        {
           title: 'Smart Irrigation',
           desc: 'Monitor irrigation requirements and optimize water usage using AI-powered recommendations.',
           path: '/smart-irrigation',

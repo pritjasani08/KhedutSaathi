@@ -41,7 +41,6 @@ function AnimatedRoutes() {
         <Route path="/" element={<PageWrapper><Home /></PageWrapper>} />
         <Route path="/crop-health" element={<PageWrapper><CropDiagnosis /></PageWrapper>} />
         <Route path="/market-prices" element={<PageWrapper><MarketHub /></PageWrapper>} />
-        <Route path="/crop-planning" element={<PageWrapper><ExpertPanel /></PageWrapper>} />
         <Route path="/expert-help" element={<PageWrapper><ExpertPanel /></PageWrapper>} />
         <Route path="/smart-irrigation" element={<PageWrapper><SmartIrrigation /></PageWrapper>} />
         <Route path="/agri-marketplace" element={<PageWrapper><AgriMarketplace /></PageWrapper>} />

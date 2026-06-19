@@ -48,7 +48,6 @@ export default function Navbar() {
   const navLinks = [
     { path: '/', label: t('nav.home') },
     { path: '/crop-health', label: 'Crop Health' },
-    { path: '/crop-planning', label: 'Crop Planning' },
     { path: '/market-prices', label: 'Market Prices' },
     { path: '/ai-assistant', label: 'AI Assistant' },
     { path: '/expert-help', label: 'Expert Help' },
