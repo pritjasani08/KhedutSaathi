@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Newspaper, Landmark, Loader2, AlertCircle, Globe, MapPin } from 'lucide-react';
+import { Newspaper, Landmark, Loader2, AlertCircle, Globe, MapPin, Calculator } from 'lucide-react';
 import PageHero from '../../components/shared/PageHero';
 import NewsCard from '../../components/shared/NewsCard';
 import SchemeCard from '../../components/shared/SchemeCard';
+import SchemeEligibilityEngine from './SchemeEligibilityEngine';
 
 export default function Resources() {
   const [activeTab, setActiveTab] = useState('news');
@@ -73,6 +74,7 @@ export default function Resources() {
   const tabs = [
     { key: 'news', label: 'Latest News', icon: Newspaper },
     { key: 'schemes', label: 'Government Schemes', icon: Landmark },
+    { key: 'eligibility', label: 'Eligibility Engine', icon: Calculator },
   ];
 
   return (
@@ -80,7 +82,7 @@ export default function Resources() {
       <PageHero 
         title="News & Schemes"
         subtitle="Stay updated with the latest agricultural news and government schemes to empower your farming journey."
-        icon="📰"
+        icon={Newspaper}
       />
 
       <div className="container-custom px-4 sm:px-6 lg:px-8 mt-[-2rem] relative z-10">
@@ -184,7 +186,7 @@ export default function Resources() {
                   </div>
                 )}
               </motion.div>
-            ) : (
+            ) : activeTab === 'schemes' ? (
               <motion.div
                 key="schemes"
                 initial={{ opacity: 0, y: 20 }}
@@ -211,7 +213,17 @@ export default function Resources() {
                   </div>
                 )}
               </motion.div>
-            )}
+            ) : activeTab === 'eligibility' ? (
+              <motion.div
+                key="eligibility"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+              >
+                <SchemeEligibilityEngine />
+              </motion.div>
+            ) : null}
           </AnimatePresence>
         )}
       </div>

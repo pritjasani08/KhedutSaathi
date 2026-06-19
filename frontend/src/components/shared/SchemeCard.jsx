@@ -9,7 +9,7 @@ const fadeUp = {
   }),
 };
 
-export default function SchemeCard({ title, description, eligibility, deadline, applyLink, index = 0 }) {
+export default function SchemeCard({ title, description, eligibility = [], deadline, applyLink, index = 0 }) {
   return (
     <motion.div variants={fadeUp} custom={index} className="glass-card p-6 card-hover group flex flex-col h-full">
       <div className="flex items-start justify-between mb-4">
@@ -32,17 +32,19 @@ export default function SchemeCard({ title, description, eligibility, deadline, 
         {description}
       </p>
       
-      <div className="mb-6 space-y-2">
-        <p className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">Eligibility</p>
-        <ul className="space-y-1">
-          {eligibility.map((item, i) => (
-            <li key={i} className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-400">
-              <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {eligibility && eligibility.length > 0 && (
+        <div className="mb-6 space-y-2">
+          <p className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">Eligibility</p>
+          <ul className="space-y-1">
+            {eligibility.map((item, i) => (
+              <li key={i} className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-400">
+                <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
       
       <a 
         href={applyLink}
