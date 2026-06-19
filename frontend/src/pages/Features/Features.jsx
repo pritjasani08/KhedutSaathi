@@ -41,15 +41,6 @@ export default function Features() {
           hoverBg: 'hover:bg-cyan-50 dark:hover:bg-cyan-900/40',
           emoji: '💧',
         },
-        {
-          title: 'Weather Advisory',
-          desc: 'Get localized weather forecasts and farming advisories to plan your daily activities.',
-          path: '/weather',
-          bg: 'bg-sky-50 dark:bg-sky-900/30',
-          hoverBg: 'hover:bg-sky-50 dark:hover:bg-sky-900/40',
-          emoji: '🌤️',
-          isComingSoon: true,
-        },
       ]
     },
     {
@@ -78,7 +69,7 @@ export default function Features() {
       title: 'AI & Support',
       features: [
         {
-          title: 'Khedut AI Assistant',
+          title: 'Khedut AI',
           desc: 'Your personal 24/7 farming assistant ready to answer your agricultural questions.',
           path: '/khedut-ai',
           bg: 'bg-purple-50 dark:bg-purple-900/30',

@@ -2,9 +2,8 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import {
-  BarChart3, Sprout, Ruler, FlaskConical, Droplets,
-  Grid3X3, Loader2, TrendingUp, IndianRupee, AlertTriangle,
-  Target
+  BarChart3, Sprout, Ruler, Loader2, TrendingUp,
+  MapPin, Map, Sun, Info, AlertCircle
 } from 'lucide-react';
 
 const fadeUp = {
@@ -12,40 +11,72 @@ const fadeUp = {
   visible: (i = 0) => ({ opacity: 1, y: 0, transition: { delay: i * 0.05, duration: 0.4 } }),
 };
 
-const cropTypes = ['Wheat', 'Rice', 'Cotton', 'Groundnut', 'Maize', 'Soybean', 'Sugarcane', 'Potato'];
-const soilTypes = ['Alluvial', 'Black (Regur)', 'Red', 'Laterite', 'Sandy', 'Clayey', 'Loamy'];
-const fertilizerOptions = ['Organic Only', 'Low Chemical', 'Moderate', 'High Chemical', 'Mixed'];
-const irrigationMethods = ['Drip', 'Sprinkler', 'Flood', 'Furrow', 'Rainfed'];
-const spacingOptions = ['Dense', 'Standard', 'Wide', 'Ultra-Wide'];
+import stateDistrictMap from './stateDistrictMap.json';
+
+const states = Object.keys(stateDistrictMap);
+
+const crops = [
+  'Groundnut', 'Cotton(lint)', 'Wheat', 'Rice', 'Bajra', 'Maize', 'Castor seed', 'Sesamum', 'Gram', 'Jowar', 'Sugarcane', 'Onion', 'Potato', 'Soyabean', 'Arhar/Tur', 'Banana', 'Garlic', 'Coriander', 'Tobacco', 'Sunflower', 'Coconut', 'Ginger', 'Turmeric', 'Moong(Green Gram)', 'Urad', 'Rapeseed &Mustard', 'Ragi', 'Barley', 'Sweet potato', 'Tapioca'
+];
+
+const seasons = [
+  'Kharif', 'Rabi', 'Summer', 'Winter', 'Autumn', 'Whole Year'
+];
 
 export default function YieldPredictor() {
   const { t } = useTranslation();
   const [form, setForm] = useState({
-    cropType: '', landArea: '', soilType: '', fertilizer: '', irrigation: '', spacing: '',
+    state: 'Gujarat',
+    district: '',
+    cropType: '',
+    season: '',
+    landArea: '',
   });
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
+  const [error, setError] = useState(null);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    if (!form.district || !form.cropType || !form.season || !form.landArea) {
+      setError("Please fill all the required fields.");
+      return;
+    }
+
     setLoading(true);
     setResult(null);
-    setTimeout(() => {
-      setResult({
-        yield: '42.5 Quintals',
-        revenue: '₹1,02,000',
-        risk: 'Low',
-        probability: 87,
-      });
-      setLoading(false);
-    }, 2000);
-  };
+    setError(null);
 
-  const riskColor = (risk) => {
-    switch (risk) {
-      case 'Low': return 'text-green-600 bg-green-50 border-green-200';
-      case 'Medium': return 'text-amber-600 bg-amber-50 border-amber-200';
-      case 'High': return 'text-red-600 bg-red-50 border-red-200';
-      default: return 'text-slate-600 bg-surface-muted border-slate-200';
+    try {
+      const payload = {
+        state: form.state,
+        district: form.district,
+        crop: form.cropType,
+        season: form.season,
+        year: 2026,
+        area: Number(form.landArea)
+      };
+
+      const response = await fetch('http://127.0.0.1:8000/predict', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.detail || 'Failed to fetch prediction from server.');
+      }
+
+      setResult({
+        yield: Number(data.predicted_yield).toFixed(2),
+      });
+    } catch (err) {
+      setError(err.message || 'An error occurred during prediction.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -59,62 +90,65 @@ export default function YieldPredictor() {
       >
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           <motion.div variants={fadeUp}>
-            <label className="text-xs font-semibold text-slate-500 mb-1.5 block">{t('expertPanel.cropType')}</label>
+            <label className="text-xs font-semibold text-slate-500 mb-1.5 block">State</label>
             <div className="relative">
-              <Sprout className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-              <select value={form.cropType} onChange={(e) => setForm({ ...form, cropType: e.target.value })} className="select-field !pl-10">
-                <option value="">Select Crop</option>
-                {cropTypes.map((c) => <option key={c} value={c}>{c}</option>)}
+              <Map className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              <select 
+                value={form.state} 
+                onChange={(e) => setForm({ ...form, state: e.target.value, district: '' })} 
+                className="select-field !pl-10"
+              >
+                <option value="">Select State</option>
+                {states.map((s) => <option key={s} value={s}>{s}</option>)}
               </select>
             </div>
           </motion.div>
 
           <motion.div variants={fadeUp} custom={1}>
-            <label className="text-xs font-semibold text-slate-500 mb-1.5 block">{t('expertPanel.landArea')}</label>
+            <label className="text-xs font-semibold text-slate-500 mb-1.5 block">District</label>
             <div className="relative">
-              <Ruler className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-              <input type="number" value={form.landArea} onChange={(e) => setForm({ ...form, landArea: e.target.value })} placeholder="e.g., 5" className="input-field !pl-10" />
+              <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              <select 
+                value={form.district} 
+                onChange={(e) => setForm({ ...form, district: e.target.value })} 
+                className="select-field !pl-10"
+                disabled={!form.state}
+              >
+                <option value="">Select District</option>
+                {(form.state ? (stateDistrictMap[form.state] || []) : []).map((d) => (
+                  <option key={d} value={d}>{d}</option>
+                ))}
+              </select>
             </div>
           </motion.div>
 
           <motion.div variants={fadeUp} custom={2}>
-            <label className="text-xs font-semibold text-slate-500 mb-1.5 block">{t('expertPanel.soilType')}</label>
-            <select value={form.soilType} onChange={(e) => setForm({ ...form, soilType: e.target.value })} className="select-field">
-              <option value="">Select Soil</option>
-              {soilTypes.map((s) => <option key={s} value={s}>{s}</option>)}
-            </select>
+            <label className="text-xs font-semibold text-slate-500 mb-1.5 block">Crop Type</label>
+            <div className="relative">
+              <Sprout className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              <select value={form.cropType} onChange={(e) => setForm({ ...form, cropType: e.target.value })} className="select-field !pl-10">
+                <option value="">Select Crop</option>
+                {crops.map((c) => <option key={c} value={c}>{c}</option>)}
+              </select>
+            </div>
           </motion.div>
 
           <motion.div variants={fadeUp} custom={3}>
-            <label className="text-xs font-semibold text-slate-500 mb-1.5 block">{t('expertPanel.fertilizerUsage')}</label>
+            <label className="text-xs font-semibold text-slate-500 mb-1.5 block">Season</label>
             <div className="relative">
-              <FlaskConical className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-              <select value={form.fertilizer} onChange={(e) => setForm({ ...form, fertilizer: e.target.value })} className="select-field !pl-10">
-                <option value="">Select Fertilizer</option>
-                {fertilizerOptions.map((f) => <option key={f} value={f}>{f}</option>)}
+              <Sun className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              <select value={form.season} onChange={(e) => setForm({ ...form, season: e.target.value })} className="select-field !pl-10">
+                <option value="">Select Season</option>
+                {seasons.map((s) => <option key={s} value={s}>{s}</option>)}
               </select>
             </div>
           </motion.div>
 
           <motion.div variants={fadeUp} custom={4}>
-            <label className="text-xs font-semibold text-slate-500 mb-1.5 block">{t('expertPanel.irrigationMethod')}</label>
+            <label className="text-xs font-semibold text-slate-500 mb-1.5 block">Land Area (Hectares)</label>
             <div className="relative">
-              <Droplets className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-              <select value={form.irrigation} onChange={(e) => setForm({ ...form, irrigation: e.target.value })} className="select-field !pl-10">
-                <option value="">Select Method</option>
-                {irrigationMethods.map((m) => <option key={m} value={m}>{m}</option>)}
-              </select>
-            </div>
-          </motion.div>
-
-          <motion.div variants={fadeUp} custom={5}>
-            <label className="text-xs font-semibold text-slate-500 mb-1.5 block">{t('expertPanel.plantSpacing')}</label>
-            <div className="relative">
-              <Grid3X3 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-              <select value={form.spacing} onChange={(e) => setForm({ ...form, spacing: e.target.value })} className="select-field !pl-10">
-                <option value="">Select Spacing</option>
-                {spacingOptions.map((s) => <option key={s} value={s}>{s}</option>)}
-              </select>
+              <Ruler className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              <input type="number" value={form.landArea} onChange={(e) => setForm({ ...form, landArea: e.target.value })} placeholder="Enter land area in hectares" className="input-field !pl-10" />
             </div>
           </motion.div>
         </div>
@@ -122,12 +156,18 @@ export default function YieldPredictor() {
         <div className="mt-6 flex justify-end">
           <button onClick={handleSubmit} disabled={loading} className="btn-primary flex items-center gap-2">
             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <BarChart3 className="w-4 h-4" />}
-            {t('expertPanel.predict')}
+            {loading ? 'Predicting...' : t('expertPanel.predict')}
           </button>
         </div>
       </motion.div>
 
       {/* Results */}
+      {error && (
+        <div className="mt-6 glass-card p-4 border-l-4 border-red-500 bg-red-50/50 dark:bg-red-900/10 flex gap-3 text-left">
+          <AlertCircle className="w-5 h-5 text-red-600 dark:text-red-400 shrink-0" />
+          <p className="text-sm font-medium text-red-800 dark:text-red-400">{error}</p>
+        </div>
+      )}
       {loading && (
         <div className="text-center py-12">
           <div className="w-16 h-16 border-4 border-primary/20 border-t-primary rounded-full animate-spin mx-auto mb-4" />
@@ -139,51 +179,32 @@ export default function YieldPredictor() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5"
+          className="max-w-2xl mx-auto mt-8"
         >
-          {/* Expected Yield */}
-          <div className="glass-card p-6 card-hover text-center">
-            <div className="w-14 h-14 bg-green-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <TrendingUp className="w-7 h-7 text-green-600" />
+          <div className="glass-card p-8 md:p-10 card-hover text-center relative overflow-hidden group">
+            <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            
+            <div className="w-20 h-20 bg-green-50/10 dark:bg-green-500/10 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-inner border border-green-100 dark:border-green-800">
+              <TrendingUp className="w-10 h-10 text-green-600 dark:text-green-400 drop-shadow-md" />
             </div>
-            <p className="text-xs text-slate-500 mb-1">{t('expertPanel.expectedYield')}</p>
-            <p className="font-display text-2xl font-bold text-body">{result.yield}</p>
-          </div>
-
-          {/* Expected Revenue */}
-          <div className="glass-card p-6 card-hover text-center">
-            <div className="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <IndianRupee className="w-7 h-7 text-blue-600" />
-            </div>
-            <p className="text-xs text-slate-500 mb-1">{t('expertPanel.expectedRevenue')}</p>
-            <p className="font-display text-2xl font-bold text-body">{result.revenue}</p>
-          </div>
-
-          {/* Risk Score */}
-          <div className="glass-card p-6 card-hover text-center">
-            <div className="w-14 h-14 bg-amber-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <AlertTriangle className="w-7 h-7 text-amber-600" />
-            </div>
-            <p className="text-xs text-slate-500 mb-1">{t('expertPanel.riskScore')}</p>
-            <p className={`font-display text-2xl font-bold inline-block px-4 py-1 rounded-xl ${riskColor(result.risk)}`}>
-              {result.risk}
+            <p className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wider">Estimated Yield</p>
+            <p className="font-display text-5xl md:text-6xl font-bold text-slate-800 dark:text-slate-100 mb-3 drop-shadow-sm">
+              {result.yield} <span className="text-2xl md:text-3xl text-slate-400 dark:text-slate-500 font-normal">t/ha</span>
+            </p>
+            <p className="text-lg text-slate-600 dark:text-slate-300 font-medium bg-slate-50 dark:bg-slate-800/50 inline-block px-4 py-1.5 rounded-full border border-slate-100 dark:border-slate-700 shadow-sm">
+              ({result.yield} Tonnes per Hectare)
             </p>
           </div>
 
-          {/* Success Probability */}
-          <div className="glass-card p-6 card-hover text-center">
-            <div className="w-14 h-14 bg-primary-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <Target className="w-7 h-7 text-primary" />
-            </div>
-            <p className="text-xs text-slate-500 mb-1">{t('expertPanel.successProbability')}</p>
-            <p className="font-display text-2xl font-bold gradient-text">{result.probability}%</p>
-            <div className="mt-2 h-2 bg-slate-200 rounded-full overflow-hidden">
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: `${result.probability}%` }}
-                transition={{ duration: 1, delay: 0.5 }}
-                className="h-full bg-gradient-to-r from-primary to-primary-light rounded-full"
-              />
+          <div className="mt-6 glass-card p-5 border-l-4 border-amber-500 bg-amber-50/50 dark:bg-amber-900/10 flex gap-4 text-left">
+            <Info className="w-6 h-6 text-amber-600 dark:text-amber-500 shrink-0 mt-0.5" />
+            <div>
+              <h4 className="text-sm font-bold text-amber-800 dark:text-amber-500 mb-1 flex items-center gap-2">
+                ⚠️ Prediction Information
+              </h4>
+              <p className="text-sm text-amber-700/80 dark:text-amber-400/80 leading-relaxed">
+                This yield estimate is generated using machine learning models trained on historical agricultural data. Actual crop performance may vary depending on weather conditions, rainfall, humidity, temperature, soil quality, irrigation practices, and other environmental factors.
+              </p>
             </div>
           </div>
         </motion.div>

@@ -54,7 +54,6 @@ function AnimatedRoutes() {
         <Route path="/khedut-ai" element={<PageWrapper><KhedutAI /></PageWrapper>} />
         
         {/* Placeholder Routes */}
-        <Route path="/weather" element={<PageWrapper><PlaceholderPage title="Weather Advisory" /></PageWrapper>} />
         <Route path="/expert-help" element={<PageWrapper><PlaceholderPage title="Expert Help" /></PageWrapper>} />
       </Routes>
     </AnimatePresence>

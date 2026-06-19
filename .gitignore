@@ -72,6 +72,7 @@ ai_models/crop_disease/merged_dataset/*
 !ai_models/crop_disease/merged_dataset/.gitkeep
 ai_models/crop_disease/model/*
 !ai_models/crop_disease/model/.gitkeep
+# ai_models/crop_disease/dataset/
 # ai_models/yield_predictor/dataset/
 # rag_system/data/pdfs/
 
