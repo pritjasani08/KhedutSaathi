@@ -83,3 +83,20 @@ yarn-error.log*
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+
+# Yield Predictor Dataset
+ai_models/yield_predictor/dataset/*.csv
+
+# Yield Predictor Models
+ai_models/yield_predictor/model/*.pkl
+
+# Python Cache
+__pycache__/
+*.pyc
+
+# Node Modules
+node_modules/
+
+# Build Files
+dist/
