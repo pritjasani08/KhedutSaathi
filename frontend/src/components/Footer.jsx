@@ -14,7 +14,6 @@ export default function Footer() {
   const quickLinks = [
     { path: '/', label: t('nav.home') },
     { path: '/crop-health', label: 'Crop Health' },
-    { path: '/crop-planning', label: 'Crop Planning' },
     { path: '/market-prices', label: 'Market Prices' },
     { path: '/expert-help', label: 'Expert Help' },
     { path: '/resources', label: 'News & Schemes' },

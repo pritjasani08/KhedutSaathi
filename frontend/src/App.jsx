@@ -34,6 +34,8 @@ function PageWrapper({ children }) {
   );
 }
 
+import Profile from './pages/Profile/Profile';
+
 function AnimatedRoutes() {
   const location = useLocation();
 

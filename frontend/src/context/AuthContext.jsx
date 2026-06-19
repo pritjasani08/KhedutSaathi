@@ -24,13 +24,20 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem('khedutsaathi_user', JSON.stringify(userData));
   };
 
+  const updateUser = (newUserData) => {
+    // Merge existing user data with new user data
+    const updated = { ...user, ...newUserData };
+    setUser(updated);
+    localStorage.setItem('khedutsaathi_user', JSON.stringify(updated));
+  };
+
   const logout = () => {
     setUser(null);
     localStorage.removeItem('khedutsaathi_user');
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout, updateUser }}>
       {children}
     </AuthContext.Provider>
   );
