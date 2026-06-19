@@ -1,6 +1,9 @@
 const bcrypt = require('bcrypt');
 const supabase = require('../config/supabaseClient');
 const { generateOTP, sendOTPEmail } = require('../utils/emailService');
+const jwt = require('jsonwebtoken');
+
+const JWT_SECRET = process.env.JWT_SECRET || 'fallback_secret_for_dev_only';
 
 // In-memory store for OTPs (For production, use Redis or Database)
 // Structure: { 'email@example.com': { otp: '123456', userData: {...}, expiresAt: 1234567890 } }
@@ -109,9 +112,17 @@ const verifyOTPAndRegister = async (req, res) => {
     // 5. Success! Clear the OTP session
     otpStore.delete(email);
 
+    // 6. Generate JWT
+    const token = jwt.sign(
+      { id: newUser.id, email: newUser.email, user_type: newUser.user_type },
+      JWT_SECRET,
+      { expiresIn: '7d' }
+    );
+
     res.status(201).json({
       message: 'User registered successfully!',
-      user: newUser
+      user: newUser,
+      token
     });
 
   } catch (error) {
@@ -148,9 +159,17 @@ const login = async (req, res) => {
     // 3. Login successful! Return user details (omit password_hash)
     const { password_hash, ...userWithoutPassword } = user;
     
+    // 4. Generate JWT
+    const token = jwt.sign(
+      { id: user.id, email: user.email, user_type: user.user_type },
+      JWT_SECRET,
+      { expiresIn: '7d' }
+    );
+
     res.status(200).json({
       message: 'Login successful',
-      user: userWithoutPassword
+      user: userWithoutPassword,
+      token
     });
 
   } catch (error) {

@@ -5,16 +5,14 @@ import {
   MessageCircle, X, Send, Mic, MicOff,
   Stethoscope, TrendingUp, Sprout, Droplets, Bot, User
 } from 'lucide-react';
+import { useChat } from '../context/ChatContext';
 
 export default function ChatbotWidget() {
   const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState([
-    { id: 1, type: 'bot', text: t('chatbot.greeting'), time: new Date() },
-  ]);
+  const { messages, isTyping, sendMessage } = useChat();
   const [input, setInput] = useState('');
   const [isRecording, setIsRecording] = useState(false);
-  const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -34,28 +32,8 @@ export default function ChatbotWidget() {
 
   const handleSend = () => {
     if (!input.trim()) return;
-
-    const userMessage = {
-      id: Date.now(),
-      type: 'user',
-      text: input,
-      time: new Date(),
-    };
-    setMessages((prev) => [...prev, userMessage]);
+    sendMessage(input);
     setInput('');
-    setIsTyping(true);
-
-    // Simulate bot response
-    setTimeout(() => {
-      const botMessage = {
-        id: Date.now() + 1,
-        type: 'bot',
-        text: "Thank you for your question! I'm analyzing your query and will provide you with the best farming advice. This is a demo response — the full AI backend will provide real-time intelligent answers.",
-        time: new Date(),
-      };
-      setMessages((prev) => [...prev, botMessage]);
-      setIsTyping(false);
-    }, 1500);
   };
 
   const handleQuickAction = (action) => {

@@ -1,0 +1,202 @@
+Agriculture :: Mineral Nutrition :: Introduction
+|
+Home
+|
+Seasons & Varieties
+|
+Tillage
+|
+Nutrient Management
+|
+Irrigation Management
+|
+Weed Management
+|
+Crop Protection
+|
+Cost of Cultivation
+|
+Photobank
+Plant Nutrition :: Mineral Nutrition
+Essentiality of  Elements in Plant Nutrition
+A  mineral element is considered essential to plant growth and development if the  element is involved in plant metabolic functions and the plant cannot complete  its life cycle without the element. Usually the plant exhibits a visual symptom  indicating a deficiency in a specific nutrient, which normally can be corrected  or prevented by supplying the nutrient. Terms commonly used to describe levels  of nutrients in plants:
+Deficient
+:
+When the  concentration of an essential element is low enough to limit yield severely and  distinct deficiency symptoms are visible. Extreme deficiencies can result in  plant death. With moderate or slight deficiencies, symptoms may not be visible,  but yields will still be reduced.
+Critical range
+:
+The  nutrient concentration in the plant below which a yield response to added  nutrient occurs. Critical levels or ranges vary among plants and nutrients, but  occur somewhere in the transition between nutrient deficiency and sufficiency.
+Sufficient
+:
+The  nutrient concentration range in which added nutrient will not increase yield  but can increase nutrient concentration. The term
+luxury consumption
+is  often used to describe nutrient absorption by the plant that does not influence  yield.
+Excessive or toxic
+:
+When  the concentration of essential or other elements is high enough to reduce plant  growth and yield. Excessive nutrient concentration can cause an imbalance in  other essential nutrients, which also can reduce yield.
+Essential Elements
+Sixteen elements are considered  essential to plant growth. Carbon (C), hydrogen (H) and oxygen (O) are the most  abundant elements in plants. The photosynthetic process in green leaves  converts CO2 and H2O into simple carbohydrates from which  amino acids, sugars, proteins, nucleic acid and other organic compounds are  synthesized. Carbon, H and O are not considered mineral nutrients. The supply  of CO2 is relatively constant. The supply of H2O rarely  limits photosynthesis directly but does indirectly though the various effects  resulting from moisture stress.
+The remaining 13 essential elements  are classified as macronutrients and micronutrients and the classification is  based on their relative abundance in plants. The macronutrients are nitrogen  (N), phosphorus (P), potassium (K), sulfur (S), calcium (Ca) and magnesium  (Mg). Compared to the macronutrients, the concentrations of the seven  micronutrients – iron (Fe), zinc (Zn), manganese (Mn), copper (Cu), born (B),  chlorine (Cl) and molybdenum (Mo) – are very small. Five additional elements –  sodium (Na), cobalt (Co), vanadium (Va), nickel (Ni) and silicon (Si) have been  established as essential micronutrients in some plants. Micronutrients are  often referred to as minor elements, but this does not mean that they are less  important than macronutrients. Micronutrient deficiency or toxicity can reduce  plant yield similar to macronutrient deficiency or toxicity.
+In fact, plants absorb many  nonessential elements, and over 60 elements have been identified in plant materials.  When plant material is burned, the remaining plant ash contains all the  essential and nonessential mineral elements except, C, H, O, N and S which are  burnt off as gases.
+Soil, climate, crop variety and  management factors exert considerable influence on plant composition. Because  many biological and chemical reactions occur with fertilizers in soils, the  quantity of nutrients absorbed by plants does not equal the quantity applied as  a fertilizer. Proper fertilizer management can maximize the proportion of  fertilizer nutrient absorbed by the plant. As plants absorb nutrients from the  soil, complete their life cycle and die, the nutrients in the plant residue are  returned to the soil. These plant nutrients are subject to the same biological  and chemical reactions as fertilizer nutrients. Although this cycle varies  somewhat among nutrients, understanding nutrient dynamics in the soil plant  atmosphere system is essential to successful fertilizer management.
+Table 1. Essential Nutrients for plant growth and their principal forms for uptake
+Nutrient
+Chemical Symbol
+Principal forms for    uptake
+Carbon
+C
+CO2
+Hydrogen
+H
+H2O
+Oxygen
+O
+H2O, O2
+Nitrogen
+N
+NH+4, NO-3
+Phosphorus
+P
+H2PO-4, HPO2-4
+Potassium
+K
+K+
+Calcium
+Ca
+Ca2+
+Magnesium
+Mg
+Mg2+
+Sulfur
+S
+SO2-4, SO2
+Iron
+Fe
+Fe2+, Fe3+
+Manganese
+Mn
+Mn2+
+Boron
+B
+H3BO3
+Zinc
+Zn
+Zn2+
+Copper
+Cu
+Cu2+
+Molybdenum
+Mo
+MoO2-4
+Chlorine
+Cl
+Cl-
+Table 2 . Relative and Average Plant Nutrient  Concentrations
+Plant Nutrient
+Average Concentration*
+H
+6.0%
+O
+45.0%
+C
+45.0%
+N
+1.5%
+K
+1.0%
+Ca
+0.5%
+Mg
+0.2%
+P
+0.1%
+S
+0.1%
+Cl
+100 ppm (0.01%)
+Fe
+100 ppm
+B
+20 ppm
+Mn
+50 ppm
+Zn
+20 ppm
+Cu
+6 ppm
+Mo
+0.1 ppm
+* Concentration expressed by weight on a dry matter basis.
+Table 3 . Functions of Essential Nutrients in  Plants
+Nutrient
+Function
+Carbon
+Basic molecular    component of carbohydrates, proteins, lipids, and nucleic acids.
+Oxygen
+Oxygen is somewhat    like carbon in that it occurs in virtually all organic compounds of living    organisms.
+Hydrogen
+Hydrogen plays a    central role in plant metabolism. Important in ionic balance and as main    reducing agent and plays a key role in energy relations of cells.
+Nitrogen
+Nitrogen is a    component of many important organic compounds ranging from proteins to    nucleic acids.
+Phosphorus
+Central role in    plants is in energy transfer and protein metabolism.
+Potassium
+Helps in osmotic    and ionic regulation. Potassium functions as a cofactor or activator for many    enzymes of carbohydrate and protein metabolism.
+Calcium
+Calcium is    involved in cell division and plays a major role in the maintenance of    membrane integrity.
+Magnesium
+Component of    chlorophyll and a cofactor for many enzymatic reactions.
+Sulfur
+Sulfur is somewhat    like phosphorus in that it is involved in plant cell energetic.
+Iron
+An essential    component of many heme and nonheme Fe enzymes and carries, including the    cytochromes (respiratory electron carriers) and the ferredoxins. The latter    are involved in key metabolic function such as N fixation, photosynthesis,    and electron transfer.
+Zinc
+Essential    component of servral dehydrogenases, and peptidases, including carbonic    anhydrase, alcohol dehydrogenase, glutamic dehydrogenase, and malic    dehdrogenase, among others.
+Manganese
+Involved in the O2    – evolving system of photosynthesis and is a component of the enzymes    arginase and phospho transferases.
+Copper
+Constituent of a    number of important enzymes, including cytochrome oxidize, ascorbic acid    oxidase, and laccase.
+Boron
+Involved in    carbohydrate metabolism and synthesis of cell wall components.
+Molybdenum
+Required for the    normal assimilation of N in plants. An essential component of nitrate    reductase as well as nitrogenase (N2 fixation enzyme)
+Chlorine
+Essential for    photosynthesis and as an activator of enzymes involved in splitting water. It    also functions in osmoregulation of plants growing on saline soils.
+General absorption and mobility rankings for foliar    applied nutrients
+Absorption
+Mobility
+Rapid
+Urea Nitrogen, Potassium, Zinc
+Moderate
+Calcium, Sulfate,    Manganese, Boron
+Slow
+Magnesium, Copper, Iron,    Molybdenum
+Mobile
+Urea Nitrogen,    Potassium, Phosphorus, Sulfate
+Partially Mobile
+Zinc, Copper, Manganese,    Boron, Molybdenum
+Immobile
+Iron, Calcium, Magnesium
+Source:
+http://www.plantstress.com/Articles/min_deficiency_m/mitigation.htm
+|
+Home
+|
+Seasons & Varieties
+|
+Tillage
+|
+Nutrient Management
+|
+Irrigation Management
+|
+Weed Management
+|
+Crop Protection
+|
+Cost of Cultivation
+|
+Photobank
+|
+Disclaimer
+© All Rights Reserved. TNAU-2016.

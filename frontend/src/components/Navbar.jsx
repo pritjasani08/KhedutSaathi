@@ -48,9 +48,9 @@ export default function Navbar() {
   const navLinks = [
     { path: '/', label: t('nav.home') },
     { path: '/crop-health', label: 'Crop Health' },
-    { path: '/market-prices', label: 'Market Prices' },
-    { path: '/ai-assistant', label: 'AI Assistant' },
-    { path: '/expert-help', label: 'Expert Help' },
+    { path: '/market-prices', label: 'Market Intelligence' },
+    { path: '/crop-recommendation', label: 'Crop Recommendation' },
+    { path: '/khedut-ai', label: 'Khedut AI' },
     { path: '/resources', label: 'News & Schemes' },
     { path: '/features', label: 'Features' },
     { path: '/about', label: 'About' },

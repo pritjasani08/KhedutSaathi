@@ -23,14 +23,16 @@ export default function Features() {
           hoverBg: 'hover:bg-green-50 dark:hover:bg-green-900/40',
           emoji: '🌿',
         },
+
         {
-          title: 'Disease Detection',
-          desc: 'Upload an image of your crop to get instant AI diagnosis and treatment recommendations.',
-          path: '/crop-health',
-          bg: 'bg-emerald-50 dark:bg-emerald-900/30',
-          hoverBg: 'hover:bg-emerald-50 dark:hover:bg-emerald-900/40',
-          emoji: '🔍',
+          title: 'Crop Recommendation',
+          desc: 'Get AI-powered recommendations based on your soil, location, and water availability.',
+          path: '/crop-recommendation',
+          bg: 'bg-blue-50 dark:bg-blue-900/30',
+          hoverBg: 'hover:bg-blue-50 dark:hover:bg-blue-900/40',
+          emoji: '📋',
         },
+
         {
           title: 'Smart Irrigation',
           desc: 'Monitor irrigation requirements and optimize water usage using AI-powered recommendations.',
@@ -44,14 +46,7 @@ export default function Features() {
     {
       title: 'Market & Commerce',
       features: [
-        {
-          title: 'Market Prices',
-          desc: 'Access live Mandi prices across different states and districts, and analyze market trends.',
-          path: '/market-prices',
-          bg: 'bg-amber-50 dark:bg-amber-900/30',
-          hoverBg: 'hover:bg-amber-50 dark:hover:bg-amber-900/40',
-          emoji: '📊',
-        },
+
         {
           title: 'Market Intelligence',
           desc: 'Advanced insights and demand forecasting to help you sell at the best time.',
@@ -74,9 +69,9 @@ export default function Features() {
       title: 'AI & Support',
       features: [
         {
-          title: 'AI Assistant',
+          title: 'Khedut AI',
           desc: 'Your personal 24/7 farming assistant ready to answer your agricultural questions.',
-          path: '/ai-assistant',
+          path: '/khedut-ai',
           bg: 'bg-purple-50 dark:bg-purple-900/30',
           hoverBg: 'hover:bg-purple-50 dark:hover:bg-purple-900/40',
           emoji: '🤖',
@@ -88,6 +83,7 @@ export default function Features() {
           bg: 'bg-violet-50 dark:bg-violet-900/30',
           hoverBg: 'hover:bg-violet-50 dark:hover:bg-violet-900/40',
           emoji: '🧑‍🌾',
+          isComingSoon: true,
         },
       ]
     },
@@ -149,10 +145,15 @@ export default function Features() {
                       to={feature.path}
                       className={`block glass-card p-8 card-hover group h-full border border-transparent hover:border-primary/20 dark:hover:border-primary/40 transition-all duration-500 ${feature.hoverBg}`}
                     >
-                      <div className="flex items-start gap-4 mb-5">
-                        <div className={`w-16 h-16 ${feature.bg} rounded-2xl flex items-center justify-center text-3xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}>
+                      <div className="flex items-start justify-between gap-4 mb-5">
+                        <div className={`w-16 h-16 ${feature.bg} rounded-2xl flex items-center justify-center text-3xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shrink-0`}>
                           {feature.emoji}
                         </div>
+                        {feature.isComingSoon && (
+                          <span className="px-2.5 py-1 text-xs font-semibold rounded-full bg-slate-100/80 text-slate-600 dark:bg-slate-800/80 dark:text-slate-300 shrink-0">
+                            Coming Soon
+                          </span>
+                        )}
                       </div>
 
                       <h3 className="font-display text-xl font-bold text-heading mb-3 group-hover:text-primary dark:group-hover:text-primary-light transition-colors duration-300">

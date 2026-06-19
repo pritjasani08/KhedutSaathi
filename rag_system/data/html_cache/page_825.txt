@@ -1,0 +1,316 @@
+Horticulture :: Cost of Cultivation
+|
+Home
+|
+Nursery Techniques
+|
+Deficiencies & Disorders
+|
+Fertilizer Schedule
+|
+Plant Protection
+|
+Gallery
+|
+Contact
+|
+Horticulture :: Cost of Cultivation
+Cost  of cultivation of annual horticultural crops
+Cost  of cultivation NHB
+Crop
+Field preparation
+Nursery and planting / sowing
+Weeding
+Plant protection
+Fertilizers
+Wages
+Staking, transport & other    expenses
+Total
+Tomato
+6000
+7000
+10000
+12000
+8000
+13000
+5000
+61000
+Chilli
+6000
+7000
+10000
+12000
+6000
+5000
+-
+46000
+Paprika
+6000
+8000
+10000
+12000
+8000
+5000
+-
+49000
+Capsicum
+6000
+8000
+10000
+12000
+8000
+5000
+-
+49000
+Brinjal
+6000
+7000
+10000
+10000
+7000
+10000
+-
+50000
+Bhendi
+6000
+12000
+5600
+5000
+6000
+6000
+-
+40600
+Cabbage
+6000
+10000
+10000
+12000
+8500
+5000
+-
+51500
+Cauliflower
+6000
+10000
+10000
+12000
+8500
+5000
+-
+51500
+Tapioca
+6000
+5000
+8000
+2000
+3000
+6000
+-
+30000
+Watermelon
+6000
+10000
+10000
+8000
+8000
+8000
+-
+50000
+Muskmelon
+6000
+14000
+10000
+8000
+8000
+8000
+2000
+56000
+Ribbed gourd
+6000
+8000
+8000
+8000
+7000
+5000
+-
+42000
+Bottle gourd
+6000
+8000
+8000
+8000
+7000
+5000
+-
+42000
+Gherkins
+6000
+8000
+7000
+9000
+7000
+6000
+5000
+48000
+Turmeric
+6000
+10000
+8000
+8000
+8000
+5000
+-
+45000
+Coriander
+6000
+6000
+6000
+6000
+4000
+4000
+-
+32000
+Banana
+6000
+8000
+8000
+10000
+10000
+6000
+8000
+56000
+Chrysan-themum
+6000
+15000
+8000
+10000
+9000
+7000
+-
+55000
+Golden rod
+6000
+30000
+10000
+10000
+11000
+10000
+-
+77000
+Costs  and benefits of annual Horticultural crops
+Crop
+Cost of cultivation
+Yield (MT/ha)
+Net income (Rs.) (at the    lowest price)
+Market price range (Rs.)
+Tomato
+61000
+50
+39000    (@ Rs. 2/kg)
+2 - 30/kg
+Chilli
+46000
+22
+64000    (@ Rs.5/kg)
+5 - 15/kg
+Paprika
+49000
+37
+136000 (@ Rs. 5/kg)
+5 - 20/kg
+Capsicum
+49000
+18
+95000    (@ Rs. 8/kg)
+8 - 25/kg
+Brinjal
+50000
+60
+70000    (@ Rs. 2/kg)
+2 - 30/kg
+Bhendi
+40600
+10
+19400    (@ Rs.6/kg)
+6 - 15/kg
+Cabbage
+51500
+75
+173500    (@ Rs. 3/kg)
+3 - 10/kg
+Cauliflower
+51500
+32000    flowers
+108500    (@ Rs. 5/flower)
+5 - 15/flower
+Tapioca
+30000
+30
+54000    (@ Rs. 2.8/kg)
+2.8    - 5/kg
+Watermelon
+50000
+40
+50000    (@ Rs. 2.5/kg)
+2.5    - 10/kg
+Muskmelon
+56000
+22
+54000    (@ Rs.5/kg)
+5 - 25/kg
+Ribbed gourd
+42000
+20
+38000    (@ Rs. 4/kg)
+4 - 15/kg
+Bottle gourd
+42000
+40
+78000    (@ Rs. 3/kg)
+3 - 15/kg
+Gherkins
+48000
+20
+72000    (@ Rs. 6/kg)
+6 - 12/kg
+Turmeric
+45000
+5
+55000    (@ Rs. 2000/Q)
+2000 - 4000/Q
+Coriander
+32000
+87000    bundles
+55000    (@ Rs. 1/bundle)
+1 - 2/bundle
+Banana
+56000
+75
+319000    (@ Rs. 5/kg)
+5 - 12/kg
+Chrysanthemum
+55000
+20
+245000    (@ Rs. 15/kg)
+15 - 25/kg
+Golden rod
+77000
+15000    bunches
+73000 (@ Rs. 10/bunch)
+10 - 14/bunch
+Source
+1.  http://www.tnau.ac.in/horcbe/tnpfp/economics.pdf
+Home
+|
+Nursery Techniques
+|
+Deficiencies & Disorders
+|
+Fertilizer Schedule
+|
+Plant Protection
+|
+Gallery
+|
+Contact
+© All Rights Reserved. TNAU-2013.

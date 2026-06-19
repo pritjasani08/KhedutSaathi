@@ -72,10 +72,10 @@ export default function HeroSection() {
                 <Upload className="w-5 h-5" />
                 Upload a Crop Image
               </Link>
-              <button className="btn-secondary text-base flex items-center justify-center gap-2">
+              <Link to="/khedut-ai" className="btn-secondary text-base flex items-center justify-center gap-2">
                 <Bot className="w-5 h-5" />
-                Ask AI Assistant
-              </button>
+                Ask Khedut AI
+              </Link>
             </motion.div>
 
             {/* Trust badges */}
@@ -114,7 +114,7 @@ export default function HeroSection() {
                 { icon: '🌱', label: 'Disease Detection', pos: 'top-4 left-4', delay: 0 },
                 { icon: '📈', label: 'Market Prices', pos: 'top-8 right-0', delay: 0.5 },
                 { icon: '💧', label: 'Smart Irrigation', pos: 'bottom-8 left-0', delay: 1 },
-                { icon: '🤖', label: 'AI Assistant', pos: 'bottom-4 right-4', delay: 1.5 },
+                { icon: '🤖', label: 'Khedut AI', pos: 'bottom-4 right-4', delay: 1.5 },
               ].map((item, i) => (
                 <motion.div
                   key={i}

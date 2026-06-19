@@ -1,0 +1,74 @@
+TNAU Agritech Portal :: Crop Protection
+Home
+|
+About Us
+|
+Success Stories
+|
+Farmers Association
+|
+Farmers' Innovation
+|
+Publications
+|
+Contact
+Nematode : Management
+Nematode Management
+Nematodes are thread-like roundworms invisible to the naked eye. Species parasitic on plants attack roots and other plant parts, causing stunting and yield reduction. Nematode-infected plants are not only weakened, but their root systems are more susceptible to secondary infections by fungi or bacteria. For example, nematode-infested okra plantings are often attacked by Fusarium wilt. Not all nematodes are plant pathogens, however. The majority of nematode species live in the soil on decaying plant material where they are active in decomposition and nutrient recycling. Some species parasitize other nematodes or insects.
+Correct identification is the first step when a nematode problem is suspected. The second step is to determine whether populations are high enough to threaten the crop. Most state soil testing services can analyze for nematodes. Soil samples taken during warm weather and when plants are growing are more useful in revealing nematode problems than samples taken in winter or from fallow land. In the south, broadleaf plants growing in warm sandy soils are the most vulnerable to nematode damage. Root knot nematodes, the most common pathogenic nematodes in vegetables, cannot penetrate roots when soil temperatures are below 50 degrees F, and will not reproduce when soil temperatures are below 58 degrees F. Their reproductive rate is slower at cooler tempera tures, so populations build up more slowly. Thus, cool season crops are less likely to be damaged. Early spring potatoes, for example, are rarely damaged by nematodes.
+Nematode management practices
+Isolation
+Once a nematode problem is confirmed, affected areas and plants should be isolated because transplants, machinery, and irrigation water can all spread nematode infections. From initially small infested areas, nema-todes can spread across a field at a rate of 3 feet per year.
+Crop Rotation and Cover Crops
+Crops susceptible to root knot nematodes include all cole crop species, beans, eggplant, cucumber, muskmelon, watermelon, honeydew, okra, pepper (with the exception of 'Carolina Cayenne'), potato, sweetpotato and tomato. All potatoes are susceptible to nematodes except for a few cultivars resistant to the golden nematode. There are nematode-tolerant cultivars of beans and sweetpotato and nematode-resistant tomato cultivars.
+Rotation to non-host crops such as corn, cucurbits, potatoes, and tomatoes is an effective control for the cyst nematode
+(Heterodera spp.),
+but is less likely to control the root knot nematode because of its wider host range. All species of
+Meloidogyne
+are called 'root knot' nematode, but each species has a different host range, causing confusion over which crops or cultivars are resistant or tolerant to which species of root knot nematode. Rotations to non-host crops for more than a year reduce populations below damaging levels but will not eliminate them. It is generally agreed that asparagus, corn, onions, garlic, small grains, cahaba white vetch, and 'nova' vetch are sufficiently resistant that they can be grown as a rotation crop in soils infested with root knot nematodes. Crotalaria, velvet bean, soybean and grasses such as rye are also resistant to root knot nematode and are good rotation crops. A rye rotation in Florida did not increase populations of root knot nematode in subsequent soybean crops while crimson clover did.
+Cover crops of winter rapeseed significantly reduced subsequent damage to potatoes by the Columbia root knot nematode.Sudangrass reduced soil nematode populations, but suppression may not be of sufficient duration for commercial potato production. Using sesame as a cover crop has been reported to decrease nematodes.
+Increasing Soil Organic Matter
+Higher soil organic matter content protects plants against nematodes by increasing soil water-holding capacity and enhancing the activity of naturally-occurring biological organisms that compete with nematodes in the soil. See Soil Management for ways to increase soil organic matter. Low soil moisture puts even more stress on plants with nematode-damaged root systems.
+Fallow Period
+A fallow period of two years with no susceptible plants in the field decreases nematode populations. This host-free period can be achieved in one season rather than two years by disking every 10 days all summer. Such disking is expensive in terms of fuel costs and possible erosion, but has the added advantage of reducing perennial weeds such as nutsedge.
+Crab Meal
+Crab meal compost is potentially nematode-suppressive. Blue crab compost applied at a 10 to 20 percent ratio (weight compost: weight soil being treated) suppressed root galling and egg mass production by
+Meloidogyne javanica
+on tomato. Raw crab scrap at 0.05 percent was even more effective in suppressing root galling than the 20-percent compost. Crab meal, like other nematode control practices, must be applied before planting because these materials need to penetrate as much of the rooting zone as possible to be effective. This is only possible if they can be incorporated before planting.
+Biological control
+Marigolds.
+In northern Mexico, nematode levels, held constant on fallow plots, decreased by 90 percent in plots where marigolds were grown, and increased five-fold in plots with tomatoes. French marigold,
+Tagetes patula,
+is the only type at all effective in lowering root knot nematode populations. Marigolds as a rotation crop must be grown in a solid planting for a full season to suppress nematodes. Caution: marigolds are a host crop for the northern root knot nematode
+(Meloidogyne hapla),
+which can also occur in the south.
+Bacterial nematicides.
+A strain of
+Bacillus thuringiensis (Bt)
+reduces damage by root knot nematodes of the species
+Rotylenchulus reniformis.
+Nematode populations 12 weeks after transplanting were 50 percent lower in pepper plants given a Bt drench at transplanting than in untreated controls. Commercial release of this Bt strain is in process. Although it is also not yet commercially available,
+B. penetrans
+has been shown to attack root knot nematodes and is another potential biological control.
+Fungal nematicides.
+The fungus
+Paecilomyces lilacinus
+parasitizes the eggs of some nematodes, including
+Meloidogyne incognita
+in potatoes and is relatively effective as a control. The fungus reduced reniform nematode population development
+(Rotylenchus reniformis)
+on tomato in small field plots in North Carolina. The suppression was sufficient to increase shoot and fruit weight.
+Plant resistance
+Nematode resistant cultivars have been developed using conventional breeding techniques, but there is increasing interest in developing resistances through genetic engineering. For example, scientists at NCSU are experimenting with ways to genetically alter tobacco plants so that nematodes cannot reproduce in the plant roots. These genetically altered plants would trap nematodes rather than allowing them to feed and reproduce.
+Home
+|
+About Us
+|
+Success Stories
+|
+Farmers Association
+|
+Publications
+|
+Contact Us
+© TNAU 2008 - 2024 All Rights Reserved.

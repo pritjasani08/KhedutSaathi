@@ -1,0 +1,835 @@
+Horticulture :: Greenhouse cultivation
+|
+Home
+|
+Nursery Techniques
+|
+Deficiencies & Disorders
+|
+Fertilizer Schedule
+|
+Plant Protection
+|
+Gallery
+|
+Contact
+|
+Horticulture :: Greenhouse cultivation
+GREENHOUSE  CULTIVATION
+1. Designs  and classification of greenhouse
+2. Orientation  Of Greenhouse / Polyhouse
+3. Components of green house
+4. Plant  growing structures/containers in green house production
+5. Environmental  factors influencing greenhouse cultivation
+6. Media  preparation and fumigation
+7. Drip  irrigation and fertigation systems greenhouse cultivation
+8. Cost  estimation for green/polyhouse construction
+9. Problem  management in greenhouse cultivation
+10. Special  horticultural practices in greenhouse production
+11. Physiological  disorders of greenhouse grown cut flowers
+12. Post  harvest handling practices for cut flowers
+Carnation under low cost greenhouse
+1.
+Designs and  classification of greenhouse
+Greenhouses are  frames of inflated structure covered with a transparent material in which crops  are grown under controlled environment conditions. Greenhouse cultivation as  well as other modes of controlled environment cultivation have been evolved to  create favorable micro-climates, which favours the crop production could be  possible all through the year or part of the year as required. Greenhouses and  other technologies for controlled environment plant production are associated  with the off-season production of ornamentals and foods of high value in cold  climate areas where outdoor production is not possible. The primary environmental  parameter traditionally controlled is temperature, usually providing heat to  overcome extreme cold conditions. However, environmental control can also  include cooling to mitigate excessive temperatures, light control either  shading or adding supplemental light, carbon dioxide levels, relative humidity,  water, plant nutrients and pest control.
+Classification  of greenhouse based on suitability and cost
+a) Low cost  or low tech greenhouse
+Low cost  greenhouse is a simple structure constructed with locally available materials  such as bamboo, timber etc. The ultra violet (UV) film is used as cladding  materials. Unlike conventional or hi-tech greenhouses, no specific control  device for regulating environmental parameters inside the greenhouse are provided.  Simple techniques are, however, adopted for increasing or decreasing the  temperature and humidity. Even light intensity can be reduced by incorporating  shading materials like nets. The temperature can be reduced during summer by  opening the side walls. Such structure is used as rain shelter for crop  cultivation. Otherwise, inside temperature is increased when all sidewalls are  covered with plastic film. This type of greenhouse is mainly suitable for cold  climatic zone.
+b) Medium-tech  greenhouse
+Greenhouse users  prefers to have manually or semiautomatic control arrangement owing to minimum  investment. This type of greenhouse is constructed using galvanized iron (G.I)  pipes. The canopy cover is attached with structure with the help of screws.  Whole structure is firmly fixed with the ground to withstand the disturbance  against wind. Exhaust fans with thermostat are provided to control the  temperature. Evaporative cooling pads and misting arrangements are also made to  maintain a favourable humidity inside the greenhouse. As these system are  semi-automatic, hence, require a lot of attention and care, and it is very  difficult and cumbersome to maintain uniform environment throughout the  cropping period. These greenhouses are suitable for dry and composite climatic  zones.
+c) Hi-tech  greenhouse
+To overcome some  of the difficulties in medium-tech greenhouse, a hi-tech greenhouse where the  entire device, controlling the environment parameters, are supported to  function automatically.
+Cost involved
+1.     Less  expensive greenhouse without fan and pad          Rs.300  to 500/m2
+2.     Medium cost  greenhouse with pad and fan system        Rs.800 to Rs.1100/m2
+without  automation
+3.     Expensive  greenhouses with fully automatic                 Rs.2000 to Rs.3500/m2
+control  system
+Other classifications
+The greenhouse can also be classified based on type of structures, type  of glazing, number of spans, environmental  control etc. The various  types are as follows.
+Classification as per type of structure
+a. Quonset type
+b. Curved roof  type
+c. Gable roof type
+Classification as per glazing
+a. Glass glazing
+b. Fiberglass  reinforced plastic glazing
+i. Plain sheet
+ii. Corrugated  sheet
+c. Plastic film
+i. Ultra violet  stabilized low density poly ethylene
+ii. Silpaulin
+Classification based on number of spans
+a. Free standing  or single span
+b. Multispan or  ridge and furrow or gutter connected
+Classification based on environmental control
+a. Naturally  ventilated
+b. Passive  ventilation
+Poly house
+The crops grown in  open field are exposed to vivid environmental conditions, attack of insects and  pests, whereas the polyhouse provides a more stable environment. Polyhouse can  be divided in to two types
+a) Naturally  ventilated polyhouse
+These polyhouse do  not have any environmental control system except for the provision of adequate  ventilation and fogger system to prevent basically the damage from weather  aberrations and other natural agents..
+b) Environmental  controlled polyhouse
+This type of  polyhouse helps to extend the growing season or permits off-season production  by way of controlling light, temperature, humidity, carbon-dioxide level and  nature of root medium.
+Carnation under high-tech greenhouse
+Shade house
+Shadehouses are  used for the production of plants in warm climates or during summer months.  Nurserymen use these structures for the growth of hydrangeas and azaleas during  the summer months. Apart from nursery, flowers and foliages which require shade  can also be grown in shadehouses. E.g. Orchids, These shade structures make  excellent holding areas for field-grown stock while it is being prepared for  shipping to retail outlets. Shadehouses are most often constructed as a  pole-supported structure and covered with either lath (lathhouses) or polypropylene  shade fabric. Polypropylene shadenets with various percentages of ventilations  are used. Black, green, and white coloured nets are used, while black colours  are the most preferred as it retains heat outside.
+Top
+2.
+Orientation  of greenhouse / polyhouse
+The design of  greenhouse should be based upon sound scientific principles which facilitates  controlled environment for the plant growth. Controlled environment plant  production systems are used widely throughout the world to produce plant  materials and products at a time or place, or of a quality that can not be  obtained outdoors. Controlled environment agriculture requires far more capital  investment per unit area than field agriculture and thus must essentially be  correspondingly more intensive to justify investment costs. The greenhouse is a  structure covered with a transparent material for admitting natural light for  plant growth. The main components of greenhouse like structure,  covering/glazing and temperature control systems need proper design for healthy  growth of plants.
+Under Indian  conditions, Quonset type, multispan greenhouse is most suitable, because of its  low cost and ease of fabrication. Ultra violet resistant low density  polyethylene (UVLDPE) single film cladding of 200 micron thickness is sufficient  for Naturally Ventilated ( NV) greenhouse and fan and pad (FP) greenhouses.  This should be fully tightened by stretching on the structure to avoid fluter  and tearing. It should not be nailed or screwed to the structure as it gives  the chance for tearing. The T-Lock of LLock should be used for fastening the  sheet at structure, as this does not tear the sheet and sheet replacement is  easy.
+Design
+The structure has to carry the  following loads and is to be designed accordingly.
+a) Dead load:
+weight of all permanent construction, cladding, heating  and cooling equipment, water pipes and all fixed service equipments to the  frame.
+b) Live load:
+weights superimposed by use (include hanging baskets,  shelves and persons working on roof). The greenhouse has to be designed for a maximum  of 15 kg per square meter live load. Each member of roof should be capable  of supporting 45 kg of concentrated load when applied at its centre.
+c) Wind load:
+The structure should be able to withstand winds of 110  kilometer per hour and at least 50 kg per square meter of wind pressure.
+d) Snow load:
+These are to be taken as per the average snowfall of the  location
+The greenhouse should be able to  take dead load plus live load or dead load plus wind load plus half the live  load.
+The greenhouses  are to be fabricated out of Galvanized Iron Pipes. The foundation can be  60cmx60cmx60cm or 30 cm diameter and one meter depth in PCC of 1:4:8 ratio. The  vertical poles should also be covered to the height of 60 cm by PCC with a  thickness of 5cm. This avoids the rusting of the poles.
+Orientation
+Orientation of the  greenhouse is a compromise for wind direction, latitude of location and type of  temperature control. Single greenhouses with latitude above 40°N should have ridge running east to west  to allow low angle light to enter from side rather than ends. Below 40°N the ridge of single greenhouses  should be oriented from north to south, since the angle of sun is much higher.  This orientation permits the movement of shadow of the gutter across the green  house. The location and orientation of the greenhouse should avoid falling of  shadow on the adjacent greenhouses. To avoid the shading effect from one green  house to another greenhouse these should be oriented East to West. However, the  wind direction and latitude are also to be considered.
+Wind effects
+If the greenhouse  is naturally ventilated, the advantage of natural wind direction has to be  taken to the maximum possible. The maximum dimension (length) of greenhouse  should be perpendicular to the wind direction especially in summer. For fan and  pad greenhouse the natural wind direction should be same as the air blown by  fan.
+Size of the  greenhouse
+The dimension of NAV  GH should not be more than 50m x 50m. Bigger the
+greenhouse, more  will be the temperature build up due to poor ventilation. The length of  evaporatively cooled greenhouse should not be more than 60m.
+Spacing  between greenhouses
+The spacing  between naturally ventilated green house should be 10 to 15 m so that the  exhaust from one greenhouse should not enter the adjacent greenhouse.
+Height of  greenhouse
+The maximum height  can be up to 5m for 50m x 50m green house and this can be reduced as per the  reduced size of the green house. Higher is the greenhouse more is the wind load  for structure and glazing. The side ventilation can be of 2 m width and roof  ventilation is 1m in width.
+Structural  design
+The greenhouses  are to be designed for necessary safety, serviceability, general structural  integrity and suitability. The structure should be able to take all the  necessary dead, live, wind and snow loads. The foundation, columns and trusses  are to be designed accordingly. The greenhouse structures are to be designed to  take up the loads as per design loads prescribed by the National Greenhouse  Manufactures Association (NGMA of USA) standards –1994.
+Top
+3.
+Components of greenhouse
+Roof:
+transparent cover of a green house.
+Gable
+: transparent wall of a green  house
+Cladding material
+: transparent material mounted  on the walls and roof of a green house.
+Rigid  cladding material
+: cladding material with such a degree of rigidity that any deformation  of the structure may result in damage to it. Ex. Glass
+Flexible  cladding material
+: cladding material with such a degree of flexibility that any  deformation of the structure will not result in damage to it. Ex. Plastic film
+Gutter
+: collects and drains rain  water and snow which is place at an elevated level between two spans.
+Column
+: vertical structure member  carrying the green house structure
+Purlin
+: a member who connects  cladding supporting bars to the columns
+Ridge
+: highest horizontal section in  top of the roof
+Girder
+: horizontal structure member,  connecting columns on gutter height
+Bracings
+: To support the structure  against wind
+Arches
+: Member supporting covering  materials
+Foundation pipe:
+Connection between the  structure and ground
+Span width
+: Center to center distance of  the gutters in multispan houses
+Green house length
+: dimension of the green house  in the direction of gable
+Green house width
+: dimension of the green house  in the direction of the gutter
+Covering  polyhouse with cladding material stage - I
+Covering  polyhouse with cladding material stage – II
+Covering  polyhouse with cladding material stage – III
+Covering  polyhouse with cladding material stage – IV
+Covering  polyhouse with cladding material stage – V
+Covering  polyhouse with cladding material stage – VI
+Greenhouse  ready for takingup cultivation
+Cladding  material
+Polythene proves  to be an economical cladding material. Now long lasting, unbreakable and light  roofing panels-UV stabilized clear fiber glass and polycarbonate panels are  available. Plastics are used in tropical and sub-tropical areas compared to  glass/fiberglass owing to their economical feasibility. Plastics create  enclosed ecosystems for plant growth. LDPE (low density polyethylene) / LLDPE  (linear low density polyethylene) will last for 3-4 years compared to polythene  without UV stabilizers.
+Comparison  of different kinds of covering materials
+Sl.
+No.
+Type
+Durability
+Transmission
+Maintenance
+Light
+Heat
+1.
+Poly    ethylene
+One    year
+90%
+70%
+Very    high
+2.
+Poly    ethylene UV resistant
+Two    years
+90%
+70%
+High
+3.
+Fiber    Glass
+Seven    years
+90%
+5%
+Low
+4.
+Tedlar    coated Fiber Glass
+Fifteen    years
+90%
+5%
+Low
+5.
+Double    strength Glass
+Fifty    years
+90%
+5%
+Low
+6.
+Poly    carbonate
+Fifty    years
+90%
+5%
+Very    low
+Top
+4.
+Plant growing  structures / containers in greenhouse production
+The duration of  crop in greenhouse is the key to make the greenhouse technology profitable or  the duration of production in greenhouses should be short. In this context, use  of containers in greenhouse production assumes greater significance. The  containers are used for the following activities in greenhouse production.
+•   Raising of seedlings  in the nursery
+•   Growing plants in  greenhouses for hybrid seed production of flowers
+•   Growing plants for  cutflower production.
+•   Growing potted  ornamental plants.
+Advantages of  containers in greenhouse production
+•   Increase in production capacity by reducing crop time.
+•    High quality of  the greenhouse product
+•    Uniformity in  plant growth with good vigour.
+•    Provide quick take  off with little or no transplanting shock.
+•    Easy maintenance  of sanitation in greenhouse
+•    Easy to handle,  grade and shift or for transportation.
+•    Better water  drainage and aeration in pot media.
+•    Easy to monitor  chemical characteristics and plant nutrition with advanced
+irrigation systems like drips.
+Advantages  and disadvantages of plant growing containers
+Containers
+Advantages
+Disadvantages
+Clay pot
+Low cost
+Easy water    management
+Slow to work    with pots and dry out fast
+They are heavy    to handle
+Fiber block
+Easy to handle
+Slow root    penetration
+Short life
+Fiber tray
+Minimum use of    space
+Hard to handle    when wet
+Single peat
+Pallet
+No media    preparation
+Low storage    requirement
+Requires    individual handling Limited sizes can be handled
+Prespaced
+Peat pallet
+No media    preparation
+Limited to small    sizes
+Single peat
+Good root    penetration
+Difficult to    separate
+Pot
+Easy to handle    in field Available (square / round) in large sizes
+Strip peat pot
+Good root    penetration
+Slow to separate
+Protrays
+Easy to handle Reusable
+May be limited    in sizes
+Plastic pack
+Easy to handle
+Roots may grow out of container
+Plastic pot
+Reusable
+Good root    penetration
+Requires    handling as single plant
+Polyurethane foam
+Easy to handle Requires    less medium Reusable
+Requires regular    fertilization
+Soil band
+Good root    penetration
+Requires    extensive labour
+Soil block
+Excellent root    penetration
+Expensive    machinery
+Perforated
+Easy to handle
+Requires regular    fertigation
+Plastic tray
+Requires less    medium Available in many sizes reusable
+Roots may grow    out of the container
+Perforated
+Less expensive
+Less durable
+Polyethylene
+Reusable bags
+Requires less    storage space
+Selection of  suitable containers depends upon the crop to be produced in greenhouse, plant  characteristics like crop stage, duration, vigour, growth habit, root system,  etc. Generally long duration, deep rooted and vigorous crop plants require  bigger containers compared to short duration, shallow and less vigorous ones. The  containers provide optimum condition for germination of seed and growth and  development of transplants.
+Top
+5.
+Environmental  factors influencing greenhouse cultivation
+Plants need an  optimum temperature for maximum yield and quality. The greenhouses in plain and  coastal region of India  needs cooling. The greenhouses in mild climates and coastal region can be  naturally ventilated. The greenhouses for hot summer climates of northern  plains have to evaporatively cooled or with fan and pad (FP). The greenhouses  for northern plains may require both cooling and heating depending on the crop.
+Natural  ventilation
+The greenhouse has  to be thoroughly ventilated for control of temperature. It should be noticed  that the temperature built up in the greenhouse is not exceeding 2°C throughout  the year. Further during hot months the temperature in the greenhouse was same  as the ambient temperature.
+Unconventional  method of heating and cooling
+a) Hot and cold  water can be sprinkled on the greenhouse covered externally with
+the  shadenet
+b) Use of earth  tunnel for cooling in summer and heating in winter
+c) Construction of  greenhouse in a trench for heating in winter cooling in summer
+d) Circulating the  borewell water in pipes laid on the floor of the greenhouse
+Heating of  greenhouse
+The heating of  greenhouses in cold climates like winter in North India  or
+Himalayan Region  at high altitudes is advisable for getting better produce. Double
+covering of  glazing with an air cushion of 2 cm to 10 cm reduces the heating load
+considerably.
+Heating  systems
+These can be of  the following types
+a. Boiler
+1. With hot water tube
+2. With steam pipes
+b. Unit heaters
+c. Infrared heaters
+d. Solar heaters
+Boiler
+This system is  used for very big greenhouses and is a centralized system of heating. The  boiler of necessary capacity is provided in the greenhouse. The fuel for boiler  can be coal or fuel oil. The heating of the greenhouse is generally done  through hot water at 85°C or steam at 102°C. Water or steam pipes are installed  above the beds of crop and along the side wall. The steam system is cheaper  than hot water system. To reduce the length of pipe to be used a number of hot  water or steam pipe coils can be used and green house air circulated over them  by blower for heating.
+Unit heaters
+These are  localized system of heating and a number of unit heaters are to be provided in  the greenhouse at a height of about 3 meter to distribute heat evenly in the  greenhouse. In a unit heater the fuel is combusted in the chamber at bottom.  Hot fumes rise inside the heat exchanger tubes, giving heat to the walls of the  tubes. Smoke exists at the top. A fan forces cool air of the greenhouse over  the outside of heat exchange tubes, where it picks up heat.
+Infra-red  heaters
+The fuel gas (LPG)  is burnt and the fumes at a temperature of about 480°C are passed in 10 cm  diameter pipes kept overhead at a height of 1.5m above plants. Reflectors are  provided over the full length of pipe to radiate the infra red rays over the  plants. The plants and soil only get heated without much heating of air. The  infra red heating pipes can be provided at 6 to 10 meters interval all along  the length of greenhouse. The temperature of fume gases at exist is about 65°C  and exhaust fan is provided for maintaining the flow of fumes.
+Solar heating
+Flat plate solar  heaters are used to heat the water during day time. The hot water is stored in  the insulated tanks. The hot water is circulated in pipes provided along the  length of the greenhouse during night. Supplementary or emergency heating  systems are provided for heating the greenhouse during cloudy or rainy days.
+Environmental  control
+Temperature  control
+The thermostat can  be coupled to water circulating pump or exhaust fan for controlling the  temperature inside the greenhouse. However, the lowest achievable temperature  in fan and pad greenhouse is not below the wet bulb temperature in any case.
+Relative  humidity control
+The humidistat  coupled to water circulating pump or exhaust fan to control the relative  humidity inside the fan and pad greenhouse. The maximum achievable relative  humidity is 90% only in fan regulated (FR) greenhouse. The RH in Non ventilated  (NV) GH can be increased by providing foggers.
+Light  intensity control
+In certain areas  where natural illumination is absent or very low, illumination for plants may  be provided by artificial sources. Incandescent bulbs generate excessive heat  and are unsatisfactory in most instances. Fluorescent tubes are useful as the  sole source of light for African violets, gloxinias and many foliage plants  which grow satisfactorily at low light intensities. Excessive light intensity  destroys chlorophyll even though the synthesis of this green pigment in many  plants is dependent upon light. Chrysanthemum is a classic example for a short-day  plant., however, flower buds will not form unless the night temperature is high  enough. Chrysanthemum is flowered on a year-round basis as a cut flower or  potted plant simply by controlling the length of day and temperature.
+Quality of  light
+Quality of light  refers to its wave-length composition. Light in the orange-red portion of the  visible spectrum from either sunlight or artificial illumination is most  effective in causing the long-day response in plants. Far-red radiation appears  to have the opposite effect. It is probable that the wave lengths activate some  hormonal mechanism within the plant which brings about the specific effect of  light on growth or flowering.
+Fan and pad
+Selection of  fan
+The fans should  deliver the required air at 15mm static pressure. The maximum center to center  spacing between the tow fans should be of 7.5m. The height of the fans is to be  determined based on the plant height which is proposed to be grown in the  greenhouse. The fan blades and frame are to be made of non-corrosive materials  like aluminium/stainless steel.
+Design
+The cross fluted  cellulose pad is preferred. These are available mostly in 100mm thickness. One  meter of pad height is given for every 20m of pad to fan distance. How ever,  the fan to pad distance should not exceed 60m. The air flow rate should be of  75 cubic meter/minute/sq.m of pad. The water flow rate should be of 9 litres  per minute/linear meter pad. The uniform distribution of water on pad is to be  maintained.
+Maintenance  of pad
+The algae will grow  and salts will deposit on pads if these are not maintained properly. Good  control of algae can be obtained without using chemicals by the following  methods.
+1. By shading the  pads and sumps
+2. By drying the  pads daily
+3. By avoiding  nutrient contamination
+4. By draining and  disinfecting the sump regularly
+5. By replenishing  20% of circulating water each time to avoid scaling of  minerals.
+Maintenance  of fan
+1. The lubrication  of bearings should be done regularly
+2. The v belt  should be tightened as per requirement
+3. The levers  should be properly lubricated.
+Top
+6.
+Media preparation  and fumigation
+Soil mixes used  for greenhouse production of potted plants and cut flowers are highly modified  mixtures of soil, organic and inorganic materials. When top soil is included as  a portion of the mixture, it is generally combined with other materials to  improve the water holding capacity and aeration of the potting soil. Many  greenhouses do not use topsoil as an additive to the soil mixes, but rather use  a combination of these organic and inorganic components as an artificial soil  mix. When managed properly as to watering and fertilization practices, these  artificial mixes grow crops that are equal to those grown in top soil.
+Media  preparation for greenhouse production
+The media used in  greenhouse generally have physical and chemical properties which are distinct  from field soils.
+A desirable medium should be a good balance between       physical properties like water holding capacity and porosity.
+The medium should be well drained.
+Medium which is too compact creates problems of       drainage and aeration which will lead to poor root growth and may harbour       disease causing organisms.
+Highly porous medium will have low water and       nutrient holding capacity, affects the plant growth and development.
+The media reaction (pH of 5.0 to 7.0 and the soluble       salt (EC) level of 0.4 to 1.4 dS/m is optimum for most of the greenhouse       crops).
+A low media pH (<5.0) leads to toxicity of micronutrients such as       iron, zinc, manganese and copper and deficiency of major and secondary       nutrients while a high pH (>7.5) causes deficiency of micronutrients including       boron.
+A low pH of the growth media can be raised to a       desired level by using amendments like lime (calcium carbonate) and       dolomite (Ca-Mg carbonate) and basic, fertilizers like calcium nitrate,       calcium cyanamide, sodium nitrate and potassium nitrate.
+A high pH of the media can be reduced by amendments       like sulphur, gypsum and Epsom salts, acidic fertilizers like urea,       ammonium sulphate, ammonium nitrate, mono ammonium phosphate and aqua       ammonia and acids like phosphoric and sulphuric acids.
+It is essential to maintain a temperature of the       plug mix between 70 to 75ºF. Irrigation through mist is a must in plug       growing. Misting for 12 seconds every 12 minutes on cloudy days and 12       seconds every 6 minutes on sunny days is desirable.
+The pH of water and mix should be monitored       regularly.
+Gravel  culture
+Gravel culture is  a general term which applies to the growing of plants with out soil in an inert  medium into which nutrient solutions are usually pumped automatically at  regular intervals. Haydite (shale and clay fused at high temperatures), soft-  or hard-coal cinders, limestone chips, calcareous gravel, silica gravel,  crushed granite and other inert and slowly decomposing materials are included  in the term “gravel”. The more important greenhouse flowering crops include  roses, carnations, chrysanthemums, gardenias, snapdragons, lilies, asters,  pansies, annual chrysanthemums, dahlias, bachelor buttons and others.
+Desirable  nutrient level in greenhouse growth media
+S. No.
+Category
+Concentration (mg/l)
+NO3
+N
+P
+K
+1.
+Transplants
+75
+125
+10-15
+250-300
+2.
+Young pot & foliage plants
+50
+90
+6-10
+150-200
+3.
+Plants in beds
+125
+225
+10-15
+200-300
+Media  ingredients and Mix
+Commercially  available materials like peat, sphagnum moss, vermiculite, perlite and locally  available materials like sand, red soil, common manure/ compost and rice husk  can be used in different proportions to grow greenhouse crops. These  ingredients should be of high quality to prepare a good mix. They should be  free from undesirable toxic elements like nickel, chromium, cadmium, lead etc.
+Pasteurization  of greenhouse plant growing media
+Greenhouse growing  medium may contain harmful disease causing organisms, nematodes, insects and  weed seeds, so it should be decontaminated by heat treatment or by treating  with volatile chemicals like methyl bromide, chloropicrin etc.
+Agent
+Method
+Recommendation
+Heat
+Steam
+30 min at 180° F
+Methyl bromide
+10 ml/cu. ft. of    medium
+Cover with gas    proof cover for 24-48 hr. Aerate for 24-28 hr before use.
+Chloropicrin
+(Tear gas) 3-5    ml/cu. ft. of medium
+Cover for 1-3    days with gas proof cover after sprinkling with water. Aerate for 14 days or    until no odour is detected before using.
+Basamid
+8.0 g/cu.ft. of    medium
+Cover for 7 days    with gas proof cover and aerate for atleast a week before use.
+Formalin
+20 ml/l of water    (37%)
+Apply 2 l/cu.ft.    cover for 14 to 36 hr and aerate for at least 14 days.
+Disinfection of  the growing media can also be achieved by fungicides or bactericides
+Fungicides  and their effect on a few fungi
+Chemical
+Rate of application
+Effect against
+Captan
+2 g/l of water
+Pythium,    Fusarium, Rhizoctonia
+and Phytophthora. Some extent    to root and stem rot, white mold,black rot, crown rot and damping off.
+Metalaxyl + Mancozeb    (Ridomil MZ 72 WP)
+1 g/l of water
+Pythium,    Phytophthora, Fusarium
+and other soil    borne pathogens
+Temperature  necessary to kill soil pests
+115°F for water molds (
+Pythium
+and
+Phytophthora
+)
+120°F for nematodes
+135°F for worms, slugs and centipedes
+140°F for most plant pathogenic bacteria
+160°F for soil insects
+180°F for most of weed seeds
+200°F for few resistant weed seeds and plant viruses
+Fumigation in  greenhouse
+Physical  propagation facilities such as the propagation room, containers, flats, knives,  working surface, benches etc. can be disinfected using one part of formalin in  fifty parts of water or one part sodium hypochlorite in nine parts of water. An  insecticide such as dichlorvos sprayed regularly will take care of the insects  present if any. Care should be taken to disinfect the seed or the planting  materials before they are moved into the greenhouse with a recommended seed  treatment chemical for seeds and a fungicide –insecticide combination for  cuttings and plugs respectively. Disinfectant solution such as trisodium  phosphate or potassium permanganate placed at the entry of the greenhouse would  help to get rid off the pathogens from the personnel entering the greenhouses.
+Top
+7.
+Drip irrigation and fertigation systems in greenhouse  cultivation
+The plant is required to take up very  large amounts of water and nutrients, with a relatively small root system, and  manufacture photosynthates for a large amount of flower per unit area with a  foliar system relatively small in relation to required production.
+Watering system
+Micro irrigation system is the best for  watering plants in a greenhouse. Micro sprinklers or drip irrigation equipments  can be used. Basically the watering system should ensure that water does not  fall on the leaves or flowers as it leads to disease and scorching problems. In  micro sprinkler system, water under high pressure is forced through nozzles  arranged on a supporting stand at about 1 feet height. This facilitates  watering at the base level of the plants.
+Equipments required for drip irrigation system include
+i) A pump unit to generate 2.8kg/cm2 pressure
+ii) Water filtration system – sand/silica/screen filters
+iii) PVC tubing with dripper or emitters
+Drippers of different types are available
+i)  Labyrinth  drippers
+ii) Turbo drippers
+iii) Pressure compensating drippers – contain silicon  membrane which assures uniform  flow rate for years
+iv)  Button  drippers- easy and simple to clean. These are good for pots, orchards and are  available with side outlet/top outlet or micro tube out let
+v) Pot drippers – cones with long tube
+Water out put in drippers
+a. 16mm dripper  at 2.8kg/cm2 pressure gives 2.65 litres/hour ( LPH).
+b. 15mm dripper at  1 kg/cm2 pressure gives 1 to 4 litres per hour
+Filters:
+Depending upon the type of water,  different kinds of filters can be used.
+Gravel filter:
+Used for filtration of water obtained  for open canals and reservoirs that are contaminated by organic impurities,  algae etc. The filtering is done by beds of basalt or quartz
+.
+Hydrocyclone:
+Used to filter well or river water that  carries sand particles.
+Disc flitersL:
+Used to remove fine particles suspended  in water
+Screen filters:
+Stainless steel screen of 120 mesh (  0.13mm) size. This is used for second stage filtration of irrigation water.
+Fertigation system
+In  fertigation system an automatic mixing and dispensing unit is installed which  consists of three systems pump and a supplying device. The fertilizers are  dissolved separately in tanks and are mixed in a given ratio and supplied to  the plants through drippers.
+Fertilizers
+Fertilizer dosage has to be dependent  on growing media. Soilless mixes have lower nutrient holding capacity and  therefore require more frequent fertilizer application. Essential elements are  at their maximum availability in the pH range of 5.5 to 6.5. In general Micro  elements are more readily available at lower pH ranges, while macro elements  are more readily available at pH 6 and higher.
+Forms of inorganic fertilizers
+Dry fertilizers,
+s
+low release  fertilizer and liquid fertilizer are commonly used in green houses.
+Slow release fertilizer
+They release the nutrient into the  medium over a period of several months. These fertilizer granules are coated  with porous plastic. When the granules become moistened the fertilizer inside  is released slowly into the root medium. An important thing to be kept in mind  regarding these fertilizers is that, they should never be added to the soil  media before steaming or heating of media. Heating melts the plastic coating  and releases all the fertilizer into the root medium at once. The high acidity  would burn the root zone.
+Liquid fertilizer
+These are  100 per cent water soluble. These comes in powdered form. This can be either  single nutrient or complete fertilizer. They have to be dissolved in warm  water.
+Fertilizer Application Methods
+1. Constant feed
+Low concentration at every irrigation  are much better. This provides continuous supply of nutrient to plant growth  and results in steady growth of the plant. Fertilization with each watering is  referred as fertigation.
+2. Intermittent application
+Liquid fertilizer is applied in regular  intervals of weekly, biweekly or even
+monthly. The problem with this is wide variability in the  availability of fertilizer in the root zone. At the time of application, high  concentration of fertilizer will be available in the root zone and the plant  immediately starts absorbing it. By the time next application is made there  will be low or non existent. This fluctuation results in uneven plant growth  rates, even stress and poor quality crop.
+Fertilizer injectors
+This device inject small amount of  concentrated liquid fertilizer directly into the water lines so that green  house crops are fertilized with every watering.
+Multiple injectors
+Multiple injectors are necessary when  incompatible fertilizers are to be used for fertigation. Incompatible  fertilizers when mixed together as concentrates form solid precipitates. This  would change nutrient content of the stock solution and also would clog the  siphon tube and injector. Multiple injectors would avoid this problem. These  injectors can be of computer controlled H.E. ANDERSON is one of the popular  multiple injector.
+Fertilizer Injectors
+Fertilizer injectors are of two basic types: Those that  inject concentrated fertilizer into water lines on the basis of the venturi
+principle and those that inject using  positive displacement
+A. Venturi Principle Injectors
+1.Basically these injectors work by means of a pressure  difference between the    irrigation line and the fertilizer  stock tank.
+a) The most common example of this is the HOZON  proportioner.
+b) Low pressure, or a suction, is created at the faucet  connection of the Hozon at the suction tube opening. This  draws up the fertilizer from the stock tank and is blended in to the irrigation  water flowing through the Hozon faucet connection.
+c) The  average ratio of Hozon proportioners is 1:16.  However, Hozon proportioners are not very precise as the ratio can vary widely  depending on the water pressure.
+d) These injectors are inexpensive and are suitable for  small areas. Large amounts of fertilizer application would require huge  stock tanks due to its narrow ratio.
+B. Positive displacement injectors
+.
+1. These injectors are more expensive than Hozon types,  but are very accurate in  proportioning fertilizer into irrigation lines regardless of water pressure.
+2. These injectors also have a much broader ratio with  1:100 and 1:200 ratio being the most common. Thus, stock tanks for large  applications areas are of manageable size and these injectors have much larger  flow rates.
+3. Injection by these proportioners is controlled either  by a water pump or an electrical pump.
+4. Anderson  injectors are very popular in the greenhouse industry with single and multiple  head models.
+a.Ratios  vary from 1:100 to 1:1000 by means of a dial on the pump head for feeding flexibility.
+b.Multihead  installations permit feeding several fertilizers simultaneously  without  mixing. This is especially significant for fertilizers that are incompatible  (forming precipitates, etc.) when mixed together in        concentrated    form.
+5. Dosatron feature variable ratios (1:50 to 1:500) and a plain water bypass.
+6. Plus injectors also feature variable ratios (1:50 to 1:1000) and operates on  water pressure as low as 7 GPM.
+7. Gewa injectors actually inject fertilizer into the  irrigation lines by pressure.
+a. The  fertilizer is contained in a rubber bag inside the metal tank.
+Water pressure  forces the fertilizer out of the bag into the water supply.
+b. Care  must be taken when filling the bags as they can tear.
+c. Ratios  are variable from 1:15 to  1:300.
+8. If your injector is installed directly in a water  line, be sure to install a bypass
+around the  injector so irrigations of plain water can be accomplished.
+General problems of fertigation
+Nitrogen  tends to accumulate at the peripherous of wetted soil volume. Hence, only roots  at the periphery of the wetted zone alone will have enough access to Nitrogen.  Nitrogen is lost by leaching and denitrification. Since downward movement  results in permanent loss of NO3 –N, increased discharge rate results in  lateral movement of N and reduces loss by leaching.
+Phosphorous
+It  accumulates near emitter and P fixing capacity decides its efficiency. Low pH  near the emitter results in high fixation.
+Potassium
+It moves  both laterally and downward and does not accumulate near emitter. Its distribution  is more uniform than N&P.
+Micronutrients
+Excepting  boron, all micronutrients accumulates near the emitter if supplied by  fertigation. Boron is lost by leaching in a sandy soil low in organic matter. But chelated micronutrients of Fe, Zn can  move away from the emitter but not far away from the rooting zone.
+Top
+8.
+Cost estimation  for green house construction
+A model  project proposal for floriculture industry
+A. Title of  the project:
+Title should be  brief and apt. It should be indicate clearly the main business activity. Eg.  Production of Rose cut flowers for domestic and export market.
+B.  Introduction:
+Give a line of  introduction of the proposed business. Justification for starting the business,  scope and competition should be clearly stated.
+C. Production  technology:
+Give detailed  account of the entire production process along with the scientific basis for  each step.
+D. Project  components:
+For cut flower  production
+1. Land
+2. Greenhouse
+3. Planting material
+4. Irrigation
+5. Fertilization system
+6. Grading and packing room
+7. Refrigerated van
+8. Office equipment
+9. Import of technology
+10. Labour charge
+11. Technical  manpower
+12. Pesticides,  Fertilizers, preservatives
+Give the  costing for each of the major components and classify them into
+A. Fixed cost  –Permanent items
+B. Recurring cost  –planting, cultivation, maintenance, storage, packing and transportation costs.
+E. Project  yield
+Estimate the total  production expected in different years and the realization expected through  sales.
+F. Margin  money
+25% of the total  cost that has to be invested by the entrepreneur.
+G. Repayment
+Principal and  interest are to be repayable in seven years with a moratorium for the first  year on interest and for 2 years on principal.
+Budget  requirement
+For a one hectare  greenhouse to produce Rose cut flowers.
+A. Fixed cost
+S. No.
+Item
+Amount in lakhs
+1.
+Land and    development
+4.0
+2.
+Green house
+13.0
+3.
+Cold storage
+10.0
+4.
+Grading and    packing room
+5.0
+5.
+Office area
+2.5
+6.
+Refrigerated van
+1.0
+7.
+Generator set
+2.0
+8.
+Fax, telephone,    Computer
+1.0
+9.
+Furniture
+0.5
+10.
+Power supply    installations
+1.5
+11.
+Water supply    system, drip irrigation and misting liners
+6.0
+12.
+Planting    material and planting
+30.0
+Total fixed cost
+76.5 lakhs
+B. Recurring  costs
+S. No.
+Item
+Amount in lakhs
+1.
+Electricity    charges / year
+6.0
+2.
+Manures and    fertilizers
+1.0
+3.
+Plant protection
+1.0
+4.
+Preservatives
+3.0
+5.
+Packing material
+2.0
+6.
+Air freight
+125.0
+7.
+Labour charges
+3.0
+8.
+Commission /    duty/ insurance
+15.0
+9.
+Salaries
+5.0
+10.
+Overhead costs
+0.5
+11.
+Maintenance cost
+1.0
+12.
+Miscellaneous
+3.7
+Total recurring cost
+166.2
+Total investment  for the project = Fixed cost + Recurring cost = 76.5 + 166.2 in first year=  242.7.
+Project yield
+No. of rose plants  per hectare of greenhouse = 60,000
+No. of flowers  expected per plant = 100 to 150
+No. of exportable  quality flowers /plant = 60 to 100
+Price per flower  in international market = Rs. 6 to 11
+Total exportable  flowers /ha @ 100 flowers /plant = 60 lakhs flowers
+Gross income  through exports @ 50 flowers/plant = 300 lakhs (minimum).
+Top
+9.
+Problem management in greenhouse cultivation
+The  troubles which arise in the culture of crops in the greenhouse may be divided  into several groups a) failure to supply the essential factors for optimum  growth such as light, moisture, carbon dioxide and heat in amounts necessary  for each individual crop b) fertilizer deficiencies c) fertilizer excesses d)  toxic gases e) attacks by insects, animals, and allied pests and f)  susceptibility to fungus, bacteria and virus troubles.
+Fertilizer deficiencies
+Symptoms  of deficiencies of various fertilizers have been studied over a period of years  with plants in greenhouses.
+Chlorosis
+This is  a term used to denote the loss of normal green colour from the foliage whether  it is on the older, more mature leaves or the younger foliage. The entire leaf  may be affected, or just areas between the veins, in which case the yellowing  is most usually in irregular patches shading into the green colour. Sometimes  only the margin of the leaf or leaflets may be yellow, while the centre of the  foliage is almost a normal green.
+Necrosis
+This  refers to the death of the area severely affected by chlorosis. Necrotic spots  or areas can also be caused by spray or aerosol damage, sunscald and other such  factors which may have no relation of fertilizer.
+Nitrogen deficiency
+Generally  the entire plant becomes lighter green, but the effect will be most noticeable  on the older foliage. Gradually the oldest leaves loose their green colour, and  most plants become yellow. The flowers are smaller and may lack well-developed  colour.
+Phosphorus deficiency
+A  purplish coloration developing first on the underside of the petiole, or leaf  stem, which spreads to the main veins of the leaf is characteristic of this  deficiency.
+Potassium deficiency
+The  margins of the leaves of the older foliage become yellow, and the chlorosis  progresses toward the mid-portion of the foliage as this deficiency increases  in severity. The older leaves may drop in extreme cases of deficiency. Certain  fumigants may cause marginal burning or chlorosis, and sometimes droplets of  spray or fumigant may result in spots or blotches of chlorotic or necrotic  nature.
+Calcium deficiency
+In sand  culture, a typical symptom is the development of short clubby roots followed in  a matter of several weeks by their death. In many cases insufficient calcium is  associated with a low pH of the soil.
+Iron deficiency
+This is  a rather common trouble although an actual lack of iron may not be the primary  cause. As iron deficiency becomes more intense, necrotic areas appear on  scattered portions of the yellow coloured leaves and the affected foliage may  drop. Iron can become deficient in soil, but often the symptoms of this  deficiency are induced by other causes from injury to the roots by over-watering  or over fertilization. Nematodes, or other soil pests interfering with root  growth can also induce iron chlorosis symptoms.
+Boron deficiency
+The  number of cases where this is a limiting factor are few, and most of them are  with certain rose and carnation varieties. The new foliage is thick or leathery  and quickly becomes chlorotic. The rose flowers are usually very malformed. The  stem tip dies, giving rise to growth of shoots immediately below, which in turn  die at the tip, and a ‘witches broom’ effect is observed. Because deficiency  symptoms can sometimes be confused with the effects of some other environmental  factor of cultural practice, a thorough review of fertilizer application, soil  testing, soil type, watering practices, and other procedures is warranted  before hasty conclusions are reached.
+Fertilizer excesses
+An  unfortunate belief among many growers is that when a plant does not grow under  apparently favorable conditions, the trouble can be overcome by applications of  fertilizer. This practice has resulted in untold damage or loss of crops, as  more often than not the original trouble could have been too much fertilizer in  the soil. If additional fertilizer is applied when no more is needed, the  results can be very injurious. Sometimes the difference between a high but safe  nutrient level and an injurious nutrient level is not very great and the margin  of safety may be extremely small. Therefore, it behaves the grower to test the  soil in case of doubt to determine the advisability of fertilizer application.
+Nitrogen excess
+The  plants exhibit heavy, rank growth, with large, dark green leaves that are often  crisp and break easily. Additional nitrogen may inhibit root action, causing  typical symptoms of iron chlorosis. If the root system is killed, the plants  wilt excessively and never recover. This yellowing of the top foliage is very  common in chrysanthemums and snapdragons. Over 75 ppm of nitrates is not safe.
+Phosphorus excess
+Over  doses of phosphorus precipitate the iron from the soil solution and make it  insoluble and unavailable, causing iron chlorosis to develop. Over 25 ppm may  cause trouble.
+Potassium excess
+Up to a  certain point, excessive potash apparently is not injurious. Greater amounts  inhibit root action and may cause chlorosis, wilting, or immediate death of the  plant. Over 60ppm is dangerous.
+Calcium excess
+Usually  the pH of the soil will rise when there is excessive calcium. This causes iron  chlorosis in many plants and has been called over liming injury. Over 300 ppm  is high.
+Iron excess
+In the  normal pH range of soil, there is little danger of excessive iron since  phosphorus or calcium will precipitate it from the soil solution. At ph 5.0 or  lower, iron becomes very soluble, and on hydrangeas brown dots appear on the  leaves, indicating iron is being precipitated as water vapor is lost by  transpiration.
+Sulfate excess
+A low pH  may often be characteristic of soils high in sulfates. Sometimes high sulfates  are encountered at pH 6.5. Over 600 ppm is toxic to most plants.
+Boron excess
+This  trace elements is often found in soil to which unleached cinders have been  added or where boric acid has been applied indiscriminately. Certain water  supplies may have rather high amounts of boron. On roses, the serrations on the  margin of the leaflets of the lower leaves turn black and the remaining leaves  turn yellow and drop.
+Aluminum excess
+This is  not troublesome except on hydrangeas that are being blued. Roots are burnt, and  the plants wilt.
+Soluble salts excess
+Too much  fertilizers in the soil injures or kills roots, and plant growth is severely  reduced.
+Remedial measures for excess fertilizer
+When  fertilizer levels rise to the point where they become toxic, immediate steps  must be taken to remove the excessive materials. Excessive nitrogen leaching  with heavy waterings and application of of straw mulch Excessive phosphorus can  not be leached. Only by addition of lime or iron sulfate Excessive potassium  leaching may wash some quantity, but in clay soils removal may be almost  impossible. Excessive calcium Acidifying the soil excessive iron Raising the pH  or by addition of phosphorus excessive sulfates Leaching and avoiding the use  of sulfate forms of fertilizers excessive boron Water glass, or sodium silicate  can be dissolved in water at the rate of 100 cubic centimeters per gallon and  applied to the soil. Excessive aluminum raising the pH or by adding phosphorus  excessive soluble salts leaching.
+Injury by toxic gases
+Natural gas
+This gas  usually contains 95 per cent methane and 4 to 5 per cent ethane and frequently  causes injury to greenhouse plants. The common source of injury is from  corroded or leaky gas pipes inside or outside the greenhouse. This injuries  usually occur during winter when the ventilators kept closed. Very small  concentrations of gas are sufficient to cause damage to plants, its detection  is difficult by sense of smell. One part to 350 will cause a headache after 2  hours, whereas 1 part of natural gas in 10,000 to 100,000 of air will injure  many plants. The best method of detection is through the use of tomato plants.  In the presence of gas the leaves of tomato turn downward, because of epinastic  response, which causes petioles of leaves to grow more rapidly on the upper  side. Carnations exposed to low concentrations will develop long stigmas, but  this may also occur in bright weather in unshaded greenhouses. In case of  prolonged exposure of young buds even 1 part to 100,000 may kill the buds and  flowers fail to develop. Rose foliage on the upper shoots exhibits epinasty, or  a bending downward of the petiole. Severe leaf drop may follow and the flower  colour often fades. Bulbous plants usually develop twisted foliage and the  flowers do not open properly.
+Ethylene gas
+This gas  apparently is a by-product of metabolic processes and is given off in very  small quantities by plants or their parts. Dropping of flowers after  pollination is thought to be associated with ethylene vapors. The carnation  flowers close or may appear “sleepy”, that is, the ends of the petals curl  inward due to ethylene gas.
+Sulphur
+dioxide
+In very  low concentrations this gas is toxic to plants. Sulphur dioxide enters the leaf through open  stomata and kills the cells nearby, thus showing patches of dead tissues  scattered over the leaf and frequently affecting the margins. Middle-aged  leaves are more susceptible than young leaves.
+Damage  from sulphur dioxide is commonly found in localities where coal is burnt in  large quantities. Foggy days are particularly dangerous. The common practice of  using sulphur on heating pipes in rose houses to control mildew is responsible  for leaf drop on some varieties.
+Mercury damage
+Many  plants are quickly damaged by vapors from metallic mercury. This damage is  manifested in roses by peduncles of young buds turning yellow and later black.  The color of flowers turns dark and leaves are scorched. Breaking of mercury  thermometers or the use of bi chloride of mercury on beds as a disinfectant is  the usual way in which mercury may be released. Control measures consist of  removing all possible traces of mercury and covering the areas where mercury  was spilled or applied with a 2-inch thickness of iron filings. Paint  containing mercury as a fungicide should not be applied to rose houses.
+2,4-D
+The  fumes of 2,4- dichlorophenoxy acetic acid and related compounds used as weed  killers cause bending, curling, and other malformations of leaves, stems,  flowers or bracts. Fumes or ‘drift’ from a spray applied along the side of a  greenhouse may enter through the doors or side vents cause trouble. Therefore,  it is well to prevent trouble by keeping such sources of potential damage out  of the greenhouse, boiler room, potting shed, or any place where the fumes  could conceivably enter a greenhouse.
+Phenol compounds
+Many  materials containing phenol or its derivatives are toxic to plants. Tar,  carbolic acid, pentachlorophenol and many others of similar nature should never  be used under glass. Treatment of wooden bench members with wood preservatives  containing phenol compounds results in severe damage to the plants.
+Top
+10.
+Special horticultural practices in greenhouse production
+The aim of  greenhouse cultivation is to obtain high yield and good quality flower with in  a short period. Several methods for forcing flowers can be used successfully to  obtain high yield and quality.
+Rose
+Deshooting
+Sprouting of buds  just below flower, from the point between shoot and leaf lead
+to smaller bud  size. So these shoots should be removed regularly.
+Dead shoot  removal
+In the old plants  the dead shoot or dried shoots on plants are observed which will
+be the host for  fungi. So regulary these have to be removed.
+Soil  loosening on beds
+After 6 months or  so, there is every chance that the soil become stony and it has
+to be loosened for  efficient irrigation.
+Bending
+Leaf is a source  of food for every plant. There should be balance between
+source  (assimilation ) and sink (Dissimilation).
+Mother shoot  bending
+After planting 2 to 3  eye buds will sprout on main branch, these sprouts will grow as branches and  these branches in turn form buds. This is don’t to initiate bottom breaks or  ground shoots which will form main framework of plant structure. The mother  shoot is bend on 2nd leaf or nearer to the crown region. The first  bottom break or ground shoot will start coming from the base. These ground  shoots form the basic framework for production and thereon the ground shoots  should be cut at 5th five pair of leaves and medium ground shoots  should be cut at 2nd or 3rd five pair of leaves.
+Defoliation
+The removal of  leaves is known as defoliation. It is done mainly to induce certain plant  species to flower or to reduce transpiration loss during periods of stress.  Defoliation may be done by removal of leaves manually or by withholding water.  The shoots are defoliated after pruning
+.
+Carnation
+Support  system (Netting)
+Good support material is metal wire mesh width of 7.5 x 7.5 cm to 15 x 15  cm. The cheapest support material is net with nylon. Minimum at every 3 meters,  the wires should be supported with poles. The poles at the beginning and the  end of each bed should be strong enough and be in cast concrete. For an optimal  support of the crop, an increasing width of meshes may be used. Eg. The bottom  net of 7.5 x 7.5 cm, then 12.5 x 12.5 cm and the upper nets 15 x 15 cm.
+Pinching
+Pinching refers to  breaking out the tip of shoot with few leaves and encouraging growth of side  shoots. There are three types of pinching
+a) single b) one  and half and c) double pinches
+Pinching is done  at a stage when the plants are young and between of 7-15cm height. Since very  tender shoots are usually pinched, no special tool is required. It is done by  snapping the shoot tip manually. A sharp knife or blade may be used for  pinching. When the plant attains 6 nodes, the first pinch is given. This is  referred as ‘single pinch’. This would give rise to six lateral shoots. With a  ‘ one and half pinch’, 2-3 of these lateral shoots are pinched again. For the  ‘double pinch’ all the lateral shoots are pinched off. Other than carnation,  pinching is also practiced in marigold, Gomphrena (single pinch), and spray  types of chrysanthemum (double pinch).
+Disbudding
+Disbudding refers  to removal of side shoots so that the central/terminal bud receives maximum  food for the full development. In standard carnations, side buds should be  removed where as in spray carnations, the terminal bud has to be removed.
+Chrysanthemum
+Pinching out  the apical bud
+As soon as the bud  stems begin to elongate in other words as soon as the buds have just separated  from one another, it is used to pinch out the central bud, this improves the  spray shape. If pinching out is done too early, damage may be caused to the  side buds, so it is carried out between 2nd and 3rd weeks before harvesting.
+Top
+11.
+Physiological  disorders
+Plant disorders  may be either due to nutritional deficiencies or unsuitable growing storage  conditions. In appropriate temperature atmospheric or erratic water or food  supply, poor light, unsatisfactory atmospheric conditions may also cause  deficiencies of the mineral salts that are essential for healthy plant growth.
+Rose
+Blind wood
+The normal  flowering shoot on a greenhouse rose possesses fully expanded sepals, petals,  and reproductive parts. The failure to develop a flower on the apical end of  the stem is a common occurrence-such shoots are termed blind. The sepals and  petals are present, but the reproductive parts are absent or aborted. Blind  wood is generally short and thin, but it may attain considerable length and  thickness when it develops at the top of the plant. This may be caused by  insufficient light, chemical residues, insect, pests, fungal diseases and other  factors.
+Bull heads or  malformed flowers
+The center petals  of the bud remain only partly developed and the bud appears flat. They are  common on very vigorous shoots, particularly bottom breaks, and it is possible  that there is a lack of carbohydrates to develop the petals. The cause of bull  heading is as yet unknown, how ever, thrips infestation will also cause  malformed flowers.
+Colour fading
+Off- coloured  flowers present a problem with some yellow varieties in that the petals may be  green or a dirty white instead of a clear yellow. Raising the night temperature  several degrees will reduce the number of off-coloured flowers. Occasionally  the pink or red varieties develop bluish-coloured flowers. This is very often  associated with use of organic phosphate and various other kinds of  insecticides.
+Limp necks
+The area of the stem just below the  flower “wilts” and will not support the head. Sometimes this is due to  insufficient water absorption; cutting off the lower 1 to 2 inches of stem and  placing the cut stem in water at 37°C will revive the flower.
+Blackening of  rose petals
+This is caused by  low temperature and high anthocyanin content. GA3 treatment causes  accumulation of anthocyanin in petals of Baccara roses. This effect was more  pronounced at low temperature (20°C at day and 4°C at night) than in higher temperature (30°C at day and 20°C at night).
+Nutritional disorders
+Iron deficiencies can cause pale foliage. Adjusting the pH of the soil may solve this problem
+Carnation
+Splitting of  calyx
+The calyx may  split down either half or completely. The petals are deprived of their support,  which results into bending down of petals. Thus, the regularity of shape and  structure of the flower destroyed. Splitting is associated with weather,  particularly where light and temperature fluctuate. Some reduction in splitting  can be obtained by keeping the night temperature at 5°F. High plant density per  unit area caused more calyx splitting. Increasing doses of N reduced the number  of split calyces while increase in potassium rates enhanced it. Varieties  tolerant to calyx splitting are Epson, palmir etc.
+Curly tip
+This disorder  affects the growing tips which curl and become distorted. Tips of the young  shoots fail to separate and continuation of growth results in a characteristic  curvature. Poor light and other adverse conditions are thought to be the causes  of the disorder. Water stress and potassium deficiency are suspected causes for  a physiological curly tip and die-back of carnation flowers.
+Chrysanthemum
+Blindness
+It occurs when the  night temperature is too low and the days are short at the time when flower  buds are forming. A rosetted type of growth is indicative of this difficulty.  Center petals that fail to develop can be due to excessive heat; or in dark  weather some varieties apparently lack enough food to open the flower.  Chlorosis, or yellowing of the upper foliage, is generally associated with over  watering, excessive fertilizer in the soil, or insects or diseases attacking  the root system. Continued growth of shoots and failure to form flower buds  when short days are started the mean night temperature was too low. Sunscald is  prevalent on standards in flower in very warm weather. The petals turn brown  and dry up.
+Gerbera
+Bushiness
+An abnormality  characterized by numerous leaves, short petioles and small laminae, which gives  some cultivars of gerbera a bushy appearance known as bushiness. Nodes are not  clearly distinguished and no internode elongation is seen.
+Stem break
+It is common post  harvest disorder in cut gerberas. This is mainly caused by water imbalances. It  could be ethylene controlled and associated with early senescence associated  with water stress.
+Yellowing and  purple margin
+Nitrogen  deficiency causes yellowing and early senescence of leaves. Phosphorus  deficiency causes pale yellow colour with purple margin. Increase in levels of  nitrogen and phosphorus were found to promote development of suckers and improve  flowering in gerbera.
+Anthurium
+Excess light
+Leaves appear  bleached in the centers and may have brown tips. To control this
+problem, shade  should be given so as to reduce the light level to 1800-2500 foot-candles.
+Gladioli
+Fluoride  injury
+Leaf scorch of  gladioli due to the presence of fluorine compounds in the atmosphere which  accumulated on the tips of leaves. The injury is associated with heavy  application of super phosphate.
+Top
+12.
+Postharvest handling  practices for cut flowers
+Cut flower quality and longevity are  influenced by pre and post harvest practices. Nearly 20-40% of the cut flowers  produced are lost due to faulty harvesting, post harvest handling, storage,  transportation and marketing. These losses can be reduced by careful harvesting,  post harvest handling, temperature management, sanitation and judicious use of  floral preservatives.
+Harvesting
+Maturity of the cut flower mainly  decides its post harvest life. The flowers must reach certain stage of  development before harvesting. Most of the cut flowers are harvested in the  early morning or late in the afternoon. Flowers are harvested with sharp knife  or secature.
+Rose
+Harvesting is done at the tight bud  stage when the colour is fully developed and the petals have not yet started  unfolding.
+Gladioli
+The spikes are cut in tight bud  stage when colour has fully developed in the mature unopened buds leaving 4  leaves on the plant.
+Carnation
+Standard carnation flowers are  harvested when the outer petals unfold nearly perpendicular to the stem. Spray  types are harvested when two flowers open and the remaining buds show colour.
+Chrysanthemum
+Standard flowers are cut soon after  the disappearance of green colour in the centre of the flowers and the center  petals are fully expanded. Pompons are cut when they are fully developed. Spray  types should be cut when the central flower is open and the surrounding flowers  are well developed and the varieties which shed pollen badly will have to be  cut before they become unsighty. Cutting the stem while the flowers are  slightly on the “green” side is preferred because it offers a better quality  product for the customer. The stems are harvested by pulling them out and  breaking of the root system leaving it behind in the bed/field be ploughed into  the soil when bed/field is prepared for next crop.
+Orchid
+Flowers are harvested when they are  fully open as the flowers cut prior to their maturity will wilt before reaching  the wholesaler.
+Anthurium
+Flowers are harvested when the  spathe completely unfurls and the spadix is well developed. Harvesting the  blooms, when one third of the flowers on the spadix mature, change of colour  can be observed that moves from base to tip of spadix. At this stage the  flowers are harvested. Harvesting has to be done during cooler parts of the day  i.e.) early morning or late evening In general the cut blooms are placed in  water held in plastic buckets immediately after cutting from the plant. Delay  in keeping in water allows air entry into the stem and causes blockage of the  vascular vessels. Cut flowers after harvest should be shifted to pre cooling  chambers in refrigerated vehicles having 2-4°C temperature as they deteriorate most rapidly at high  temperature. After reaching the cooling chamber, another cut is given above the  previous cut in roses, whereas in orchids lower 0.75 cm of the peduncle is cut.  In gladioli, 2.5 cm diagonal cut is made to expose maximum capillary tissues  for absorbing more water
+Pre cooling
+Pre cooling removes field heat  rapidly from the freshly harvested cut flowers. Precooling lowers respiration  rate, water loss and ethylene synthesis. Most of the time, greatest loss occurs  due to delay in precooling. Generally two methods of cooling are followed. The  first one is room cooling and the other one is forced air-cooling. In room  cooling, the flowers are held in buckets which are placed in a cooler. In the  forced air cooling system, the flowers packed in perforated boxes are subjected  to cool air blasts for a specific period in a closed room to remove field heat.  The flowers take 20-30 minutes for cooling in forced cooling depending on the  flower type and initial temperature in the box. Proper temperature (1.7°C to 4°C) and relative humidity (90-95%) maintenance are  critical to the success of precooling, otherwise the flowers will dessicate.
+Postharvest  handling practices for important cut flowers
+Rose
+Roses must be placed in a bucket of  water inside the polyhouse immediately after harvesting and transported to cold  storage (2-4°C). The length of  time depends upon the variety and quality of the roses.The flowers are graded  according to the length. It varies from 40-70 cm depending on the variety and  packed in 10/12 per bunch
+Carnation
+After harvest, the flower stems have  to be trimmed at the base and should be immediately placed in a bucket of  preservative solution of warm and deionized water. A good preservative solution  for carnations should be acidic (pH 4.5) with 2-5% sucrose and a biocide not  phytotoxic to carnations. After keeping in preservative solution for 2 to 4  hours, flowers should be placed in a refrigerated room at 0-2°C for 12-24 hours. The flowers can be  stored for two to four weeks before marketing. For this, the flowers have to be  packed in cartons lined with polyethylene film. These cartons should have  sufficient vent holes. The full cartons should be pre-cooled with out lid. The  plastic is then loosely folded on top of the stems and the lid is closed. These  cartons are stored in cool chambers designed to maintained 0°C with good air circulation and a  constant relative humidity of 90-95%.
+Chrysanthemum
+After harvest, the stem have to be  cut at equal length (90 cm is the standard), bunched in five putting a rubber  band at the base and sliding them into a plastic sleeve and putting the bunches  in plastic buckets filled with water. Early morning on the day of shipment (or  night before) the bunches can be packed in boxes.
+Gerbera
+Harvesting is done when outer 2-3  rows of disc florets are perpendicular to the stalk. The heel for the stalk  should be cut about 2-3 cm above the base and kept in fresh chlorinated water.
+Orchids
+Storage
+Since most orchid  flowers are long-lived on the plants, they should not be harvested until  needed. If these are to be cut they should be stored at 5-7°C. At this temperature most orchid  flowers can be stored for 10 to 14 days. Plastic film storage is attractive and  can be utilized.
+Packaging
+Packaging is  another important aspect in the flower trade. An ideal package should be  airtight, water proof, strong enough to withstand handling and small in volume.  Many ways are followed to pack orchid flowers.
+Cymbidium
+spikes are often packed 100 flowers to a box. Standard  florist boxes are used for the packing of
+Cattleya
+floors. Hawaiin
+Dendrobium
+is packed in 4 dozen sprays per box. Keeping of a wet  cotton at the cut end of the flower stem which is wrapped with a polythene  wrapper helps to maintain humidity.
+Vase- life
+Immediately after  arrival, the lower 0.75 cm of the peduncle is cut off, and the flower is  inserted into a fresh tube of water containing preservative. In case of spray  type of orchids, the basal 2.5cm of the stem is cut upon arrival, placed in  warm water at 38°C with a  preservative and hardened off at 5°C. Foliar application of aluminium chloride at 500ppm,  ammonium molybdate at 100 ppm or boric acid at 1000ppm increased the vase-life  of
+Oncidium.
+. Hydroxyquinoline resulted in additional bloom opening  of the flowers and also increased the vase-life.
+Anthurium
+Flowers can be  easily stored at 13°C for 2-3 weeks.  The flowers, which are harvested when 3/4th of the length of  the spadix colour changes, lasts longer than the other flowers which are  harvested either early or late. The average vase life depends upon life of  flowers range between 12-24 days depending upon the cultivars. Anthurium is  packed in cartons lined with impervious polyethylene sheeting of adequate  length and width so that, when packed, the sheet can be folded over to prevent  the moisture of the dampened flowers and packing material from dampening the  box itself. Newspaper is used to line the carton, and shredded newspaper is  used to cushion spathes that are arranged in rows facing opposite directions.  Each individual spathe is wrapped and tucked with un-printed newspaper or other  white paper.
+Top
+Home
+|
+Nursery Techniques
+|
+Deficiencies & Disorders
+|
+Fertilizer Schedule
+|
+Plant Protection
+|
+Gallery
+|
+Contact
+© All Rights Reserved. TNAU-2013.

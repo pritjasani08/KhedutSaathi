@@ -1,0 +1,56 @@
+TNAU Agritech Portal :: Sustainable Agriculture
+Home
+|
+About Us
+|
+Success Stories
+|
+Farmers Association
+|
+Farmers' Innovation
+|
+Publications
+|
+FAQs
+|
+Contact
+Technologies :: Sustainable Agriculture
+India â Policies for Sustainable Agriculture
+The Indian government’s policies have always emphasized food grain self-sufficiency, which has not necessarily coincided with agricultural sustainability. The growth of agricultural production and productivity, which had risen significantly during 1970s and 1980s, declined during 1990s. These slowdowns have worsened since 2000; both overall agricultural production and food grains production have shown negative growth rates in 2000-01 to 2002-03 periods (GoI, 2002). Decline in the growth rates of agricultural production and productivity is a serious issue considering the questions of food security, livelihood, and environment. As such, a critical examination of the approaches for sustainable agricultural development is necessary. This examination must be framed not only by India’s ongoing need to ensure food self-sufficiency but also by the consequences of access to international markets.
+Environmental Challenges in Indian Agriculture
+The challenge for Indian agriculture, to put simply, is to increase production, while minimizing environmental impact. This includes conserving and protecting the quality of the resources that determine the performance of agriculture like land, water and air. Reductions in yield, although determined by many factors, may be partially a consequence of land and water exploitation.
+Land degradation is one major constraint for Indian agriculture. By the early 1980s approximately 53 percent (173.6 million hectares) of India’s geographical area had been considered degraded according to the Ministry of Agriculture (GoI, 2001a): Water logging affected about 6 percent of the cultivated area, while alkali and acidic soils both affected about 3 percent. The major process of land degradation is soil erosion (due to water and wind erosion) contributing to over 71 percent of the land degradation (GoI 2001a). Data compiled by the National Remote Sensing Agency (NRSA) indicated that 15 percent of India’s total geographical area was comprised of degraded cultivatable wasteland (NRSA 2000). One third of this land was degraded by human activities, while nearly one half was degraded by a combination of human and natural causes (NRSA 2000). Chadha et al. (2004) found a negative and significant negative relationship between land degradation and foodgrain productivity in both the 1980s and 1990s.
+Water is another major constraint for Indian agriculture. Agriculture, through irrigation, accounted for 83 percent of the total water use in the country during 1990 (Vyas 2003). During the Green Revolution period water consumption in agriculture rose sharply as the net irrigated area increased from 31.1 to 54.68 million hectares between 1970-71 and 2000-01, while the area irrigated more than once per year increased from 7.09 million to 20.46 million hectares during the same period. Groundwater, one of the India’s major sources for irrigation, is being rapidly depleted. The number of dark blocks (taluk or mandals), where groundwater extraction is more than 85 percent of the availability, increased from 253 to 428 out of over 5700 blocks between 1984-85 and 1998-99 (GoI 2002). The problem of groundwater depletion has been reported from rainfed states like Andhra Pradesh, Karnataka, Rajastan, Madhya Pradesh, Chattisgarh and Gujarat.
+The introduction of modern technology based agricultural systems, in addition to encouraging increased water usage, meant the application of inputs like chemical fertilizers, chemical pesticides and high yielding varieties (HYVs) . Fertilizer application rose more than five-fold between 1970 and 2002 to 17360 thousand tonnes. Imbalanced proportioning of chemical nutrients is a major problem associated with fertilizer application in India. Pesticide consumption increased from 24.32 million tonnes in 1970-71 to 46.2 million tonnes in 1999-00, with a peak application of 75.42 million tonnes during 1988-89 (CSE 1999). High yielding seed varieties have lead to mono-cropping of certain grains reducing farmers’ cropping flexibility and reducing agricultural biodiversity.
+Although, the Indian government has recognized the necessity of managing and conserving resources for agricultural development since the First Five Year Plan, the measures initiated have been inadequate. For example, the government’s efforts have only been able to regenerate 17.28 percent of the total degraded area (173.6 million hectares; GoI 2001a).
+India’s National Agricultural Policy (NAP) (GoI 2000) has stressed the importance of management and conservation of resources by stating that, ‘the policy will seek to promote technically sound, economically viable, environmentally non-degrading, and socially acceptable use of country’s natural resources â land, water and genetic endowment to promote sustainable development of agriculture’. The Central and state governments have initiated several measures to promote sustainable agricultural development. The NAP stated that improving the quality of land and soil, rational utilisation and conservation of water, and sensitizing the farming community to environmental concerns would receive high priorityÂ (GoI 2000).
+The Tenth Five Year Plan (GoI 2002), for 2002 through 2007, has put emphasis on natural resource management through rainwater harvesting, groundwater recharging measures and controlling groundwater exploitation, watershed development, treatment of waterlogged areas. With regard to application of agricultural inputs like fertilizer and pesticides, the Plan stated that factors such as imbalanced use of nitrogenous (N), phosphatic (P) and postassic (K), increased deficiency of micronutrients and decreased soil organic carbon would be addressed through a holistic agri-environmental approach stressing Integrated Plant Nutrient and Pest Management. Further, the Tenth Plan document recognizes organic farming as a ‘thrust area’ in the sustainable use and management of resources in agriculture.
+Way Forward
+The trajectory of Indian agriculture and its associated environmental problems has brought about recognition that future agricultural growth and productivity will have to occur simultaneously with environmental sustainability. The environmental challenges, especially in terms of land degradation and groundwater depletion, water logging and excessive use of chemical inputs are posing problems for the future of Indian agriculture. To address the problems, policies have laid emphasis on promoting sustainable agriculture including organic farming. Differential approaches and policy instruments, however, will be required to address these problems. The shift from input-intensive to sustainable, particularly organic farming is a difficult task as it involves a number of policy measures dealing with a variety of issues ranging from the transfer of information and technology to the development of markets. Another difficult task, and perhaps more difficult, relates to marginal and small farmers â which comprise a substantial part of Indian agriculture. Although these marginal and small farmers have been considered organic by `default’, severe resource constraints make a shift to the modern sense of organic farming prohibitive.
+Reference
+Government of India (2001a), India: Nation Action Programme to Combat Desertification, Volume â I. Ministry of Environment and Forests, New Delhi.
+Government of India (2002), Tenth Five Year Plan 2002-2007, Volume â II, Planning Commission, New Delhi.
+NRSA (2002), Wastelands Atlas of India, Department of Space, Hyderabad, India.
+Chadha, G.K., Sen, S., and H.R. Sharma (2004), State of the Indian Farmer: A Millenium Study, Vol. 2: Land Resources, Ministry of Agriculture, Government of India, New Delhi, India.
+Vyas V. S. (2003), India’s Agrarian Structure, Economic Policies and Sustainable Development, Academic Foundation Publishers, New Delhi.
+Centre for Science and Environment (1999), The Citizen’s Fifth Report: Part II â Statistical Database, eds. Anil Agarwal, Sunita Narain and Srabani Sen, New Delhi.
+Government of India (2000), National Agriculture Policy â 2000, Ministry of Agriculture, New Delhi.
+Â
+Home
+|
+About Us
+|
+Success Stories
+|
+Farmers Association
+|
+Publications
+|
+FAQs
+|
+Site Map
+|
+Disclaimer
+|
+Contact Us
+Â© 2008-2024 TNAU. All Rights Reserved.

@@ -1,0 +1,208 @@
+TNAU Agritech Portal :: Crop Improvement
+Home
+|
+About Us
+|
+Success Stories
+|
+Farmers Association
+|
+Farmers' Innovation
+|
+Publications
+|
+Photo Bank
+|
+Contact
+Crop Improvement :: Plant Genetics
+Plant Genetic Resources
+The sum total of hereditary material i.e. all the alleles of various genes, present in a crop species and its wild relatives is referred to as germplasm.Â  This is also known as genetic resources or gene pool or genetic stock.Â  Important features of plant genetic resources are given below.
+Genetic pool represents the entire genetic variability or diversity available in a crop species.
+Germplasm consists of land races, modern cultivars, obsolete cultivars, breeding stocks, wild forms and wild species of cultivated crops.
+Germplasm includes both cultivated and wild species and relatives of crop plants.
+Germplasm is collected from centres of diversity, gene banks, gene sanctuaries, farmer’s fields, markers and seed companies.
+Germplams is the basic material for launching a crop improvement programme.
+Germplasm may be indigenous (collected within country) or exotic (collected from foreign countries)
+Germplasm Conservation
+Â Â Â Â Â Â Â Â Â Â Â  Conservation refers to protection of genetic diversity of crop plants from genetic erosion.Â  There are two important methods of germpalsm conservation or preservation. i) In-situ conservation and ex situ conservation. These are described below.
+i) In - situ conservation:
+Â Â Â Â Â Â Â Â Â Â Â  Conservation of germplasm under natural conditions is referred to as in situ conservation.Â  This is achieved by protecting the area from â human interference, such an area is often called natural park, biosphere reserve or gene sanctuary.Â  NBPGR, New Delhi, established gene sanctuaries in Meghalaya for citrus, north Eastern regions for musa, citrus, oryza andÂ
+saccharum
+.Â  Gene sanctuaries offer the following advantage.
+Merits:
+Â In this method of conservation, the wild species and the compete natural or seminatural ecosystems are preserved together.
+Demerits:
+Each protected area will cover only very small portion of total diversity of a crop species, hence several areas will have to be conserved for a single species.
+The management of such areas also poses several problems.
+This is a costly method of germplasm conservation.
+ii) Ex - situ conservation:
+Â Â Â Â Â Â Â Â Â Â Â  It refers to preservation of germplasm in gene banks.Â  This is the most practical method of germplasm conservation.Â  This method has following advantages.
+It is possible to preserve entire genetic diversity of a crop species at one place.
+Handling of germplasm is also easy.
+This is a cheap method of germplams conservation.
+This type of conservation can be achieved in the following 5 ways.
+1) Seed banks:
+Germplam is stored as seeds of various genotypes. Seed conservation is quite easy, relativelyÂ  safe and needs minimum space. Seeds are classified, on the basis of their storability into two major groups.
+1) Orthodox and 2) Recalcitrant
+Orthodox seeds:
+Â  Seeds which can be dried to low moisture content and stored at low temperature without losing their viability for long periods of time is known as orthodox seeds. (eg.) Seeds of corn, wheat, rice, carrot, papaya, pepper, chickpea, cotton, sunflower.
+Rice
+Maize
+Sunflower
+Recalcitrant:
+Â Seeds which show very drastic loss in viability with a decrease in moisture content below 12 to 13% are known as recalcitrant seeds. (e.g) citrus, cocoa, coffee, rubber, oilpalm, mango, jack fruit etc.
+Coffee
+Cocoa
+Mango
+Seed storage:
+Â Based on duration of storage, seed bank collects are classified into three groups.Â  (1) Base collections. (2) Active collections and (3) Working collection.
+Base collections:
+Â Seeds can be conserved under long term (50 to 100 years), at about -20OC with 5% moisture content.Â  They are disturbed only for regeneration.
+Active collection:
+Â Seeds are stored at 0OC temperature and the seed moisture is between 5 and 8%.Â  The storage is for medium duration, i.e., 10-15 years.Â  These collections are used for evaluation, multiplication, and distribution of the accessions.
+Working collections:
+Â  Seeds are stored for 3-5 years at 5-10OC and the usually contain about 10% moisture.Â  Such materials are regularly used in crop improvement programmes.
+2. Plant Bank: (
+Â Field or plant bank )is an orchard or a field in which accessions of fruit trees or vegetatively propagated crops are grown and maintained.
+Limitations:
+Â  1. Require large areas
+2. Expensive to establish and maintain
+3. Prone to damage from disease and insect attacks
+4. Man â made
+5. Natural disasters
+6. Human errors in handling
+3. Shoot tip banks:Â
+Germplasm is conserved as slow growth cultures of shoot-tips and node segments.Â  Conservation of genetic stocks by meristem cultures has several advantages as given below.
+Each genotype can be conserved indefinitely free from virus or other pathogens.
+It is advantageous for vegetatively propagated crops like potato, sweet potato, cassava etc., because seed production in these crops is poor
+Vegetatively propagated material can be saved from natural disasters or pathogen attack.
+Long regeneration cycle can be envisaged from meristem cultures.
+Regeneration of meristerms is extremely easy.
+Plant species having recalcitrant seeds can be easily conserved by meristem cultures.
+Cell and organ banks:Â
+A germplasm collection based on cryopreserved (at â 196OC in liquid nitrogen) embryogenic cell cultures, somatic/ zygotic embryos they be called cell and organ bank.
+DNA banks:
+Â In these banks, DNA segments from the genomes of germplasm accessions are maintained and conserved.
+Germplam evaluation
+Evaluation refers to screening of gemplasms in respect of morphological, genetical, economic, biochemical, physiological, pathological and entomological attributes.Â  Evaluation of germplasm is essential from following angles.
+To identify gene sources for resistance to biotic and abiotic stresses, earliness, dwarfness, productivity and quality characters.
+To classify the germplasm into various groups
+To get a clear pictures about the significance of individual germplasm line.
+IPGRI, Rome has developed model list of descriptors (= characters) for which germplasm accessions of various crops should be evaluated.Â  The evaluation of germplasm is done in three different places viz., (1) in the field (2) in green house a) 3) in the laboratory.
+Germplasm cataloguing, Data storage and Retrieval.
+Each germplasm accession is given an accession number. This number is pre fixed in India, with either IC (Indigenous collection), EC (exotic collection) or IW (Indigenous wild).Â  Information on the species and variety names, place of origin, adaptation and on its various feature or descriptors is also recorded in the germplasm maintenance records.Â  Catalogues of the germplasm collection for various crops are published by the gene banks.Â  The amount of data recorded during evaluation is huge.Â  Its compilation, storage and retrieval is now done using special computer programmes.
+National Bureau of Plant Genetic Resources (NBPGR)
+NBPGR establishment in 1976 is the nodal organisation in India for planning, conducting, promoting, coordinating and lending all activities concerning plant.
+Collection
+Introduction
+Exchange
+Evaluation
+Documentation
+Safe conservation
+Sustainable management of germplasm
+Vegetable Crop Responsibilities and Germplasm Activities at NBPGR
+The vegetable crop germplasm programme broadly includes the following vegetable crops for evaluation, documentation and maintenance of active collections besides their long term storage:
+A.
+Solanaaceous
+:
+Brinjal, tomato, chillies
+B.
+Cucurbitaceous Vegetables
+:
+Pumpkin, melons, gourds and cucumber
+C.
+Leguminous vegetables
+:
+Cowpean, pea, lablab bean, winged bean, faba bean, French bean
+D.
+Bulb crops
+:
+Garlic, onion
+E.
+Root vegetables
+:
+Radish, carrot, turnip
+F.
+Okra
+:
+-
+G.
+Miscellaneous vegetables
+:
+Cole crops, Chinese cabbage, spinach beet, spinach
+The quantum of variability available and of diversity of various vegetable crops shows that India is one of the important centres/regions of variability of vegetable crops. The centre of origin/diversity of various vegetable crops reveals that a number of vegetable crops of economic importance and their wild relatives originated in this region. These genetic resources possess genes for wide adaptability, high yield potential including resistance/tolerance to biotic and abiotic stresses. The Indian sub-continent, thus holdsÂ  prominence as one of the twelve regions of variability in crop plants in global perspective.
+Gene banks for various crops in India
+Institutes
+Crops
+Central Institute for Cotton Research, Nagpur
+Cotton
+Central Plantation crops Research Institute, Kasargod
+Plantation crop
+Central Potato Research Institute, Simla
+Potato
+Central tobacco research Institute, Rajahmundry
+Tobacco
+Central tuber crops research Institute, Thiruvananthapuram
+Tuber crops other than potato
+Central Rice Research Institute, Cuttack
+Rice
+Directorate of Oilseeds research, Hyderabad
+Oilseeds
+Directorate of Wheat Research, Karnal
+Wheat
+Indian Agricultural Research Institute, New Delhi
+Maize
+Indian Grassland and Fodder Research Institute, Jhansi
+Forge and fodder crops
+National research centre for sorghum, Hyderabad
+Sorghum
+International Crops Research Institute for Semi-Arid Tropics
+Groundnut, Pearl millet, Sorghum, Pigeon pea and Bengal gram
+List of important International Institutes conserving germplasm
+Name
+Institute
+Activity
+IRRI
+International Rice Research Institute, Los Banos, Philippines
+Tropical rice
+Rice collection: 42,000
+CIMMYT
+Centre International de-Mejoramients de maize Trigo, El Baton, Mexico
+Maize and wheat (Triticale, barely, sorghum) Maize collection â 8000
+CIAT
+Center International de-agricultural Tropical Palmira, Columbia
+Cassava and beans, (also maize and rice) in collobaration with CIMMYT and IRRI
+IITA
+International Institute of Tropical Agriculture, Ibadan, Nigeria.
+Grain legumes, roots, and tubers, farming systems.
+CIP
+Centre International de-papa-Lima. Peru
+Potatoes
+ICRISAT
+International Crops Research Institute, for Semi-Arid Tropics, Hyderabad, India
+Sorghum, Groundnut, Cumbu, Bengalgram, Redgram.
+WARDA
+West African Rice Development Association, Monrovia, Liberia
+Regional Cooperative Rice Research in Collaboration with IITA and IRRI
+IPGRI
+International Plant Genetic Research Institute, Rome Italy
+Genetic conservation.
+AVRDC
+The Asian Vegetable Research and Development Centre, Taiwan
+Tomato, Onion, Peppers Chinese cabbage.
+Home
+|
+About Us
+|
+Success Stories
+|
+Farmers Association
+|
+Publications
+|
+Site Map
+|
+Disclaimer
+|
+Contact Us
+Â© 2008-2024 TNAU. All Rights Reserved.

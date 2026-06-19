@@ -1,0 +1,142 @@
+Agriculture :: Mineral Nutrition :: Introduction
+|
+Home
+|
+Seasons & Varieties
+|
+Tillage
+|
+Nutrient Management
+|
+Irrigation Management
+|
+Weed Management
+|
+Crop Protection
+|
+Cost of Cultivation
+|
+Photobank
+Plant Nutrition :: Mineral Nutrition
+Nutrient Deficiency Symptoms of Plants
+Growing  plants act as integrators of all growth factors and are the products in which  the grower is interested. Therefore, careful inspection of the growing plant  can help identify a specific nutrient stress. if a plant is lacking in a  particular nutrient, characteristic symptoms may appear. Deficiency of a  nutrient does not directly produce symptoms. Rather, the normal plant processes  are thrown out of balance, with an accumulation of certain intermediate organic  compounds and a shortage of others. This leads to the abnormal conditions  recognized as symptoms. Visual evaluation of nutrient stress should be used  only as a supplement to other diagnostic techniques (i.e., soil and plant  analysis). Nutrient deficiency symptoms may be classified as follows:
+Complete crop failure at the seedling stage.
+Severe stunting of plants.
+Specific leaf symptoms appearing at varying times       during the season.
+Internal abnormalities such as clogged conductive       tissues.
+Delayed or abnormal maturity.
+Obvious yield differences, with or without leaf       symptoms.
+Poor quality of crops, including differences in       protein, oil, or starch content, and storage quality.
+Yield differences detected only by careful       experimental work.
+Each  symptom must be related to some function of the nutrient in the plant. A given  nutrient may have several functions, which makes it difficult to explain the  physiological reason for a particular deficiency symptom. For example, when N  is deficient, the leaves of most plants become pale green or light yellow. When  the quantity of N is limiting, chlorophyll production is reduced, and the  yellow pigments, carotene and xanthophylls are shown through a number of  nutrient deficiencies produced such as pale green or yellow leaves, and the  deficiency must be further related to a particular leaf pattern or location on  the plant.
+Apparent  visual deficiency symptoms can be caused by many factors other than a specific  nutrient stress. Precautions in interpreting nutrient deficiency symptoms  include the following:
+The visual symptom may be caused by more than one  nutrient. For example, N-deficiency symptoms may be identified, although S may  also be deficient and its symptoms may not be readily apparent. B deficiency is  accompanied by a red coloration of the leaves near the growing point when the  plant is well supplied with K. on the other hand, when the K content is low,  yellowing of alfalfa leaves occurs.
+Deficiencies are actually relative, and a deficiency of  one nutrient may be related to an excessive quantity of another. For example,  Mn deficiency may be induced by adding large quantities of Fe, provided that  soil Mn is marginally deficient. Also, at a low level of P supply, the plant  may not require as much N compared to normal or adequate P. In other words,  once the first limiting factor is eliminated, the second limiting factor will  appear (Liebig’s law of the minimum).
+It is often difficult to distinguish among the  deficiency symptoms in the field, as disease or insect damage can resemble  certain micronutrients deficiencies. For example, leaf hopper damage can be  confused with deficiency in alfalfa.
+A visual symptom  may be caused by more than one factor. For example, sugars in corn combine with  flavones to form anthocyanins (purple, red, and yellow pigments) and their  accumulation may be caused by an insufficient supply of P, low soil  temperature, insect damage to the roots, or N deficiency.
+Nutrient  deficiency symptoms appear only after the nutrient supply is so low that the  plants can no longer function properly. In such cases, it would have been  profitable to have applied fertilizer long before the symptoms appeared. If the  symptoms are observed early, it might be corrected during the growing season.  Since the objective is to get the limiting nutrient into the plant as quickly  as possible, with some nutrients and under some conditions this may be  accomplished with foliar applications or side dressings. Usually the yield is  reduced below the quantity that would have been obtained if adequate nutrients  had been available at the beginning. However, if the problem is properly  diagnosed, the deficiency can be corrected the following year.
+Hidden  Hunger
+Hidden  hunger
+refers to a situation in which a crop needs more of a given nutrient  yet has shown no deficiency symptoms. The nutrient content is above the  deficiency symptom zone but still considerably needed for optimum crop  production. With most nutrients on most crops, significant responses can be  obtained even though no recognizable symptoms have appeared.
+Figure. Hidden hunger is a      term used to describe a plant that shows no obvious symptoms, yet the      nutrient content is not sufficient to give the top profitable yield.
+Courtesy:      The Potash Phasphate Institute, Atlanta,       Ga.
+The question, then, is how best to eliminate  hidden hunger. Testing of plants and soils is helpful for planning or modifying  plant-nutrient programs to avoid this problem in subsequent crops. In both  approaches, careful consideration must be given to past management practices.
+Generalized Visual Leaf and Plant Nutrient Element  Deficiency and Excess Symptoms
+Element/status
+Visual symptoms
+Nitrogen (N)
+Deficiency
+Light green leaf and    plant color with the older leaves turning yellow, leaves that will eventually    turn brown and die. Plant growth is slow, plants will be stunted, and will    mature early.
+Excess
+Plants will be dark    green in color and new growth will be succu­lent; susceptible if subjected to    disease and insect infestation; and subjected to drought stress, plants will    easily lodge. Blos­som abortion and lack of fruit set will occur.
+Ammonium toxicity
+Plants fertilized with    ammonium-nitrogen (NH4- N) may exhibit    ammonium-toxicity symptoms, with carbohydrate depletion and reduced plant    growth. Lesions may occur on plant stems, there may be a downward cupping of    the leaves, and a decay of the conductive tissue at the base of the stem with    wilting of the plants under moisture stress. Blossom-end rot of fruit will    occur and Mg deficiency symptoms may also occur.
+Phosphorus (P)
+Deficiency
+Plant growth will be    slow and stunted, and the older leaves will have a purple coloration,    particularly on the underside.
+Excess
+Phosphorus excess will    not have a direct effect on the plant but may show visual deficiencies of Zn,    Fe, and Mn. High P may also interfere with the normal Ca nutrition, with    typical Ca deficiency symptoms occurring.
+Potassium (K)
+Deficiency
+On the older leaves, the    edges will look burned, a symptom known as scorch. Plants will easily lodge    and be sensitive to disease infestation. Fruit and seed production will be    impaired and of poor quality.
+Excess
+Plants will exhibit    typical Mg, and possibly Ca deficiency symp­toms due to a cation imbalance
+Calcium (Ca)
+Deficiency
+The growing tips of    roots and leaves will turn brown and die. The edges of the leaves will look    ragged as the edges of emerging leaves stick together. Fruit quality will be    affected with the occur­rence of blossom-end rot on fruits.
+Excess
+Plants may exhibit    typical Mg deficiency symptoms, and when in high excess, K deficiency may    also occur.
+Magnesium (Mg)
+Deficiency
+Older leaves will be    yellow in color with interveinal chlorosis (yellowing between the veins)    symptoms. Plant growth will be slow and some plants may be easily infested by    disease.
+Excess
+Results in a cation imbalance showing signs of    either a Ca or K deficiency.
+Sulfur (S)
+Deficiency
+A general overall light    green color of the entire plant with the older leaves being light green to    yellow in color as the deficiency intensifies.
+Excess
+A premature senescence    of leaves may occur.
+Boron (B)
+Deficiency
+Abnormal development of    the growing points (meristematic tis­sue) with the apical growing points    eventually becoming stunted and dying. Rowers and fruits will abort. For some    grain and fruit crops, yield and quality is significantly reduced.
+Excess
+Leaf tips and margins    will turn brown and die.
+Chlorine (Cl)
+Deficiency
+Younger leaves will be    chlorotic and plants will easily wilt. For wheat, a plant disease will infest    the plant when Cl is deficient.
+Excess
+Premature yellowing of    the lower leaves with burning of the leaf margins and tips. Leaf abscission    will occur and plants will easily wilt.
+Copper (Cu)
+Deficiency
+Plant growth will be    slow and plants stunted with distortion of the young leaves and death of the    growing point.
+Excess
+An Fe deficiency may be    induced with very slow growth. Roots may be stunted.
+Iron (Fe)
+Deficiency
+Interveinal chlorosis will    occur on the emerging and young leaves with eventual bleaching of the new    growth. When severe, the entire plant may be light green in color.
+Excess
+A bronzing of leaves    with tiny brown spots on the leaves, a typical symptom frequently occurring    with rice.
+Manganese (Mn)
+Deficiency
+Interveinal chlorosis of    young leaves while the leaves and plants remain generally green in color.    When severe, the plants will be stunted.
+Excess
+Older leaves will show    brown spots surrounded by a chlorotic zone and circle.
+Molybdenum (Mo)
+Deficiency
+Symptoms will frequently    appear similar to N deficiency. Older and middle leaves become chlorotic    first, and In some instances, leaf margins are rolled and growth and flower    formation are restricted.
+Excess
+Not of common    occurrence.
+Zinc (Zn)
+Deficiency
+Upper leaves will show    interveinal chlorosis with an eventual whiting of the affected leaves. Leaves    may be small and dis­torted with a rosette form.
+Excess
+An Fe deficiency will    develop.
+Terms
+:
+Chlorosis
+is  a physiological disorder that occurs to deficiency of mineral elements     (eg; Mn, K, Zn, Fe, Mg, S and N). Leaves  or plant parts become abnormally yellow.
+Mottled
+is  surface marked with coloured spots (anthocyanin develops) eg. Due to deficiency  of N, Mg, P, S.
+Necrosis
+refers to patch of dead tissues, due to the deficiency of Mg,K, Zn, Ca and Mo.
+|
+Home
+|
+Seasons & Varieties
+|
+Tillage
+|
+Nutrient Management
+|
+Irrigation Management
+|
+Weed Management
+|
+Crop Protection
+|
+Cost of Cultivation
+|
+Photobank
+|
+Disclaimer
+© All Rights Reserved. TNAU-2016.

@@ -1,0 +1,111 @@
+TNAU Agritech Portal :: Crop Improvement
+Home
+|
+About Us
+|
+Success Stories
+|
+Farmers Association
+|
+Farmers' Innovation
+|
+Publications
+|
+Photo Bank
+|
+Contact
+Crop Improvement :: Mode of Pollination
+The process by which pollen grains are transferred from anthers to stigma is referred as pollination.Â  Pollination is of two types: viz. 1) Autogamy or self pollination and 2) Allogamy or cross pollination.
+I. Autogamy
+Transfer of pollen grains from the anther to the stigma of same flower is known as autogamy or self pollination.Â  Autogamy is the closest form of inbreeding.Â  Autogamy leads toÂ
+homozygosity
+.Â  Such species develop homozygous balance and do not exhibit significant inbreeding depression.Â
+Mechanism promoting self-pollination
+1. Bisexuality.
+Â  Presence of male and female organs in the same flower is known as bisexuality.Â  The presence of bisexual flowers is a must for self pollination.Â  All the self pollinated plants haveÂ
+hermaphrodite
+Â flowers.
+2. Homogamy.Â
+Maturation of anthers and stigma of a flower at the same time is called homogamy.Â  As a rule, homogamy is essential for self-pollination.
+3. Cleistogamy.Â
+When pollination and fertilization occur in unopened flower bud, it is known as cleistogamy.Â  It ensures self pollination and prevents cross pollination.Â  Cleistogamy has been reported in some varieties of wheat, barley, oats and several other grass species.
+4. Chasmogamy.Â
+Â Opening of flowers only after the completion of pollination is known as chasmogamy.Â  This also promotes self pollination and is found in crops like wheat, barley, rice and oats.
+5. Position of Anthers.
+Â  In some species, stigmas are surrounded by anthers in such a way that self pollination is ensured.Â  Such situation is found in tomato and brinjal.Â  In some legumes, the stamens and stigma are enclosed by the petals in such a way that self pollination is ensured.Â  Examples are greengram, blackgram, soybean, chickpea and pea.
+II. Allogamy
+Transfer of pollen grains from the anther of one plant to the stigma of another plant is called allogamy or cross pollination.Â  This is the common form of out-breeding.Â  Allogamy leads to heterozygosity.Â  Such species develop heterozygous balance and exhibit significant inbreeding depression on selfing.Â
+Mechanism promoting cross-pollination
+1. Dicliny.
+Â It refers to unisexual flowers.Â  This is of two types: viz. i) monoecy and ii) dioecy.Â  When male and female flowers are separate but present in the same plants, it is known asÂ
+monoecy
+. In some crops, the male and female flowers are present in the same inflorescence such as in mango, castor and banana.Â  In some cases, they are on separate inflorescence as in maize.Â  Other examples are cucurbits, grapes, strawberry, cassava and rubber.Â  When staminate and pistillate flowers are present on different plants, it is calledÂ
+dioecy
+.Â  It includes papaya, date palm, spinach, hemp and asparagus.
+2. Dichogamy.
+Â (from the GreekÂ
+dikho
+-apart andÂ
+gamous
+-marriage) It refers to maturation of anthers and stigma of the same flowers at different times.Â  Dichogamy promotes cross pollination even in the hermaphrodite species. Dichogamy is of two types:Â  viz. i) protogyny and ii) protandry.Â  When pistil matures before anthers, it is calledÂ
+protogyny
+Â such as in pearl millet.Â  When anthers mature before pistil, it is known asÂ
+protandry
+.Â  It is found in maize, sugarbeet and several other species.
+3. Heterostyly.
+Â  When styles and filaments in a flower are of different lengths, it is called heterostyly.Â  It promotes cross pollination, such as linseed.
+4. Herkogamy.Â Â
+Hinderance to self-pollination due to some physical barriers such as presence of hyline membrane around the anther is known as herkogamy.Â  Such membrane does not allow the dehiscence of pollen and prevents self-pollination such as in alfalfa.
+5. Self incompatibility:
+Â  The inability of fertile pollens to fertilize the same flower is referred to as self incompatibility.Â  It prevents self-pollination and promotes cross pollination.Â  Self incompatibility is found in several crop species like
+Brassica, Radish, Nicotiana,
+Â and many grass species.Â  It is of two typesÂ
+sporophyticÂ
+andÂ
+gametophytic
+.
+6. Male sterility:
+Â  In some species, the pollen grains are non functional.Â  Such condition is known as male sterility.Â  It prevents self-pollination and promotes cross pollination.Â  It is of three types: viz.Â
+genetic, cytoplasmicÂ
+andÂ
+cytoplasmic genetic
+.Â  It is a useful tool in hybrid seed production.
+Study ofÂ
+floral biologyÂ
+and aforesaid mechanisms is essential for determining the mode of pollination of various crop species.Â  Moreover, if selfing has adverse effects on seed setting and general vigour, it indicates that the species is cross pollinated.Â  If selfing does not have any adverse effect on these characters, it suggests that the species is self-pollinated.
+The percentage of cross pollination can be determined by growing a seed mixture of two different varieties together.Â  The two varieties should have marker characters say green and pigmented plants.Â  The seeds are harvested from the recessive (green) variety and grown next year in separate field.Â  The proportion of pigmented plants in green variety will indicate the percentage ofÂ
+outcrossingÂ
+or cross pollination.
+Significance of pollination
+The mode of pollination plays an important role in plant breeding.Â  It has impact on five important aspects : viz. 1) gene action, 2) genetic constitution, 3) adaptability, 4) genetic purity and 5) transfer of genes.
+Classification of crop plants based on mode of pollination and mode of reproduction
+Mode of pollination and reproduction
+Examples of crop plants
+A. Autogamous Species
+1. Seed Propagated
+Rice, Wheat, Barley, Oats, Chickpea, Pea, Cowpea, Lentil, Green gram, Black gram, Soybean, Common bean, Moth bean, Linseed, Sesame, Khesari, Sunhemp, Chillies, Brinjal, Tomato, Okra, Peanut, etc.
+2. Vegetatively Propagated
+Potato
+B. Allogamous Species
+1. Seed Propagated
+Corn, Pearlmillet, Rye, Alfalfa, Radish, Cabbage, Sunflower, Sugarbeet, Castor, Red clover, White clover, Safflower, Spinach, Onion, Garlic, Turnip, Squash, Muskmelon, Watermelon, Cucumber, Pumpkin, Kenaf, Oilpalm, Carrot, Coconut, Papaya, etc.
+2. Vegetatively propagated
+Sugarcane, Coffee, Cocoa, Tea, Apple, Pears, Peaches, Cherries, grapes, Almond Strawberries, Pine apple, Banana, Cashew, Irish, Cassava, Taro, Rubber, etc.
+C. Often Allogamous Species
+Sorghum, Cotton, Triticale,Â  Pigeonpea, Tobacco.
+Home
+|
+About Us
+|
+Success Stories
+|
+Farmers Association
+|
+Publications
+|
+Site Map
+|
+Disclaimer
+|
+Contact Us
+Â© 2008-2024 TNAU. All Rights Reserved.

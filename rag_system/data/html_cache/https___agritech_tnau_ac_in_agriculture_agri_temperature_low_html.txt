@@ -1,0 +1,222 @@
+Stress Management :: Temperature
+|
+Home
+|
+Seasons & Varieties
+|
+Tillage
+|
+Nutrient Management
+|
+Irrigation Management
+|
+Weed Management
+|
+Crop Protection
+|
+Cost of Cultivation
+|
+Stress Management
+:: Temperature
+About Temperature Stress
+Temperature stress includes both high temperature and low
+temperature stresses.
+1. Low temperature
+2. High
+temperature
+LOW TEMPERATURE STRESS
+Classification of
+plants - Response to Low Temperature
+Chilling sensitive
+plants
+: Seriously injured by temperature above 00C, below 150C
+Chilling resistant
+Plants:
+(i) Able to tolerate low temperature
+(ii) Seriously injured when ice start to
+form in tissues
+Frost Resistant Plants
+:
+tolerate exposure to very low temperatures(-500C to -1000C)
+even when immersed in liquid N2.
+Chilling injury
+Occurs at Low temperature but nonfreezing
+temperatures
+Chilling
+injury occurs in
+Tropical and subtropical plants at100C
+to 250C
+Temperate plants at 0 to 150C
+Chilling
+Effect is manifested by physiological and cytological changes
+Cytological
+changes may be reversible or irreversible depending upon time of exposure to
+low temperature
+Symptoms of chilling injury include
+Cellular changes :
+Changes in membrane structure and composition, decreased protoplasmic
+streaming, electrolyte leakage and plasmolysis.
+Altered metabolism
+:
+Increased or reduced respiration, depending on severity of stress,
+production of abnormal metabolites due to anaerobic condition.
+Common Symptoms
+Reduced plant growth and death
+Surface lesions on
+leaves and fruits
+Abnormal curling,
+lobbing and crinkling of leaves
+Water soaking of
+tissues
+Cracking, splitting
+and dieback of stems
+Internal
+discolouration (vascular browning)
+Increased
+susceptibility to decay
+Failure to ripen
+normally
+Loss of vigour
+(potato lose the ability to sprout if chilled)
+Some of the more common symptoms of chilling stress are
+Rapid wilting followed by water soaked patches
+which develop into sunken pits that reflect cells tissue collapse. Following
+warming, the sunken pits usually dry up, leaving necrotic patches of tissues on
+the leaf surface.
+Chilling symptoms in fruits vary and include
+Sunken pits in
+cucumber
+Browning of sp
+skins and degradation of pulp tissue in banana
+Blackheart of pine
+apple (Wilson,
+1987)
+Cellular Membranes
+The
+first symptom of chilling injury is the phase transition from liquid crytalline
+phase to solid gel state
+Increase
+in permeability of plasmalemma results in leakage of organic and inorganic
+substances
+Plasmolysis: Plasmolemma- pressed against the
+tonoplast and deleted into the vacuole as sac like intrusions
+Formation of crystalline deposits in root cells,
+epidermal, mesophyll and vascular cells of leaves -leading to tonoplast
+disruption.
+Tonoplast injury is irrevesible
+During hardening at low or above zero temp the
+lipid bodies accumulate in cytoplasm in close association with plasmalemma.
+Lipid
+composition
+Ratio of Unsaturated to saturated fatty acids is
+higher in chilling resistant plants
+Increase in activity of fatty acid de-saturases
+was found in chilling resistant plants
+Cytological Changes
+Swelling of plastid membranes and mitochondrial
+membranes
+Swelling of chloroplast thylakoids
+Decrease in size and no. of starch grains
+Grana disintegration and increase in size and
+no.of plastoglobules
+Mitochondria with reduced cristae and
+transparent matrix
+Mitochondria – double the volume
+Extensive dilation and vesiculation of smooth ER
+cisternae
+Rough ER completely disappears
+ie
+.,Ribosomes
+are lost from the membrane
+Dilated Vesicular ER cisternae – Accumulation of
+cryoprotective substances
+Transformation of rough ER into vacuolated
+smooth ER-represents early stage of chilling
+Since ER-most dynamic structure-full
+reversibility of ER ultrastructure is possible
+Swelling of dictyosomes
+Longer exposure to chilling-disintegration of
+dictyosomes
+Freezing Injury
+Freezing injury in plants can be from two sources: 1.
+Freezing of soil water, and; 2. Freezing of the fluids within the plant. The
+soil water that is available to plants is found in the porous regions between
+soil particles. It freezes at about -2°C, depriving the plant of its source of
+water. Freezing of water within the plant is a more serious threat, as it can
+cause disruption of structure and function of cells and tissues.
+Freezing damage occurs
+primarily due to the formation of ice crystals, which damage cell structure
+when the temperature falls below 00C.
+Ice
+usually forms first in the cell walls and intercellular spaces
+Damage
+occurs when ice crystals grow and puncture into the cytoplasm
+Physics of ice formation
+For the transition to solid phase to take place,
+need ice nucleation points
+When becoming solid, ice gives off heat, so the
+temperature rises
+When all of the water in the cell wall has
+frozen, then the temperature begins to drop again
+Two types of freezing
+occur in plant cells and tissues
+Vitrification
+: Solidification of the cellular content into
+non-crystalline state (amorphous state) .It occurs by rapid freezing of
+cells (decrease in temperature by more than 30C/ min) to a  very low temp.C
+Crystallisation
+/ ice formation : Crystallisation of ice occur either extracellularly or
+intracellularly (gradual cooling /drop in temperature)
+Formation of ice
+intracellularly may be due to
+By
+internal nucleation (certain large polysaccharides /proteins serve as
+nucleating agents to form ice)
+By
+penetration of external ice crystals into the cells
+Intracellular
+ice formation is very lethal which causes immediate disruption of cells.
+Many plants can avoid
+freezing injury, because they allow deep super cooling
+In plants, the temperature of water will drop
+below its freezing temperature and will still remain liquid - supercooling
+The liquid in the intercellular space never
+makes the transition to solid phase, so ice crystals don't form
+Some can supercool down to -350C
+At -40C, ice crystal formation begins
+spontaneously
+Occurs in hardwoods and some fruit trees
+When the ice crystals formed are very small due
+to rapid freezing,  these crystals melt
+before they reach a harmful size.
+Intracellular Ice
+Formation
+Spreads from cell to cell through plasmadesmata
+Formed in the cellwall adjacent to the
+intercellular spaces
+Originates spontaneously from centres of
+nucleation in the cytoplasm.
+Membrane changes
+Intact cellular membranes act as effective barrier to the
+propagation of ice. This depends upon temperature and cold hardening .Cellular
+Membranes are more susceptible to freezing damage than soluble enzymes.
+Plasmalemma is the major site of lethal injury. Leakage of ions from thawed
+tissues occurs due to protoplasmic swelling and alteration in permeability to K+ions.
+|
+Home
+|
+Seasons & Varieties
+|
+Tillage
+|
+Nutrient Management
+|
+Irrigation Management
+|
+Weed Management
+|
+Crop Protection
+|
+Cost of Cultivation
+|
+© All Rights Reserved. TNAU 2008-2024.

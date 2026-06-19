@@ -1,10 +1,15 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Mail, Phone, MapPin, ExternalLink, Globe2, Users, ArrowUpRight } from 'lucide-react';
 
 export default function Footer() {
   const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
+  const location = useLocation();
+
+  if (location.pathname === '/khedut-ai') {
+    return null;
+  }
 
   const quickLinks = [
     { path: '/', label: t('nav.home') },

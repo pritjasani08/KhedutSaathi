@@ -1,0 +1,671 @@
+Nutrient Management :: Price of Fertilizers
+Home |
+Seasons & Varieties |
+Tillage |
+Nutrient Mgmnt |
+Irrigation Mgmnt |
+Weed Mgmnt |
+Crop Protection |
+Cost of Cultivation
+|
+Photobank
+Nutrient Management :: Price of Fertilizers
+COST OF FERTILIZERS
+Sl.No
+Fertilizer
+Name
+Firm
+Name
+Price
+(Unit in Rs./50 kg bag)
+1
+Urea - 46.0 / 50 Kg. Bag
+MCF
+276.12
+2
+Urea - 46.0 / 50 Kg. Bag
+RCF
+276.12
+3
+Urea - 46.0 / 50 Kg. Bag
+KRIBHCO
+276.12
+4
+Urea - 46.0 / 50 Kg. Bag
+CFL
+276.12
+5
+Urea - 46.0 / 50 Kg. Bag
+ZUARI
+276.12
+6
+Am. Phos. Sulphate - 20:20:0:13 / 50 Kg. Bag
+TEST
+368.94
+7
+Am. Chloride - 25.0 / 50 Kg. Bag
+TEST
+0.00
+8
+Urea - 46.0 / 50 Kg. Bag
+SPIC
+278.51
+9
+Complex NPK - 20:20:0:0 / 50 Kg. Bag
+SPIC
+466.93
+10
+Urea - 46.0 / 50 Kg. Bag
+IFFCO
+276.12
+11
+Urea - 46.0 / 50 Kg. Bag
+MFL
+278.88
+12
+Complex NPK - 16:16:16 / 50 Kg. Bag
+IPL
+368.70
+13
+TSP - 42.5 / 50 Kg. Bag
+IPL
+418.60
+14
+Am. Phos. Sulphate - 20:20:0:13 / 50 Kg. Bag
+RCF
+419.74
+15
+Complex NPK - 12:32:16 / 50 Kg. Bag
+ZUARI
+588.00
+16
+Complex NPK - 20:20:0:0 / 50 Kg. Bag
+CFL
+525.00
+17
+Urea(Ind) - 46.0 / 50 Kg. Bag
+KRIBHCO
+268.23
+18
+Urea(Imp) - 46.0 / 50 Kg. Bag
+KRIBHCO
+265.15
+19
+Urea(Ind) - 46.0 / 50 Kg. Bag
+MFL
+268.14
+20
+Urea(Ind) - 46.0 / 50 Kg. Bag
+MCF
+268.14
+21
+Complex NPK - 20:20:0:0 / 50 Kg. Bag
+MCF
+495.00
+22
+Am. Chloride - 25.0 / 50 Kg. Bag
+TAC
+435.00
+23
+Complex NPK - 12:32:16 / 50 Kg. Bag
+MCF
+667.50
+24
+Am. Phos. Sulphate - 20:20:0:13:0.3 / 50 Kg. Bag
+IFFCO
+650.00
+25
+Complex NPK - 12:32:16 / 50 Kg. Bag
+CFL
+645.00
+26
+Am. Phos. Sulphate - 20:20:0:13 / 50 Kg. Bag
+CFL
+539.00
+27
+Am. Phos. Sulphate - 20:20:0:13:0.3 / 50 Kg. Bag
+CFL
+554.00
+28
+Complex NPK - 14:28:14 / 50 Kg. Bag
+CFL
+664.00
+29
+DAP - 18:46:00 / 50 Kg. Bag
+NFCL
+1222.50
+30
+MAP - 11:52:00 / 50 Kg. Bag
+IPL
+910.00
+31
+Pot. Chloride - K.60.0(MOP) / 50 Kg. Bag
+NFCL
+872.00
+32
+Pot. Chloride - K.60.0(MOP) / 50 Kg. Bag
+IPL
+840.00
+33
+SSP - 16.0 / 50 Kg. Bag
+SPIC
+262.58
+34
+Am. Phos. Sulp. Nitrate - 16:20:0:13 / 50 Kg. Bag
+IPL
+910.00
+35
+Am. Phos. Sulphate - 20:20:0:13 / 50 Kg. Bag
+SPIC
+859.79
+36
+Am. Phos. Sulphate - 20:20:0:13 / 50 Kg. Bag
+IPL
+740.00
+37
+Am. Phos. Sulphate - 20:20:0:13 / 50 Kg. Bag
+IFFCO
+950.00
+38
+Am. Phos. Sulphate - 20:20:0:13 / 50 Kg. Bag
+MCF
+934.00
+39
+Am. Phos. Sulphate - 20:20:0:13 / 50 Kg. Bag
+NFCL
+958.86
+40
+Complex NPK - 20:20:0:0 / 50 Kg. Bag
+IPL
+700.00
+41
+Complex NPK - 20:20:0:0 / 50 Kg. Bag
+IFFCO
+700.00
+42
+Complex NPK - 20:20:0:0 / 50 Kg. Bag
+ZUARI
+707.00
+43
+Complex NPK - 10:26:26 / 50 Kg. Bag
+NFCL
+1111.25
+44
+Urea(Ind) - 46.0 / 50 Kg. Bag
+IPL
+270.76
+45
+Urea(Ind) - 46.0 / 50 Kg. Bag
+IFFCO
+270.68
+46
+Urea(Ind) - 46.0 / 50 Kg. Bag
+SPIC
+270.50
+47
+Urea(Ind) - 46.0 / 50 Kg. Bag
+NFCL
+270.76
+48
+Am. Phos. Sulp. Nitrate - 16:20:0:13 / 50 Kg. Bag
+ZUARI
+0.00
+49
+Complex NPK - 12:32:16 / 50 Kg. Bag
+RCF
+0.00
+50
+Pot. Chloride - K.60.0(MOP) / 50 Kg. Bag
+MFL
+0.00
+51
+Urea(Imp) - 46.0 / 50 Kg. Bag
+IPL
+270.76
+52
+Urea(Imp) - 46.0 / 50 Kg. Bag
+IFFCO
+270.68
+53
+Urea(Ind) - 46.0 / 50 Kg. Bag
+RCF
+268.23
+54
+Urea(Imp) - 46.0 / 50 Kg. Bag
+CFL
+270.50
+55
+DAP - 18:46:00 / 50 Kg. Bag
+IFFCO
+1125.00
+56
+DAP - 18:46:00 / 50 Kg. Bag
+CFL
+1125.00
+57
+DAP - 18:46:00 / 50 Kg. Bag
+MCF
+1131.00
+58
+DAP - 18:46:00 / 50 Kg. Bag
+IPL
+1125.00
+59
+DAP - 18:46:00 / 50 Kg. Bag
+SPIC
+1136.50
+60
+DAP - 18:46:00 / 50 Kg. Bag
+ZUARI
+1127.50
+61
+DAP - 18:46:00 / 50 Kg. Bag
+RCF
+1125.00
+62
+DAP - 18:46:00 / 50 Kg. Bag
+KRIBHCO
+1125.00
+63
+Pot. Chloride - K.60.0(MOP) / 50 Kg. Bag
+ZUARI
+802.50
+64
+Pot. Chloride - K.60.0(MOP) / 50 Kg. Bag
+CFL
+800.00
+65
+Pot. Chloride - K.60.0(MOP) / 50 Kg. Bag
+MCF
+800.00
+66
+Pot. Chloride - K.60.0(MOP) / 50 Kg. Bag
+RCF
+800.00
+67
+Pot. Chloride - K.60.0(MOP) / 50 Kg. Bag
+FACT
+785.00
+68
+SSP - 16.0 / 50 Kg. Bag
+CPF
+362.00
+69
+SSP - 16.0 / 50 Kg. Bag
+CFL
+362.00
+70
+SSP - 16.0 / 50 Kg. Bag
+KOTHARI
+362.00
+71
+Am. Phos. Sulp. Nitrate - 16:20:0:13 / 50 Kg. Bag
+CFL
+864.00
+72
+Am. Phos. Sulphate - 20:20:0:13 / 50 Kg. Bag
+FACT
+887.55
+73
+Am. Phos. Sulphate - 20:20:0:13:0.3 / 50 Kg. Bag
+FACT
+912.80
+74
+Complex NPK - 15:15:15 / 50 Kg. Bag
+RCF
+739.50
+75
+Complex NPK - 20:20:0:0 / 50 Kg. Bag
+RCF
+770.50
+76
+Complex NPK - 28:28:0:0 / 50 Kg. Bag
+CFL
+1120.00
+77
+Complex NPK - 10:26:26 / 50 Kg. Bag
+IFFCO
+1045.00
+78
+Complex NPK - 10:26:26 / 50 Kg. Bag
+CFL
+1031.00
+79
+Complex NPK - 10:26:26 / 50 Kg. Bag
+ZUARI
+1048.00
+80
+Complex NPK - 10:26:26 / 50 Kg. Bag
+MCF
+1045.00
+81
+Complex NPK - 14:35:14 / 50 Kg. Bag
+CFL
+1096.00
+82
+Am. Sulphate - 20.6 / 50 Kg. Bag
+FACT
+526.35
+83
+Complex NPK - 17:17:17 / 50 Kg. Bag
+MFL
+927.00
+Source:
+www.tnagrisnet.tn.gov.in
+Updated as on 10.07.2014
+Nutrient Based Subsidy for fertilizers w.e.f. 01.04.2014
+(Ministry of Chemicals and Fertilizers)
+S.No.
+Fertilizers
+NBS (` per MT)
+1
+DAP : 18-46-0-0
+12350
+2
+MAP : 11-52-0-0
+12009
+3
+TSP : 0-46-0-0
+8592
+4
+MOP : 0-0-60-0
+9300
+5
+NPS  16-20-0-13
+7294
+6
+NPS
+20-20-0-13
+8129
+7
+NPK
+10-26-26-0
+10974
+8
+NPK
+12-32-16
+10962
+9
+NPK
+14-28-14
+10323
+10
+NPK
+14-35-14
+11630
+11
+NPK
+15-15-15
+8258
+12
+AS : 20.6-0-0-23
+4686
+13
+NP
+28-28-0-0
+11075
+14
+NPK
+17-17-17
+9359
+15
+NPK
+19-19-19
+10460
+16
+SSP  0-16-0-11
+3173
+17
+NPK
+16-16-16-0
+8809
+18
+DAP lite (16-44-0-0)
+11559
+19
+NPKS 15-15-15-09
+8409
+20
+NP 24-24-0-0
+9493
+21
+NP 20-20-0-0
+7911
+22
+NPS 24-24-0-8
+9493
+Updated as on 10.07.2014
+Note:
+Fertilizer grade mentioned at S.No.3 & 4 are covered under NBS
+policy till 29.08.2012
+S.No
+Particulars
+Rate
+(Rs.)
+Photograph
+1
+Urea
+320.00 / 50 Kg
+2
+Single Super Phosphate
+420.00 / 50 Kg
+3
+Muriate of Potash
+980.00 / 50 Kg
+4
+DAP
+1250.00 / 50 Kg
+5
+10:26:26
+1200.00 / 50 Kg
+6
+20:20:0
+850.00 / 50 Kg
+7
+16:20
+780.00 / 50 Kg
+8
+17:17:17
+900.00 / 50 Kg
+9
+15:15:15
+1100.00 / 50 Kg
+10
+Zinc Sulphate
+58.00 / Kg
+11
+Copper Sulphate
+190.00 / Kg
+12
+Magnesium Sulphate
+110.00 / Kg
+13
+Manganese Sulphate
+80.00 / Kg
+14
+Ferrous Sulphate
+15.00 / Kg
+15
+Neem cake
+20.00 / Kg
+16
+Borax (10 %)
+20.00 / 100 g
+17
+Borax (20 %)
+101.00 / 250 g
+COST OF WATER SOLUBLE FERTILIZERS
+S.No
+Particulars
+Rate
+(Rs.)
+Photograph
+1
+Krista – K (KNO3)
+130.00 / Kg
+2
+CaNO3
+120.00 / Kg
+3
+19:19:19
+190.00 / Kg
+4
+20:20
+210.00 / Kg
+COST OF MICRONUTRIENTS
+S.No
+Particulars
+Rate
+(Rs.)
+Photograph
+1
+Photosal Garden mix
+120.00 / Kg
+2
+Rose mix
+50.00 / 500 g
+3
+Micronol
+165.00 / Kg
+4
+Jayamin
+160.00 / 500 g
+5
+Coconut micronutrient
+70.00 / Kg
+Note:
+Fertilizer Prices available in local market                                             Updated as on 21.05.2013
+Nutrient based
+pricing of subsidized fertilizers
+(Ministry of Chemicals and Fertilizers)
+Sl. No.
+Nutrients
+NBS per Kg of nutrient (2010-11)
+NBS per Kg of nutrient (2011-12)
+From 1.1.2011 to 31.3.2011
+From 1.4.2010 to 31.12.2010
+1
+'N'
+23.227
+23.227
+20.111
+2
+'P'
+26.276
+25.624
+20.304
+3
+'K'
+24.487
+23.987
+21.386
+4
+'S'
+1.784
+1.784
+1.175
+Fertilizers
+Nutrient Based Subsidy per MT
+(2010-11)
+Nutrient Based Subsidy per MT
+(2011-12)
+From 1.1.2011 to 31.3.2011
+From 1.4.2010 to 31.12.2010
+DAP
+16268
+15968
+12960
+MAP
+16219
+15879
+12770
+TSP
+12087
+11787
+9340
+MOP
+14692
+14392
+12831
+16-20-0-13
+9203
+9073
+7431
+20-20-0-13
+10133
+10002
+8236
+23-23-0-0
+11386
+11236
+9295
+10-26-26-0
+15521
+15222
+12850
+12-32-16-0
+15114
+14825
+12332
+14-28-14-0
+14037
+13785
+11495
+14-35-14-0
+15877
+15578
+12916
+15-15-15-0
+11099
+10926
+9270
+20-20-0-0
+9901
+9770
+8083
+28-28-0-0
+13861
+13678
+11316
+17-17-17-0
+12578
+12383
+10506
+19-19-19-0
+14058
+13839
+11742
+16-16-16-0
+11838
+(w.e.f. 1.7.2010 inducted into NBS on 6.8.2010)
+11654
+Ammonium Sulphate
+5195
+5195
+4413
+SSP
+4400
+4296
+3378
+Source :
+http://fert.nic.in/page/fertilizer-policy
+Updated as on 21.05.2013
+|
+Home
+|
+Seasons & Varieties
+|
+Tillage
+|
+Nutrient Management
+|
+Irrigation Management
+|
+Weed Management
+|
+Crop Protection
+|
+Cost of Cultivation
+|
+Disclaimer
+© All Rights Reserved. TNAU-2016.

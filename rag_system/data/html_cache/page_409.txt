@@ -1,0 +1,77 @@
+Stress Management :: Flood
+Home |
+Seasons & Varieties |
+Tillage |
+Nutrient Mgmnt |
+Irrigation Mgmnt |
+Weed Mgmnt |
+Crop Protection |
+Cost of Cultivation
+|
+Photobank
+Stress Management  :: Flood
+About Flooding (High moisture stress)
+Water  logging refers to a condition when water is present in excess amount than its  optimum requirement. It creates an anaerobic situation in the rhizosphere due  to which the plant experiences the stress (O2 deficient stress).
+Nature  of Water logging Stress
+In  the water logged soils, water gets filled in the pores of the soil which are  previously occupied by O2. Such soils suffer O2  deficiency.
+This O2  deficiency depresses growth and survival of plants growing in it.          Flood  sensitive plants (eg. Tomato, soybean and sunflower) are killed in the water  logged conditions, while the tolerant species (eg. Rice) withstand water  logging for a considerable time. However, continuous submergence of rice for  more than 10 days is also deleterious resulting in death and decay of the  plants.
+Plant  Water Relations in Flooding Stress
+The flooding  often induces stomatal closure mostly in C3 plants. This causes  lower water flow in these plants. This also results in leaf dehydration because  of reduced root permeability. Ultimately, wilting of leaves occurs due top the  restricted water flow from the roots to the shoots.
+Occurrence  of these changes in leaves, shoots or roots is due to the transfer of toxic  substances (acetaldehyde / alcohol) produced under anaerobic conditions in the  roots as well as the levels of plant growth regulators (PGRs) transported from the roots to shoots via  transpiration stream.
+Levels  of Endogenous PGRs under Flooding Stress
+Endogenous  levels of PGRs such as GA and cytokinins (CK) are reduced in the roots. This  has enhanced levels of ABA and ethylene in the shoots causing stomatal closure  and early onset of senescence respectively.
+It is also  reported that levels of auxins are reduced and that of Aminocyclopropane -1-Carboxylic  Acid (ACC), precursor for the ethylene biosynthesis are increased under  flooding stress.
+Important  roles played by these endogenous PGRs during high moisture (flooding) stress  are summarized in the following table.
+Table 1.  Effect of flooding stress on the endogenous levels of PGRs and their effect on  plants
+Sl.    No.
+Level    of PGR in plants
+Effects    on plants under water logging
+1.
+Reduced    Auxins
+Causes    “Hypertrophy” (Swelling of stem base by collapse or enlargement of cells in    cortex)
+2.
+Decreased    GA
+Causes    reduction in cell enlargement and stem elongation
+3.
+Decreased    CK
+Results in    early on-set of senescence and reduced rate of assimilate partitioning to the    sinks
+4.
+Increased    ABA
+Cause    stomatal closure with consequential decrease in the rate of gas exchanges    during photosynthesis, respiration and transpiration; results in efflux of K+    from the guard cells; decreases ion transport due to lower rate of    transpiration; decrease the starch formation in the guard cells resulting in    stomatal closure
+5.
+Increased  Ethylene
+Causes    “Epinasty” of leaves (uneven growth of leaves due to more cell elongation on    upper side than the lower side of the leaf); induces senescence and    Hypertrophy in plants.
+Thus, the O2 stress in the  roots under flooding produces signals, via transpiration stream, to the leaves  affecting stomatal behaviour ultimately.
+Mitigation of water  logging
+Providing       adequate drainage for draining excessive stagnating water around the root       system.
+Spray       of growth retardant of 500 ppm cycocel for arresting apical dominance and       thereby promoting growth of laterals
+Foliar       spray of 2% DAP + 1% KCl (MOP)
+Nipping       terminal buds for arresting apical dominance and thus promoting growth       sympodial branches (as in cotton) for increasing productivity
+Spray       of 40 ppm NAA for controlling excessive pre-mature fall of       flowering/buds/young developing fruits and pods
+Spray       of 0.5 ppm brassinolide for increasing photosynthetic activity
+Foliar       spray of 100 ppm salicylic acid for increasing stem reserve utilization       under high moisture stress
+Foliar       spray of 0.3 % Boric acid + 0.5 % ZnSO4 + 0.5 % FeSO4       + 1.0 % urea during critical stages of the stress
+Related  links:
+http://www.plantstress.com/Articles/waterlogging_m/Waterlog_m.htm
+Source:
+Dept. of  Crop Physiology, TNAU, Coimbatore
+Dr.   A. Senthil, Associate Professor (Crop  Physiology), Dept. of Biotechnology, CPMB, TNAU, Coimbatore.
+|
+Home
+|
+Seasons & Varieties
+|
+Tillage
+|
+Nutrient Management
+|
+Irrigation Management
+|
+Weed Management
+|
+Crop Protection
+|
+Cost of Cultivation
+|
+Disclaimer
+© All Rights Reserved. TNAU 2008-2024.

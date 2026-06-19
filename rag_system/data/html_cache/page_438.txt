@@ -1,0 +1,49 @@
+Agriculture :: Mineral Nutrition :: Introduction
+|
+Home
+|
+Seasons & Varieties
+|
+Tillage
+|
+Nutrient Management
+|
+Irrigation Management
+|
+Weed Management
+|
+Crop Protection
+|
+Cost of Cultivation
+|
+Photobank
+Plant Nutrition :: Mineral Nutrition
+Introduction
+The  biggest challenge for India  is its ever increasing population and to match it with food production.  The population of India reached the one billion mark  on 11th May, 2000  and is projected to reach 1.15 billion around 2020 AD.  We will need around 240 million tons of food  grains to feed this population.  The  world scenario also reveals equally startling figures.  The world human population which was 1.5  billion at the beginning of this century, increased to 6 billion today and is  expected to reach 8.3 billion by 2025 AD.   In India,  the arable land is limited and we have exceeded the carrying capacity of the  land.  Under these circumstances, there  is a compelling need to increase agricultural productivity.  Apart from the increasing population, the  nutrient requirements of the people are also on the rise.  It is estimated that in the next two  generations, the world will consume twice as much food as has been consumed in  the entire history of humankind.  This  situation unquestionably calls for a prudent approach for sustainable  agricultural development as no other option would provide the answer.
+The  challenges of the next century are to be tackled with in our limited  resources.  Specially, expansion in  agricultural production is to be achieved within the available land, water and  energy resources. Therefore judicious use of resources, evolving technologies  which are cost effective, resource saving are essential.  The tasks are to be achieved within the frame  work of protection of environment and preservation of natural resource  base.  This calls for a firm commitment  to evolve new technologies for increasing the productivity and continuous use  of available resources in the 21st century by all concerned with  agricultural development.
+According to statistics, during  1987-88, the average use of fertilizers to a hectare of land was reported to be  687 kg in Netherlands, 422  kg in South Korea, 237 kg in  China but it was a meagre 70  kg in India.  Each crop has its own pattern of nutrient  uptake.  Under rice-rice-rice cropping  system, 363 kg of N, 82 of P2O5 and 400 kg of K2O  are removed from a hectare of soil annually.   But farmers attach undue importance to nitrogen fertilizers than  others.  The ratio of the utilization of  N, P and K fertilizers decreased from 1.0: 4.0: 0.14 during 1991 to 1.0: 0.29:  0.12 during 1995-96.  Because of  unbalanced fertilizer utilization pattern for the past 3 decades, the crop  productivity decreased from 14 kg yield / kg applied fertilizers during 1970-71  to 9.30 kg during 1992-93.  Such a skewed  utilization of fertilizers has led to loss in soil productivity.  Moreover, the least importance attached to  potassium fertilization led to explosion of myriad’s of pest and disease  problems and ultimate crop yield losses.   Besides N, P, K, crop also needs nutrients like Ca, S, Zn, Fe, Cu Mn, B  and Mo.  In some cases elements like Si and Cl are  also essential for imparting special characters like pest and disease  resistance.  Though they are needed in  micro level, their requirement is most essential for growth and full expression  of their genetic potential.  Although  resistance and tolerance of crop plants to pest and diseases are genetically  controlled they are considerably influenced by nutrient.  Mineral fertilizers not only affect the  growth and composition of plants but also have profound effects on microbial  activity in the soil rhizosphere an plant resistance and tolerance to root and  shoot pathogens and pests indirectly.   Usually a balanced nutrient supply that ensures optimum plant growth  also considered optimum for plant resistance.   An inverse relationship exist between nutrient supply and plant growth  on the one hand and the severity of bacterial infection on the other.  Therefore one can conclude that plants with  an optimum nutrient status have the highest resistance to pest and disease  and  susceptibility increases as  nutritional status deviates from the optimum.
+In recent times, the yield potential  of crop varieties has already reached a plateau owing to several  constraints.  The most important among  them is the deficiency of mineral nutrients noticed through the length and  breadth of the country; where intensive cultivation has been practiced.  The depletion of nutrients particularly  micronutrients in the soil is increasing due to adoption of modern technologies  in crop production such as raising high yielding crop varieties, multiple  cropping, inter cropping etc.  where the  demand for nutrients is very high and varying.   The amount of nutrients depleted is not returned to the soil in the  right proportion at right times leading to wide spread deficiency of nutrients  especially micronutrients.
+Micronutrients are required for  normal growth, development and yield of crops.   Fore example, cotton needs Zn for the normal pollen production.  Boron application to groundnut reduced the  occurrence of ill filled pods and enhance the yield. Whereas, Boron application  to the coconut reduce the barren nut production.  Pulses need molybdenum for better  nodulation.  Manganese application to  gingelly increases its oil content an seed yield.  Copper deficiency in citrus causes die-back  disease.  Besides the application of  needed dose of N,P and K fertilizers, Zn application increased the yields by  over 300 kg/ha in rice, 800 kg/ha in maize, 500 kg/ha in soybean and 200 kg/ha  in groundnut.  By testing the soils, the  farmers can apply the needed micronutrients, or they can also grow tolerant  crop in their field.  For example certain  varieties of soybean can tolerate Zn deficiency, the varieties M-2 and Davis can tolerate  molybdenum deficiency.  Such tolerant  varieties are being developed in other crops as well and they will be available  for cultivation in micronutrient deficient soils in course of time.
+Each nutrient is needed to a  particular level for each crop.  If any  deficiency or toxicity arises in soil, phonological symptoms will be exhibited  by the crops accordingly.  For example,  Fe deficiency will cause chlorosis of younger leaves.  Nitrogen, phosphorus and potassium deficiency  symptoms will be first exhibited in the older leaves.  Therefore, a thorough knowledge on the  nutrient deficiency symptoms with respect of agricultural and horticultural  crop is very much essential to take appropriate measures to offset the yield  loss.  Any attempt to indiscriminate  application of nutrients especially micronutrients are likely to cause  deficiency of other nutrients leading to crop loss.  For example, excess application of Zinc will  result in decreased uptake of Copper and Manganese leading to deficiency of  Copper and Manganese.  Sometimes under  certain situation like strongly acidic soils, toxicities of certain  micronutrients is likely to occur due to their excess availability.  Further, the toxicities created by imbalance  of applied nutrients or improper dose / concentration of applied nutrients has  been encountered occasionally.   Therefore, there is an absolute need for a thorough knowledge on the  deficiency and the toxicity symptoms of each nutrient.  It is also necessary to have a complete  understanding and through expertise in the subject so as to distinguish the  deficiency and toxicity symptoms of various nutrient elements from one another.
+Much interest to micronutrients in India  was shown only after the discovery of field scale Zn deficiency of rice at  Pantnagar in mid 1960’s.  Within a short  period of time, micronutrients research in Indian agriculture became a major  field of activity and the Indian Council of Agriculture Research (ICAR)  initiated in 1969, the all India  coordinated schemes for research on micronutrients in soils and plants.  Extensive work has been done under this  scheme as well as independently by the Universities, Institutes, Agricultural  departments and Industries.  Major areas  of research were on delineation of deficient areas, identification of  deficiencies, establishment of certain critical limits for soils and crops,  amelioration measures and crop response to application of micronutrient  fertilizers.  Simultaneously promotion  and marketing of micronutrient fertilizers were primarily done by the  industries and government agencies.  Tamil Nadu   Agricultural University  has done extensive research on the micronutrients for the past more than 25  years.  The work done so for has been  brought out as a book entitled “25 years of micronutrient research in soils and  crops of Tamil Nadu”.
+|
+Home
+|
+Seasons & Varieties
+|
+Tillage
+|
+Nutrient Management
+|
+Irrigation Management
+|
+Weed Management
+|
+Crop Protection
+|
+Cost of Cultivation
+|
+Photobank
+|
+Disclaimer
+© All Rights Reserved. TNAU-2016.

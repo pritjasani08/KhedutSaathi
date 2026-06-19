@@ -1,0 +1,181 @@
+TNAU Agritech Portal :: Crop Protection
+Home
+|
+About Us
+|
+Success Stories
+|
+Farmers Association
+|
+Farmers' Innovation
+|
+Publications
+|
+Contact
+Nematode Management : Nematicides
+Introduction
+Agricultural impact of Nematicides
+Specific Nematicides
+Fumigants
+Carbamates
+Organophosphates
+Resistance to Nematicides
+Application methods
+Nematicide Ecology
+INTRODUCTION
+Nematodes are nonsegmented, bilaterally symmetric worm-like invertebrates that possess a body cavity and a complete digestive system but lack respiratory and circulatory systems. The body wall is composed of a multilayered cuticle, a hypodermis with four longitudinal cords, and internal musculature. The most conspicuous feature of the nervous system is the nerve ring near the nematode pharynx. The so-called excretory system has never been associated with removal of metabolic wastes; instead, it functions in osmoregulation or in the secretion of compounds essential to the life history of the nematode, depending on the species and the developmental stage. The digestive and reproductive systems constitute much of the body contents.
+Most nematode species are ‘‘free-living’’; i.e., they feed on microorganisms in water and soil. A smaller number of species are ubiquitous parasites of animals or plants. Indeed, Nathan A. Cobb (1), the father of American nematology, stated in 1914: If all the matter in the universe except nematodes were swept away, our world would still be recognizable, and if, as disembodied spirits, we could then investigate it, we should find its mountains, hills, vales, rivers, lakes, and oceans represented by a film of nematodes. The location of towns would be decipherable, since for every massing of human beings there would be a corresponding massing of certain nematodes. Trees would still stand in ghostly rows representing our streets and highways. The location of the various plants and animals would still be decipherable, and had we sufficient knowledge, in many cases even their species could be determined by an examination of their erstwhile nematode parasites.
+The development of chemical controls for plant-parasitic nematodes is a formidable challenge. Because most phytoparasitic nematodes spend their lives confined to the soil or within plant roots, delivery of a chemical to the immediate surroundings of a nematode is difficult. The outer surface of nematodes is a poor biochemical target and is impermeable to many organic molecules. Delivery of a toxic compound by an oral route is nearly impossible because most phytoparasitic species ingest material only when feeding on plant roots. Therefore, nematicides have tended to be broad-spectrum toxicants possessing high volatility or other properties promoting migration through the soil. The resulting record of less-than-perfect environmental or human health safety has resulted in the widespread deregistration of several agronomically important nematicides (e.g., ethylene dibromide and dibromochloropropane). The most important remaining fumigant nematicide, methyl bromide, faces immediate severe restrictions and future prohibition because of concerns about atmospheric ozone depletion.
+This review focuses on the chemical compounds presently used against plant-parasitic nematodes and the compounds with the greatest likelihood to replace some of the current problematic compounds. Chemical control of nematodes of veterinary ormedical importance is achieved through use of several compounds useful inmanagement of several types of vermiform parasites besides nematodes. In general, mammalian anthelmintics are poorly suited as agronomic nematicides because of lack of mobility in soil, expense, or other undesirable properties. Readers curious about mammalian anthelmintics should refer to several excellent reviews (3–5). The mode of action of some mammalian nematicides is briefly discussed in this review.
+AGRICULTURAL IMPACT OF NEMATODES
+As with damage caused by other crop pests and pathogens, the extent of crop losses caused by nematodes is a topic of debate. The most comprehensive estimate was obtained in a 1986 survey incorporating the responses of 371 nematologists in 75 countries (6). Estimates of nematode damag e to specific crops ranged from 3.3% to 20.6%, with a mean of 12.3%. Annual production losses at the farm gate (in year 2000 dollars) were $121 billion globally and $9.1 billion in the United States. Developing nations reported greater yield loss percentages than did developed countries. Figures for mean crop losses can be deceptive; yield reduction in specific crops can exceed 75% in some locations (7). More typically, growers are forced to select less profitable crops. In addition to directly causing crop losses, nematodes can vector many plant viruses or create wounds that allow the entry of other root pathogens. Several nematodes are major pests of quarantine importance and interfere with free trade of several agricultural commodities.
+SPECIFIC NEMATICIDES: AN INTRODUCTION
+Although the discovery of nematicidal activity in a synthetic chemical dates from the use of carbon disulfide as a soil fumigant in the second half of the nineteenth century, research on the use of nematicides languished until surplus nerve gas (chloropicrin) became readily available following World War I. In the 1940s, the discovery that D-D (a mixture of 1,3-dichloropropene and 1,2-dichloropropane) controlled soil populations of phytoparasitic nematodes and led to substantial increases in crop yield provided a great impetus to the development of other nematicides, as well as the growth of the science of nematology. Subsequently, other halogenated hydrocarbons and other volatile compounds were developed as nematicidal soil fumigants. In the 1960s, a new generation of nematicides was introduced—carbamates and organophosphates that served as contact nematicides, devoid of fumigant activity. Many of the carbamates and organophosphates are systemic within plants, but only one contact nematicide has registered systemic nematicidal activity. For most systemics, the high concentrations needed to retard nematode development within plant roots is not likely to occur under field conditions.
+Most soil nematicides are also registered as insecticides or fungicides and are discussed in greater detail elsewhere in this volume. This broad-spectrum activity is a result of the difficulty in discovering or designing compounds capable of movement through the soil. In addition, the small size of the commercial market for nematicides in comparison to other pesticides dictates that nematicide discovery is often an appendage to
+research programs pursuing controls for other organisms. Compounds included in the following compilation of chemical nematicides are not necessarily registered for usage in the United States or elsewhere, particularly when viewed through their ever-changing regulatory context.
+FUMIGANTS
+D-D
+This mixture of 1,2-dichloropropane and 1,3-dichloropropene had widespread use as an effective nematicide until problems with groundwater contamination resulted in its withdrawal from use in 1984. The 1,2-dichloropropane component was relatively inactive as a nematicide at concentrations used in agricultural fields.
+1,3-Dichloropropene
+Because of the relative lack of nematicidal activity in 1,2-dichloropropane and the desire to eliminate groundwater contamination by a compound not useful for nematode control, 1,3-D became a highly successful nematicide. Although it also has fungicidal activity and insecticidal activity against wireworms in particular, the primary use of the compound is as a nematicide. On a weight basis, 1,3-D is the sixth most abundantly used pesticide in the United States (11); 1,3-D is classified as a possible or probable human carcinogen. Commercial formulations are liquids and contain two isomers. In one series of experiments, aqueous
+trans
+-1,3-D was 60% as toxic as the
+cis
+isomer, whereas in the vapor phase,
+trans
+-1,3-D was 90% as toxic as
+cis
+-1,3-D. In laboratory experiments simulating field situations, the
+trans
+isomer was completely ineffective against the potato
+cyst nematode
+Globodera rostochiensis
+.
+Ethylene Dibromide
+Once the most abundantly used nematicides in the world, use of EDB was prohibited in the United States in 1983 because of groundwater contamination. It was available in liquid formulations and is regarded as a probable human carcinogen.
+1,2-Dibromo-3-Chloropropane
+Liquid formulations of this fumigant with substantial nematode-specific activity were once popular. The compound was notable because of its usefulness in postplant applications. The discovery that over one-third of the male workers at a DBCP manufacturing plant in California were sterile led to the immediate 1977 prohibition of its use in the United States, except for usage in pineapple production (14). Sterility problems were also reported among some DBCP applicators (14). All uses were  prohibited in the late 1980s. DBCP is classified as a possible or probable human carcinogen.
+Methyl Bromide
+Methyl bromide is a broad-spectrum fumigant toxic to nematodes. In 1997, methyl bromide was the fourth most commonly used pesticide in the United States (11). It is agronomically useful against soil fungi, nematodes, insects, and weeds. The Montreal Protocol, an international treaty regulating the use of ozone-depleting substances, mandates the elimination of methyl bromide use in developed countries by 2005. Under a 1999 amendment to the Clean Air Act, the United States phaseout of usage will not be more restrictive than that mandated by the Montreal Protocol. Research pursuing the development of nematicidal methyl bromide alternatives has been intensive, but no single compound appears likely to substitute for it. Methyl bromide is used as a gas; because of its lack of odor, small amounts of chloropicrin are often added as an indicator of exposure to applicators and are often required by specific governmental agencies, such as the
+state of Florida. Methyl bromide is the fastest moving fumigant in soils, followed by chloropicrin, 1,3-D, EDB, methyl isothiocyanate, and DBCP (15).
+Chloropicrin
+One of the oldest soil fumigants, chloropicrin’s primary agricultural use in soils is as a fungicide, although it does have herbicidal and nematicidal activity. It is often added to 1,3-D formulations in order to increase their fungicidal activity. The compound is acutely toxic and is used in liquid formulations. In 1997, it was the 25th most abundantly
+used U.S. pesticide (11).
+Metam Sodium, Dazomet, and Methyl Isothiocyanate (MITC)
+Metam sodium is a soil fumigant used to control nematodes, fungi, insects, and weeds; it is the third most commonly used U.S. pesticide (11). When applied to soils, metam sodium is converted to MITC, which is the active biocidal agent. MITC is no longer registered for use as a soil pesticide in the United States, except as a wood preservative. Metam sodium and related compounds have provided excellent control of nematodes in some circumstances but not in others (8,16,17). Dazomet is one of the few compounds with activity as a fumigant that is supplied as a granular formulation. Research on the use of isothiocyanates as nematicides began in the 1930s (18). Several brassicaceous plants contain nematicidal isothiocyanates or glucosinolates that release isothiocyanates when incorporated into soils.
+Sodium Tetrathiocarbonate
+Sodium tetrathiocarbonate is more recently registered preplant soil fumigant active against fungi, insects, and nematodes. It is supplied as a liquid formulation and may be applied via drip or surface irrigation. Sodium tetrathiocarbonate rapidly degrades in soil into carbon disulfide, sodium hydroxide, hydrogen sulfide, and sulfur. Carbon disulfide is the active principle. Although carbon disulfide has a long history as a fumigant, its flammability is legendary. Carbonates and sulfates are the terminal degradation products. Unlike other commonly used fumigants, sodium tetrathiocarbonate does not readily move through soil air and requires a high level of soil moisture when applied in order to be distributed throughout the soil.
+CARBAMATES
+Aldoxycarb
+Aldicarb is oxidized in soils to aldicarb sulfone, which is available in some parts of the world as the insecticide/ nematicide aldoxycarb. A flowable formulation is available.
+Carbofuran
+Carbofuran is another systemic insecticidal/nematicidal carbamate available in granular and liquid formulations. Because use of carbofuran granules was associated with bird kills, the U.S. Environmental Protection Agency (EPA) prohibited the use of carbofuran granules in 1994.
+Oxamyl
+Like carbofuran, oxamyl is a carbamate that is manufactured in liquid and granular form, but the latter is no longer registered in the United States because of concerns about its consumption by birds. Oxamyl is the only nematicide with downward-moving systemic activity and thus has registered foliar nematicidal applications; foliar applications did reduce
+Pratylenchus penetrans
+on lily (20). Oxamyl is widely used throughout the world and is less persistent in soil than is aldicarb (8).
+ORGANOPHOSPHATES
+While this review is being written, the U.S. EPA is actively reviewing the uses of all organophosphates. It is possible that several of the following compounds will face mandatory or voluntary withdrawals from use in the United States.
+Ethoprop
+Introduced in the 1960s, ethoprop is a nonsystemic insecticide/nematicide. The mobility of ethoprop in soil and its half-life are strongly dependent on soil organic matter (21). It is not known to be carcinogenic and is available as granules or emulsifiable concentrates.
+Fenamiphos
+Also introduced in the 1960s, fenamiphos does have some systemic insecticidal activity. It is widely used as a nematicide. Like ethoprop, it is strongly adsorbed onto organic matter. It is acutely toxic but not shown to be a carcinogen.
+Cadusafos
+This nonsystemic organophosphate not registered for U.S. usage is used to control nematodes and soil insects on bananas and other crops in several countries.The U.S. EPA has granted tolerances for cadusafos in imported bananas, where it provides excellent control of the burrowing nematode,
+Radopholus similis
+(22). Cadusafos reportedly possesses reduced risk for contaminating groundwater and provided good control of the citrus nematode,
+Tylenchulus semipenetrans
+(23). Cadusafos is commercially available in granular and microencapsulated formulations.
+Fosthiazate
+Fosthiazate is a somewhat recently developed (1992) systemic organophosphorus nematicide with broad-spectrum activity (24). A clay-based microgranule formulation is
+available. Fosthiazate provided control of the lesion nematode
+Pratylenchus penetrans
+on potato (25) and root knot nematodes (
+Meloidogyne
+spp.) on tobacco (26) and
+M. arenaria
+on peanut (27), but it failed to control
+M. javanica
+on tobacco and
+Rotylenchulus reniformis
+on pineapple as well as fumigation with 1,3-D (28,29). It is not registered for U.S. usage.
+Other Organophosphates
+Terbufos is a less widely used organophosphate with insecticidal and a few nematicidal uses. It is available in granular formulations. Fensulfothion is a systemic previously but not currently registered for insecticidal and nematicidal activity in the United States. Granular and emulsifiable concentrate formulations were available. Phorate is primarily used as a soil insecticide but has nematicidal uses. Its current U.S. reregistration process
+involves the use of several risk mitigation measures. Organophosphate nematicides with limited worldwide use but not registered in the United States include thionazin, fosthietan, and isazofos.
+RESISTANCE TO NEMATICIDES
+Resistance of field populations to nematicides has not been well characterized and is remarkably insignificant in comparison to the levels of resistance observed with mammalian parasites. Indeed, a recent National Academy of Sciences monograph stated, ‘‘Resistance of nematodes to soil fumigants has yet to be observed but systemic nematocides are relatively new and it is probably only a matter of time until resistance does appear’’ (51). In one interesting study, Moens and Hendrickx (52) evaluated populations of
+Meloidogyne naasi
+,
+G. rostochiensis
+, and
+Pratylenchus crenatus
+exposed to aldicarb for 15 years. Although some developmental differences were noticed between treated and control populations when challenged with aldicarb, the differences were species specific and were concluded to be not significant. In another investigation, the free-living nematode
+Rhabditis oxycerca
+was bred for 400 generations in order to obtain strains adapted to reproducing on concentrations of 600- and 480-μg/ml aldicarb and oxamyl, respectively. Compared with wild type, the two mutant strains were characterized by decreased size (particularly in the tail region), tolerance of warm temperature, production of offspring, and migration in electric fields, among other characteristics. In nematicide solutions, the wild type exhibited decreased motility, electric field migration, and reproduction (53).
+In a third study, genetically selected strains of the insect pathogen
+Heterorhabditis bacteriophora
+possessed 8–70-fold increased resistance to fenamiphos, avermectin, and oxamyl (54). The enhanced resistance was generally stable in the absence of further nematicide pressure; the strains have obvious potential utility in integrated pest management systems.
+APPLICATION METHODS
+The methods for treating agricultural soils with Nematicides are similar to those used for other pesticides examined in this volume. Nematicide application research is being driven by the need to maximize efficacy while minimizing groundwater and atmospheric contamination.
+Fumigation
+Soil fumigation requires prior preparation to be effective (55). Prior to fumigant or nonfumigant application, soil is often turned or tilled to increase porosity and uniformity
+and promote decomposition of residual plant roots, which can serve as hiding places for nematodes or interfere with fumigant movement. Adequate but not excessive soil moisture is critically important to the success of some  fumigants. Fumigants are typically injected with chisels or shanks into the upper 15–40 cm of soil, with the actual depth a function of compound, soil structure, and crop. Although deep injection is often required to minimize the escape of fumigant into the surrounding air, inadequate levels of nematicide in the upper soil layers may result in some situations. Following fumigation, the soil surface is often compacted in order to retard fumigant loss from the soil surface. The design of injection equipment modified for minimization of fumigant escape into the surrounding air is an active research area (56). Because the shallow chisel traces left in treated soils provide a means for fumigant to escape into the atmosphere, some nematicide labels mandate that the traces be covered with soil. Experimental chisels angled to the side 45◦ in order to eliminate chisel trace formation have provided control of root-knot nematodes on tomato equivalent to conventional chisels (57). Another example of minimizing atmospheric loss is through use of single chisel injections for crops traditionally fumigated with dual chisels (58). Fumigation usually involves the use of plastic tarpaulins to minimize atmospheric losses and deliver nematicide to the target organism. Sometimes, tarpaulins must be in place for 10 days. Even when plastic  sheeting is employed, fumigant losses can exceed 50% and approach 80% under extreme conditions (55,59). A variety of injection temperatures and plastic sheeting compositions have been employed to maximize nematicidal activity and reduce atmospheric losses of methyl bromide and other fumigants. Impervious sheeting, warm temperatures, and deep injection often enhance nematicidal activity and permit the use of much smaller quantities of fumigant (41,59). A recovery system involving a double layer of polyethylene sheeting through which air is blown to a methyl bromide collection unit has reduced methyl bromide emissions in a laboratory setting (60). Buffer zones around fumigated areas are often required to reduce the exposure of the general population to airborne fumigants.
+Irrigation
+Liquid and emulsifiable formulations of nematicides can often be applied through surface or drip irrigation systems. The goal of delivering sufficient nematotoxic materials without excessive leaching is researchable but sometimes difficult to achieve (61). Drip irrigation in particular offers a means of precisely controlling the amount of active ingredient delivered to a field, as well as regulating the amount of water, so that leaching of active ingredient beyond the root zone and into groundwater can be eliminated. Drip irrigation also is useful for postplant applications, and it avoids the use of granular materials that may pose risks to birds. Use of drip irrigation also reduces the amount of personal protective equipment required for field workers. A substantial percentage of pineapple production in Hawaii is drip irrigated, and drip irrigation with ethoprop, fenamiphos, or soluble liquid formulations of 1,3-D have been used to provide control of nematodes in pineapple production in Hawaii (61). In order to minimize leaching of nematicides below the root zone and maximize effectiveness, fields are not irrigated for 2 weeks following application. Successful control of
+P. penetrans
+on lilies was provided with drip-irrigated ethoprop, fenamiphos, sodium tetrathiocarbonate, 1,3-D, and oxamyl (20); similarly, drip-irrigated emulsifiable 1,3-D provided control of the citrus nematode,
+Tylenchulus
+semipenetrans
+(62). Although less precise than drip irrigation in delivering nematicide to targeted areas, overhead spray irrigation can also effectively convey nematicides (63). However, injection of metam sodium into a center pivot irrigation system was associated with higher airborne concentrations of MITC than that which occurred in fields receiving
+metam sodium at depths of 5, 15, and 25 cm (64).
+Granules and Broadcast Sprays
+The most widely practiced method of applying nonfumigant nematicides is with granular formulations. Methods for application of nonfumigants to soil have been thoroughly reviewed (65). In some cases, adequate control can be achieved by band application of nematicides at or before sowing. In band application, plant roots may eventually grow beyond the treated area at a time when the root system will be sufficiently vigorous to not suffer serious damage. In-furrow application sometimes is practiced but may result in lack of delivery to the root zone; in other cases, in-furrow application may be preferable. In some cases, sidedress applications of nematicides are useful replacements or additions to at-plant applications. In other cases, broadcast application of granules or sprays followed by a thorough mixing of the soil may be effective. Tillage is necessary to distribute nematicide to a broad enough area to provide control, and a thorough mixing is particularly important for nematicides with poor soil mobility characteristics. Use of broadcast sprays instead of granules often promotes greater uniformity in distribution. For many annual crops, incorporating nematicides into the upper 10–15 cm of soil provides the best balance of efficacy, expense, ease, and safety to wildlife. Research on the distribution of granules to soils by various types of tillage equipment can be facilitated via the use of sepiolite granules containing a fluorescent dye (66).Nematodes are usually distributed unevenly in a given field; nematicide treatment deposits expensive chemical throughout a grower’s field, even in areas where it may not be needed. In one interesting study, Baird et al. (67) quantified the numbers of root-knot nematode juveniles
+at specific locations in experimental cotton fields treated with variable rates of aldicarb or 1,3-D applied with prototype equipment designed to apply nematicide at rates dependent on initial nematode population levels. Although final nematode population levels did not vary among treatments, the variable rate applications of 1,3-D (but not aldicarb) resulted in yield increases and lowered nematicide costs that justified the additional costs of nematode sampling and enumeration.
+Seed Dressing and Bare Root Dip
+The reasons why few nematicides have been registered as seed coatings include the difficulty in applying a sufficient quantity of nematicide needed to provide control beyond the seedling stage, the expense of registration relative to market size, and the attraction of such products to wildlife (65). Nonetheless, experimental formulations have provided some successes, as with control of
+P. penetrans
+on corn by seed treatment with
+oxamyl (68). In addition, seed-transmitted nematodes can be successfully treated with nematicidal treatment of seeds (69). Much experimental research with biocontrol organisms or nematicidal natural products is performed with seed formulations. The principle behind bare root dips is similar to that for seed dressings; i.e., sufficient nematicide is applied to transplants to protect them at a highly vulnerable time. Root dips have provided nematode control in several situations (8).
+NEMATICIDE ECOLOGY
+Effects of Temperature on Activity
+The effects of temperature on nematicide efficacy are complex and not well studied. Increases in temperature may stimulate the metabolic activity of the target nematode, alter the solubility of the chemical in the aqueous or vapor phases, and alter the rate of microbial or chemical destruction of the nematicide. Because nematicides are often applied at the beginning of a growing season, low soil temperature may be of concern with respect to efficacy in some cases (70). The activity of EDB and 1,3-D against the motility and infectivity of
+M. javanica
+in fumigation chambers was much less at 5 ◦C than at 15 ◦C (12). Similarly, methyl bromide exhibited greater activity against the dagger nematode
+Xiphinema index
+and
+M. incognita
+at 30 ◦C than at 15◦ C in soils in sealed cans (71). The enhancement of methyl bromide and 1,3-D activity against
+Tylenchulus semipenetrans
+by high temperature in controlled-temperature experiments indicated that nematicide efficacy could possibly be improved by soil solarization (72).
+Effects of Soil Structure on Activity
+The physicochemical composition of soil is a critical factor influencing nematicidal efficacy. Nematicides diffuse more slowly through soils with small pore spaces, fine particle size, and low moisture content (73). A high clay content can result in increased adsorption and poorer movement of nematicide (47,61,74). Nematicide adsorption onto organic matter is strongly correlated with lipophilicity (10); organic matter can reduce efficacy, either by increasing moisture content, by acting as an adsorbent, by providing receptors for alkylating agents, or by increasing microbial populations that are capable of degrading the applied nematicide (75). The movement of contact nematicides away from their application zone is similarly a function of adsorption onto organic matter. Fumigants, ethoprop, and fenamiphos are less effective in soils with large amounts of organic matter, but aldicarb and oxamyl are effective in soils with a wide range of organic matter concentrations (65). Riegel et al. (76) noted that 1,3-D applied to microplots supplemented with yard waste compost was less effective in suppressing
+M. incognita
+reproduction on tomato than in control microplots. Adsorption onto soil organic matter, although undesirable from the perspective of nematicide efficacy, may be negatively correlatedwith tendency to contaminate groundwater.
+Degradation of Nematicides
+Once applied to soils, any pesticide is subject to biological and physicochemical transformations. Transformation products may have less or greater toxicity than the parent compound. An analysis of various values reported in the literature indicated half-lives of parent compounds of 2–190 days, depending on the parent compound and the physicochemical properties of the soil (75).Nordmeyer (10) regarded a 14-day half-life as ideal for a balance between efficacy and environmental safety. In soils, 1,3-D is first biologically or chemically hydrolyzed to 3-chloroallyl alcohol, which is then oxidized to chloroacrylic acid, which in turn is converted to simple short-chain organic acids (77). Chloroallyl alcohol and chloroacrylic acid also are toxic to humans and are of regulatory concern (78). The primary route of chemical degradation ofmethyl bromide in soil is through hydrolysis to yield methanol and bromide ions and through methylation. Some bacteria, particularly nitrifying bacteria, are capable of oxidizing methyl bromide to form formaldehyde and inorganic bromide (77).  Aldicarb and fenamiphos are initially degraded in soils into sulfone and sulfoxide derivatives with target and nontarget toxicity and with enhanced mobility correlated with increased solubility in water (73,79). Transformation of fenamiphos sulfoxide into sulfone progresses much more rapidly in subsurface soils than in surface soils (80). Aldicarb and fenamiphos sulfoxides may be the major active materials (73,81). Aldicarb is further degraded into oximes and nitriles. The sulfoxide and sulfone derivatives of fenamiphos and aldicarb are more mobile in soils than are the parent nematicides and have the potential to more readily contaminate groundwater (82). Unlike aldicarb, the carbamate group is hydrolyzed in oxamyl. The degradation of oxamyl into nontoxic oximes at 10 different sites was generally associated with increased pH, temperature, and moisture (83).Microbial transformation of  nematicides is an important factor affecting efficacy. As with other types of pesticides, repeated application of nematicides to agricultural soils can result in enhanced microbial degradation and decreased efficacy (77). For example, decreased efficacies of aldicarb, ethoprop, and oxamyl against potato cyst nematodes following multiple applications were associated with increased transformation of the nematicides (75). When previously treated soils were autoclaved, these effects did not occur. Similar phenomena have been observed in fenamiphos-treated soils; the amount of time required for enhanced degradation to disappear has been reported as being from 1 to 5 or more years, depending on the study (79,84,85). Enhanced biological degradation of 1,3-D or methyl isothiocyanate has been described in a number of soils, and various bacteria capable of mineralizing 1,3-D have been isolated (77,86,87). In at least some of these bacteria, a haloalkane dehalogenase gene carried on a plasmid is involved in enhanced degradation (86,87). One such organism (
+Pseudomonas cichorii
+) can grow on low concentrations of 1,3-D as its sole carbon and energy source (88). Enhanced microbial degradation of nematicides is a somewhat unpredictable phenomenon, has not been reported with some nematicides, and is generally unpredictable in occurrence (75,77,89). When accelerated transformation exists, the responsible microorganisms generally transform compounds chemically related to the original nematicide (75). Exceptions occur when the enhanced biodegradation occurs as a result of metabolism of a specific part of the nematicide, such as occurred in a situation when enhanced ethoprop degradation resulted from increased hydrolysis of the P−S bond in the
+S
+-propyl moiety of ethoprop (90). In this case, two strains of
+Pseudomonas putida
+capable of rapidly degrading ethoprop were isolated from the soil (91).
+Effects on Nontarget Organisms
+The nontarget effects of nematicide applications are reviewed in this volume and elsewhere; a detailed evaluation is beyond the scope of this review. Because of their broad-spectrum activities, most Nematicides radically alter soil flora and fauna. Fumigant usage may result in the absence of nematode competitors, predators, and parasites in soils (92). The elimination of mycorrhizae by methyl bromide can result in poorer plant growth (55). Long-term aldicarb treatment of potato fields decreased the number of bacterial genera and species, decreased the population levels of plant growthpromoting rhizobacteria, and increased total bacterial biomass compared to untreated soils (93). Nematicides can greatly alter the subsequent structure of nematode communities in soils; for example,
+Pratylenchus
+recolonized methyl bromide–treated pasture soil, replacing
+Helicotylenchus
+as the dominant phytoparasitic nematode (94). Nematodes and other organisms play a complex role in agroecosystems (7); use of broad-spectrum biocides makes it difficult to exploit some of these roles.
+Environmental Contamination
+One of the greater environmental problems sometimes associated with nematicide usage is groundwater contamination. Indeed, the initial detection of the Nematicides DBCP and aldicarb in groundwater in the United States over 20 years ago led to the stimulation of scientific and regulatory interest in pesticide contamination of groundwater that continues to this day (95). Even though DBCP usage was prohibited in 1977, groundwater contamination persists (96). In 1990, the manufacturer of Temik (aldicarb) announced a voluntary halt on its sale for use on potatoes because of concerns about groundwater contamination. The following year, a train wreck released 72,000 L of metam sodium into the Upper Sacramento River and resulted in soil microbial changes that persisted for at least a year (97). When the special review of 1,3-D by the U.S. EPA was terminated, several measures for reducing potential groundwater contamination were instituted, such as prohibition of usage within 100 feet of drinking-water wells, in areas overlying karst geology, and in several states with certain soil types and where groundwater is 50 feet from the soil surface (78). As previously indicated, 1,3-D use was suspended in California in 1990 for several years because of its detection in air distant from application sites, specifically in a school. This has resulted in the creation of 300-foot–wide buffer zones around residences for fumigation (100 feet wide if fields are drip irrigated). In addition, ‘‘township caps’’ limit the total amount of 1,3-D that can be used in a given area in California (98).
+Home
+|
+About Us
+|
+Success Stories
+|
+Farmers Association
+|
+Publications
+|
+Contact Us
+© TNAU 2008 - 2024 All Rights Reserved.

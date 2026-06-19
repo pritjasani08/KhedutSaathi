@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "title": "PM-KISAN Samman Nidhi",
+    "deadline": "Ongoing",
+    "category": "Income Support",
+    "description": "Financial benefit of Rs. 6000/- per year in three equal installments to all land holding eligible farmer families.",
+    "eligibility": ["Small & Marginal Farmers", "Valid Aadhaar", "Land Ownership Records"],
+    "benefit": "₹6,000 / year",
+    "applyLink": "https://pmkisan.gov.in/"
+  },
+  {
+    "id": 2,
+    "title": "Pradhan Mantri Fasal Bima Yojana",
+    "deadline": "31 July 2026",
+    "category": "Insurance",
+    "description": "Comprehensive crop insurance coverage against non-preventable natural risks from pre-sowing to post-harvest.",
+    "eligibility": ["All farmers growing notified crops", "Loanee & Non-Loanee"],
+    "benefit": "Crop Loss Coverage",
+    "applyLink": "https://pmfby.gov.in/"
+  },
+  {
+    "id": 3,
+    "title": "PM KUSUM Scheme",
+    "deadline": "30 Sept 2026",
+    "category": "Solar Energy",
+    "description": "Installation of solar pumps and grid connected solar power plants by farmers.",
+    "eligibility": ["Individual farmers", "Cooperatives", "Panchayats"],
+    "benefit": "60% Subsidy on Solar Pumps",
+    "applyLink": "https://pmkusum.mnre.gov.in/"
+  },
+  {
+    "id": 4,
+    "title": "Agriculture Infrastructure Fund",
+    "deadline": "Ongoing",
+    "category": "Infrastructure",
+    "description": "Medium - long term debt financing facility for investment in viable projects for post-harvest management Infrastructure.",
+    "eligibility": ["Agri-entrepreneurs", "Startups", "FPOs", "PACS"],
+    "benefit": "3% Interest Subvention",
+    "applyLink": "https://agriinfra.dac.gov.in/"
+  },
+  {
+    "id": 5,
+    "title": "Paramparagat Krishi Vikas Yojana",
+    "deadline": "31 Aug 2026",
+    "category": "Organic Farming",
+    "description": "Promotion of commercial organic production through certified organic farming.",
+    "eligibility": ["Groups of 50+ farmers", "Minimum 50 acres land cluster"],
+    "benefit": "₹50,000 / hectare / 3 years",
+    "applyLink": "https://pgsindia-ncof.gov.in/"
+  },
+  {
+    "id": 6,
+    "title": "Soil Health Card Scheme",
+    "deadline": "Ongoing",
+    "category": "Soil Health",
+    "description": "Provides information to farmers on nutrient status of their soil along with recommendation on appropriate dosage of nutrients.",
+    "eligibility": ["All farmers"],
+    "benefit": "Free Soil Testing & Report",
+    "applyLink": "https://soilhealth.dac.gov.in/"
+  }
+]

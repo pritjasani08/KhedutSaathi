@@ -1,0 +1,198 @@
+TNAU Agritech Portal :: Crop Improvement
+Home
+|
+About Us
+|
+Success Stories
+|
+Farmers Association
+|
+Farmers' Innovation
+|
+Publications
+|
+Photo Bank
+|
+Contact
+Crop Improvement :: Plant Genetics
+Breeding Methods in Crop Plants
+Classification of crop plants based on mode of pollination and mode of reproduction
+Mode of pollination and reproduction
+Examples of crop plants
+Â
+Self Pollinated Crops
+Â
+Â
+Cross Pollinated Crops
+Â
+Â
+Often Cross Pollinated Crops
+Â
+Rice, Â Wheat, Barley, Oats, Chickpea, Pea, Cowpea, Lentil, Green gram, Black gram, Soybean, Common bean, Moth bean, Linseed, Sesame, Khesari, Sunhemp, Chillies, Brinjal, Tomato, Okra, Peanut, Potato,Â
+etc.
+Â
+Corn, Pearlmillet, Rye, Alfalfa, Radish, Cabbage, Sunflower, Sugarbeet, Castor, Red clover, White clover, Safflower, Spinach, Onion, Garlic, Turnip, Squash, Muskmelon, Watermelon, Cucumber, Pumpkin, Kenaf, Oilpalm, Carrot, Coconut, Papaya, Sugarcane, Coffee, Cocoa, Tea, Apple, Pears, Peaches, Cherries, grapes, Almond Strawberries, Pine apple, Banana, Cashew, Irish, Cassava, Taro, Rubber,Â
+etc.
+Sorghum, Cotton, Triticale,Â  Pigeonpea, Tobacco.
+BREEDING METHODS IN CROP PLANTS
+SELF POLLINATED CROPS
+Mass selection
+In mass selection, seeds are collected from (usually a few dozen to a few hundred) desirable appearing individuals in a population, and the next generation is sown from the stock of mixed seed. This procedure, sometimes referred to as phenotypic selection, is based on how each individual looks. Mass selection has been used widely to improve old “land” varieties, varieties that have been passed down from one generation of farmers to the next over long periods.
+An alternative approach that has no doubt been practiced for thousands of years is simply to eliminate undesirable types by destroying them in the field. The results are similar whether superior plants are saved or inferior plants are eliminated: seeds of the better plants become the planting stock for the next season.Â Â
+A modern refinement of mass selection is to harvest the best plants separately and to grow and compare their progenies. The poorer progenies are destroyed and the seeds of the remainder are harvested. It should be noted that selection is now based not solely on the appearance of the parent plants but also on the appearance and performance of their progeny. Progeny selection is usually more effective than phenotypic selection when dealing with quantitative characters of low heritability. It should be noted, however, that progeny testing requires an extra generation; hence gain per cycle of selection must be double that of simple phenotypic selection to achieve the same rate of gain per unit time.
+Mass selection, with or without progeny test, is perhaps the simplest and least expensive of plant-breeding procedures. It finds wide use in the breeding of certain forage species, which are not important enough economically to justify more detailed attention.
+Pure-line selectionÂ
+Pure-line selection generally involves three more or less distinct steps: (1) numerous superior appearing plants are selected from a genetically variable population; (2) progenies of the individual plant selections are grown and evaluated by simple observation, frequently over a period of several years; and (3) when selection can no longer be made on the basis of observation alone, extensive trials are undertaken, involving careful measurements to determine whether the remaining selections are superior in yielding ability and other aspects of performance.
+Any progeny superior to an existing variety is then released as a new “pure-line” variety. Much of the success of this method during the early 1900s depended on the existence of genetically variable land varieties that were waiting to be exploited. They provided a rich source of superior pure-line varieties, some of which are still represented among commercial varieties. In recent years the pure-line method as outlined above has decreased in importance in the breeding of major cultivated species; however, the method is still widely used with the less important species that have not yet been heavily selected.
+A variation of the pure-line selection method that dates back centuries is the selection of single-chance variants, mutations or “sports” in the original variety. A very large number of varieties that differ from the original strain in characteristics such as colour, lack of thorns or barbs, dwarfness, and disease resistance have originated in this fashion.
+HybridizationÂ
+During the 20th century planned hybridization between carefully selected parents has become dominant in the breeding of self-pollinated species. The object of hybridization is to combine desirable genes found in two or more different varieties and to produce pure-breeding progeny superior in many respects to the parental types.
+Genes, however, are always in the company of other genes in a collection called a genotype. The plant breeder’s problem is largely one of efficiently managing the enormous numbers of genotypes that occur in the generations following hybridization. As an example of the power of hybridization in creating variability, a cross between hypothetical wheat varieties differing by only 21 genes is capable of producing more than 10,000,000,000 different genotypes in the second generation. At spacing normally used by farmers, more than 50,000,000 acres would be required to grow a population large enough to permit every genotype to occur in its expected frequency. While the great majority of these second generation genotypes are hybrid (heterozygous) for one or more traits, it is statistically possible that 2,097,152 different pure-breeding (homozygous) genotypes can occur, each potentially a new pure-line variety. These numbers illustrate the importance of efficient techniques in managing hybrid populations, for which purpose the pedigree procedure is most widely used.
+Pedigree breeding
+Â starts with the crossing of two genotypes, each of which have one or more desirable characters lacked by the other. If the two original parents do not provide all of the desired characters, a third parent can be included by crossing it to one of the hybrid progeny of the first generation (F1). In the pedigree method superior types are selected in successive generations, and a record is maintained of parentâprogeny relationships.
+The F2 generation (progeny of the crossing of two F1 individuals) affords the first opportunity for selection in pedigree programs. In this generation the emphasis is on the elimination of individuals carrying undesirable major genes. In the succeeding generations the hybrid condition gives way to pure breeding as a result of natural self-pollination, and families derived from different F2 plants begin to display their unique character. Usually one or two superior plants are selected within each superior family in these generations. By the F5 generation the pure-breeding condition (homozygosity) is extensive, and emphasis shifts almost entirely to selection between families. The pedigree record is useful in making these eliminations. At this stage each selected family is usually harvested in mass to obtain the larger amounts of seed needed to evaluate families for quantitative characters. This evaluation is usually carried out in plots grown under conditions that simulate commercial planting practice as closely as possible. When the number of families has been reduced to manageable proportions by visual selection, usually by the F7 or F8 generation, precise evaluation for performance and quality begins. The final evaluation of promising strains involves (1) observation, usually in a number of years and locations, to detect weaknesses that may not have appeared previously; (2) precise yield testing; and (3) quality testing. Many plant breeders test for five years at five representative locations before releasing a new variety for commercial production.
+The bulk-population method
+Â of breeding differs from the pedigree method primarily in the handling of generations following hybridization. The F2 generation is sown at normal commercial planting rates in a large plot. At maturity the crop is harvested in mass, and the seeds are used to establish the next generation in a similar plot. No record of ancestry is kept. During the period of bulk propagation natural selection tends to eliminate plants having poor survival value. Two types of artificial selection also are often applied: (1) destruction of plants that carry undesirable major genes and (2) mass techniques such as harvesting when only part of the seeds are mature to select for early maturing plants or the use of screens to select for increased seed size. Single plant selections are then made and evaluated in the same way as in the pedigree method of breeding. The chief advantage of the bulk population method is that it allows the breeder to handle very large numbers of individuals inexpensively.
+Often an outstanding variety can be improved by transferring to it some specific desirable character that it lacks. This can be accomplished by first crossing a plant of the superior variety to a plant of the donor variety, which carries the trait in question, and then mating the progeny back to a plant having the genotype of the superior parent. This process is calledÂ
+backcrossing.
+Â After five or six backcrosses the progeny will be hybrid for the character being transferred but like the superior parent for all other genes. Selfing the last backcross generation, coupled with selection, will give some progeny pure breeding for the genes being transferred. The advantages of the backcross method are its rapidity, the small number of plants required, and the predictability of the outcome. A serious disadvantage is that the procedure diminishes the occurrence of chance combinations of genes, which sometimes leads to striking improvements in performance.
+Â Hybrid varieties
+The development of hybrid varieties differs from hybridization. The F1 hybrid of crosses between different genotypes is often much more vigorous than its parents. This hybrid vigour, or
+Â heterosis
+, can be manifested in many ways, including increased rate of growth, greater uniformity, earlier flowering, and increased yield, the last being of greatest importance in agriculture.
+CROSS POLLINATED CROPS
+The most important methods of breeding cross-pollinated species are (1) mass selection; (2) development of hybrid varieties; and (3) development of synthetic varieties. Since cross-pollinated species are naturally hybrid (heterozygous) for many traits and lose vigour as they become purebred (homozygous), a goal of each of these breeding methods is to preserve or restore heterozygosity.
+Mass selectionÂ
+Mass selection in cross-pollinated species takes the same form as in self-pollinated species;Â
+i.e.,
+Â a large number of superior appearing plants are selected and harvested in bulk and the seed used to produce the next generation. Mass selection has proved to be very effective in improving qualitative characters, and, applied over many generations, it is also capable of improving quantitative characters, including yield, despite the low heritability of such characters. Mass selection has long been a major method of breeding cross-pollinated species, especially in the economically less important species.
+Hybrid varietiesÂ
+The outstanding example of the exploitation of hybrid vigour through the use of F1 hybrid varieties has been with corn (maize). The production of a hybrid corn variety involves three steps: (1) the selection of superior plants; (2) selfing for several generations to produce a series of inbred lines, which although different from each other are each pure-breeding and highly uniform; and (3) crossing selected inbred lines. During theÂ
+inbreeding
+Â process the vigour of the lines decreases drastically, usually to less than half that of field-pollinated varieties. Vigour is restored, however, when any two unrelated inbred lines are crossed, and in some cases the F1 hybrids between inbred lines are much superior to open-pollinated varieties. An important consequence of the homozygosity of the inbred lines is that the hybrid between any two inbreds will always be the same. Once the inbreds that give the best hybrids have been identified, any desired amount of hybrid seed can be produced.
+Pollination in corn (maize) is by wind, which blows pollen from the tassels to the styles (silks) that protrude from the tops of the ears. Thus controlled cross-pollination on a field scale can be accomplished economically by interplanting two or three rows of the seed parent inbred with one row of the pollinator inbred and detasselling the former before it sheds pollen. In practice most hybrid corn is produced fromÂ
+“double crosses,”
+Â in which four inbred lines are first crossed in pairs (A Ã B and C Ã D) and then the two F1 hybrids are crossed again (A Ã B) Ã (C Ã D). The double-cross procedure has the advantage that the commercial F1 seed is produced on the highly productive single cross A Ã B rather than on a poor-yielding inbred, thus reducing seed costs. In recent years cytoplasmic male sterility, described earlier, has been used to eliminate detasselling of the seed parent, thus providing further economies in producing hybrid seed.
+Much of the hybrid vigour exhibited by F1 hybrid varieties is lost in the next generation. Consequently, seed from hybrid varieties is not used for planting stock but the farmer purchases new seed each year from seed companies.Â
+Perhaps no other development in the biological sciences has had greater impact on increasing the quantity of food supplies available to the world’s population than has the development of hybrid corn (maize). Hybrid varieties in other crops, made possible through the use of male sterility, have also been dramatically successful and it seems likely that use of hybrid varieties will continue to expand in the future.
+Synthetic varietiesÂ
+A synthetic variety is developed by intercrossing a number of genotypes of known superior combining abilityâ
+i.e.,
+genotypes that are known to give superior hybrid performance when crossed in all combinations. (By contrast, a variety developed by mass selection is made up of genotypes bulked together without having undergone preliminary testing to determine their performance in hybrid combination.) Synthetic varieties are known for their hybrid vigour and for their ability to produce usable seed for succeeding seasons. Because of these advantages, synthetic varieties have become increasingly favoured in the growing of many species, such as the forage crops, in which expense prohibits the development or use of hybrid varieties.
+Source:http://www.britannica.com/EBchecked/topic/463294/plant-breeding/
+MUTATION BREEDING
+Physical Mutagens
+Physical mutagens include various types of radiation, viz X-rays, gamma rays, alpha particles, beta particles, fast and thermal (slow) neutrons and ultra violet rays.Â  A brief description of these mutagens is presented below:
+Commonly used physical mutagens (radiations), their properties and mode of action.
+Type of Radiation
+Main properties
+X â rays
+S.I., penetrating and non-particulate
+Gamma rays
+S.I., very penetrating and Non-particulate
+Alpha Particles
+D.I., particulate, less penetrating and positively charged.
+Beta Rays Particles
+S.I., particulate, more penetrating than alpha particles and negatively charged.
+Fast and Thermal Neutrons
+D.I., particulate, neutral particles, highly penetrating.
+6. Ultra Violet Rays
+Non-ionizing, low penetrating
+Note: particulate refers to particle emitting property DI = Densely ionizing, SI = Sparsely ionizing.
+Â X-rays
+X-rays were first discovered by Roentgen in 1895.Â  The wavelengths of X-rays vary from 10-11 to 10-7. They are sparsely ionizing and highly penetrating.Â  They are generated in X-rays machines.Â  X-rays can break chromosomes and produce all types of mutations in nucleotides, viz. addition, deletion, inversion, transposition, transitions and transversions.Â Â  X-rays were first used by Muller in 1927 for induction of mutations in Drosophila.Â  In plants, Stadler in 1928 first used X-rays for induction of mutations in barley.Â
+Gamma rays
+Gamma rays have shorter wave length than X-rays and are more penetrating than gamma rays.Â  They are generated from radioactive decay of some elements like 14C, 60Co, radium etc.Â  Of these, cobalt 60 is commonly used for the production of Gamma rays.Â  Gamma rays cause chromosomal and gene mutations like X-rays.
+CHEMICAL MUTAGENS
+Procedure for chemical mutagenesis
+Â Â Â Â Â Â Â Â Â Â Â  The chemical mutagens can be divided into four groups, viz. 1) alkylating agents, 2) base analogues, 3) acridine dyes, and 4) others.Â  A brief description of some commonly used chemicals of these groups is presented below.
+Some commonly used chemical mutagens and their mode of action
+Group of mutagen
+Name of chemical
+Mode of action
+Alkylating Agents
+Â
+Â
+Base
+Analogues
+Acridine Dyes
+Â
+Others
+Ethyl methane Sulphonate
+Methyl Methane Sulphonate
+Ethyl Ethane Sulphonate
+Ethylene Imines
+5 Bromo Uracil
+2 Amino purine
+Acriflavin, Proflavin
+Â
+Nitrous Acid
+Hydroxylamine
+Sodium Azide
+ATÂ Â Â Â Â Â Â Â Â  GC Transitions
+Transitions
+GCÂ Â Â Â Â Â Â Â Â  AT Transitions
+Transitions
+ATÂ Â Â Â Â Â Â Â Â  GC Transitions
+ATÂ Â Â Â Â Â Â Â Â  GC Transitions
+Deletion, addition and frame shifts.
+ATÂ Â Â Â Â Â Â Â Â  GC Transitions
+GCÂ Â Â Â Â Â Â Â Â  AT Transitions
+Transitions
+Â Â Â Â Â Â Â Â Â Â Â  TheÂ  speed of hydrolysis of the chemical mutagens is usually measured by the half life of the chemicals.Â  Half life is the time required for disappearance of the half of the initial amount of active reaction agent.Â  The following table gives the half life in hours at different temperatures.
+Chemicals
+Temperature
+20OC
+30OC
+37OC
+MMS (hours)
+EMS
+DES
+NMU
+NEU
+68
+93
+3.3
+-
+-
+20
+26
+1
+35
+84
+9.1
+10.4
+-
+-
+-
+In the case of DES the mutagenic solution should be changed at every half an hour to get good results.Â  Half life is the function of temperature and pH for a particular compound.Â
+One should be extremely careful in handling alkylating agents since most of them are carcinogenic.Â  Especially for ethylene imine, it should be handled under aerated conditions.Â  EMS though not dangerous, it should not be pipetted out by mouth.Â  Besides the alkylating agents, we are also having chemical mutagens like, Base analogues, Acridine dyes, Antibiotics and other miscellaneous chemicals.
+Treatment of seeds with mutagenic chemicals:
+Materials required:-
+Â conical flask, beaker, pipette, glass rods, measuring cylinder, stop watch, distilled water and phosphate buffer.
+Method: -Â
+Â Mutagenic chemical is diluted to the required concentration by using distilled water.Â  To prepare the molar concentration of DES, the method is
+Molecular weight Â Â Â Â Â Â x Â Â Â Â Â Â Â Â Â  a.i. (purity percentage)
+Specific gravity Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  Â Â Â Â Â Â (active ingredient)
+Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  154Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  100
+Eg. DES = Â Â Â Â Â  ----Â Â Â Â Â Â  xÂ Â Â Â Â Â Â Â Â  -----Â Â Â Â Â  = 131 CC.
+18Â .................99
+131 CC dissolved in one litre will give 1 molar solution.
+Seeds have to be soaked in the distilled water for different hours depending upon the seeds, to initiate biochemical reactions.Â  The chemical action is found to be affected by the frequency and spectrum of mutagen depending upon the stage of cell division, during the process of germination.Â  If the chemical treatment is synchronized with DNA synthesis stage (G1, S and G2) then we can get better results.
+Â Â Â Â Â Â Â Â Â Â Â  The presoaked seeds are taken in a flask and chemical is added.Â  Usually the quantity of the chemical is ten times the volume of seeds.Â  Intermittent shaking should be given to ensure uniform exposure of the chemicals.Â  The chemical should be drained after the treatment time is over.Â  The seeds should be washed thoroughly in running tap water, immediately for not less than 30 minutes.Â  After washing, the seeds should be dried in between the filter paper folds.Â  Seeds are to be arranged in germination tray with equal spacing.Â  Trays are kept in a controlled environment of temperature and humity.Â  Periodical observation on germination upto 10-15 days is needed.Â  From the germination percentage, we can assess the LD50 dose.
+Home
+|
+About Us
+|
+Success Stories
+|
+Farmers Association
+|
+Publications
+|
+Site Map
+|
+Disclaimer
+|
+Contact Us
+Â© 2008-2024 TNAU. All Rights Reserved.

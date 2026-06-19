@@ -47,7 +47,7 @@
       "description": "Buy seeds, fertilizers, and pesticides from verified sellers at competitive prices."
     },
     "chatbot": {
-      "title": "Khedut AI Assistant",
+      "title": "Khedut AI",
       "description": "Your 24/7 AI farming companion supporting voice input in English, Hindi, and Gujarati."
     },
     "learnMore": "Learn More"
@@ -101,7 +101,7 @@
     }
   },
   "cropDiagnosis": {
-    "title": "AI Crop Disease Detection",
+    "title": "Crop Health",
     "subtitle": "Upload a crop image and let our AI instantly diagnose diseases with treatment plans",
     "uploadTitle": "Upload Crop Image",
     "dragDrop": "Drag & Drop your crop image here",
@@ -232,7 +232,7 @@
     "exploreAll": "Explore All Features"
   },
   "chatbot": {
-    "title": "Khedut AI Assistant",
+    "title": "Khedut AI",
     "placeholder": "Type your farming question...",
     "send": "Send",
     "voice": "Voice Input",
