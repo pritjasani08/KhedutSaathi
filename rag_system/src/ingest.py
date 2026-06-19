@@ -1,9 +1,9 @@
 import logging
-from src.pdf_loader import load_pdfs
-from src.web_loader import load_urls
-from src.chunker import chunk_documents
-from src.chroma_manager import ChromaDBManager
-from src.config import HTML_CACHE_DIR, PDF_DIR
+from rag_system.src.pdf_loader import load_pdfs
+from rag_system.src.web_loader import load_urls
+from rag_system.src.chunker import chunk_documents
+from rag_system.src.chroma_manager import ChromaDBManager
+from rag_system.src.config import HTML_CACHE_DIR, PDF_DIR
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

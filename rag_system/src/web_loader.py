@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 from pathlib import Path
 from typing import List, Dict
-from src.config import URLS_FILE, HTML_CACHE_DIR
+from rag_system.src.config import URLS_FILE, HTML_CACHE_DIR
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

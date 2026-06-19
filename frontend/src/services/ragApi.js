@@ -1,6 +1,6 @@
 const API_URL = import.meta.env.VITE_RAG_API_URL || 'http://localhost:8000';
 
-export const askRagApi = async (question) => {
+export async function askRag(question) {
   try {
     const response = await fetch(`${API_URL}/ask`, {
       method: 'POST',
@@ -21,7 +21,7 @@ export const askRagApi = async (question) => {
       throw new Error(data.error || 'Failed to get an answer from the RAG API.');
     }
   } catch (error) {
-    console.error('Error in askRagApi:', error);
+    console.error('Error in askRag:', error);
     throw error;
   }
-};
+}

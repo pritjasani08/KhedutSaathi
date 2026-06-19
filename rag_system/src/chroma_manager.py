@@ -2,8 +2,8 @@ import logging
 import chromadb
 from typing import List, Dict
 
-from src.config import CHROMA_DB_PATH, COLLECTION_NAME
-from src.embedder import get_embedder
+from rag_system.src.config import CHROMA_DB_PATH, COLLECTION_NAME
+from rag_system.src.embedder import get_embedder
 
 logger = logging.getLogger(__name__)
 

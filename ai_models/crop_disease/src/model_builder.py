@@ -1,16 +1,16 @@
 import torch
 import torch.nn as nn
-from torchvision.models import mobilenet_v3_small, MobileNet_V3_Small_Weights
+from torchvision.models import efficientnet_b0, EfficientNet_B0_Weights
 
 def build_model(num_classes):
     """
-    Builds a MobileNetV3 Small model for crop disease classification.
+    Builds an EfficientNet-B0 model for crop disease classification.
     """
-    # Load pretrained MobileNetV3 Small
-    model = mobilenet_v3_small(weights=MobileNet_V3_Small_Weights.DEFAULT)
+    # Load pretrained EfficientNet-B0
+    model = efficientnet_b0(weights=EfficientNet_B0_Weights.DEFAULT)
     
     # Replace the classifier head
-    in_features = model.classifier[3].in_features
-    model.classifier[3] = nn.Linear(in_features, num_classes)
+    in_features = model.classifier[1].in_features
+    model.classifier[1] = nn.Linear(in_features, num_classes)
     
     return model

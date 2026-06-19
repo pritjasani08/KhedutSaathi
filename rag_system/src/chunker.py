@@ -1,6 +1,6 @@
 from typing import List, Dict
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from src.config import CHUNK_SIZE, CHUNK_OVERLAP
+from rag_system.src.config import CHUNK_SIZE, CHUNK_OVERLAP
 
 def chunk_documents(documents: List[Dict]) -> List[Dict]:
     """Chunks documents into smaller pieces using configured size and overlap."""

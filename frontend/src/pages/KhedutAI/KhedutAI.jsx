@@ -119,10 +119,13 @@ export default function KhedutAI() {
                 <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary-100 text-primary flex items-center justify-center shrink-0">
                   <Bot className="w-5 h-5" />
                 </div>
-                <div className="bg-slate-100 dark:bg-slate-800 px-5 py-4 rounded-2xl rounded-tl-sm shadow-sm flex items-center gap-1.5">
-                  <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                  <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                  <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                <div className="bg-slate-100 dark:bg-slate-800 px-5 py-4 rounded-2xl rounded-tl-sm shadow-sm flex items-center gap-2">
+                  <span className="text-sm text-slate-500 dark:text-slate-400 font-medium">Khedut AI is typing...</span>
+                  <div className="flex items-center gap-1.5 ml-1">
+                    <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                    <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                    <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                  </div>
                 </div>
               </div>
             )}
