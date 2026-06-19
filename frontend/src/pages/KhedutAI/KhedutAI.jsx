@@ -91,7 +91,7 @@ export default function KhedutAI() {
                 <Bot className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-lg font-bold text-heading">Khedut AI Assistant</h1>
+                <h1 className="text-lg font-bold text-heading">Khedut AI</h1>
                 <p className="text-xs text-body flex items-center gap-1">
                   <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
                   Your Smart Farming Companion

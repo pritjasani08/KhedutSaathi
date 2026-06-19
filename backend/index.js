@@ -4,6 +4,8 @@ if (!process.env.DATA_GOV_API_KEY) {
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
 const mandiRoutes = require('./routes/mandi');
@@ -14,6 +16,18 @@ const irrigationRoutes = require('./routes/irrigationRoutes');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Security Middleware
+app.use(helmet());
+
+// Rate Limiting
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  message: { message: 'Too many requests from this IP, please try again after 15 minutes' },
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+});
+
 // Enable CORS for all requests or restrict to your frontend domain (Vite dev server)
 app.use(cors({
   origin: '*', // For development flexibility
@@ -23,6 +37,9 @@ app.use(cors({
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Apply rate limiter to all API routes
+app.use('/api/', apiLimiter);
 
 // Register routes
 app.use('/api/mandi', mandiRoutes);
