@@ -1,0 +1,5 @@
+torch
+torchvision
+python-dotenv
+google-generativeai
+pydantic
