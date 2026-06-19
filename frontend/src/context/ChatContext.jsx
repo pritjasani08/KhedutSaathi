@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-import { askKhedutAI } from '../services/khedutAIService';
+import { askRagApi } from '../services/ragApi';
 
 const ChatContext = createContext();
 
@@ -17,7 +17,7 @@ export const ChatProvider = ({ children }) => {
     setIsTyping(true);
 
     try {
-      const responseText = await askKhedutAI(text);
+      const responseText = await askRagApi(text);
       const botMessage = { id: Date.now() + 1, type: 'bot', text: responseText, time: new Date() };
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
