@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { LayoutDashboard, Package, Tag, CheckCircle, TrendingUp, Loader2, Check } from 'lucide-react';
+import { LayoutDashboard, Package, Tag, CheckCircle, TrendingUp, Loader2, Check, MapPin, Trees, Sprout, ShieldCheck, Activity, MessageSquare, Zap, CloudRain, LineChart, Leaf } from 'lucide-react';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -12,6 +13,8 @@ export default function Dashboard() {
   const { user } = useAuth();
   const [stats, setStats] = useState(null);
   const [farmerListings, setFarmerListings] = useState([]);
+  const [profileData, setProfileData] = useState(null);
+  const [completionPercentage, setCompletionPercentage] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [acceptLoading, setAcceptLoading] = useState(null);
@@ -25,22 +28,36 @@ export default function Dashboard() {
     try {
       const token = localStorage.getItem('token');
       
-      // Fetch Stats
+      // Fetch Profile Data (For Farmer)
+      if (user.user_type === 'farmer') {
+        const profileRes = await fetch('http://localhost:5000/api/profile', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (profileRes.ok) {
+          const pData = await profileRes.json();
+          setProfileData(pData.profile);
+          setCompletionPercentage(pData.completionPercentage || 0);
+        }
+      }
+
+      // Fetch Marketplace Stats
       const statsRes = await fetch('http://localhost:5000/api/marketplace/dashboard', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
-      if (!statsRes.ok) throw new Error('Failed to fetch stats');
-      const statsData = await statsRes.json();
-      setStats(statsData);
+      if (statsRes.ok) {
+        const statsData = await statsRes.json();
+        setStats(statsData);
+      }
 
       // Fetch Farmer Listings if Farmer
       if (user.user_type === 'farmer') {
         const listingsRes = await fetch('http://localhost:5000/api/marketplace/listings/me', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
-        if (!listingsRes.ok) throw new Error('Failed to fetch your listings');
-        const listingsData = await listingsRes.json();
-        setFarmerListings(listingsData);
+        if (listingsRes.ok) {
+          const listingsData = await listingsRes.json();
+          setFarmerListings(listingsData);
+        }
       }
     } catch (err) {
       setError(err.message);
@@ -60,7 +77,6 @@ export default function Dashboard() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.message);
       
-      // Refresh
       await fetchDashboardData();
       alert('Bid accepted successfully! Deal closed.');
     } catch (err) {
@@ -78,17 +94,11 @@ export default function Dashboard() {
     );
   }
 
-  if (error) {
-    return (
-      <div className="min-h-screen flex items-center justify-center text-red-500">
-        {error}
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen gradient-bg pt-24 pb-16">
       <div className="container-custom px-4 sm:px-6 lg:px-8">
+        
+        {/* SECTION 1: Welcome Header */}
         <motion.div
           initial="hidden" animate="visible"
           variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
@@ -99,13 +109,170 @@ export default function Dashboard() {
               <LayoutDashboard className="w-5 h-5" />
             </div>
             <h1 className="font-display text-3xl font-bold text-heading">
-              {user.user_type === 'farmer' ? 'Farmer Dashboard' : 'Buyer Dashboard'}
+              Welcome back, {user.first_name}!
             </h1>
           </motion.div>
           <motion.p variants={fadeUp} className="text-slate-500">
-            Overview of your marketplace activities
+            {user.user_type === 'farmer' ? "Here is your farm overview and recent activities." : "Overview of your marketplace activities"}
           </motion.p>
         </motion.div>
+
+        {user.user_type === 'farmer' && (
+          <>
+            <div className="grid lg:grid-cols-3 gap-6 mb-8">
+              {/* SECTION 2: My Farm Summary Card */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
+                className="lg:col-span-2 glass-card p-6"
+              >
+                <div className="flex justify-between items-center mb-6">
+                  <h2 className="font-display text-xl font-bold text-heading flex items-center gap-2">
+                    <Trees className="w-5 h-5 text-primary" />
+                    My Farm Summary
+                  </h2>
+                  <Link to="/profile" className="text-sm font-semibold text-primary hover:underline">Edit Profile</Link>
+                </div>
+                
+                {profileData ? (
+                  <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    <div>
+                      <p className="text-sm font-medium text-slate-500 mb-1 flex items-center gap-1"><MapPin className="w-3.5 h-3.5"/> Location</p>
+                      <p className="font-semibold text-heading">{[profileData.district, profileData.state].filter(Boolean).join(', ') || 'Not specified'}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-slate-500 mb-1 flex items-center gap-1"><Trees className="w-3.5 h-3.5"/> Farm Size</p>
+                      <p className="font-semibold text-heading">{profileData.farm_size ? `${profileData.farm_size} Acres` : 'Not specified'}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-slate-500 mb-1 flex items-center gap-1"><Sprout className="w-3.5 h-3.5"/> Primary Crop</p>
+                      <p className="font-semibold text-heading">{profileData.primary_crop || 'Not specified'}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-slate-500 mb-1 flex items-center gap-1"><Activity className="w-3.5 h-3.5"/> Soil Type</p>
+                      <p className="font-semibold text-heading">{profileData.soil_type || 'Not specified'}</p>
+                    </div>
+                  </div>
+                ) : (
+                  <p className="text-slate-500 text-sm">Please update your farm profile to see details here.</p>
+                )}
+              </motion.div>
+
+              {/* SECTION 3: Profile Completion Card */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
+                className="glass-card p-6 flex flex-col justify-center items-center text-center relative overflow-hidden"
+              >
+                <div className="absolute top-0 left-0 w-full h-1 bg-slate-100">
+                  <div className="h-full bg-primary transition-all duration-1000" style={{ width: `${completionPercentage}%` }}></div>
+                </div>
+                <ShieldCheck className="w-12 h-12 text-primary/80 mb-3" />
+                <h3 className="font-display text-lg font-bold text-heading mb-1">Profile Completion</h3>
+                <p className="text-3xl font-black text-primary mb-2">{completionPercentage}%</p>
+                {completionPercentage < 100 ? (
+                  <p className="text-xs text-slate-500 mb-4">Complete your profile to get better recommendations.</p>
+                ) : (
+                  <p className="text-xs text-green-600 font-semibold mb-4">Your profile is fully complete!</p>
+                )}
+                {completionPercentage < 100 && (
+                  <Link to="/profile" className="btn-secondary w-full text-center text-sm py-2">Complete Profile</Link>
+                )}
+              </motion.div>
+            </div>
+
+            {/* SECTION 6: Quick Actions */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
+              className="mb-8"
+            >
+              <h2 className="font-display text-lg font-bold text-heading mb-4">Quick Actions</h2>
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                <ActionCard to="/crop-health" icon={Activity} label="Crop Health" color="text-red-500" bg="bg-red-500/10" />
+                <ActionCard to="/crop-recommendation" icon={Sprout} label="Crop Rec." color="text-green-500" bg="bg-green-500/10" />
+                <ActionCard to="/khedut-ai" icon={Zap} label="Khedut AI" color="text-amber-500" bg="bg-amber-500/10" />
+                <ActionCard to="/market-prices" icon={LineChart} label="Market Intel" color="text-purple-500" bg="bg-purple-500/10" />
+                <ActionCard to="/smart-irrigation" icon={CloudRain} label="Irrigation" color="text-blue-500" bg="bg-blue-500/10" />
+              </div>
+            </motion.div>
+
+            <div className="grid md:grid-cols-2 gap-6 mb-10">
+              {/* SECTION 4: Recent Khedut AI Chats */}
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="glass-card p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="font-display font-bold text-heading flex items-center gap-2">
+                    <MessageSquare className="w-4 h-4 text-primary" />
+                    Recent AI Chats
+                  </h3>
+                  <Link to="/khedut-ai" className="text-xs text-primary font-semibold hover:underline">View All</Link>
+                </div>
+                <div className="space-y-3">
+                  {/* Placeholders for Phase 1 */}
+                  <div className="p-3 bg-slate-50 dark:bg-slate-800/30 rounded-xl border border-subtle flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                      <Zap className="w-4 h-4 text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-heading">Best fertilizer for {profileData?.primary_crop || 'wheat'}?</p>
+                      <p className="text-xs text-slate-500">2 days ago</p>
+                    </div>
+                  </div>
+                  <div className="p-3 bg-slate-50 dark:bg-slate-800/30 rounded-xl border border-subtle flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                      <Zap className="w-4 h-4 text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-heading">Weather forecast for next week</p>
+                      <p className="text-xs text-slate-500">5 days ago</p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* SECTION 5: Recent Disease Diagnoses */}
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="glass-card p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="font-display font-bold text-heading flex items-center gap-2">
+                    <Leaf className="w-4 h-4 text-green-500" />
+                    Recent Diagnoses
+                  </h3>
+                  <Link to="/crop-health" className="text-xs text-primary font-semibold hover:underline">New Diagnosis</Link>
+                </div>
+                <div className="space-y-3">
+                  {/* Placeholders for Phase 1 */}
+                  <div className="p-3 bg-slate-50 dark:bg-slate-800/30 rounded-xl border border-subtle flex justify-between items-center">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center shrink-0">
+                        <img src="https://picsum.photos/seed/leaf/40/40" alt="scan" className="w-full h-full object-cover rounded-lg opacity-80" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-heading">Healthy Leaf</p>
+                        <p className="text-xs text-slate-500">1 week ago</p>
+                      </div>
+                    </div>
+                    <span className="badge badge-success text-[10px] px-2 py-0.5">Healthy</span>
+                  </div>
+                  <div className="p-3 bg-slate-50 dark:bg-slate-800/30 rounded-xl border border-subtle flex justify-between items-center">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center shrink-0">
+                        <img src="https://picsum.photos/seed/leaf2/40/40" alt="scan" className="w-full h-full object-cover rounded-lg opacity-80" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-heading">Yellow Rust Suspected</p>
+                        <p className="text-xs text-slate-500">2 weeks ago</p>
+                      </div>
+                    </div>
+                    <span className="badge bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 text-[10px] px-2 py-0.5">Warning</span>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+            
+            <hr className="border-subtle mb-10" />
+          </>
+        )}
+
+
+        {/* EXISTING MARKETPLACE SECTIONS */}
+        <h2 className="font-display text-2xl font-bold text-heading mb-6">Marketplace Activities</h2>
 
         {/* STATS CARDS */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
@@ -126,11 +293,7 @@ export default function Dashboard() {
 
         {/* FARMER SPECIFIC: My Listings & Bids */}
         {user.user_type === 'farmer' && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-          >
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
             <h2 className="font-display text-xl font-bold text-heading mb-4">Manage My Listings</h2>
             {farmerListings.length === 0 ? (
               <div className="glass-card p-8 text-center text-slate-500">You haven't created any listings yet.</div>
@@ -195,11 +358,7 @@ export default function Dashboard() {
 
         {/* BUYER SPECIFIC: My Bids */}
         {user.user_type === 'buyer' && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-          >
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
             <h2 className="font-display text-xl font-bold text-heading mb-4">My Placed Bids</h2>
             {!stats?.myBids || stats.myBids.length === 0 ? (
               <div className="glass-card p-8 text-center text-slate-500">You haven't placed any bids yet.</div>
@@ -233,10 +392,10 @@ export default function Dashboard() {
 
 function StatCard({ title, value, icon: Icon, color, delay }) {
   const colorClasses = {
-    blue: 'bg-blue-50 text-blue-600 border-blue-100',
-    green: 'bg-green-50 text-green-600 border-green-100',
-    amber: 'bg-amber-50 text-amber-600 border-amber-100',
-    purple: 'bg-purple-50 text-purple-600 border-purple-100'
+    blue: 'bg-blue-50 text-blue-600 border-blue-100 dark:bg-blue-900/20 dark:border-blue-800',
+    green: 'bg-green-50 text-green-600 border-green-100 dark:bg-green-900/20 dark:border-green-800',
+    amber: 'bg-amber-50 text-amber-600 border-amber-100 dark:bg-amber-900/20 dark:border-amber-800',
+    purple: 'bg-purple-50 text-purple-600 border-purple-100 dark:bg-purple-900/20 dark:border-purple-800'
   };
 
   return (
@@ -249,5 +408,16 @@ function StatCard({ title, value, icon: Icon, color, delay }) {
         <p className="text-2xl font-bold text-heading">{value}</p>
       </div>
     </motion.div>
+  );
+}
+
+function ActionCard({ to, icon: Icon, label, color, bg }) {
+  return (
+    <Link to={to} className="group glass-card p-4 flex flex-col items-center justify-center text-center hover:-translate-y-1 transition-all duration-300">
+      <div className={`w-12 h-12 rounded-2xl ${bg} ${color} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}>
+        <Icon className="w-6 h-6" />
+      </div>
+      <p className="text-sm font-semibold text-heading">{label}</p>
+    </Link>
   );
 }
