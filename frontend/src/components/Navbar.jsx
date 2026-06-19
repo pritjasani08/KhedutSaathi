@@ -45,18 +45,42 @@ export default function Navbar() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const navLinks = [
+  const farmerLinks = [
     { path: '/', label: t('nav.home') },
     { path: '/crop-health', label: 'Crop Health' },
     { path: '/market-prices', label: 'Market Intelligence' },
     { path: '/crop-recommendation', label: 'Crop Recommendation' },
+    { path: '/agri-marketplace', label: 'Marketplace Feed' },
     { path: '/khedut-ai', label: 'Khedut AI' },
     { path: '/resources', label: 'News & Schemes' },
     { path: '/features', label: 'Features' },
     { path: '/about', label: 'About' },
   ];
 
+  const buyerLinks = [
+    { path: '/agri-marketplace', label: 'Marketplace Feed' },
+    { path: '/dashboard', label: 'Dashboard' },
+    { path: '/deals', label: 'My Deals' }
+  ];
 
+  const publicLinks = [
+    { path: '/', label: t('nav.home') },
+    { path: '/market-prices', label: 'Market Intelligence' },
+    { path: '/agri-marketplace', label: 'Marketplace Feed' },
+    { path: '/khedut-ai', label: 'Khedut AI' },
+    { path: '/resources', label: 'News & Schemes' },
+    { path: '/features', label: 'Features' },
+    { path: '/about', label: 'About' },
+  ];
+
+  let navLinks = publicLinks;
+  if (user) {
+    if (user.user_type === 'buyer') {
+      navLinks = buyerLinks;
+    } else if (user.user_type === 'farmer') {
+      navLinks = farmerLinks;
+    }
+  }
   return (
     <motion.nav
       initial={{ y: -100 }}
@@ -179,6 +203,28 @@ export default function Navbar() {
                         <User className="w-4 h-4" />
                         My Profile
                       </Link>
+                      
+                      {user.user_type === 'farmer' && (
+                        <>
+                          <Link 
+                            to="/dashboard"
+                            onClick={() => setProfileDropdown(false)}
+                            className="w-full flex items-center gap-2 px-4 py-2.5 text-left text-sm font-medium text-body hover:bg-surface-muted transition-colors"
+                          >
+                            <User className="w-4 h-4" />
+                            Dashboard
+                          </Link>
+                          <Link 
+                            to="/deals"
+                            onClick={() => setProfileDropdown(false)}
+                            className="w-full flex items-center gap-2 px-4 py-2.5 text-left text-sm font-medium text-body hover:bg-surface-muted transition-colors"
+                          >
+                            <User className="w-4 h-4" />
+                            My Deals
+                          </Link>
+                        </>
+                      )}
+                      
                       <button
                         onClick={() => {
                           logout();

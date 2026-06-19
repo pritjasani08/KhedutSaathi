@@ -24,4 +24,24 @@ const requireAuth = (req, res, next) => {
   }
 };
 
-module.exports = { requireAuth };
+const requireFarmer = (req, res, next) => {
+  requireAuth(req, res, () => {
+    if (req.user && req.user.user_type === 'farmer') {
+      next();
+    } else {
+      res.status(403).json({ message: 'Access denied. Farmers only.' });
+    }
+  });
+};
+
+const requireBuyer = (req, res, next) => {
+  requireAuth(req, res, () => {
+    if (req.user && req.user.user_type === 'buyer') {
+      next();
+    } else {
+      res.status(403).json({ message: 'Access denied. Buyers only.' });
+    }
+  });
+};
+
+module.exports = { requireAuth, requireFarmer, requireBuyer };
