@@ -1,0 +1,13 @@
+{
+    "model_type": "RandomForestClassifier",
+    "dataset_rows": 170269,
+    "dataset_columns": 7,
+    "number_of_states": 30,
+    "number_of_districts": 747,
+    "number_of_crops": 89,
+    "training_accuracy": 51.49,
+    "testing_accuracy": 8.33,
+    "training_time_seconds": 4.95,
+    "model_size_mb": 2514.4,
+    "training_date": "2026-06-20 01:42:13"
+}

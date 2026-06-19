@@ -108,3 +108,4 @@ node_modules/
 
 # Build Files
 dist/
+ai_models/crop_recommendation/models/*.pkl
