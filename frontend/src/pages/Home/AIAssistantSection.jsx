@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Bot, Sparkles, ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -7,6 +8,7 @@ const fadeUp = {
 };
 
 export default function AIAssistantSection() {
+  const navigate = useNavigate();
   
   return (
     <section className="py-24 bg-surface relative overflow-hidden transition-colors duration-300">
@@ -36,10 +38,12 @@ export default function AIAssistantSection() {
             </motion.p>
 
             <motion.div variants={fadeUp} className="pt-6">
-              {/* This button could trigger the ChatbotWidget open state, but for now we'll just style it beautifully */}
-              <button className="inline-flex items-center gap-3 px-8 py-5 rounded-2xl bg-gradient-to-r from-primary to-primary-light text-white font-semibold text-lg hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 hover:-translate-y-1 group">
+              <button 
+                onClick={() => navigate('/khedut-ai')}
+                className="inline-flex items-center gap-3 px-8 py-5 rounded-2xl bg-gradient-to-r from-primary to-primary-light text-white font-semibold text-lg hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 hover:-translate-y-1 group"
+              >
                 <Bot className="w-6 h-6 animate-bounce-slow" />
-                Chat with AI Assistant
+                Ask Khedut AI
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
               </button>
             </motion.div>
