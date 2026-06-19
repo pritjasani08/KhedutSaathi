@@ -5,6 +5,8 @@ import { TrendingUp, ShoppingBag } from 'lucide-react';
 import LivePrices from './LivePrices/LivePrices';
 import SellYield from './SellYield/SellYield';
 
+import { useAuth } from '../../context/AuthContext';
+
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
@@ -12,12 +14,16 @@ const fadeUp = {
 
 export default function MarketHub() {
   const { t } = useTranslation();
+  const { user } = useAuth();
   const [activeTab, setActiveTab] = useState('livePrices');
 
   const tabs = [
     { key: 'livePrices', label: t('marketHub.livePrices'), icon: TrendingUp },
-    { key: 'sellYield', label: t('marketHub.sellYield'), icon: ShoppingBag },
   ];
+  
+  if (user && user.user_type === 'farmer') {
+    tabs.push({ key: 'sellYield', label: t('marketHub.sellYield'), icon: ShoppingBag });
+  }
 
   return (
     <div className="min-h-screen gradient-bg pt-24 pb-16 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">

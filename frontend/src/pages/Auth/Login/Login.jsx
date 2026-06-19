@@ -34,8 +34,15 @@ export default function Login() {
       // Context login
       login(data.user);
       
-      // Redirect to home
-      navigate('/');
+      // Save JWT token for API requests
+      localStorage.setItem('token', data.token);
+      
+      // Redirect based on user type
+      if (data.user.user_type === 'buyer') {
+        navigate('/agri-marketplace');
+      } else {
+        navigate('/');
+      }
     } catch (err) {
       setError(err.message);
     } finally {

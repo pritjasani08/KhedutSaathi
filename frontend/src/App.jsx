@@ -36,6 +36,10 @@ function PageWrapper({ children }) {
 
 import Profile from './pages/Profile/Profile';
 
+import ProtectedRoute from './components/ProtectedRoute';
+import Dashboard from './pages/Dashboard/Dashboard';
+import Deals from './pages/Deals/Deals';
+
 function AnimatedRoutes() {
   const location = useLocation();
 
@@ -43,17 +47,24 @@ function AnimatedRoutes() {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageWrapper><Home /></PageWrapper>} />
-        <Route path="/crop-recommendation" element={<PageWrapper><ExpertPanel /></PageWrapper>} />
-        <Route path="/crop-health" element={<PageWrapper><CropDiagnosis /></PageWrapper>} />
-        <Route path="/market-prices" element={<PageWrapper><MarketHub /></PageWrapper>} />
+        
+        {/* Farmer Only Routes */}
+        <Route path="/crop-recommendation" element={<ProtectedRoute allowedRoles={['farmer']}><PageWrapper><ExpertPanel /></PageWrapper></ProtectedRoute>} />
+        <Route path="/crop-health" element={<ProtectedRoute allowedRoles={['farmer']}><PageWrapper><CropDiagnosis /></PageWrapper></ProtectedRoute>} />
+        
+        {/* Market Intelligence & Marketplace Feed (accessible by both, but UI will restrict features) */}
+        <Route path="/market-prices" element={<ProtectedRoute><PageWrapper><MarketHub /></PageWrapper></ProtectedRoute>} />
+        <Route path="/agri-marketplace" element={<ProtectedRoute><PageWrapper><AgriMarketplace /></PageWrapper></ProtectedRoute>} />
+        
         <Route path="/smart-irrigation" element={<PageWrapper><SmartIrrigation /></PageWrapper>} />
-        <Route path="/agri-marketplace" element={<PageWrapper><AgriMarketplace /></PageWrapper>} />
         <Route path="/features" element={<PageWrapper><Features /></PageWrapper>} />
         <Route path="/resources" element={<PageWrapper><Resources /></PageWrapper>} />
         <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
         <Route path="/login" element={<PageWrapper><Login /></PageWrapper>} />
         <Route path="/register" element={<PageWrapper><Register /></PageWrapper>} />
-        <Route path="/profile" element={<PageWrapper><Profile /></PageWrapper>} />
+        <Route path="/profile" element={<ProtectedRoute><PageWrapper><Profile /></PageWrapper></ProtectedRoute>} />
+        <Route path="/dashboard" element={<ProtectedRoute><PageWrapper><Dashboard /></PageWrapper></ProtectedRoute>} />
+        <Route path="/deals" element={<ProtectedRoute><PageWrapper><Deals /></PageWrapper></ProtectedRoute>} />
         <Route path="/khedut-ai" element={<PageWrapper><KhedutAI /></PageWrapper>} />
         
         {/* Placeholder Routes */}
