@@ -10,12 +10,28 @@ export default function KhedutAI() {
   const [input, setInput] = useState('');
   const messagesEndRef = useRef(null);
 
+  const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    // Force window to absolute top on mount
+    window.scrollTo(0, 0);
+  }, []);
+
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   };
 
   useEffect(() => {
-    scrollToBottom();
+    // Completely ignore first render cycle
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    
+    // Only scroll to bottom for subsequent message updates
+    if (messages.length > 0 || isTyping) {
+      scrollToBottom();
+    }
   }, [messages, isTyping]);
 
   const handleSend = () => {
@@ -41,8 +57,8 @@ export default function KhedutAI() {
   ];
 
   return (
-    <div className="pt-20 lg:pt-24 min-h-screen bg-slate-50 dark:bg-slate-900 flex flex-col">
-      <div className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 flex gap-6 h-[calc(100vh-6rem)]">
+    <div className="pt-16 lg:pt-20 h-[100dvh] bg-slate-50 dark:bg-slate-900 flex flex-col overflow-hidden">
+      <div className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-4 sm:py-6 flex gap-6 min-h-0">
         
         {/* Left Sidebar - Chat History (Mock) */}
         <div className="hidden lg:flex flex-col w-64 bg-surface rounded-2xl border border-subtle shadow-sm overflow-hidden">
@@ -66,10 +82,10 @@ export default function KhedutAI() {
         </div>
 
         {/* Main Chat Area */}
-        <div className="flex-1 flex flex-col bg-surface rounded-2xl border border-subtle shadow-sm overflow-hidden relative">
+        <div className="flex-1 flex flex-col bg-surface rounded-2xl border border-subtle shadow-sm overflow-hidden relative min-h-0">
           
           {/* Header */}
-          <div className="px-6 py-4 border-b border-subtle bg-surface-muted flex items-center justify-between z-10">
+          <div className="px-6 py-4 border-b border-subtle bg-surface-muted flex items-center justify-between z-10 shrink-0">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-light flex items-center justify-center shadow-sm">
                 <Bot className="w-6 h-6 text-white" />
@@ -147,7 +163,7 @@ export default function KhedutAI() {
           )}
 
           {/* Input Area */}
-          <div className="p-4 sm:p-6 border-t border-subtle bg-surface">
+          <div className="p-4 sm:p-6 border-t border-subtle bg-surface shrink-0">
             <div className="flex items-end gap-2 sm:gap-3">
               <button className="shrink-0 p-3 rounded-xl bg-surface-muted hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-500 transition-colors">
                 <Mic className="w-5 h-5" />
