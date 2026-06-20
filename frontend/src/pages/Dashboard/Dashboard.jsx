@@ -215,8 +215,8 @@ export default function Dashboard() {
           className="mb-8"
         >
           <motion.div variants={fadeUp} className="flex items-center gap-3 mb-2">
-            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-              <LayoutDashboard className="w-5 h-5" />
+            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center overflow-hidden">
+              <img src="/logo.png" alt="Logo" className="w-8 h-8 object-contain" />
             </div>
             <h1 className="font-display text-3xl font-bold text-heading">
               Welcome back, {user.first_name}!
