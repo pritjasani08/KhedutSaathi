@@ -31,7 +31,7 @@ export default function SchemeEligibilityEngine() {
   const fetchProfile = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:5001/api/profile', {
+      const res = await fetch('http://localhost:5000/api/profile', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (res.ok) {
@@ -79,7 +79,7 @@ export default function SchemeEligibilityEngine() {
         landSize: parseFloat(formData.landSize)
       };
 
-      const res = await fetch('http://localhost:5001/api/schemes/eligible', {
+      const res = await fetch('http://localhost:5000/api/schemes/eligible', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -95,7 +95,7 @@ export default function SchemeEligibilityEngine() {
       if (user && fullProfile) {
         try {
           const token = localStorage.getItem('token');
-          await fetch('http://localhost:5001/api/profile', {
+          await fetch('http://localhost:5000/api/profile', {
             method: 'PUT',
             headers: { 
               'Content-Type': 'application/json',

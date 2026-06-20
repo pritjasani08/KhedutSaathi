@@ -57,7 +57,7 @@ export default function SellYield() {
     });
 
     try {
-      const response = await fetch('http://localhost:5001/api/marketplace/listings', {
+      const response = await fetch('http://localhost:5000/api/marketplace/listings', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`
