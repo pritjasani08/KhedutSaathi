@@ -12,11 +12,12 @@ export const useDashboardOverview = () => {
   });
 };
 
-export const useWeather = (region) => {
+export const useWeather = (profile) => {
+  const { state, district } = profile || {};
   return useQuery({
-    queryKey: dashboardKeys.weather(region),
-    queryFn: () => dashboardService.getWeather(region),
-    enabled: !!region,
+    queryKey: dashboardKeys.weather(state, district),
+    queryFn: () => dashboardService.getWeather({ state, district }),
+    enabled: !!state,
     staleTime: DASHBOARD_STALE_TIMES.WEATHER,
     gcTime: DASHBOARD_CACHE_TIMES.WEATHER,
   });

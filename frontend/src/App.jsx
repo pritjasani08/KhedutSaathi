@@ -59,16 +59,11 @@ function AnimatedRoutes() {
         
         {/* Market Intelligence & Marketplace Feed (accessible by both, but UI will restrict features) */}
         <Route path="/market-prices" element={<ProtectedRoute><PageWrapper><MarketHub /></PageWrapper></ProtectedRoute>} />
-        
-        {/* Seller Only Routes */}
-        <Route path="/seller-dashboard" element={<ProtectedRoute allowedRoles={['seller']}><Navigate to="/seller-dashboard/products" replace /></ProtectedRoute>} />
-        <Route path="/seller-dashboard/:tab" element={<ProtectedRoute allowedRoles={['seller']}><PageWrapper><SellerDashboard /></PageWrapper></ProtectedRoute>} />
-        
-        {/* Buyer Only Routes */}
-        <Route path="/crop-market" element={<ProtectedRoute allowedRoles={['buyer']}><PageWrapper><CropMarket /></PageWrapper></ProtectedRoute>} />
-        
-        {/* Farmer Marketplace (Farmer buys from sellers) */}
-        <Route path="/agri-marketplace" element={<ProtectedRoute allowedRoles={['farmer']}><PageWrapper><AgriMarketplace /></PageWrapper></ProtectedRoute>} />
+        <Route path="/agri-marketplace" element={<PageWrapper><AgriMarketplace /></PageWrapper>} />
+        <Route path="/seller-dashboard" element={<Navigate to="/seller-dashboard/products" replace />} />
+        <Route path="/seller-dashboard/:tab" element={<PageWrapper><SellerDashboard /></PageWrapper>} />
+        <Route path="/agri-marketplace" element={<ProtectedRoute><PageWrapper><AgriMarketplace /></PageWrapper></ProtectedRoute>} />
+        <Route path="/crop-market" element={<ProtectedRoute><PageWrapper><CropMarket /></PageWrapper></ProtectedRoute>} />
         
         <Route path="/smart-irrigation" element={<PageWrapper><SmartIrrigation /></PageWrapper>} />
         <Route path="/features" element={<PageWrapper><Features /></PageWrapper>} />
@@ -77,13 +72,9 @@ function AnimatedRoutes() {
         <Route path="/login" element={<PageWrapper><Login /></PageWrapper>} />
         <Route path="/register" element={<PageWrapper><Register /></PageWrapper>} />
         <Route path="/profile" element={<ProtectedRoute><PageWrapper><Profile /></PageWrapper></ProtectedRoute>} />
-        
-        {/* Farmer Dashboard Routes */}
-        <Route path="/dashboard" element={<ProtectedRoute allowedRoles={['farmer']}><PageWrapper><Dashboard /></PageWrapper></ProtectedRoute>} />
-        <Route path="/dashboard-new" element={<ProtectedRoute allowedRoles={['farmer']}><PageWrapper><NewDashboard /></PageWrapper></ProtectedRoute>} />
-        
-        {/* Deals Route (For both Farmer and Buyer) */}
-        <Route path="/deals" element={<ProtectedRoute allowedRoles={['farmer', 'buyer']}><PageWrapper><Deals /></PageWrapper></ProtectedRoute>} />
+        <Route path="/dashboard-legacy" element={<ProtectedRoute><PageWrapper><Dashboard /></PageWrapper></ProtectedRoute>} />
+        <Route path="/dashboard" element={<ProtectedRoute><PageWrapper><NewDashboard /></PageWrapper></ProtectedRoute>} />
+        <Route path="/deals" element={<ProtectedRoute><PageWrapper><Deals /></PageWrapper></ProtectedRoute>} />
         <Route path="/khedut-ai" element={<PageWrapper><KhedutAI /></PageWrapper>} />
         
         {/* Placeholder Routes */}
@@ -131,16 +122,16 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
-        <AuthProvider>
-          <ChatProvider>
-            <Router>
-              <ScrollToTop />
-              <AppContent />
-            </Router>
-          </ChatProvider>
-        </AuthProvider>
-      </ThemeProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+      <AuthProvider>
+        <ChatProvider>
+          <Router>
+            <ScrollToTop />
+            <AppContent />
+          </Router>
+        </ChatProvider>
+      </AuthProvider>
+    </ThemeProvider>
+    <ReactQueryDevtools initialIsOpen={false} />
+  </QueryClientProvider>
   );
 }

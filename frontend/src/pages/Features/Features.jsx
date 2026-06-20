@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import PageHero from '../../components/shared/PageHero';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -103,22 +104,13 @@ export default function Features() {
   ];
 
   return (
-    <div className="min-h-screen gradient-bg pt-24 pb-16">
+    <div className="min-h-screen bg-background pt-24 pb-16">
       <div className="container-custom px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <motion.div
-          initial="hidden" animate="visible"
-          variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
-          className="text-center mb-16"
-        >
-
-          <motion.h1 variants={fadeUp} custom={1} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-heading mb-4">
-            Platform Capabilities
-          </motion.h1>
-          <motion.p variants={fadeUp} custom={2} className="text-body text-lg max-w-2xl mx-auto opacity-90">
-            Discover all the powerful tools and modules available in KhedutSaathi designed to empower your agricultural journey.
-          </motion.p>
-        </motion.div>
+        <PageHero
+          title="Platform Capabilities"
+          subtitle="Discover all the powerful tools and modules available in KhedutSaathi designed to empower your agricultural journey."
+        />
+        <div className="mt-12">
 
         {/* Feature Categories */}
         <div className="space-y-16">
@@ -171,6 +163,7 @@ export default function Features() {
               </div>
             </motion.section>
           ))}
+        </div>
         </div>
       </div>
     </div>

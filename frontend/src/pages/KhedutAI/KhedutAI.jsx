@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { Bot, User, Send, Mic, Sparkles, Clock } from 'lucide-react';
 import { useChat } from '../../context/ChatContext';
 
+
+
 export default function KhedutAI() {
   const { t } = useTranslation();
   const { messages, isTyping, sendMessage } = useChat();
@@ -13,7 +15,6 @@ export default function KhedutAI() {
   const isFirstRender = useRef(true);
 
   useEffect(() => {
-    // Force window to absolute top on mount
     window.scrollTo(0, 0);
   }, []);
 
@@ -22,13 +23,11 @@ export default function KhedutAI() {
   };
 
   useEffect(() => {
-    // Completely ignore first render cycle
     if (isFirstRender.current) {
       isFirstRender.current = false;
       return;
     }
     
-    // Only scroll to bottom for subsequent message updates
     if (messages.length > 0 || isTyping) {
       scrollToBottom();
     }
@@ -57,11 +56,16 @@ export default function KhedutAI() {
   ];
 
   return (
-    <div className="pt-16 lg:pt-20 h-[100dvh] bg-slate-50 dark:bg-slate-950 flex flex-col overflow-hidden">
-      <div className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-4 sm:py-6 flex gap-6 min-h-0">
+    <div className="flex flex-col min-h-screen bg-background pt-24 pb-8">
+      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 mb-4">
+        <h1 className="text-2xl md:text-3xl font-bold text-heading">Khedut AI</h1>
+        <p className="text-sm text-slate-500">Your Smart Farming Companion</p>
+      </div>
+
+      <div className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 flex gap-6 h-[calc(100vh-140px)] min-h-[500px]">
         
         {/* Left Sidebar - Chat History (Mock) */}
-        <div className="hidden lg:flex flex-col w-64 bg-surface rounded-2xl border border-subtle shadow-sm overflow-hidden">
+        <div className="hidden lg:flex flex-col w-64 bg-surface rounded-2xl border border-subtle shadow-sm overflow-hidden h-full">
           <div className="p-4 border-b border-subtle bg-surface-muted">
             <h3 className="font-semibold text-heading flex items-center gap-2">
               <Clock className="w-4 h-4 text-primary" />
@@ -82,27 +86,7 @@ export default function KhedutAI() {
         </div>
 
         {/* Main Chat Area */}
-        <div className="flex-1 flex flex-col bg-surface rounded-2xl border border-subtle shadow-sm overflow-hidden relative min-h-0">
-          
-          {/* Header */}
-          <div className="px-6 py-4 border-b border-subtle bg-surface-muted flex items-center justify-between z-10 shrink-0">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-light flex items-center justify-center shadow-sm">
-                <Bot className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h1 className="text-lg font-bold text-heading">Khedut AI</h1>
-                <p className="text-xs text-body flex items-center gap-1">
-                  <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                  Your Smart Farming Companion
-                </p>
-              </div>
-            </div>
-            <div className="hidden sm:flex items-center gap-2 text-sm text-primary font-medium bg-primary-50 px-3 py-1.5 rounded-full">
-              <Sparkles className="w-4 h-4" />
-              Powered by AI
-            </div>
-          </div>
+        <div className="flex-1 flex flex-col bg-surface rounded-2xl border border-subtle shadow-sm overflow-hidden relative h-full">
 
           {/* Chat Window */}
           <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6">

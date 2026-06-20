@@ -102,20 +102,17 @@ export default function Resources() {
     { key: 'eligibility', label: 'Eligibility Engine', icon: Calculator },
   ];
 
-  return (
-    <div className="min-h-screen pt-20 bg-background transition-colors duration-300 pb-16">
-      <PageHero 
-        title="News & Schemes"
-        subtitle="Stay updated with the latest agricultural news and government schemes to empower your farming journey."
-        icon={Newspaper}
-      />
+  const fadeUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i = 0) => ({ opacity: 1, y: 0, transition: { delay: i * 0.06, duration: 0.4 } }),
+  };
 
-      <div className="container-custom px-4 sm:px-6 lg:px-8 mt-[-2rem] relative z-10">
-        {/* Tab Navigation */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="flex justify-center mb-6"
+  return (
+    <div className="min-h-screen bg-background pt-24 pb-16">
+      <div className="container-custom px-4 sm:px-6 lg:px-8">
+        <PageHero
+          title="Agricultural Resources"
+          subtitle="Stay updated with the latest agricultural news and government schemes to empower your farming journey."
         >
           <div className="inline-flex bg-surface rounded-2xl p-1.5 shadow-card overflow-x-auto max-w-full hide-scrollbar">
             {tabs.map((tab) => (
@@ -133,8 +130,9 @@ export default function Resources() {
               </button>
             ))}
           </div>
-        </motion.div>
+        </PageHero>
 
+        <div className="mt-12">
         {/* News Filters */}
         {activeTab === 'news' && (
           <motion.div
@@ -251,6 +249,7 @@ export default function Resources() {
             ) : null}
           </AnimatePresence>
         )}
+        </div>
       </div>
     </div>
   );
