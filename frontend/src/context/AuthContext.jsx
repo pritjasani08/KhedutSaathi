@@ -5,18 +5,21 @@ const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    // Check if user is logged in from localStorage on mount
+  const [user, setUser] = useState(() => {
     const storedUser = localStorage.getItem('khedutsaathi_user');
     if (storedUser) {
       try {
-        setUser(JSON.parse(storedUser));
+        return JSON.parse(storedUser);
       } catch (e) {
         console.error('Failed to parse user from local storage', e);
+        return null;
       }
     }
+    return null;
+  });
+
+  useEffect(() => {
+    // Keep this for any future side effects on mount
   }, []);
 
   const login = (userData) => {
