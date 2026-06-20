@@ -1,251 +1,229 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useAuth } from '../../context/AuthContext';
-import {
-  Search, ShoppingCart, MapPin, IndianRupee, Image as ImageIcon, Gavel, User, Loader2, PackageOpen
-} from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Search, SlidersHorizontal, Loader2, PackageX } from 'lucide-react';
+import { getProducts } from '../../services/supabase/marketplaceService';
+import ProductCard from '../../components/Marketplace/ProductCard';
+import ProductDetailsModal from '../../components/Marketplace/ProductDetailsModal';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
-  visible: (i = 0) => ({ opacity: 1, y: 0, transition: { delay: i * 0.06, duration: 0.4 } }),
+  visible: (i = 0) => ({ opacity: 1, y: 0, transition: { delay: i * 0.05, duration: 0.4 } }),
 };
+
+const categories = [
+  'All',
+  'Seeds',
+  'Fertilizers',
+  'Pesticides',
+  'Bio Fertilizers',
+  'Farm Equipment',
+  'Irrigation',
+  'Organic Products',
+  'Animal Feed'
+];
 
 export default function AgriMarketplace() {
   const { t } = useTranslation();
-  const { user } = useAuth();
   
-  const [searchQuery, setSearchQuery] = useState('');
-  const [listings, setListings] = useState([]);
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [error, setError] = useState(null);
   
-  const [biddingListingId, setBiddingListingId] = useState(null);
-  const [bidAmount, setBidAmount] = useState('');
-  const [bidLoading, setBidLoading] = useState(false);
-  const [bidError, setBidError] = useState('');
+  // Filter states
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [priceRange, setPriceRange] = useState([0, 100000]);
+  const [minRating, setMinRating] = useState(0);
+  
+  // UI states
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [showFiltersMobile, setShowFiltersMobile] = useState(false);
 
-  useEffect(() => {
-    fetchListings();
-  }, []);
-
-  const fetchListings = async () => {
+  const fetchProducts = async () => {
+    setLoading(true);
+    setError(null);
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/marketplace/listings', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
+      const data = await getProducts({
+        searchQuery,
+        category: selectedCategory,
+        priceRange,
+        minRating
       });
-      if (!response.ok) throw new Error('Failed to fetch listings');
-      const data = await response.json();
-      setListings(data);
+      setProducts(data);
     } catch (err) {
-      setError(err.message);
+      console.error(err);
+      setError('Failed to fetch products. Please try again later.');
     } finally {
       setLoading(false);
     }
   };
 
-  const handleBidSubmit = async (e, listing) => {
-    e.preventDefault();
-    setBidLoading(true);
-    setBidError('');
-
-    try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/marketplace/listings/${listing.id}/bid`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({ bidPrice: Number(bidAmount) })
-      });
-
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.message);
-
-      // Bid successful, refresh listings and close input
-      await fetchListings();
-      setBiddingListingId(null);
-      setBidAmount('');
-    } catch (err) {
-      setBidError(err.message);
-    } finally {
-      setBidLoading(false);
-    }
-  };
-
-  const filteredListings = listings.filter((p) => 
-    p.crop_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    p.location.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  // Debounced search effect
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      fetchProducts();
+    }, 500);
+    return () => clearTimeout(delayDebounceFn);
+  }, [searchQuery, selectedCategory, priceRange, minRating]);
 
   return (
-    <div className="min-h-screen gradient-bg pt-24 pb-16">
-      <div className="container-custom px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <motion.div
-          initial="hidden" animate="visible"
-          variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
-          className="text-center mb-10"
-        >
-          <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100/60 text-amber-600 text-sm font-semibold mb-4">
-            <ShoppingCart className="w-4 h-4" /> Marketplace Feed
-          </motion.div>
-          <motion.h1 variants={fadeUp} custom={1} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-heading mb-4">
-            Live Crop Listings
-          </motion.h1>
-          <motion.p variants={fadeUp} custom={2} className="text-slate-500 text-lg max-w-2xl mx-auto">
-            Browse and bid on fresh produce directly from farmers.
-          </motion.p>
-        </motion.div>
-
-        {/* Search Bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="glass-card p-4 mb-8 flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto"
-        >
-          <div className="flex-1 relative">
+    <div className="max-w-7xl mx-auto space-y-8 pb-12">
+      {/* Header & Search */}
+      <motion.div 
+        initial="hidden" animate="visible" variants={fadeUp}
+        className="flex flex-col md:flex-row justify-between items-center gap-4 bg-white p-6 rounded-3xl shadow-sm border border-slate-100"
+      >
+        <div>
+          <h1 className="font-display text-3xl font-bold text-slate-800">Agriculture Marketplace</h1>
+          <p className="text-slate-500 mt-1">Find the best supplies for your farm</p>
+        </div>
+        
+        <div className="flex w-full md:w-auto gap-3">
+          <div className="relative w-full md:w-80">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
             <input
               type="text"
+              placeholder="Search products, brands..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search by crop name or location..."
-              className="input-field !pl-12"
+              className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
             />
           </div>
-        </motion.div>
-
-        {/* Listings Grid */}
-        {loading ? (
-          <div className="flex justify-center py-20">
-            <Loader2 className="w-10 h-10 animate-spin text-primary" />
-          </div>
-        ) : error ? (
-          <div className="text-center text-red-500 py-10">{error}</div>
-        ) : filteredListings.length === 0 ? (
-          <div className="text-center py-16">
-            <div className="w-24 h-24 bg-slate-100 rounded-3xl flex items-center justify-center mx-auto mb-4">
-              <PackageOpen className="w-12 h-12 text-slate-300" />
-            </div>
-            <p className="text-slate-400 text-lg">No listings available right now.</p>
-          </div>
-        ) : (
-          <motion.div
-            initial="hidden" animate="visible"
-            variants={{ visible: { transition: { staggerChildren: 0.06 } } }}
-            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          <button 
+            onClick={() => setShowFiltersMobile(!showFiltersMobile)}
+            className="md:hidden p-3 bg-slate-50 border border-slate-200 rounded-2xl text-slate-600"
           >
-            {filteredListings.map((listing, i) => (
-              <motion.div
-                key={listing.id}
-                variants={fadeUp}
-                custom={i}
-                className="glass-card overflow-hidden card-hover group flex flex-col"
+            <SlidersHorizontal className="w-5 h-5" />
+          </button>
+        </div>
+      </motion.div>
+
+      <div className="flex flex-col md:flex-row gap-8">
+        {/* Filter Sidebar */}
+        <motion.aside 
+          initial="hidden" animate="visible" variants={fadeUp} custom={1}
+          className={`${showFiltersMobile ? 'block' : 'hidden'} md:block w-full md:w-64 flex-shrink-0 space-y-6 bg-white p-6 rounded-3xl shadow-sm border border-slate-100 h-fit`}
+        >
+          <div className="flex items-center gap-2 font-display font-bold text-lg text-slate-800 mb-4 pb-4 border-b border-slate-100">
+            <SlidersHorizontal className="w-5 h-5 text-primary" />
+            Filters
+          </div>
+
+          {/* Categories */}
+          <div>
+            <h3 className="text-sm font-bold text-slate-800 mb-3 uppercase tracking-wider">Categories</h3>
+            <div className="space-y-2">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`w-full text-left px-3 py-2 rounded-xl text-sm font-medium transition-colors ${
+                    selectedCategory === cat 
+                      ? 'bg-primary/10 text-primary font-bold' 
+                      : 'text-slate-600 hover:bg-slate-50'
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Price Range */}
+          <div className="pt-4 border-t border-slate-100">
+            <h3 className="text-sm font-bold text-slate-800 mb-3 uppercase tracking-wider">Max Price</h3>
+            <input 
+              type="range" 
+              min="100" max="100000" step="100"
+              value={priceRange[1]}
+              onChange={(e) => setPriceRange([0, Number(e.target.value)])}
+              className="w-full accent-primary"
+            />
+            <div className="flex justify-between text-xs text-slate-500 mt-2 font-medium">
+              <span>₹0</span>
+              <span>₹{priceRange[1].toLocaleString()}</span>
+            </div>
+          </div>
+
+          {/* Minimum Rating */}
+          <div className="pt-4 border-t border-slate-100">
+            <h3 className="text-sm font-bold text-slate-800 mb-3 uppercase tracking-wider">Min Rating</h3>
+            <div className="flex gap-2">
+              {[0, 3, 4, 4.5].map((rating) => (
+                <button
+                  key={rating}
+                  onClick={() => setMinRating(rating)}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ${
+                    minRating === rating 
+                      ? 'bg-amber-100 text-amber-700' 
+                      : 'bg-slate-50 text-slate-600 hover:bg-slate-100'
+                  }`}
+                >
+                  {rating === 0 ? 'All' : `${rating}+`}
+                </button>
+              ))}
+            </div>
+          </div>
+        </motion.aside>
+
+        {/* Main Product Grid */}
+        <main className="flex-1">
+          {error && (
+            <div className="bg-red-50 text-red-600 p-4 rounded-2xl mb-6">
+              {error}
+            </div>
+          )}
+
+          {loading ? (
+            <div className="flex flex-col items-center justify-center py-20">
+              <Loader2 className="w-10 h-10 animate-spin text-primary mb-4" />
+              <p className="text-slate-500 font-medium">Loading products...</p>
+            </div>
+          ) : products.length > 0 ? (
+            <motion.div 
+              initial="hidden" animate="visible"
+              variants={{ visible: { transition: { staggerChildren: 0.05 } } }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            >
+              {products.map((product) => (
+                <ProductCard 
+                  key={product.id} 
+                  product={product} 
+                  onClick={setSelectedProduct} 
+                />
+              ))}
+            </motion.div>
+          ) : (
+            <div className="flex flex-col items-center justify-center py-32 bg-white rounded-3xl border border-dashed border-slate-200">
+              <PackageX className="w-16 h-16 text-slate-300 mb-4" />
+              <h3 className="font-display text-xl font-bold text-slate-700 mb-2">No products available</h3>
+              <p className="text-slate-500 text-center max-w-sm">
+                We couldn't find any products matching your current filters. Try adjusting your search or clearing filters.
+              </p>
+              <button 
+                onClick={() => {
+                  setSearchQuery('');
+                  setSelectedCategory('All');
+                  setPriceRange([0, 100000]);
+                  setMinRating(0);
+                }}
+                className="mt-6 px-6 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-semibold transition-colors"
               >
-                {/* Product Image */}
-                <div className="h-48 bg-slate-100 relative overflow-hidden">
-                  {listing.crop_images && listing.crop_images.length > 0 ? (
-                    <img 
-                      src={listing.crop_images[0].image_url} 
-                      alt={listing.crop_name} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center text-slate-300">
-                      <ImageIcon className="w-16 h-16" />
-                    </div>
-                  )}
-                  <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-green-600 shadow-sm">
-                    {listing.status}
-                  </div>
-                </div>
-
-                <div className="p-5 flex-1 flex flex-col">
-                  <h3 className="font-display font-bold text-xl text-body mb-2">{listing.crop_name}</h3>
-                  <p className="text-sm text-slate-500 mb-4 line-clamp-2">{listing.description}</p>
-
-                  <div className="grid grid-cols-2 gap-3 mb-5 mt-auto">
-                    <div className="bg-surface-muted rounded-lg p-3">
-                      <p className="text-xs text-slate-500">Quantity</p>
-                      <p className="font-semibold text-body text-sm">{listing.quantity_quintals} Quintals</p>
-                    </div>
-                    <div className="bg-surface-muted rounded-lg p-3">
-                      <p className="text-xs text-slate-500">Expected Price</p>
-                      <p className="font-semibold text-primary text-sm">₹{listing.expected_price}/Qtl</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center justify-between text-xs text-slate-500 mb-5">
-                    <span className="flex items-center gap-1">
-                      <User className="w-3.5 h-3.5" />
-                      {listing.farmer_name}
-                    </span>
-                    <span className="flex items-center gap-1 truncate max-w-[120px]">
-                      <MapPin className="w-3.5 h-3.5 shrink-0" />
-                      <span className="truncate">{listing.location}</span>
-                    </span>
-                  </div>
-
-                  <div className="bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800/30 rounded-xl p-3 mb-4 flex justify-between items-center">
-                    <span className="text-xs font-medium text-amber-700 dark:text-amber-500">Highest Bid</span>
-                    <span className="font-bold text-amber-600 dark:text-amber-400">
-                      {listing.highest_bid > 0 ? `₹${listing.highest_bid}` : 'No Bids Yet'}
-                    </span>
-                  </div>
-
-                  {/* Buyer Actions */}
-                  {user && user.user_type === 'buyer' && (
-                    <div className="mt-auto">
-                      {biddingListingId === listing.id ? (
-                        <form onSubmit={(e) => handleBidSubmit(e, listing)} className="space-y-2">
-                          <div className="relative">
-                            <IndianRupee className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                            <input
-                              type="number"
-                              required
-                              value={bidAmount}
-                              onChange={(e) => setBidAmount(e.target.value)}
-                              placeholder={`Min ₹${Math.max(listing.expected_price, listing.highest_bid + 1)}`}
-                              className="input-field !pl-9 !py-2 text-sm"
-                            />
-                          </div>
-                          {bidError && <p className="text-red-500 text-xs">{bidError}</p>}
-                          <div className="flex gap-2">
-                            <button type="submit" disabled={bidLoading} className="btn-primary flex-1 !py-2 text-xs flex items-center justify-center">
-                              {bidLoading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : 'Confirm Bid'}
-                            </button>
-                            <button type="button" onClick={() => setBiddingListingId(null)} className="btn-secondary flex-1 !py-2 text-xs">
-                              Cancel
-                            </button>
-                          </div>
-                        </form>
-                      ) : (
-                        <button 
-                          onClick={() => {
-                            setBiddingListingId(listing.id);
-                            setBidError('');
-                            setBidAmount('');
-                          }} 
-                          className="btn-accent w-full flex items-center justify-center gap-2"
-                        >
-                          <Gavel className="w-4 h-4" />
-                          Place Bid
-                        </button>
-                      )}
-                    </div>
-                  )}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        )}
+                Clear Filters
+              </button>
+            </div>
+          )}
+        </main>
       </div>
+
+      {/* Product Details Modal */}
+      {selectedProduct && (
+        <ProductDetailsModal 
+          product={selectedProduct} 
+          onClose={() => setSelectedProduct(null)} 
+        />
+      )}
     </div>
   );
 }
