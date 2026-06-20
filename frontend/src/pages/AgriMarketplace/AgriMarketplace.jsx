@@ -99,7 +99,7 @@ export default function AgriMarketplace() {
       {/* Floating Cart Button */}
       <button 
         onClick={() => setIsCartOpen(true)}
-        className="fixed bottom-8 right-8 z-[90] bg-green-600 hover:bg-green-500 text-white p-4 rounded-full shadow-lg shadow-green-900/50 transition-all hover:scale-110 hover:-translate-y-1 flex items-center justify-center group border border-green-500/50"
+        className="fixed bottom-6 left-6 md:bottom-8 md:left-8 z-[90] bg-green-600 hover:bg-green-500 text-white p-4 rounded-full shadow-lg shadow-green-900/50 transition-all hover:scale-110 hover:-translate-y-1 flex items-center justify-center group border border-green-500/50"
       >
         <ShoppingCart className="w-6 h-6" />
         {cartItemCount > 0 && (
@@ -109,12 +109,12 @@ export default function AgriMarketplace() {
         )}
       </button>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-20">
         
         {/* 1. Hero Section */}
         <MarketplaceHeroSection onSearch={setSearchQuery} />
 
-        <div className="flex flex-col lg:flex-row gap-8 mb-16 mt-8">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 mb-16">
           {/* Left Filter Sidebar */}
           <aside className="hidden lg:block w-72 flex-shrink-0">
             <div className="sticky top-24 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm p-6">
