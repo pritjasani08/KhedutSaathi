@@ -195,7 +195,7 @@ export default function SellerDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-white dark:from-slate-950 dark:to-slate-900 text-body font-sans pt-24 pb-16 transition-colors duration-300">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 to-white dark:from-slate-950 dark:to-slate-950 text-body font-sans pt-24 pb-16 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Page Header */}

@@ -102,7 +102,7 @@ export default function CropDiagnosis() {
   };
 
   return (
-    <div className="min-h-screen gradient-bg pt-24 pb-16 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+    <div className="min-h-screen gradient-bg pt-24 pb-16">
       <div className="container-custom px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
