@@ -7,7 +7,7 @@ import { useAuth } from '../../../context/AuthContext';
 export default function Login() {
   const navigate = useNavigate();
   const { login } = useAuth();
-  
+
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [loading, setLoading] = useState(false);
@@ -33,10 +33,10 @@ export default function Login() {
 
       // Context login
       login(data.user);
-      
+
       // Save JWT token for API requests
       localStorage.setItem('token', data.token);
-      
+
       // Redirect based on user type
       if (data.user.user_type === 'seller') {
         navigate('/seller-dashboard/products');
@@ -61,8 +61,11 @@ export default function Login() {
           transition={{ duration: 0.5 }}
           className="glass-card p-8 sm:p-10"
         >
-          <div className="text-center mb-8">
-            <h1 className="font-display text-3xl font-bold text-heading mb-3">Welcome Back</h1>
+          <div className="text-center mb-6">
+            <div className="flex justify-center -mt-4 sm:-mt-6 -mb-10 sm:-mb-14">
+              <img src="/logo.png" alt="KhedutSaathi Logo" className="w-48 h-48 sm:w-56 sm:h-56 object-contain relative z-10 pointer-events-none" />
+            </div>
+            <h1 className="font-display text-3xl font-bold text-heading mb-2 relative z-20">Welcome Back</h1>
             <p className="text-body opacity-80">Log in to continue to your dashboard.</p>
           </div>
 
