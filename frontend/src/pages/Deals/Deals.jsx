@@ -14,10 +14,6 @@ export default function Deals() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    fetchDeals();
-  }, []);
-
   const fetchDeals = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -33,6 +29,10 @@ export default function Deals() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchDeals();
+  }, []);
 
   if (loading) {
     return (

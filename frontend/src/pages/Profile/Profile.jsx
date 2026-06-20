@@ -35,14 +35,6 @@ export default function Profile() {
     irrigation_type: ''
   });
 
-  useEffect(() => {
-    if (!user) {
-      navigate('/login');
-    } else {
-      fetchProfileData();
-    }
-  }, [user, navigate]);
-
   const fetchProfileData = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -84,6 +76,14 @@ export default function Profile() {
       console.error('Failed to fetch profile', err);
     }
   };
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/login');
+    } else {
+      fetchProfileData();
+    }
+  }, [user, navigate]);
 
   const handleSave = async (e) => {
     e.preventDefault();

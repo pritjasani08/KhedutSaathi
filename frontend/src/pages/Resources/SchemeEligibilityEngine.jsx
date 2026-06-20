@@ -22,12 +22,6 @@ export default function SchemeEligibilityEngine() {
     irrigationType: 'Tube Well'
   });
 
-  useEffect(() => {
-    if (user && user.user_type === 'farmer') {
-      fetchProfile();
-    }
-  }, [user]);
-
   const fetchProfile = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -57,6 +51,12 @@ export default function SchemeEligibilityEngine() {
       console.error(e);
     }
   };
+
+  useEffect(() => {
+    if (user && user.user_type === 'farmer') {
+      fetchProfile();
+    }
+  }, [user]);;
 
   const handleChange = (e) => {
     const { name, value } = e.target;

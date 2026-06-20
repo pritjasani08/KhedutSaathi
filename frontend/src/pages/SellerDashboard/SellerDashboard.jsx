@@ -38,16 +38,6 @@ export default function SellerDashboard() {
     previews: [] 
   });
 
-  // Fetch products and orders from Supabase
-  useEffect(() => {
-    if (!user) return;
-    if (activeTab === 'products') {
-      fetchProducts();
-    } else if (activeTab === 'orders') {
-      fetchOrders();
-    }
-  }, [user, activeTab]);
-
   const fetchProducts = async () => {
     setLoading(true);
     const { data, error } = await supabase
@@ -93,6 +83,16 @@ export default function SellerDashboard() {
     }
     setOrdersLoading(false);
   };
+
+  // Fetch products and orders from Supabase
+  useEffect(() => {
+    if (!user) return;
+    if (activeTab === 'products') {
+      fetchProducts();
+    } else if (activeTab === 'orders') {
+      fetchOrders();
+    }
+  }, [user, activeTab]);;
 
   const handleUpdateOrderStatus = async (orderId, newStatus) => {
     try {
