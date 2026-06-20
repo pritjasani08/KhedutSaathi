@@ -57,7 +57,7 @@ export default function SellYield() {
     });
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/marketplace/listings`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/marketplace/listings`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`
