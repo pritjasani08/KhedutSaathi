@@ -12,6 +12,8 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.108.2",
     "axios": "^1.18.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "framer-motion": "^12.40.0",
     "i18next": "^26.3.1",
     "lucide-react": "^1.20.0",
@@ -19,7 +21,8 @@
     "react-dom": "^19.2.6",
     "react-i18next": "^17.0.8",
     "react-router-dom": "^7.18.0",
-    "rss-parser": "^3.13.0"
+    "rss-parser": "^3.13.0",
+    "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
