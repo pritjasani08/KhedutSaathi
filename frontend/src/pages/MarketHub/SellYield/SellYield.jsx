@@ -71,7 +71,8 @@ export default function SellYield() {
         throw new Error(data.message || 'Failed to create listing');
       }
 
-      setSuccess('Yield listed successfully!');
+      setSuccess('Listing added successfully');
+      alert('Listing added successfully');
       setForm({ cropName: '', quantity: '', price: '', description: '', village: '', district: '', state: '' });
       setImages([]);
     } catch (err) {

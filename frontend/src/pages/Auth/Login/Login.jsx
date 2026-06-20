@@ -39,7 +39,7 @@ export default function Login() {
       
       // Redirect based on user type
       if (data.user.user_type === 'buyer') {
-        navigate('/agri-marketplace');
+        navigate('/crop-market');
       } else {
         navigate('/');
       }
