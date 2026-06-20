@@ -48,7 +48,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center gap-2 mb-4">
-              <span className="text-3xl">🌾</span>
+              <img src="/logo.png" alt="KhedutSaathi Logo" className="w-8 h-8 lg:w-10 lg:h-10 group-hover:scale-110 transition-transform duration-300" />
               <span className="font-display font-bold text-2xl text-white">KhedutSaathi</span>
             </Link>
             <p className="text-slate-400 text-sm leading-relaxed mb-6">

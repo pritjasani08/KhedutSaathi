@@ -94,31 +94,57 @@ export default function HeroSection() {
             initial={{ opacity: 0, scale: 0.85, x: 50 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
-            className="relative hidden lg:block"
+            className="relative order-first lg:order-last mb-12 lg:mb-0 mt-8 lg:mt-0"
           >
-            <div className="relative w-full aspect-square max-w-lg mx-auto">
-              {/* Central circle */}
-              <div className="absolute inset-12 bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-900/50 dark:to-primary-800/50 rounded-full animate-pulse-slow" />
-              <div className="absolute inset-16 bg-gradient-to-br from-primary-200 to-primary-300 dark:from-primary-800/50 dark:to-primary-700/50 rounded-full" />
-              <div className="absolute inset-20 bg-surface rounded-full shadow-card flex items-center justify-center">
-                <span className="text-8xl">🌾</span>
+            <div className="relative w-full aspect-square max-w-[400px] md:max-w-[500px] lg:max-w-[700px] mx-auto flex items-center justify-center">
+
+              {/* Central Logo & Subtle Glow */}
+              <div className="relative z-10 flex items-center justify-center w-full h-full">
+                {/* Subtle Glow */}
+                <div className="absolute inset-0 bg-primary/20 dark:bg-primary/10 rounded-full blur-3xl animate-pulse-slow scale-125" />
+
+                <img
+                  src="/logo.png"
+                  alt="KhedutSaathi Logo"
+                  className="relative z-10 w-full h-full object-contain drop-shadow-2xl scale-100 md:scale-110 lg:scale-[1.3]"
+                />
               </div>
 
               {/* Floating cards */}
               {[
-                { icon: '🌱', label: t('cropDiagnosis.title') || 'Disease Detection', pos: 'top-4 left-4', delay: 0 },
-                { icon: '📈', label: t('marketHub.title') || 'Market Prices', pos: 'top-8 right-0', delay: 0.5 },
-                { icon: '💧', label: t('smartIrrigation.title') || 'Smart Irrigation', pos: 'bottom-8 left-0', delay: 1 },
-                { icon: '🤖', label: t('chatbot.title') || 'Khedut AI', pos: 'bottom-4 right-4', delay: 1.5 },
+{ 
+  icon: '🌱', 
+  label: t('cropDiagnosis.title') || 'Disease Detection', 
+  pos: 'top-[-20px] left-[-10px] md:top-[-10px] md:left-[-20px]', 
+  delay: 0 
+},
+{ 
+  icon: '📈', 
+  label: t('marketHub.title') || 'Market Prices', 
+  pos: 'top-8 right-[-20px] md:top-12 md:right-[-30px]', 
+  delay: 0.5 
+},
+{ 
+  icon: '💧', 
+  label: t('smartIrrigation.title') || 'Smart Irrigation', 
+  pos: 'bottom-24 left-[-20px] md:bottom-36 md:left-[-30px]', 
+  delay: 1 
+},
+{ 
+  icon: '🤖', 
+  label: t('chatbot.title') || 'Khedut AI', 
+  pos: 'bottom-8 right-[-10px] md:bottom-16 md:right-[-20px]', 
+  delay: 1.5 
+},
               ].map((item, i) => (
                 <motion.div
                   key={i}
                   animate={{ y: [0, -12, 0] }}
                   transition={{ duration: 3, delay: item.delay, repeat: Infinity, ease: 'easeInOut' }}
-                  className={`absolute ${item.pos} glass-card px-4 py-3 flex items-center gap-3 shadow-card`}
+                  className={`absolute ${item.pos} glass-card px-3 py-2 md:px-4 md:py-3 flex items-center gap-2 md:gap-3 shadow-card z-20 whitespace-nowrap scale-90 md:scale-100`}
                 >
-                  <span className="text-2xl">{item.icon}</span>
-                  <span className="text-sm font-semibold text-slate-700 dark:text-slate-200">{item.label}</span>
+                  <span className="text-xl md:text-2xl">{item.icon}</span>
+                  <span className="text-xs md:text-sm font-semibold text-slate-700 dark:text-slate-200">{item.label}</span>
                 </motion.div>
               ))}
             </div>
