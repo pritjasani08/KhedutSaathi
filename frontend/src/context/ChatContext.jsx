@@ -1,13 +1,32 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import { askRag } from '../services/ragApi';
+import { useAuth } from './AuthContext';
 
 const ChatContext = createContext();
 
 export const ChatProvider = ({ children }) => {
+  const { user } = useAuth();
   const [messages, setMessages] = useState([
     { id: 1, type: 'bot', text: 'Hello! I am Khedut AI, your smart farming companion. How can I assist you today?', time: new Date() },
   ]);
   const [isTyping, setIsTyping] = useState(false);
+  const [profileData, setProfileData] = useState(null);
+
+  useEffect(() => {
+    if (user && user.user_type === 'farmer') {
+      const token = localStorage.getItem('token');
+      if (token) {
+        fetch('http://localhost:5001/api/profile', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.profile) setProfileData(data.profile);
+        })
+        .catch(err => console.error("Error fetching profile for AI context", err));
+      }
+    }
+  }, [user]);
 
   const sendMessage = async (text) => {
     if (!text.trim()) return;
@@ -17,7 +36,13 @@ export const ChatProvider = ({ children }) => {
     setIsTyping(true);
 
     try {
-      const responseText = await askRag(text);
+      let queryWithContext = text;
+      if (profileData && profileData.primary_crop) {
+        const contextStr = `\n\n[Context: I am a farmer in ${profileData.district || ''}, ${profileData.state || 'India'}. I have ${profileData.farm_size || 'a'} acre farm with ${profileData.soil_type || 'unknown'} soil. My primary crop is ${profileData.primary_crop}. Please keep this in mind when answering.]`;
+        queryWithContext = text + contextStr;
+      }
+
+      const responseText = await askRag(queryWithContext);
       const botMessage = { id: Date.now() + 1, type: 'bot', text: responseText, time: new Date() };
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {

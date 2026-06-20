@@ -2,6 +2,7 @@ const Parser = require('rss-parser');
 const NodeCache = require('node-cache');
 const fs = require('fs');
 const path = require('path');
+const weatherService = require('../services/weatherService');
 
 const parser = new Parser();
 const cache = new NodeCache({ stdTTL: 900 }); // 15 minutes TTL
@@ -145,8 +146,9 @@ const getNews = async (req, res) => {
   try {
     const language = req.query.language || 'gu';
     const region = req.query.region || 'Gujarat';
+    const crop = req.query.crop || '';
 
-    const cacheKey = `agri_news_${language}_${region}`;
+    const cacheKey = `agri_news_${language}_${region}_${crop}`;
     const cachedNews = cache.get(cacheKey);
     if (cachedNews) {
       return res.status(200).json({ success: true, data: cachedNews, cached: true });
@@ -162,9 +164,14 @@ const getNews = async (req, res) => {
     }
 
     let regionQuery = region === 'All India' ? 'IN' : region;
+    let districtQuery = req.query.district ? ` OR ${req.query.district}` : '';
     
-    // Group keywords with parentheses so the region is strictly applied to any of them
-    const q = encodeURIComponent(`(agriculture OR farming OR crop OR irrigation) ${regionQuery}`);
+    // Prioritize scheme updates, weather alerts and crop-specific news
+    let keywords = ['agriculture', 'farming', 'scheme', 'yojana', 'weather', 'monsoon'];
+    if (crop) keywords.push(crop);
+    
+    const keywordGroup = keywords.join(' OR ');
+    const q = encodeURIComponent(`(${keywordGroup}) (${regionQuery}${districtQuery})`);
 
     const feedUrl = `https://news.google.com/rss/search?q=${q}&hl=${hl}&gl=${gl}&ceid=${ceid}`;
     
@@ -260,7 +267,54 @@ const getSchemes = (req, res) => {
   }
 };
 
+const getWeather = async (req, res) => {
+  try {
+    const region = req.query.region || 'Gujarat';
+    const district = req.query.district || '';
+    
+    const weatherData = await weatherService.getWeatherByRegion(region, district);
+    
+    // Generate Farmer Advisory based on weather data
+    let advisory = "Conditions are normal.";
+    const temp = weatherData.current.temperature;
+    const rainProb = weatherData.current.rainProbability;
+    
+    if (rainProb > 50) {
+      advisory = "High probability of rain. Avoid spraying chemicals today. Ensure drainage is clear.";
+    } else if (temp > 38) {
+      advisory = "High temperature alert. Ensure adequate irrigation. Avoid working in the field during peak afternoon hours.";
+    } else if (temp < 10) {
+      advisory = "Low temperature alert. Protect sensitive crops from frost.";
+    } else {
+      advisory = "Favorable conditions for farming activities.";
+    }
+
+    // Determine condition string
+    let condition = "Clear";
+    if (rainProb > 50) condition = "Rainy";
+    else if (weatherData.current.humidity > 70) condition = "Cloudy";
+    else if (temp > 35) condition = "Hot";
+
+    res.status(200).json({
+      success: true,
+      data: {
+        temperature: temp,
+        humidity: weatherData.current.humidity,
+        windSpeed: weatherData.current.windSpeed,
+        rainProbability: rainProb,
+        condition: condition,
+        advisory: advisory,
+        locationName: weatherData.locationName
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching weather:', error);
+    res.status(500).json({ success: false, message: 'Failed to fetch weather data.' });
+  }
+};
+
 module.exports = {
   getNews,
-  getSchemes
+  getSchemes,
+  getWeather
 };

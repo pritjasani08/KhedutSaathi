@@ -1,10 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, ChevronRight, Calculator, IndianRupee, Landmark, ArrowLeft, Loader2, AlertCircle } from 'lucide-react';
+import { CheckCircle2, ChevronRight, Calculator, IndianRupee, Landmark, ArrowLeft, Loader2, AlertCircle, User } from 'lucide-react';
 import SchemeCard from '../../components/shared/SchemeCard';
+import { useAuth } from '../../context/AuthContext';
 
 export default function SchemeEligibilityEngine() {
+  const { user } = useAuth();
   const [step, setStep] = useState(1);
+  const [fullProfile, setFullProfile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [results, setResults] = useState(null);
@@ -18,6 +21,42 @@ export default function SchemeEligibilityEngine() {
     primaryCrop: 'Wheat',
     irrigationType: 'Tube Well'
   });
+
+  useEffect(() => {
+    if (user && user.user_type === 'farmer') {
+      fetchProfile();
+    }
+  }, [user]);
+
+  const fetchProfile = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch('http://localhost:5001/api/profile', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.profile) {
+          const p = data.profile;
+          setFullProfile(p);
+          setFormData({
+            state: p.state || 'Gujarat',
+            age: p.age || '',
+            gender: p.gender || 'Male',
+            landSize: p.farm_size || '',
+            farmerCategory: p.farmer_category || 'Small & Marginal',
+            primaryCrop: p.primary_crop || 'Wheat',
+            irrigationType: p.irrigation_type || 'Tube Well'
+          });
+          if (p.age && p.farm_size) {
+            setStep(0); // Show one-click screen
+          }
+        }
+      }
+    } catch(e) {
+      console.error(e);
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,7 +79,7 @@ export default function SchemeEligibilityEngine() {
         landSize: parseFloat(formData.landSize)
       };
 
-      const res = await fetch('http://localhost:5000/api/schemes/eligible', {
+      const res = await fetch('http://localhost:5001/api/schemes/eligible', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -51,6 +90,27 @@ export default function SchemeEligibilityEngine() {
       
       setResults(data);
       setStep(4); // Results step
+
+      // Phase 3: Save results back to profile
+      if (user && fullProfile) {
+        try {
+          const token = localStorage.getItem('token');
+          await fetch('http://localhost:5001/api/profile', {
+            method: 'PUT',
+            headers: { 
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+              ...fullProfile,
+              scheme_results: data
+            })
+          });
+        } catch (saveErr) {
+          console.error("Failed saving scheme results to profile", saveErr);
+        }
+      }
+
     } catch (err) {
       console.error(err);
       setError(err.message);
@@ -78,6 +138,25 @@ export default function SchemeEligibilityEngine() {
       </div>
 
       <AnimatePresence mode="wait">
+        {step === 0 && (
+          <motion.div key="step0" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="py-8 flex flex-col items-center text-center">
+            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
+              <User className="w-8 h-8" />
+            </div>
+            <h3 className="text-xl font-bold text-heading">Your Profile is Ready!</h3>
+            <p className="text-slate-500 mt-2 mb-8 max-w-md">We found your farm profile. You can check your eligibility instantly without filling out any forms.</p>
+            
+            <div className="flex gap-4">
+              <button onClick={() => setStep(1)} className="btn-secondary">
+                Edit Details Manually
+              </button>
+              <button onClick={handleSubmit} className="btn-primary flex items-center gap-2">
+                Check My Eligibility <CheckCircle2 className="w-4 h-4" />
+              </button>
+            </div>
+          </motion.div>
+        )}
+
         {step === 1 && (
           <motion.div key="step1" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
             <h3 className="text-lg font-semibold text-heading mb-4">Step 1: Personal Details</h3>
