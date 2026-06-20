@@ -18,6 +18,7 @@ const marketplaceRoutes = require('./routes/marketplaceRoutes');
 const profileRoutes = require('./routes/profileRoutes');
 const schemesRoutes = require('./routes/schemesRoutes');
 const diagnosisRoutes = require('./routes/diagnosisRoutes');
+const dashboardRoutes = require('./routes/dashboardRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -61,6 +62,7 @@ app.use('/api/marketplace', marketplaceRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/api/schemes', schemesRoutes);
 app.use('/api/diagnosis', diagnosisRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 // Health check endpoint
 app.get('/health', (req, res) => {

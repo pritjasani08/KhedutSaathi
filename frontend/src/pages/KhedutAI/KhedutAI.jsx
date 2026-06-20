@@ -57,7 +57,7 @@ export default function KhedutAI() {
   ];
 
   return (
-    <div className="pt-16 lg:pt-20 h-[100dvh] bg-slate-50 dark:bg-slate-900 flex flex-col overflow-hidden">
+    <div className="pt-16 lg:pt-20 h-[100dvh] bg-slate-50 dark:bg-slate-950 flex flex-col overflow-hidden">
       <div className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-4 sm:py-6 flex gap-6 min-h-0">
         
         {/* Left Sidebar - Chat History (Mock) */}

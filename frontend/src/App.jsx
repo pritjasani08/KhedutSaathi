@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider } from './context/AuthContext';
 import { ChatProvider } from './context/ChatContext';
@@ -40,6 +42,7 @@ import Profile from './pages/Profile/Profile';
 
 import ProtectedRoute from './components/ProtectedRoute';
 import Dashboard from './pages/Dashboard/Dashboard';
+import NewDashboard from './features/dashboard/Dashboard';
 import Deals from './pages/Deals/Deals';
 
 function AnimatedRoutes() {
@@ -70,6 +73,7 @@ function AnimatedRoutes() {
         <Route path="/register" element={<PageWrapper><Register /></PageWrapper>} />
         <Route path="/profile" element={<ProtectedRoute><PageWrapper><Profile /></PageWrapper></ProtectedRoute>} />
         <Route path="/dashboard" element={<ProtectedRoute><PageWrapper><Dashboard /></PageWrapper></ProtectedRoute>} />
+        <Route path="/dashboard-new" element={<ProtectedRoute><PageWrapper><NewDashboard /></PageWrapper></ProtectedRoute>} />
         <Route path="/deals" element={<ProtectedRoute><PageWrapper><Deals /></PageWrapper></ProtectedRoute>} />
         <Route path="/khedut-ai" element={<PageWrapper><KhedutAI /></PageWrapper>} />
         
@@ -105,9 +109,19 @@ function AppContent() {
   );
 }
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: 1,
+    },
+  },
+});
+
 export default function App() {
   return (
-    <ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider>
       <AuthProvider>
         <ChatProvider>
           <Router>
@@ -117,5 +131,7 @@ export default function App() {
         </ChatProvider>
       </AuthProvider>
     </ThemeProvider>
+    <ReactQueryDevtools initialIsOpen={false} />
+  </QueryClientProvider>
   );
 }
