@@ -38,7 +38,7 @@ export default function Profile() {
   const fetchProfileData = async () => {
     try {
       const token = localStorage.getItem('token');
-      const url = 'http://localhost:5000/api/profile';
+      const url = `${import.meta.env.VITE_API_URL}/api/profile`;
       console.log('[Frontend] Requesting URL:', url);
       
       const res = await fetch(url, {
@@ -94,7 +94,7 @@ export default function Profile() {
     try {
       const token = localStorage.getItem('token');
       
-      const authRes = await fetch('http://localhost:5000/api/auth/profile', {
+      const authRes = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/profile`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
@@ -112,7 +112,7 @@ export default function Profile() {
       }
 
       if (formData.userType === 'farmer') {
-        const profileRes = await fetch('http://localhost:5000/api/profile', {
+        const profileRes = await fetch(`${import.meta.env.VITE_API_URL}/api/profile`, {
           method: 'PUT',
           headers: { 
             'Content-Type': 'application/json',
