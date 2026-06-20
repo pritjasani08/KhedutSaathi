@@ -57,7 +57,7 @@ export default function SellYield() {
     });
 
     try {
-      const response = await fetch('http://localhost:5000/api/marketplace/listings', {
+      const response = await fetch('http://localhost:5001/api/marketplace/listings', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -71,7 +71,8 @@ export default function SellYield() {
         throw new Error(data.message || 'Failed to create listing');
       }
 
-      setSuccess('Yield listed successfully!');
+      setSuccess('Listing added successfully');
+      alert('Listing added successfully');
       setForm({ cropName: '', quantity: '', price: '', description: '', village: '', district: '', state: '' });
       setImages([]);
     } catch (err) {

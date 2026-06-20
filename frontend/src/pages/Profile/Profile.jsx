@@ -25,6 +25,9 @@ export default function Profile() {
     district: '',
     village: '',
     preferred_language: 'English',
+    age: '',
+    gender: '',
+    farmer_category: '',
     farm_size: '',
     soil_type: '',
     primary_crop: '',
@@ -43,7 +46,7 @@ export default function Profile() {
   const fetchProfileData = async () => {
     try {
       const token = localStorage.getItem('token');
-      const url = 'http://localhost:5000/api/profile';
+      const url = 'http://localhost:5001/api/profile';
       console.log('[Frontend] Requesting URL:', url);
       
       const res = await fetch(url, {
@@ -67,6 +70,9 @@ export default function Profile() {
           district: profile.district || '',
           village: profile.village || '',
           preferred_language: profile.preferred_language || 'English',
+          age: profile.age || '',
+          gender: profile.gender || '',
+          farmer_category: profile.farmer_category || '',
           farm_size: profile.farm_size || '',
           soil_type: profile.soil_type || '',
           primary_crop: profile.primary_crop || '',
@@ -88,7 +94,7 @@ export default function Profile() {
     try {
       const token = localStorage.getItem('token');
       
-      const authRes = await fetch('http://localhost:5000/api/auth/profile', {
+      const authRes = await fetch('http://localhost:5001/api/auth/profile', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
@@ -106,7 +112,7 @@ export default function Profile() {
       }
 
       if (formData.userType === 'farmer') {
-        const profileRes = await fetch('http://localhost:5000/api/profile', {
+        const profileRes = await fetch('http://localhost:5001/api/profile', {
           method: 'PUT',
           headers: { 
             'Content-Type': 'application/json',
@@ -118,6 +124,9 @@ export default function Profile() {
             district: formData.district,
             village: formData.village,
             preferred_language: formData.preferred_language,
+            age: formData.age ? parseInt(formData.age, 10) : null,
+            gender: formData.gender,
+            farmer_category: formData.farmer_category,
             farm_size: formData.farm_size ? parseFloat(formData.farm_size) : null,
             soil_type: formData.soil_type,
             primary_crop: formData.primary_crop,
@@ -283,6 +292,29 @@ export default function Profile() {
                           </select>
                         </div>
                       </div>
+                      <div>
+                        <label className="block text-sm font-semibold text-heading mb-2">Age</label>
+                        <div className="relative">
+                          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                            <User className="w-5 h-5" />
+                          </div>
+                          <input type="number" min="18" max="100" className="input-field pl-11" value={formData.age} onChange={(e) => setFormData({ ...formData, age: e.target.value })} />
+                        </div>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-semibold text-heading mb-2">Gender</label>
+                        <div className="relative">
+                          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                            <Users className="w-5 h-5" />
+                          </div>
+                          <select className="input-field pl-11 appearance-none" value={formData.gender} onChange={(e) => setFormData({ ...formData, gender: e.target.value })}>
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                          </select>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
@@ -327,6 +359,20 @@ export default function Profile() {
                     <div>
                       <h3 className="text-lg font-bold text-heading mb-4 pb-2 border-b border-subtle">Farm Information</h3>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div>
+                          <label className="block text-sm font-semibold text-heading mb-2">Farmer Category</label>
+                          <div className="relative">
+                            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                              <Users className="w-5 h-5" />
+                            </div>
+                            <select className="input-field pl-11 appearance-none" value={formData.farmer_category} onChange={(e) => setFormData({ ...formData, farmer_category: e.target.value })}>
+                              <option value="">Select Category</option>
+                              <option value="Small & Marginal">Small & Marginal (&lt; 2 Ha)</option>
+                              <option value="Large">Large (&gt; 2 Ha)</option>
+                              <option value="SC/ST">SC/ST</option>
+                            </select>
+                          </div>
+                        </div>
                         <div>
                           <label className="block text-sm font-semibold text-heading mb-2">Farm Size (Acres)</label>
                           <div className="relative">
@@ -439,8 +485,10 @@ export default function Profile() {
                           </p>
                         </div>
                         <div>
-                          <p className="text-sm font-medium text-slate-500 mb-1 flex items-center gap-2"><Trees className="w-4 h-4"/> Farm Size</p>
-                          <p className="text-heading font-semibold text-lg">{formData.farm_size ? `${formData.farm_size} Acres` : 'Not specified'}</p>
+                          <p className="text-sm font-medium text-slate-500 mb-1 flex items-center gap-2"><Trees className="w-4 h-4"/> Farm Size & Category</p>
+                          <p className="text-heading font-semibold text-lg">
+                            {[formData.farm_size ? `${formData.farm_size} Acres` : '', formData.farmer_category].filter(Boolean).join(' • ') || 'Not specified'}
+                          </p>
                         </div>
                         <div>
                           <p className="text-sm font-medium text-slate-500 mb-1 flex items-center gap-2"><Sprout className="w-4 h-4"/> Crops</p>

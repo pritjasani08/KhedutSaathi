@@ -13,6 +13,7 @@
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "express-list-endpoints": "^7.1.1",
     "express-rate-limit": "^8.5.2",
     "helmet": "^8.2.0",
     "india-states-districts": "^1.8.0",

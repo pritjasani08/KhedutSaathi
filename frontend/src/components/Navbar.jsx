@@ -58,7 +58,7 @@ export default function Navbar() {
   ];
 
   const buyerLinks = [
-    { path: '/agri-marketplace', label: 'Marketplace Feed' },
+    { path: '/crop-market', label: 'Crop Market' },
     { path: '/dashboard', label: 'Dashboard' },
     { path: '/deals', label: 'My Deals' }
   ];

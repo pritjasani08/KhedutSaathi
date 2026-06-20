@@ -43,8 +43,12 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Apply rate limiter to all API routes
-app.use('/api/', apiLimiter);
+// Apply rate limiter to all API routes only in production
+if (process.env.NODE_ENV === 'production') {
+  app.use('/api/', apiLimiter);
+} else {
+  console.log('[DEV] Rate limiting is disabled for development mode.');
+}
 
 // Register routes
 app.use('/api/mandi', mandiRoutes);
@@ -85,4 +89,16 @@ app.use((err, req, res, next) => {
 
 app.listen(PORT, () => {
   console.log(`KhedutSaathi Backend Server running on http://localhost:${PORT}`);
+  
+  if (process.env.NODE_ENV !== 'production') {
+    try {
+      const listEndpoints = require('express-list-endpoints');
+      console.log('Registered Routes:');
+      listEndpoints(app).forEach(route => {
+        route.methods.forEach(method => {
+          console.log(`[${method}] ${route.path}`);
+        });
+      });
+    } catch (e) {}
+  }
 });

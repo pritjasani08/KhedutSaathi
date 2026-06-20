@@ -13,6 +13,7 @@ import ExpertPanel from './pages/ExpertPanel/ExpertPanel';
 import SmartIrrigation from './pages/SmartIrrigation/SmartIrrigation';
 import AgriMarketplace from './pages/AgriMarketplace/AgriMarketplace';
 import SellerDashboard from './pages/SellerDashboard/SellerDashboard';
+import CropMarket from './pages/CropMarket/CropMarket';
 import Features from './pages/Features/Features';
 import Resources from './pages/Resources/Resources';
 import About from './pages/About/About';
@@ -58,6 +59,8 @@ function AnimatedRoutes() {
         <Route path="/agri-marketplace" element={<PageWrapper><AgriMarketplace /></PageWrapper>} />
         <Route path="/seller-dashboard" element={<Navigate to="/seller-dashboard/products" replace />} />
         <Route path="/seller-dashboard/:tab" element={<PageWrapper><SellerDashboard /></PageWrapper>} />
+        <Route path="/agri-marketplace" element={<ProtectedRoute><PageWrapper><AgriMarketplace /></PageWrapper></ProtectedRoute>} />
+        <Route path="/crop-market" element={<ProtectedRoute><PageWrapper><CropMarket /></PageWrapper></ProtectedRoute>} />
         
         <Route path="/smart-irrigation" element={<PageWrapper><SmartIrrigation /></PageWrapper>} />
         <Route path="/features" element={<PageWrapper><Features /></PageWrapper>} />
