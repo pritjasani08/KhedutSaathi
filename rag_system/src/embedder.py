@@ -15,7 +15,7 @@ class CustomEmbedder:
 
             _model = SentenceTransformer(
                 EMBEDDING_MODEL_NAME,
-                device="cuda"
+                device="cpu"
             )
 
         self.model = _model

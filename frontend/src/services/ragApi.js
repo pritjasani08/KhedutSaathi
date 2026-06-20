@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_RAG_API_URL || 'http://localhost:8000';
+const API_URL = import.meta.env.VITE_RAG_API_URL || 'http://localhost:8004';
 
 export async function askRag(question) {
   try {
