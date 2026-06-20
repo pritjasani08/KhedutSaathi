@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { LayoutDashboard, Package, Tag, CheckCircle, TrendingUp, Loader2, Check, MapPin, Trees, Sprout, ShieldCheck, Activity, MessageSquare, Zap, CloudRain, LineChart, Leaf, Droplets, Wind, ArrowUpRight, ArrowDownRight, ArrowRight } from 'lucide-react';
+import { supabase } from '../../services/supabase/client';
+import { LayoutDashboard, Package, Tag, CheckCircle, TrendingUp, Loader2, Check, MapPin, Trees, Sprout, ShieldCheck, Activity, MessageSquare, Zap, CloudRain, LineChart, Leaf, Droplets, Wind, ArrowUpRight, ArrowDownRight, ArrowRight, IndianRupee } from 'lucide-react';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -60,7 +61,7 @@ export default function Dashboard() {
       
       // Fetch Profile Data (For Farmer)
       if (user.user_type === 'farmer') {
-        const profileRes = await fetch('http://localhost:5001/api/profile', {
+        const profileRes = await fetch('http://localhost:5000/api/profile', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (profileRes.ok) {
@@ -71,7 +72,7 @@ export default function Dashboard() {
           if (pData.profile) {
             // Fetch Personalized Schemes
             try {
-              const schemeRes = await fetch('http://localhost:5001/api/schemes/eligible', {
+              const schemeRes = await fetch('http://localhost:5000/api/schemes/eligible', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -102,7 +103,7 @@ export default function Dashboard() {
                 crop: pData.profile.primary_crop || '' // For Crop-aware News Personalization (Step 5)
               }).toString();
               
-              const newsRes = await fetch(`http://localhost:5001/api/resources/agri-news?${query}`);
+              const newsRes = await fetch(`http://localhost:5000/api/resources/agri-news?${query}`);
               if (newsRes.ok) {
                 const nData = await newsRes.json();
                 if (nData.success) setNews(nData.data.slice(0, 3));
@@ -113,7 +114,7 @@ export default function Dashboard() {
 
             // Fetch Weather
             try {
-              const wRes = await fetch(`http://localhost:5001/api/resources/weather?region=${pData.profile.state || 'Gujarat'}`);
+              const wRes = await fetch(`http://localhost:5000/api/resources/weather?region=${pData.profile.state || 'Gujarat'}`);
               if (wRes.ok) {
                 const wData = await wRes.json();
                 if (wData.success) setWeather(wData.data);
@@ -123,7 +124,7 @@ export default function Dashboard() {
             // Fetch Market Price
             if (pData.profile.primary_crop) {
               try {
-                const mRes = await fetch(`http://localhost:5001/api/market-prices?state=${pData.profile.state || 'Gujarat'}&district=${pData.profile.district || ''}&commodity=${pData.profile.primary_crop}&limit=30`);
+                const mRes = await fetch(`http://localhost:5000/api/market-prices?state=${pData.profile.state || 'Gujarat'}&district=${pData.profile.district || ''}&commodity=${pData.profile.primary_crop}&limit=30`);
                 if (mRes.ok) {
                   const mData = await mRes.json();
                   if (mData.success && mData.data && mData.data.length > 0) {
@@ -150,7 +151,7 @@ export default function Dashboard() {
       }
 
       // Fetch Marketplace Stats
-      const statsRes = await fetch('http://localhost:5001/api/marketplace/dashboard', {
+      const statsRes = await fetch('http://localhost:5000/api/marketplace/dashboard', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (statsRes.ok) {
@@ -160,7 +161,7 @@ export default function Dashboard() {
 
       // Fetch Farmer Listings if Farmer
       if (user.user_type === 'farmer') {
-        const listingsRes = await fetch('http://localhost:5001/api/marketplace/listings/me', {
+        const listingsRes = await fetch('http://localhost:5000/api/marketplace/listings/me', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (listingsRes.ok) {
@@ -179,7 +180,7 @@ export default function Dashboard() {
     setAcceptLoading(bidId);
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch(`http://localhost:5001/api/marketplace/bids/${bidId}/accept`, {
+      const res = await fetch(`http://localhost:5000/api/marketplace/bids/${bidId}/accept`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` }
       });

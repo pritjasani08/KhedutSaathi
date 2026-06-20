@@ -27,7 +27,7 @@ export default function Resources() {
   useEffect(() => {
     if (user && user.user_type === 'farmer') {
       const token = localStorage.getItem('token');
-      fetch('http://localhost:5001/api/profile', {
+      fetch('http://localhost:5000/api/profile', {
         headers: { 'Authorization': `Bearer ${token}` }
       })
       .then(res => res.json())
@@ -50,7 +50,7 @@ export default function Resources() {
     const fetchSchemes = async () => {
       setSchemesLoading(true);
       try {
-        const schemesRes = await fetch('http://localhost:5001/api/resources/schemes');
+        const schemesRes = await fetch('http://localhost:5000/api/resources/schemes');
         if (schemesRes.ok) {
           const schemesData = await schemesRes.json();
           setSchemes(schemesData.data || []);
@@ -75,7 +75,7 @@ export default function Resources() {
     const fetchNews = async () => {
       setNewsLoading(true);
       try {
-        const url = `http://localhost:5001/api/resources/agri-news?language=${language}&region=${encodeURIComponent(region)}&crop=${encodeURIComponent(crop)}`;
+        const url = `http://localhost:5000/api/resources/agri-news?language=${language}&region=${encodeURIComponent(region)}&crop=${encodeURIComponent(crop)}`;
         const newsRes = await fetch(url);
         if (newsRes.ok) {
           const newsData = await newsRes.json();
