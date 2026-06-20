@@ -10,7 +10,7 @@ import { useChat } from '../context/ChatContext';
 export default function ChatbotWidget() {
   const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
-  const { messages, isTyping, sendMessage } = useChat();
+  const { messages, isTyping, sendMessage, chatLanguage, setChatLanguage } = useChat();
   const [input, setInput] = useState('');
   const [isRecording, setIsRecording] = useState(false);
   const messagesEndRef = useRef(null);
@@ -43,10 +43,10 @@ export default function ChatbotWidget() {
   ];
 
   const quickActions = [
-    { key: 'diagnose', icon: Stethoscope, label: t('chatbot.quickActions.diagnose') },
-    { key: 'prices', icon: TrendingUp, label: t('chatbot.quickActions.prices') },
-    { key: 'crops', icon: Sprout, label: t('chatbot.quickActions.crops') },
-    { key: 'irrigation', icon: Droplets, label: t('chatbot.quickActions.irrigation') },
+    { key: 'diagnose', icon: Stethoscope, label: t('chatbot.quickActions.diagnose', { lng: chatLanguage }) },
+    { key: 'prices', icon: TrendingUp, label: t('chatbot.quickActions.prices', { lng: chatLanguage }) },
+    { key: 'crops', icon: Sprout, label: t('chatbot.quickActions.crops', { lng: chatLanguage }) },
+    { key: 'irrigation', icon: Droplets, label: t('chatbot.quickActions.irrigation', { lng: chatLanguage }) },
   ];
 
   const handleSend = () => {
@@ -114,7 +114,7 @@ export default function ChatbotWidget() {
                 </div>
                 <div>
                   <h3 className="font-display font-semibold text-white text-sm">
-                    {t('chatbot.title')}
+                    {t('chatbot.title', { lng: chatLanguage })}
                   </h3>
                   <span className="text-white/70 text-xs flex items-center gap-1">
                     <span className="w-2 h-2 bg-green-300 rounded-full animate-pulse" />
@@ -128,7 +128,7 @@ export default function ChatbotWidget() {
                     onClick={() => setLangDropdownOpen(!langDropdownOpen)}
                     className="flex items-center gap-1.5 bg-white/20 hover:bg-white/30 text-white text-xs font-medium rounded-lg px-2.5 py-1.5 outline-none cursor-pointer transition-colors duration-200"
                   >
-                    {languages.find(l => l.code === i18n.language)?.label || 'English'}
+                    {languages.find(l => l.code === chatLanguage)?.label || 'English'}
                     <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${langDropdownOpen ? 'rotate-180' : ''}`} />
                   </button>
 
@@ -145,11 +145,11 @@ export default function ChatbotWidget() {
                           <button
                             key={lang.code}
                             onClick={() => {
-                              i18n.changeLanguage(lang.code);
+                              setChatLanguage(lang.code);
                               setLangDropdownOpen(false);
                             }}
                             className={`w-full text-left px-4 py-2.5 text-sm font-medium transition-colors duration-200 ${
-                              i18n.language === lang.code
+                              chatLanguage === lang.code
                                 ? 'bg-primary-50 dark:bg-primary-900/30 text-primary dark:text-primary-light'
                                 : 'text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700/50'
                             }`}
@@ -246,7 +246,7 @@ export default function ChatbotWidget() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-                  placeholder={t('chatbot.placeholder')}
+                  placeholder={t('chatbot.placeholder', { lng: chatLanguage })}
                   className="flex-1 px-4 py-2.5 bg-slate-100 rounded-xl text-sm text-slate-700 placeholder:text-slate-400 outline-none focus:ring-2 focus:ring-primary/30 transition-all duration-300"
                 />
                 <button
