@@ -12,6 +12,7 @@ import MarketHub from './pages/MarketHub/MarketHub';
 import ExpertPanel from './pages/ExpertPanel/ExpertPanel';
 import SmartIrrigation from './pages/SmartIrrigation/SmartIrrigation';
 import AgriMarketplace from './pages/AgriMarketplace/AgriMarketplace';
+import CropMarket from './pages/CropMarket/CropMarket';
 import Features from './pages/Features/Features';
 import Resources from './pages/Resources/Resources';
 import About from './pages/About/About';
@@ -55,6 +56,7 @@ function AnimatedRoutes() {
         {/* Market Intelligence & Marketplace Feed (accessible by both, but UI will restrict features) */}
         <Route path="/market-prices" element={<ProtectedRoute><PageWrapper><MarketHub /></PageWrapper></ProtectedRoute>} />
         <Route path="/agri-marketplace" element={<ProtectedRoute><PageWrapper><AgriMarketplace /></PageWrapper></ProtectedRoute>} />
+        <Route path="/crop-market" element={<ProtectedRoute><PageWrapper><CropMarket /></PageWrapper></ProtectedRoute>} />
         
         <Route path="/smart-irrigation" element={<PageWrapper><SmartIrrigation /></PageWrapper>} />
         <Route path="/features" element={<PageWrapper><Features /></PageWrapper>} />
