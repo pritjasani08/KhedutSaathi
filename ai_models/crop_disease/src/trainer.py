@@ -4,8 +4,8 @@ import torch.optim as optim
 import json
 import os
 from tqdm import tqdm
-from config import EPOCHS, LEARNING_RATE, MODEL_SAVE_PATH, METRICS_SAVE_PATH
-from utils import get_device
+from src.config import EPOCHS, LEARNING_RATE, MODEL_SAVE_PATH, METRICS_SAVE_PATH
+from src.utils import get_device
 
 class ModelTrainer:
     def __init__(self, model, train_loader, val_loader):
