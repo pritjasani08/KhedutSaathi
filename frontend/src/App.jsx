@@ -59,7 +59,6 @@ function AnimatedRoutes() {
         
         {/* Market Intelligence & Marketplace Feed (accessible by both, but UI will restrict features) */}
         <Route path="/market-prices" element={<ProtectedRoute><PageWrapper><MarketHub /></PageWrapper></ProtectedRoute>} />
-        <Route path="/agri-marketplace" element={<PageWrapper><AgriMarketplace /></PageWrapper>} />
         <Route path="/seller-dashboard" element={<Navigate to="/seller-dashboard/products" replace />} />
         <Route path="/seller-dashboard/:tab" element={<PageWrapper><SellerDashboard /></PageWrapper>} />
         <Route path="/agri-marketplace" element={<ProtectedRoute><PageWrapper><AgriMarketplace /></PageWrapper></ProtectedRoute>} />
@@ -122,16 +121,16 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
-      <AuthProvider>
-        <ChatProvider>
-          <Router>
-            <ScrollToTop />
-            <AppContent />
-          </Router>
-        </ChatProvider>
-      </AuthProvider>
-    </ThemeProvider>
-    <ReactQueryDevtools initialIsOpen={false} />
-  </QueryClientProvider>
+        <AuthProvider>
+          <ChatProvider>
+            <Router>
+              <ScrollToTop />
+              <AppContent />
+            </Router>
+          </ChatProvider>
+        </AuthProvider>
+      </ThemeProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 }
