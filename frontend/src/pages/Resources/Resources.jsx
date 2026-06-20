@@ -5,8 +5,10 @@ import PageHero from '../../components/shared/PageHero';
 import NewsCard from '../../components/shared/NewsCard';
 import SchemeCard from '../../components/shared/SchemeCard';
 import SchemeEligibilityEngine from './SchemeEligibilityEngine';
+import { useAuth } from '../../context/AuthContext';
 
 export default function Resources() {
+  const { user } = useAuth();
   const [activeTab, setActiveTab] = useState('news');
   const [news, setNews] = useState([]);
   const [schemes, setSchemes] = useState([]);
@@ -19,13 +21,36 @@ export default function Resources() {
 
   const [language, setLanguage] = useState('gu');
   const [region, setRegion] = useState('Gujarat');
+  const [crop, setCrop] = useState('');
+
+  // Fetch user profile defaults if logged in
+  useEffect(() => {
+    if (user && user.user_type === 'farmer') {
+      const token = localStorage.getItem('token');
+      fetch('http://localhost:5001/api/profile', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.profile) {
+          if (data.profile.preferred_language === 'Hindi') setLanguage('hi');
+          else if (data.profile.preferred_language === 'English') setLanguage('en');
+          else setLanguage('gu');
+          
+          if (data.profile.state) setRegion(data.profile.state);
+          if (data.profile.primary_crop) setCrop(data.profile.primary_crop);
+        }
+      })
+      .catch(e => console.error("Error fetching profile for resources", e));
+    }
+  }, [user]);
 
   // Fetch Schemes once on mount
   useEffect(() => {
     const fetchSchemes = async () => {
       setSchemesLoading(true);
       try {
-        const schemesRes = await fetch('http://localhost:5000/api/resources/schemes');
+        const schemesRes = await fetch('http://localhost:5001/api/resources/schemes');
         if (schemesRes.ok) {
           const schemesData = await schemesRes.json();
           setSchemes(schemesData.data || []);
@@ -50,7 +75,7 @@ export default function Resources() {
     const fetchNews = async () => {
       setNewsLoading(true);
       try {
-        const url = `http://localhost:5000/api/resources/agri-news?language=${language}&region=${encodeURIComponent(region)}`;
+        const url = `http://localhost:5001/api/resources/agri-news?language=${language}&region=${encodeURIComponent(region)}&crop=${encodeURIComponent(crop)}`;
         const newsRes = await fetch(url);
         if (newsRes.ok) {
           const newsData = await newsRes.json();
@@ -69,7 +94,7 @@ export default function Resources() {
       }
     };
     fetchNews();
-  }, [language, region]);
+  }, [language, region, crop]);
 
   const tabs = [
     { key: 'news', label: 'Latest News', icon: Newspaper },

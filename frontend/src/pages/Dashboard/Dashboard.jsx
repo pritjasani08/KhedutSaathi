@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { LayoutDashboard, Package, Tag, CheckCircle, TrendingUp, Loader2, Check, MapPin, Trees, Sprout, ShieldCheck, Activity, MessageSquare, Zap, CloudRain, LineChart, Leaf } from 'lucide-react';
+import { LayoutDashboard, Package, Tag, CheckCircle, TrendingUp, Loader2, Check, MapPin, Trees, Sprout, ShieldCheck, Activity, MessageSquare, Zap, CloudRain, LineChart, Leaf, Droplets, Wind, ArrowUpRight, ArrowDownRight, ArrowRight } from 'lucide-react';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -14,6 +14,10 @@ export default function Dashboard() {
   const [stats, setStats] = useState(null);
   const [farmerListings, setFarmerListings] = useState([]);
   const [profileData, setProfileData] = useState(null);
+  const [schemes, setSchemes] = useState(null);
+  const [news, setNews] = useState([]);
+  const [weather, setWeather] = useState(null);
+  const [marketPrice, setMarketPrice] = useState(null);
   const [completionPercentage, setCompletionPercentage] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -30,18 +34,97 @@ export default function Dashboard() {
       
       // Fetch Profile Data (For Farmer)
       if (user.user_type === 'farmer') {
-        const profileRes = await fetch('http://localhost:5000/api/profile', {
+        const profileRes = await fetch('http://localhost:5001/api/profile', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (profileRes.ok) {
           const pData = await profileRes.json();
           setProfileData(pData.profile);
           setCompletionPercentage(pData.completionPercentage || 0);
+
+          if (pData.profile) {
+            // Fetch Personalized Schemes
+            try {
+              const schemeRes = await fetch('http://localhost:5001/api/schemes/eligible', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  state: pData.profile.state || 'Gujarat',
+                  age: pData.profile.age || 35,
+                  gender: pData.profile.gender || 'Male',
+                  landSize: pData.profile.farm_size || 2.0,
+                  farmerCategory: pData.profile.farmer_category || 'Small & Marginal',
+                  primaryCrop: pData.profile.primary_crop || 'Wheat',
+                  irrigationType: pData.profile.irrigation_type || 'Tube Well'
+                })
+              });
+              if (schemeRes.ok) {
+                const sData = await schemeRes.json();
+                if (sData.success) setSchemes(sData);
+              }
+            } catch(e) {
+              console.error("Failed fetching schemes", e);
+            }
+
+            // Fetch Personalized News
+            try {
+              const langMap = { 'Gujarati': 'gu', 'Hindi': 'hi', 'English': 'en' };
+              const langCode = langMap[pData.profile.preferred_language] || 'en';
+              const query = new URLSearchParams({
+                language: langCode,
+                region: pData.profile.state || 'Gujarat',
+                crop: pData.profile.primary_crop || '' // For Crop-aware News Personalization (Step 5)
+              }).toString();
+              
+              const newsRes = await fetch(`http://localhost:5001/api/resources/agri-news?${query}`);
+              if (newsRes.ok) {
+                const nData = await newsRes.json();
+                if (nData.success) setNews(nData.data.slice(0, 3));
+              }
+            } catch(e) {
+              console.error("Failed fetching news", e);
+            }
+
+            // Fetch Weather
+            try {
+              const wRes = await fetch(`http://localhost:5001/api/resources/weather?region=${pData.profile.state || 'Gujarat'}`);
+              if (wRes.ok) {
+                const wData = await wRes.json();
+                if (wData.success) setWeather(wData.data);
+              }
+            } catch(e) {}
+
+            // Fetch Market Price
+            if (pData.profile.primary_crop) {
+              try {
+                const mRes = await fetch(`http://localhost:5001/api/market-prices?state=${pData.profile.state || 'Gujarat'}&district=${pData.profile.district || ''}&commodity=${pData.profile.primary_crop}&limit=30`);
+                if (mRes.ok) {
+                  const mData = await mRes.json();
+                  if (mData.success && mData.data && mData.data.length > 0) {
+                    const records = mData.data;
+                    const bestMarketRecord = [...records].sort((a,b) => b.modal_price - a.modal_price)[0];
+                    records.sort((a,b) => new Date(b.arrival_date.split('/').reverse().join('-')) - new Date(a.arrival_date.split('/').reverse().join('-')));
+                    const currentPrice = records[0].modal_price;
+                    const previousPrice = records.length > 1 ? records[records.length - 1].modal_price : currentPrice;
+                    const trend = previousPrice ? ((currentPrice - previousPrice) / previousPrice) * 100 : 0;
+                    
+                    setMarketPrice({
+                      currentPrice,
+                      previousPrice,
+                      trend: trend.toFixed(1),
+                      bestMarket: bestMarketRecord.market,
+                      bestPrice: bestMarketRecord.modal_price
+                    });
+                  }
+                }
+              } catch(e) {}
+            }
+          }
         }
       }
 
       // Fetch Marketplace Stats
-      const statsRes = await fetch('http://localhost:5000/api/marketplace/dashboard', {
+      const statsRes = await fetch('http://localhost:5001/api/marketplace/dashboard', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (statsRes.ok) {
@@ -51,7 +134,7 @@ export default function Dashboard() {
 
       // Fetch Farmer Listings if Farmer
       if (user.user_type === 'farmer') {
-        const listingsRes = await fetch('http://localhost:5000/api/marketplace/listings/me', {
+        const listingsRes = await fetch('http://localhost:5001/api/marketplace/listings/me', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (listingsRes.ok) {
@@ -70,7 +153,7 @@ export default function Dashboard() {
     setAcceptLoading(bidId);
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch(`http://localhost:5000/api/marketplace/bids/${bidId}/accept`, {
+      const res = await fetch(`http://localhost:5001/api/marketplace/bids/${bidId}/accept`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -117,10 +200,11 @@ export default function Dashboard() {
           </motion.p>
         </motion.div>
 
+        
         {user.user_type === 'farmer' && (
           <>
             <div className="grid lg:grid-cols-3 gap-6 mb-8">
-              {/* SECTION 2: My Farm Summary Card */}
+              {/* 1. Farm Summary */}
               <motion.div 
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
                 className="lg:col-span-2 glass-card p-6"
@@ -134,7 +218,7 @@ export default function Dashboard() {
                 </div>
                 
                 {profileData ? (
-                  <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+                  <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
                     <div>
                       <p className="text-sm font-medium text-slate-500 mb-1 flex items-center gap-1"><MapPin className="w-3.5 h-3.5"/> Location</p>
                       <p className="font-semibold text-heading">{[profileData.district, profileData.state].filter(Boolean).join(', ') || 'Not specified'}</p>
@@ -157,7 +241,7 @@ export default function Dashboard() {
                 )}
               </motion.div>
 
-              {/* SECTION 3: Profile Completion Card */}
+              {/* 2. Profile Completion */}
               <motion.div 
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
                 className="glass-card p-6 flex flex-col justify-center items-center text-center relative overflow-hidden"
@@ -168,20 +252,127 @@ export default function Dashboard() {
                 <ShieldCheck className="w-12 h-12 text-primary/80 mb-3" />
                 <h3 className="font-display text-lg font-bold text-heading mb-1">Profile Completion</h3>
                 <p className="text-3xl font-black text-primary mb-2">{completionPercentage}%</p>
-                {completionPercentage < 100 ? (
-                  <p className="text-xs text-slate-500 mb-4">Complete your profile to get better recommendations.</p>
-                ) : (
-                  <p className="text-xs text-green-600 font-semibold mb-4">Your profile is fully complete!</p>
-                )}
                 {completionPercentage < 100 && (
                   <Link to="/profile" className="btn-secondary w-full text-center text-sm py-2">Complete Profile</Link>
                 )}
               </motion.div>
             </div>
 
-            {/* SECTION 6: Quick Actions */}
+            <div className="grid lg:grid-cols-2 gap-6 mb-8">
+              {/* 3. Weather Advisory */}
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="glass-card p-6 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 border border-blue-100 dark:border-blue-800">
+                <div className="flex justify-between items-start mb-4">
+                  <h3 className="font-display font-bold text-heading flex items-center gap-2">
+                    <CloudRain className="w-5 h-5 text-blue-500" />
+                    Weather Advisory
+                  </h3>
+                  {weather?.locationName && <span className="text-xs font-semibold text-blue-600 bg-blue-100 px-2 py-1 rounded-full">{weather.locationName}</span>}
+                </div>
+                
+                {weather ? (
+                  <>
+                    <div className="flex items-center gap-6 mb-4">
+                      <div>
+                        <p className="text-5xl font-display font-bold text-heading">{weather.temperature}°C</p>
+                        <p className="text-sm font-semibold text-blue-600 mt-1">{weather.condition}</p>
+                      </div>
+                      <div className="flex-1 grid grid-cols-3 gap-2 text-center">
+                        <div className="bg-white/50 dark:bg-slate-800/50 p-2 rounded-lg">
+                          <Droplets className="w-4 h-4 mx-auto text-blue-500 mb-1" />
+                          <p className="text-xs text-slate-500">Rain</p>
+                          <p className="font-semibold text-sm">{weather.rainProbability}%</p>
+                        </div>
+                        <div className="bg-white/50 dark:bg-slate-800/50 p-2 rounded-lg">
+                          <Activity className="w-4 h-4 mx-auto text-blue-500 mb-1" />
+                          <p className="text-xs text-slate-500">Humidity</p>
+                          <p className="font-semibold text-sm">{weather.humidity}%</p>
+                        </div>
+                        <div className="bg-white/50 dark:bg-slate-800/50 p-2 rounded-lg">
+                          <Wind className="w-4 h-4 mx-auto text-blue-500 mb-1" />
+                          <p className="text-xs text-slate-500">Wind</p>
+                          <p className="font-semibold text-sm">{weather.windSpeed}km/h</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-lg border border-blue-100 dark:border-blue-800/50">
+                      <p className="text-sm text-blue-800 dark:text-blue-300"><span className="font-bold">Farmer Advisory:</span> {weather.advisory}</p>
+                    </div>
+                  </>
+                ) : (
+                  <p className="text-sm text-slate-500">Loading weather data...</p>
+                )}
+              </motion.div>
+
+              {/* 4. Market Snapshot */}
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="glass-card p-6 bg-gradient-to-br from-purple-500/5 to-fuchsia-500/5 border border-purple-100 dark:border-purple-800">
+                <div className="flex justify-between items-start mb-4">
+                  <h3 className="font-display font-bold text-heading flex items-center gap-2">
+                    <LineChart className="w-5 h-5 text-purple-500" />
+                    Market Snapshot
+                  </h3>
+                  <span className="text-xs font-semibold text-purple-600 bg-purple-100 px-2 py-1 rounded-full">{profileData?.primary_crop || 'Crop'}</span>
+                </div>
+                
+                {marketPrice && typeof marketPrice === 'object' ? (
+                  <>
+                    <div className="flex items-center gap-6 mb-4">
+                      <div>
+                        <p className="text-5xl font-display font-bold text-heading">₹{marketPrice.currentPrice}</p>
+                        <div className="flex items-center gap-1 mt-1">
+                          {marketPrice.trend > 0 ? <ArrowUpRight className="w-4 h-4 text-green-500" /> : marketPrice.trend < 0 ? <ArrowDownRight className="w-4 h-4 text-red-500" /> : <ArrowRight className="w-4 h-4 text-slate-500" />}
+                          <p className={`text-sm font-semibold ${marketPrice.trend > 0 ? 'text-green-600' : marketPrice.trend < 0 ? 'text-red-600' : 'text-slate-500'}`}>
+                            {Math.abs(marketPrice.trend)}% trend
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex-1 space-y-2">
+                        <div className="bg-white/50 dark:bg-slate-800/50 p-2 rounded-lg flex justify-between items-center">
+                          <p className="text-xs text-slate-500">Previous Price</p>
+                          <p className="font-semibold text-sm">₹{marketPrice.previousPrice}</p>
+                        </div>
+                        <div className="bg-white/50 dark:bg-slate-800/50 p-2 rounded-lg flex justify-between items-center">
+                          <p className="text-xs text-slate-500">Best Market Price</p>
+                          <p className="font-semibold text-sm text-purple-600">₹{marketPrice.bestPrice}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="bg-purple-50 dark:bg-purple-900/20 p-3 rounded-lg border border-purple-100 dark:border-purple-800/50">
+                      <p className="text-sm text-purple-800 dark:text-purple-300"><span className="font-bold">Best Market Location:</span> {marketPrice.bestMarket}</p>
+                    </div>
+                  </>
+                ) : (
+                  <p className="text-sm text-slate-500">Loading market prices...</p>
+                )}
+              </motion.div>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-6 mb-8">
+              {/* 5. Eligible Schemes */}
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="glass-card p-6 flex items-center justify-between border-green-200 relative overflow-hidden">
+                <div className="relative z-10">
+                  <p className="text-sm font-medium text-slate-500 mb-1">Eligible Schemes</p>
+                  <p className="text-3xl font-display font-bold text-heading text-green-600">{schemes ? schemes.data.length : '-'}</p>
+                </div>
+                <div className="w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center text-green-500 relative z-10">
+                  <CheckCircle className="w-6 h-6" />
+                </div>
+              </motion.div>
+
+              {/* 6. Potential Benefits */}
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="glass-card p-6 flex items-center justify-between border-amber-200 relative overflow-hidden">
+                <div className="relative z-10">
+                  <p className="text-sm font-medium text-slate-500 mb-1">Potential Benefits</p>
+                  <p className="text-3xl font-display font-bold text-heading text-amber-600">₹{schemes ? schemes.totalBenefit.toLocaleString('en-IN') : '-'}</p>
+                </div>
+                <div className="w-12 h-12 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-500 relative z-10">
+                  <Tag className="w-6 h-6" />
+                </div>
+              </motion.div>
+            </div>
+
+            {/* 7. Quick Actions */}
             <motion.div 
-              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}
               className="mb-8"
             >
               <h2 className="font-display text-lg font-bold text-heading mb-4">Quick Actions</h2>
@@ -194,9 +385,96 @@ export default function Dashboard() {
               </div>
             </motion.div>
 
+            {/* 8. Manage My Listings */}
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }} className="mb-8">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="font-display text-xl font-bold text-heading">Manage My Listings</h2>
+                <Link to="/marketplace" className="text-sm font-semibold text-primary hover:underline">Marketplace</Link>
+              </div>
+              {farmerListings.length === 0 ? (
+                <div className="glass-card p-8 text-center text-slate-500">You haven't created any listings yet.</div>
+              ) : (
+                <div className="space-y-6">
+                  {farmerListings.map(listing => (
+                    <div key={listing.id} className="glass-card p-6">
+                      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6 pb-6 border-b border-subtle">
+                        <div>
+                          <h3 className="font-display font-bold text-xl text-body">{listing.crop_name}</h3>
+                          <div className="flex gap-4 text-sm text-slate-500 mt-1">
+                            <span>Qty: {listing.quantity_quintals} Qtl</span>
+                            <span>Expected: ₹{listing.expected_price}/Qtl</span>
+                          </div>
+                        </div>
+                        <span className={`badge ${listing.status === 'SOLD' ? 'badge-success' : 'bg-blue-100 text-blue-700'}`}>
+                          {listing.status}
+                        </span>
+                      </div>
+
+                      <div>
+                        <h4 className="text-sm font-semibold text-slate-600 mb-3">Received Bids ({listing.bids.length})</h4>
+                        {listing.bids.length === 0 ? (
+                          <p className="text-xs text-slate-400">No bids received yet.</p>
+                        ) : (
+                          <div className="space-y-3">
+                            {listing.bids.sort((a,b) => b.bid_price - a.bid_price).map(bid => (
+                              <div key={bid.id} className="flex flex-col sm:flex-row justify-between items-center p-4 bg-slate-50 dark:bg-slate-800/30 rounded-xl border border-subtle">
+                                <div className="flex items-center gap-3">
+                                  <div className="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold text-sm">
+                                    {bid.users.first_name[0]}
+                                  </div>
+                                  <div>
+                                    <p className="text-sm font-medium text-heading">{bid.users.first_name} {bid.users.last_name}</p>
+                                    <p className="text-xs text-slate-500">{new Date(bid.created_at).toLocaleDateString()}</p>
+                                  </div>
+                                </div>
+                                <div className="flex items-center gap-4 mt-3 sm:mt-0">
+                                  <span className="font-bold text-primary">₹{bid.bid_price}</span>
+                                  {listing.status === 'OPEN' && (
+                                    <button
+                                      onClick={() => handleAcceptBid(bid.id)}
+                                      disabled={acceptLoading === bid.id}
+                                      className="btn-primary !py-1.5 !px-3 text-xs flex items-center gap-1"
+                                    >
+                                      {acceptLoading === bid.id ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Check className="w-3.5 h-3.5" />}
+                                      Accept Bid
+                                    </button>
+                                  )}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </motion.div>
+
+            {/* 9. Latest News For You */}
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }} className="mb-10 glass-card p-6 mt-8">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="font-display font-bold text-heading text-lg">Latest News for You</h3>
+                <Link to="/resources" className="text-xs text-primary font-semibold hover:underline">View All News</Link>
+              </div>
+              <div className="grid md:grid-cols-3 gap-4">
+                {news.length > 0 ? news.map((item, i) => (
+                  <a key={i} href={item.link || item.url} target="_blank" rel="noopener noreferrer" className="block p-4 border border-subtle rounded-xl hover:border-primary/50 transition-colors flex flex-col gap-3">
+                    <img src={item.image} alt="" className="w-full h-32 object-cover rounded-lg shrink-0 bg-slate-100" />
+                    <div>
+                      <h4 className="text-sm font-bold text-heading line-clamp-2 mb-1">{item.title}</h4>
+                      <p className="text-xs text-slate-500 line-clamp-2">{item.excerpt || item.summary}</p>
+                    </div>
+                  </a>
+                )) : (
+                  <p className="text-sm text-slate-500 col-span-3">Loading personalized news...</p>
+                )}
+              </div>
+            </motion.div>
+
             <div className="grid md:grid-cols-2 gap-6 mb-10">
-              {/* SECTION 4: Recent Khedut AI Chats */}
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="glass-card p-6">
+              {/* 10. Recent AI Chats */}
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9 }} className="glass-card p-6">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="font-display font-bold text-heading flex items-center gap-2">
                     <MessageSquare className="w-4 h-4 text-primary" />
@@ -205,7 +483,6 @@ export default function Dashboard() {
                   <Link to="/khedut-ai" className="text-xs text-primary font-semibold hover:underline">View All</Link>
                 </div>
                 <div className="space-y-3">
-                  {/* Placeholders for Phase 1 */}
                   <div className="p-3 bg-slate-50 dark:bg-slate-800/30 rounded-xl border border-subtle flex items-start gap-3">
                     <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                       <Zap className="w-4 h-4 text-primary" />
@@ -227,8 +504,8 @@ export default function Dashboard() {
                 </div>
               </motion.div>
 
-              {/* SECTION 5: Recent Disease Diagnoses */}
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="glass-card p-6">
+              {/* 11. Recent Diagnoses */}
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0 }} className="glass-card p-6">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="font-display font-bold text-heading flex items-center gap-2">
                     <Leaf className="w-4 h-4 text-green-500" />
@@ -237,7 +514,6 @@ export default function Dashboard() {
                   <Link to="/crop-health" className="text-xs text-primary font-semibold hover:underline">New Diagnosis</Link>
                 </div>
                 <div className="space-y-3">
-                  {/* Placeholders for Phase 1 */}
                   <div className="p-3 bg-slate-50 dark:bg-slate-800/30 rounded-xl border border-subtle flex justify-between items-center">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center shrink-0">
@@ -266,9 +542,9 @@ export default function Dashboard() {
               </motion.div>
             </div>
             
-            <hr className="border-subtle mb-10" />
           </>
         )}
+
 
 
         {/* EXISTING MARKETPLACE SECTIONS */}
@@ -291,70 +567,7 @@ export default function Dashboard() {
           )}
         </div>
 
-        {/* FARMER SPECIFIC: My Listings & Bids */}
-        {user.user_type === 'farmer' && (
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
-            <h2 className="font-display text-xl font-bold text-heading mb-4">Manage My Listings</h2>
-            {farmerListings.length === 0 ? (
-              <div className="glass-card p-8 text-center text-slate-500">You haven't created any listings yet.</div>
-            ) : (
-              <div className="space-y-6">
-                {farmerListings.map(listing => (
-                  <div key={listing.id} className="glass-card p-6">
-                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6 pb-6 border-b border-subtle">
-                      <div>
-                        <h3 className="font-display font-bold text-xl text-body">{listing.crop_name}</h3>
-                        <div className="flex gap-4 text-sm text-slate-500 mt-1">
-                          <span>Qty: {listing.quantity_quintals} Qtl</span>
-                          <span>Expected: ₹{listing.expected_price}/Qtl</span>
-                        </div>
-                      </div>
-                      <span className={`badge ${listing.status === 'SOLD' ? 'badge-success' : 'bg-blue-100 text-blue-700'}`}>
-                        {listing.status}
-                      </span>
-                    </div>
-
-                    <div>
-                      <h4 className="text-sm font-semibold text-slate-600 mb-3">Received Bids ({listing.bids.length})</h4>
-                      {listing.bids.length === 0 ? (
-                        <p className="text-xs text-slate-400">No bids received yet.</p>
-                      ) : (
-                        <div className="space-y-3">
-                          {listing.bids.sort((a,b) => b.bid_price - a.bid_price).map(bid => (
-                            <div key={bid.id} className="flex flex-col sm:flex-row justify-between items-center p-4 bg-slate-50 dark:bg-slate-800/30 rounded-xl border border-subtle">
-                              <div className="flex items-center gap-3">
-                                <div className="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold text-sm">
-                                  {bid.users.first_name[0]}
-                                </div>
-                                <div>
-                                  <p className="text-sm font-medium text-heading">{bid.users.first_name} {bid.users.last_name}</p>
-                                  <p className="text-xs text-slate-500">{new Date(bid.created_at).toLocaleDateString()}</p>
-                                </div>
-                              </div>
-                              <div className="flex items-center gap-4 mt-3 sm:mt-0">
-                                <span className="font-bold text-primary">₹{bid.bid_price}</span>
-                                {listing.status === 'OPEN' && (
-                                  <button
-                                    onClick={() => handleAcceptBid(bid.id)}
-                                    disabled={acceptLoading === bid.id}
-                                    className="btn-primary !py-1.5 !px-3 text-xs flex items-center gap-1"
-                                  >
-                                    {acceptLoading === bid.id ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Check className="w-3.5 h-3.5" />}
-                                    Accept Bid
-                                  </button>
-                                )}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </motion.div>
-        )}
+        
 
         {/* BUYER SPECIFIC: My Bids */}
         {user.user_type === 'buyer' && (

@@ -33,7 +33,7 @@ export default function CropMarket() {
   const fetchListings = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/marketplace/listings', {
+      const response = await fetch('http://localhost:5001/api/marketplace/listings', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -55,7 +55,7 @@ export default function CropMarket() {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/marketplace/listings/${listing.id}/bid`, {
+      const response = await fetch(`http://localhost:5001/api/marketplace/listings/${listing.id}/bid`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -5,7 +5,8 @@ const calculateCompletion = (profile) => {
   
   const fields = [
     'full_name', 'state', 'district', 'village', 'preferred_language',
-    'farm_size', 'soil_type', 'primary_crop', 'secondary_crop', 'irrigation_type'
+    'farm_size', 'soil_type', 'primary_crop', 'secondary_crop', 'irrigation_type',
+    'age', 'gender', 'farmer_category'
   ];
   
   let filled = 0;

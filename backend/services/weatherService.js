@@ -1,7 +1,7 @@
 const axios = require('axios');
 const NodeCache = require('node-cache');
 
-const weatherCache = new NodeCache({ stdTTL: 600 }); // 10 minutes
+const weatherCache = new NodeCache({ stdTTL: 1800 }); // 30 minutes
 const geoCache = new NodeCache({ stdTTL: 86400 }); // 24 hours
 
 async function getWeatherData(lat, lon) {
@@ -63,4 +63,34 @@ async function getWeatherData(lat, lon) {
   }
 }
 
-module.exports = { getWeatherData };
+async function getWeatherByRegion(state, district) {
+  try {
+    const query = `${district ? district + ', ' : ''}${state}, India`;
+    const geoKey = `fwgeo_${query.replace(/\s+/g, '_')}`;
+    
+    let coords = geoCache.get(geoKey);
+    
+    if (!coords) {
+      const geoRes = await axios.get(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=1`, {
+        headers: { 'User-Agent': 'KhedutSaathi/1.0' },
+        timeout: 5000 
+      });
+      
+      if (geoRes.data && geoRes.data.length > 0) {
+        coords = { lat: geoRes.data[0].lat, lon: geoRes.data[0].lon };
+        geoCache.set(geoKey, coords);
+      } else {
+        // Fallback coordinates for Gujarat if geocoding fails
+        coords = { lat: '22.2587', lon: '71.1924' };
+      }
+    }
+    
+    return await getWeatherData(coords.lat, coords.lon);
+  } catch (error) {
+    console.error("Error in getWeatherByRegion:", error.message);
+    // Fallback to Gujarat
+    return await getWeatherData('22.2587', '71.1924');
+  }
+}
+
+module.exports = { getWeatherData, getWeatherByRegion };
