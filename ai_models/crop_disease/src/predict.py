@@ -1,16 +1,24 @@
-from inference import DiseasePredictor
+import sys
 import json
+import argparse
+from src.inference import DiseasePredictor
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--image', required=True)
+    args = parser.parse_args()
 
-    predictor = DiseasePredictor()
+    try:
+        predictor = DiseasePredictor()
+        result = predictor.predict_image(args.image)
+        
+        if result['details'] is None:
+            result['error'] = False
+            result['details'] = None
 
-    image_path = "src/testing.png"
-
-    result = predictor.predict_image(image_path)
-
-    print("\n===== PREDICTION RESULT =====\n")
-    print(json.dumps(result, indent=4))
+        print(json.dumps(result))
+    except Exception as e:
+        print(json.dumps({"error": True, "message": str(e)}))
 
 if __name__ == "__main__":
     main()
