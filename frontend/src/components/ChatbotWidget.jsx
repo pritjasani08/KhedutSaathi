@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   MessageCircle, X, Send, Mic, MicOff,
-  Stethoscope, TrendingUp, Sprout, Droplets, Bot, User
+  Stethoscope, TrendingUp, Sprout, Droplets, Bot, User, ChevronDown
 } from 'lucide-react';
 import { useChat } from '../context/ChatContext';
 
@@ -15,6 +15,9 @@ export default function ChatbotWidget() {
   const [isRecording, setIsRecording] = useState(false);
   const messagesEndRef = useRef(null);
 
+  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
+  const langDropdownRef = useRef(null);
+
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -22,6 +25,22 @@ export default function ChatbotWidget() {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (langDropdownRef.current && !langDropdownRef.current.contains(event.target)) {
+        setLangDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const languages = [
+    { code: 'en', label: 'English' },
+    { code: 'hi', label: 'हिन्दी' },
+    { code: 'gu', label: 'ગુજરાતી' },
+  ];
 
   const quickActions = [
     { key: 'diagnose', icon: Stethoscope, label: t('chatbot.quickActions.diagnose') },
@@ -104,18 +123,48 @@ export default function ChatbotWidget() {
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <select
-                  value={i18n.language}
-                  onChange={(e) => i18n.changeLanguage(e.target.value)}
-                  className="bg-surface/20 text-white text-xs rounded-lg px-2 py-1.5 border-0 outline-none cursor-pointer"
-                >
-                  <option value="en" className="text-body">English</option>
-                  <option value="hi" className="text-body">हिंदी</option>
-                  <option value="gu" className="text-body">ગુજરાતી</option>
-                </select>
+                <div className="relative" ref={langDropdownRef}>
+                  <button
+                    onClick={() => setLangDropdownOpen(!langDropdownOpen)}
+                    className="flex items-center gap-1.5 bg-white/20 hover:bg-white/30 text-white text-xs font-medium rounded-lg px-2.5 py-1.5 outline-none cursor-pointer transition-colors duration-200"
+                  >
+                    {languages.find(l => l.code === i18n.language)?.label || 'English'}
+                    <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${langDropdownOpen ? 'rotate-180' : ''}`} />
+                  </button>
+
+                  <AnimatePresence>
+                    {langDropdownOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -5, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -5, scale: 0.95 }}
+                        transition={{ duration: 0.2, ease: "easeOut" }}
+                        className="absolute right-0 top-full mt-2 w-max min-w-[120px] bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-100 dark:border-slate-700 overflow-hidden z-[100]"
+                      >
+                        {languages.map((lang) => (
+                          <button
+                            key={lang.code}
+                            onClick={() => {
+                              i18n.changeLanguage(lang.code);
+                              setLangDropdownOpen(false);
+                            }}
+                            className={`w-full text-left px-4 py-2.5 text-sm font-medium transition-colors duration-200 ${
+                              i18n.language === lang.code
+                                ? 'bg-primary-50 dark:bg-primary-900/30 text-primary dark:text-primary-light'
+                                : 'text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700/50'
+                            }`}
+                          >
+                            {lang.label}
+                          </button>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="w-8 h-8 rounded-lg bg-surface/20 hover:bg-surface/30 flex items-center justify-center transition-colors duration-300"
+                  className="w-8 h-8 rounded-lg bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors duration-300"
                 >
                   <X className="w-4 h-4 text-white" />
                 </button>
