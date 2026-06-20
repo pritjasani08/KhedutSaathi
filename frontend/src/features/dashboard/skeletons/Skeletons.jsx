@@ -1,21 +1,28 @@
 import React from 'react';
 
+export const FarmSummarySkeleton = () => (
+  <div className="lg:col-span-2 glass-card p-6 h-[200px] bg-slate-200/50 dark:bg-slate-800/50 animate-pulse"></div>
+);
+
+export const ProfileCompletionSkeleton = () => (
+  <div className="glass-card p-6 h-[200px] bg-slate-200/50 dark:bg-slate-800/50 animate-pulse"></div>
+);
+
+export const SectionSkeleton = () => (
+  <div className="glass-card p-6 h-48 bg-slate-200/50 dark:bg-slate-800/50 animate-pulse mb-8"></div>
+);
+
 export const DashboardSkeleton = () => (
   <div className="min-h-screen pt-24 pb-16 gradient-bg">
     <div className="container-custom px-4 sm:px-6 lg:px-8 space-y-8 animate-pulse">
-      {/* Header */}
       <div className="mb-8">
         <div className="h-10 w-64 bg-slate-200 dark:bg-slate-800 rounded-lg mb-2"></div>
         <div className="h-4 w-48 bg-slate-200 dark:bg-slate-800 rounded"></div>
       </div>
-      
-      {/* Farm Summary & Profile */}
       <div className="grid lg:grid-cols-3 gap-6 mb-8">
-        <div className="lg:col-span-2 glass-card p-6 h-[200px] bg-slate-200/50 dark:bg-slate-800/50"></div>
-        <div className="glass-card p-6 h-[200px] bg-slate-200/50 dark:bg-slate-800/50"></div>
+        <FarmSummarySkeleton />
+        <ProfileCompletionSkeleton />
       </div>
-      
-      {/* Weather & Market */}
       <div className="grid lg:grid-cols-2 gap-6 mb-8">
         <WeatherSkeleton />
         <MarketSkeleton />

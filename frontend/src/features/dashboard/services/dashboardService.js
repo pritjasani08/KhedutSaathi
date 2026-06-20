@@ -18,9 +18,13 @@ export const dashboardService = {
     return data.data;
   },
 
-  getWeather: async (region) => {
-    if (!region) return null;
-    const res = await fetch(`${API_URL}/api/resources/weather?region=${encodeURIComponent(region)}`);
+  getWeather: async ({ state, district }) => {
+    if (!state) return null;
+    const query = new URLSearchParams({
+      region: state || 'Gujarat',
+      district: district || ''
+    }).toString();
+    const res = await fetch(`${API_URL}/api/resources/weather?${query}`);
     if (!res.ok) throw new Error('Failed to fetch weather');
     const data = await res.json();
     return data.success ? data.data : null;

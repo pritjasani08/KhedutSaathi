@@ -7,15 +7,7 @@ export default function MarketplaceHeroSection({ onSearch }) {
       {/* Ambient Radial Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] md:w-[600px] h-[300px] md:h-[400px] bg-green-500/15 dark:bg-green-500/10 blur-[100px] md:blur-[120px] rounded-full pointer-events-none" />
       
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-50 dark:bg-green-500/10 border border-green-200 dark:border-green-500/20 text-green-700 dark:text-green-400 text-sm font-semibold mb-12 relative z-10"
-      >
-        <span className="flex h-2 w-2 rounded-full bg-green-500 animate-pulse"></span>
-        Marketplace is Live
-      </motion.div>
+
 
       <motion.h1 
         initial={{ opacity: 0, y: 20 }}

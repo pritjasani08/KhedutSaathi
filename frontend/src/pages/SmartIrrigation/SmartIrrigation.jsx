@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { getIrrigationAdvice } from '../../services/irrigationApi';
 
+
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
   visible: (i = 0) => ({
@@ -213,42 +214,31 @@ export default function SmartIrrigation() {
       <div className="container-custom px-4 sm:px-6 lg:px-8">
         
         {/* Header & Location */}
-        <motion.div
-          initial="hidden" animate="visible"
-          variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
-          className="text-center mb-12"
-        >
-          <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sky-100/60 dark:bg-sky-900/30 text-sky-600 dark:text-sky-400 text-sm font-semibold mb-4">
-            <Droplets className="w-4 h-4" /> Live Weather Intelligence
-          </motion.div>
-          <motion.h1 variants={fadeUp} custom={1} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-heading mb-4">
-            {t('smartIrrigation.title') || "Smart Irrigation Advisor"}
-          </motion.h1>
-          <motion.p variants={fadeUp} custom={2} className="text-slate-500 dark:text-slate-400 text-lg max-w-2xl mx-auto mb-6">
-            Data-driven decisions for optimal crop hydration and water conservation.
-          </motion.p>
-          
-          <motion.div variants={fadeUp} custom={3} className="flex flex-wrap items-center justify-center gap-4">
-            <div className="inline-flex items-center justify-center gap-2 px-5 py-2.5 glass-card rounded-full border border-slate-200 dark:border-slate-700">
-              <MapPin className="w-5 h-5 text-primary" />
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8">
+          <div>
+            <h1 className="text-2xl md:text-3xl font-bold text-heading">{t('smartIrrigation.title') || "Smart Irrigation Advisor"}</h1>
+            <p className="text-sm text-slate-500 mt-1">Data-driven decisions for optimal crop hydration and water conservation.</p>
+          </div>
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="inline-flex items-center gap-2 px-4 py-2 glass-card rounded-full border border-slate-200 dark:border-slate-700 text-sm">
+              <MapPin className="w-4 h-4 text-primary" />
               <span className="font-medium text-slate-700 dark:text-slate-300">
                 {location.name !== "Unknown" ? location.name : `Lat: ${location.lat.toFixed(2)}, Lon: ${location.lon.toFixed(2)}`}
               </span>
-              <span className="text-xs text-slate-400 ml-2">(Current Location)</span>
             </div>
             
             {lastUpdated && (
-              <div className="inline-flex items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400 bg-white/50 dark:bg-slate-800/50 px-3 py-1.5 rounded-full border border-slate-200/60 dark:border-slate-700/60">
+              <div className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-500 dark:text-slate-400 bg-white/50 dark:bg-slate-800/50 px-3 py-2 rounded-full border border-slate-200/60 dark:border-slate-700/60">
                 {isRefreshing ? (
                   <div className="w-3 h-3 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
                 ) : (
                   <Clock className="w-3 h-3" />
                 )}
-                Last Updated: {lastUpdated}
+                {lastUpdated}
               </div>
             )}
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
         {/* Hero Recommendation Card */}
         <motion.div
