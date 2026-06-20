@@ -21,7 +21,7 @@ export const ChatProvider = ({ children }) => {
     if (user && user.user_type === 'farmer') {
       const token = localStorage.getItem('token');
       if (token) {
-        fetch(`${import.meta.env.VITE_API_URL}/api/profile`, {
+        fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/profile`, {
           headers: { 'Authorization': `Bearer ${token}` }
         })
         .then(res => res.json())
