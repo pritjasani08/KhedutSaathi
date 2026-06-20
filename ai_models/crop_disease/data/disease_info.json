@@ -1,0 +1,4252 @@
+{
+  "Apple___Apple_scab": {
+    "crop": "Apple",
+    "disease": "Apple Scab",
+    "symptoms": [
+      "Olive-green spots on leaves",
+      "Dark scabby lesions on fruits",
+      "Premature leaf drop"
+    ],
+    "prevention": [
+      "Prune trees to improve air circulation",
+      "Remove fallen leaves and infected fruits",
+      "Avoid overhead irrigation",
+      "Use resistant apple varieties when possible"
+    ],
+    "organic_treatment": [
+      "Apply neem oil spray",
+      "Use sulfur-based organic fungicides",
+      "Remove infected plant parts"
+    ],
+    "chemical_treatment": [
+      "Captan-based fungicide",
+      "Mancozeb-based fungicide",
+      "Myclobutanil-based fungicide"
+    ]
+  },
+  "Apple___Black_rot": {
+    "crop": "Apple",
+    "disease": "Black Rot",
+    "symptoms": [
+      "Purple spots on leaves",
+      "Black rotting lesions on fruits",
+      "Cankers on branches"
+    ],
+    "prevention": [
+      "Remove mummified fruits",
+      "Prune infected branches",
+      "Maintain orchard sanitation",
+      "Ensure proper plant spacing"
+    ],
+    "organic_treatment": [
+      "Apply copper-based organic fungicide",
+      "Remove infected fruits and branches",
+      "Use compost to improve plant health"
+    ],
+    "chemical_treatment": [
+      "Captan-based fungicide",
+      "Mancozeb-based fungicide",
+      "Thiophanate-methyl fungicide"
+    ]
+  },
+  "Apple___Cedar_apple_rust": {
+    "crop": "Apple",
+    "disease": "Cedar Apple Rust",
+    "symptoms": [
+      "Yellow-orange spots on leaves",
+      "Leaf deformation",
+      "Reduced fruit quality"
+    ],
+    "prevention": [
+      "Remove nearby cedar hosts if possible",
+      "Use resistant apple varieties",
+      "Monitor orchard regularly",
+      "Improve air circulation"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Sulfur-based fungicide",
+      "Remove infected leaves"
+    ],
+    "chemical_treatment": [
+      "Myclobutanil fungicide",
+      "Propiconazole fungicide",
+      "Mancozeb-based fungicide"
+    ]
+  },
+  "Cherry_(including_sour)___Powdery_mildew": {
+    "crop": "Cherry",
+    "disease": "Powdery Mildew",
+    "symptoms": [
+      "White powdery growth on leaves",
+      "Leaf curling",
+      "Reduced plant vigor"
+    ],
+    "prevention": [
+      "Maintain proper spacing",
+      "Prune for better airflow",
+      "Avoid excessive nitrogen fertilizer",
+      "Remove infected leaves"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Baking soda solution",
+      "Sulfur-based organic fungicide"
+    ],
+    "chemical_treatment": [
+      "Myclobutanil fungicide",
+      "Propiconazole fungicide",
+      "Sulfur fungicide"
+    ]
+  },
+  "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot": {
+    "crop": "Corn (Maize)",
+    "disease": "Gray Leaf Spot",
+    "symptoms": [
+      "Rectangular gray lesions on leaves",
+      "Leaf blighting",
+      "Reduced grain yield"
+    ],
+    "prevention": [
+      "Practice crop rotation",
+      "Use disease-resistant hybrids",
+      "Remove crop residues",
+      "Monitor fields regularly"
+    ],
+    "organic_treatment": [
+      "Use compost-based biofungicides",
+      "Improve field drainage",
+      "Remove heavily infected leaves"
+    ],
+    "chemical_treatment": [
+      "Azoxystrobin fungicide",
+      "Propiconazole fungicide",
+      "Pyraclostrobin fungicide"
+    ]
+  },
+  "Corn_(maize)___Common_rust_": {
+    "crop": "Corn (Maize)",
+    "disease": "Common Rust",
+    "symptoms": [
+      "Small reddish-brown pustules on leaves",
+      "Yellowing around pustules",
+      "Premature leaf drying"
+    ],
+    "prevention": [
+      "Plant resistant corn varieties",
+      "Monitor fields regularly",
+      "Maintain proper plant nutrition",
+      "Practice crop rotation"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Remove heavily infected leaves",
+      "Use compost to improve plant health"
+    ],
+    "chemical_treatment": [
+      "Azoxystrobin fungicide",
+      "Propiconazole fungicide",
+      "Pyraclostrobin fungicide"
+    ]
+  },
+  "Corn_(maize)___Northern_Leaf_Blight": {
+    "crop": "Corn (Maize)",
+    "disease": "Northern Leaf Blight",
+    "symptoms": [
+      "Long gray-green lesions on leaves",
+      "Leaf blighting",
+      "Reduced grain production"
+    ],
+    "prevention": [
+      "Use resistant hybrids",
+      "Rotate crops regularly",
+      "Remove infected crop residues",
+      "Ensure proper field sanitation"
+    ],
+    "organic_treatment": [
+      "Apply biofungicides",
+      "Improve field drainage",
+      "Remove infected leaves"
+    ],
+    "chemical_treatment": [
+      "Propiconazole fungicide",
+      "Azoxystrobin fungicide",
+      "Pyraclostrobin fungicide"
+    ]
+  },
+  "Grape___Black_rot": {
+    "crop": "Grape",
+    "disease": "Black Rot",
+    "symptoms": [
+      "Brown circular spots on leaves",
+      "Black shriveled fruits",
+      "Dark lesions on stems"
+    ],
+    "prevention": [
+      "Prune vines for airflow",
+      "Remove infected fruits and leaves",
+      "Avoid overhead watering",
+      "Maintain vineyard sanitation"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Copper-based organic fungicide",
+      "Remove infected plant parts"
+    ],
+    "chemical_treatment": [
+      "Mancozeb-based fungicide",
+      "Myclobutanil fungicide",
+      "Captan fungicide"
+    ]
+  },
+  "Grape___Esca_(Black_Measles)": {
+    "crop": "Grape",
+    "disease": "Esca (Black Measles)",
+    "symptoms": [
+      "Tiger-stripe patterns on leaves",
+      "Dark spots on berries",
+      "Gradual vine decline"
+    ],
+    "prevention": [
+      "Use healthy planting material",
+      "Disinfect pruning tools",
+      "Avoid large pruning wounds",
+      "Remove severely infected vines"
+    ],
+    "organic_treatment": [
+      "Apply beneficial microbial products",
+      "Improve soil health with compost",
+      "Remove infected branches"
+    ],
+    "chemical_treatment": [
+      "No highly effective chemical cure available",
+      "Use preventive fungicide programs",
+      "Consult local agricultural experts"
+    ]
+  },
+  "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)": {
+    "crop": "Grape",
+    "disease": "Leaf Blight (Isariopsis Leaf Spot)",
+    "symptoms": [
+      "Brown angular leaf spots",
+      "Leaf yellowing",
+      "Premature leaf drop"
+    ],
+    "prevention": [
+      "Maintain proper vine spacing",
+      "Remove infected leaves",
+      "Avoid excess moisture",
+      "Prune for better airflow"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Copper-based fungicide",
+      "Remove infected foliage"
+    ],
+    "chemical_treatment": [
+      "Mancozeb fungicide",
+      "Chlorothalonil fungicide",
+      "Copper fungicide"
+    ]
+  },
+  "Orange___Haunglongbing_(Citrus_greening)": {
+    "crop": "Orange",
+    "disease": "Citrus Greening (Huanglongbing)",
+    "symptoms": [
+      "Yellow mottled leaves",
+      "Small and misshapen fruits",
+      "Premature fruit drop",
+      "Reduced tree growth"
+    ],
+    "prevention": [
+      "Use disease-free planting material",
+      "Control Asian citrus psyllid populations",
+      "Regular orchard monitoring",
+      "Remove infected trees promptly"
+    ],
+    "organic_treatment": [
+      "Neem oil spray for psyllid control",
+      "Use biological control agents",
+      "Improve soil health with compost"
+    ],
+    "chemical_treatment": [
+      "Systemic insecticides for psyllid control",
+      "Imidacloprid-based insecticides",
+      "Thiamethoxam-based insecticides"
+    ]
+  },
+  "Peach___Bacterial_spot": {
+    "crop": "Peach",
+    "disease": "Bacterial Spot",
+    "symptoms": [
+      "Small dark spots on leaves",
+      "Leaf yellowing and drop",
+      "Sunken lesions on fruits",
+      "Reduced fruit quality"
+    ],
+    "prevention": [
+      "Use resistant peach varieties",
+      "Avoid overhead irrigation",
+      "Prune trees for airflow",
+      "Remove infected plant debris"
+    ],
+    "organic_treatment": [
+      "Copper-based organic sprays",
+      "Remove infected leaves and fruits",
+      "Maintain orchard sanitation"
+    ],
+    "chemical_treatment": [
+      "Copper bactericides",
+      "Oxytetracycline-based products",
+      "Agricultural antibiotic sprays where permitted"
+    ]
+  },
+  "Pepper,_bell___Bacterial_spot": {
+    "crop": "Bell Pepper",
+    "disease": "Bacterial Spot",
+    "symptoms": [
+      "Water-soaked spots on leaves",
+      "Brown lesions on fruits",
+      "Leaf drop",
+      "Stunted plant growth"
+    ],
+    "prevention": [
+      "Use certified disease-free seeds",
+      "Avoid working with wet plants",
+      "Rotate crops regularly",
+      "Disinfect gardening tools"
+    ],
+    "organic_treatment": [
+      "Copper-based organic sprays",
+      "Neem oil application",
+      "Remove infected plant parts"
+    ],
+    "chemical_treatment": [
+      "Copper bactericides",
+      "Mancozeb + copper mixtures",
+      "Approved bacterial disease control products"
+    ]
+  },
+  "Potato___Early_blight": {
+    "crop": "Potato",
+    "disease": "Early Blight",
+    "symptoms": [
+      "Brown concentric rings on leaves",
+      "Yellowing around lesions",
+      "Premature leaf drop",
+      "Reduced tuber yield"
+    ],
+    "prevention": [
+      "Practice crop rotation",
+      "Avoid excessive irrigation",
+      "Use healthy seed potatoes",
+      "Remove infected plant debris"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Compost tea application",
+      "Copper-based organic fungicide"
+    ],
+    "chemical_treatment": [
+      "Mancozeb fungicide",
+      "Chlorothalonil fungicide",
+      "Azoxystrobin fungicide"
+    ]
+  },
+  "Potato___Late_blight": {
+    "crop": "Potato",
+    "disease": "Late Blight",
+    "symptoms": [
+      "Dark water-soaked lesions on leaves",
+      "White fungal growth under leaves",
+      "Rapid plant collapse",
+      "Tuber rot"
+    ],
+    "prevention": [
+      "Use certified disease-free seed potatoes",
+      "Ensure proper field drainage",
+      "Avoid overhead irrigation",
+      "Monitor fields during cool and humid weather"
+    ],
+    "organic_treatment": [
+      "Copper-based organic fungicides",
+      "Remove infected plants immediately",
+      "Improve air circulation around plants"
+    ],
+    "chemical_treatment": [
+      "Metalaxyl-based fungicide",
+      "Mancozeb fungicide",
+      "Cymoxanil fungicide"
+    ]
+  },
+  "Squash___Powdery_mildew": {
+    "crop": "Squash",
+    "disease": "Powdery Mildew",
+    "symptoms": [
+      "White powdery patches on leaves",
+      "Yellowing of leaves",
+      "Leaf curling",
+      "Reduced plant growth"
+    ],
+    "prevention": [
+      "Ensure proper plant spacing",
+      "Improve air circulation",
+      "Avoid excessive nitrogen fertilizer",
+      "Remove infected leaves regularly"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Baking soda solution",
+      "Sulfur-based organic fungicide"
+    ],
+    "chemical_treatment": [
+      "Myclobutanil fungicide",
+      "Sulfur fungicide",
+      "Propiconazole fungicide"
+    ]
+  },
+  "Strawberry___Leaf_scorch": {
+    "crop": "Strawberry",
+    "disease": "Leaf Scorch",
+    "symptoms": [
+      "Purple spots on leaves",
+      "Brown leaf edges",
+      "Dry and scorched appearance",
+      "Reduced plant vigor"
+    ],
+    "prevention": [
+      "Maintain proper field sanitation",
+      "Avoid overhead irrigation",
+      "Provide adequate spacing",
+      "Remove infected leaves"
+    ],
+    "organic_treatment": [
+      "Copper-based organic fungicide",
+      "Neem oil spray",
+      "Remove infected foliage"
+    ],
+    "chemical_treatment": [
+      "Captan fungicide",
+      "Mancozeb fungicide",
+      "Chlorothalonil fungicide"
+    ]
+  },
+  "Tomato___Bacterial_spot": {
+    "crop": "Tomato",
+    "disease": "Bacterial Spot",
+    "symptoms": [
+      "Small dark spots on leaves",
+      "Yellow halos around lesions",
+      "Fruit spotting",
+      "Premature leaf drop"
+    ],
+    "prevention": [
+      "Use certified disease-free seeds",
+      "Avoid working with wet plants",
+      "Rotate crops regularly",
+      "Disinfect gardening tools"
+    ],
+    "organic_treatment": [
+      "Copper-based organic sprays",
+      "Neem oil application",
+      "Remove infected plant parts"
+    ],
+    "chemical_treatment": [
+      "Copper bactericides",
+      "Copper hydroxide products",
+      "Approved bacterial disease control sprays"
+    ]
+  },
+  "Tomato___Early_blight": {
+    "crop": "Tomato",
+    "disease": "Early Blight",
+    "symptoms": [
+      "Brown circular spots on leaves",
+      "Yellowing of lower leaves",
+      "Target-like rings on lesions",
+      "Premature leaf drop"
+    ],
+    "prevention": [
+      "Use disease-free seeds",
+      "Follow crop rotation",
+      "Avoid overhead irrigation",
+      "Maintain proper plant spacing"
+    ],
+    "organic_treatment": [
+      "Apply neem oil spray",
+      "Remove infected leaves",
+      "Use compost tea or bio-fungicides"
+    ],
+    "chemical_treatment": [
+      "Mancozeb-based fungicide",
+      "Chlorothalonil-based fungicide",
+      "Azoxystrobin fungicide"
+    ]
+  },
+  "Tomato___Late_blight": {
+    "crop": "Tomato",
+    "disease": "Late Blight",
+    "symptoms": [
+      "Large dark lesions on leaves",
+      "White fungal growth under leaves",
+      "Rapid wilting of plants",
+      "Fruit rot"
+    ],
+    "prevention": [
+      "Use certified disease-free seedlings",
+      "Avoid overhead irrigation",
+      "Ensure proper drainage",
+      "Monitor crops during humid weather"
+    ],
+    "organic_treatment": [
+      "Copper-based organic fungicides",
+      "Remove infected plants immediately",
+      "Improve air circulation"
+    ],
+    "chemical_treatment": [
+      "Metalaxyl fungicide",
+      "Mancozeb fungicide",
+      "Cymoxanil fungicide"
+    ]
+  },
+  "Tomato___Leaf_Mold": {
+    "crop": "Tomato",
+    "disease": "Leaf Mold",
+    "symptoms": [
+      "Yellow spots on upper leaf surface",
+      "Olive-green or gray mold on underside of leaves",
+      "Leaf curling",
+      "Premature leaf drop"
+    ],
+    "prevention": [
+      "Maintain proper greenhouse ventilation",
+      "Avoid excess humidity",
+      "Provide adequate plant spacing",
+      "Remove infected leaves promptly"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Copper-based organic fungicide",
+      "Improve air circulation around plants"
+    ],
+    "chemical_treatment": [
+      "Chlorothalonil fungicide",
+      "Mancozeb fungicide",
+      "Azoxystrobin fungicide"
+    ]
+  },
+  "Tomato___Septoria_leaf_spot": {
+    "crop": "Tomato",
+    "disease": "Septoria Leaf Spot",
+    "symptoms": [
+      "Small circular spots with dark borders",
+      "Yellowing of lower leaves",
+      "Leaf drop",
+      "Reduced fruit production"
+    ],
+    "prevention": [
+      "Rotate crops regularly",
+      "Avoid overhead watering",
+      "Remove infected plant debris",
+      "Maintain proper plant spacing"
+    ],
+    "organic_treatment": [
+      "Copper-based organic fungicide",
+      "Neem oil spray",
+      "Remove infected leaves"
+    ],
+    "chemical_treatment": [
+      "Chlorothalonil fungicide",
+      "Mancozeb fungicide",
+      "Copper fungicide"
+    ]
+  },
+  "Tomato___Spider_mites Two-spotted_spider_mite": {
+    "crop": "Tomato",
+    "disease": "Two-Spotted Spider Mite Infestation",
+    "symptoms": [
+      "Tiny yellow or white speckles on leaves",
+      "Fine webbing on leaves and stems",
+      "Leaf yellowing",
+      "Leaf drying and drop"
+    ],
+    "prevention": [
+      "Inspect plants regularly",
+      "Reduce plant stress through proper watering",
+      "Control weeds around plants",
+      "Maintain adequate humidity when possible"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Insecticidal soap",
+      "Release beneficial predatory mites"
+    ],
+    "chemical_treatment": [
+      "Abamectin-based miticide",
+      "Spiromesifen-based miticide",
+      "Approved acaricide products"
+    ]
+  },
+  "Tomato___Target_Spot": {
+    "crop": "Tomato",
+    "disease": "Target Spot",
+    "symptoms": [
+      "Brown circular lesions with concentric rings",
+      "Yellowing around lesions",
+      "Leaf blight",
+      "Fruit spotting"
+    ],
+    "prevention": [
+      "Practice crop rotation",
+      "Avoid overhead irrigation",
+      "Improve field sanitation",
+      "Maintain proper spacing between plants"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Copper-based organic fungicide",
+      "Remove infected plant material"
+    ],
+    "chemical_treatment": [
+      "Azoxystrobin fungicide",
+      "Chlorothalonil fungicide",
+      "Mancozeb fungicide"
+    ]
+  },
+  "Tomato___Tomato_mosaic_virus": {
+    "crop": "Tomato",
+    "disease": "Tomato Mosaic Virus",
+    "symptoms": [
+      "Mosaic pattern on leaves",
+      "Leaf distortion",
+      "Stunted plant growth",
+      "Reduced fruit quality"
+    ],
+    "prevention": [
+      "Use virus-free seeds and seedlings",
+      "Disinfect tools regularly",
+      "Avoid handling plants after tobacco use",
+      "Remove infected plants immediately"
+    ],
+    "organic_treatment": [
+      "Remove infected plants",
+      "Maintain plant health with compost",
+      "Control potential insect vectors"
+    ],
+    "chemical_treatment": [
+      "No direct chemical cure available",
+      "Focus on prevention and sanitation",
+      "Control insect vectors if present"
+    ]
+  },
+  "Apple___healthy": {
+    "crop": "Apple",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your apple crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy green leaves",
+      "No visible disease symptoms"
+    ],
+    "prevention": [
+      "Continue regular crop monitoring",
+      "Maintain proper irrigation",
+      "Apply balanced fertilizers",
+      "Keep the orchard clean"
+    ],
+    "organic_treatment": [
+      "No treatment required",
+      "Continue using organic compost"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+  "Blueberry___healthy": {
+    "crop": "Blueberry",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your blueberry crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy green foliage",
+      "No visible disease symptoms"
+    ],
+    "prevention": [
+      "Monitor plants regularly",
+      "Maintain proper soil moisture",
+      "Apply nutrients as required",
+      "Remove weeds around plants"
+    ],
+    "organic_treatment": [
+      "No treatment required",
+      "Continue organic soil management"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+  "Cherry_(including_sour)___healthy": {
+    "crop": "Cherry",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your cherry crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy leaves and fruits",
+      "No visible disease symptoms"
+    ],
+    "prevention": [
+      "Inspect trees regularly",
+      "Maintain proper pruning schedule",
+      "Provide adequate irrigation",
+      "Keep orchard sanitation practices"
+    ],
+    "organic_treatment": [
+      "No treatment required",
+      "Continue compost application"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+  "Corn_(maize)___healthy": {
+    "crop": "Corn (Maize)",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your corn crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy green leaves",
+      "Normal plant growth"
+    ],
+    "prevention": [
+      "Maintain balanced fertilization",
+      "Monitor for pests and diseases",
+      "Ensure proper irrigation",
+      "Practice crop rotation"
+    ],
+    "organic_treatment": [
+      "No treatment required",
+      "Continue soil health management"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+  "Grape___healthy": {
+    "crop": "Grape",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your grape crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy leaves and vines",
+      "No visible disease symptoms"
+    ],
+    "prevention": [
+      "Maintain proper vine pruning",
+      "Ensure good air circulation",
+      "Monitor vineyard regularly",
+      "Maintain field sanitation"
+    ],
+    "organic_treatment": [
+      "No treatment required",
+      "Continue organic vineyard practices"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+  "Peach___healthy": {
+    "crop": "Peach",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your peach crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy green leaves",
+      "Normal fruit development"
+    ],
+    "prevention": [
+      "Maintain proper irrigation",
+      "Prune trees regularly",
+      "Monitor for pests and diseases",
+      "Keep orchard clean"
+    ],
+    "organic_treatment": [
+      "No treatment required",
+      "Continue organic compost application"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+  "Pepper,_bell___healthy": {
+    "crop": "Bell Pepper",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your bell pepper crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy leaves and fruits",
+      "Normal plant growth"
+    ],
+    "prevention": [
+      "Maintain balanced fertilization",
+      "Provide proper watering",
+      "Monitor for pests regularly",
+      "Keep the field weed-free"
+    ],
+    "organic_treatment": [
+      "No treatment required",
+      "Continue organic farming practices"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+  "Potato___healthy": {
+    "crop": "Potato",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your potato crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy green foliage",
+      "Normal tuber development"
+    ],
+    "prevention": [
+      "Use quality seed potatoes",
+      "Maintain proper irrigation",
+      "Practice crop rotation",
+      "Monitor field regularly"
+    ],
+    "organic_treatment": [
+      "No treatment required",
+      "Continue soil enrichment with compost"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+  "Raspberry___healthy": {
+    "crop": "Raspberry",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your raspberry crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy canes and leaves",
+      "Normal fruit production"
+    ],
+    "prevention": [
+      "Prune regularly",
+      "Maintain proper spacing",
+      "Provide adequate nutrients",
+      "Keep growing area clean"
+    ],
+    "organic_treatment": [
+      "No treatment required",
+      "Continue organic soil management"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+  "Soybean___healthy": {
+    "crop": "Soybean",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your soybean crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy green leaves",
+      "Normal pod development"
+    ],
+    "prevention": [
+      "Monitor crops regularly",
+      "Maintain soil fertility",
+      "Practice crop rotation",
+      "Control weeds effectively"
+    ],
+    "organic_treatment": [
+      "No treatment required",
+      "Continue using organic fertilizers"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+  "Strawberry___healthy": {
+    "crop": "Strawberry",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your strawberry crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy green leaves",
+      "Normal fruit development"
+    ],
+    "prevention": [
+      "Maintain proper irrigation",
+      "Monitor plants regularly",
+      "Remove weeds from the field",
+      "Apply balanced nutrients"
+    ],
+    "organic_treatment": [
+      "No treatment required",
+      "Continue organic compost application"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+  "Tomato___healthy": {
+    "crop": "Tomato",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your tomato crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy green leaves",
+      "Normal fruit development"
+    ],
+    "prevention": [
+      "Continue regular crop monitoring",
+      "Maintain proper watering schedule",
+      "Apply balanced fertilizers",
+      "Keep the field clean and weed-free"
+    ],
+    "organic_treatment": [
+      "No treatment required",
+      "Continue using compost and bio-fertilizers"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+  "Tomato___Tomato_Yellow_Leaf_Curl_Virus": {
+    "crop": "Tomato",
+    "disease": "Tomato Yellow Leaf Curl Virus",
+    "symptoms": [
+      "Yellowing and curling of leaves",
+      "Stunted plant growth",
+      "Reduced fruit production",
+      "Upward curling of leaf margins"
+    ],
+    "prevention": [
+      "Use virus-free seedlings",
+      "Control whitefly populations",
+      "Remove infected plants immediately",
+      "Use resistant tomato varieties"
+    ],
+    "organic_treatment": [
+      "Neem oil spray to control whiteflies",
+      "Use yellow sticky traps",
+      "Remove infected plants from the field"
+    ],
+    "chemical_treatment": [
+      "Imidacloprid-based insecticides for whitefly control",
+      "Thiamethoxam-based insecticides",
+      "Approved whitefly management products"
+    ]
+  },
+  
+  "American Bollworm on Cotton": {
+    "crop": "Cotton",
+    "disease": "American Bollworm",
+    "symptoms": [
+      "Holes in cotton bolls",
+      "Damaged flowers and buds",
+      "Larvae feeding on fruits"
+    ],
+    "prevention": [
+      "Monitor fields regularly",
+      "Use pheromone traps",
+      "Remove infested plant parts",
+      "Maintain field sanitation"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Release Trichogramma parasitoids",
+      "Use Bacillus thuringiensis (Bt)"
+    ],
+    "chemical_treatment": [
+      "Emamectin benzoate",
+      "Spinosad insecticide",
+      "Indoxacarb insecticide"
+    ]
+  },
+
+  "Anthracnose on Cotton": {
+    "crop": "Cotton",
+    "disease": "Anthracnose",
+    "symptoms": [
+      "Dark sunken lesions on stems",
+      "Leaf spots",
+      "Boll rot symptoms"
+    ],
+    "prevention": [
+      "Use disease-free seeds",
+      "Practice crop rotation",
+      "Avoid waterlogging",
+      "Remove infected debris"
+    ],
+    "organic_treatment": [
+      "Neem-based fungicide",
+      "Copper-based organic fungicide",
+      "Remove infected plant parts"
+    ],
+    "chemical_treatment": [
+      "Mancozeb fungicide",
+      "Carbendazim fungicide",
+      "Copper oxychloride"
+    ]
+  },
+
+  "Army worm": {
+    "crop": "Maize/Cereal Crops",
+    "disease": "Army Worm Infestation",
+    "symptoms": [
+      "Leaves eaten from edges",
+      "Large irregular holes in foliage",
+      "Presence of caterpillars"
+    ],
+    "prevention": [
+      "Regular scouting of fields",
+      "Destroy egg masses",
+      "Maintain field hygiene",
+      "Use pheromone traps"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Bt (Bacillus thuringiensis)",
+      "Release natural predators"
+    ],
+    "chemical_treatment": [
+      "Spinosad",
+      "Emamectin benzoate",
+      "Chlorantraniliprole"
+    ]
+  },
+
+  "Becterial Blight in Rice": {
+    "crop": "Rice",
+    "disease": "Bacterial Blight",
+    "symptoms": [
+      "Yellowing from leaf tips",
+      "Leaf drying",
+      "Reduced grain yield"
+    ],
+    "prevention": [
+      "Use resistant rice varieties",
+      "Avoid excessive nitrogen fertilizer",
+      "Use disease-free seeds",
+      "Maintain proper drainage"
+    ],
+    "organic_treatment": [
+      "Neem extract spray",
+      "Field sanitation",
+      "Balanced nutrient management"
+    ],
+    "chemical_treatment": [
+      "Copper bactericides",
+      "Streptocycline (where permitted)",
+      "Agricultural bactericide products"
+    ]
+  },
+
+  "Brownspot": {
+    "crop": "Rice",
+    "disease": "Brown Spot",
+    "symptoms": [
+      "Brown circular spots on leaves",
+      "Yellow halo around lesions",
+      "Reduced grain quality"
+    ],
+    "prevention": [
+      "Use healthy seeds",
+      "Balanced fertilization",
+      "Proper irrigation management",
+      "Crop rotation"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Compost application",
+      "Bio-fungicides"
+    ],
+    "chemical_treatment": [
+      "Mancozeb fungicide",
+      "Propiconazole fungicide",
+      "Tricyclazole fungicide"
+    ]
+  },
+    "Common_Rust": {
+    "crop": "Maize",
+    "disease": "Common Rust",
+    "symptoms": [
+      "Reddish-brown pustules on leaves",
+      "Yellowing around lesions",
+      "Premature leaf drying"
+    ],
+    "prevention": [
+      "Use resistant varieties",
+      "Practice crop rotation",
+      "Maintain proper field sanitation",
+      "Monitor crops regularly"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Compost application",
+      "Remove heavily infected leaves"
+    ],
+    "chemical_treatment": [
+      "Propiconazole fungicide",
+      "Azoxystrobin fungicide",
+      "Pyraclostrobin fungicide"
+    ]
+  },
+
+  "Cotton Aphid": {
+    "crop": "Cotton",
+    "disease": "Aphid Infestation",
+    "symptoms": [
+      "Curling of leaves",
+      "Sticky honeydew on leaves",
+      "Stunted plant growth"
+    ],
+    "prevention": [
+      "Monitor fields regularly",
+      "Control weeds around fields",
+      "Avoid excessive nitrogen fertilizer",
+      "Encourage beneficial insects"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Insecticidal soap",
+      "Release ladybird beetles"
+    ],
+    "chemical_treatment": [
+      "Imidacloprid insecticide",
+      "Thiamethoxam insecticide",
+      "Acetamiprid insecticide"
+    ]
+  },
+
+  "Flag Smut": {
+    "crop": "Wheat",
+    "disease": "Flag Smut",
+    "symptoms": [
+      "Twisted leaves",
+      "Black streaks on leaves",
+      "Poor plant growth"
+    ],
+    "prevention": [
+      "Use certified disease-free seeds",
+      "Treat seeds before sowing",
+      "Practice crop rotation",
+      "Remove infected plants"
+    ],
+    "organic_treatment": [
+      "Use bio-fungicides",
+      "Improve soil health with compost",
+      "Field sanitation"
+    ],
+    "chemical_treatment": [
+      "Carboxin seed treatment",
+      "Tebuconazole fungicide",
+      "Thiram fungicide"
+    ]
+  },
+
+  "Gray_Leaf_Spot": {
+    "crop": "Maize",
+    "disease": "Gray Leaf Spot",
+    "symptoms": [
+      "Rectangular gray lesions on leaves",
+      "Leaf blighting",
+      "Reduced grain yield"
+    ],
+    "prevention": [
+      "Use resistant hybrids",
+      "Crop rotation",
+      "Remove infected crop residues",
+      "Monitor fields regularly"
+    ],
+    "organic_treatment": [
+      "Bio-fungicides",
+      "Compost-based treatments",
+      "Remove heavily infected leaves"
+    ],
+    "chemical_treatment": [
+      "Azoxystrobin fungicide",
+      "Propiconazole fungicide",
+      "Pyraclostrobin fungicide"
+    ]
+  },
+
+  "Healthy Maize": {
+    "crop": "Maize",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your maize crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy green leaves",
+      "Normal plant growth"
+    ],
+    "prevention": [
+      "Continue regular crop monitoring",
+      "Maintain balanced fertilization",
+      "Ensure proper irrigation",
+      "Control weeds regularly"
+    ],
+    "organic_treatment": [
+      "No treatment required"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+    "Healthy Wheat": {
+    "crop": "Wheat",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your wheat crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy green leaves",
+      "Normal grain development"
+    ],
+    "prevention": [
+      "Maintain balanced fertilization",
+      "Monitor crops regularly",
+      "Practice crop rotation",
+      "Control weeds effectively"
+    ],
+    "organic_treatment": [
+      "No treatment required"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+
+  "Healthy cotton": {
+    "crop": "Cotton",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your cotton crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy leaves and bolls",
+      "Normal plant growth"
+    ],
+    "prevention": [
+      "Regular field monitoring",
+      "Maintain proper irrigation",
+      "Balanced nutrient management",
+      "Keep fields weed-free"
+    ],
+    "organic_treatment": [
+      "No treatment required"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+
+  "Leaf Curl": {
+    "crop": "Cotton",
+    "disease": "Leaf Curl Disease",
+    "symptoms": [
+      "Curling of leaves",
+      "Vein thickening",
+      "Stunted plant growth",
+      "Reduced boll formation"
+    ],
+    "prevention": [
+      "Use resistant varieties",
+      "Control whitefly populations",
+      "Remove infected plants",
+      "Use healthy seeds"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Yellow sticky traps",
+      "Field sanitation"
+    ],
+    "chemical_treatment": [
+      "Imidacloprid insecticide",
+      "Thiamethoxam insecticide",
+      "Acetamiprid insecticide"
+    ]
+  },
+
+  "Leaf smut": {
+    "crop": "Rice",
+    "disease": "Leaf Smut",
+    "symptoms": [
+      "Small black spots on leaves",
+      "Leaf discoloration",
+      "Reduced photosynthesis"
+    ],
+    "prevention": [
+      "Use disease-free seeds",
+      "Practice crop rotation",
+      "Balanced fertilization",
+      "Maintain field hygiene"
+    ],
+    "organic_treatment": [
+      "Bio-fungicides",
+      "Neem extract spray",
+      "Compost application"
+    ],
+    "chemical_treatment": [
+      "Mancozeb fungicide",
+      "Propiconazole fungicide",
+      "Carbendazim fungicide"
+    ]
+  },
+
+  "Mosaic sugarcane": {
+    "crop": "Sugarcane",
+    "disease": "Sugarcane Mosaic Disease",
+    "symptoms": [
+      "Mosaic pattern on leaves",
+      "Yellow-green streaks",
+      "Reduced cane growth",
+      "Lower sugar yield"
+    ],
+    "prevention": [
+      "Use virus-free planting material",
+      "Remove infected plants",
+      "Control insect vectors",
+      "Use resistant varieties"
+    ],
+    "organic_treatment": [
+      "Field sanitation",
+      "Neem oil for vector control",
+      "Improve plant health with compost"
+    ],
+    "chemical_treatment": [
+      "No direct chemical cure available",
+      "Control insect vectors using approved insecticides",
+      "Prevent disease spread"
+    ]
+  },
+    "RedRot sugarcane": {
+    "crop": "Sugarcane",
+    "disease": "Red Rot",
+    "symptoms": [
+      "Red discoloration inside stalks",
+      "Drying of leaves from top",
+      "Foul smell from infected canes",
+      "Wilting of plants"
+    ],
+    "prevention": [
+      "Use disease-free seed cane",
+      "Practice crop rotation",
+      "Remove infected plants immediately",
+      "Ensure proper field drainage"
+    ],
+    "organic_treatment": [
+      "Apply Trichoderma-based biofungicides",
+      "Improve soil health with organic compost",
+      "Remove and destroy infected canes"
+    ],
+    "chemical_treatment": [
+      "Carbendazim fungicide",
+      "Propiconazole fungicide",
+      "Recommended fungicide treatment for seed setts"
+    ]
+  },
+
+  "RedRust sugarcane": {
+    "crop": "Sugarcane",
+    "disease": "Red Rust",
+    "symptoms": [
+      "Red-brown lesions on leaves",
+      "Yellowing around lesions",
+      "Reduced photosynthesis",
+      "Poor cane growth"
+    ],
+    "prevention": [
+      "Use resistant varieties",
+      "Maintain field sanitation",
+      "Avoid excessive nitrogen application",
+      "Monitor crops regularly"
+    ],
+    "organic_treatment": [
+      "Neem-based fungicide",
+      "Bio-fungicides",
+      "Remove infected leaves"
+    ],
+    "chemical_treatment": [
+      "Mancozeb fungicide",
+      "Propiconazole fungicide",
+      "Azoxystrobin fungicide"
+    ]
+  },
+
+  "Rice Blast": {
+    "crop": "Rice",
+    "disease": "Rice Blast",
+    "symptoms": [
+      "Diamond-shaped lesions on leaves",
+      "Neck rot of panicles",
+      "Drying of infected leaves",
+      "Reduced grain yield"
+    ],
+    "prevention": [
+      "Use resistant rice varieties",
+      "Avoid excessive nitrogen fertilizer",
+      "Maintain proper field drainage",
+      "Use healthy seeds"
+    ],
+    "organic_treatment": [
+      "Neem extract spray",
+      "Bio-fungicides",
+      "Improve field sanitation"
+    ],
+    "chemical_treatment": [
+      "Tricyclazole fungicide",
+      "Isoprothiolane fungicide",
+      "Propiconazole fungicide"
+    ]
+  },
+
+  "Sugarcane Healthy": {
+    "crop": "Sugarcane",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your sugarcane crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy green leaves",
+      "Normal cane growth"
+    ],
+    "prevention": [
+      "Continue regular field monitoring",
+      "Maintain proper irrigation",
+      "Apply balanced nutrients",
+      "Control weeds effectively"
+    ],
+    "organic_treatment": [
+      "No treatment required"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+
+  "Tungro": {
+    "crop": "Rice",
+    "disease": "Rice Tungro Disease",
+    "symptoms": [
+      "Yellow-orange leaf discoloration",
+      "Stunted plant growth",
+      "Reduced tillering",
+      "Low grain production"
+    ],
+    "prevention": [
+      "Use resistant rice varieties",
+      "Control leafhopper populations",
+      "Remove infected plants",
+      "Plant healthy seedlings"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Yellow sticky traps",
+      "Field sanitation"
+    ],
+    "chemical_treatment": [
+      "Imidacloprid insecticide",
+      "Thiamethoxam insecticide",
+      "Approved leafhopper control products"
+    ]
+  },
+    "Wheat Brown leaf Rust": {
+    "crop": "Wheat",
+    "disease": "Brown Leaf Rust",
+    "symptoms": [
+      "Brown-orange pustules on leaves",
+      "Premature leaf drying",
+      "Reduced grain filling"
+    ],
+    "prevention": [
+      "Use resistant wheat varieties",
+      "Monitor fields regularly",
+      "Apply balanced fertilizers",
+      "Practice crop rotation"
+    ],
+    "organic_treatment": [
+      "Neem-based spray",
+      "Bio-fungicides",
+      "Remove heavily infected leaves"
+    ],
+    "chemical_treatment": [
+      "Propiconazole fungicide",
+      "Tebuconazole fungicide",
+      "Azoxystrobin fungicide"
+    ]
+  },
+
+  "Wheat Stem fly": {
+    "crop": "Wheat",
+    "disease": "Stem Fly Infestation",
+    "symptoms": [
+      "Yellow central shoots",
+      "Dead hearts in young plants",
+      "Poor tiller development"
+    ],
+    "prevention": [
+      "Timely sowing",
+      "Field sanitation",
+      "Use resistant varieties",
+      "Monitor pest populations"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Light traps",
+      "Encourage natural predators"
+    ],
+    "chemical_treatment": [
+      "Imidacloprid insecticide",
+      "Chlorpyrifos insecticide",
+      "Thiamethoxam insecticide"
+    ]
+  },
+
+  "Wheat aphid": {
+    "crop": "Wheat",
+    "disease": "Aphid Infestation",
+    "symptoms": [
+      "Curling leaves",
+      "Yellowing foliage",
+      "Sticky honeydew deposits"
+    ],
+    "prevention": [
+      "Monitor crops regularly",
+      "Control weeds",
+      "Avoid excessive nitrogen",
+      "Encourage beneficial insects"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Insecticidal soap",
+      "Release ladybird beetles"
+    ],
+    "chemical_treatment": [
+      "Imidacloprid",
+      "Acetamiprid",
+      "Thiamethoxam"
+    ]
+  },
+
+  "Wheat black rust": {
+    "crop": "Wheat",
+    "disease": "Black Rust",
+    "symptoms": [
+      "Dark black pustules on stems",
+      "Weak stems",
+      "Reduced grain yield"
+    ],
+    "prevention": [
+      "Use resistant varieties",
+      "Destroy volunteer wheat plants",
+      "Practice crop rotation",
+      "Monitor fields frequently"
+    ],
+    "organic_treatment": [
+      "Bio-fungicides",
+      "Compost-based treatments",
+      "Remove infected plant material"
+    ],
+    "chemical_treatment": [
+      "Tebuconazole fungicide",
+      "Propiconazole fungicide",
+      "Azoxystrobin fungicide"
+    ]
+  },
+
+  "Wheat leaf blight": {
+    "crop": "Wheat",
+    "disease": "Leaf Blight",
+    "symptoms": [
+      "Brown lesions on leaves",
+      "Leaf drying",
+      "Reduced photosynthesis"
+    ],
+    "prevention": [
+      "Use certified seeds",
+      "Crop rotation",
+      "Balanced fertilization",
+      "Remove infected residues"
+    ],
+    "organic_treatment": [
+      "Neem extract spray",
+      "Bio-fungicides",
+      "Field sanitation"
+    ],
+    "chemical_treatment": [
+      "Mancozeb fungicide",
+      "Propiconazole fungicide",
+      "Carbendazim fungicide"
+    ]
+  },
+
+  "Wheat mite": {
+    "crop": "Wheat",
+    "disease": "Mite Infestation",
+    "symptoms": [
+      "Leaf curling",
+      "Yellow streaks",
+      "Stunted plant growth"
+    ],
+    "prevention": [
+      "Monitor fields regularly",
+      "Control weeds",
+      "Maintain crop health",
+      "Avoid plant stress"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Predatory mites",
+      "Improve field hygiene"
+    ],
+    "chemical_treatment": [
+      "Abamectin",
+      "Spiromesifen",
+      "Approved miticides"
+    ]
+  },
+
+  "Wheat powdery mildew": {
+    "crop": "Wheat",
+    "disease": "Powdery Mildew",
+    "symptoms": [
+      "White powdery growth on leaves",
+      "Leaf yellowing",
+      "Reduced grain production"
+    ],
+    "prevention": [
+      "Use resistant varieties",
+      "Avoid excessive nitrogen",
+      "Improve air circulation",
+      "Monitor crops regularly"
+    ],
+    "organic_treatment": [
+      "Sulfur-based fungicide",
+      "Neem oil spray",
+      "Baking soda solution"
+    ],
+    "chemical_treatment": [
+      "Tebuconazole",
+      "Propiconazole",
+      "Myclobutanil"
+    ]
+  },
+
+  "Wheat scab": {
+    "crop": "Wheat",
+    "disease": "Fusarium Head Blight (Scab)",
+    "symptoms": [
+      "Bleached wheat heads",
+      "Shriveled grains",
+      "Pink fungal growth"
+    ],
+    "prevention": [
+      "Use resistant varieties",
+      "Practice crop rotation",
+      "Avoid planting after maize",
+      "Use certified seed"
+    ],
+    "organic_treatment": [
+      "Bio-fungicides",
+      "Field sanitation",
+      "Compost enrichment"
+    ],
+    "chemical_treatment": [
+      "Tebuconazole fungicide",
+      "Prothioconazole fungicide",
+      "Metconazole fungicide"
+    ]
+  },
+
+  "Wheat___Yellow_Rust": {
+    "crop": "Wheat",
+    "disease": "Yellow Rust",
+    "symptoms": [
+      "Yellow stripes on leaves",
+      "Reduced photosynthesis",
+      "Poor grain filling"
+    ],
+    "prevention": [
+      "Use resistant wheat varieties",
+      "Monitor fields regularly",
+      "Early disease detection",
+      "Balanced fertilizer application"
+    ],
+    "organic_treatment": [
+      "Bio-fungicides",
+      "Neem extract spray",
+      "Remove heavily infected leaves"
+    ],
+    "chemical_treatment": [
+      "Propiconazole",
+      "Tebuconazole",
+      "Azoxystrobin"
+    ]
+  },
+
+  "Wilt": {
+    "crop": "Cotton",
+    "disease": "Wilt Disease",
+    "symptoms": [
+      "Wilting of leaves",
+      "Yellowing foliage",
+      "Plant death in severe cases"
+    ],
+    "prevention": [
+      "Use resistant varieties",
+      "Practice crop rotation",
+      "Improve soil drainage",
+      "Use disease-free seeds"
+    ],
+    "organic_treatment": [
+      "Trichoderma application",
+      "Organic compost",
+      "Bio-fungicides"
+    ],
+    "chemical_treatment": [
+      "Carbendazim fungicide",
+      "Copper oxychloride",
+      "Recommended soil fungicides"
+    ]
+  },
+    "Yellow Rust Sugarcane": {
+    "crop": "Sugarcane",
+    "disease": "Yellow Rust",
+    "symptoms": [
+      "Yellow streaks on leaves",
+      "Reduced photosynthesis",
+      "Poor cane growth"
+    ],
+    "prevention": [
+      "Use resistant varieties",
+      "Maintain field sanitation",
+      "Monitor crops regularly",
+      "Avoid excessive nitrogen use"
+    ],
+    "organic_treatment": [
+      "Neem-based fungicide",
+      "Bio-fungicides",
+      "Remove infected leaves"
+    ],
+    "chemical_treatment": [
+      "Propiconazole fungicide",
+      "Azoxystrobin fungicide",
+      "Mancozeb fungicide"
+    ]
+  },
+
+  "apple_apple_scab": {
+    "crop": "Apple",
+    "disease": "Apple Scab",
+    "symptoms": [
+      "Olive-green spots on leaves",
+      "Dark lesions on fruits",
+      "Premature leaf drop"
+    ],
+    "prevention": [
+      "Prune trees regularly",
+      "Remove infected leaves",
+      "Improve air circulation",
+      "Use resistant varieties"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Sulfur fungicide",
+      "Remove infected parts"
+    ],
+    "chemical_treatment": [
+      "Captan fungicide",
+      "Mancozeb fungicide",
+      "Myclobutanil fungicide"
+    ]
+  },
+
+  "apple_black_rot": {
+    "crop": "Apple",
+    "disease": "Black Rot",
+    "symptoms": [
+      "Black rotting fruits",
+      "Purple leaf spots",
+      "Branch cankers"
+    ],
+    "prevention": [
+      "Remove infected fruits",
+      "Prune diseased branches",
+      "Maintain orchard hygiene",
+      "Monitor regularly"
+    ],
+    "organic_treatment": [
+      "Copper-based fungicide",
+      "Neem oil spray",
+      "Remove infected material"
+    ],
+    "chemical_treatment": [
+      "Captan fungicide",
+      "Thiophanate-methyl",
+      "Mancozeb fungicide"
+    ]
+  },
+
+  "apple_cedar_apple_rust": {
+    "crop": "Apple",
+    "disease": "Cedar Apple Rust",
+    "symptoms": [
+      "Orange-yellow leaf spots",
+      "Leaf deformation",
+      "Reduced fruit quality"
+    ],
+    "prevention": [
+      "Remove nearby cedar hosts",
+      "Use resistant varieties",
+      "Monitor orchards",
+      "Improve airflow"
+    ],
+    "organic_treatment": [
+      "Sulfur fungicide",
+      "Neem oil spray",
+      "Remove infected leaves"
+    ],
+    "chemical_treatment": [
+      "Myclobutanil",
+      "Propiconazole",
+      "Mancozeb"
+    ]
+  },
+
+  "bacterial_blight in Cotton": {
+    "crop": "Cotton",
+    "disease": "Bacterial Blight",
+    "symptoms": [
+      "Angular leaf spots",
+      "Black lesions on stems",
+      "Premature leaf drop"
+    ],
+    "prevention": [
+      "Use disease-free seeds",
+      "Avoid overhead irrigation",
+      "Practice crop rotation",
+      "Remove infected debris"
+    ],
+    "organic_treatment": [
+      "Copper-based bactericide",
+      "Neem extract spray",
+      "Field sanitation"
+    ],
+    "chemical_treatment": [
+      "Copper oxychloride",
+      "Streptocycline where permitted",
+      "Approved bactericides"
+    ]
+  },
+
+  "bean_angular_leaf_spot": {
+    "crop": "Bean",
+    "disease": "Angular Leaf Spot",
+    "symptoms": [
+      "Angular brown spots on leaves",
+      "Leaf yellowing",
+      "Reduced pod production"
+    ],
+    "prevention": [
+      "Use certified seeds",
+      "Crop rotation",
+      "Avoid overhead watering",
+      "Remove infected plants"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Copper fungicide",
+      "Bio-fungicides"
+    ],
+    "chemical_treatment": [
+      "Mancozeb fungicide",
+      "Chlorothalonil",
+      "Copper fungicide"
+    ]
+  },
+
+  "bean_rust": {
+    "crop": "Bean",
+    "disease": "Bean Rust",
+    "symptoms": [
+      "Rust-colored pustules on leaves",
+      "Leaf yellowing",
+      "Premature leaf drop"
+    ],
+    "prevention": [
+      "Use resistant varieties",
+      "Improve air circulation",
+      "Avoid overhead irrigation",
+      "Monitor fields regularly"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Sulfur fungicide",
+      "Remove infected leaves"
+    ],
+    "chemical_treatment": [
+      "Propiconazole",
+      "Azoxystrobin",
+      "Mancozeb"
+    ]
+  },
+
+  "bell_pepper_bacterial_spot": {
+    "crop": "Bell Pepper",
+    "disease": "Bacterial Spot",
+    "symptoms": [
+      "Water-soaked leaf spots",
+      "Brown lesions on fruits",
+      "Leaf drop"
+    ],
+    "prevention": [
+      "Use disease-free seeds",
+      "Avoid working with wet plants",
+      "Crop rotation",
+      "Disinfect tools"
+    ],
+    "organic_treatment": [
+      "Copper spray",
+      "Neem oil",
+      "Remove infected parts"
+    ],
+    "chemical_treatment": [
+      "Copper bactericide",
+      "Mancozeb + Copper",
+      "Approved bacterial control products"
+    ]
+  },
+
+  "bollrot on Cotton": {
+    "crop": "Cotton",
+    "disease": "Boll Rot",
+    "symptoms": [
+      "Rotting cotton bolls",
+      "Discolored lint",
+      "Premature boll drop"
+    ],
+    "prevention": [
+      "Avoid excess moisture",
+      "Maintain plant spacing",
+      "Improve drainage",
+      "Remove infected bolls"
+    ],
+    "organic_treatment": [
+      "Neem-based fungicide",
+      "Field sanitation",
+      "Remove infected bolls"
+    ],
+    "chemical_treatment": [
+      "Carbendazim",
+      "Mancozeb",
+      "Copper fungicides"
+    ]
+  },
+
+  "bollworm on Cotton": {
+    "crop": "Cotton",
+    "disease": "Bollworm Infestation",
+    "symptoms": [
+      "Damaged bolls",
+      "Holes in fruits",
+      "Larval feeding signs"
+    ],
+    "prevention": [
+      "Use pheromone traps",
+      "Regular scouting",
+      "Remove infested bolls",
+      "Maintain field hygiene"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Bt spray",
+      "Release natural predators"
+    ],
+    "chemical_treatment": [
+      "Spinosad",
+      "Emamectin benzoate",
+      "Indoxacarb"
+    ]
+  },
+    "cherry_powdery_mildew": {
+    "crop": "Cherry",
+    "disease": "Powdery Mildew",
+    "symptoms": [
+      "White powdery coating on leaves",
+      "Leaf curling",
+      "Reduced fruit quality"
+    ],
+    "prevention": [
+      "Prune trees regularly",
+      "Improve air circulation",
+      "Avoid excessive nitrogen fertilizer",
+      "Monitor plants frequently"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Sulfur-based fungicide",
+      "Potassium bicarbonate spray"
+    ],
+    "chemical_treatment": [
+      "Myclobutanil",
+      "Tebuconazole",
+      "Propiconazole"
+    ]
+  },
+
+  "corn_cercospora_leaf_spot": {
+    "crop": "Corn",
+    "disease": "Cercospora Leaf Spot",
+    "symptoms": [
+      "Gray rectangular lesions on leaves",
+      "Leaf blighting",
+      "Reduced grain production"
+    ],
+    "prevention": [
+      "Use resistant hybrids",
+      "Practice crop rotation",
+      "Remove crop residues",
+      "Monitor fields regularly"
+    ],
+    "organic_treatment": [
+      "Bio-fungicides",
+      "Compost tea spray",
+      "Remove infected leaves"
+    ],
+    "chemical_treatment": [
+      "Azoxystrobin",
+      "Propiconazole",
+      "Pyraclostrobin"
+    ]
+  },
+
+  "corn_common_rust": {
+    "crop": "Corn",
+    "disease": "Common Rust",
+    "symptoms": [
+      "Reddish-brown pustules on leaves",
+      "Yellowing around lesions",
+      "Reduced photosynthesis"
+    ],
+    "prevention": [
+      "Use resistant varieties",
+      "Field monitoring",
+      "Crop rotation",
+      "Balanced fertilization"
+    ],
+    "organic_treatment": [
+      "Neem extract spray",
+      "Bio-fungicides",
+      "Remove infected leaves"
+    ],
+    "chemical_treatment": [
+      "Propiconazole",
+      "Azoxystrobin",
+      "Tebuconazole"
+    ]
+  },
+
+  "corn_gray_leaf_spot": {
+    "crop": "Corn",
+    "disease": "Gray Leaf Spot",
+    "symptoms": [
+      "Long gray lesions on leaves",
+      "Leaf drying",
+      "Reduced crop vigor"
+    ],
+    "prevention": [
+      "Use resistant hybrids",
+      "Crop rotation",
+      "Field sanitation",
+      "Monitor disease development"
+    ],
+    "organic_treatment": [
+      "Bio-fungicides",
+      "Compost-based sprays",
+      "Remove infected foliage"
+    ],
+    "chemical_treatment": [
+      "Azoxystrobin",
+      "Pyraclostrobin",
+      "Propiconazole"
+    ]
+  },
+
+  "corn_northern_leaf_blight": {
+    "crop": "Corn",
+    "disease": "Northern Leaf Blight",
+    "symptoms": [
+      "Long cigar-shaped lesions",
+      "Leaf blighting",
+      "Reduced grain yield"
+    ],
+    "prevention": [
+      "Use resistant varieties",
+      "Crop rotation",
+      "Destroy infected residues",
+      "Maintain field hygiene"
+    ],
+    "organic_treatment": [
+      "Neem extract",
+      "Bio-fungicides",
+      "Compost tea"
+    ],
+    "chemical_treatment": [
+      "Mancozeb",
+      "Azoxystrobin",
+      "Propiconazole"
+    ]
+  },
+
+  "cotton mealy bug": {
+    "crop": "Cotton",
+    "disease": "Mealy Bug Infestation",
+    "symptoms": [
+      "White cotton-like insects on plants",
+      "Leaf curling",
+      "Stunted growth",
+      "Honeydew secretion"
+    ],
+    "prevention": [
+      "Monitor fields regularly",
+      "Remove alternate host weeds",
+      "Avoid excessive nitrogen",
+      "Encourage beneficial insects"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Release ladybird beetles",
+      "Soap solution spray"
+    ],
+    "chemical_treatment": [
+      "Imidacloprid",
+      "Thiamethoxam",
+      "Buprofezin"
+    ]
+  },
+
+  "cotton whitefly": {
+    "crop": "Cotton",
+    "disease": "Whitefly Infestation",
+    "symptoms": [
+      "Yellowing leaves",
+      "Honeydew deposits",
+      "Leaf curling",
+      "Reduced plant growth"
+    ],
+    "prevention": [
+      "Use yellow sticky traps",
+      "Control weeds",
+      "Monitor pest population",
+      "Avoid excessive nitrogen"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Yellow sticky traps",
+      "Release natural predators"
+    ],
+    "chemical_treatment": [
+      "Imidacloprid",
+      "Acetamiprid",
+      "Thiamethoxam"
+    ]
+  },
+
+  "cotton_aphids": {
+    "crop": "Cotton",
+    "disease": "Aphid Infestation",
+    "symptoms": [
+      "Leaf curling",
+      "Sticky honeydew",
+      "Yellowing leaves",
+      "Poor plant growth"
+    ],
+    "prevention": [
+      "Regular field inspection",
+      "Control weeds",
+      "Avoid over-fertilization",
+      "Encourage beneficial insects"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Insecticidal soap",
+      "Ladybird beetle release"
+    ],
+    "chemical_treatment": [
+      "Imidacloprid",
+      "Acetamiprid",
+      "Thiamethoxam"
+    ]
+  },
+
+  "cotton_army_worm": {
+    "crop": "Cotton",
+    "disease": "Army Worm Infestation",
+    "symptoms": [
+      "Chewed leaves",
+      "Defoliation",
+      "Presence of caterpillars",
+      "Reduced crop growth"
+    ],
+    "prevention": [
+      "Field scouting",
+      "Use pheromone traps",
+      "Destroy egg masses",
+      "Maintain field sanitation"
+    ],
+    "organic_treatment": [
+      "Bt spray",
+      "Neem oil spray",
+      "Release natural enemies"
+    ],
+    "chemical_treatment": [
+      "Spinosad",
+      "Emamectin benzoate",
+      "Chlorantraniliprole"
+    ]
+  },
+
+  "cotton_bacterial_blight": {
+    "crop": "Cotton",
+    "disease": "Bacterial Blight",
+    "symptoms": [
+      "Angular leaf spots",
+      "Black lesions on stems",
+      "Leaf drop",
+      "Reduced boll formation"
+    ],
+    "prevention": [
+      "Use disease-free seeds",
+      "Crop rotation",
+      "Avoid overhead irrigation",
+      "Remove infected debris"
+    ],
+    "organic_treatment": [
+      "Copper-based sprays",
+      "Neem extract",
+      "Field sanitation"
+    ],
+    "chemical_treatment": [
+      "Copper oxychloride",
+      "Approved bactericides",
+      "Streptocycline where permitted"
+    ]
+  },
+    "cotton_powdery_mildew": {
+    "crop": "Cotton",
+    "disease": "Powdery Mildew",
+    "symptoms": [
+      "White powdery growth on leaves",
+      "Leaf yellowing",
+      "Premature leaf drop",
+      "Reduced plant vigor"
+    ],
+    "prevention": [
+      "Maintain proper spacing",
+      "Improve air circulation",
+      "Avoid excessive nitrogen",
+      "Monitor fields regularly"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Sulfur-based fungicide",
+      "Potassium bicarbonate spray"
+    ],
+    "chemical_treatment": [
+      "Hexaconazole",
+      "Propiconazole",
+      "Myclobutanil"
+    ]
+  },
+
+  "cotton_target_spot": {
+    "crop": "Cotton",
+    "disease": "Target Spot",
+    "symptoms": [
+      "Circular brown lesions on leaves",
+      "Concentric ring patterns",
+      "Premature defoliation"
+    ],
+    "prevention": [
+      "Avoid overcrowding",
+      "Improve field drainage",
+      "Remove infected residues",
+      "Practice crop rotation"
+    ],
+    "organic_treatment": [
+      "Neem-based fungicide",
+      "Bio-fungicides",
+      "Field sanitation"
+    ],
+    "chemical_treatment": [
+      "Azoxystrobin",
+      "Mancozeb",
+      "Propiconazole"
+    ]
+  },
+
+  "diseased_cucumber": {
+    "crop": "Cucumber",
+    "disease": "General Disease Detected",
+    "symptoms": [
+      "Leaf discoloration",
+      "Spots on leaves",
+      "Reduced plant vigor",
+      "Abnormal growth"
+    ],
+    "prevention": [
+      "Use disease-free seeds",
+      "Avoid waterlogging",
+      "Maintain proper spacing",
+      "Monitor plants regularly"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Compost tea",
+      "Bio-fungicides"
+    ],
+    "chemical_treatment": [
+      "Apply suitable fungicide based on diagnosis",
+      "Copper fungicide",
+      "Mancozeb fungicide"
+    ]
+  },
+
+  "diseased_rice": {
+    "crop": "Rice",
+    "disease": "General Disease Detected",
+    "symptoms": [
+      "Yellowing leaves",
+      "Leaf spots",
+      "Poor plant growth",
+      "Reduced yield"
+    ],
+    "prevention": [
+      "Use healthy seeds",
+      "Maintain field hygiene",
+      "Balanced fertilizer application",
+      "Regular monitoring"
+    ],
+    "organic_treatment": [
+      "Neem extract spray",
+      "Bio-fungicides",
+      "Improve soil health"
+    ],
+    "chemical_treatment": [
+      "Use suitable fungicide according to disease",
+      "Copper-based products",
+      "Recommended crop protection products"
+    ]
+  },
+
+  "grape_black_rot": {
+    "crop": "Grape",
+    "disease": "Black Rot",
+    "symptoms": [
+      "Brown leaf spots",
+      "Black shriveled fruits",
+      "Dark lesions on stems"
+    ],
+    "prevention": [
+      "Prune vines regularly",
+      "Remove infected fruits",
+      "Improve air circulation",
+      "Maintain vineyard sanitation"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Copper fungicide",
+      "Remove infected plant parts"
+    ],
+    "chemical_treatment": [
+      "Mancozeb",
+      "Myclobutanil",
+      "Captan"
+    ]
+  },
+
+  "grape_esca_black_measles": {
+    "crop": "Grape",
+    "disease": "Esca (Black Measles)",
+    "symptoms": [
+      "Tiger-stripe leaf pattern",
+      "Dark spots on berries",
+      "Decline in vine health"
+    ],
+    "prevention": [
+      "Prune properly",
+      "Disinfect pruning tools",
+      "Remove infected wood",
+      "Maintain vine health"
+    ],
+    "organic_treatment": [
+      "Bio-fungicides",
+      "Remove infected branches",
+      "Improve soil health"
+    ],
+    "chemical_treatment": [
+      "No fully effective cure available",
+      "Protect pruning wounds",
+      "Use registered vineyard fungicides"
+    ]
+  },
+
+  "grape_leaf_blight": {
+    "crop": "Grape",
+    "disease": "Leaf Blight",
+    "symptoms": [
+      "Brown necrotic leaf spots",
+      "Leaf drying",
+      "Premature defoliation"
+    ],
+    "prevention": [
+      "Improve air circulation",
+      "Avoid overhead irrigation",
+      "Remove infected leaves",
+      "Monitor vineyard regularly"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Copper fungicide",
+      "Bio-fungicides"
+    ],
+    "chemical_treatment": [
+      "Mancozeb",
+      "Propiconazole",
+      "Azoxystrobin"
+    ]
+  },
+
+  "groundnut_early_leaf_spot": {
+    "crop": "Groundnut",
+    "disease": "Early Leaf Spot",
+    "symptoms": [
+      "Brown circular leaf spots",
+      "Yellow halo around lesions",
+      "Premature leaf drop"
+    ],
+    "prevention": [
+      "Use resistant varieties",
+      "Crop rotation",
+      "Field sanitation",
+      "Avoid dense planting"
+    ],
+    "organic_treatment": [
+      "Neem extract spray",
+      "Bio-fungicides",
+      "Compost tea"
+    ],
+    "chemical_treatment": [
+      "Mancozeb",
+      "Chlorothalonil",
+      "Tebuconazole"
+    ]
+  },
+
+  "groundnut_late_leaf_spot": {
+    "crop": "Groundnut",
+    "disease": "Late Leaf Spot",
+    "symptoms": [
+      "Dark brown to black leaf spots",
+      "Leaf yellowing",
+      "Severe defoliation"
+    ],
+    "prevention": [
+      "Use resistant cultivars",
+      "Crop rotation",
+      "Remove crop residues",
+      "Monitor fields regularly"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Bio-fungicides",
+      "Field sanitation"
+    ],
+    "chemical_treatment": [
+      "Mancozeb",
+      "Tebuconazole",
+      "Chlorothalonil"
+    ]
+  },
+
+  "groundnut_nutrition_deficiency": {
+    "crop": "Groundnut",
+    "disease": "Nutritional Deficiency",
+    "symptoms": [
+      "Leaf yellowing",
+      "Poor plant growth",
+      "Small leaves",
+      "Low pod production"
+    ],
+    "prevention": [
+      "Conduct soil testing",
+      "Apply balanced fertilizers",
+      "Maintain proper soil pH",
+      "Use organic manure"
+    ],
+    "organic_treatment": [
+      "Compost application",
+      "Vermicompost",
+      "Organic nutrient supplements"
+    ],
+    "chemical_treatment": [
+      "Micronutrient sprays",
+      "NPK fertilizers",
+      "Recommended nutrient formulations"
+    ]
+  },
+    "groundnut_rust": {
+    "crop": "Groundnut",
+    "disease": "Rust",
+    "symptoms": [
+      "Orange-brown pustules on leaves",
+      "Leaf yellowing",
+      "Premature defoliation"
+    ],
+    "prevention": [
+      "Use resistant varieties",
+      "Crop rotation",
+      "Field sanitation",
+      "Monitor crops regularly"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Bio-fungicides",
+      "Remove infected leaves"
+    ],
+    "chemical_treatment": [
+      "Mancozeb",
+      "Tebuconazole",
+      "Propiconazole"
+    ]
+  },
+
+  "guava_anthracnose": {
+    "crop": "Guava",
+    "disease": "Anthracnose",
+    "symptoms": [
+      "Dark sunken lesions on fruits",
+      "Leaf spots",
+      "Fruit rot"
+    ],
+    "prevention": [
+      "Prune trees regularly",
+      "Remove infected fruits",
+      "Improve air circulation",
+      "Maintain orchard sanitation"
+    ],
+    "organic_treatment": [
+      "Copper fungicide",
+      "Neem oil spray",
+      "Remove infected parts"
+    ],
+    "chemical_treatment": [
+      "Carbendazim",
+      "Mancozeb",
+      "Copper oxychloride"
+    ]
+  },
+
+  "guava_fruit_fly": {
+    "crop": "Guava",
+    "disease": "Fruit Fly Infestation",
+    "symptoms": [
+      "Small punctures on fruits",
+      "Fruit rotting",
+      "Larvae inside fruits"
+    ],
+    "prevention": [
+      "Use fruit fly traps",
+      "Collect and destroy infested fruits",
+      "Maintain orchard hygiene",
+      "Monitor pest activity"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Protein bait traps",
+      "Pheromone traps"
+    ],
+    "chemical_treatment": [
+      "Spinosad bait",
+      "Malathion bait spray",
+      "Approved fruit fly insecticides"
+    ]
+  },
+
+  "healthy_apple": {
+    "crop": "Apple",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your apple crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy leaves",
+      "Normal fruit development"
+    ],
+    "prevention": [
+      "Maintain proper irrigation",
+      "Continue orchard monitoring",
+      "Apply balanced nutrients",
+      "Keep orchard clean"
+    ],
+    "organic_treatment": [
+      "No treatment required"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+
+  "healthy_bean": {
+    "crop": "Bean",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your bean crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy green leaves",
+      "Normal pod development"
+    ],
+    "prevention": [
+      "Maintain proper watering",
+      "Monitor pests regularly",
+      "Apply balanced fertilizers",
+      "Keep field weed-free"
+    ],
+    "organic_treatment": [
+      "No treatment required"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+
+  "healthy_bell_pepper": {
+    "crop": "Bell Pepper",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your bell pepper crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy leaves and fruits",
+      "Normal plant growth"
+    ],
+    "prevention": [
+      "Maintain proper irrigation",
+      "Monitor field regularly",
+      "Use balanced fertilization",
+      "Control weeds"
+    ],
+    "organic_treatment": [
+      "No treatment required"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+
+  "healthy_cherry": {
+    "crop": "Cherry",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your cherry crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy foliage",
+      "Normal fruit development"
+    ],
+    "prevention": [
+      "Regular pruning",
+      "Monitor orchard health",
+      "Balanced nutrition",
+      "Proper irrigation"
+    ],
+    "organic_treatment": [
+      "No treatment required"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+
+  "healthy_corn": {
+    "crop": "Corn",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your corn crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy green leaves",
+      "Normal ear development"
+    ],
+    "prevention": [
+      "Maintain soil fertility",
+      "Monitor pests regularly",
+      "Ensure proper irrigation",
+      "Practice crop rotation"
+    ],
+    "organic_treatment": [
+      "No treatment required"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+
+  "healthy_cotton": {
+    "crop": "Cotton",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your cotton crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy leaves and bolls",
+      "Normal plant growth"
+    ],
+    "prevention": [
+      "Monitor crop regularly",
+      "Maintain balanced nutrition",
+      "Control weeds",
+      "Use proper irrigation"
+    ],
+    "organic_treatment": [
+      "No treatment required"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+
+  "healthy_cucumber": {
+    "crop": "Cucumber",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your cucumber crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy green leaves",
+      "Normal fruit development"
+    ],
+    "prevention": [
+      "Maintain proper watering",
+      "Monitor plants regularly",
+      "Provide balanced nutrients",
+      "Keep field clean"
+    ],
+    "organic_treatment": [
+      "No treatment required"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+    "healthy_grape": {
+    "crop": "Grape",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your grape crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy leaves and vines",
+      "Normal fruit development"
+    ],
+    "prevention": [
+      "Regular vineyard monitoring",
+      "Proper pruning",
+      "Balanced nutrition",
+      "Maintain field sanitation"
+    ],
+    "organic_treatment": [
+      "No treatment required"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+
+  "healthy_groundnut": {
+    "crop": "Groundnut",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your groundnut crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy foliage",
+      "Normal pod development"
+    ],
+    "prevention": [
+      "Monitor crops regularly",
+      "Balanced fertilizer use",
+      "Proper irrigation",
+      "Weed management"
+    ],
+    "organic_treatment": [
+      "No treatment required"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+
+  "healthy_guava": {
+    "crop": "Guava",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your guava crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy leaves",
+      "Healthy fruit development"
+    ],
+    "prevention": [
+      "Maintain orchard hygiene",
+      "Regular pruning",
+      "Balanced nutrition",
+      "Monitor pest activity"
+    ],
+    "organic_treatment": [
+      "No treatment required"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+
+  "healthy_lemon": {
+    "crop": "Lemon",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your lemon crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy green leaves",
+      "Normal fruit production"
+    ],
+    "prevention": [
+      "Regular orchard inspection",
+      "Balanced fertilization",
+      "Proper irrigation",
+      "Control weeds"
+    ],
+    "organic_treatment": [
+      "No treatment required"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+
+  "healthy_peach": {
+    "crop": "Peach",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your peach crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy leaves",
+      "Normal fruit development"
+    ],
+    "prevention": [
+      "Maintain orchard sanitation",
+      "Regular pruning",
+      "Proper irrigation",
+      "Monitor for pests"
+    ],
+    "organic_treatment": [
+      "No treatment required"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+
+  "healthy_potato": {
+    "crop": "Potato",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your potato crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy green foliage",
+      "Normal tuber development"
+    ],
+    "prevention": [
+      "Use quality seed potatoes",
+      "Maintain proper irrigation",
+      "Practice crop rotation",
+      "Monitor fields regularly"
+    ],
+    "organic_treatment": [
+      "No treatment required"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+
+  "healthy_pumpkin": {
+    "crop": "Pumpkin",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your pumpkin crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy vines and leaves",
+      "Normal fruit development"
+    ],
+    "prevention": [
+      "Maintain proper spacing",
+      "Monitor crops regularly",
+      "Provide balanced nutrition",
+      "Control weeds"
+    ],
+    "organic_treatment": [
+      "No treatment required"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+
+  "healthy_rice": {
+    "crop": "Rice",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your rice crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy green leaves",
+      "Normal tillering and growth"
+    ],
+    "prevention": [
+      "Use quality seeds",
+      "Maintain water management",
+      "Balanced fertilization",
+      "Regular crop monitoring"
+    ],
+    "organic_treatment": [
+      "No treatment required"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+
+  "healthy_strawberry": {
+    "crop": "Strawberry",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your strawberry crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy leaves",
+      "Normal fruit production"
+    ],
+    "prevention": [
+      "Maintain proper irrigation",
+      "Remove weeds regularly",
+      "Monitor plants frequently",
+      "Apply balanced nutrients"
+    ],
+    "organic_treatment": [
+      "No treatment required"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+
+  "healthy_sugarcane": {
+    "crop": "Sugarcane",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your sugarcane crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy green leaves",
+      "Strong cane growth"
+    ],
+    "prevention": [
+      "Maintain proper irrigation",
+      "Apply balanced fertilizers",
+      "Monitor pests and diseases",
+      "Keep fields clean"
+    ],
+    "organic_treatment": [
+      "No treatment required"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+    "healthy_tomato": {
+    "crop": "Tomato",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your tomato crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy green leaves",
+      "Normal fruit development"
+    ],
+    "prevention": [
+      "Maintain proper watering",
+      "Apply balanced fertilizers",
+      "Monitor crops regularly",
+      "Keep field weed-free"
+    ],
+    "organic_treatment": [
+      "No treatment required"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+
+  "healthy_wheat": {
+    "crop": "Wheat",
+    "disease": "Healthy",
+    "status": "healthy",
+    "message": "Great! Your wheat crop appears healthy. No disease was detected.",
+    "symptoms": [
+      "Healthy leaves",
+      "Normal grain formation"
+    ],
+    "prevention": [
+      "Monitor crop health",
+      "Balanced nutrient management",
+      "Proper irrigation",
+      "Control weeds regularly"
+    ],
+    "organic_treatment": [
+      "No treatment required"
+    ],
+    "chemical_treatment": [
+      "No treatment required"
+    ]
+  },
+
+  "lemon_anthracnose": {
+    "crop": "Lemon",
+    "disease": "Anthracnose",
+    "symptoms": [
+      "Dark sunken lesions on fruits",
+      "Leaf spots",
+      "Fruit rot",
+      "Twig dieback"
+    ],
+    "prevention": [
+      "Prune infected branches",
+      "Improve air circulation",
+      "Remove infected fruits",
+      "Maintain orchard sanitation"
+    ],
+    "organic_treatment": [
+      "Copper fungicide",
+      "Neem oil spray",
+      "Remove infected parts"
+    ],
+    "chemical_treatment": [
+      "Mancozeb",
+      "Carbendazim",
+      "Copper oxychloride"
+    ]
+  },
+
+  "lemon_bacterial_blight": {
+    "crop": "Lemon",
+    "disease": "Bacterial Blight",
+    "symptoms": [
+      "Water-soaked leaf lesions",
+      "Leaf yellowing",
+      "Twig dieback",
+      "Fruit spotting"
+    ],
+    "prevention": [
+      "Use healthy planting material",
+      "Avoid overhead irrigation",
+      "Prune infected branches",
+      "Disinfect tools"
+    ],
+    "organic_treatment": [
+      "Copper-based sprays",
+      "Neem extract",
+      "Field sanitation"
+    ],
+    "chemical_treatment": [
+      "Copper oxychloride",
+      "Approved bactericides",
+      "Streptocycline where permitted"
+    ]
+  },
+
+  "lemon_citrus_canker": {
+    "crop": "Lemon",
+    "disease": "Citrus Canker",
+    "symptoms": [
+      "Raised corky lesions on leaves",
+      "Fruit spots",
+      "Leaf drop",
+      "Twig dieback"
+    ],
+    "prevention": [
+      "Use disease-free nursery plants",
+      "Remove infected material",
+      "Maintain orchard hygiene",
+      "Avoid injury to plants"
+    ],
+    "organic_treatment": [
+      "Copper fungicide",
+      "Neem oil spray",
+      "Remove infected branches"
+    ],
+    "chemical_treatment": [
+      "Copper oxychloride",
+      "Copper hydroxide",
+      "Approved citrus bactericides"
+    ]
+  },
+
+  "lemon_curl_virus": {
+    "crop": "Lemon",
+    "disease": "Leaf Curl Virus",
+    "symptoms": [
+      "Leaf curling",
+      "Yellowing leaves",
+      "Stunted growth",
+      "Reduced fruit production"
+    ],
+    "prevention": [
+      "Control insect vectors",
+      "Use healthy planting material",
+      "Remove infected plants",
+      "Monitor orchard regularly"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Yellow sticky traps",
+      "Field sanitation"
+    ],
+    "chemical_treatment": [
+      "Imidacloprid",
+      "Thiamethoxam",
+      "Acetamiprid"
+    ]
+  },
+
+  "lemon_deficiency": {
+    "crop": "Lemon",
+    "disease": "Nutrient Deficiency",
+    "symptoms": [
+      "Leaf yellowing",
+      "Poor growth",
+      "Small fruits",
+      "Weak branches"
+    ],
+    "prevention": [
+      "Conduct soil testing",
+      "Apply balanced fertilizers",
+      "Maintain proper soil pH",
+      "Use organic manure"
+    ],
+    "organic_treatment": [
+      "Compost application",
+      "Vermicompost",
+      "Organic nutrient supplements"
+    ],
+    "chemical_treatment": [
+      "Micronutrient sprays",
+      "NPK fertilizers",
+      "Recommended nutrient formulations"
+    ]
+  },
+
+  "lemon_dry_leaf": {
+    "crop": "Lemon",
+    "disease": "Leaf Drying Disorder",
+    "symptoms": [
+      "Dry leaf edges",
+      "Leaf curling",
+      "Premature leaf fall",
+      "Reduced vigor"
+    ],
+    "prevention": [
+      "Maintain regular irrigation",
+      "Avoid drought stress",
+      "Apply balanced nutrients",
+      "Monitor orchard health"
+    ],
+    "organic_treatment": [
+      "Organic compost",
+      "Mulching",
+      "Seaweed extract spray"
+    ],
+    "chemical_treatment": [
+      "Micronutrient sprays",
+      "Calcium supplements",
+      "Recommended nutrient products"
+    ]
+  },
+
+  "lemon_sooty_mould": {
+    "crop": "Lemon",
+    "disease": "Sooty Mould",
+    "symptoms": [
+      "Black fungal coating on leaves",
+      "Reduced photosynthesis",
+      "Sticky honeydew deposits",
+      "Poor plant growth"
+    ],
+    "prevention": [
+      "Control aphids and whiteflies",
+      "Maintain orchard hygiene",
+      "Monitor pest populations",
+      "Prune overcrowded branches"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Soap solution wash",
+      "Remove heavily infected leaves"
+    ],
+    "chemical_treatment": [
+      "Control sucking pests",
+      "Imidacloprid",
+      "Acetamiprid"
+    ]
+  },
+
+  "lemon_spider_mites": {
+    "crop": "Lemon",
+    "disease": "Spider Mite Infestation",
+    "symptoms": [
+      "Tiny yellow spots on leaves",
+      "Leaf bronzing",
+      "Fine webbing",
+      "Leaf drop"
+    ],
+    "prevention": [
+      "Maintain proper humidity",
+      "Monitor orchard regularly",
+      "Avoid plant stress",
+      "Control dust accumulation"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Insecticidal soap",
+      "Release predatory mites"
+    ],
+    "chemical_treatment": [
+      "Abamectin",
+      "Spiromesifen",
+      "Approved miticides"
+    ]
+  },
+    "maize ear rot": {
+    "crop": "Maize",
+    "disease": "Ear Rot",
+    "symptoms": [
+      "Mold growth on ears",
+      "Discolored kernels",
+      "Poor grain quality",
+      "Kernel decay"
+    ],
+    "prevention": [
+      "Use resistant hybrids",
+      "Control insect damage",
+      "Harvest on time",
+      "Store grains properly"
+    ],
+    "organic_treatment": [
+      "Remove infected ears",
+      "Field sanitation",
+      "Bio-fungicides"
+    ],
+    "chemical_treatment": [
+      "Seed treatment fungicides",
+      "Mancozeb",
+      "Approved fungicides"
+    ]
+  },
+
+  "maize fall armyworm": {
+    "crop": "Maize",
+    "disease": "Fall Armyworm Infestation",
+    "symptoms": [
+      "Holes in leaves",
+      "Windowpane feeding damage",
+      "Frass inside whorls",
+      "Reduced plant growth"
+    ],
+    "prevention": [
+      "Monitor fields regularly",
+      "Use pheromone traps",
+      "Destroy egg masses",
+      "Maintain field sanitation"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Bt spray",
+      "Release natural predators"
+    ],
+    "chemical_treatment": [
+      "Spinosad",
+      "Emamectin benzoate",
+      "Chlorantraniliprole"
+    ]
+  },
+
+  "maize stem borer": {
+    "crop": "Maize",
+    "disease": "Stem Borer Infestation",
+    "symptoms": [
+      "Dead heart symptom",
+      "Stem tunneling",
+      "Weak plants",
+      "Reduced yield"
+    ],
+    "prevention": [
+      "Timely sowing",
+      "Destroy crop residues",
+      "Field monitoring",
+      "Use resistant hybrids"
+    ],
+    "organic_treatment": [
+      "Neem extract spray",
+      "Trichogramma release",
+      "Field sanitation"
+    ],
+    "chemical_treatment": [
+      "Chlorantraniliprole",
+      "Cartap hydrochloride",
+      "Fipronil"
+    ]
+  },
+
+  "peach_bacterial_spot": {
+    "crop": "Peach",
+    "disease": "Bacterial Spot",
+    "symptoms": [
+      "Dark spots on leaves",
+      "Fruit lesions",
+      "Leaf drop",
+      "Twig damage"
+    ],
+    "prevention": [
+      "Use resistant varieties",
+      "Avoid overhead irrigation",
+      "Prune infected branches",
+      "Maintain orchard hygiene"
+    ],
+    "organic_treatment": [
+      "Copper spray",
+      "Neem oil",
+      "Remove infected material"
+    ],
+    "chemical_treatment": [
+      "Copper oxychloride",
+      "Copper hydroxide",
+      "Approved bactericides"
+    ]
+  },
+
+  "pink bollworm in cotton": {
+    "crop": "Cotton",
+    "disease": "Pink Bollworm Infestation",
+    "symptoms": [
+      "Damaged cotton bolls",
+      "Rosette flowers",
+      "Poor lint quality",
+      "Larvae inside bolls"
+    ],
+    "prevention": [
+      "Use pheromone traps",
+      "Timely sowing",
+      "Destroy crop residues",
+      "Monitor fields regularly"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Bt formulations",
+      "Release parasitoids"
+    ],
+    "chemical_treatment": [
+      "Emamectin benzoate",
+      "Spinosad",
+      "Indoxacarb"
+    ]
+  },
+
+  "potato_early_blight": {
+    "crop": "Potato",
+    "disease": "Early Blight",
+    "symptoms": [
+      "Brown concentric leaf spots",
+      "Yellowing leaves",
+      "Premature defoliation",
+      "Reduced tuber yield"
+    ],
+    "prevention": [
+      "Crop rotation",
+      "Use healthy seed potatoes",
+      "Avoid overhead irrigation",
+      "Remove infected debris"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Compost tea",
+      "Bio-fungicides"
+    ],
+    "chemical_treatment": [
+      "Mancozeb",
+      "Chlorothalonil",
+      "Azoxystrobin"
+    ]
+  },
+
+  "potato_late_blight": {
+    "crop": "Potato",
+    "disease": "Late Blight",
+    "symptoms": [
+      "Water-soaked leaf lesions",
+      "Brown-black spots",
+      "White fungal growth",
+      "Tuber rot"
+    ],
+    "prevention": [
+      "Use certified seed potatoes",
+      "Improve air circulation",
+      "Avoid excess moisture",
+      "Monitor fields frequently"
+    ],
+    "organic_treatment": [
+      "Copper fungicide",
+      "Neem oil spray",
+      "Remove infected plants"
+    ],
+    "chemical_treatment": [
+      "Metalaxyl",
+      "Mancozeb",
+      "Cymoxanil"
+    ]
+  },
+
+  "pumpkin_bacterial_leaf_spot": {
+    "crop": "Pumpkin",
+    "disease": "Bacterial Leaf Spot",
+    "symptoms": [
+      "Small water-soaked spots",
+      "Leaf yellowing",
+      "Necrotic lesions",
+      "Reduced plant vigor"
+    ],
+    "prevention": [
+      "Use disease-free seeds",
+      "Avoid overhead watering",
+      "Crop rotation",
+      "Field sanitation"
+    ],
+    "organic_treatment": [
+      "Copper spray",
+      "Neem extract",
+      "Remove infected leaves"
+    ],
+    "chemical_treatment": [
+      "Copper oxychloride",
+      "Copper hydroxide",
+      "Approved bactericides"
+    ]
+  },
+
+  "pumpkin_downy_mildew": {
+    "crop": "Pumpkin",
+    "disease": "Downy Mildew",
+    "symptoms": [
+      "Yellow angular leaf spots",
+      "Gray fungal growth under leaves",
+      "Leaf collapse",
+      "Reduced yield"
+    ],
+    "prevention": [
+      "Improve air circulation",
+      "Avoid overhead irrigation",
+      "Use resistant varieties",
+      "Monitor crops regularly"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Copper fungicide",
+      "Bio-fungicides"
+    ],
+    "chemical_treatment": [
+      "Metalaxyl",
+      "Mancozeb",
+      "Propamocarb"
+    ]
+  },
+
+  "pumpkin_mosaic_disease": {
+    "crop": "Pumpkin",
+    "disease": "Mosaic Disease",
+    "symptoms": [
+      "Mottled green-yellow leaves",
+      "Leaf distortion",
+      "Stunted growth",
+      "Poor fruit development"
+    ],
+    "prevention": [
+      "Use virus-free seeds",
+      "Control aphids",
+      "Remove infected plants",
+      "Field sanitation"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Yellow sticky traps",
+      "Remove infected plants"
+    ],
+    "chemical_treatment": [
+      "No direct cure available",
+      "Control insect vectors",
+      "Use approved aphid insecticides"
+    ]
+  },
+    "pumpkin_powdery_mildew": {
+    "crop": "Pumpkin",
+    "disease": "Powdery Mildew",
+    "symptoms": [
+      "White powdery patches on leaves",
+      "Leaf yellowing",
+      "Leaf curling",
+      "Reduced fruit production"
+    ],
+    "prevention": [
+      "Ensure proper plant spacing",
+      "Improve air circulation",
+      "Avoid excessive nitrogen",
+      "Remove infected leaves"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Sulfur fungicide",
+      "Baking soda solution"
+    ],
+    "chemical_treatment": [
+      "Myclobutanil",
+      "Propiconazole",
+      "Sulfur fungicide"
+    ]
+  },
+
+  "red cotton bug": {
+    "crop": "Cotton",
+    "disease": "Red Cotton Bug Infestation",
+    "symptoms": [
+      "Stained cotton lint",
+      "Damaged seeds",
+      "Reduced cotton quality",
+      "Visible red insects on bolls"
+    ],
+    "prevention": [
+      "Field sanitation",
+      "Remove alternate host weeds",
+      "Monitor pest population",
+      "Destroy crop residues"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Light traps",
+      "Manual removal in small fields"
+    ],
+    "chemical_treatment": [
+      "Malathion",
+      "Lambda-cyhalothrin",
+      "Cypermethrin"
+    ]
+  },
+
+  "strawberry_leaf_scorch": {
+    "crop": "Strawberry",
+    "disease": "Leaf Scorch",
+    "symptoms": [
+      "Purple spots on leaves",
+      "Brown leaf margins",
+      "Scorched leaf appearance",
+      "Reduced plant vigor"
+    ],
+    "prevention": [
+      "Maintain field sanitation",
+      "Avoid overhead irrigation",
+      "Provide adequate spacing",
+      "Remove infected leaves"
+    ],
+    "organic_treatment": [
+      "Copper fungicide",
+      "Neem oil spray",
+      "Remove infected foliage"
+    ],
+    "chemical_treatment": [
+      "Captan",
+      "Mancozeb",
+      "Chlorothalonil"
+    ]
+  },
+
+  "sugarcane_bacterial_blight": {
+    "crop": "Sugarcane",
+    "disease": "Bacterial Blight",
+    "symptoms": [
+      "Water-soaked streaks on leaves",
+      "Leaf drying",
+      "Reduced cane growth",
+      "Yellowing foliage"
+    ],
+    "prevention": [
+      "Use healthy planting material",
+      "Field sanitation",
+      "Avoid waterlogging",
+      "Remove infected plants"
+    ],
+    "organic_treatment": [
+      "Neem extract spray",
+      "Copper-based bactericides",
+      "Improve soil health"
+    ],
+    "chemical_treatment": [
+      "Copper oxychloride",
+      "Streptocycline where permitted",
+      "Approved bactericides"
+    ]
+  },
+
+  "sugarcane_mosaic": {
+    "crop": "Sugarcane",
+    "disease": "Mosaic Disease",
+    "symptoms": [
+      "Mosaic pattern on leaves",
+      "Yellow-green streaks",
+      "Stunted growth",
+      "Reduced sugar content"
+    ],
+    "prevention": [
+      "Use virus-free seed cane",
+      "Remove infected plants",
+      "Control insect vectors",
+      "Use resistant varieties"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Field sanitation",
+      "Improve plant vigor with compost"
+    ],
+    "chemical_treatment": [
+      "No direct chemical cure available",
+      "Control insect vectors",
+      "Use approved insecticides"
+    ]
+  },
+
+  "sugarcane_red_rot": {
+    "crop": "Sugarcane",
+    "disease": "Red Rot",
+    "symptoms": [
+      "Red discoloration inside stalks",
+      "Drying leaves",
+      "Foul smell from infected canes",
+      "Wilting"
+    ],
+    "prevention": [
+      "Use disease-free setts",
+      "Crop rotation",
+      "Remove infected plants",
+      "Improve drainage"
+    ],
+    "organic_treatment": [
+      "Trichoderma application",
+      "Organic compost",
+      "Bio-fungicides"
+    ],
+    "chemical_treatment": [
+      "Carbendazim",
+      "Propiconazole",
+      "Seed sett treatment fungicides"
+    ]
+  },
+
+  "sugarcane_rust": {
+    "crop": "Sugarcane",
+    "disease": "Rust",
+    "symptoms": [
+      "Rust-colored pustules on leaves",
+      "Leaf yellowing",
+      "Reduced photosynthesis",
+      "Poor cane development"
+    ],
+    "prevention": [
+      "Use resistant varieties",
+      "Monitor fields regularly",
+      "Maintain field sanitation",
+      "Balanced fertilization"
+    ],
+    "organic_treatment": [
+      "Neem-based fungicide",
+      "Bio-fungicides",
+      "Remove infected leaves"
+    ],
+    "chemical_treatment": [
+      "Propiconazole",
+      "Azoxystrobin",
+      "Mancozeb"
+    ]
+  },
+
+  "sugarcane_yellow_leaf_disease": {
+    "crop": "Sugarcane",
+    "disease": "Yellow Leaf Disease",
+    "symptoms": [
+      "Yellowing of midrib",
+      "Leaf discoloration",
+      "Reduced cane growth",
+      "Lower sugar recovery"
+    ],
+    "prevention": [
+      "Use disease-free planting material",
+      "Control aphids",
+      "Remove infected plants",
+      "Use resistant varieties"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Field sanitation",
+      "Organic compost application"
+    ],
+    "chemical_treatment": [
+      "No direct cure available",
+      "Control aphid vectors",
+      "Use approved insecticides"
+    ]
+  },
+
+  "thirps on  cotton": {
+    "crop": "Cotton",
+    "disease": "Thrips Infestation",
+    "symptoms": [
+      "Silvery streaks on leaves",
+      "Leaf curling",
+      "Stunted growth",
+      "Distorted young leaves"
+    ],
+    "prevention": [
+      "Monitor fields regularly",
+      "Control weeds",
+      "Avoid excessive nitrogen",
+      "Use yellow sticky traps"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Blue sticky traps",
+      "Release beneficial insects"
+    ],
+    "chemical_treatment": [
+      "Spinosad",
+      "Fipronil",
+      "Imidacloprid"
+    ]
+  },
+
+  "tomato_bacterial_spot": {
+    "crop": "Tomato",
+    "disease": "Bacterial Spot",
+    "symptoms": [
+      "Small dark leaf spots",
+      "Yellow halos around lesions",
+      "Fruit spotting",
+      "Premature leaf drop"
+    ],
+    "prevention": [
+      "Use disease-free seeds",
+      "Avoid working with wet plants",
+      "Crop rotation",
+      "Disinfect tools"
+    ],
+    "organic_treatment": [
+      "Copper-based sprays",
+      "Neem oil application",
+      "Remove infected plant parts"
+    ],
+    "chemical_treatment": [
+      "Copper bactericides",
+      "Copper hydroxide",
+      "Approved bacterial disease sprays"
+    ]
+  },
+    "tomato_early_blight": {
+    "crop": "Tomato",
+    "disease": "Early Blight",
+    "symptoms": [
+      "Brown circular spots on leaves",
+      "Yellowing of lower leaves",
+      "Target-like rings on lesions",
+      "Premature leaf drop"
+    ],
+    "prevention": [
+      "Use disease-free seeds",
+      "Follow crop rotation",
+      "Avoid overhead irrigation",
+      "Maintain proper plant spacing"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Remove infected leaves",
+      "Bio-fungicides"
+    ],
+    "chemical_treatment": [
+      "Mancozeb",
+      "Chlorothalonil",
+      "Azoxystrobin"
+    ]
+  },
+
+  "tomato_late_blight": {
+    "crop": "Tomato",
+    "disease": "Late Blight",
+    "symptoms": [
+      "Large dark lesions on leaves",
+      "White fungal growth under leaves",
+      "Rapid wilting",
+      "Fruit rot"
+    ],
+    "prevention": [
+      "Use certified seedlings",
+      "Avoid overhead irrigation",
+      "Ensure proper drainage",
+      "Monitor crops during humid weather"
+    ],
+    "organic_treatment": [
+      "Copper-based fungicides",
+      "Remove infected plants",
+      "Improve air circulation"
+    ],
+    "chemical_treatment": [
+      "Metalaxyl",
+      "Mancozeb",
+      "Cymoxanil"
+    ]
+  },
+
+  "tomato_septoria_leaf_spot": {
+    "crop": "Tomato",
+    "disease": "Septoria Leaf Spot",
+    "symptoms": [
+      "Small circular spots with dark borders",
+      "Yellowing lower leaves",
+      "Leaf drop",
+      "Reduced fruit production"
+    ],
+    "prevention": [
+      "Crop rotation",
+      "Avoid overhead watering",
+      "Remove infected debris",
+      "Maintain plant spacing"
+    ],
+    "organic_treatment": [
+      "Copper fungicide",
+      "Neem oil spray",
+      "Remove infected leaves"
+    ],
+    "chemical_treatment": [
+      "Chlorothalonil",
+      "Mancozeb",
+      "Copper fungicide"
+    ]
+  },
+
+  "tomato_yellow_leaf_curl_virus": {
+    "crop": "Tomato",
+    "disease": "Tomato Yellow Leaf Curl Virus",
+    "symptoms": [
+      "Yellowing and curling leaves",
+      "Stunted growth",
+      "Reduced fruit production",
+      "Upward leaf curling"
+    ],
+    "prevention": [
+      "Use virus-free seedlings",
+      "Control whiteflies",
+      "Remove infected plants",
+      "Use resistant varieties"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Yellow sticky traps",
+      "Remove infected plants"
+    ],
+    "chemical_treatment": [
+      "Imidacloprid",
+      "Thiamethoxam",
+      "Whitefly control products"
+    ]
+  },
+
+  "wheat_aphid": {
+    "crop": "Wheat",
+    "disease": "Aphid Infestation",
+    "symptoms": [
+      "Leaf curling",
+      "Yellowing foliage",
+      "Sticky honeydew",
+      "Poor grain filling"
+    ],
+    "prevention": [
+      "Monitor crops regularly",
+      "Control weeds",
+      "Avoid excessive nitrogen",
+      "Encourage beneficial insects"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Insecticidal soap",
+      "Ladybird beetle release"
+    ],
+    "chemical_treatment": [
+      "Imidacloprid",
+      "Acetamiprid",
+      "Thiamethoxam"
+    ]
+  },
+
+  "wheat_black_rust": {
+    "crop": "Wheat",
+    "disease": "Black Rust",
+    "symptoms": [
+      "Black pustules on stems",
+      "Weak stems",
+      "Reduced grain yield",
+      "Premature drying"
+    ],
+    "prevention": [
+      "Use resistant varieties",
+      "Crop rotation",
+      "Destroy volunteer wheat",
+      "Field monitoring"
+    ],
+    "organic_treatment": [
+      "Bio-fungicides",
+      "Compost-based treatments",
+      "Remove infected material"
+    ],
+    "chemical_treatment": [
+      "Tebuconazole",
+      "Propiconazole",
+      "Azoxystrobin"
+    ]
+  },
+
+  "wheat_blast": {
+    "crop": "Wheat",
+    "disease": "Wheat Blast",
+    "symptoms": [
+      "Bleached wheat heads",
+      "Shriveled grains",
+      "Dark lesions on spikes",
+      "Poor grain development"
+    ],
+    "prevention": [
+      "Use resistant varieties",
+      "Disease-free seeds",
+      "Crop rotation",
+      "Field sanitation"
+    ],
+    "organic_treatment": [
+      "Bio-fungicides",
+      "Compost enrichment",
+      "Remove infected plants"
+    ],
+    "chemical_treatment": [
+      "Tebuconazole",
+      "Trifloxystrobin",
+      "Azoxystrobin"
+    ]
+  },
+
+  "wheat_brown_rust": {
+    "crop": "Wheat",
+    "disease": "Brown Rust",
+    "symptoms": [
+      "Brown-orange pustules",
+      "Leaf yellowing",
+      "Reduced photosynthesis",
+      "Yield loss"
+    ],
+    "prevention": [
+      "Use resistant cultivars",
+      "Monitor disease regularly",
+      "Balanced fertilization",
+      "Crop rotation"
+    ],
+    "organic_treatment": [
+      "Neem extract spray",
+      "Bio-fungicides",
+      "Remove infected leaves"
+    ],
+    "chemical_treatment": [
+      "Propiconazole",
+      "Tebuconazole",
+      "Azoxystrobin"
+    ]
+  },
+
+  "wheat_common_root_rot": {
+    "crop": "Wheat",
+    "disease": "Common Root Rot",
+    "symptoms": [
+      "Dark root lesions",
+      "Poor plant vigor",
+      "Yellowing leaves",
+      "Reduced tillering"
+    ],
+    "prevention": [
+      "Use certified seed",
+      "Crop rotation",
+      "Improve soil drainage",
+      "Avoid waterlogging"
+    ],
+    "organic_treatment": [
+      "Trichoderma application",
+      "Organic compost",
+      "Bio-fungicides"
+    ],
+    "chemical_treatment": [
+      "Carbendazim",
+      "Thiram",
+      "Seed treatment fungicides"
+    ]
+  },
+
+  "wheat_fusarium_head_blight": {
+    "crop": "Wheat",
+    "disease": "Fusarium Head Blight",
+    "symptoms": [
+      "Bleached spikelets",
+      "Pink fungal growth",
+      "Shriveled grains",
+      "Reduced yield"
+    ],
+    "prevention": [
+      "Use resistant varieties",
+      "Avoid wheat after maize",
+      "Crop rotation",
+      "Use disease-free seed"
+    ],
+    "organic_treatment": [
+      "Bio-fungicides",
+      "Field sanitation",
+      "Compost application"
+    ],
+    "chemical_treatment": [
+      "Prothioconazole",
+      "Tebuconazole",
+      "Metconazole"
+    ]
+  },
+    "wheat_leaf_blight": {
+    "crop": "Wheat",
+    "disease": "Leaf Blight",
+    "symptoms": [
+      "Brown lesions on leaves",
+      "Leaf drying",
+      "Yellowing foliage",
+      "Reduced grain yield"
+    ],
+    "prevention": [
+      "Use certified seeds",
+      "Practice crop rotation",
+      "Balanced fertilization",
+      "Remove infected crop residues"
+    ],
+    "organic_treatment": [
+      "Neem extract spray",
+      "Bio-fungicides",
+      "Field sanitation"
+    ],
+    "chemical_treatment": [
+      "Mancozeb",
+      "Propiconazole",
+      "Carbendazim"
+    ]
+  },
+
+  "wheat_mildew": {
+    "crop": "Wheat",
+    "disease": "Powdery Mildew",
+    "symptoms": [
+      "White powdery growth on leaves",
+      "Leaf yellowing",
+      "Reduced photosynthesis",
+      "Poor grain filling"
+    ],
+    "prevention": [
+      "Use resistant varieties",
+      "Avoid excessive nitrogen",
+      "Improve air circulation",
+      "Monitor crops regularly"
+    ],
+    "organic_treatment": [
+      "Sulfur fungicide",
+      "Neem oil spray",
+      "Baking soda solution"
+    ],
+    "chemical_treatment": [
+      "Tebuconazole",
+      "Propiconazole",
+      "Myclobutanil"
+    ]
+  },
+
+  "wheat_mite": {
+    "crop": "Wheat",
+    "disease": "Mite Infestation",
+    "symptoms": [
+      "Leaf curling",
+      "Yellow streaks on leaves",
+      "Stunted growth",
+      "Reduced yield"
+    ],
+    "prevention": [
+      "Monitor fields regularly",
+      "Control weeds",
+      "Maintain crop health",
+      "Avoid drought stress"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Predatory mites",
+      "Improve field hygiene"
+    ],
+    "chemical_treatment": [
+      "Abamectin",
+      "Spiromesifen",
+      "Approved miticides"
+    ]
+  },
+
+  "wheat_septoria": {
+    "crop": "Wheat",
+    "disease": "Septoria Leaf Blotch",
+    "symptoms": [
+      "Brown lesions with yellow halos",
+      "Leaf blotches",
+      "Premature leaf death",
+      "Reduced grain yield"
+    ],
+    "prevention": [
+      "Use disease-free seeds",
+      "Crop rotation",
+      "Remove infected residues",
+      "Avoid dense planting"
+    ],
+    "organic_treatment": [
+      "Bio-fungicides",
+      "Neem extract spray",
+      "Field sanitation"
+    ],
+    "chemical_treatment": [
+      "Propiconazole",
+      "Tebuconazole",
+      "Azoxystrobin"
+    ]
+  },
+
+  "wheat_smut": {
+    "crop": "Wheat",
+    "disease": "Smut",
+    "symptoms": [
+      "Black powdery spores in grains",
+      "Malformed seed heads",
+      "Reduced grain quality",
+      "Yield loss"
+    ],
+    "prevention": [
+      "Use certified disease-free seeds",
+      "Treat seeds before sowing",
+      "Practice crop rotation",
+      "Remove infected plants"
+    ],
+    "organic_treatment": [
+      "Bio-fungicides",
+      "Seed treatment with biological agents",
+      "Field sanitation"
+    ],
+    "chemical_treatment": [
+      "Carboxin",
+      "Thiram",
+      "Tebuconazole seed treatment"
+    ]
+  },
+
+  "wheat_stem_fly": {
+    "crop": "Wheat",
+    "disease": "Stem Fly Infestation",
+    "symptoms": [
+      "Dead heart symptom",
+      "Yellow central shoots",
+      "Poor tillering",
+      "Stunted growth"
+    ],
+    "prevention": [
+      "Timely sowing",
+      "Field sanitation",
+      "Monitor pest populations",
+      "Use resistant varieties"
+    ],
+    "organic_treatment": [
+      "Neem oil spray",
+      "Light traps",
+      "Encourage natural predators"
+    ],
+    "chemical_treatment": [
+      "Imidacloprid",
+      "Chlorpyrifos",
+      "Thiamethoxam"
+    ]
+  },
+
+  "wheat_tan_spot": {
+    "crop": "Wheat",
+    "disease": "Tan Spot",
+    "symptoms": [
+      "Tan-colored leaf lesions",
+      "Yellow borders around spots",
+      "Leaf drying",
+      "Reduced yield"
+    ],
+    "prevention": [
+      "Crop rotation",
+      "Use resistant varieties",
+      "Remove crop residues",
+      "Monitor fields regularly"
+    ],
+    "organic_treatment": [
+      "Bio-fungicides",
+      "Neem extract spray",
+      "Field sanitation"
+    ],
+    "chemical_treatment": [
+      "Propiconazole",
+      "Azoxystrobin",
+      "Tebuconazole"
+    ]
+  },
+
+  "wheat_yellow_rust": {
+    "crop": "Wheat",
+    "disease": "Yellow Rust",
+    "symptoms": [
+      "Yellow stripes on leaves",
+      "Reduced photosynthesis",
+      "Poor grain filling",
+      "Yield reduction"
+    ],
+    "prevention": [
+      "Use resistant wheat varieties",
+      "Monitor fields regularly",
+      "Early disease detection",
+      "Balanced fertilizer application"
+    ],
+    "organic_treatment": [
+      "Bio-fungicides",
+      "Neem extract spray",
+      "Remove heavily infected leaves"
+    ],
+    "chemical_treatment": [
+      "Propiconazole",
+      "Tebuconazole",
+      "Azoxystrobin"
+    ]
+  }
+
+
+}

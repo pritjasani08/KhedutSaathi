@@ -1,7 +1,7 @@
 import os
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
-from config import TRAIN_DIR, VALID_DIR, BATCH_SIZE, IMAGE_SIZE, NUM_WORKERS
+from src.config import TRAIN_DIR, VALID_DIR, BATCH_SIZE, IMAGE_SIZE, NUM_WORKERS
 
 def get_transforms():
     train_transform = transforms.Compose([

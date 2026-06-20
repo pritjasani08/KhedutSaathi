@@ -1,8 +1,8 @@
-from dataset_loader import load_datasets
-from model_builder import build_model
-from trainer import ModelTrainer
-from utils import save_classes
-from config import CLASSES_SAVE_PATH
+from src.dataset_loader import load_datasets
+from src.model_builder import build_model
+from src.trainer import ModelTrainer
+from src.utils import save_classes
+from src.config import CLASSES_SAVE_PATH
 
 def main():
     print("Loading datasets...")
