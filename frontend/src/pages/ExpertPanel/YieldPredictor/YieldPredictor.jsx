@@ -74,7 +74,18 @@ export default function YieldPredictor() {
         yield: Number(data.predicted_yield).toFixed(2),
       });
     } catch (err) {
-      setError(err.message || 'An error occurred during prediction.');
+      let errorMsg = err.message || 'An error occurred during prediction.';
+      if (err.response?.data?.detail) {
+        const detail = err.response.data.detail;
+        if (Array.isArray(detail)) {
+          errorMsg = detail.map(d => typeof d === 'object' ? d.msg || JSON.stringify(d) : String(d)).join(', ');
+        } else if (typeof detail === 'string') {
+          errorMsg = detail;
+        } else {
+          errorMsg = JSON.stringify(detail);
+        }
+      }
+      setError(errorMsg);
     } finally {
       setLoading(false);
     }
@@ -156,7 +167,7 @@ export default function YieldPredictor() {
         <div className="mt-6 flex justify-end">
           <button onClick={handleSubmit} disabled={loading} className="btn-primary flex items-center gap-2">
             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <BarChart3 className="w-4 h-4" />}
-            {loading ? 'Predicting...' : t('expertPanel.predict')}
+            <span>{loading ? 'Predicting...' : t('expertPanel.predict')}</span>
           </button>
         </div>
       </motion.div>
@@ -165,13 +176,13 @@ export default function YieldPredictor() {
       {error && (
         <div className="mt-6 glass-card p-4 border-l-4 border-red-500 bg-red-50/50 dark:bg-red-900/10 flex gap-3 text-left">
           <AlertCircle className="w-5 h-5 text-red-600 dark:text-red-400 shrink-0" />
-          <p className="text-sm font-medium text-red-800 dark:text-red-400">{error}</p>
+          <p className="text-sm font-medium text-red-800 dark:text-red-400"><span>{error}</span></p>
         </div>
       )}
       {loading && (
         <div className="text-center py-12">
           <div className="w-16 h-16 border-4 border-primary/20 border-t-primary rounded-full animate-spin mx-auto mb-4" />
-          <p className="text-slate-600 font-semibold">Running AI yield prediction model...</p>
+          <p className="text-slate-600 font-semibold"><span>Running AI yield prediction model...</span></p>
         </div>
       )}
 
@@ -187,12 +198,12 @@ export default function YieldPredictor() {
             <div className="w-20 h-20 bg-green-50/10 dark:bg-green-500/10 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-inner border border-green-100 dark:border-green-800">
               <TrendingUp className="w-10 h-10 text-green-600 dark:text-green-400 drop-shadow-md" />
             </div>
-            <p className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wider">Estimated Yield</p>
+            <p className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wider"><span>Estimated Yield</span></p>
             <p className="font-display text-5xl md:text-6xl font-bold text-slate-800 dark:text-slate-100 mb-3 drop-shadow-sm">
-              {result.yield} <span className="text-2xl md:text-3xl text-slate-400 dark:text-slate-500 font-normal">t/ha</span>
+              <span>{result.yield}</span> <span className="text-2xl md:text-3xl text-slate-400 dark:text-slate-500 font-normal">t/ha</span>
             </p>
             <p className="text-lg text-slate-600 dark:text-slate-300 font-medium bg-slate-50 dark:bg-slate-800/50 inline-block px-4 py-1.5 rounded-full border border-slate-100 dark:border-slate-700 shadow-sm">
-              ({result.yield} Tonnes per Hectare)
+              <span>({result.yield} Tonnes per Hectare)</span>
             </p>
           </div>
 

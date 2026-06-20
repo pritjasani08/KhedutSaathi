@@ -38,6 +38,7 @@ export const cropDiagnosisAPI = {
     headers: { 'Content-Type': 'multipart/form-data' },
   }),
   getHistory: () => api.get('/crop-diagnosis/history'),
+  saveHistory: (data) => api.post('/crop-diagnosis/history', data),
 };
 
 // Market Hub - Mandi Prices

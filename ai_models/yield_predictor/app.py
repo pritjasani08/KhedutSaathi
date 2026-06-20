@@ -48,28 +48,38 @@ def home():
 
 @app.post("/predict")
 def predict(data: PredictionRequest):
+    try:
+        state = find_match(data.state, state_encoder)
+        district = find_match(data.district, district_encoder)
+        crop = find_match(data.crop, crop_encoder)
+        season = find_match(data.season, season_encoder)
 
-    state = find_match(data.state, state_encoder)
-    district = find_match(data.district, district_encoder)
-    crop = find_match(data.crop, crop_encoder)
-    season = find_match(data.season, season_encoder)
+        state_crop = f"{state}_{crop}"
+        district_crop = f"{district}_{crop}"
 
-    state_crop = f"{state}_{crop}"
-    district_crop = f"{district}_{crop}"
+        if state_crop not in state_crop_encoder.classes_:
+            raise HTTPException(status_code=400, detail=f"No historical yield data available for {crop} in {state}.")
+            
+        if district_crop not in district_crop_encoder.classes_:
+            raise HTTPException(status_code=400, detail=f"No historical yield data available for {crop} in {district}.")
 
-    input_data = pd.DataFrame([{
-        "State": state_encoder.transform([state])[0],
-        "District": district_encoder.transform([district])[0],
-        "Crop": crop_encoder.transform([crop])[0],
-        "Year": data.year,
-        "Season": season_encoder.transform([season])[0],
-        "Area": data.area,
-        "State_Crop": state_crop_encoder.transform([state_crop])[0],
-        "District_Crop": district_crop_encoder.transform([district_crop])[0]
-    }])
+        input_data = pd.DataFrame([{
+            "State": state_encoder.transform([state])[0],
+            "District": district_encoder.transform([district])[0],
+            "Crop": crop_encoder.transform([crop])[0],
+            "Year": data.year,
+            "Season": season_encoder.transform([season])[0],
+            "Area": data.area,
+            "State_Crop": state_crop_encoder.transform([state_crop])[0],
+            "District_Crop": district_crop_encoder.transform([district_crop])[0]
+        }])
 
-    prediction = model.predict(input_data)
+        prediction = model.predict(input_data)
 
-    return {
-        "predicted_yield": round(float(prediction[0]), 2)
-    }
+        return {
+            "predicted_yield": round(float(prediction[0]), 2)
+        }
+    except HTTPException as he:
+        raise he
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))

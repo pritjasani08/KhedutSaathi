@@ -99,7 +99,7 @@ export default function Dashboard() {
               const newsRes = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/resources/agri-news?${query}`);
               if (newsRes.ok) {
                 const nData = await newsRes.json();
-                if (nData.success) setNews(nData.data.slice(0, 3));
+                if (nData.success) setNews(nData.data?.slice(0, 3) || []);
               }
             } catch(e) {
               console.error("Failed fetching news", e);
@@ -159,7 +159,7 @@ export default function Dashboard() {
         });
         if (listingsRes.ok) {
           const listingsData = await listingsRes.json();
-          setFarmerListings(listingsData);
+          setFarmerListings(listingsData || []);
         }
       }
     } catch (err) {
@@ -378,7 +378,7 @@ export default function Dashboard() {
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="glass-card p-6 flex items-center justify-between border-green-200 relative overflow-hidden">
                 <div className="relative z-10">
                   <p className="text-sm font-medium text-slate-500 mb-1">Eligible Schemes</p>
-                  <p className="text-3xl font-display font-bold text-heading text-green-600">{schemes ? schemes.data.length : '-'}</p>
+                  <p className="text-3xl font-display font-bold text-heading text-green-600">{schemes?.data ? schemes.data.length : '-'}</p>
                 </div>
                 <div className="w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center text-green-500 relative z-10">
                   <CheckCircle className="w-6 h-6" />
@@ -389,7 +389,7 @@ export default function Dashboard() {
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="glass-card p-6 flex items-center justify-between border-amber-200 relative overflow-hidden">
                 <div className="relative z-10">
                   <p className="text-sm font-medium text-slate-500 mb-1">Potential Benefits</p>
-                  <p className="text-3xl font-display font-bold text-heading text-amber-600">₹{schemes ? schemes.totalBenefit.toLocaleString('en-IN') : '-'}</p>
+                  <p className="text-3xl font-display font-bold text-heading text-amber-600">₹{schemes?.totalBenefit ? schemes.totalBenefit.toLocaleString('en-IN') : '-'}</p>
                 </div>
                 <div className="w-12 h-12 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-500 relative z-10">
                   <Tag className="w-6 h-6" />
@@ -418,7 +418,7 @@ export default function Dashboard() {
                 <h2 className="font-display text-xl font-bold text-heading">Manage My Listings</h2>
                 <Link to="/marketplace" className="text-sm font-semibold text-primary hover:underline">Marketplace</Link>
               </div>
-              {farmerListings.length === 0 ? (
+              {(!farmerListings || farmerListings.length === 0) ? (
                 <div className="glass-card p-8 text-center text-slate-500">You haven't created any listings yet.</div>
               ) : (
                 <div className="space-y-6">
@@ -485,7 +485,7 @@ export default function Dashboard() {
                 <Link to="/resources" className="text-xs text-primary font-semibold hover:underline">View All News</Link>
               </div>
               <div className="grid md:grid-cols-3 gap-4">
-                {news.length > 0 ? news.map((item, i) => (
+                {(news && news.length > 0) ? news.map((item, i) => (
                   <a key={i} href={item.link || item.url} target="_blank" rel="noopener noreferrer" className="block p-4 border border-subtle rounded-xl hover:border-primary/50 transition-colors flex flex-col gap-3">
                     <img src={item.image} alt="" className="w-full h-32 object-cover rounded-lg shrink-0 bg-slate-100" />
                     <div>
@@ -600,7 +600,7 @@ export default function Dashboard() {
         {user.user_type === 'farmer' && (
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="mt-10">
             <h2 className="font-display text-xl font-bold text-heading mb-4">My Marketplace Orders</h2>
-            {farmerOrders.length === 0 ? (
+            {(!farmerOrders || farmerOrders.length === 0) ? (
               <div className="glass-card p-8 text-center text-slate-500">You haven't placed any orders yet.</div>
             ) : (
               <div className="space-y-4">

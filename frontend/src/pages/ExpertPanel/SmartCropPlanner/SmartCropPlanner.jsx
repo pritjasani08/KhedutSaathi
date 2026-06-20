@@ -72,8 +72,19 @@ export default function SmartCropPlanner() {
         throw new Error('Invalid response format from API');
       }
     } catch (err) {
-      // 12. Add proper error handling
-      setError(err.response?.data?.detail || err.message || 'Failed to get recommendations. Please ensure the API is running.');
+      // Safely extract error message
+      let errorMsg = err.message || 'Failed to get recommendations. Please ensure the API is running.';
+      if (err.response?.data?.detail) {
+        const detail = err.response.data.detail;
+        if (Array.isArray(detail)) {
+          errorMsg = detail.map(d => typeof d === 'object' ? d.msg || JSON.stringify(d) : String(d)).join(', ');
+        } else if (typeof detail === 'string') {
+          errorMsg = detail;
+        } else {
+          errorMsg = JSON.stringify(detail);
+        }
+      }
+      setError(errorMsg);
     } finally {
       setLoading(false);
     }
@@ -117,7 +128,11 @@ export default function SmartCropPlanner() {
                 disabled={!form.state}
                 className={`select-field !pl-10 ${!form.state ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
-                <option value="">{form.state ? "Select District" : "Select State First"}</option>
+                {form.state ? (
+                  <option value="">Select District</option>
+                ) : (
+                  <option value="">Select State First</option>
+                )}
                 {form.state && stateDistrictMap[form.state]?.map((d) => (
                   <option key={d} value={d}>{d}</option>
                 ))}
@@ -175,7 +190,7 @@ export default function SmartCropPlanner() {
                       : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                   }`}
                 >
-                  {d} {d === 1 ? 'Month' : 'Months'}
+                  <span>{d} {d === 1 ? 'Month' : 'Months'}</span>
                 </button>
               ))}
             </div>
@@ -184,7 +199,7 @@ export default function SmartCropPlanner() {
           <motion.div variants={fadeUp} custom={6} className="flex items-end">
             <button onClick={handleSubmit} disabled={loading} className="btn-primary w-full flex items-center justify-center gap-2">
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sprout className="w-4 h-4" />}
-              Get Recommendation
+              <span>Get Recommendation</span>
             </button>
           </motion.div>
         </div>
@@ -197,7 +212,7 @@ export default function SmartCropPlanner() {
           className="bg-red-50 text-red-600 p-4 rounded-xl flex items-center gap-3 border border-red-200"
         >
           <AlertCircle className="w-5 h-5 flex-shrink-0" />
-          <p className="font-medium text-sm">{error}</p>
+          <p className="font-medium text-sm"><span>{error}</span></p>
         </motion.div>
       )}
 
@@ -205,7 +220,7 @@ export default function SmartCropPlanner() {
       {loading && (
         <div className="text-center py-12">
           <div className="w-16 h-16 border-4 border-primary/20 border-t-primary rounded-full animate-spin mx-auto mb-4" />
-          <p className="text-slate-600 font-semibold">Analyzing your farm conditions via API...</p>
+          <p className="text-slate-600 font-semibold"><span>Analyzing your farm conditions via API...</span></p>
         </div>
       )}
 
@@ -214,7 +229,7 @@ export default function SmartCropPlanner() {
         <div>
           <h3 className="font-display text-xl font-bold text-body mb-6 flex items-center gap-2">
             <Leaf className="w-5 h-5 text-primary" />
-            Top Recommended Crops
+            <span>Top Recommended Crops</span>
           </h3>
           <div className="grid md:grid-cols-3 gap-5">
             {/* 8. Display Priority 1, 2, 3 */}
@@ -242,24 +257,24 @@ export default function SmartCropPlanner() {
                 </div>
                 
                 {/* 9. Crop Name */}
-                <h4 className="font-display font-bold text-2xl text-body mb-1">{cropName}</h4>
-                <p className="text-sm text-slate-500 mb-4">Highly recommended for your region</p>
+                <h4 className="font-display font-bold text-2xl text-body mb-1"><span>{cropName}</span></h4>
+                <p className="text-sm text-slate-500 mb-4"><span>Highly recommended for your region</span></p>
                 
                 {/* Extra info based on form inputs to match existing UI aesthetic */}
                 <div className="flex gap-4 w-full pt-4 border-t border-slate-100">
                   <div className="flex-1">
-                    <p className="text-xs text-slate-400 mb-0.5">Duration</p>
+                    <p className="text-xs text-slate-400 mb-0.5"><span>Duration</span></p>
                     <p className="text-sm font-semibold text-slate-700 flex items-center justify-center gap-1">
                       <Clock className="w-3 h-3 text-primary" />
-                      {form.crop_duration_months} Months
+                      <span>{form.crop_duration_months} Months</span>
                     </p>
                   </div>
                   <div className="w-px bg-slate-100"></div>
                   <div className="flex-1">
-                    <p className="text-xs text-slate-400 mb-0.5">Water</p>
+                    <p className="text-xs text-slate-400 mb-0.5"><span>Water</span></p>
                     <p className="text-sm font-semibold text-slate-700 flex items-center justify-center gap-1">
                       <Droplets className="w-3 h-3 text-blue-500" />
-                      {form.water_availability || '-'}
+                      <span>{form.water_availability || '-'}</span>
                     </p>
                   </div>
                 </div>

@@ -186,3 +186,28 @@
   background-size: 200% 100%;
   animation: shimmer 2s linear infinite;
 }
+
+
+/* Hide Google Translate UI completely */
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+body {
+  top: 0px !important;
+}
+#google_translate_element {
+  display: none !important;
+}
+.skiptranslate > iframe {
+  display: none !important;
+  visibility: hidden !important;
+}
+#goog-gt-tt, .goog-te-balloon-frame {
+  display: none !important;
+  opacity: 0 !important;
+}
+.goog-text-highlight {
+  background-color: transparent !important;
+  background: none !important;
+  box-shadow: none !important;
+}

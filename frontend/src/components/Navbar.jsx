@@ -46,15 +46,15 @@ export default function Navbar() {
   }, []);
 
   const farmerLinks = [
-    { path: '/', label: t('nav.home') },
-    { path: '/crop-health', label: 'Crop Health' },
-    { path: '/market-prices', label: 'Market Intelligence' },
-    { path: '/crop-recommendation', label: 'Crop Recommendation' },
-    { path: '/agri-marketplace', label: 'Marketplace Feed' },
-    { path: '/khedut-ai', label: 'Khedut AI' },
-    { path: '/resources', label: 'News & Schemes' },
-    { path: '/features', label: 'Features' },
-    { path: '/about', label: 'About' },
+    { path: '/', label: t('nav.home') || 'Home' },
+    { path: '/crop-health', label: t('nav.cropDiagnosis') || 'Crop Health' },
+    { path: '/market-prices', label: t('marketHub.livePrices') || 'Market Intelligence' },
+    { path: '/crop-recommendation', label: t('expertPanel.title') || 'Crop Recommendation' },
+    { path: '/agri-marketplace', label: t('nav.agriMarketplace') || 'Marketplace Feed' },
+    { path: '/khedut-ai', label: t('chatbot.title') || 'Khedut AI' },
+    { path: '/resources', label: t('nav.resources') || 'News & Schemes' },
+    { path: '/features', label: t('nav.features') || 'Features' },
+    { path: '/about', label: t('nav.about') || 'About' },
   ];
 
   const buyerLinks = [
@@ -70,13 +70,13 @@ export default function Navbar() {
   ];
 
   const publicLinks = [
-    { path: '/', label: t('nav.home') },
-    { path: '/market-prices', label: 'Market Intelligence' },
-    { path: '/agri-marketplace', label: 'Marketplace Feed' },
-    { path: '/khedut-ai', label: 'Khedut AI' },
-    { path: '/resources', label: 'News & Schemes' },
-    { path: '/features', label: 'Features' },
-    { path: '/about', label: 'About' },
+    { path: '/', label: t('nav.home') || 'Home' },
+    { path: '/market-prices', label: t('marketHub.livePrices') || 'Market Intelligence' },
+    { path: '/agri-marketplace', label: t('nav.agriMarketplace') || 'Marketplace Feed' },
+    { path: '/khedut-ai', label: t('chatbot.title') || 'Khedut AI' },
+    { path: '/resources', label: t('nav.resources') || 'News & Schemes' },
+    { path: '/features', label: t('nav.features') || 'Features' },
+    { path: '/about', label: t('nav.about') || 'About' },
   ];
 
   let navLinks = publicLinks;
@@ -154,7 +154,10 @@ export default function Navbar() {
                         key={lang.code}
                         onClick={() => {
                           i18n.changeLanguage(lang.code);
+                          localStorage.setItem('i18nextLng', lang.code);
+                          document.cookie = `googtrans=/en/${lang.code}; path=/; domain=${window.location.hostname}`;
                           setLangDropdown(false);
+                          window.location.reload();
                         }}
                         className={`w-full px-4 py-3 text-left text-sm font-medium transition-colors duration-200 ${
                           i18n.language === lang.code 
@@ -298,7 +301,12 @@ export default function Navbar() {
                     {languages.map((lang) => (
                       <button
                         key={lang.code}
-                        onClick={() => i18n.changeLanguage(lang.code)}
+                        onClick={() => {
+                          i18n.changeLanguage(lang.code);
+                          localStorage.setItem('i18nextLng', lang.code);
+                          document.cookie = `googtrans=/en/${lang.code}; path=/; domain=${window.location.hostname}`;
+                          window.location.reload();
+                        }}
                         className={`flex-1 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${
                           i18n.language === lang.code
                             ? 'bg-primary text-white'

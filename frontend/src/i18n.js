@@ -11,11 +11,16 @@ i18n.use(initReactI18next).init({
     hi: { translation: hi },
     gu: { translation: gu },
   },
-  lng: 'en',
+  lng: localStorage.getItem('i18nextLng') || 'en', // Read from localStorage first
   fallbackLng: 'en',
   interpolation: {
     escapeValue: false,
   },
+});
+
+// Save to localStorage whenever language changes
+i18n.on('languageChanged', (lng) => {
+  localStorage.setItem('i18nextLng', lng);
 });
 
 export default i18n;

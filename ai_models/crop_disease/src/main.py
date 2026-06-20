@@ -3,6 +3,12 @@ import uvicorn
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from src.inference import DiseasePredictor
+import sys
+import os
+
+# Add parent directory to path to import translator_utils
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(os.path.dirname(__file__)))))
+from translator_utils import translate_dict
 
 app = FastAPI(title="Crop Disease Detection API", description="API for detecting crop diseases from images")
 
@@ -35,7 +41,7 @@ def read_root():
     }
 
 @app.post("/api/crop-disease/predict")
-async def predict_disease(image: UploadFile = File(...)):
+async def predict_disease(image: UploadFile = File(...), lang: str = "en"):
     if not predictor:
         raise HTTPException(status_code=500, detail="Model is currently unavailable")
         
@@ -51,6 +57,11 @@ async def predict_disease(image: UploadFile = File(...)):
             
         # Run prediction
         result = predictor.predict_image(temp_path)
+        
+        # Translate the details dictionary if language is not English
+        if result.get("details"):
+            keys_to_translate = ["disease", "message", "symptoms", "prevention", "organic_treatment", "chemical_treatment"]
+            result["details"] = translate_dict(result["details"], lang, keys_to_translate)
         
         # Add success flag as required
         response = {

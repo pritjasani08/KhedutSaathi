@@ -8,7 +8,9 @@
     "agriMarketplace": "कृषि बाज़ार",
     "features": "सुविधाएं",
     "login": "लॉगिन",
-    "getStarted": "शुरू करें"
+    "getStarted": "शुरू करें",
+    "resources": "समाचार और योजना",
+    "about": "हमारे बारे में"
   },
   "hero": {
     "title": "हर किसान के लिए AI संचालित कृषि साथी",
@@ -122,7 +124,8 @@
     "status": "स्थिति",
     "action": "कार्रवाई",
     "viewDetails": "विवरण देखें",
-    "noDiagnosis": "शुरू करने के लिए एक तस्वीर अपलोड करें"
+    "noDiagnosis": "शुरू करने के लिए एक तस्वीर अपलोड करें",
+    "analyzeButton": "फसल का विश्लेषण करें"
   },
   "marketHub": {
     "title": "मार्केट हब",
@@ -141,6 +144,11 @@
     "cropName": "फसल का नाम",
     "quantity": "मात्रा (क्विंटल)",
     "price": "अपेक्षित मूल्य (₹)",
+    "selectState": "राज्य चुनें",
+    "selectStateFirst": "पहले राज्य चुनें",
+    "selectDistrict": "जिला चुनें",
+    "selectDistrictFirst": "पहले जिला चुनें",
+    "selectMandi": "मंडी चुनें",
     "description": "विवरण",
     "uploadImages": "तस्वीरें अपलोड करें",
     "location": "स्थान",

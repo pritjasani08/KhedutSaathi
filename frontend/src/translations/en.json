@@ -8,7 +8,9 @@
     "agriMarketplace": "Agri Marketplace",
     "features": "Features",
     "login": "Login",
-    "getStarted": "Get Started"
+    "getStarted": "Get Started",
+    "resources": "News and Scheme",
+    "about": "About Us"
   },
   "hero": {
     "title": "AI Powered Farming Companion for Every Farmer",
@@ -122,7 +124,8 @@
     "status": "Status",
     "action": "Action",
     "viewDetails": "View Details",
-    "noDiagnosis": "Upload an image to get started"
+    "noDiagnosis": "Upload an image to get started",
+    "analyzeButton": "Analyze Crop Image"
   },
   "marketHub": {
     "title": "Market Prices",
@@ -141,6 +144,11 @@
     "cropName": "Crop Name",
     "quantity": "Quantity (Quintals)",
     "price": "Expected Price (₹)",
+    "selectState": "Select State",
+    "selectStateFirst": "Select State First",
+    "selectDistrict": "Select District",
+    "selectDistrictFirst": "Select District First",
+    "selectMandi": "Select Mandi",
     "description": "Description",
     "uploadImages": "Upload Images",
     "location": "Location",

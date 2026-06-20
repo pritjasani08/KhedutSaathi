@@ -106,7 +106,7 @@ export default function MarketPriceFilters({ filters, setFilters, onRefresh, onE
 
         {/* State Dropdown */}
         <div>
-          <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">State *</label>
+          <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">{t('marketHub.state', { defaultValue: 'State' })} *</label>
           <div className="relative">
             <select
               name="state"
@@ -114,7 +114,7 @@ export default function MarketPriceFilters({ filters, setFilters, onRefresh, onE
               onChange={handleChange}
               className="w-full appearance-none bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl py-3 pl-4 pr-10 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all dark:text-white"
             >
-              <option value="">Select State</option>
+              <option value="">{t('marketHub.selectState', { defaultValue: 'Select State' })}</option>
               {states.map(s => <option key={s} value={s}>{s}</option>)}
             </select>
             <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
@@ -123,7 +123,7 @@ export default function MarketPriceFilters({ filters, setFilters, onRefresh, onE
 
         {/* District Dropdown */}
         <div>
-          <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">District *</label>
+          <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">{t('marketHub.district', { defaultValue: 'District' })} *</label>
           <div className="relative">
             <select
               name="district"
@@ -132,7 +132,7 @@ export default function MarketPriceFilters({ filters, setFilters, onRefresh, onE
               disabled={!filters.state}
               className="w-full appearance-none bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl py-3 pl-4 pr-10 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all dark:text-white disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <option value="">{filters.state ? 'Select District' : 'Select State First'}</option>
+              <option value="">{filters.state ? t('marketHub.selectDistrict', { defaultValue: 'Select District' }) : t('marketHub.selectStateFirst', { defaultValue: 'Select State First' })}</option>
               {districts.map(d => <option key={d} value={d}>{d}</option>)}
             </select>
             <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
@@ -141,7 +141,7 @@ export default function MarketPriceFilters({ filters, setFilters, onRefresh, onE
 
         {/* Market Dropdown */}
         <div>
-          <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Mandi / APMC *</label>
+          <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">{t('marketHub.mandi', { defaultValue: 'Mandi / APMC' })} *</label>
           <div className="relative">
             <select
               name="market"
@@ -150,7 +150,7 @@ export default function MarketPriceFilters({ filters, setFilters, onRefresh, onE
               disabled={!filters.district}
               className="w-full appearance-none bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl py-3 pl-4 pr-10 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all dark:text-white disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <option value="">{filters.district ? 'Select Mandi' : 'Select District First'}</option>
+              <option value="">{filters.district ? t('marketHub.selectMandi', { defaultValue: 'Select Mandi' }) : t('marketHub.selectDistrictFirst', { defaultValue: 'Select District First' })}</option>
               {markets.map(m => <option key={m} value={m}>{m}</option>)}
             </select>
             <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />

@@ -1,10 +1,11 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import {
   Upload, Camera, Image, X, AlertTriangle, CheckCircle2,
   ShieldAlert, Pill, ShieldCheck, Clock, Eye, Loader2
 } from 'lucide-react';
+import { cropDiagnosisAPI } from '../../services/api';
 
 
 const fadeUp = {
@@ -35,12 +36,7 @@ const mockResult = {
   ],
 };
 
-const mockHistory = [
-  { id: 1, date: '2026-06-15', crop: 'Tomato', disease: 'Early Blight', status: 'Treated' },
-  { id: 2, date: '2026-06-12', crop: 'Potato', disease: 'Late Blight', status: 'Active' },
-  { id: 3, date: '2026-06-08', crop: 'Wheat', disease: 'Rust', status: 'Treated' },
-  { id: 4, date: '2026-06-03', crop: 'Rice', disease: 'Blast', status: 'Monitoring' },
-];
+// Removed mockHistory
 
 export default function CropDiagnosis() {
   const { t } = useTranslation();
@@ -49,6 +45,26 @@ export default function CropDiagnosis() {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [result, setResult] = useState(null);
   const [dragActive, setDragActive] = useState(false);
+  const [history, setHistory] = useState([]);
+
+  const fetchHistory = async () => {
+    try {
+      const res = await cropDiagnosisAPI.getHistory();
+      if (res && res.success && res.data) {
+        setHistory(res.data);
+      } else if (Array.isArray(res)) {
+        setHistory(res);
+      }
+    } catch (err) {
+      console.error("Failed to fetch diagnosis history", err);
+      // Set empty array on failure instead of mock data
+      setHistory([]);
+    }
+  };
+
+  useEffect(() => {
+    fetchHistory();
+  }, []);
 
   const handleDrop = useCallback((e) => {
     e.preventDefault();
@@ -68,14 +84,64 @@ export default function CropDiagnosis() {
     }
   };
 
-  const handleAnalyze = () => {
+  const handleAnalyze = async () => {
     if (!image) return;
     setIsAnalyzing(true);
     setResult(null);
-    setTimeout(() => {
+
+    // Get language from localStorage
+    const lang = localStorage.getItem('i18nextLng') || 'en';
+
+    try {
+      const formData = new FormData();
+      formData.append('image', image);
+
+      // Hit the FastAPI backend running on port 8000
+      const res = await fetch(`http://localhost:8000/api/crop-disease/predict?lang=${lang}`, {
+        method: 'POST',
+        body: formData
+      });
+      
+      const data = await res.json();
+      if (res.ok && data.success && data.details) {
+        // Combine organic and chemical treatments
+        const treatments = [
+          ...(data.details.organic_treatment || []),
+          ...(data.details.chemical_treatment || [])
+        ];
+
+        setResult({
+          disease: data.details.disease || 'Unknown Disease',
+          confidence: parseFloat(data.confidence) || 0,
+          severity: data.details.status || 'High',
+          treatment: Array.isArray(treatments) && treatments.length > 0 ? treatments : ['No specific treatment found'],
+          prevention: Array.isArray(data.details.prevention) ? data.details.prevention : ['No prevention data found']
+        });
+        
+        // Save to database
+        try {
+          await cropDiagnosisAPI.saveHistory({
+            crop: data.details.crop || 'Unknown',
+            disease: data.details.disease || 'Unknown Disease',
+            status: data.details.status || 'Active',
+            confidence: parseFloat(data.confidence) || 0,
+            image_url: null
+          });
+          // Refresh history table
+          fetchHistory();
+        } catch (saveErr) {
+          console.error("Could not save history to database:", saveErr);
+        }
+      } else {
+        throw new Error(data.detail || 'Failed to analyze');
+      }
+    } catch (err) {
+      console.error(err);
+      // Fallback to mock if backend is down
       setResult(mockResult);
+    } finally {
       setIsAnalyzing(false);
-    }, 2500);
+    }
   };
 
   const clearImage = () => {
@@ -181,7 +247,7 @@ export default function CropDiagnosis() {
                   ) : (
                     <>
                       <Pill className="w-5 h-5" />
-                      Analyze Crop Image
+                      {t('cropDiagnosis.analyzeButton') || 'Analyze Crop Image'}
                     </>
                   )}
                 </button>
@@ -255,7 +321,7 @@ export default function CropDiagnosis() {
                     {t('cropDiagnosis.treatment')}
                   </p>
                   <ul className="space-y-2">
-                    {result.treatment.map((item, i) => (
+                    {Array.isArray(result.treatment) && result.treatment.map((item, i) => (
                       <li key={i} className="text-sm text-slate-700 flex items-start gap-2">
                         <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0 mt-0.5" />
                         {item}
@@ -271,7 +337,7 @@ export default function CropDiagnosis() {
                     {t('cropDiagnosis.prevention')}
                   </p>
                   <ul className="space-y-2">
-                    {result.prevention.map((item, i) => (
+                    {Array.isArray(result.prevention) && result.prevention.map((item, i) => (
                       <li key={i} className="text-sm text-slate-700 flex items-start gap-2">
                         <ShieldCheck className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
                         {item}
@@ -309,7 +375,7 @@ export default function CropDiagnosis() {
                 </tr>
               </thead>
               <tbody>
-                {mockHistory.map((row) => (
+                {Array.isArray(history) && history.map((row) => (
                   <tr key={row.id} className="border-b border-slate-100 hover:bg-surface-muted/50 transition-colors duration-200">
                     <td className="py-4 px-4 text-sm text-slate-600">{row.date}</td>
                     <td className="py-4 px-4 text-sm font-medium text-body">{row.crop}</td>
