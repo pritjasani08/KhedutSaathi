@@ -95,7 +95,7 @@ export default function AgriMarketplace() {
   const cartItemCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-300 font-sans selection:bg-green-500/30 selection:text-green-200">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-300 font-sans selection:bg-green-500/30 selection:text-green-200">
       {/* Floating Cart Button */}
       <button 
         onClick={() => setIsCartOpen(true)}
@@ -117,7 +117,7 @@ export default function AgriMarketplace() {
         <div className="flex flex-col lg:flex-row gap-8 mb-16 mt-8">
           {/* Left Filter Sidebar */}
           <aside className="hidden lg:block w-72 flex-shrink-0">
-            <div className="sticky top-24 bg-slate-900 rounded-3xl border border-slate-800 shadow-sm p-6">
+            <div className="sticky top-24 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm p-6">
               <FilterSidebar 
                 selectedCategory={selectedCategory}
                 setSelectedCategory={setSelectedCategory}
@@ -128,8 +128,8 @@ export default function AgriMarketplace() {
 
           {/* Product Grid Area */}
           <main className="flex-1">
-            <div className="flex items-center justify-between mb-6 bg-slate-900 p-4 rounded-2xl border border-slate-800 shadow-sm">
-              <h2 className="text-xl font-display font-bold text-white">Browse Products</h2>
+            <div className="flex items-center justify-between mb-6 bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+              <h2 className="text-xl font-display font-bold text-slate-900 dark:text-white">Browse Products</h2>
               <span className="text-sm font-bold text-green-400 bg-green-500/10 px-4 py-1.5 rounded-xl border border-green-500/20">
                 {filteredProducts.length} Results
               </span>

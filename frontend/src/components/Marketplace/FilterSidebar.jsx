@@ -8,8 +8,8 @@ export default function FilterSidebar({
   return (
     <div className={`space-y-8 ${isMobileDrawer ? 'p-6' : ''}`}>
       {!isMobileDrawer && (
-        <div className="flex items-center gap-3 font-display font-bold text-xl text-white mb-6 pb-6 border-b border-slate-800">
-          <div className="p-2 bg-slate-800 rounded-lg">
+        <div className="flex items-center gap-3 font-display font-bold text-xl text-slate-900 dark:text-white mb-6 pb-6 border-b border-slate-200 dark:border-slate-800">
+          <div className="p-2 bg-slate-100 dark:bg-slate-800 rounded-lg">
             <SlidersHorizontal className="w-5 h-5 text-green-400" />
           </div>
           Filters
@@ -24,8 +24,8 @@ export default function FilterSidebar({
             onClick={() => setSelectedCategory('All')}
             className={`w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all ${
               selectedCategory === 'All' 
-                ? 'bg-slate-800 text-green-400 font-bold border border-slate-700 shadow-sm' 
-                : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200'
+                ? 'bg-slate-100 dark:bg-slate-800 text-green-600 dark:text-green-400 font-bold border border-slate-200 dark:border-slate-700 shadow-sm' 
+                : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-200'
             }`}
           >
             All Categories
@@ -36,8 +36,8 @@ export default function FilterSidebar({
               onClick={() => setSelectedCategory(cat.name)}
               className={`w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all flex items-center justify-between group ${
                 selectedCategory === cat.name 
-                  ? 'bg-slate-800 text-green-400 font-bold border border-slate-700 shadow-sm' 
-                  : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200'
+                  ? 'bg-slate-100 dark:bg-slate-800 text-green-600 dark:text-green-400 font-bold border border-slate-200 dark:border-slate-700 shadow-sm' 
+                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-200'
               }`}
             >
               <span>{cat.name}</span>
