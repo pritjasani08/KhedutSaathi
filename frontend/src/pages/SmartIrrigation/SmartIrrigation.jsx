@@ -19,28 +19,34 @@ const fadeUp = {
 export default function SmartIrrigation() {
   const { t } = useTranslation();
   
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(() => !localStorage.getItem('lastIrrigationAdvice'));
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [error, setError] = useState(null);
-  const [data, setData] = useState(null);
-  const [lastUpdated, setLastUpdated] = useState(null);
-
-  useEffect(() => {
+  const [data, setData] = useState(() => {
     const cachedString = localStorage.getItem('lastIrrigationAdvice');
     if (cachedString) {
       try {
-        const cached = JSON.parse(cachedString);
-        setData(cached.data);
-        setLastUpdated(cached.timestamp);
-        setLoading(false);
-      } catch (e) {
-        console.error('Failed to parse cached irrigation data', e);
-      }
+        return JSON.parse(cachedString).data;
+      } catch (e) { return null; }
     }
+    return null;
+  });
+  const [lastUpdated, setLastUpdated] = useState(() => {
+    const cachedString = localStorage.getItem('lastIrrigationAdvice');
+    if (cachedString) {
+      try {
+        return JSON.parse(cachedString).timestamp;
+      } catch (e) { return null; }
+    }
+    return null;
+  });
+
+  useEffect(() => {
+    const cachedString = localStorage.getItem('lastIrrigationAdvice');
     fetchAdvice(!!cachedString);
   }, []);
 
-  const fetchAdvice = (hasCache) => {
+  function fetchAdvice(hasCache) {
     if (!hasCache) setLoading(true);
     else setIsRefreshing(true);
     

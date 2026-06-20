@@ -26,10 +26,6 @@ export default function CropMarket() {
   const [bidError, setBidError] = useState('');
   const [selectedImages, setSelectedImages] = useState(null);
 
-  useEffect(() => {
-    fetchListings();
-  }, []);
-
   const fetchListings = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -47,6 +43,10 @@ export default function CropMarket() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchListings();
+  }, []);
 
   const handleBidSubmit = async (e, listing) => {
     e.preventDefault();

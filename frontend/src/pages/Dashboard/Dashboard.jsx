@@ -25,13 +25,6 @@ export default function Dashboard() {
   const [acceptLoading, setAcceptLoading] = useState(null);
   const [farmerOrders, setFarmerOrders] = useState([]);
 
-  useEffect(() => {
-    fetchDashboardData();
-    if (user?.user_type === 'farmer') {
-      fetchFarmerOrders();
-    }
-  }, [user]);
-
   const fetchFarmerOrders = async () => {
     try {
       const { data, error } = await supabase
@@ -119,7 +112,7 @@ export default function Dashboard() {
                 const wData = await wRes.json();
                 if (wData.success) setWeather(wData.data);
               }
-            } catch(e) {}
+            } catch(e) { console.error(e); }
 
             // Fetch Market Price
             if (pData.profile.primary_crop) {
@@ -144,7 +137,7 @@ export default function Dashboard() {
                     });
                   }
                 }
-              } catch(e) {}
+              } catch(e) { console.error(e); }
             }
           }
         }
@@ -175,6 +168,13 @@ export default function Dashboard() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchDashboardData();
+    if (user?.user_type === 'farmer') {
+      fetchFarmerOrders();
+    }
+  }, [user]);
 
   const handleAcceptBid = async (bidId) => {
     setAcceptLoading(bidId);
