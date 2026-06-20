@@ -39,7 +39,7 @@ export default function ExpertPanel() {
               }`}
             >
               <tab.icon className="w-4 h-4" />
-              {tab.label}
+              <span>{tab.label}</span>
             </button>
           ))}
         </div>

@@ -65,21 +65,21 @@ export default function HeroSection() {
             <motion.div variants={fadeUp} custom={3} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link to="/crop-health" className="btn-primary text-base flex items-center justify-center gap-2">
                 <Upload className="w-5 h-5" />
-                Upload a Crop Image
+                {t('cropDiagnosis.title') || 'Crop Diagnosis'}
               </Link>
               <Link to="/khedut-ai" className="btn-secondary text-base flex items-center justify-center gap-2">
                 <Bot className="w-5 h-5" />
-                Ask Khedut AI
+                {t('chatbot.title') || 'Khedut AI'}
               </Link>
             </motion.div>
 
             {/* Trust badges */}
             <motion.div variants={fadeUp} custom={4} className="mt-10 grid grid-cols-2 gap-4 justify-center lg:justify-start max-w-lg mx-auto lg:mx-0">
               {[
-                'AI Disease Detection',
-                'Government Scheme Assistance',
-                'Real-Time Market Prices',
-                'Expert Guidance'
+                t('cropDiagnosis.title') || 'AI Disease Detection',
+                t('nav.resources') || 'Government Schemes',
+                t('marketHub.livePrices') || 'Real-Time Market Prices',
+                t('expertPanel.title') || 'Expert Guidance'
               ].map((feature, i) => (
                 <div key={i} className="flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
@@ -112,10 +112,30 @@ export default function HeroSection() {
 
               {/* Floating cards */}
               {[
-                { icon: '🌱', label: 'Disease Detection', pos: 'top-[-20px] left-[-10px] md:top-[-10px] md:left-[-20px]', delay: 0 },
-                { icon: '📈', label: 'Market Prices', pos: 'top-8 right-[-20px] md:top-12 md:right-[-30px]', delay: 0.5 },
-                { icon: '💧', label: 'Smart Irrigation', pos: 'bottom-24 left-[-20px] md:bottom-36 md:left-[-30px]', delay: 1 },
-                { icon: '🤖', label: 'Khedut AI', pos: 'bottom-8 right-[-10px] md:bottom-16 md:right-[-20px]', delay: 1.5 },
+{ 
+  icon: '🌱', 
+  label: t('cropDiagnosis.title') || 'Disease Detection', 
+  pos: 'top-[-20px] left-[-10px] md:top-[-10px] md:left-[-20px]', 
+  delay: 0 
+},
+{ 
+  icon: '📈', 
+  label: t('marketHub.title') || 'Market Prices', 
+  pos: 'top-8 right-[-20px] md:top-12 md:right-[-30px]', 
+  delay: 0.5 
+},
+{ 
+  icon: '💧', 
+  label: t('smartIrrigation.title') || 'Smart Irrigation', 
+  pos: 'bottom-24 left-[-20px] md:bottom-36 md:left-[-30px]', 
+  delay: 1 
+},
+{ 
+  icon: '🤖', 
+  label: t('chatbot.title') || 'Khedut AI', 
+  pos: 'bottom-8 right-[-10px] md:bottom-16 md:right-[-20px]', 
+  delay: 1.5 
+},
               ].map((item, i) => (
                 <motion.div
                   key={i}

@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.108.2",
+    "@vitalets/google-translate-api": "^9.2.1",
     "axios": "^1.18.0",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.6",

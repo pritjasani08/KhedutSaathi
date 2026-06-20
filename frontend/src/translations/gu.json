@@ -8,7 +8,9 @@
     "agriMarketplace": "કૃષિ બજાર",
     "features": "સુવિધાઓ",
     "login": "લૉગિન",
-    "getStarted": "શરૂ કરો"
+    "getStarted": "શરૂ કરો",
+    "resources": "સમાચાર અને યોજનાઓ",
+    "about": "અમારા વિશે"
   },
   "hero": {
     "title": "દરેક ખેડૂત માટે AI સંચાલિત ખેતી સાથી",
@@ -122,7 +124,8 @@
     "status": "સ્થિતિ",
     "action": "ક્રિયા",
     "viewDetails": "વિગતો જુઓ",
-    "noDiagnosis": "શરૂ કરવા માટે તસવીર અપલોડ કરો"
+    "noDiagnosis": "શરૂ કરવા માટે તસવીર અપલોડ કરો",
+    "analyzeButton": "પાકનું વિશ્લેષણ કરો"
   },
   "marketHub": {
     "title": "માર્કેટ હબ",
@@ -141,6 +144,11 @@
     "cropName": "પાકનું નામ",
     "quantity": "જથ્થો (ક્વિન્ટલ)",
     "price": "અપેક્ષિત ભાવ (₹)",
+    "selectState": "રાજ્ય પસંદ કરો",
+    "selectStateFirst": "પ્રથમ રાજ્ય પસંદ કરો",
+    "selectDistrict": "જિલ્લો પસંદ કરો",
+    "selectDistrictFirst": "પ્રથમ જિલ્લો પસંદ કરો",
+    "selectMandi": "મંડી પસંદ કરો",
     "description": "વિગત",
     "uploadImages": "તસવીરો અપલોડ કરો",
     "location": "સ્થાન",

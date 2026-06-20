@@ -51,3 +51,55 @@ exports.analyzeCrop = (req, res) => {
     }
   });
 };
+
+exports.getHistory = async (req, res) => {
+  try {
+    const supabase = require('../config/supabaseClient');
+    // req.user.id is available from auth middleware
+    const { data, error } = await supabase
+      .from('crop_diagnosis_history')
+      .select('*')
+      .eq('user_id', req.user.id)
+      .order('created_at', { ascending: false });
+
+    if (error) throw error;
+    
+    // Format the date for the frontend
+    const formattedData = data.map(item => ({
+      ...item,
+      date: new Date(item.created_at).toISOString().split('T')[0]
+    }));
+    
+    return res.status(200).json({ success: true, data: formattedData });
+  } catch (error) {
+    console.error("Error fetching diagnosis history:", error);
+    return res.status(500).json({ message: "Failed to fetch history" });
+  }
+};
+
+exports.saveHistory = async (req, res) => {
+  try {
+    const supabase = require('../config/supabaseClient');
+    const { crop, disease, status, confidence, image_url } = req.body;
+    
+    const { data, error } = await supabase
+      .from('crop_diagnosis_history')
+      .insert([
+        {
+          user_id: req.user.id,
+          crop: crop || 'Unknown',
+          disease: disease,
+          status: status || 'Active',
+          confidence: confidence,
+          image_url: image_url || null
+        }
+      ])
+      .select();
+
+    if (error) throw error;
+    return res.status(201).json({ success: true, data: data[0] });
+  } catch (error) {
+    console.error("Error saving diagnosis history:", error);
+    return res.status(500).json({ message: "Failed to save history" });
+  }
+};
