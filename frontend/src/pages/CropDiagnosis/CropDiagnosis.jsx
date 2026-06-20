@@ -6,6 +6,7 @@ import {
   ShieldAlert, Pill, ShieldCheck, Clock, Eye, Loader2
 } from 'lucide-react';
 
+
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
   visible: (i = 0) => ({
@@ -102,25 +103,12 @@ export default function CropDiagnosis() {
   };
 
   return (
-    <div className="min-h-screen gradient-bg pt-24 pb-16">
+    <div className="min-h-screen bg-background pt-24 pb-16">
       <div className="container-custom px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
-          className="text-center mb-12"
-        >
-          <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-100/60 dark:bg-primary-900/40 text-primary text-sm font-semibold mb-4">
-            <Pill className="w-4 h-4" /> AI Disease Detection
-          </motion.div>
-          <motion.h1 variants={fadeUp} custom={1} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-heading mb-4">
-            {t('cropDiagnosis.title')}
-          </motion.h1>
-          <motion.p variants={fadeUp} custom={2} className="text-slate-500 dark:text-slate-400 text-lg max-w-2xl mx-auto">
-            {t('cropDiagnosis.subtitle')}
-          </motion.p>
-        </motion.div>
+        <div className="mb-8">
+          <h1 className="text-2xl md:text-3xl font-bold text-heading">{t('cropDiagnosis.title')}</h1>
+          <p className="text-sm text-slate-500 mt-1">{t('cropDiagnosis.subtitle')}</p>
+        </div>
 
         {/* Main Content */}
         <div className="grid lg:grid-cols-2 gap-8 mb-12">
