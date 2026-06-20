@@ -147,6 +147,33 @@ export default function SmartIrrigation() {
     );
   }
 
+  // Validate that the data object actually contains the required fields
+  // If the backend returned an error message inside a 200 OK, or if cache is malformed, this prevents a crash.
+  if (!data || !data.location || !data.weather || !data.recommendation || !data.forecast) {
+    return (
+      <div className="min-h-screen gradient-bg pt-24 pb-16 flex items-center justify-center">
+        <div className="glass-card p-8 max-w-md w-full text-center border dark:border-slate-700">
+          <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 text-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+            <AlertTriangle className="w-8 h-8" />
+          </div>
+          <h2 className="text-xl font-bold text-slate-800 dark:text-slate-200 mb-2">Invalid Data Received</h2>
+          <p className="text-slate-600 dark:text-slate-400 mb-6">
+            {data?.message || data?.error || "We couldn't retrieve the irrigation advice correctly. The server might be down or returning an error."}
+          </p>
+          <button 
+            onClick={() => {
+              localStorage.removeItem('lastIrrigationAdvice');
+              fetchAdvice(false);
+            }}
+            className="btn-primary w-full justify-center"
+          >
+            Clear Cache & Try Again
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   const { location, weather, recommendation, farmerAction, forecast, confidence } = data;
 
   const weatherCards = {

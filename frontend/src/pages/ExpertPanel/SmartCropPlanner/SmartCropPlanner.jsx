@@ -56,7 +56,7 @@ export default function SmartCropPlanner() {
     setError(null);
     
     try {
-      const response = await axios.post('http://localhost:8000/predict', {
+      const response = await axios.post('http://localhost:8003/predict', {
         state: form.state,
         district: form.district,
         soil_type: form.soil_type,
