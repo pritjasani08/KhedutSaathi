@@ -38,8 +38,10 @@ export default function Login() {
       localStorage.setItem('token', data.token);
       
       // Redirect based on user type
-      if (data.user.user_type && data.user.user_type.toLowerCase() === 'buyer') {
-        navigate('/crop-market');
+      if (data.user.user_type === 'seller') {
+        navigate('/seller-dashboard/products');
+      } else if (data.user.user_type === 'buyer') {
+        navigate('/agri-marketplace');
       } else {
         navigate('/');
       }

@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider } from './context/AuthContext';
@@ -12,6 +12,7 @@ import MarketHub from './pages/MarketHub/MarketHub';
 import ExpertPanel from './pages/ExpertPanel/ExpertPanel';
 import SmartIrrigation from './pages/SmartIrrigation/SmartIrrigation';
 import AgriMarketplace from './pages/AgriMarketplace/AgriMarketplace';
+import SellerDashboard from './pages/SellerDashboard/SellerDashboard';
 import CropMarket from './pages/CropMarket/CropMarket';
 import Features from './pages/Features/Features';
 import Resources from './pages/Resources/Resources';
@@ -55,6 +56,9 @@ function AnimatedRoutes() {
         
         {/* Market Intelligence & Marketplace Feed (accessible by both, but UI will restrict features) */}
         <Route path="/market-prices" element={<ProtectedRoute><PageWrapper><MarketHub /></PageWrapper></ProtectedRoute>} />
+        <Route path="/agri-marketplace" element={<PageWrapper><AgriMarketplace /></PageWrapper>} />
+        <Route path="/seller-dashboard" element={<Navigate to="/seller-dashboard/products" replace />} />
+        <Route path="/seller-dashboard/:tab" element={<PageWrapper><SellerDashboard /></PageWrapper>} />
         <Route path="/agri-marketplace" element={<ProtectedRoute><PageWrapper><AgriMarketplace /></PageWrapper></ProtectedRoute>} />
         <Route path="/crop-market" element={<ProtectedRoute><PageWrapper><CropMarket /></PageWrapper></ProtectedRoute>} />
         
@@ -86,6 +90,21 @@ function ScrollToTop() {
   return null;
 }
 
+function AppContent() {
+  const location = useLocation();
+
+  return (
+    <div className="min-h-screen flex flex-col bg-background transition-colors duration-300">
+      <Navbar />
+      <main className="flex-1">
+        <AnimatedRoutes />
+      </main>
+      <Footer />
+      <ChatbotWidget />
+    </div>
+  );
+}
+
 export default function App() {
   return (
     <ThemeProvider>
@@ -93,14 +112,7 @@ export default function App() {
         <ChatProvider>
           <Router>
             <ScrollToTop />
-            <div className="min-h-screen flex flex-col bg-background transition-colors duration-300">
-              <Navbar />
-              <main className="flex-1">
-                <AnimatedRoutes />
-              </main>
-              <Footer />
-              <ChatbotWidget />
-            </div>
+            <AppContent />
           </Router>
         </ChatProvider>
       </AuthProvider>

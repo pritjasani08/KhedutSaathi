@@ -63,6 +63,12 @@ export default function Navbar() {
     { path: '/deals', label: 'My Deals' }
   ];
 
+  const sellerLinks = [
+    { path: '/seller-dashboard/products', label: 'My Products' },
+    { path: '/seller-dashboard/add', label: 'Add Product' },
+    { path: '/seller-dashboard/orders', label: 'Incoming Orders' }
+  ];
+
   const publicLinks = [
     { path: '/', label: t('nav.home') },
     { path: '/market-prices', label: 'Market Intelligence' },
@@ -74,7 +80,9 @@ export default function Navbar() {
   ];
 
   let navLinks = publicLinks;
-  if (user) {
+  if (location.pathname.includes('/seller-dashboard')) {
+    navLinks = sellerLinks;
+  } else if (user) {
     if (user.user_type === 'buyer') {
       navLinks = buyerLinks;
     } else if (user.user_type === 'farmer') {

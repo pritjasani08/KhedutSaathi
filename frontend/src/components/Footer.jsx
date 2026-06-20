@@ -11,13 +11,21 @@ export default function Footer() {
     return null;
   }
 
-  const quickLinks = [
+  let quickLinks = [
     { path: '/', label: t('nav.home') },
     { path: '/crop-health', label: 'Crop Health' },
     { path: '/market-prices', label: 'Market Prices' },
     { path: '/expert-help', label: 'Expert Help' },
     { path: '/resources', label: 'News & Schemes' },
   ];
+
+  if (location.pathname.includes('/seller-dashboard')) {
+    quickLinks = [
+      { path: '/seller-dashboard/products', label: 'My Products' },
+      { path: '/seller-dashboard/add', label: 'Add Product' },
+      { path: '/seller-dashboard/orders', label: 'Incoming Orders' }
+    ];
+  }
 
   const resources = [
     { label: t('footer.documentation'), href: '#' },

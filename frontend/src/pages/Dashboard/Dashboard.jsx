@@ -22,10 +22,36 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [acceptLoading, setAcceptLoading] = useState(null);
+  const [farmerOrders, setFarmerOrders] = useState([]);
 
   useEffect(() => {
     fetchDashboardData();
+    if (user?.user_type === 'farmer') {
+      fetchFarmerOrders();
+    }
   }, [user]);
+
+  const fetchFarmerOrders = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('seller_orders')
+        .select(`
+          *,
+          seller_products (
+            name,
+            image_url,
+            image_urls
+          )
+        `)
+        .eq('farmer_id', user.id)
+        .order('created_at', { ascending: false });
+      if (!error && data) {
+        setFarmerOrders(data);
+      }
+    } catch (err) {
+      console.error("Error fetching orders", err);
+    }
+  };
 
   const fetchDashboardData = async () => {
     setLoading(true);
@@ -568,6 +594,51 @@ export default function Dashboard() {
         </div>
 
         
+
+        {/* FARMER SPECIFIC: My Marketplace Orders */}
+        {user.user_type === 'farmer' && (
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="mt-10">
+            <h2 className="font-display text-xl font-bold text-heading mb-4">My Marketplace Orders</h2>
+            {farmerOrders.length === 0 ? (
+              <div className="glass-card p-8 text-center text-slate-500">You haven't placed any orders yet.</div>
+            ) : (
+              <div className="space-y-4">
+                {farmerOrders.map(order => (
+                  <div key={order.id} className="glass-card p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-l-4 border-l-primary">
+                    <div className="flex items-center gap-4">
+                      <img 
+                        src={order.seller_products?.image_urls?.[0] || order.seller_products?.image_url || 'https://images.unsplash.com/photo-1595841696677-6489ff3f8cd1?w=100'} 
+                        alt={order.seller_products?.name} 
+                        className="w-16 h-16 rounded-xl object-cover border border-subtle shrink-0"
+                      />
+                      <div>
+                        <div className="flex items-center gap-3 mb-1">
+                          <h3 className="font-bold text-lg text-heading line-clamp-1">{order.seller_products?.name || 'Unknown Product'}</h3>
+                          <span className={`badge shrink-0 ${order.status === 'Completed' ? 'badge-success' : 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400'}`}>
+                            {order.status || 'Pending'}
+                          </span>
+                        </div>
+                        <p className="text-sm text-slate-500">Ordered: {new Date(order.created_at).toLocaleDateString()}</p>
+                      </div>
+                    </div>
+                    <div className="text-left sm:text-right bg-primary/5 px-4 py-2 rounded-xl flex items-center gap-6">
+                      <div>
+                        <p className="text-xs text-slate-500 mb-1">Qty</p>
+                        <p className="font-bold text-lg text-heading text-center">{order.quantity}</p>
+                      </div>
+                      <div>
+                        <p className="text-xs text-slate-500 mb-1">Total</p>
+                        <p className="font-bold text-xl text-primary flex items-center">
+                          <IndianRupee className="w-4 h-4 mr-0.5" />{order.total_amount}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </motion.div>
+        )}
 
         {/* BUYER SPECIFIC: My Bids */}
         {user.user_type === 'buyer' && (
