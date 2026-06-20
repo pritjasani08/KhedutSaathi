@@ -28,9 +28,7 @@ export default function ExpertPanel() {
           variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
           className="text-center mb-10"
         >
-          <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-100/60 text-violet-600 text-sm font-semibold mb-4">
-            <Brain className="w-4 h-4" /> AI Analytics Dashboard
-          </motion.div>
+
           <motion.h1 variants={fadeUp} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-heading mb-4">
             {t('expertPanel.title')}
           </motion.h1>
