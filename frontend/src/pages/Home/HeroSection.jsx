@@ -36,12 +36,7 @@ export default function HeroSection() {
             variants={stagger}
             className="text-center lg:text-left"
           >
-            <motion.div variants={fadeUp} custom={0}>
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-100/60 dark:bg-primary-900/40 text-primary dark:text-primary-light text-sm font-semibold mb-6">
-                <Sprout className="w-4 h-4" />
-                AI-Powered Agriculture Platform
-              </span>
-            </motion.div>
+
 
             <motion.h1
               variants={fadeUp}

@@ -111,9 +111,7 @@ export default function Features() {
           variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
           className="text-center mb-16"
         >
-          <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-100/60 dark:bg-primary-900/40 text-primary dark:text-primary-light text-sm font-semibold mb-4">
-            <Sparkles className="w-4 h-4" /> All Features
-          </motion.div>
+
           <motion.h1 variants={fadeUp} custom={1} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-heading mb-4">
             Platform Capabilities
           </motion.h1>

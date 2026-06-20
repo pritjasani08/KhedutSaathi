@@ -300,9 +300,7 @@ export default function CropDiagnosis() {
           variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
           className="text-center mb-12"
         >
-          <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-100/60 dark:bg-primary-900/40 text-primary text-sm font-semibold mb-4">
-            <Pill className="w-4 h-4" /> AI Disease Detection
-          </motion.div>
+
           <motion.h1 variants={fadeUp} custom={1} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-heading mb-4">
             {t('cropDiagnosis.title')}
           </motion.h1>

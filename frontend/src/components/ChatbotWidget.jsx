@@ -3,17 +3,20 @@ import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   MessageCircle, X, Send, Mic, MicOff,
-  Stethoscope, TrendingUp, Sprout, Droplets, Bot, User
+  Stethoscope, TrendingUp, Sprout, Droplets, Bot, User, ChevronDown
 } from 'lucide-react';
 import { useChat } from '../context/ChatContext';
 
 export default function ChatbotWidget() {
   const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
-  const { messages, isTyping, sendMessage } = useChat();
+  const { messages, isTyping, sendMessage, chatLanguage, setChatLanguage } = useChat();
   const [input, setInput] = useState('');
   const [isRecording, setIsRecording] = useState(false);
   const messagesEndRef = useRef(null);
+
+  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
+  const langDropdownRef = useRef(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -23,11 +26,27 @@ export default function ChatbotWidget() {
     scrollToBottom();
   }, [messages]);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (langDropdownRef.current && !langDropdownRef.current.contains(event.target)) {
+        setLangDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const languages = [
+    { code: 'en', label: 'English' },
+    { code: 'hi', label: 'हिन्दी' },
+    { code: 'gu', label: 'ગુજરાતી' },
+  ];
+
   const quickActions = [
-    { key: 'diagnose', icon: Stethoscope, label: t('chatbot.quickActions.diagnose') },
-    { key: 'prices', icon: TrendingUp, label: t('chatbot.quickActions.prices') },
-    { key: 'crops', icon: Sprout, label: t('chatbot.quickActions.crops') },
-    { key: 'irrigation', icon: Droplets, label: t('chatbot.quickActions.irrigation') },
+    { key: 'diagnose', icon: Stethoscope, label: t('chatbot.quickActions.diagnose', { lng: chatLanguage }) },
+    { key: 'prices', icon: TrendingUp, label: t('chatbot.quickActions.prices', { lng: chatLanguage }) },
+    { key: 'crops', icon: Sprout, label: t('chatbot.quickActions.crops', { lng: chatLanguage }) },
+    { key: 'irrigation', icon: Droplets, label: t('chatbot.quickActions.irrigation', { lng: chatLanguage }) },
   ];
 
   const handleSend = () => {
@@ -95,7 +114,7 @@ export default function ChatbotWidget() {
                 </div>
                 <div>
                   <h3 className="font-display font-semibold text-white text-sm">
-                    {t('chatbot.title')}
+                    {t('chatbot.title', { lng: chatLanguage })}
                   </h3>
                   <span className="text-white/70 text-xs flex items-center gap-1">
                     <span className="w-2 h-2 bg-green-300 rounded-full animate-pulse" />
@@ -104,18 +123,48 @@ export default function ChatbotWidget() {
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <select
-                  value={i18n.language}
-                  onChange={(e) => i18n.changeLanguage(e.target.value)}
-                  className="bg-surface/20 text-white text-xs rounded-lg px-2 py-1.5 border-0 outline-none cursor-pointer"
-                >
-                  <option value="en" className="text-body">English</option>
-                  <option value="hi" className="text-body">हिंदी</option>
-                  <option value="gu" className="text-body">ગુજરાતી</option>
-                </select>
+                <div className="relative" ref={langDropdownRef}>
+                  <button
+                    onClick={() => setLangDropdownOpen(!langDropdownOpen)}
+                    className="flex items-center gap-1.5 bg-white/20 hover:bg-white/30 text-white text-xs font-medium rounded-lg px-2.5 py-1.5 outline-none cursor-pointer transition-colors duration-200"
+                  >
+                    {languages.find(l => l.code === chatLanguage)?.label || 'English'}
+                    <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${langDropdownOpen ? 'rotate-180' : ''}`} />
+                  </button>
+
+                  <AnimatePresence>
+                    {langDropdownOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -5, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -5, scale: 0.95 }}
+                        transition={{ duration: 0.2, ease: "easeOut" }}
+                        className="absolute right-0 top-full mt-2 w-max min-w-[120px] bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-100 dark:border-slate-700 overflow-hidden z-[100]"
+                      >
+                        {languages.map((lang) => (
+                          <button
+                            key={lang.code}
+                            onClick={() => {
+                              setChatLanguage(lang.code);
+                              setLangDropdownOpen(false);
+                            }}
+                            className={`w-full text-left px-4 py-2.5 text-sm font-medium transition-colors duration-200 ${
+                              chatLanguage === lang.code
+                                ? 'bg-primary-50 dark:bg-primary-900/30 text-primary dark:text-primary-light'
+                                : 'text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700/50'
+                            }`}
+                          >
+                            {lang.label}
+                          </button>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="w-8 h-8 rounded-lg bg-surface/20 hover:bg-surface/30 flex items-center justify-center transition-colors duration-300"
+                  className="w-8 h-8 rounded-lg bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors duration-300"
                 >
                   <X className="w-4 h-4 text-white" />
                 </button>
@@ -197,7 +246,7 @@ export default function ChatbotWidget() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-                  placeholder={t('chatbot.placeholder')}
+                  placeholder={t('chatbot.placeholder', { lng: chatLanguage })}
                   className="flex-1 px-4 py-2.5 bg-slate-100 rounded-xl text-sm text-slate-700 placeholder:text-slate-400 outline-none focus:ring-2 focus:ring-primary/30 transition-all duration-300"
                 />
                 <button

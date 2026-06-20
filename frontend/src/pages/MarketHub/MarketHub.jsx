@@ -34,9 +34,7 @@ export default function MarketHub() {
           variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
           className="text-center mb-10"
         >
-          <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100/60 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 text-sm font-semibold mb-4">
-            <TrendingUp className="w-4 h-4" /> Market Intelligence
-          </motion.div>
+
           <motion.h1 variants={fadeUp} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-heading mb-4">
             {t('marketHub.title')}
           </motion.h1>
