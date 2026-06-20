@@ -45,7 +45,7 @@ const createListing = async (req, res) => {
           
         if (uploadError) {
           console.error('Image upload error:', uploadError);
-          continue; // skip failed uploads
+          throw new Error('Failed to upload image to Supabase Storage: ' + uploadError.message);
         }
 
         const { data: publicUrlData } = supabase.storage

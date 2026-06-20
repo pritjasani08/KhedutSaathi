@@ -38,7 +38,7 @@ export default function Login() {
       localStorage.setItem('token', data.token);
       
       // Redirect based on user type
-      if (data.user.user_type === 'buyer') {
+      if (data.user.user_type && data.user.user_type.toLowerCase() === 'buyer') {
         navigate('/crop-market');
       } else {
         navigate('/');
