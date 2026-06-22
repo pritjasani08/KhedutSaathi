@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -21,23 +21,69 @@ const stagger = {
 
 export default function HeroSection() {
   const { t } = useTranslation();
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Accessibility: check for reduced motion
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(motionQuery.matches);
+    const handleMotionChange = (e) => setPrefersReducedMotion(e.matches);
+    motionQuery.addEventListener('change', handleMotionChange);
+
+    // Performance: detect mobile for fallback poster
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => {
+      motionQuery.removeEventListener('change', handleMotionChange);
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center gradient-bg overflow-hidden pt-20">
-      {/* Background decorations */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-32 -right-32 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-3xl" />
+    <section className="relative min-h-screen flex items-center bg-transparent overflow-hidden pt-20">
+      {/* Video Layer (full screen) */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        {(!prefersReducedMotion && !isMobile) ? (
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            onEnded={(e) => {
+              e.target.currentTime = 0;
+              e.target.play();
+            }}
+            poster="/videos/hero-poster.jpg"
+            className="absolute inset-0 w-full h-full object-cover opacity-[0.45] dark:opacity-[0.35]"
+          >
+            <source src="/videos/hero-optimized.mp4" type="video/mp4" />
+          </video>
+        ) : (
+          <img
+            src="/videos/hero-poster.jpg"
+            alt="Atmospheric Farm Background"
+            className="absolute inset-0 w-full h-full object-cover opacity-[0.45] dark:opacity-[0.35]"
+          />
+        )}
       </div>
 
-      <div className="container-custom relative px-4 sm:px-6 lg:px-8 py-16">
+      {/* Subtle Overlay Layer */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="absolute inset-0 bg-[rgba(255,255,255,0.15)] dark:bg-[rgba(0,0,0,0.18)]" />
+      </div>
+
+      <div className="container-custom relative px-4 sm:px-6 lg:px-8 py-16 z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Content */}
           <motion.div
             initial="hidden"
             animate="visible"
             variants={stagger}
-            className="text-center lg:text-left"
+            className="text-center lg:text-left relative z-20"
           >
             <motion.h1
               variants={fadeUp}
@@ -52,7 +98,7 @@ export default function HeroSection() {
               custom={2}
               className="text-slate-600 dark:text-slate-300 text-lg lg:text-xl leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0"
             >
-              Join thousands of successful farmers using KhedutSaathi to predict yields, diagnose crop diseases, and get the best market prices.
+              Plan crops, detect diseases, predict yields, track mandi prices, and make smarter farming decisions with AI-powered tools.
             </motion.p>
 
             <motion.div variants={fadeUp} custom={3} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -85,12 +131,11 @@ export default function HeroSection() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
-            className="relative lg:h-full flex items-center justify-center"
+            className="relative lg:h-full flex items-center justify-center w-full"
           >
-            {/* Decorative blob behind the demo */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-secondary/20 rounded-[3rem] rotate-3 scale-105 blur-lg hidden lg:block" />
-            
-            <AIEcosystemVisualization />
+            <div className="relative z-10 w-full">
+              <AIEcosystemVisualization />
+            </div>
           </motion.div>
         </div>
       </div>

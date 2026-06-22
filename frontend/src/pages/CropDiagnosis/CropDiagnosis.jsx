@@ -83,7 +83,10 @@ export default function CropDiagnosis() {
 
   const handleCancelPreview = () => {
     setUploadedImage(null);
-    setImagePreviewUrl(null);
+    if (imagePreviewUrl) {
+      URL.revokeObjectURL(imagePreviewUrl);
+      setImagePreviewUrl(null);
+    }
     setCurrentStep(0); // Back to Upload
   };
 
@@ -94,7 +97,10 @@ export default function CropDiagnosis() {
 
   const handleReset = () => {
     setUploadedImage(null);
-    setImagePreviewUrl(null);
+    if (imagePreviewUrl) {
+      URL.revokeObjectURL(imagePreviewUrl);
+      setImagePreviewUrl(null);
+    }
     predictMutation.reset();
     setCurrentStep(0);
   };
@@ -163,9 +169,8 @@ export default function CropDiagnosis() {
                 />
               )}
               {currentStep === 2 && (
-                <motion.div key="analysis" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}>
+                <motion.div key="analysis" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="w-full">
                   <AnalysisStep imagePreviewUrl={imagePreviewUrl} />
-                  
                   {predictMutation.isError && (
                     <div className="max-w-md mx-auto mt-6 bg-red-50 text-red-600 p-4 rounded-xl flex flex-col items-center gap-3 border border-red-200 text-center">
                       <div className="flex items-center gap-2">
