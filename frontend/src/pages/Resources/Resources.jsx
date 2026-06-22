@@ -132,13 +132,13 @@ export default function Resources() {
           </div>
         </PageHero>
 
-        <div className="mt-12 notranslate">
+        <div className="mt-12">
         {/* News Filters */}
         {activeTab === 'news' && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex flex-wrap justify-center gap-4 mb-10"
+            className="flex flex-wrap justify-center gap-4 mb-10 notranslate"
           >
             <div className="flex items-center gap-2 bg-surface px-4 py-2 rounded-xl shadow-card">
               <Globe className="w-4 h-4 text-primary" />
@@ -189,6 +189,7 @@ export default function Resources() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
+                className="notranslate"
               >
                 {newsLoading ? (
                   <div className="flex flex-col items-center justify-center py-20">
