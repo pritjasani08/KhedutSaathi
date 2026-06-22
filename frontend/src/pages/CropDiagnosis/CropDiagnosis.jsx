@@ -16,25 +16,7 @@ const fadeUp = {
   }),
 };
 
-// Mock diagnosis result
-const mockResult = {
-  disease: 'Late Blight (Phytophthora infestans)',
-  confidence: 94.7,
-  severity: 'High',
-  treatment: [
-    'Apply Mancozeb 75% WP @ 2.5g/litre as foliar spray',
-    'Remove and destroy infected plant parts',
-    'Apply copper-based fungicide as preventive measure',
-    'Repeat spraying every 7-10 days during wet weather',
-  ],
-  prevention: [
-    'Use certified disease-free seed tubers',
-    'Maintain proper plant spacing for air circulation',
-    'Avoid overhead irrigation',
-    'Practice crop rotation with non-solanaceous crops',
-    'Remove volunteer plants and weed hosts',
-  ],
-};
+
 
 // Removed mockHistory
 
@@ -191,8 +173,8 @@ export default function CropDiagnosis() {
       }
     } catch (err) {
       console.error(err);
-      // Fallback to mock if backend is down
-      setResult(mockResult);
+      alert('Failed to connect to the Crop Diagnosis AI Server. Please try again later.');
+      setResult(null);
     } finally {
       setIsAnalyzing(false);
     }
@@ -307,15 +289,39 @@ export default function CropDiagnosis() {
               )
             ) : (
               <div className="space-y-4">
-                <div className="relative rounded-2xl overflow-hidden group">
-                  <img src={preview} alt="Crop" className="w-full h-72 object-cover" />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-                  <button
-                    onClick={clearImage}
-                    className="absolute top-3 right-3 w-10 h-10 bg-surface/90 rounded-xl flex items-center justify-center hover:bg-red-50 transition-colors duration-300"
-                  >
-                    <X className="w-5 h-5 text-slate-700" />
-                  </button>
+                <div className="relative rounded-2xl overflow-hidden group bg-slate-900">
+                  <img 
+                    src={preview} 
+                    alt="Crop" 
+                    className={`w-full h-72 object-cover transition-all duration-500 ${isAnalyzing ? 'opacity-40 blur-sm scale-105' : 'opacity-100'}`} 
+                  />
+                  {!isAnalyzing && (
+                    <>
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+                      <button
+                        onClick={clearImage}
+                        className="absolute top-3 right-3 w-10 h-10 bg-surface/90 rounded-xl flex items-center justify-center hover:bg-red-50 transition-colors duration-300 z-10"
+                      >
+                        <X className="w-5 h-5 text-slate-700" />
+                      </button>
+                    </>
+                  )}
+                  
+                  {isAnalyzing && (
+                    <div className="absolute inset-0 z-20 overflow-hidden pointer-events-none flex flex-col items-center justify-center">
+                      <motion.div
+                        initial={{ top: "-10%" }}
+                        animate={{ top: "110%" }}
+                        transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
+                        className="absolute left-0 right-0 h-1 bg-green-500 shadow-[0_0_20px_rgba(34,197,94,1),0_0_40px_rgba(34,197,94,0.6)]"
+                      >
+                        <div className="absolute -top-10 left-0 right-0 h-10 bg-gradient-to-b from-transparent to-green-500/30" />
+                      </motion.div>
+                      <p className="text-green-400 font-medium text-lg animate-pulse mt-32 bg-slate-900/60 px-4 py-1.5 rounded-full backdrop-blur-md border border-green-500/30">
+                        Analyzing tissue patterns...
+                      </p>
+                    </div>
+                  )}
                 </div>
                 <p className="text-sm text-slate-500 truncate">📎 {image.name} ({(image.size / 1024 / 1024).toFixed(2)} MB)</p>
                 <button
