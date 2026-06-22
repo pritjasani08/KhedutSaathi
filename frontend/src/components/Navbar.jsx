@@ -124,8 +124,8 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16 lg:h-20 px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
           {/* LEFT: Logo */}
           <div className="flex-1 flex justify-start">
-            <Link to="/" className="inline-flex items-center gap-1.5 group shrink-0">
-              <img src="/logo.png" alt="KhedutSaathi Logo" className="w-[48px] h-[48px] lg:w-[56px] lg:h-[56px] object-contain group-hover:scale-105 transition-transform duration-300 mt-1" />
+            <Link to="/" className="inline-flex items-center gap-2 group shrink-0">
+              <img src="/logo.png" alt="KhedutSaathi Logo" className="w-8 h-8 sm:w-9 sm:h-9 lg:w-[38px] lg:h-[38px] object-contain group-hover:scale-105 transition-transform duration-300" />
               <span className="font-display font-bold text-2xl lg:text-3xl gradient-text leading-none tracking-tight">
                 KhedutSaathi
               </span>
