@@ -1,9 +1,10 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Clock, Eye, AlertCircle } from 'lucide-react';
+import { Clock, Eye, AlertCircle, Upload, Image, Camera, X, CheckCircle2, Pill, Loader2, AlertTriangle } from 'lucide-react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-
+import { mlApi } from '../../services/mlApi';
+import { cropDiagnosisAPI } from '../../services/api';
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
   visible: (i = 0) => ({
@@ -26,6 +27,13 @@ export default function CropDiagnosis() {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
 
+  // Application state
+  const [image, setImage] = useState(null);
+  const [preview, setPreview] = useState(null);
+  const [result, setResult] = useState(null);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [dragActive, setDragActive] = useState(false);
+  const [currentStep, setCurrentStep] = useState(0);
   // Camera state
   const [isCameraOpen, setIsCameraOpen] = useState(false);
   const videoRef = useRef(null);
@@ -80,27 +88,14 @@ export default function CropDiagnosis() {
     };
   }, []);
 
-  const fetchHistory = async () => {
-    try {
-      const res = await cropDiagnosisAPI.getHistory();
-      if (res && res.success && res.data) {
-        setHistory(res.data);
-      } else if (Array.isArray(res)) {
-        setHistory(res);
-      }
-    } catch (err) {
-      console.error("Failed to fetch diagnosis history", err);
-      // Set empty array on failure instead of mock data
-      setHistory([]);
-    }
-  };
+  // History Query
 
   // Clean up object URL to prevent memory leaks
   useEffect(() => {
     return () => {
-      if (imagePreviewUrl) URL.revokeObjectURL(imagePreviewUrl);
+      if (preview) URL.revokeObjectURL(preview);
     };
-  }, [imagePreviewUrl]);
+  }, [preview]);
 
   // History Query
   const { data: history = [] } = useQuery({
@@ -147,54 +142,44 @@ export default function CropDiagnosis() {
 
   // Handlers
   const handleImageSelected = (file) => {
-    setUploadedImage(file);
-    setImagePreviewUrl(URL.createObjectURL(file));
+    setImage(file);
+    setPreview(URL.createObjectURL(file));
     setCurrentStep(1); // Move to Preview Step
   };
 
-  const handleCancelPreview = () => {
-    setUploadedImage(null);
-    setImagePreviewUrl(null);
-    setCurrentStep(0); // Back to Upload
-  };
-
-        setResult({
-          disease: data.details.disease || 'Unknown Disease',
-          confidence: parseFloat(data.confidence) || 0,
-          severity: data.details.status || 'High',
-          treatment: Array.isArray(treatments) && treatments.length > 0 ? treatments : ['No specific treatment found'],
-          prevention: Array.isArray(data.details.prevention) ? data.details.prevention : ['No prevention data found']
-        });
-        
-        // Save to database
-        try {
-          await cropDiagnosisAPI.saveHistory({
-            crop: data.details.crop || 'Unknown',
-            disease: data.details.disease || 'Unknown Disease',
-            status: data.details.status || 'Active',
-            confidence: parseFloat(data.confidence) || 0,
-            image_url: null
-          });
-          // Refresh history table
-          fetchHistory();
-        } catch (saveErr) {
-          console.error("Could not save history to database:", saveErr);
-        }
-      } else {
-        throw new Error(data.detail || 'Failed to analyze');
-      }
-    } catch (err) {
-      console.error(err);
-      alert('Failed to connect to the Crop Diagnosis AI Server. Please try again later.');
-      setResult(null);
-    } finally {
-      setIsAnalyzing(false);
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setDragActive(false);
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      handleImageSelected(e.dataTransfer.files[0]);
     }
   };
 
+  const handleFileSelect = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      handleImageSelected(e.target.files[0]);
+    }
+  };
+
+  const handleCancelPreview = () => {
+    setImage(null);
+    setPreview(null);
+    setCurrentStep(0); // Back to Upload
+  };
+
+  const handleAnalyze = () => {
+    if (!image) return;
+    setIsAnalyzing(true);
+    setTimeout(() => {
+      predictMutation.mutate(image, {
+        onSettled: () => setIsAnalyzing(false)
+      });
+    }, 1500);
+  };
+
   const handleReset = () => {
-    setUploadedImage(null);
-    setImagePreviewUrl(null);
+    setImage(null);
+    setPreview(null);
     predictMutation.reset();
     setCurrentStep(0);
   };
@@ -328,7 +313,7 @@ export default function CropDiagnosis() {
                     <>
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
                       <button
-                        onClick={clearImage}
+                        onClick={handleCancelPreview}
                         className="absolute top-3 right-3 w-10 h-10 bg-surface/90 rounded-xl flex items-center justify-center hover:bg-red-50 transition-colors duration-300 z-10"
                       >
                         <X className="w-5 h-5 text-slate-700" />
@@ -425,26 +410,32 @@ export default function CropDiagnosis() {
                         className="h-full bg-gradient-to-r from-primary to-primary-light rounded-full"
                       />
                     </div>
-                  )}
-                </motion.div>
-              )}
-              {currentStep === 3 && (
-                <DiagnosisReport 
-                  key="report"
-                  result={formatResult(predictMutation.data)}
-                  onContinue={() => setCurrentStep(4)}
-                />
-              )}
-              {currentStep === 4 && (
-                <TreatmentPlan 
-                  key="treatment"
-                  result={formatResult(predictMutation.data)}
-                  onReset={handleReset}
-                />
-              )}
-            </AnimatePresence>
+                  </div>
+                  <div className="bg-surface-muted rounded-xl p-4 text-center">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mb-1">Severity</p>
+                    <p className="font-display text-2xl font-bold text-slate-700 dark:text-slate-200">{result.severity || 'High'}</p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </motion.div>
+
+          {currentStep === 3 && (
+            <DiagnosisReport 
+              key="report"
+              result={formatResult(predictMutation.data)}
+              onContinue={() => setCurrentStep(4)}
+            />
+          )}
+          {currentStep === 4 && (
+            <TreatmentPlan 
+              key="treatment"
+              result={formatResult(predictMutation.data)}
+              onReset={handleReset}
+            />
+          )}
           </div>
-        </div>
+
 
         {/* History Table */}
         <motion.div
