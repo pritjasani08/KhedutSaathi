@@ -36,8 +36,28 @@ export default function Deals() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Loader2 className="w-10 h-10 animate-spin text-primary" />
+      <div className="min-h-screen gradient-bg pt-24 pb-16">
+        <div className="container-custom px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+          <div className="mb-8">
+            <div className="w-64 h-10 bg-slate-200 dark:bg-slate-800 rounded-lg animate-pulse mb-2" />
+            <div className="w-96 h-5 bg-slate-200 dark:bg-slate-800 rounded-lg animate-pulse" />
+          </div>
+          <div className="space-y-6">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="glass-card p-6 border-l-4 border-l-slate-200 dark:border-l-slate-800 flex flex-col md:flex-row gap-6 animate-pulse">
+                 <div className="flex-1 space-y-4">
+                   <div className="w-32 h-6 bg-slate-200 dark:bg-slate-800 rounded-full" />
+                   <div className="w-64 h-8 bg-slate-200 dark:bg-slate-800 rounded-lg" />
+                   <div className="flex gap-4">
+                     <div className="w-24 h-4 bg-slate-200 dark:bg-slate-800 rounded" />
+                     <div className="w-32 h-4 bg-slate-200 dark:bg-slate-800 rounded" />
+                   </div>
+                 </div>
+                 <div className="md:w-80 bg-slate-100 dark:bg-slate-800/50 rounded-xl p-5 h-32" />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     );
   }

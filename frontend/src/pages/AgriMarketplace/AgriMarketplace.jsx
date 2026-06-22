@@ -29,6 +29,7 @@ export default function AgriMarketplace() {
   // Filtering State
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [maxPrice, setMaxPrice] = useState(5000);
 
   // UI State
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -61,10 +62,11 @@ export default function AgriMarketplace() {
       const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
                             (p.seller?.full_name || '').toLowerCase().includes(searchQuery.toLowerCase());
       const matchesCategory = selectedCategory === 'All' || p.category === selectedCategory;
+      const matchesPrice = p.price <= maxPrice;
       
-      return matchesSearch && matchesCategory;
+      return matchesSearch && matchesCategory && matchesPrice;
     });
-  }, [products, searchQuery, selectedCategory]);
+  }, [products, searchQuery, selectedCategory, maxPrice]);
 
   // Cart Handlers
   const handleAddToCart = (product) => {
@@ -112,7 +114,11 @@ export default function AgriMarketplace() {
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-20">
         
         {/* 1. Hero Section */}
-        <MarketplaceHeroSection onSearch={setSearchQuery} />
+        <MarketplaceHeroSection 
+          onSearch={setSearchQuery} 
+          maxPrice={maxPrice} 
+          onPriceChange={setMaxPrice} 
+        />
 
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 mb-16">
           {/* Left Filter Sidebar */}

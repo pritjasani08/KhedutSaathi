@@ -1,11 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Clock, Eye, AlertCircle } from 'lucide-react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-import { mlApi } from '../../services/mlApi';
-import { cropDiagnosisAPI } from '../../services/api';
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i = 0) => ({
+    opacity: 1, y: 0,
+    transition: { delay: i * 0.1, duration: 0.5 },
+  }),
+};
+
+
 
 // Stepper Components
 import DiagnosisStepper from './components/DiagnosisStepper';
@@ -19,10 +26,74 @@ export default function CropDiagnosis() {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
 
-  // Local State
-  const [currentStep, setCurrentStep] = useState(0);
-  const [uploadedImage, setUploadedImage] = useState(null);
-  const [imagePreviewUrl, setImagePreviewUrl] = useState(null);
+  // Camera state
+  const [isCameraOpen, setIsCameraOpen] = useState(false);
+  const videoRef = useRef(null);
+  const streamRef = useRef(null);
+
+  const startCamera = async () => {
+    setIsCameraOpen(true);
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+      streamRef.current = stream;
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
+      }
+    } catch (err) {
+      console.error("Error accessing camera:", err);
+      alert("Camera permission denied or not available. Please allow camera access.");
+      setIsCameraOpen(false);
+    }
+  };
+
+  const stopCamera = () => {
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach(track => track.stop());
+      streamRef.current = null;
+    }
+    setIsCameraOpen(false);
+  };
+
+  const capturePhoto = () => {
+    if (videoRef.current) {
+      const canvas = document.createElement('canvas');
+      canvas.width = videoRef.current.videoWidth || 640;
+      canvas.height = videoRef.current.videoHeight || 480;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
+      canvas.toBlob((blob) => {
+        if (blob) {
+          const file = new File([blob], "camera-capture.jpg", { type: "image/jpeg" });
+          setImage(file);
+          setPreview(URL.createObjectURL(file));
+          stopCamera();
+        }
+      }, 'image/jpeg');
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      if (streamRef.current) {
+        streamRef.current.getTracks().forEach(track => track.stop());
+      }
+    };
+  }, []);
+
+  const fetchHistory = async () => {
+    try {
+      const res = await cropDiagnosisAPI.getHistory();
+      if (res && res.success && res.data) {
+        setHistory(res.data);
+      } else if (Array.isArray(res)) {
+        setHistory(res);
+      }
+    } catch (err) {
+      console.error("Failed to fetch diagnosis history", err);
+      // Set empty array on failure instead of mock data
+      setHistory([]);
+    }
+  };
 
   // Clean up object URL to prevent memory leaks
   useEffect(() => {
@@ -87,9 +158,38 @@ export default function CropDiagnosis() {
     setCurrentStep(0); // Back to Upload
   };
 
-  const handleStartAnalysis = () => {
-    setCurrentStep(2); // Analysis Step
-    predictMutation.mutate(uploadedImage);
+        setResult({
+          disease: data.details.disease || 'Unknown Disease',
+          confidence: parseFloat(data.confidence) || 0,
+          severity: data.details.status || 'High',
+          treatment: Array.isArray(treatments) && treatments.length > 0 ? treatments : ['No specific treatment found'],
+          prevention: Array.isArray(data.details.prevention) ? data.details.prevention : ['No prevention data found']
+        });
+        
+        // Save to database
+        try {
+          await cropDiagnosisAPI.saveHistory({
+            crop: data.details.crop || 'Unknown',
+            disease: data.details.disease || 'Unknown Disease',
+            status: data.details.status || 'Active',
+            confidence: parseFloat(data.confidence) || 0,
+            image_url: null
+          });
+          // Refresh history table
+          fetchHistory();
+        } catch (saveErr) {
+          console.error("Could not save history to database:", saveErr);
+        }
+      } else {
+        throw new Error(data.detail || 'Failed to analyze');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Failed to connect to the Crop Diagnosis AI Server. Please try again later.');
+      setResult(null);
+    } finally {
+      setIsAnalyzing(false);
+    }
   };
 
   const handleReset = () => {
@@ -141,41 +241,189 @@ export default function CropDiagnosis() {
           </p>
         </div>
 
-        {/* Diagnostic Workflow */}
-        <div className="mb-16">
-          <DiagnosisStepper currentStep={currentStep} />
+        {/* Main Content */}
+        <div className="grid grid-cols-1 gap-8 mb-12 max-w-4xl mx-auto">
+          {/* TOP — Upload Panel */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="glass-card p-6 md:p-8"
+          >
+            <h2 className="font-display text-xl font-bold text-body mb-6 flex items-center gap-2">
+              <Upload className="w-5 h-5 text-primary" />
+              {t('cropDiagnosis.uploadTitle')}
+            </h2>
 
-          <div className="mt-8 relative min-h-[400px]">
-            <AnimatePresence mode="wait">
-              {currentStep === 0 && (
-                <UploadStep 
-                  key="upload" 
-                  onImageSelected={handleImageSelected} 
-                />
-              )}
-              {currentStep === 1 && (
-                <PreviewStep 
-                  key="preview"
-                  imageFile={uploadedImage}
-                  imagePreviewUrl={imagePreviewUrl}
-                  onCancel={handleCancelPreview}
-                  onConfirm={handleStartAnalysis}
-                />
-              )}
-              {currentStep === 2 && (
-                <motion.div key="analysis" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}>
-                  <AnalysisStep imagePreviewUrl={imagePreviewUrl} />
-                  
-                  {predictMutation.isError && (
-                    <div className="max-w-md mx-auto mt-6 bg-red-50 text-red-600 p-4 rounded-xl flex flex-col items-center gap-3 border border-red-200 text-center">
-                      <div className="flex items-center gap-2">
-                        <AlertCircle className="w-5 h-5 flex-shrink-0" />
-                        <p className="font-bold">Analysis Failed</p>
-                      </div>
-                      <p className="text-sm">{predictMutation.error?.customMessage || predictMutation.error?.message || 'Could not connect to AI server.'}</p>
-                      <button onClick={handleReset} className="mt-2 btn-secondary text-sm">
-                        Try Again
+            {!preview ? (
+              isCameraOpen ? (
+                <div className="border-2 border-primary rounded-2xl p-4 text-center bg-slate-900 overflow-hidden relative">
+                  <video 
+                    ref={videoRef} 
+                    autoPlay 
+                    playsInline 
+                    className="w-full h-72 object-cover rounded-xl bg-black"
+                  />
+                  <div className="flex justify-center gap-4 mt-4">
+                    <button 
+                      onClick={capturePhoto} 
+                      className="btn-primary flex items-center gap-2"
+                    >
+                      <Camera className="w-5 h-5" />
+                      Capture Photo
+                    </button>
+                    <button 
+                      onClick={stopCamera} 
+                      className="btn-secondary flex items-center gap-2 bg-red-500 text-white border-red-500 hover:bg-red-600"
+                    >
+                      <X className="w-5 h-5" />
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div
+                  onDragOver={(e) => { e.preventDefault(); setDragActive(true); }}
+                  onDragLeave={() => setDragActive(false)}
+                  onDrop={handleDrop}
+                  className={`border-2 border-dashed rounded-2xl p-12 text-center transition-all duration-300 cursor-pointer ${
+                    dragActive
+                      ? 'border-primary bg-primary-50 dark:bg-primary-900/20 scale-[1.02]'
+                      : 'border-subtle hover:border-primary/50 hover:bg-primary-50/30 dark:hover:bg-primary-900/10'
+                  }`}
+                >
+                  <div className="w-20 h-20 bg-primary-50 dark:bg-primary-900/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <Image className="w-10 h-10 text-primary" />
+                  </div>
+                  <p className="text-slate-700 font-semibold mb-2">{t('cropDiagnosis.dragDrop')}</p>
+                  <p className="text-slate-400 text-sm mb-6">{t('cropDiagnosis.orBrowse')}</p>
+  
+                  <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                    <label className="btn-primary text-sm cursor-pointer flex items-center gap-2 justify-center">
+                      <Upload className="w-4 h-4" />
+                      Browse Files
+                      <input type="file" accept="image/*" className="hidden" onChange={handleFileSelect} />
+                    </label>
+                    <button 
+                      onClick={startCamera}
+                      className="btn-secondary text-sm cursor-pointer flex items-center gap-2 justify-center"
+                    >
+                      <Camera className="w-4 h-4" />
+                      {t('cropDiagnosis.camera')}
+                    </button>
+                  </div>
+  
+                  <p className="text-slate-400 text-xs mt-4">{t('cropDiagnosis.supportedFormats')}</p>
+                </div>
+              )
+            ) : (
+              <div className="space-y-4">
+                <div className="relative rounded-2xl overflow-hidden group bg-slate-900">
+                  <img 
+                    src={preview} 
+                    alt="Crop" 
+                    className={`w-full h-72 object-cover transition-all duration-500 ${isAnalyzing ? 'opacity-40 blur-sm scale-105' : 'opacity-100'}`} 
+                  />
+                  {!isAnalyzing && (
+                    <>
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+                      <button
+                        onClick={clearImage}
+                        className="absolute top-3 right-3 w-10 h-10 bg-surface/90 rounded-xl flex items-center justify-center hover:bg-red-50 transition-colors duration-300 z-10"
+                      >
+                        <X className="w-5 h-5 text-slate-700" />
                       </button>
+                    </>
+                  )}
+                  
+                  {isAnalyzing && (
+                    <div className="absolute inset-0 z-20 overflow-hidden pointer-events-none flex flex-col items-center justify-center">
+                      <motion.div
+                        initial={{ top: "-10%" }}
+                        animate={{ top: "110%" }}
+                        transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
+                        className="absolute left-0 right-0 h-1 bg-green-500 shadow-[0_0_20px_rgba(34,197,94,1),0_0_40px_rgba(34,197,94,0.6)]"
+                      >
+                        <div className="absolute -top-10 left-0 right-0 h-10 bg-gradient-to-b from-transparent to-green-500/30" />
+                      </motion.div>
+                      <p className="text-green-400 font-medium text-lg animate-pulse mt-32 bg-slate-900/60 px-4 py-1.5 rounded-full backdrop-blur-md border border-green-500/30">
+                        Analyzing tissue patterns...
+                      </p>
+                    </div>
+                  )}
+                </div>
+                <p className="text-sm text-slate-500 truncate">📎 {image.name} ({(image.size / 1024 / 1024).toFixed(2)} MB)</p>
+                <button
+                  onClick={handleAnalyze}
+                  disabled={isAnalyzing}
+                  className="w-full btn-primary flex items-center justify-center gap-2"
+                >
+                  {isAnalyzing ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      <span key="analyzing-text">{t('cropDiagnosis.analyzing')}</span>
+                    </>
+                  ) : (
+                    <>
+                      <Pill className="w-5 h-5" />
+                      <span key="analyze-text">{t('cropDiagnosis.analyzeButton') || 'Analyze Crop Image'}</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            )}
+          </motion.div>
+
+          {/* BOTTOM — Results Panel */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="glass-card p-6 md:p-8"
+          >
+            <h2 className="font-display text-xl font-bold text-body mb-6 flex items-center gap-2">
+              <CheckCircle2 className="w-5 h-5 text-primary" />
+              {t('cropDiagnosis.results')}
+            </h2>
+
+            {!result && !isAnalyzing ? (
+              <div className="flex flex-col items-center justify-center h-80 text-center">
+                <div className="w-24 h-24 bg-slate-100 rounded-3xl flex items-center justify-center mb-4">
+                  <Pill className="w-12 h-12 text-slate-300" />
+                </div>
+                <p className="text-slate-400 text-lg">{t('cropDiagnosis.noDiagnosis')}</p>
+              </div>
+            ) : isAnalyzing ? (
+              <div className="flex flex-col items-center justify-center h-80">
+                <div className="w-20 h-20 border-4 border-primary/20 border-t-primary rounded-full animate-spin mb-6" />
+                <p className="text-slate-600 font-semibold">{t('cropDiagnosis.analyzing')}</p>
+                <p className="text-slate-400 text-sm mt-2">Running AI model analysis...</p>
+              </div>
+            ) : (
+              <div className="space-y-5">
+                {/* Disease Name */}
+                <div className="bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-900/50 rounded-xl p-4">
+                  <div className="flex items-start gap-3">
+                    <AlertTriangle className="w-6 h-6 text-red-500 shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-xs text-red-500 font-medium mb-1">{t('cropDiagnosis.diseaseName')}</p>
+                      <p className="font-display font-bold text-lg text-body">{result.disease}</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Confidence & Severity */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-surface-muted rounded-xl p-4 text-center">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mb-1">{t('cropDiagnosis.confidence')}</p>
+                    <p className="font-display text-2xl font-bold gradient-text">{result.confidence}%</p>
+                    <div className="mt-2 h-2 bg-slate-200 rounded-full overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: `${result.confidence}%` }}
+                        transition={{ duration: 1, delay: 0.5 }}
+                        className="h-full bg-gradient-to-r from-primary to-primary-light rounded-full"
+                      />
                     </div>
                   )}
                 </motion.div>

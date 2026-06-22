@@ -14,6 +14,8 @@ export default function ChatbotWidget() {
   const [input, setInput] = useState('');
   const [isRecording, setIsRecording] = useState(false);
   const messagesEndRef = useRef(null);
+  const mediaRecorderRef = useRef(null);
+  const audioChunksRef = useRef([]);
 
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const langDropdownRef = useRef(null);
@@ -85,13 +87,58 @@ export default function ChatbotWidget() {
     setInput(actionMessages[action] || '');
   };
 
-  const toggleRecording = () => {
-    setIsRecording(!isRecording);
+  const toggleRecording = async () => {
     if (!isRecording) {
-      setTimeout(() => {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        const mediaRecorder = new MediaRecorder(stream);
+        mediaRecorderRef.current = mediaRecorder;
+        audioChunksRef.current = [];
+
+        mediaRecorder.ondataavailable = (event) => {
+          if (event.data.size > 0) {
+            audioChunksRef.current.push(event.data);
+          }
+        };
+
+        mediaRecorder.onstop = async () => {
+          const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
+          const formData = new FormData();
+          formData.append('audio', audioBlob, 'recording.webm');
+
+          try {
+            setInput('Transcribing voice...');
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/ai/transcribe`, {
+              method: 'POST',
+              body: formData,
+            });
+            const data = await response.json();
+            if (response.ok && data.text) {
+              setInput(data.text);
+            } else {
+              setInput('');
+              alert('Error transcribing audio: ' + (data.message || 'Unknown error'));
+            }
+          } catch (err) {
+            setInput('');
+            alert('Failed to connect to transcription service.');
+          }
+
+          // Stop all audio tracks
+          stream.getTracks().forEach(track => track.stop());
+        };
+
+        mediaRecorder.start();
+        setIsRecording(true);
+      } catch (err) {
+        console.error("Microphone access denied:", err);
+        alert("Please allow microphone permissions to use voice input.");
+      }
+    } else {
+      if (mediaRecorderRef.current && mediaRecorderRef.current.state !== 'inactive') {
+        mediaRecorderRef.current.stop();
         setIsRecording(false);
-        setInput("Voice input detected: What is the best time to plant rice?");
-      }, 2000);
+      }
     }
   };
 
@@ -127,7 +174,7 @@ export default function ChatbotWidget() {
             className="fixed bottom-6 right-6 z-50 w-[380px] h-[600px] max-h-[80vh] bg-surface rounded-2xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden"
           >
             {/* Header */}
-            <div className="bg-gradient-to-r from-primary to-primary-light px-5 py-4 flex items-center justify-between shrink-0">
+            <div className="bg-gradient-to-r from-primary to-primary-light px-5 py-4 flex items-center justify-between shrink-0 relative z-[9999] shadow-sm">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-surface/20 rounded-xl flex items-center justify-center">
                   <Bot className="w-6 h-6 text-white" />
@@ -159,7 +206,7 @@ export default function ChatbotWidget() {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: -5, scale: 0.95 }}
                         transition={{ duration: 0.2, ease: "easeOut" }}
-                        className="absolute right-0 top-full mt-2 w-max min-w-[120px] max-h-64 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-100 dark:border-slate-700 overflow-y-auto z-[100]"
+                        className="absolute right-0 top-full mt-2 w-48 max-h-64 bg-white dark:bg-slate-800 rounded-xl shadow-2xl border border-slate-200 dark:border-slate-700 overflow-y-auto z-[9999]"
                       >
                         {languages.map((lang) => (
                           <button
@@ -168,10 +215,10 @@ export default function ChatbotWidget() {
                               setChatLanguage(lang.code);
                               setLangDropdownOpen(false);
                             }}
-                            className={`w-full text-left px-4 py-2.5 text-sm font-medium transition-colors duration-200 ${
+                            className={`block w-full text-left px-4 py-3 text-sm font-bold transition-colors duration-200 ${
                               chatLanguage === lang.code
-                                ? 'bg-primary-50 dark:bg-primary-900/30 text-primary dark:text-primary-light'
-                                : 'text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700/50'
+                                ? 'bg-primary-100 dark:bg-primary-900/50 text-primary-dark dark:text-primary-light'
+                                : 'text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-700'
                             }`}
                           >
                             {lang.label}

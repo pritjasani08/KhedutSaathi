@@ -4,6 +4,7 @@ import { PackageSearch, ShoppingBag, PlusCircle, IndianRupee, UploadCloud, Box, 
 import { useParams, useNavigate } from 'react-router-dom';
 import { supabase } from '../../services/supabase/client';
 import { useAuth } from '../../context/AuthContext';
+import SkeletonCard from '../../components/shared/SkeletonCard';
 
 const UNIT_MAP = {
   'Seeds': ['Kg', 'Gram', 'Packet'],
@@ -229,9 +230,10 @@ export default function SellerDashboard() {
               </div>
 
               {loading ? (
-                <div className="py-24 flex flex-col items-center justify-center">
-                  <Loader2 className="w-10 h-10 text-primary animate-spin mb-4" />
-                  <p className="text-heading font-bold">Loading your inventory...</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+                    <SkeletonCard key={i} index={i} />
+                  ))}
                 </div>
               ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
