@@ -5,6 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import {
   Search, ShoppingCart, MapPin, IndianRupee, Image as ImageIcon, Gavel, User, Loader2, PackageOpen, X, ChevronLeft, ChevronRight
 } from 'lucide-react';
+import SkeletonCard from '../../components/shared/SkeletonCard';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -123,8 +124,10 @@ export default function CropMarket() {
 
         {/* Listings Grid */}
         {loading ? (
-          <div className="flex justify-center py-20">
-            <Loader2 className="w-10 h-10 animate-spin text-primary" />
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <SkeletonCard key={i} index={i} />
+            ))}
           </div>
         ) : error ? (
           <div className="text-center text-red-500 py-10">{error}</div>
