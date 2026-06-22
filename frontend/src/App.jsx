@@ -1,3 +1,4 @@
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -8,22 +9,37 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ChatbotWidget from './components/ChatbotWidget';
 import Home from './pages/Home/Home';
-import CropDiagnosis from './pages/CropDiagnosis/CropDiagnosis';
-import MarketHub from './pages/MarketHub/MarketHub';
+
+// Eagerly loaded routes
 import ExpertPanel from './pages/ExpertPanel/ExpertPanel';
 import SmartIrrigation from './pages/SmartIrrigation/SmartIrrigation';
-import AgriMarketplace from './pages/AgriMarketplace/AgriMarketplace';
-import SellerDashboard from './pages/SellerDashboard/SellerDashboard';
 import CropMarket from './pages/CropMarket/CropMarket';
 import Features from './pages/Features/Features';
-import Resources from './pages/Resources/Resources';
-import About from './pages/About/About';
 import Login from './pages/Auth/Login/Login';
 import Register from './pages/Auth/Register/Register';
 import PlaceholderPage from './pages/Placeholder/PlaceholderPage';
-import KhedutAI from './pages/KhedutAI/KhedutAI';
+import Profile from './pages/Profile/Profile';
+import ProtectedRoute from './components/ProtectedRoute';
+import Deals from './pages/Deals/Deals';
 
-/* Page transition wrapper */
+// Lazy loaded routes (Code Splitting)
+const CropDiagnosis = lazy(() => import('./pages/CropDiagnosis/CropDiagnosis'));
+const MarketHub = lazy(() => import('./pages/MarketHub/MarketHub'));
+const AgriMarketplace = lazy(() => import('./pages/AgriMarketplace/AgriMarketplace'));
+const SellerDashboard = lazy(() => import('./pages/SellerDashboard/SellerDashboard'));
+const Resources = lazy(() => import('./pages/Resources/Resources'));
+const About = lazy(() => import('./pages/About/About'));
+const KhedutAI = lazy(() => import('./pages/KhedutAI/KhedutAI'));
+const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard'));
+const NewDashboard = lazy(() => import('./features/dashboard/Dashboard'));
+
+const PageLoader = () => (
+  <div className="flex items-center justify-center min-h-[60vh]">
+    <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+  </div>
+);
+
+/* Page transition wrapper with Suspense fallback */
 function PageWrapper({ children }) {
   return (
     <motion.div
@@ -32,17 +48,12 @@ function PageWrapper({ children }) {
       exit={{ opacity: 0, y: -12 }}
       transition={{ duration: 0.35, ease: 'easeInOut' }}
     >
-      {children}
+      <Suspense fallback={<PageLoader />}>
+        {children}
+      </Suspense>
     </motion.div>
   );
 }
-
-import Profile from './pages/Profile/Profile';
-
-import ProtectedRoute from './components/ProtectedRoute';
-import Dashboard from './pages/Dashboard/Dashboard';
-import NewDashboard from './features/dashboard/Dashboard';
-import Deals from './pages/Deals/Deals';
 
 function AnimatedRoutes() {
   const location = useLocation();
