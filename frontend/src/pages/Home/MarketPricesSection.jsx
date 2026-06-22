@@ -1,113 +1,119 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { TrendingUp, ArrowRight, LineChart, IndianRupee } from 'lucide-react';
+import { TrendingUp, ArrowRight, LineChart, IndianRupee, TrendingDown, Minus } from 'lucide-react';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
 };
 
+const marketData = [
+  { crop: 'Wheat (Lokwan)', market: 'Rajkot Mandi', price: '₹2,450', change: '+₹125', trend: 'up', volume: 'High' },
+  { crop: 'Cotton (Hybrid)', market: 'Gondal APMC', price: '₹7,120', change: '-₹50', trend: 'down', volume: 'Medium' },
+  { crop: 'Soyabean (Yellow)', market: 'Indore Mandi', price: '₹4,890', change: '+₹210', trend: 'up', volume: 'High' },
+  { crop: 'Groundnut (Bold)', market: 'Jamnagar', price: '₹6,200', change: '₹0', trend: 'neutral', volume: 'Low' },
+  { crop: 'Onion (Red)', market: 'Nashik', price: '₹1,850', change: '+₹300', trend: 'up', volume: 'Very High' },
+];
+
 export default function MarketPricesSection() {
   
   return (
-    <section className="py-20 bg-surface relative overflow-hidden transition-colors duration-300">
+    <section className="py-24 bg-surface relative overflow-hidden transition-colors duration-300 border-t border-subtle">
       <div className="container-custom relative px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          
-          {/* Text Content */}
+        
+        <div className="text-center mb-16 max-w-3xl mx-auto">
           <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="space-y-8"
-          >
-            <div>
-              <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100/60 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400 text-sm font-semibold mb-4">
-                <TrendingUp className="w-4 h-4" /> Market Intelligence
-              </motion.div>
-              <motion.h2 variants={fadeUp} className="font-display text-3xl md:text-4xl font-bold text-heading mb-6">
-                Never Undersell Your Hard Work Again
-              </motion.h2>
-              <motion.p variants={fadeUp} className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
-                Access real-time Mandi prices from across the country. Compare rates, analyze historical trends, and connect directly with buyers to eliminate middlemen and maximize your profits.
-              </motion.p>
-            </div>
-
-            <motion.div variants={fadeUp} className="grid sm:grid-cols-2 gap-6">
-              {[
-                { icon: IndianRupee, title: 'Live Mandi Rates', desc: 'Updated daily from 1000+ markets.' },
-                { icon: LineChart, title: 'Price Forecasting', desc: 'Know when to hold or sell.' }
-              ].map((feature, i) => (
-                <div key={i} className="flex gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-900/20 flex items-center justify-center shrink-0">
-                    <feature.icon className="w-6 h-6 text-amber-600 dark:text-amber-400" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-heading mb-1">{feature.title}</h4>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">{feature.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </motion.div>
-
-            <motion.div variants={fadeUp}>
-              <Link to="/market-prices" className="inline-flex items-center gap-2 btn-primary bg-amber-500 hover:bg-amber-600 border-amber-500 hover:border-amber-600 shadow-amber-500/30">
-                <IndianRupee className="w-5 h-5" />
-                Check Market Prices
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </Link>
-            </motion.div>
-          </motion.div>
-
-          {/* Visual Content */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, x: 30 }}
-            whileInView={{ opacity: 1, scale: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="relative"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100/60 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400 text-sm font-semibold mb-6"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-amber-100 to-amber-200 dark:from-amber-900/30 dark:to-amber-800/30 rounded-[2.5rem] transform rotate-3" />
-            <div className="relative bg-surface border border-subtle rounded-[2.5rem] p-8 shadow-glass transform -rotate-3 transition-transform hover:rotate-0 duration-500">
-              
-              <div className="space-y-4">
-                {[
-                  { crop: 'Wheat (Lokwan)', price: '₹2,450', trend: '+125', up: true },
-                  { crop: 'Cotton (Hybrid)', price: '₹7,120', trend: '-50', up: false },
-                  { crop: 'Soyabean (Yellow)', price: '₹4,890', trend: '+210', up: true },
-                ].map((item, i) => (
-                  <motion.div 
-                    key={i}
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.2 }}
-                    className="flex justify-between items-center p-4 bg-background border border-subtle rounded-xl"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-lg">
-                        {item.crop.includes('Wheat') ? '🌾' : item.crop.includes('Cotton') ? '☁️' : '🌱'}
-                      </div>
-                      <div>
-                        <p className="font-semibold text-body">{item.crop}</p>
-                        <p className="text-xs text-slate-500 dark:text-slate-400">Rajkot Mandi</p>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <p className="font-bold text-heading">{item.price}</p>
-                      <p className={`text-xs font-semibold ${item.up ? 'text-green-500' : 'text-red-500'} flex items-center justify-end gap-1`}>
-                        <TrendingUp className={`w-3 h-3 ${!item.up && 'rotate-180'}`} />
-                        {item.trend}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-            </div>
+            <TrendingUp className="w-4 h-4" /> Market Intelligence
           </motion.div>
-
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-heading mb-6 leading-tight"
+          >
+            Real-time APMC Prices
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed"
+          >
+            Don't rely on middlemen for market information. Get live, accurate pricing data from over 1,000 mandis across India to negotiate better rates.
+          </motion.p>
         </div>
+
+        {/* Data Table Showcase */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="max-w-5xl mx-auto bg-background border border-subtle rounded-2xl shadow-xl overflow-hidden"
+        >
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="bg-surface-muted border-b border-subtle text-sm text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                  <th className="px-6 py-4 font-semibold">Crop</th>
+                  <th className="px-6 py-4 font-semibold">Market</th>
+                  <th className="px-6 py-4 font-semibold text-right">Price (per Qtl)</th>
+                  <th className="px-6 py-4 font-semibold text-right">24h Change</th>
+                  <th className="px-6 py-4 font-semibold text-center">Trend</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-subtle">
+                {marketData.map((row, i) => (
+                  <tr key={i} className="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                    <td className="px-6 py-4">
+                      <div className="font-bold text-heading">{row.crop}</div>
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="text-slate-600 dark:text-slate-300">{row.market}</div>
+                    </td>
+                    <td className="px-6 py-4 text-right">
+                      <div className="font-bold text-heading text-lg">{row.price}</div>
+                    </td>
+                    <td className="px-6 py-4 text-right">
+                      <div className={`font-semibold ${
+                        row.trend === 'up' ? 'text-green-500' : 
+                        row.trend === 'down' ? 'text-red-500' : 'text-slate-500'
+                      }`}>
+                        {row.change}
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 text-center">
+                      <div className={`inline-flex items-center justify-center w-8 h-8 rounded-full ${
+                        row.trend === 'up' ? 'bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400' : 
+                        row.trend === 'down' ? 'bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400' : 
+                        'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400'
+                      }`}>
+                        {row.trend === 'up' ? <TrendingUp className="w-4 h-4" /> : 
+                         row.trend === 'down' ? <TrendingDown className="w-4 h-4" /> : 
+                         <Minus className="w-4 h-4" />}
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          
+          <div className="bg-surface-muted p-4 border-t border-subtle flex justify-center">
+            <Link to="/market-prices" className="inline-flex items-center gap-2 text-primary hover:text-primary-dark font-semibold transition-colors">
+              View All Market Prices
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </motion.div>
+
       </div>
     </section>
   );

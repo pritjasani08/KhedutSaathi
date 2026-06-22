@@ -1,19 +1,27 @@
 import HeroSection from './HeroSection';
-import BenefitsSection from './BenefitsSection';
+import FarmerProblemsSection from './FarmerProblemsSection';
+import AIFarmingWorkflowSection from './AIFarmingWorkflowSection';
+import YieldPredictionShowcase from './YieldPredictionShowcase';
 import CropHealthSection from './CropHealthSection';
 import MarketPricesSection from './MarketPricesSection';
+import MarketplaceShowcase from './MarketplaceShowcase';
 import NewsAndSchemesSection from './NewsAndSchemesSection';
-import AIAssistantSection from './AIAssistantSection';
+import WhyFarmersNeedUsSection from './WhyFarmersNeedUsSection';
+import FinalCTASection from './FinalCTASection';
 
 export default function Home() {
   return (
     <div className="overflow-hidden">
       <HeroSection />
-      <BenefitsSection />
+      <FarmerProblemsSection />
+      <AIFarmingWorkflowSection />
+      <YieldPredictionShowcase />
       <CropHealthSection />
       <MarketPricesSection />
+      <MarketplaceShowcase />
       <NewsAndSchemesSection />
-      <AIAssistantSection />
+      <WhyFarmersNeedUsSection />
+      <FinalCTASection />
     </div>
   );
 }
