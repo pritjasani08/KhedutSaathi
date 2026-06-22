@@ -19,7 +19,7 @@
     font-family: 'Inter', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #f8fafc;
+    background-color: transparent;
     color: #1e293b;
     @apply dark:bg-slate-950 dark:text-slate-300;
   }

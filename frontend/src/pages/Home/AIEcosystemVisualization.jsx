@@ -118,7 +118,7 @@ export default function AIEcosystemVisualization() {
 
       {/* 2. Tablet Layout (md to lg): Pyramid Grid */}
       <div className="hidden md:flex lg:hidden relative w-full max-w-3xl mx-auto flex-col items-center py-12">
-        <div className="absolute top-[200px] left-1/2 w-0.5 h-[50%] bg-gradient-to-b from-primary/60 via-primary/20 to-transparent -translate-x-1/2 z-0" />
+
 
         <div className="relative z-10 mb-12">
           <LogoCenter size="lg" />
@@ -141,9 +141,6 @@ export default function AIEcosystemVisualization() {
       {/* 3. Mobile Layout (sm and below): Responsive Flow */}
       <div className="flex md:hidden flex-col items-center w-full gap-8 py-6 relative">
         <LogoCenter size="sm" />
-
-        {/* Core connection descending into mobile grid */}
-        <div className="absolute top-[200px] bottom-10 left-1/2 w-0.5 bg-gradient-to-b from-primary/60 to-transparent -translate-x-1/2 z-0" />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full relative z-10 px-4">
           {features.map((feature, i) => (

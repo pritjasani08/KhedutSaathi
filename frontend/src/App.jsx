@@ -51,11 +51,11 @@ function AnimatedRoutes() {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageWrapper><Home /></PageWrapper>} />
-        
+
         {/* Farmer Only Routes */}
         <Route path="/crop-recommendation" element={<ProtectedRoute allowedRoles={['farmer']}><PageWrapper><ExpertPanel /></PageWrapper></ProtectedRoute>} />
         <Route path="/crop-health" element={<ProtectedRoute allowedRoles={['farmer']}><PageWrapper><CropDiagnosis /></PageWrapper></ProtectedRoute>} />
-        
+
         {/* Market Intelligence & Marketplace Feed (accessible by both, but UI will restrict features) */}
         <Route path="/market-prices" element={<ProtectedRoute><PageWrapper><MarketHub /></PageWrapper></ProtectedRoute>} />
         <Route path="/agri-marketplace" element={<PageWrapper><AgriMarketplace /></PageWrapper>} />
@@ -63,7 +63,7 @@ function AnimatedRoutes() {
         <Route path="/seller-dashboard/:tab" element={<PageWrapper><SellerDashboard /></PageWrapper>} />
         <Route path="/agri-marketplace" element={<ProtectedRoute><PageWrapper><AgriMarketplace /></PageWrapper></ProtectedRoute>} />
         <Route path="/crop-market" element={<ProtectedRoute><PageWrapper><CropMarket /></PageWrapper></ProtectedRoute>} />
-        
+
         <Route path="/smart-irrigation" element={<PageWrapper><SmartIrrigation /></PageWrapper>} />
         <Route path="/features" element={<PageWrapper><Features /></PageWrapper>} />
         <Route path="/resources" element={<PageWrapper><Resources /></PageWrapper>} />
@@ -75,7 +75,7 @@ function AnimatedRoutes() {
         <Route path="/dashboard" element={<ProtectedRoute><PageWrapper><NewDashboard /></PageWrapper></ProtectedRoute>} />
         <Route path="/deals" element={<ProtectedRoute><PageWrapper><Deals /></PageWrapper></ProtectedRoute>} />
         <Route path="/khedut-ai" element={<PageWrapper><KhedutAI /></PageWrapper>} />
-        
+
         {/* Placeholder Routes */}
         <Route path="/expert-help" element={<PageWrapper><PlaceholderPage title="Expert Help" /></PageWrapper>} />
       </Routes>
@@ -85,7 +85,7 @@ function AnimatedRoutes() {
 
 function ScrollToTop() {
   useLocation();
-  
+
   if (typeof window !== 'undefined') {
     window.scrollTo(0, 0);
   }
@@ -97,7 +97,7 @@ function AppContent() {
   const location = useLocation();
 
   return (
-    <div className="min-h-screen flex flex-col bg-background transition-colors duration-300">
+    <div className="min-h-screen flex flex-col transition-colors duration-300">
       <Navbar />
       <main className="flex-1">
         <AnimatedRoutes />
@@ -121,15 +121,15 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
-      <AuthProvider>
-        <ChatProvider>
-          <Router>
-            <ScrollToTop />
-            <AppContent />
-          </Router>
-        </ChatProvider>
-      </AuthProvider>
-    </ThemeProvider>
-  </QueryClientProvider>
+        <AuthProvider>
+          <ChatProvider>
+            <Router>
+              <ScrollToTop />
+              <AppContent />
+            </Router>
+          </ChatProvider>
+        </AuthProvider>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }
