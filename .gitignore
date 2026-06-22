@@ -74,8 +74,8 @@ ai_models/crop_disease/model/*
 !ai_models/crop_disease/model/.gitkeep
 # ai_models/crop_disease/dataset/
 # ai_models/yield_predictor/dataset/
-# rag_system/data/pdfs/
-
+rag_system/data/pdfs/
+rag_system/vector_db/
 # Logs
 logs
 *.log
