@@ -4,6 +4,7 @@ import { Newspaper, Landmark, Loader2, AlertCircle, Globe, MapPin, Calculator, C
 import PageHero from '../../components/shared/PageHero';
 import NewsCard from '../../components/shared/NewsCard';
 import SchemeCard from '../../components/shared/SchemeCard';
+import SkeletonCard from '../../components/shared/SkeletonCard';
 import SchemeEligibilityEngine from './SchemeEligibilityEngine';
 import { useAuth } from '../../context/AuthContext';
 
@@ -249,9 +250,10 @@ export default function Resources() {
                 className="notranslate"
               >
                 {newsLoading ? (
-                  <div className="flex flex-col items-center justify-center py-20">
-                    <Loader2 className="w-10 h-10 text-primary animate-spin mb-4" />
-                    <p className="text-slate-500 font-medium">Fetching real-time news...</p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {[1, 2, 3, 4, 5, 6].map((i) => (
+                      <SkeletonCard key={i} index={i} />
+                    ))}
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -276,9 +278,10 @@ export default function Resources() {
                 transition={{ duration: 0.3 }}
               >
                 {schemesLoading ? (
-                  <div className="flex flex-col items-center justify-center py-20">
-                    <Loader2 className="w-10 h-10 text-primary animate-spin mb-4" />
-                    <p className="text-slate-500 font-medium">Loading government schemes...</p>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    {[1, 2, 3, 4].map((i) => (
+                      <SkeletonCard key={i} index={i} />
+                    ))}
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
