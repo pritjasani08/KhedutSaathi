@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import {
@@ -46,6 +46,60 @@ export default function CropDiagnosis() {
   const [result, setResult] = useState(null);
   const [dragActive, setDragActive] = useState(false);
   const [history, setHistory] = useState([]);
+
+  // Camera state
+  const [isCameraOpen, setIsCameraOpen] = useState(false);
+  const videoRef = useRef(null);
+  const streamRef = useRef(null);
+
+  const startCamera = async () => {
+    setIsCameraOpen(true);
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+      streamRef.current = stream;
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
+      }
+    } catch (err) {
+      console.error("Error accessing camera:", err);
+      alert("Camera permission denied or not available. Please allow camera access.");
+      setIsCameraOpen(false);
+    }
+  };
+
+  const stopCamera = () => {
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach(track => track.stop());
+      streamRef.current = null;
+    }
+    setIsCameraOpen(false);
+  };
+
+  const capturePhoto = () => {
+    if (videoRef.current) {
+      const canvas = document.createElement('canvas');
+      canvas.width = videoRef.current.videoWidth || 640;
+      canvas.height = videoRef.current.videoHeight || 480;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
+      canvas.toBlob((blob) => {
+        if (blob) {
+          const file = new File([blob], "camera-capture.jpg", { type: "image/jpeg" });
+          setImage(file);
+          setPreview(URL.createObjectURL(file));
+          stopCamera();
+        }
+      }, 'image/jpeg');
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      if (streamRef.current) {
+        streamRef.current.getTracks().forEach(track => track.stop());
+      }
+    };
+  }, []);
 
   const fetchHistory = async () => {
     try {
@@ -177,8 +231,8 @@ export default function CropDiagnosis() {
         </div>
 
         {/* Main Content */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-12">
-          {/* LEFT — Upload Panel */}
+        <div className="grid grid-cols-1 gap-8 mb-12 max-w-4xl mx-auto">
+          {/* TOP — Upload Panel */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -191,36 +245,66 @@ export default function CropDiagnosis() {
             </h2>
 
             {!preview ? (
-              <div
-                onDragOver={(e) => { e.preventDefault(); setDragActive(true); }}
-                onDragLeave={() => setDragActive(false)}
-                onDrop={handleDrop}
-                className={`border-2 border-dashed rounded-2xl p-12 text-center transition-all duration-300 cursor-pointer ${
-                  dragActive
-                    ? 'border-primary bg-primary-50 dark:bg-primary-900/20 scale-[1.02]'
-                    : 'border-subtle hover:border-primary/50 hover:bg-primary-50/30 dark:hover:bg-primary-900/10'
-                }`}
-              >
-                <div className="w-20 h-20 bg-primary-50 dark:bg-primary-900/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <Image className="w-10 h-10 text-primary" />
+              isCameraOpen ? (
+                <div className="border-2 border-primary rounded-2xl p-4 text-center bg-slate-900 overflow-hidden relative">
+                  <video 
+                    ref={videoRef} 
+                    autoPlay 
+                    playsInline 
+                    className="w-full h-72 object-cover rounded-xl bg-black"
+                  />
+                  <div className="flex justify-center gap-4 mt-4">
+                    <button 
+                      onClick={capturePhoto} 
+                      className="btn-primary flex items-center gap-2"
+                    >
+                      <Camera className="w-5 h-5" />
+                      Capture Photo
+                    </button>
+                    <button 
+                      onClick={stopCamera} 
+                      className="btn-secondary flex items-center gap-2 bg-red-500 text-white border-red-500 hover:bg-red-600"
+                    >
+                      <X className="w-5 h-5" />
+                      Cancel
+                    </button>
+                  </div>
                 </div>
-                <p className="text-slate-700 font-semibold mb-2">{t('cropDiagnosis.dragDrop')}</p>
-                <p className="text-slate-400 text-sm mb-6">{t('cropDiagnosis.orBrowse')}</p>
-
-                <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                  <label className="btn-primary text-sm cursor-pointer flex items-center gap-2 justify-center">
-                    <Upload className="w-4 h-4" />
-                    Browse Files
-                    <input type="file" accept="image/*" className="hidden" onChange={handleFileSelect} />
-                  </label>
-                  <button className="btn-secondary text-sm flex items-center gap-2 justify-center">
-                    <Camera className="w-4 h-4" />
-                    {t('cropDiagnosis.camera')}
-                  </button>
+              ) : (
+                <div
+                  onDragOver={(e) => { e.preventDefault(); setDragActive(true); }}
+                  onDragLeave={() => setDragActive(false)}
+                  onDrop={handleDrop}
+                  className={`border-2 border-dashed rounded-2xl p-12 text-center transition-all duration-300 cursor-pointer ${
+                    dragActive
+                      ? 'border-primary bg-primary-50 dark:bg-primary-900/20 scale-[1.02]'
+                      : 'border-subtle hover:border-primary/50 hover:bg-primary-50/30 dark:hover:bg-primary-900/10'
+                  }`}
+                >
+                  <div className="w-20 h-20 bg-primary-50 dark:bg-primary-900/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <Image className="w-10 h-10 text-primary" />
+                  </div>
+                  <p className="text-slate-700 font-semibold mb-2">{t('cropDiagnosis.dragDrop')}</p>
+                  <p className="text-slate-400 text-sm mb-6">{t('cropDiagnosis.orBrowse')}</p>
+  
+                  <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                    <label className="btn-primary text-sm cursor-pointer flex items-center gap-2 justify-center">
+                      <Upload className="w-4 h-4" />
+                      Browse Files
+                      <input type="file" accept="image/*" className="hidden" onChange={handleFileSelect} />
+                    </label>
+                    <button 
+                      onClick={startCamera}
+                      className="btn-secondary text-sm cursor-pointer flex items-center gap-2 justify-center"
+                    >
+                      <Camera className="w-4 h-4" />
+                      {t('cropDiagnosis.camera')}
+                    </button>
+                  </div>
+  
+                  <p className="text-slate-400 text-xs mt-4">{t('cropDiagnosis.supportedFormats')}</p>
                 </div>
-
-                <p className="text-slate-400 text-xs mt-4">{t('cropDiagnosis.supportedFormats')}</p>
-              </div>
+              )
             ) : (
               <div className="space-y-4">
                 <div className="relative rounded-2xl overflow-hidden group">
@@ -255,7 +339,7 @@ export default function CropDiagnosis() {
             )}
           </motion.div>
 
-          {/* RIGHT — Results Panel */}
+          {/* BOTTOM — Results Panel */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}

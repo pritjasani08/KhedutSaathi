@@ -41,7 +41,7 @@ export default function Login() {
       if (data.user.user_type === 'seller') {
         navigate('/seller-dashboard/products');
       } else if (data.user.user_type === 'buyer') {
-        navigate('/agri-marketplace');
+        navigate('/crop-market');
       } else {
         navigate('/');
       }
