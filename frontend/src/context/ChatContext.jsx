@@ -43,7 +43,13 @@ export const ChatProvider = ({ children }) => {
     try {
       let queryWithContext = text;
       
-      const langNames = { en: 'English', hi: 'Hindi', gu: 'Gujarati' };
+      const langNames = {
+        en: 'English', hi: 'Hindi', gu: 'Gujarati', mr: 'Marathi', pa: 'Punjabi',
+        bn: 'Bengali', ta: 'Tamil', te: 'Telugu', kn: 'Kannada', ml: 'Malayalam',
+        or: 'Odia', as: 'Assamese', ur: 'Urdu', sa: 'Sanskrit', ks: 'Kashmiri',
+        gom: 'Konkani', mai: 'Maithili', mni: 'Manipuri', ne: 'Nepali', doi: 'Dogri',
+        sat: 'Santali', sd: 'Sindhi', brx: 'Bodo'
+      };
       const langInstruction = `\n\n[Instruction: Please respond exclusively in ${langNames[chatLanguage] || 'English'}.]`;
 
       if (profileData && profileData.primary_crop) {
