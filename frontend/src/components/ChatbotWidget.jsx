@@ -40,6 +40,26 @@ export default function ChatbotWidget() {
     { code: 'en', label: 'English' },
     { code: 'hi', label: 'हिन्दी' },
     { code: 'gu', label: 'ગુજરાતી' },
+    { code: 'mr', label: 'मराठी' },
+    { code: 'pa', label: 'ਪੰਜਾਬੀ' },
+    { code: 'bn', label: 'বাংলা' },
+    { code: 'ta', label: 'தமிழ்' },
+    { code: 'te', label: 'తెలుగు' },
+    { code: 'kn', label: 'ಕನ್ನಡ' },
+    { code: 'ml', label: 'മലയാളം' },
+    { code: 'or', label: 'ଓଡ଼ିଆ' },
+    { code: 'as', label: 'অসমীয়া' },
+    { code: 'ur', label: 'اردو' },
+    { code: 'sa', label: 'संस्कृत' },
+    { code: 'ks', label: 'كأشُر' },
+    { code: 'gom', label: 'कोंकणी' },
+    { code: 'mai', label: 'मैथिली' },
+    { code: 'mni', label: 'মৈতৈলোন্' },
+    { code: 'ne', label: 'नेपाली' },
+    { code: 'doi', label: 'डोगरी' },
+    { code: 'sat', label: 'ᱥᱟᱱᱛᱟᱲᱤ' },
+    { code: 'sd', label: 'سنڌي' },
+    { code: 'brx', label: 'बड़ो' }
   ];
 
   const quickActions = [
@@ -123,7 +143,7 @@ export default function ChatbotWidget() {
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <div className="relative" ref={langDropdownRef}>
+                <div className="relative notranslate" ref={langDropdownRef}>
                   <button
                     onClick={() => setLangDropdownOpen(!langDropdownOpen)}
                     className="flex items-center gap-1.5 bg-white/20 hover:bg-white/30 text-white text-xs font-medium rounded-lg px-2.5 py-1.5 outline-none cursor-pointer transition-colors duration-200"
@@ -139,7 +159,7 @@ export default function ChatbotWidget() {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: -5, scale: 0.95 }}
                         transition={{ duration: 0.2, ease: "easeOut" }}
-                        className="absolute right-0 top-full mt-2 w-max min-w-[120px] bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-100 dark:border-slate-700 overflow-hidden z-[100]"
+                        className="absolute right-0 top-full mt-2 w-max min-w-[120px] max-h-64 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-100 dark:border-slate-700 overflow-y-auto z-[100]"
                       >
                         {languages.map((lang) => (
                           <button
