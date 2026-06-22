@@ -1,11 +1,73 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Newspaper, Landmark, Loader2, AlertCircle, Globe, MapPin, Calculator } from 'lucide-react';
+import { Newspaper, Landmark, Loader2, AlertCircle, Globe, MapPin, Calculator, ChevronDown } from 'lucide-react';
 import PageHero from '../../components/shared/PageHero';
 import NewsCard from '../../components/shared/NewsCard';
 import SchemeCard from '../../components/shared/SchemeCard';
+import SkeletonCard from '../../components/shared/SkeletonCard';
 import SchemeEligibilityEngine from './SchemeEligibilityEngine';
 import { useAuth } from '../../context/AuthContext';
+
+const CustomDropdown = ({ value, onChange, options, icon: Icon }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const selectedOption = options.find(opt => opt.value === value);
+
+  return (
+    <div className="relative" ref={dropdownRef}>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex items-center gap-2 bg-surface px-4 py-2 rounded-xl shadow-card focus:outline-none cursor-pointer"
+      >
+        <Icon className="w-4 h-4 text-primary" />
+        <span className="text-sm font-medium text-slate-700 dark:text-slate-200">
+          {selectedOption?.label}
+        </span>
+        <ChevronDown className={`w-4 h-4 text-slate-500 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="absolute top-full mt-2 left-0 min-w-full w-max bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl shadow-lg dark:shadow-[0_8px_30px_rgb(0,0,0,0.5)] z-50 overflow-hidden"
+          >
+            {options.map((opt) => (
+              <button
+                key={opt.value}
+                onClick={() => {
+                  onChange(opt.value);
+                  setIsOpen(false);
+                }}
+                className={`w-full text-left px-4 py-2.5 text-sm transition-colors duration-200 flex items-center ${
+                  value === opt.value
+                    ? 'bg-primary/10 dark:bg-primary/20 text-primary font-medium'
+                    : 'text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800'
+                }`}
+              >
+                {opt.label}
+              </button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
 
 export default function Resources() {
   const { user } = useAuth();
@@ -138,33 +200,29 @@ export default function Resources() {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex flex-wrap justify-center gap-4 mb-10"
+            className="flex flex-wrap justify-center gap-4 mb-10 notranslate"
           >
-            <div className="flex items-center gap-2 bg-surface px-4 py-2 rounded-xl shadow-card">
-              <Globe className="w-4 h-4 text-primary" />
-              <select 
-                value={language} 
-                onChange={(e) => setLanguage(e.target.value)}
-                className="bg-transparent text-sm font-medium text-slate-700 dark:text-slate-200 focus:outline-none cursor-pointer"
-              >
-                <option value="gu">Gujarati</option>
-                <option value="hi">Hindi</option>
-                <option value="en">English</option>
-              </select>
-            </div>
-            <div className="flex items-center gap-2 bg-surface px-4 py-2 rounded-xl shadow-card">
-              <MapPin className="w-4 h-4 text-primary" />
-              <select 
-                value={region} 
-                onChange={(e) => setRegion(e.target.value)}
-                className="bg-transparent text-sm font-medium text-slate-700 dark:text-slate-200 focus:outline-none cursor-pointer"
-              >
-                <option value="Gujarat">Gujarat</option>
-                <option value="Maharashtra">Maharashtra</option>
-                <option value="Punjab">Punjab</option>
-                <option value="All India">All India</option>
-              </select>
-            </div>
+            <CustomDropdown
+              icon={Globe}
+              value={language}
+              onChange={setLanguage}
+              options={[
+                { value: 'gu', label: 'Gujarati' },
+                { value: 'hi', label: 'Hindi' },
+                { value: 'en', label: 'English' }
+              ]}
+            />
+            <CustomDropdown
+              icon={MapPin}
+              value={region}
+              onChange={setRegion}
+              options={[
+                { value: 'Gujarat', label: 'Gujarat' },
+                { value: 'Maharashtra', label: 'Maharashtra' },
+                { value: 'Punjab', label: 'Punjab' },
+                { value: 'All India', label: 'All India' }
+              ]}
+            />
           </motion.div>
         )}
 
@@ -189,11 +247,13 @@ export default function Resources() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
+                className="notranslate"
               >
                 {newsLoading ? (
-                  <div className="flex flex-col items-center justify-center py-20">
-                    <Loader2 className="w-10 h-10 text-primary animate-spin mb-4" />
-                    <p className="text-slate-500 font-medium">Fetching real-time news...</p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {[1, 2, 3, 4, 5, 6].map((i) => (
+                      <SkeletonCard key={i} index={i} />
+                    ))}
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -218,9 +278,10 @@ export default function Resources() {
                 transition={{ duration: 0.3 }}
               >
                 {schemesLoading ? (
-                  <div className="flex flex-col items-center justify-center py-20">
-                    <Loader2 className="w-10 h-10 text-primary animate-spin mb-4" />
-                    <p className="text-slate-500 font-medium">Loading government schemes...</p>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    {[1, 2, 3, 4].map((i) => (
+                      <SkeletonCard key={i} index={i} />
+                    ))}
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

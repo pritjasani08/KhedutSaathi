@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider } from './context/AuthContext';
 import { ChatProvider } from './context/ChatContext';
@@ -131,7 +130,6 @@ export default function App() {
         </ChatProvider>
       </AuthProvider>
     </ThemeProvider>
-    <ReactQueryDevtools initialIsOpen={false} />
   </QueryClientProvider>
   );
 }
