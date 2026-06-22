@@ -242,12 +242,12 @@ export default function CropDiagnosis() {
                   {isAnalyzing ? (
                     <>
                       <Loader2 className="w-5 h-5 animate-spin" />
-                      {t('cropDiagnosis.analyzing')}
+                      <span key="analyzing-text">{t('cropDiagnosis.analyzing')}</span>
                     </>
                   ) : (
                     <>
                       <Pill className="w-5 h-5" />
-                      {t('cropDiagnosis.analyzeButton') || 'Analyze Crop Image'}
+                      <span key="analyze-text">{t('cropDiagnosis.analyzeButton') || 'Analyze Crop Image'}</span>
                     </>
                   )}
                 </button>
