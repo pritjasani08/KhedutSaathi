@@ -24,6 +24,7 @@
     "react-dom": "^19.2.6",
     "react-i18next": "^17.0.8",
     "react-router-dom": "^7.18.0",
+    "recharts": "^3.8.1",
     "rss-parser": "^3.13.0",
     "sharp": "^0.35.2",
     "tailwind-merge": "^3.6.0"

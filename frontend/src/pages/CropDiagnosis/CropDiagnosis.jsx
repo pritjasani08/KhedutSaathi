@@ -1,12 +1,8 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
-import {
-  Upload, Camera, Image, X, AlertTriangle, CheckCircle2,
-  ShieldAlert, Pill, ShieldCheck, Clock, Eye, Loader2
-} from 'lucide-react';
-import { cropDiagnosisAPI } from '../../services/api';
-
+import { motion, AnimatePresence } from 'framer-motion';
+import { Clock, Eye, AlertCircle } from 'lucide-react';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -18,16 +14,17 @@ const fadeUp = {
 
 
 
-// Removed mockHistory
+// Stepper Components
+import DiagnosisStepper from './components/DiagnosisStepper';
+import UploadStep from './components/UploadStep';
+import PreviewStep from './components/PreviewStep';
+import AnalysisStep from './components/AnalysisStep';
+import DiagnosisReport from './components/DiagnosisReport';
+import TreatmentPlan from './components/TreatmentPlan';
 
 export default function CropDiagnosis() {
   const { t } = useTranslation();
-  const [image, setImage] = useState(null);
-  const [preview, setPreview] = useState(null);
-  const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [result, setResult] = useState(null);
-  const [dragActive, setDragActive] = useState(false);
-  const [history, setHistory] = useState([]);
+  const queryClient = useQueryClient();
 
   // Camera state
   const [isCameraOpen, setIsCameraOpen] = useState(false);
@@ -98,53 +95,68 @@ export default function CropDiagnosis() {
     }
   };
 
+  // Clean up object URL to prevent memory leaks
   useEffect(() => {
-    fetchHistory();
-  }, []);
+    return () => {
+      if (imagePreviewUrl) URL.revokeObjectURL(imagePreviewUrl);
+    };
+  }, [imagePreviewUrl]);
 
-  const handleDrop = useCallback((e) => {
-    e.preventDefault();
-    setDragActive(false);
-    const file = e.dataTransfer.files[0];
-    if (file && file.type.startsWith('image/')) {
-      setImage(file);
-      setPreview(URL.createObjectURL(file));
-    }
-  }, []);
+  // History Query
+  const { data: history = [] } = useQuery({
+    queryKey: ['diagnosisHistory'],
+    queryFn: async () => {
+      const res = await cropDiagnosisAPI.getHistory();
+      return (res && res.success && res.data) ? res.data : (Array.isArray(res) ? res : []);
+    },
+    initialData: [],
+  });
 
-  const handleFileSelect = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImage(file);
-      setPreview(URL.createObjectURL(file));
+  // Prediction Mutation
+  const predictMutation = useMutation({
+    mutationFn: (file) => {
+      const lang = localStorage.getItem('i18nextLng') || 'en';
+      return mlApi.predictDisease(file, lang);
+    },
+    onSuccess: async (data) => {
+      // Save history after successful prediction
+      try {
+        await cropDiagnosisAPI.saveHistory({
+          crop: data.details?.crop || 'Unknown',
+          disease: data.details?.disease || 'Unknown Disease',
+          status: data.details?.status || 'Active',
+          confidence: parseFloat(data.confidence) || 0,
+          image_url: null
+        });
+        // Invalidate history query to refetch
+        queryClient.invalidateQueries({ queryKey: ['diagnosisHistory'] });
+      } catch (saveErr) {
+        console.error("Could not save history:", saveErr);
+      }
+
+      // Automatically move to Result Step after a short delay to let analysis animation finish
+      setTimeout(() => {
+        setCurrentStep(3); // Result Step
+      }, 1500);
+    },
+    onError: (err) => {
+      // Stay on Analysis step so user sees the error
+      console.error(err);
     }
+  });
+
+  // Handlers
+  const handleImageSelected = (file) => {
+    setUploadedImage(file);
+    setImagePreviewUrl(URL.createObjectURL(file));
+    setCurrentStep(1); // Move to Preview Step
   };
 
-  const handleAnalyze = async () => {
-    if (!image) return;
-    setIsAnalyzing(true);
-    setResult(null);
-
-    // Get language from localStorage
-    const lang = localStorage.getItem('i18nextLng') || 'en';
-
-    try {
-      const formData = new FormData();
-      formData.append('image', image);
-
-      // Hit the FastAPI backend running on port 8000
-      const res = await fetch(`http://localhost:8000/api/crop-disease/predict?lang=${lang}`, {
-        method: 'POST',
-        body: formData
-      });
-      
-      const data = await res.json();
-      if (res.ok && data.success && data.details) {
-        // Combine organic and chemical treatments
-        const treatments = [
-          ...(data.details.organic_treatment || []),
-          ...(data.details.chemical_treatment || [])
-        ];
+  const handleCancelPreview = () => {
+    setUploadedImage(null);
+    setImagePreviewUrl(null);
+    setCurrentStep(0); // Back to Upload
+  };
 
         setResult({
           disease: data.details.disease || 'Unknown Disease',
@@ -180,21 +192,32 @@ export default function CropDiagnosis() {
     }
   };
 
-  const clearImage = () => {
-    setImage(null);
-    setPreview(null);
-    setResult(null);
+  const handleReset = () => {
+    setUploadedImage(null);
+    setImagePreviewUrl(null);
+    predictMutation.reset();
+    setCurrentStep(0);
   };
 
-  const severityColor = (severity) => {
-    switch (severity) {
-      case 'Low': return 'badge-success';
-      case 'Medium': return 'badge-warning';
-      case 'High': return 'badge-danger';
-      default: return 'badge-info';
-    }
+  // Prepare result data format for the UI components
+  const formatResult = (data) => {
+    if (!data) return null;
+    const details = data.details || {};
+    const treatments = [
+      ...(details.organic_treatment || []),
+      ...(details.chemical_treatment || [])
+    ];
+    return {
+      disease: details.disease || 'Unknown Disease',
+      confidence: parseFloat(data.confidence) || 0,
+      severity: details.status || 'High',
+      symptoms: details.symptoms || ['Discoloration on leaves', 'Fungal spots visible'], // Fallback if API lacks it
+      treatment: treatments.length > 0 ? treatments : ['No specific treatment found'],
+      prevention: Array.isArray(details.prevention) ? details.prevention : ['No prevention data found']
+    };
   };
 
+  // Helper for History Table
   const statusColor = (status) => {
     switch (status) {
       case 'Treated': return 'badge-success';
@@ -206,10 +229,16 @@ export default function CropDiagnosis() {
 
   return (
     <div className="min-h-screen bg-background pt-24 pb-16">
-      <div className="container-custom px-4 sm:px-6 lg:px-8">
-        <div className="mb-8">
-          <h1 className="text-2xl md:text-3xl font-bold text-heading">{t('cropDiagnosis.title')}</h1>
-          <p className="text-sm text-slate-500 mt-1">{t('cropDiagnosis.subtitle')}</p>
+      <div className="container-custom px-4 sm:px-6 lg:px-8 max-w-5xl">
+        
+        {/* Page Header */}
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <h1 className="text-3xl md:text-4xl font-display font-bold text-heading mb-4">
+            {t('cropDiagnosis.title')}
+          </h1>
+          <p className="text-slate-500 text-lg">
+            {t('cropDiagnosis.subtitle')}
+          </p>
         </div>
 
         {/* Main Content */}
@@ -396,48 +425,25 @@ export default function CropDiagnosis() {
                         className="h-full bg-gradient-to-r from-primary to-primary-light rounded-full"
                       />
                     </div>
-                  </div>
-                  <div className="bg-surface-muted rounded-xl p-4 text-center">
-                    <p className="text-xs text-slate-500 dark:text-slate-400 mb-1">{t('cropDiagnosis.severity')}</p>
-                    <span className={`${severityColor(result.severity)} text-lg`}>{result.severity}</span>
-                    <ShieldAlert className="w-5 h-5 text-red-400 mx-auto mt-2" />
-                  </div>
-                </div>
-
-                {/* Treatment */}
-                <div className="bg-green-50 border border-green-100 rounded-xl p-4">
-                  <p className="text-xs text-green-600 font-medium mb-3 flex items-center gap-1">
-                    <Pill className="w-3.5 h-3.5" />
-                    {t('cropDiagnosis.treatment')}
-                  </p>
-                  <ul className="space-y-2">
-                    {Array.isArray(result.treatment) && result.treatment.map((item, i) => (
-                      <li key={i} className="text-sm text-slate-700 flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0 mt-0.5" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Prevention */}
-                <div className="bg-blue-50 border border-blue-100 rounded-xl p-4">
-                  <p className="text-xs text-blue-600 font-medium mb-3 flex items-center gap-1">
-                    <ShieldCheck className="w-3.5 h-3.5" />
-                    {t('cropDiagnosis.prevention')}
-                  </p>
-                  <ul className="space-y-2">
-                    {Array.isArray(result.prevention) && result.prevention.map((item, i) => (
-                      <li key={i} className="text-sm text-slate-700 flex items-start gap-2">
-                        <ShieldCheck className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            )}
-          </motion.div>
+                  )}
+                </motion.div>
+              )}
+              {currentStep === 3 && (
+                <DiagnosisReport 
+                  key="report"
+                  result={formatResult(predictMutation.data)}
+                  onContinue={() => setCurrentStep(4)}
+                />
+              )}
+              {currentStep === 4 && (
+                <TreatmentPlan 
+                  key="treatment"
+                  result={formatResult(predictMutation.data)}
+                  onReset={handleReset}
+                />
+              )}
+            </AnimatePresence>
+          </div>
         </div>
 
         {/* History Table */}
@@ -446,7 +452,7 @@ export default function CropDiagnosis() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="glass-card p-6 md:p-8"
+          className="glass-card p-6 md:p-8 mt-16"
         >
           <h2 className="font-display text-xl font-bold text-body mb-6 flex items-center gap-2">
             <Clock className="w-5 h-5 text-primary" />
@@ -454,35 +460,42 @@ export default function CropDiagnosis() {
           </h2>
 
           <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-slate-200">
-                  <th className="text-left py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">{t('cropDiagnosis.date')}</th>
-                  <th className="text-left py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">{t('cropDiagnosis.crop')}</th>
-                  <th className="text-left py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">{t('cropDiagnosis.disease')}</th>
-                  <th className="text-left py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">{t('cropDiagnosis.status')}</th>
-                  <th className="text-left py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">{t('cropDiagnosis.action')}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Array.isArray(history) && history.map((row) => (
-                  <tr key={row.id} className="border-b border-slate-100 hover:bg-surface-muted/50 transition-colors duration-200">
-                    <td className="py-4 px-4 text-sm text-slate-600">{row.date}</td>
-                    <td className="py-4 px-4 text-sm font-medium text-body">{row.crop}</td>
-                    <td className="py-4 px-4 text-sm text-slate-600">{row.disease}</td>
-                    <td className="py-4 px-4"><span className={statusColor(row.status)}>{row.status}</span></td>
-                    <td className="py-4 px-4">
-                      <button className="text-primary text-sm font-medium hover:underline flex items-center gap-1">
-                        <Eye className="w-3.5 h-3.5" />
-                        {t('cropDiagnosis.viewDetails')}
-                      </button>
-                    </td>
+            {history.length > 0 ? (
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-slate-200">
+                    <th className="text-left py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">{t('cropDiagnosis.date')}</th>
+                    <th className="text-left py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">{t('cropDiagnosis.crop')}</th>
+                    <th className="text-left py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">{t('cropDiagnosis.disease')}</th>
+                    <th className="text-left py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">{t('cropDiagnosis.status')}</th>
+                    <th className="text-left py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">{t('cropDiagnosis.action')}</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {history.map((row) => (
+                    <tr key={row.id} className="border-b border-slate-100 hover:bg-surface-muted/50 transition-colors duration-200">
+                      <td className="py-4 px-4 text-sm text-slate-600">{row.date}</td>
+                      <td className="py-4 px-4 text-sm font-medium text-body">{row.crop}</td>
+                      <td className="py-4 px-4 text-sm text-slate-600">{row.disease}</td>
+                      <td className="py-4 px-4"><span className={statusColor(row.status)}>{row.status}</span></td>
+                      <td className="py-4 px-4">
+                        <button className="text-primary text-sm font-medium hover:underline flex items-center gap-1">
+                          <Eye className="w-3.5 h-3.5" />
+                          {t('cropDiagnosis.viewDetails')}
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <div className="text-center py-10 text-slate-500">
+                No past diagnoses found.
+              </div>
+            )}
           </div>
         </motion.div>
+        
       </div>
     </div>
   );
