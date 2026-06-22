@@ -2,22 +2,47 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Search, Filter, RotateCcw, Download, ChevronDown } from 'lucide-react';
 import { fetchStates, fetchDistricts, fetchMarkets } from '../../services/marketPriceService';
+import { translateArray } from '../../services/translateService';
 
 export default function MarketPriceFilters({ filters, setFilters, onRefresh, onExport }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const [states, setStates] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [markets, setMarkets] = useState([]);
 
+  // Translation Maps
+  const [translatedStates, setTranslatedStates] = useState({});
+  const [translatedDistricts, setTranslatedDistricts] = useState({});
+  const [translatedMarkets, setTranslatedMarkets] = useState({});
+
   // Quick filters for commodities (only shown after mandi selection)
   const quickCommodities = ['Wheat', 'Paddy(Dhan)', 'Cotton', 'Mustard', 'Onion', 'Potato', 'Tomato', 'Soyabean'];
+  const [translatedCommodities, setTranslatedCommodities] = useState({});
+
+  useEffect(() => {
+    translateArray(quickCommodities, i18n.language).then(res => {
+      const map = {};
+      quickCommodities.forEach((c, i) => map[c] = res[i] || c);
+      setTranslatedCommodities(map);
+    });
+  }, [i18n.language]);
 
   useEffect(() => {
     fetchStates().then(res => {
       if (res.data) setStates(res.data);
     });
   }, []);
+
+  useEffect(() => {
+    if (states.length > 0) {
+      translateArray(states, i18n.language).then(res => {
+        const map = {};
+        states.forEach((s, i) => map[s] = res[i] || s);
+        setTranslatedStates(map);
+      });
+    }
+  }, [states, i18n.language]);
 
   useEffect(() => {
     if (filters.state) {
@@ -31,6 +56,16 @@ export default function MarketPriceFilters({ filters, setFilters, onRefresh, onE
   }, [filters.state]);
 
   useEffect(() => {
+    if (districts.length > 0) {
+      translateArray(districts, i18n.language).then(res => {
+        const map = {};
+        districts.forEach((d, i) => map[d] = res[i] || d);
+        setTranslatedDistricts(map);
+      });
+    }
+  }, [districts, i18n.language]);
+
+  useEffect(() => {
     if (filters.district) {
       fetchMarkets(filters.district).then(res => {
         if (res.data) setMarkets(res.data);
@@ -39,6 +74,16 @@ export default function MarketPriceFilters({ filters, setFilters, onRefresh, onE
       setMarkets([]);
     }
   }, [filters.district]);
+
+  useEffect(() => {
+    if (markets.length > 0) {
+      translateArray(markets, i18n.language).then(res => {
+        const map = {};
+        markets.forEach((m, i) => map[m] = res[i] || m);
+        setTranslatedMarkets(map);
+      });
+    }
+  }, [markets, i18n.language]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -115,7 +160,7 @@ export default function MarketPriceFilters({ filters, setFilters, onRefresh, onE
               className="w-full appearance-none bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl py-3 pl-4 pr-10 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all dark:text-white"
             >
               <option value="">{t('marketHub.selectState', { defaultValue: 'Select State' })}</option>
-              {states.map(s => <option key={s} value={s}>{s}</option>)}
+              {states.map(s => <option key={s} value={s}>{translatedStates[s] || s}</option>)}
             </select>
             <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
           </div>
@@ -133,7 +178,7 @@ export default function MarketPriceFilters({ filters, setFilters, onRefresh, onE
               className="w-full appearance-none bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl py-3 pl-4 pr-10 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all dark:text-white disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <option value="">{filters.state ? t('marketHub.selectDistrict', { defaultValue: 'Select District' }) : t('marketHub.selectStateFirst', { defaultValue: 'Select State First' })}</option>
-              {districts.map(d => <option key={d} value={d}>{d}</option>)}
+              {districts.map(d => <option key={d} value={d}>{translatedDistricts[d] || d}</option>)}
             </select>
             <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
           </div>
@@ -151,7 +196,7 @@ export default function MarketPriceFilters({ filters, setFilters, onRefresh, onE
               className="w-full appearance-none bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl py-3 pl-4 pr-10 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all dark:text-white disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <option value="">{filters.district ? t('marketHub.selectMandi', { defaultValue: 'Select Mandi' }) : t('marketHub.selectDistrictFirst', { defaultValue: 'Select District First' })}</option>
-              {markets.map(m => <option key={m} value={m}>{m}</option>)}
+              {markets.map(m => <option key={m} value={m}>{translatedMarkets[m] || m}</option>)}
             </select>
             <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
           </div>
@@ -178,7 +223,7 @@ export default function MarketPriceFilters({ filters, setFilters, onRefresh, onE
                 onClick={() => handleQuickFilter(c)}
                 className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${filters.commodity === c ? 'bg-primary text-white shadow-md' : 'bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-slate-600'}`}
               >
-                {c}
+                {translatedCommodities[c] || c}
               </button>
             ))}
           </div>
