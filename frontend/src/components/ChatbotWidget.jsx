@@ -14,6 +14,8 @@ export default function ChatbotWidget() {
   const [input, setInput] = useState('');
   const [isRecording, setIsRecording] = useState(false);
   const messagesEndRef = useRef(null);
+  const mediaRecorderRef = useRef(null);
+  const audioChunksRef = useRef([]);
 
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const langDropdownRef = useRef(null);
@@ -85,13 +87,58 @@ export default function ChatbotWidget() {
     setInput(actionMessages[action] || '');
   };
 
-  const toggleRecording = () => {
-    setIsRecording(!isRecording);
+  const toggleRecording = async () => {
     if (!isRecording) {
-      setTimeout(() => {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        const mediaRecorder = new MediaRecorder(stream);
+        mediaRecorderRef.current = mediaRecorder;
+        audioChunksRef.current = [];
+
+        mediaRecorder.ondataavailable = (event) => {
+          if (event.data.size > 0) {
+            audioChunksRef.current.push(event.data);
+          }
+        };
+
+        mediaRecorder.onstop = async () => {
+          const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
+          const formData = new FormData();
+          formData.append('audio', audioBlob, 'recording.webm');
+
+          try {
+            setInput('Transcribing voice...');
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/ai/transcribe`, {
+              method: 'POST',
+              body: formData,
+            });
+            const data = await response.json();
+            if (response.ok && data.text) {
+              setInput(data.text);
+            } else {
+              setInput('');
+              alert('Error transcribing audio: ' + (data.message || 'Unknown error'));
+            }
+          } catch (err) {
+            setInput('');
+            alert('Failed to connect to transcription service.');
+          }
+
+          // Stop all audio tracks
+          stream.getTracks().forEach(track => track.stop());
+        };
+
+        mediaRecorder.start();
+        setIsRecording(true);
+      } catch (err) {
+        console.error("Microphone access denied:", err);
+        alert("Please allow microphone permissions to use voice input.");
+      }
+    } else {
+      if (mediaRecorderRef.current && mediaRecorderRef.current.state !== 'inactive') {
+        mediaRecorderRef.current.stop();
         setIsRecording(false);
-        setInput("Voice input detected: What is the best time to plant rice?");
-      }, 2000);
+      }
     }
   };
 
