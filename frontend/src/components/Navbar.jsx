@@ -10,6 +10,26 @@ const languages = [
   { code: 'en', label: 'English' },
   { code: 'hi', label: 'हिन्दी' },
   { code: 'gu', label: 'ગુજરાતી' },
+  { code: 'mr', label: 'मराठी' },
+  { code: 'pa', label: 'ਪੰਜਾਬੀ' },
+  { code: 'bn', label: 'বাংলা' },
+  { code: 'ta', label: 'தமிழ்' },
+  { code: 'te', label: 'తెలుగు' },
+  { code: 'kn', label: 'ಕನ್ನಡ' },
+  { code: 'ml', label: 'മലയാളം' },
+  { code: 'or', label: 'ଓଡ଼ିଆ' },
+  { code: 'as', label: 'অসমীয়া' },
+  { code: 'ur', label: 'اردو' },
+  { code: 'sa', label: 'संस्कृत' },
+  { code: 'ks', label: 'كأشُر' },
+  { code: 'gom', label: 'कोंकणी' },
+  { code: 'mai', label: 'मैथिली' },
+  { code: 'mni', label: 'মৈতৈলোন্' },
+  { code: 'ne', label: 'नेपाली' },
+  { code: 'doi', label: 'डोगरी' },
+  { code: 'sat', label: 'ᱥᱟᱱᱛᱟᱲᱤ' },
+  { code: 'sd', label: 'سنڌي' },
+  { code: 'brx', label: 'बड़ो' }
 ];
 
 export default function Navbar() {
@@ -132,7 +152,7 @@ export default function Navbar() {
           {/* FAR RIGHT: Utilities */}
           <div className="flex items-center justify-end gap-2 xl:gap-3 flex-1 shrink-0">
             {/* Language Switcher */}
-            <div className="relative hidden lg:block" ref={langRef}>
+            <div className="relative hidden lg:block notranslate" ref={langRef}>
               <button
                 onClick={() => setLangDropdown(!langDropdown)}
                 className="p-2.5 rounded-xl bg-surface hover:bg-surface-muted border border-transparent hover:border-subtle text-slate-700 dark:text-slate-200 transition-all duration-300"
@@ -147,7 +167,7 @@ export default function Navbar() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -8, scale: 0.95 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute right-0 top-full mt-2 w-32 bg-surface/90 backdrop-blur-xl rounded-xl shadow-glass border border-subtle overflow-hidden"
+                    className="absolute right-0 top-full mt-2 w-32 max-h-96 overflow-y-auto bg-surface/90 backdrop-blur-xl rounded-xl shadow-glass border border-subtle"
                   >
                     {languages.map((lang) => (
                       <button
@@ -295,9 +315,9 @@ export default function Navbar() {
                   </Link>
                 ))}
 
-                <div className="pt-4 border-t border-slate-100 space-y-2">
+                <div className="pt-4 border-t border-slate-100 space-y-2 notranslate">
                   {/* Mobile Language Switcher */}
-                  <div className="flex gap-2">
+                  <div className="grid grid-cols-3 gap-2 max-h-48 overflow-y-auto p-1">
                     {languages.map((lang) => (
                       <button
                         key={lang.code}
@@ -307,7 +327,7 @@ export default function Navbar() {
                           document.cookie = `googtrans=/en/${lang.code}; path=/; domain=${window.location.hostname}`;
                           window.location.reload();
                         }}
-                        className={`flex-1 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${
+                        className={`w-full py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 ${
                           i18n.language === lang.code
                             ? 'bg-primary text-white'
                             : 'bg-surface-muted border border-subtle text-slate-600 dark:text-slate-300'
