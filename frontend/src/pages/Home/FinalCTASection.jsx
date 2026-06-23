@@ -23,7 +23,7 @@ export default function FinalCTASection() {
             Join thousands of successful farmers using KhedutSaathi to predict yields, prevent diseases, and sell at higher prices.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link to="/auth/register" className="w-full sm:w-auto px-8 py-4 bg-white text-primary hover:bg-slate-50 font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex items-center justify-center gap-2 text-lg">
+            <Link to="/login" className="w-full sm:w-auto px-8 py-4 bg-white text-primary hover:bg-slate-50 font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex items-center justify-center gap-2 text-lg">
               Get Started for Free
               <ArrowRight className="w-5 h-5" />
             </Link>
