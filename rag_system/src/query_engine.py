@@ -34,7 +34,15 @@ class QueryEngine:
         # 3. Check Confidence Threshold
         if highest_similarity >= RAG_CONFIDENCE_THRESHOLD:
             logger.info("Score >= Threshold. Using RAG + Gemini.")
-            return self.llm.generate_rag_answer(user_question, context_chunks)
+            rag_answer = self.llm.generate_rag_answer(user_question, context_chunks)
+            
+            # If the RAG prompt decided the context didn't actually contain the answer,
+            # fallback to direct generation so the user still gets help.
+            if "Information not available in the knowledge base" in rag_answer:
+                logger.info("RAG context lacked the answer. Falling back to Direct Gemini.")
+                return self.llm.generate_direct_answer(user_question)
+                
+            return rag_answer
         else:
             logger.info("Score < Threshold. Using Direct Gemini.")
             return self.llm.generate_direct_answer(user_question)
