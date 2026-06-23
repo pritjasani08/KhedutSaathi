@@ -34,11 +34,11 @@ api.interceptors.response.use(
 
 // Crop Diagnosis
 export const cropDiagnosisAPI = {
-  diagnose: (formData) => api.post('/crop-diagnosis/diagnose', formData, {
+  diagnose: (formData) => api.post('/diagnosis/analyze', formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
   }),
-  getHistory: () => api.get('/crop-diagnosis/history'),
-  saveHistory: (data) => api.post('/crop-diagnosis/history', data),
+  getHistory: () => api.get('/diagnosis/history'),
+  saveHistory: (data) => api.post('/diagnosis/history', data),
 };
 
 // Market Hub - Mandi Prices

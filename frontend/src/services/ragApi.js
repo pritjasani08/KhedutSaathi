@@ -1,6 +1,7 @@
-const API_URL = import.meta.env.VITE_RAG_API_URL || 'http://localhost:8000';
+const API_URL = 'http://localhost:8001';
 
 export async function askRag(question) {
+  console.log(`Sending RAG question to: ${API_URL}/ask`);
   try {
     const response = await fetch(`${API_URL}/ask`, {
       method: 'POST',
@@ -10,8 +11,9 @@ export async function askRag(question) {
       body: JSON.stringify({ question }),
     });
 
+    console.log(`RAG Response Status: ${response.status}`);
     if (!response.ok) {
-      throw new Error(`API Error: ${response.status}`);
+      throw new Error(`API Error: ${response.status} ${response.statusText}`);
     }
 
     const data = await response.json();
@@ -21,7 +23,7 @@ export async function askRag(question) {
       throw new Error(data.error || 'Failed to get an answer from the RAG API.');
     }
   } catch (error) {
-    console.error('Error in askRag:', error);
+    console.error('CRITICAL Error in askRag. Could not connect to the RAG server!', error);
     throw error;
   }
 }

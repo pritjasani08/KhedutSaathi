@@ -12,32 +12,98 @@ export const ChatProvider = ({ children }) => {
   const [isTyping, setIsTyping] = useState(false);
   const [profileData, setProfileData] = useState(null);
   const [chatLanguage, setChatLanguage] = useState(() => localStorage.getItem('chatLanguage') || 'en');
+  
+  // Chat History State
+  const [sessions, setSessions] = useState([]);
+  const [currentSessionId, setCurrentSessionId] = useState(null);
 
   useEffect(() => {
     localStorage.setItem('chatLanguage', chatLanguage);
   }, [chatLanguage]);
 
   useEffect(() => {
-    if (user && user.user_type === 'farmer') {
+    if (user) {
       const token = localStorage.getItem('token');
       if (token) {
-        fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/profile`, {
+        // Fetch Profile
+        if (user.user_type === 'farmer') {
+          fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/profile`, {
+            headers: { 'Authorization': `Bearer ${token}` }
+          })
+          .then(res => res.json())
+          .then(data => {
+            if (data.profile) setProfileData(data.profile);
+          })
+          .catch(err => console.error("Error fetching profile for AI context", err));
+        }
+
+        // Fetch Chat Sessions
+        fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/chat-history`, {
           headers: { 'Authorization': `Bearer ${token}` }
         })
         .then(res => res.json())
         .then(data => {
-          if (data.profile) setProfileData(data.profile);
+          if (data.sessions) {
+            setSessions(data.sessions);
+            if (data.sessions.length > 0) {
+              setCurrentSessionId(data.sessions[0].id);
+              setMessages(data.sessions[0].messages);
+            }
+          }
         })
-        .catch(err => console.error("Error fetching profile for AI context", err));
+        .catch(err => console.error("Error fetching chat sessions", err));
       }
+    } else {
+      // Clear on logout
+      setSessions([]);
+      setCurrentSessionId(null);
+      setMessages([{ id: 1, type: 'bot', text: 'Hello! I am Khedut AI, your smart farming companion. How can I assist you today?', time: new Date() }]);
     }
   }, [user]);
+
+  const startNewChat = () => {
+    setCurrentSessionId(null);
+    setMessages([{ id: Date.now(), type: 'bot', text: 'Hello! I am Khedut AI, your smart farming companion. How can I assist you today?', time: new Date() }]);
+  };
+
+  const loadSession = (sessionId) => {
+    const session = sessions.find(s => s.id === sessionId);
+    if (session) {
+      setCurrentSessionId(session.id);
+      setMessages(session.messages);
+    }
+  };
+
+  const saveSessionToDb = async (newMessages, sessionId) => {
+    const token = localStorage.getItem('token');
+    if (!token) return null;
+    
+    let title = "New Chat";
+    const firstUserMsg = newMessages.find(m => m.type === 'user');
+    if (firstUserMsg) {
+      title = firstUserMsg.text.substring(0, 30) + (firstUserMsg.text.length > 30 ? '...' : '');
+    }
+
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/chat-history`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+        body: JSON.stringify({ id: sessionId, title, messages: newMessages })
+      });
+      const data = await res.json();
+      return data.session;
+    } catch (err) {
+      console.error(err);
+      return null;
+    }
+  };
 
   const sendMessage = async (text) => {
     if (!text.trim()) return;
 
     const userMessage = { id: Date.now(), type: 'user', text, time: new Date() };
-    setMessages((prev) => [...prev, userMessage]);
+    const messagesWithUser = [...messages, userMessage];
+    setMessages(messagesWithUser);
     setIsTyping(true);
 
     try {
@@ -61,18 +127,36 @@ export const ChatProvider = ({ children }) => {
 
       const responseText = await askRag(queryWithContext);
       const botMessage = { id: Date.now() + 1, type: 'bot', text: responseText, time: new Date() };
-      setMessages((prev) => [...prev, botMessage]);
+      
+      const finalMessages = [...messagesWithUser, botMessage];
+      setMessages(finalMessages);
+      
+      // Save to database
+      if (user) {
+        const savedSession = await saveSessionToDb(finalMessages, currentSessionId);
+        if (savedSession) {
+          if (!currentSessionId) {
+             setCurrentSessionId(savedSession.id);
+             setSessions(prev => [savedSession, ...prev]);
+          } else {
+             setSessions(prev => prev.map(s => s.id === savedSession.id ? savedSession : s));
+          }
+        }
+      }
     } catch (error) {
       console.error("Error communicating with Khedut AI", error);
       const errorMessage = { id: Date.now() + 1, type: 'bot', text: "Sorry, I am unable to answer right now. Please try again.", time: new Date() };
-      setMessages((prev) => [...prev, errorMessage]);
+      setMessages([...messagesWithUser, errorMessage]);
     } finally {
       setIsTyping(false);
     }
   };
 
   return (
-    <ChatContext.Provider value={{ messages, setMessages, isTyping, sendMessage, chatLanguage, setChatLanguage }}>
+    <ChatContext.Provider value={{ 
+      messages, setMessages, isTyping, sendMessage, chatLanguage, setChatLanguage,
+      sessions, currentSessionId, startNewChat, loadSession 
+    }}>
       {children}
     </ChatContext.Provider>
   );

@@ -20,6 +20,7 @@ const schemesRoutes = require('./routes/schemesRoutes');
 const diagnosisRoutes = require('./routes/diagnosisRoutes');
 const dashboardRoutes = require('./routes/dashboardRoutes');
 const aiRoutes = require('./routes/aiRoutes');
+const chatHistoryRoutes = require('./routes/chatHistoryRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -65,6 +66,7 @@ app.use('/api/schemes', schemesRoutes);
 app.use('/api/diagnosis', diagnosisRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/ai', aiRoutes);
+app.use('/api/chat-history', chatHistoryRoutes);
 
 // Health check endpoint
 app.get('/health', (req, res) => {
