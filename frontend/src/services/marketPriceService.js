@@ -16,7 +16,7 @@ const cache = new Map();
  */
 export const fetchMarketPrices = async (params = {}) => {
   try {
-    const response = await apiClient.get('/api/market-prices', { params });
+    const response = await apiClient.get('/market-prices', { params });
     // response.data = { success: true, data: [...records], meta: {...} }
     return response.data;
   } catch (error) {
@@ -42,7 +42,7 @@ const fetchWithCache = async (url, params = {}) => {
 
 export const fetchStates = async () => {
   try {
-    return await fetchWithCache('/api/market-prices/states');
+    return await fetchWithCache('/market-prices/states');
   } catch (error) {
     console.error('Error fetching states:', error);
     return { data: [] };
@@ -51,7 +51,7 @@ export const fetchStates = async () => {
 
 export const fetchDistricts = async (state) => {
   try {
-    return await fetchWithCache('/api/market-prices/districts', { state });
+    return await fetchWithCache('/market-prices/districts', { state });
   } catch (error) {
     console.error('Error fetching districts:', error);
     return { data: [] };
@@ -60,7 +60,7 @@ export const fetchDistricts = async (state) => {
 
 export const fetchMarkets = async (district) => {
   try {
-    return await fetchWithCache('/api/market-prices/markets', { district });
+    return await fetchWithCache('/market-prices/markets', { district });
   } catch (error) {
     console.error('Error fetching markets:', error);
     return { data: [] };
@@ -69,7 +69,7 @@ export const fetchMarkets = async (district) => {
 
 export const fetchCommodities = async (params = {}) => {
   try {
-    return await fetchWithCache('/api/market-prices/commodities', params);
+    return await fetchWithCache('/market-prices/commodities', params);
   } catch (error) {
     console.error('Error fetching commodities:', error);
     return { data: [] };

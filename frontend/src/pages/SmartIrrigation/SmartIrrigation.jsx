@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import {
@@ -23,6 +23,9 @@ export default function SmartIrrigation() {
   const [loading, setLoading] = useState(() => !localStorage.getItem('lastIrrigationAdvice'));
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [error, setError] = useState(null);
+  const [retryCount, setRetryCount] = useState(0);
+  const [currentCoords, setCurrentCoords] = useState(null);
+  
   const [data, setData] = useState(() => {
     const cachedString = localStorage.getItem('lastIrrigationAdvice');
     if (cachedString) {
@@ -42,19 +45,26 @@ export default function SmartIrrigation() {
     return null;
   });
 
+  // Prevent multiple simultaneous fetch calls during retries
+  const fetchTimeoutRef = useRef(null);
+
   useEffect(() => {
     const cachedString = localStorage.getItem('lastIrrigationAdvice');
-    fetchAdvice(!!cachedString);
+    fetchAdvice(!!cachedString, 1);
+    
+    return () => {
+      if (fetchTimeoutRef.current) clearTimeout(fetchTimeoutRef.current);
+    };
   }, []);
 
-  function fetchAdvice(hasCache) {
+  function fetchAdvice(hasCache, attempt = 1) {
     if (!hasCache) setLoading(true);
     else setIsRefreshing(true);
     
     setError(null);
 
     if (!navigator.geolocation) {
-      setError("Geolocation is not supported by your browser");
+      setError("Geolocation is not supported by your browser.");
       setLoading(false);
       setIsRefreshing(false);
       return;
@@ -64,11 +74,13 @@ export default function SmartIrrigation() {
       async (position) => {
         try {
           const { latitude, longitude } = position.coords;
+          setCurrentCoords({ lat: latitude, lon: longitude });
           const crop = "Crops"; 
           
           const adviceData = await getIrrigationAdvice(latitude, longitude, crop);
           
           setData(adviceData);
+          setRetryCount(0); // Reset on success
           
           const now = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
           setLastUpdated(now);
@@ -81,9 +93,19 @@ export default function SmartIrrigation() {
           setLoading(false);
           setIsRefreshing(false);
         } catch (err) {
-          console.error("Error fetching irrigation advice:", err);
+          console.error(`Error fetching irrigation advice (Attempt ${attempt}):`, err);
+          
+          if (attempt < 3) {
+            setRetryCount(attempt);
+            // Exponential backoff
+            fetchTimeoutRef.current = setTimeout(() => {
+               fetchAdvice(hasCache, attempt + 1);
+            }, Math.pow(2, attempt) * 1000);
+            return;
+          }
+
           if (!hasCache) {
-             setError("Failed to fetch smart irrigation data. Please try again.");
+             setError("Unable to load irrigation recommendations right now. You can still explore irrigation guidelines and best practices while we reconnect.");
           }
           setLoading(false);
           setIsRefreshing(false);
@@ -98,148 +120,133 @@ export default function SmartIrrigation() {
         setIsRefreshing(false);
       }
     );
-  };
+  }
 
   const renderSkeleton = () => (
-    <div className="min-h-screen gradient-bg pt-24 pb-16">
-      <div className="container-custom px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 animate-pulse">
-          <div className="h-6 w-32 bg-slate-200 dark:bg-slate-700 rounded-full mx-auto mb-4"></div>
-          <div className="h-10 w-3/4 max-w-lg bg-slate-200 dark:bg-slate-700 rounded-lg mx-auto mb-4"></div>
-          <div className="h-4 w-1/2 bg-slate-200 dark:bg-slate-700 rounded-full mx-auto"></div>
-        </div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-12 animate-pulse">
-          {[1, 2, 3, 4].map(i => (
-            <div key={i} className="glass-card p-6 h-32 rounded-xl border dark:border-slate-700"></div>
-          ))}
-        </div>
-        <div className="glass-card p-8 mb-12 h-40 animate-pulse border dark:border-slate-700"></div>
-        <div className="grid md:grid-cols-2 gap-5 mb-12 animate-pulse">
-          {[1, 2, 3, 4].map(i => (
-             <div key={i} className="glass-card p-6 h-32 rounded-xl border dark:border-slate-700"></div>
-          ))}
-        </div>
+    <>
+      <div className="text-center mb-12 animate-pulse">
+        <div className="h-6 w-32 bg-slate-200 dark:bg-slate-700 rounded-full mx-auto mb-4"></div>
+        <div className="h-10 w-3/4 max-w-lg bg-slate-200 dark:bg-slate-700 rounded-lg mx-auto mb-4"></div>
+        <div className="h-4 w-1/2 bg-slate-200 dark:bg-slate-700 rounded-full mx-auto"></div>
       </div>
-    </div>
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-12 animate-pulse">
+        {[1, 2, 3, 4].map(i => (
+          <div key={i} className="glass-card p-6 h-32 rounded-xl border dark:border-slate-700"></div>
+        ))}
+      </div>
+      <div className="glass-card p-8 mb-12 h-40 animate-pulse border dark:border-slate-700"></div>
+      <div className="grid md:grid-cols-2 gap-5 mb-12 animate-pulse">
+        {[1, 2, 3, 4].map(i => (
+            <div key={i} className="glass-card p-6 h-32 rounded-xl border dark:border-slate-700"></div>
+        ))}
+      </div>
+    </>
   );
 
-  if (loading && !data) {
-    return renderSkeleton();
-  }
+  const displayLocation = data?.location 
+    ? (data.location.name !== "Unknown" ? data.location.name : `Lat: ${data.location.lat.toFixed(2)}, Lon: ${data.location.lon.toFixed(2)}`)
+    : currentCoords ? `Lat: ${currentCoords.lat.toFixed(2)}, Lon: ${currentCoords.lon.toFixed(2)}` : "Getting location...";
 
-  if (error && !data) {
-    return (
-      <div className="min-h-screen gradient-bg pt-24 pb-16 flex items-center justify-center">
-        <div className="glass-card p-8 max-w-md w-full text-center border dark:border-slate-700">
-          <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 text-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
-            <AlertTriangle className="w-8 h-8" />
-          </div>
-          <h2 className="text-xl font-bold text-slate-800 dark:text-slate-200 mb-2">Oops! Something went wrong.</h2>
-          <p className="text-slate-600 dark:text-slate-400 mb-6">{error}</p>
-          <button 
-            onClick={() => fetchAdvice(false)}
-            className="btn-primary w-full justify-center"
-          >
-            Try Again
-          </button>
-        </div>
-      </div>
-    );
-  }
+  const renderContent = () => {
+    if (loading && !data) {
+      return renderSkeleton();
+    }
 
-  // Validate that the data object actually contains the required fields
-  // If the backend returned an error message inside a 200 OK, or if cache is malformed, this prevents a crash.
-  if (!data || !data.location || !data.weather || !data.recommendation || !data.forecast) {
-    return (
-      <div className="min-h-screen gradient-bg pt-24 pb-16 flex items-center justify-center">
-        <div className="glass-card p-8 max-w-md w-full text-center border dark:border-slate-700">
-          <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 text-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
-            <AlertTriangle className="w-8 h-8" />
-          </div>
-          <h2 className="text-xl font-bold text-slate-800 dark:text-slate-200 mb-2">Invalid Data Received</h2>
-          <p className="text-slate-600 dark:text-slate-400 mb-6">
-            {data?.message || data?.error || "We couldn't retrieve the irrigation advice correctly. The server might be down or returning an error."}
-          </p>
-          <button 
-            onClick={() => {
-              localStorage.removeItem('lastIrrigationAdvice');
-              fetchAdvice(false);
-            }}
-            className="btn-primary w-full justify-center"
-          >
-            Clear Cache & Try Again
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  const { location, weather, recommendation, farmerAction, forecast, confidence } = data;
-
-  const weatherCards = {
-    temperature: { value: `${weather.temperature}°C`, label: 'Temperature', icon: Thermometer, color: 'text-orange-500 dark:text-orange-400', bg: 'bg-orange-50 dark:bg-orange-900/20', border: 'border-orange-100 dark:border-orange-900/30' },
-    humidity: { value: `${weather.humidity}%`, label: 'Humidity', icon: Droplets, color: 'text-blue-500 dark:text-blue-400', bg: 'bg-blue-50 dark:bg-blue-900/20', border: 'border-blue-100 dark:border-blue-900/30' },
-    rainProbability: { value: `${weather.rainProbability}%`, label: 'Rain Probability', icon: CloudRain, color: 'text-cyan-500 dark:text-cyan-400', bg: 'bg-cyan-50 dark:bg-cyan-900/20', border: 'border-cyan-100 dark:border-cyan-900/30' },
-    windSpeed: { value: `${weather.windSpeed} km/h`, label: 'Wind Speed', icon: Wind, color: 'text-teal-500 dark:text-teal-400', bg: 'bg-teal-50 dark:bg-teal-900/20', border: 'border-teal-100 dark:border-teal-900/30' },
-  };
-
-  const isPositiveRec = recommendation.status === 'IRRIGATION_RECOMMENDED';
-  const isWaitRec = recommendation.status === 'WAIT_AND_MONITOR' || recommendation.status === 'DELAY_IRRIGATION';
-
-  const recIcon = isPositiveRec ? CheckCircle2 : (isWaitRec ? Clock : XCircle);
-  const recColor = isPositiveRec ? 'text-green-600 dark:text-green-400' : (isWaitRec ? 'text-amber-600 dark:text-amber-400' : 'text-red-600 dark:text-red-400');
-  const recBg = isPositiveRec ? 'bg-green-50 dark:bg-green-900/20' : (isWaitRec ? 'bg-amber-50 dark:bg-amber-900/20' : 'bg-red-50 dark:bg-red-900/20');
-  const recBorder = isPositiveRec ? 'border-green-200 dark:border-green-900/30' : (isWaitRec ? 'border-amber-200 dark:border-amber-900/30' : 'border-red-200 dark:border-red-900/30');
-
-  // Confidence Styling
-  let confColor = 'text-green-600 dark:text-green-400';
-  let confBg = 'bg-green-500 dark:bg-green-400';
-  let confBorder = 'border-green-200 dark:border-green-900/30';
-  let confBadgeBg = 'bg-green-100 dark:bg-green-900/40';
-  
-  if (confidence?.level === 'Medium') {
-    confColor = 'text-amber-600 dark:text-amber-400';
-    confBg = 'bg-amber-500 dark:bg-amber-400';
-    confBorder = 'border-amber-200 dark:border-amber-900/30';
-    confBadgeBg = 'bg-amber-100 dark:bg-amber-900/40';
-  } else if (confidence?.level === 'Low') {
-    confColor = 'text-red-600 dark:text-red-400';
-    confBg = 'bg-red-500 dark:bg-red-400';
-    confBorder = 'border-red-200 dark:border-red-900/30';
-    confBadgeBg = 'bg-red-100 dark:bg-red-900/40';
-  }
-
-  return (
-    <div className="min-h-screen gradient-bg pt-24 pb-16">
-      <div className="container-custom px-4 sm:px-6 lg:px-8">
-        
-        {/* Header & Location */}
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8">
-          <div>
-            <h1 className="text-2xl md:text-3xl font-bold text-heading">{t('smartIrrigation.title') || "Smart Irrigation Advisor"}</h1>
-            <p className="text-sm text-slate-500 mt-1">Data-driven decisions for optimal crop hydration and water conservation.</p>
-          </div>
-          <div className="flex flex-wrap items-center gap-3">
-            <div className="inline-flex items-center gap-2 px-4 py-2 glass-card rounded-full border border-slate-200 dark:border-slate-700 text-sm">
-              <MapPin className="w-4 h-4 text-primary" />
-              <span className="font-medium text-slate-700 dark:text-slate-300">
-                {location.name !== "Unknown" ? location.name : `Lat: ${location.lat.toFixed(2)}, Lon: ${location.lon.toFixed(2)}`}
-              </span>
+    if (error && !data) {
+      return (
+        <div className="flex items-center justify-center py-12">
+          <div className="glass-card p-8 max-w-lg w-full text-center border dark:border-slate-700">
+            <div className="w-16 h-16 bg-amber-100 dark:bg-amber-900/30 text-amber-500 rounded-full flex items-center justify-center mx-auto mb-4">
+              <CloudOff className="w-8 h-8" />
             </div>
-            
-            {lastUpdated && (
-              <div className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-500 dark:text-slate-400 bg-white/50 dark:bg-slate-800/50 px-3 py-2 rounded-full border border-slate-200/60 dark:border-slate-700/60">
-                {isRefreshing ? (
-                  <div className="w-3 h-3 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
-                ) : (
-                  <Clock className="w-3 h-3" />
-                )}
-                {lastUpdated}
-              </div>
+            <h2 className="text-xl font-bold text-slate-800 dark:text-slate-200 mb-2">Connection Issue</h2>
+            <p className="text-slate-600 dark:text-slate-400 mb-6">{error}</p>
+            {retryCount > 0 && retryCount < 3 && (
+              <p className="text-sm text-amber-600 dark:text-amber-400 mb-4 animate-pulse">
+                Retrying... (Attempt {retryCount} of 3)
+              </p>
             )}
+            <button 
+              onClick={() => {
+                if (fetchTimeoutRef.current) clearTimeout(fetchTimeoutRef.current);
+                setRetryCount(0);
+                fetchAdvice(false, 1);
+              }}
+              className="btn-primary w-full justify-center"
+              disabled={retryCount > 0 && retryCount < 3}
+            >
+              Try Again
+            </button>
           </div>
         </div>
+      );
+    }
 
+    // Validate that the data object actually contains the required fields
+    if (!data || !data.location || !data.weather || !data.recommendation || !data.forecast) {
+      return (
+        <div className="flex items-center justify-center py-12">
+          <div className="glass-card p-8 max-w-lg w-full text-center border dark:border-slate-700">
+            <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 text-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Info className="w-8 h-8" />
+            </div>
+            <h2 className="text-xl font-bold text-slate-800 dark:text-slate-200 mb-2">No Recommendations Available</h2>
+            <p className="text-slate-600 dark:text-slate-400 mb-6">
+              {data?.message || data?.error || "We don't have actionable irrigation recommendations for your location at this moment. You can check back later."}
+            </p>
+            <button 
+              onClick={() => {
+                localStorage.removeItem('lastIrrigationAdvice');
+                if (fetchTimeoutRef.current) clearTimeout(fetchTimeoutRef.current);
+                setRetryCount(0);
+                fetchAdvice(false, 1);
+              }}
+              className="btn-primary w-full justify-center"
+            >
+              Refresh Data
+            </button>
+          </div>
+        </div>
+      );
+    }
+
+    const { location, weather, recommendation, farmerAction, forecast, confidence } = data;
+
+    const weatherCards = {
+      temperature: { value: `${weather.temperature}°C`, label: 'Temperature', icon: Thermometer, color: 'text-orange-500 dark:text-orange-400', bg: 'bg-orange-50 dark:bg-orange-900/20', border: 'border-orange-100 dark:border-orange-900/30' },
+      humidity: { value: `${weather.humidity}%`, label: 'Humidity', icon: Droplets, color: 'text-blue-500 dark:text-blue-400', bg: 'bg-blue-50 dark:bg-blue-900/20', border: 'border-blue-100 dark:border-blue-900/30' },
+      rainProbability: { value: `${weather.rainProbability}%`, label: 'Rain Probability', icon: CloudRain, color: 'text-cyan-500 dark:text-cyan-400', bg: 'bg-cyan-50 dark:bg-cyan-900/20', border: 'border-cyan-100 dark:border-cyan-900/30' },
+      windSpeed: { value: `${weather.windSpeed} km/h`, label: 'Wind Speed', icon: Wind, color: 'text-teal-500 dark:text-teal-400', bg: 'bg-teal-50 dark:bg-teal-900/20', border: 'border-teal-100 dark:border-teal-900/30' },
+    };
+
+    const isPositiveRec = recommendation.status === 'IRRIGATION_RECOMMENDED';
+    const isWaitRec = recommendation.status === 'WAIT_AND_MONITOR' || recommendation.status === 'DELAY_IRRIGATION';
+
+    const recIcon = isPositiveRec ? CheckCircle2 : (isWaitRec ? Clock : XCircle);
+    const recColor = isPositiveRec ? 'text-green-600 dark:text-green-400' : (isWaitRec ? 'text-amber-600 dark:text-amber-400' : 'text-red-600 dark:text-red-400');
+    const recBg = isPositiveRec ? 'bg-green-50 dark:bg-green-900/20' : (isWaitRec ? 'bg-amber-50 dark:bg-amber-900/20' : 'bg-red-50 dark:bg-red-900/20');
+    const recBorder = isPositiveRec ? 'border-green-200 dark:border-green-900/30' : (isWaitRec ? 'border-amber-200 dark:border-amber-900/30' : 'border-red-200 dark:border-red-900/30');
+
+    // Confidence Styling
+    let confColor = 'text-green-600 dark:text-green-400';
+    let confBg = 'bg-green-500 dark:bg-green-400';
+    let confBorder = 'border-green-200 dark:border-green-900/30';
+    let confBadgeBg = 'bg-green-100 dark:bg-green-900/40';
+    
+    if (confidence?.level === 'Medium') {
+      confColor = 'text-amber-600 dark:text-amber-400';
+      confBg = 'bg-amber-500 dark:bg-amber-400';
+      confBorder = 'border-amber-200 dark:border-amber-900/30';
+      confBadgeBg = 'bg-amber-100 dark:bg-amber-900/40';
+    } else if (confidence?.level === 'Low') {
+      confColor = 'text-red-600 dark:text-red-400';
+      confBg = 'bg-red-500 dark:bg-red-400';
+      confBorder = 'border-red-200 dark:border-red-900/30';
+      confBadgeBg = 'bg-red-100 dark:bg-red-900/40';
+    }
+
+    return (
+      <>
         {/* Hero Recommendation Card */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -440,6 +447,43 @@ export default function SmartIrrigation() {
             )})}
           </div>
         </motion.div>
+      </>
+    );
+  };
+
+  return (
+    <div className="min-h-screen gradient-bg pt-24 pb-16">
+      <div className="container-custom px-4 sm:px-6 lg:px-8">
+        
+        {/* Persistent Header & Location */}
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8">
+          <div>
+            <h1 className="text-2xl md:text-3xl font-bold text-heading">{t('smartIrrigation.title') || "Smart Irrigation Advisor"}</h1>
+            <p className="text-sm text-slate-500 mt-1">Data-driven decisions for optimal crop hydration and water conservation.</p>
+          </div>
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="inline-flex items-center gap-2 px-4 py-2 glass-card rounded-full border border-slate-200 dark:border-slate-700 text-sm">
+              <MapPin className="w-4 h-4 text-primary" />
+              <span className="font-medium text-slate-700 dark:text-slate-300">
+                {displayLocation}
+              </span>
+            </div>
+            
+            {lastUpdated && (
+              <div className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-500 dark:text-slate-400 bg-white/50 dark:bg-slate-800/50 px-3 py-2 rounded-full border border-slate-200/60 dark:border-slate-700/60">
+                {isRefreshing ? (
+                  <div className="w-3 h-3 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+                ) : (
+                  <Clock className="w-3 h-3" />
+                )}
+                {lastUpdated}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Dynamic Content: Skeleton, Error, Empty, or Data */}
+        {renderContent()}
 
       </div>
     </div>
