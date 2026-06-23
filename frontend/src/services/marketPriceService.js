@@ -1,11 +1,4 @@
-import axios from 'axios';
-
-const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000',
-  headers: {
-    'Content-Type': 'application/json'
-  }
-});
+import apiClient from './apiClient';
 
 const CACHE_EXPIRY = 5 * 60 * 1000;
 const cache = new Map();
