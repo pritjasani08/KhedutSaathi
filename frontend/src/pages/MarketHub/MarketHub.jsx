@@ -20,11 +20,8 @@ export default function MarketHub() {
 
   const tabs = [
     { key: 'livePrices', label: t('marketHub.livePrices'), icon: TrendingUp },
+    { key: 'sellYield', label: t('marketHub.sellYield'), icon: ShoppingBag }
   ];
-  
-  if (user && user.user_type === 'farmer') {
-    tabs.push({ key: 'sellYield', label: t('marketHub.sellYield'), icon: ShoppingBag });
-  }
 
   return (
     <div className="min-h-screen bg-background pt-24 pb-16">
