@@ -17,6 +17,7 @@ import CropMarket from './pages/CropMarket/CropMarket';
 import Features from './pages/Features/Features';
 import Login from './pages/Auth/Login/Login';
 import Register from './pages/Auth/Register/Register';
+import ForgotPassword from './pages/Auth/ForgotPassword/ForgotPassword';
 import PlaceholderPage from './pages/Placeholder/PlaceholderPage';
 import Profile from './pages/Profile/Profile';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -84,6 +85,7 @@ function AnimatedRoutes() {
         <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
         <Route path="/login" element={<PageWrapper><Login /></PageWrapper>} />
         <Route path="/register" element={<PageWrapper><Register /></PageWrapper>} />
+        <Route path="/forgot-password" element={<PageWrapper><ForgotPassword /></PageWrapper>} />
         <Route path="/profile" element={<ProtectedRoute><PageWrapper><Profile /></PageWrapper></ProtectedRoute>} />
         <Route path="/dashboard-legacy" element={<ProtectedRoute><PageWrapper><Dashboard /></PageWrapper></ProtectedRoute>} />
         <Route path="/dashboard" element={<ProtectedRoute><PageWrapper><NewDashboard /></PageWrapper></ProtectedRoute>} />
