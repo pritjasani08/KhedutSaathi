@@ -111,7 +111,7 @@ export default function HeroSection() {
             </motion.div>
 
             {/* Trust badges */}
-            <motion.div variants={fadeUp} custom={4} className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 justify-center lg:justify-start">
+            <motion.div variants={fadeUp} custom={4} className="mt-10 flex flex-wrap lg:flex-nowrap items-center justify-between gap-4 w-full lg:w-[95%] xl:w-[90%] mx-auto lg:mx-0">
               {[
                 'Yield Prediction',
                 'Disease Detection',
