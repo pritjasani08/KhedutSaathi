@@ -62,8 +62,8 @@ export default function Login() {
           className="glass-card p-8 sm:p-10"
         >
           <div className="text-center mb-6">
-            <div className="flex justify-center -mt-4 sm:-mt-6 -mb-10 sm:-mb-14">
-              <img src="/logo.png" alt="KhedutSaathi Logo" className="w-48 h-48 sm:w-56 sm:h-56 object-contain relative z-10 pointer-events-none" />
+            <div className="flex justify-center mb-2">
+              <img src="/logo.png" alt="KhedutSaathi Logo" className="w-24 h-24 sm:w-28 sm:h-28 object-contain relative z-10 pointer-events-none" />
             </div>
             <h1 className="font-display text-3xl font-bold text-heading mb-2 relative z-20">Welcome Back</h1>
             <p className="text-body opacity-80">Log in to continue to your dashboard.</p>
