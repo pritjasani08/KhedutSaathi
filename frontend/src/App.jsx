@@ -28,6 +28,8 @@ const MarketHub = lazy(() => import('./pages/MarketHub/MarketHub'));
 const AgriMarketplace = lazy(() => import('./pages/AgriMarketplace/AgriMarketplace'));
 const SellerDashboard = lazy(() => import('./pages/SellerDashboard/SellerDashboard'));
 const Resources = lazy(() => import('./pages/Resources/Resources'));
+const NewsDetail = lazy(() => import('./pages/Resources/NewsDetail'));
+const SchemeDetail = lazy(() => import('./pages/Resources/SchemeDetail'));
 const About = lazy(() => import('./pages/About/About'));
 const KhedutAI = lazy(() => import('./pages/KhedutAI/KhedutAI'));
 const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard'));
@@ -77,6 +79,8 @@ function AnimatedRoutes() {
         <Route path="/smart-irrigation" element={<PageWrapper><SmartIrrigation /></PageWrapper>} />
         <Route path="/features" element={<PageWrapper><Features /></PageWrapper>} />
         <Route path="/resources" element={<PageWrapper><Resources /></PageWrapper>} />
+        <Route path="/resources/news/:id" element={<PageWrapper><NewsDetail /></PageWrapper>} />
+        <Route path="/resources/schemes/:id" element={<PageWrapper><SchemeDetail /></PageWrapper>} />
         <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
         <Route path="/login" element={<PageWrapper><Login /></PageWrapper>} />
         <Route path="/register" element={<PageWrapper><Register /></PageWrapper>} />

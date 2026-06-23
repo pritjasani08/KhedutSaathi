@@ -4,7 +4,7 @@
     "title": "PM-KISAN Samman Nidhi",
     "deadline": "Ongoing",
     "category": "Income Support",
-    "description": "Financial benefit of Rs. 6000/- per year in three equal installments to all land holding eligible farmer families.",
+    "description": "Pradhan Mantri Kisan Samman Nidhi (PM-KISAN) is a central sector scheme that provides income support to all landholding farmers' families in the country. It aims to supplement the financial needs of farmers in procuring various inputs to ensure proper crop health and appropriate yields. Under the scheme, a financial benefit of ₹6,000 per year is provided, payable in three equal four-monthly installments of ₹2,000 each. The fund is transferred directly into the bank accounts of the beneficiaries to eliminate middlemen. This consistent financial backing empowers farmers to make timely agricultural investments and secure their livelihoods.",
     "benefit": "₹6,000 / year",
     "applyLink": "https://pmkisan.gov.in/",
     "criteria": {
@@ -25,7 +25,7 @@
     "title": "Pradhan Mantri Fasal Bima Yojana",
     "deadline": "31 July 2026",
     "category": "Insurance",
-    "description": "Comprehensive crop insurance coverage against non-preventable natural risks from pre-sowing to post-harvest.",
+    "description": "Pradhan Mantri Fasal Bima Yojana provides financial protection to farmers against crop losses caused by natural calamities, pests, and diseases. The scheme covers risks from pre-sowing to post-harvest stages, helping farmers reduce financial uncertainty. It supports income stability and encourages continued agricultural investment by keeping premium rates remarkably low for farmers. It ensures quick settlement of claims through the use of technology like smartphones and remote sensing. Farmers can safeguard their crops and recover more effectively from unexpected catastrophic losses.",
     "benefit": "Crop Loss Coverage",
     "applyLink": "https://pmfby.gov.in/",
     "criteria": {
@@ -46,7 +46,7 @@
     "title": "PM KUSUM Scheme",
     "deadline": "30 Sept 2026",
     "category": "Solar Energy",
-    "description": "Installation of solar pumps and grid connected solar power plants by farmers.",
+    "description": "PM KUSUM (Pradhan Mantri Kisan Urja Suraksha evam Utthaan Mahabhiyan) is designed to ensure energy security for farmers in India and increase the share of installed capacity of electric power from non-fossil-fuel sources. It provides a massive 60% subsidy to farmers for setting up standalone solar agriculture pumps and solarizing existing grid-connected agriculture pumps. This reduces the farmer's dependence on erratic grid power and expensive diesel, significantly lowering operational costs. By selling surplus solar power back to the grid, farmers can also generate an additional steady source of income.",
     "benefit": "60% Subsidy on Solar Pumps",
     "applyLink": "https://pmkusum.mnre.gov.in/",
     "criteria": {
@@ -67,7 +67,7 @@
     "title": "i-Khedut Portal Tractors Subsidy",
     "deadline": "Ongoing",
     "category": "Machinery",
-    "description": "Subsidy for purchasing tractors to improve farm mechanization.",
+    "description": "The i-Khedut Portal Tractors Subsidy is a specialized initiative by the Gujarat Government to promote farm mechanization among local farmers. It provides direct financial assistance to help farmers purchase modern tractors and related agricultural machinery, reducing the heavy manual labor involved in traditional farming. By upgrading to mechanized farming, agricultural productivity and efficiency are substantially increased, leading to better crop yields. The scheme particularly focuses on making expensive farm equipment accessible and affordable for small and marginal farmers.",
     "benefit": "Up to ₹60,000 Subsidy",
     "applyLink": "https://ikhedut.gujarat.gov.in/",
     "criteria": {
@@ -88,7 +88,7 @@
     "title": "Suryashakti Kisan Yojana (SKY)",
     "deadline": "Ongoing",
     "category": "Energy",
-    "description": "Empowers farmers to generate their own electricity using solar panels.",
+    "description": "Suryashakti Kisan Yojana (SKY) is a pioneering solar energy scheme by the Gujarat Government aimed at transforming farmers into power producers. Under this scheme, farmers can install solar panels on their unused land to generate electricity for their agricultural needs. Any surplus electricity generated can be sold directly to the state grid at a pre-decided tariff, ensuring a reliable secondary income stream. It promotes sustainable agricultural practices, conserves the environment, and drastically reduces the financial burden of high electricity bills for irrigation.",
     "benefit": "Additional Income Generation",
     "applyLink": "https://gujvnl.in/",
     "criteria": {
@@ -109,7 +109,7 @@
     "title": "Women Farmer Empowerment Initiative",
     "deadline": "31 Dec 2026",
     "category": "Empowerment",
-    "description": "Special financial assistance and training for women engaging in agriculture.",
+    "description": "The Women Farmer Empowerment Initiative recognizes and supports the crucial role of women in the agricultural sector across India. It offers targeted financial assistance, specialized agricultural training, and resources specifically designed to uplift female farmers. The initiative aims to improve women's access to credit, modern farming technology, and high-value markets, breaking traditional barriers in agriculture. By empowering women farmers, the scheme drives inclusive agricultural growth, improves rural household incomes, and fosters greater gender equality in farming communities.",
     "benefit": "₹10,000 / year + Training",
     "applyLink": "https://agricoop.gov.in/",
     "criteria": {
