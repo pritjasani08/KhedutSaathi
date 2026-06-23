@@ -30,8 +30,8 @@ export const useMarketInsights = (data = []) => {
     const losers = [];
 
     data.forEach(item => {
-      activeMarkets.add(item.market);
-      cropsTracked.add(item.commodity);
+      if (item.market) activeMarkets.add(item.market.trim().toUpperCase());
+      if (item.commodity) cropsTracked.add(item.commodity.trim().toUpperCase());
       
       const modalPrice = parseFloat(item.modal_price) || 0;
       const minPrice = parseFloat(item.min_price) || 0;

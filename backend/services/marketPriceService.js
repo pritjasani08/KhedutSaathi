@@ -66,7 +66,7 @@ const getDistricts = async (state) => {
   const records = await fetchAllRecentData();
   let filtered = records;
   if (state) {
-    filtered = records.filter(r => r.state && r.state.toLowerCase() === state.toLowerCase());
+    filtered = records.filter(r => r.state && r.state.trim().toLowerCase() === state.trim().toLowerCase());
   }
   const districts = [...new Set(filtered.map(r => r.district))].filter(Boolean).sort();
   return districts;
@@ -76,17 +76,13 @@ const getMarkets = async (district) => {
   const records = await fetchAllRecentData();
   let filtered = records;
   if (district) {
-    filtered = records.filter(r => r.district && r.district.toLowerCase() === district.toLowerCase());
+    filtered = records.filter(r => r.district && r.district.trim().toLowerCase() === district.trim().toLowerCase());
   }
   const markets = [...new Set(filtered.map(r => r.market))].filter(Boolean).sort();
   return markets;
 };
 
-const getCommodities = async () => {
-  const records = await fetchAllRecentData();
-  const commodities = [...new Set(records.map(r => r.commodity))].filter(Boolean).sort();
-  return commodities;
-};
+
 
 /**
  * Fetches market prices from the AGMARKNET API.
@@ -144,11 +140,21 @@ const fetchMarketPrices = async (queryParams) => {
     }
   }
 
-  // In-memory commodity filter
+  // In-memory strict filters (AGMARKNET API can be fuzzy or buggy)
   let filteredRecords = allRecords;
+  
+  if (state) {
+    filteredRecords = filteredRecords.filter(r => r.state && r.state.trim().toLowerCase() === state.trim().toLowerCase());
+  }
+  if (district) {
+    filteredRecords = filteredRecords.filter(r => r.district && r.district.trim().toLowerCase() === district.trim().toLowerCase());
+  }
+  if (market) {
+    filteredRecords = filteredRecords.filter(r => r.market && r.market.trim().toLowerCase() === market.trim().toLowerCase());
+  }
   if (commodity) {
-    filteredRecords = allRecords.filter(r =>
-      r.commodity && r.commodity.toLowerCase().includes(commodity.toLowerCase())
+    filteredRecords = filteredRecords.filter(r =>
+      r.commodity && r.commodity.trim().toLowerCase().includes(commodity.trim().toLowerCase())
     );
   }
 
@@ -180,6 +186,22 @@ const fetchMarketPrices = async (queryParams) => {
     total: filteredRecords.length,
     count: filteredRecords.length
   };
+};
+
+const getCommodities = async ({ state, district, market } = {}) => {
+  let records = [];
+  
+  if (market) {
+    // Fetch a large dataset specifically for this market to ensure we don't miss any crops
+    const data = await fetchMarketPrices({ state, district, market, limit: 5000 });
+    records = data.records || [];
+  } else {
+    // Fallback to nationwide recent data
+    records = await fetchAllRecentData();
+  }
+
+  const commodities = [...new Set(records.map(r => r.commodity))].filter(Boolean).sort();
+  return commodities;
 };
 
 module.exports = {
