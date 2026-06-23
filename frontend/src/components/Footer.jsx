@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Mail, Phone, MapPin, ExternalLink, Globe2, Users, ArrowUpRight } from 'lucide-react';
+import { Mail, MapPin, ExternalLink, Globe2, Users, ArrowUpRight } from 'lucide-react';
 
 export default function Footer() {
   const { t } = useTranslation();
@@ -111,10 +111,7 @@ export default function Footer() {
                 <Mail className="w-4 h-4 mt-0.5 text-primary shrink-0" />
                 {t('footer.email')}
               </li>
-              <li className="flex items-start gap-3 text-sm text-slate-400">
-                <Phone className="w-4 h-4 mt-0.5 text-primary shrink-0" />
-                {t('footer.phone')}
-              </li>
+
               <li className="flex items-start gap-3 text-sm text-slate-400">
                 <MapPin className="w-4 h-4 mt-0.5 text-primary shrink-0" />
                 {t('footer.address')}
