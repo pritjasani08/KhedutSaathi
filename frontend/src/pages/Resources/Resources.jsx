@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Newspaper, Landmark, Loader2, AlertCircle, Globe, MapPin, Calculator, ChevronDown } from 'lucide-react';
 import PageHero from '../../components/shared/PageHero';
@@ -7,6 +8,7 @@ import SchemeCard from '../../components/shared/SchemeCard';
 import SkeletonCard from '../../components/shared/SkeletonCard';
 import SchemeEligibilityEngine from './SchemeEligibilityEngine';
 import { useAuth } from '../../context/AuthContext';
+import apiClient from '../../services/apiClient';
 
 const CustomDropdown = ({ value, onChange, options, icon: Icon }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -70,8 +72,15 @@ const CustomDropdown = ({ value, onChange, options, icon: Icon }) => {
 };
 
 export default function Resources() {
+  const location = useLocation();
   const { user } = useAuth();
-  const [activeTab, setActiveTab] = useState('news');
+  const [activeTab, setActiveTab] = useState(location.state?.activeTab || 'news');
+  
+  useEffect(() => {
+    if (location.state?.activeTab) {
+      setActiveTab(location.state.activeTab);
+    }
+  }, [location.state]);
   const [news, setNews] = useState([]);
   const [schemes, setSchemes] = useState([]);
   
@@ -89,21 +98,21 @@ export default function Resources() {
   useEffect(() => {
     if (user && user.user_type === 'farmer') {
       const token = localStorage.getItem('token');
-      fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/profile`, {
+      apiClient.get('/profile', {
         headers: { 'Authorization': `Bearer ${token}` }
       })
-      .then(res => res.json())
-      .then(data => {
-        if (data.profile) {
-          if (data.profile.preferred_language === 'Hindi') setLanguage('hi');
-          else if (data.profile.preferred_language === 'English') setLanguage('en');
-          else setLanguage('gu');
-          
-          if (data.profile.state) setRegion(data.profile.state);
-          if (data.profile.primary_crop) setCrop(data.profile.primary_crop);
-        }
-      })
-      .catch(e => console.error("Error fetching profile for resources", e));
+        .then(res => {
+          const data = res.data;
+          if (data.profile) {
+            if (data.profile.preferred_language === 'Hindi') setLanguage('hi');
+            else if (data.profile.preferred_language === 'English') setLanguage('en');
+            else setLanguage('gu');
+            
+            if (data.profile.state) setRegion(data.profile.state);
+            if (data.profile.primary_crop) setCrop(data.profile.primary_crop);
+          }
+        })
+        .catch(e => console.error("Error fetching profile for resources", e));
     }
   }, [user]);
 
@@ -112,10 +121,9 @@ export default function Resources() {
     const fetchSchemes = async () => {
       setSchemesLoading(true);
       try {
-        const schemesRes = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/resources/schemes`);
-        if (schemesRes.ok) {
-          const schemesData = await schemesRes.json();
-          setSchemes(schemesData.data || []);
+        const res = await apiClient.get('/resources/schemes');
+        if (res.data && res.data.success !== false) {
+          setSchemes(res.data.data || []);
           setSchemesError(false);
         } else {
           setSchemes([]);
@@ -137,11 +145,11 @@ export default function Resources() {
     const fetchNews = async () => {
       setNewsLoading(true);
       try {
-        const url = `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/resources/agri-news?language=${language}&region=${encodeURIComponent(region)}&crop=${encodeURIComponent(crop)}`;
-        const newsRes = await fetch(url);
-        if (newsRes.ok) {
-          const newsData = await newsRes.json();
-          setNews(newsData.data || []);
+        const res = await apiClient.get('/resources/agri-news', {
+          params: { language, region, crop }
+        });
+        if (res.data && res.data.success !== false) {
+          setNews(res.data.data || []);
           setNewsError(false);
         } else {
           setNews([]);

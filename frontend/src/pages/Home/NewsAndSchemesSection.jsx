@@ -89,7 +89,7 @@ export default function NewsAndSchemesSection() {
                 <Newspaper className="w-6 h-6 text-primary" />
                 Latest News
               </h3>
-              <Link to="/resources" className="text-sm font-semibold text-primary hover:underline">View All</Link>
+              <Link to="/resources" state={{ activeTab: 'news' }} className="text-sm font-semibold text-primary hover:underline">View All</Link>
             </div>
             <div className="flex flex-col divide-y divide-subtle">
               {MOCK_NEWS.map((news, idx) => (
@@ -127,7 +127,7 @@ export default function NewsAndSchemesSection() {
                 <Landmark className="w-6 h-6 text-primary" />
                 Active Schemes
               </h3>
-              <Link to="/resources" className="text-sm font-semibold text-primary hover:underline">View All</Link>
+              <Link to="/resources" state={{ activeTab: 'schemes' }} className="text-sm font-semibold text-primary hover:underline">View All</Link>
             </div>
             <div className="flex flex-col divide-y divide-subtle">
               {MOCK_SCHEMES.map((scheme, idx) => (

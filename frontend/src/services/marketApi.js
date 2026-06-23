@@ -7,7 +7,7 @@ export const marketApi = {
   getPrices: async (params = {}) => {
     // If no specific filters, we might want to fetch a global overview.
     // Assuming backend returns a broad set if params are empty.
-    const response = await apiClient.get('/api/market-prices', { params });
+    const response = await apiClient.get('/market-prices', { params });
     return response.data;
   },
 
@@ -15,7 +15,7 @@ export const marketApi = {
    * Fetch distinct states
    */
   getStates: async () => {
-    const response = await apiClient.get('/api/market-prices/states');
+    const response = await apiClient.get('/market-prices/states');
     return response.data;
   },
 
@@ -23,7 +23,7 @@ export const marketApi = {
    * Fetch distinct districts for a state
    */
   getDistricts: async (state) => {
-    const response = await apiClient.get('/api/market-prices/districts', { params: { state } });
+    const response = await apiClient.get('/market-prices/districts', { params: { state } });
     return response.data;
   },
 
@@ -31,7 +31,7 @@ export const marketApi = {
    * Fetch distinct markets for a district
    */
   getMarkets: async (district) => {
-    const response = await apiClient.get('/api/market-prices/markets', { params: { district } });
+    const response = await apiClient.get('/market-prices/markets', { params: { district } });
     return response.data;
   },
 
@@ -39,7 +39,7 @@ export const marketApi = {
    * Fetch distinct commodities
    */
   getCommodities: async () => {
-    const response = await apiClient.get('/api/market-prices/commodities');
+    const response = await apiClient.get('/market-prices/commodities');
     return response.data;
   }
 };

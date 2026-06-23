@@ -1,9 +1,12 @@
 import axios from 'axios';
 
+const rawBaseURL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const baseURL = rawBaseURL.endsWith('/api') ? rawBaseURL : `${rawBaseURL}/api`;
+
 // Create a central Axios instance
 const apiClient = axios.create({
   // Default to the main API URL, services can override this if needed
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000',
+  baseURL,
   timeout: 30000,
   headers: {
     'Content-Type': 'application/json',
