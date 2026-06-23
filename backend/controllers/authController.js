@@ -215,9 +215,90 @@ const updateProfile = async (req, res) => {
   }
 };
 
+const forgotPassword = async (req, res) => {
+  try {
+    const { email } = req.body;
+    if (!email) {
+      return res.status(400).json({ message: 'Email is required' });
+    }
+
+    const { data: existingUser, error: dbError } = await supabase
+      .from('users')
+      .select('id, email')
+      .eq('email', email)
+      .single();
+
+    if (dbError || !existingUser) {
+      return res.status(404).json({ message: 'User with this email does not exist' });
+    }
+
+    const otp = generateOTP();
+    const expiresAt = Date.now() + 10 * 60 * 1000;
+
+    otpStore.set(email, {
+      otp,
+      type: 'reset',
+      expiresAt
+    });
+
+    await sendOTPEmail(email, otp);
+
+    res.status(200).json({ message: 'OTP sent successfully to your email' });
+  } catch (error) {
+    console.error('Error in forgotPassword:', error);
+    res.status(500).json({ message: 'Failed to process forgot password request' });
+  }
+};
+
+const resetPassword = async (req, res) => {
+  try {
+    const { email, otp, newPassword } = req.body;
+
+    if (!email || !otp || !newPassword) {
+      return res.status(400).json({ message: 'Email, OTP, and new password are required' });
+    }
+
+    const session = otpStore.get(email);
+    if (!session || session.type !== 'reset') {
+      return res.status(400).json({ message: 'OTP session expired or not found. Please try again.' });
+    }
+
+    if (Date.now() > session.expiresAt) {
+      otpStore.delete(email);
+      return res.status(400).json({ message: 'OTP has expired. Please request a new one.' });
+    }
+
+    if (session.otp !== otp) {
+      return res.status(400).json({ message: 'Invalid OTP' });
+    }
+
+    const saltRounds = 10;
+    const passwordHash = await bcrypt.hash(newPassword, saltRounds);
+
+    const { error: updateError } = await supabase
+      .from('users')
+      .update({ password_hash: passwordHash })
+      .eq('email', email);
+
+    if (updateError) {
+      console.error('Supabase Update Error:', updateError);
+      return res.status(500).json({ message: 'Failed to reset password in database' });
+    }
+
+    otpStore.delete(email);
+
+    res.status(200).json({ message: 'Password reset successfully' });
+  } catch (error) {
+    console.error('Error in resetPassword:', error);
+    res.status(500).json({ message: 'Failed to reset password' });
+  }
+};
+
 module.exports = {
   sendOTP,
   verifyOTPAndRegister,
   login,
-  updateProfile
+  updateProfile,
+  forgotPassword,
+  resetPassword
 };
