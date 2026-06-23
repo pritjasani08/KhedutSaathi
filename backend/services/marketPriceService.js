@@ -8,6 +8,19 @@ const cache = new NodeCache({
   checkperiod: apiConfig.CACHE.CHECK_PERIOD
 });
 
+// District normalization for API mismatches
+const districtAliases = {
+  'junagadh': 'Junagarh',
+  'baroda': 'Vadodara(Baroda)'
+};
+
+function normalizeDistrict(district) {
+  if (!district) return district;
+  const key = district.trim().toLowerCase();
+  return districtAliases[key] || district;
+}
+
+
 // Helper to validate and get API key
 const getApiKey = () => {
   const apiKey = process.env.DATA_GOV_API_KEY;
@@ -73,10 +86,11 @@ const getDistricts = async (state) => {
 };
 
 const getMarkets = async (district) => {
+  const normalizedDistrict = normalizeDistrict(district);
   const records = await fetchAllRecentData();
   let filtered = records;
-  if (district) {
-    filtered = records.filter(r => r.district && r.district.trim().toLowerCase() === district.trim().toLowerCase());
+  if (normalizedDistrict) {
+    filtered = records.filter(r => r.district && r.district.trim().toLowerCase() === normalizedDistrict.trim().toLowerCase());
   }
   const markets = [...new Set(filtered.map(r => r.market))].filter(Boolean).sort();
   return markets;
@@ -94,7 +108,8 @@ const getMarkets = async (district) => {
  *   4. Include enriched meta: totalRecordsFetched, totalRecordsAfterFiltering, totalCommodities.
  */
 const fetchMarketPrices = async (queryParams) => {
-  const { state, district, market, commodity, sortBy, order = 'desc' } = queryParams;
+  const { state, market, commodity, sortBy, order = 'desc' } = queryParams;
+  const district = normalizeDistrict(queryParams.district);
   const apiKey = getApiKey();
   const resourceId = getResourceId();
 
