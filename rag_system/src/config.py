@@ -26,10 +26,11 @@ URLS_FILE = DATA_DIR / "urls.txt"
 HTML_CACHE_DIR = DATA_DIR / "html_cache"
 
 # Environment Variables
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
+# Multiple keys might be provided (GEMINI_API_KEY_1, etc.)
+has_gemini_key = any(k.startswith("GEMINI_API_KEY") and v.strip() for k, v in os.environ.items())
 
 # Startup Validation
-if not GEMINI_API_KEY:
+if not has_gemini_key:
     raise ValueError("Missing GEMINI_API_KEY in project root .env")
 
 GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")

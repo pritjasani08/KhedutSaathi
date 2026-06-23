@@ -275,7 +275,7 @@ export default function KhedutAI() {
                   {msg.type === 'bot' ? <Bot className="w-6 h-6" /> : <User className="w-6 h-6" />}
                 </div>
                 <div
-                  className={`px-5 py-4 sm:px-6 sm:py-5 rounded-3xl text-[15px] sm:text-base leading-relaxed shadow-sm ${
+                  className={`px-5 py-4 sm:px-6 sm:py-5 rounded-3xl text-[15px] sm:text-base leading-relaxed shadow-sm whitespace-pre-wrap ${
                     msg.type === 'bot'
                       ? 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-tl-sm border border-slate-100 dark:border-slate-700/50'
                       : 'bg-gradient-to-br from-primary to-primary-dark text-white rounded-tr-sm shadow-primary/20'

@@ -317,7 +317,7 @@ export default function ChatbotWidget() {
                     {msg.type === 'bot' ? <Bot className="w-4 h-4" /> : <User className="w-4 h-4" />}
                   </div>
                   <div
-                    className={`max-w-[75%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${
+                    className={`max-w-[75%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap ${
                       msg.type === 'bot'
                         ? 'bg-slate-100 text-slate-700 rounded-tl-md'
                         : 'bg-primary text-white rounded-tr-md'
