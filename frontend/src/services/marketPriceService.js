@@ -67,9 +67,9 @@ export const fetchMarkets = async (district) => {
   }
 };
 
-export const fetchCommodities = async () => {
+export const fetchCommodities = async (params = {}) => {
   try {
-    return await fetchWithCache('/api/market-prices/commodities');
+    return await fetchWithCache('/api/market-prices/commodities', params);
   } catch (error) {
     console.error('Error fetching commodities:', error);
     return { data: [] };

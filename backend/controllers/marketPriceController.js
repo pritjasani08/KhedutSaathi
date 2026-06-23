@@ -67,7 +67,8 @@ const getMarkets = async (req, res, next) => {
 
 const getCommodities = async (req, res, next) => {
   try {
-    const commodities = await marketPriceService.getCommodities();
+    const { state, district, market } = req.query;
+    const commodities = await marketPriceService.getCommodities({ state, district, market });
     return successResponse(res, 'Commodities retrieved successfully', commodities);
   } catch (error) {
     return errorResponse(res, error.message, null, 500);
