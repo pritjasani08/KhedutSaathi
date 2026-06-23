@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Search, Filter, RotateCcw, Download, ChevronDown } from 'lucide-react';
-import { fetchStates, fetchDistricts, fetchMarkets } from '../../services/marketPriceService';
+import { fetchStates, fetchDistricts, fetchMarkets, fetchCommodities } from '../../services/marketPriceService';
 import { translateArray } from '../../services/translateService';
 
 export default function MarketPriceFilters({ filters, setFilters, onRefresh, onExport }) {
@@ -16,17 +16,32 @@ export default function MarketPriceFilters({ filters, setFilters, onRefresh, onE
   const [translatedDistricts, setTranslatedDistricts] = useState({});
   const [translatedMarkets, setTranslatedMarkets] = useState({});
 
-  // Quick filters for commodities (only shown after mandi selection)
-  const quickCommodities = ['Wheat', 'Paddy(Dhan)', 'Cotton', 'Mustard', 'Onion', 'Potato', 'Tomato', 'Soyabean'];
+  const [commodities, setCommodities] = useState([]);
   const [translatedCommodities, setTranslatedCommodities] = useState({});
 
   useEffect(() => {
-    translateArray(quickCommodities, i18n.language).then(res => {
-      const map = {};
-      quickCommodities.forEach((c, i) => map[c] = res[i] || c);
-      setTranslatedCommodities(map);
-    });
-  }, [i18n.language]);
+    if (filters.market) {
+      fetchCommodities({ 
+        state: filters.state, 
+        district: filters.district, 
+        market: filters.market 
+      }).then(res => {
+        if (res.data) setCommodities(res.data);
+      });
+    } else {
+      setCommodities([]);
+    }
+  }, [filters.state, filters.district, filters.market]);
+
+  useEffect(() => {
+    if (commodities.length > 0) {
+      translateArray(commodities, i18n.language).then(res => {
+        const map = {};
+        commodities.forEach((c, i) => map[c] = res[i] || c);
+        setTranslatedCommodities(map);
+      });
+    }
+  }, [commodities, i18n.language]);
 
   useEffect(() => {
     fetchStates().then(res => {
@@ -102,9 +117,7 @@ export default function MarketPriceFilters({ filters, setFilters, onRefresh, onE
     setFilters(newFilters);
   };
 
-  const handleQuickFilter = (commodity) => {
-    setFilters({ ...filters, commodity, page: 1 });
-  };
+
 
   const clearFilters = () => {
     setFilters({
@@ -205,78 +218,54 @@ export default function MarketPriceFilters({ filters, setFilters, onRefresh, onE
 
       {/* Commodity Filters & Sort — only shown after mandi selection */}
       {isMandiSelected && (
-        <>
-          {/* Quick Commodity Filters */}
-          <div className="flex flex-wrap items-center gap-2 mt-6 pt-6 border-t border-slate-100 dark:border-slate-700">
-            <span className="text-sm font-medium text-slate-500 dark:text-slate-400 flex items-center mr-2">
-              <Filter className="w-4 h-4 mr-2" /> Commodities:
-            </span>
-            <button
-              onClick={() => handleQuickFilter('')}
-              className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${!filters.commodity ? 'bg-primary text-white shadow-md' : 'bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-slate-600'}`}
-            >
-              All
-            </button>
-            {quickCommodities.map(c => (
-              <button
-                key={c}
-                onClick={() => handleQuickFilter(c)}
-                className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${filters.commodity === c ? 'bg-primary text-white shadow-md' : 'bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-slate-600'}`}
-              >
-                {translatedCommodities[c] || c}
-              </button>
-            ))}
-          </div>
-
-          {/* Search + Sort Row */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 pt-6 border-t border-slate-100 dark:border-slate-700">
+          <div>
+            <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">{t('marketHub.commodity', { defaultValue: 'Commodity' })}</label>
             <div className="relative">
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Search Commodity</label>
-              <div className="relative">
-                <input
-                  type="text"
-                  name="commodity"
-                  value={filters.commodity}
-                  onChange={handleChange}
-                  placeholder="e.g. Wheat, Cotton..."
-                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl py-3 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all dark:text-white"
-                />
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Sort By Price</label>
-              <div className="relative">
-                <select
-                  name="order"
-                  value={filters.order}
-                  onChange={handleChange}
-                  className="w-full appearance-none bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl py-3 pl-4 pr-10 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all dark:text-white"
-                >
-                  <option value="desc">Highest First</option>
-                  <option value="asc">Lowest First</option>
-                </select>
-                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
-              </div>
-            </div>
-
-            <div className="flex items-end gap-3">
-              <button
-                onClick={onExport}
-                className="flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-300 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors border border-slate-200 dark:border-slate-600"
+              <select
+                name="commodity"
+                value={filters.commodity}
+                onChange={handleChange}
+                className="w-full appearance-none bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl py-3 pl-4 pr-10 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all dark:text-white"
               >
-                <Download className="w-4 h-4" /> CSV
-              </button>
-              <button
-                onClick={onRefresh}
-                className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-white bg-primary hover:bg-primary-dark shadow-md shadow-primary/20 hover:shadow-lg hover:shadow-primary/30 transition-all active:scale-[0.98]"
-              >
-                <RotateCcw className="w-4 h-4" /> Refresh
-              </button>
+                <option value="">{t('marketHub.allCommodities', { defaultValue: 'All Crops' })}</option>
+                {commodities.map(c => <option key={c} value={c}>{translatedCommodities[c] || c}</option>)}
+              </select>
+              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
             </div>
           </div>
-        </>
+
+          <div>
+            <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Sort By Price</label>
+            <div className="relative">
+              <select
+                name="order"
+                value={filters.order}
+                onChange={handleChange}
+                className="w-full appearance-none bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl py-3 pl-4 pr-10 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all dark:text-white"
+              >
+                <option value="desc">Highest First</option>
+                <option value="asc">Lowest First</option>
+              </select>
+              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+            </div>
+          </div>
+
+          <div className="flex items-end gap-3">
+            <button
+              onClick={onExport}
+              className="flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-300 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors border border-slate-200 dark:border-slate-600"
+            >
+              <Download className="w-4 h-4" /> CSV
+            </button>
+            <button
+              onClick={onRefresh}
+              className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-white bg-primary hover:bg-primary-dark shadow-md shadow-primary/20 hover:shadow-lg hover:shadow-primary/30 transition-all active:scale-[0.98]"
+            >
+              <RotateCcw className="w-4 h-4" /> Refresh
+            </button>
+          </div>
+        </div>
       )}
 
       {/* Reset */}

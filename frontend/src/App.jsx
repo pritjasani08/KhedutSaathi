@@ -68,11 +68,10 @@ function AnimatedRoutes() {
         <Route path="/crop-health" element={<ProtectedRoute allowedRoles={['farmer']}><PageWrapper><CropDiagnosis /></PageWrapper></ProtectedRoute>} />
 
         {/* Market Intelligence & Marketplace Feed (accessible by both, but UI will restrict features) */}
-        <Route path="/market-prices" element={<ProtectedRoute><PageWrapper><MarketHub /></PageWrapper></ProtectedRoute>} />
+        <Route path="/market-prices" element={<PageWrapper><MarketHub /></PageWrapper>} />
         <Route path="/agri-marketplace" element={<PageWrapper><AgriMarketplace /></PageWrapper>} />
         <Route path="/seller-dashboard" element={<Navigate to="/seller-dashboard/products" replace />} />
         <Route path="/seller-dashboard/:tab" element={<PageWrapper><SellerDashboard /></PageWrapper>} />
-        <Route path="/agri-marketplace" element={<ProtectedRoute><PageWrapper><AgriMarketplace /></PageWrapper></ProtectedRoute>} />
         <Route path="/crop-market" element={<ProtectedRoute><PageWrapper><CropMarket /></PageWrapper></ProtectedRoute>} />
 
         <Route path="/smart-irrigation" element={<PageWrapper><SmartIrrigation /></PageWrapper>} />
