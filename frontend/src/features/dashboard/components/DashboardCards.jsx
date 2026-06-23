@@ -5,6 +5,7 @@ import { LayoutDashboard, MapPin, Trees, Sprout, Activity, ShieldCheck, CloudRai
 import { useWeather, useMarket, useSchemes } from '../hooks/useDashboardQueries';
 import { WeatherSkeleton, MarketSkeleton, FarmSummarySkeleton, ProfileCompletionSkeleton } from '../skeletons/Skeletons';
 import { ErrorBoundary } from './ErrorBoundary';
+import MarketSnapshot from './MarketSnapshot';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -128,51 +129,7 @@ export const WeatherCard = ({ profile }) => {
 };
 
 export const MarketCard = ({ profile }) => {
-  const { data: marketPrice, isLoading, error } = useMarket(profile);
-  
-  if (isLoading) return <MarketSkeleton />;
-  if (error) throw error;
-
-  return (
-    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="glass-card p-6 bg-gradient-to-br from-purple-500/5 to-fuchsia-500/5 border border-purple-100 dark:border-purple-800">
-      <div className="flex justify-between items-start mb-4">
-        <h3 className="font-display font-bold text-heading flex items-center gap-2">
-          <LineChart className="w-5 h-5 text-purple-500" /> Market Snapshot
-        </h3>
-        <span className="text-xs font-semibold text-purple-600 bg-purple-100 px-2 py-1 rounded-full">{profile?.primary_crop || 'Crop'}</span>
-      </div>
-      {marketPrice && typeof marketPrice === 'object' ? (
-        <>
-          <div className="flex items-center gap-6 mb-4">
-            <div>
-              <p className="text-5xl font-display font-bold text-heading">₹{marketPrice.currentPrice}</p>
-              <div className="flex items-center gap-1 mt-1">
-                {marketPrice.trend > 0 ? <ArrowUpRight className="w-4 h-4 text-green-500" /> : marketPrice.trend < 0 ? <ArrowDownRight className="w-4 h-4 text-red-500" /> : <ArrowRight className="w-4 h-4 text-slate-500" />}
-                <p className={`text-sm font-semibold ${marketPrice.trend > 0 ? 'text-green-600' : marketPrice.trend < 0 ? 'text-red-600' : 'text-slate-500'}`}>
-                  {Math.abs(marketPrice.trend)}% trend
-                </p>
-              </div>
-            </div>
-            <div className="flex-1 space-y-2">
-              <div className="bg-white/50 dark:bg-slate-800/50 p-2 rounded-lg flex justify-between items-center">
-                <p className="text-xs text-slate-500">Previous Price</p>
-                <p className="font-semibold text-sm">₹{marketPrice.previousPrice}</p>
-              </div>
-              <div className="bg-white/50 dark:bg-slate-800/50 p-2 rounded-lg flex justify-between items-center">
-                <p className="text-xs text-slate-500">Best Market Price</p>
-                <p className="font-semibold text-sm text-purple-600">₹{marketPrice.bestPrice}</p>
-              </div>
-            </div>
-          </div>
-          <div className="bg-purple-50 dark:bg-purple-900/20 p-3 rounded-lg border border-purple-100 dark:border-purple-800/50">
-            <p className="text-sm text-purple-800 dark:text-purple-300"><span className="font-bold">Best Market Location:</span> {marketPrice.bestMarket}</p>
-          </div>
-        </>
-      ) : (
-        <p className="text-sm text-slate-500">No market data available</p>
-      )}
-    </motion.div>
-  );
+  return <MarketSnapshot profileData={profile} />;
 };
 
 export const SchemesCard = ({ profile }) => {
