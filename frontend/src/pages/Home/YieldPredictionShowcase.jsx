@@ -105,7 +105,7 @@ export default function YieldPredictionShowcase() {
             </motion.div>
 
             <motion.div variants={fadeUp} className="pt-4">
-              <Link to="/features" className="inline-flex items-center gap-2 btn-primary bg-blue-600 hover:bg-blue-700 border-blue-600 hover:border-blue-700 px-8 py-4 text-white shadow-blue-500/30">
+              <Link to="/market-prices" className="inline-flex items-center gap-2 btn-primary bg-blue-600 hover:bg-blue-700 border-blue-600 hover:border-blue-700 px-8 py-4 text-white shadow-blue-500/30">
                 <LineChart className="w-5 h-5" />
                 Explore Analytics
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300 ml-2" />
