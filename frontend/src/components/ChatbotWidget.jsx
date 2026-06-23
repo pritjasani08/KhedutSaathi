@@ -16,6 +16,8 @@ export default function ChatbotWidget() {
   const messagesEndRef = useRef(null);
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
+  const silenceTimerRef = useRef(null);
+  const audioContextRef = useRef(null);
 
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const langDropdownRef = useRef(null);
@@ -95,6 +97,48 @@ export default function ChatbotWidget() {
         mediaRecorderRef.current = mediaRecorder;
         audioChunksRef.current = [];
 
+        // --- Silence Detection ---
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        audioContextRef.current = audioContext;
+        const analyser = audioContext.createAnalyser();
+        const microphone = audioContext.createMediaStreamSource(stream);
+        microphone.connect(analyser);
+        analyser.fftSize = 512;
+        const bufferLength = analyser.frequencyBinCount;
+        const dataArray = new Uint8Array(bufferLength);
+        
+        let isSpeaking = false;
+        let silenceStart = Date.now();
+        const SILENCE_THRESHOLD = 30; // Increased volume threshold to ignore background noise
+        const SILENCE_DURATION = 1500; // 1.5 seconds of silence stops recording
+        const NO_SPEECH_TIMEOUT = 5000; // 5 seconds of total silence stops recording
+        
+        const checkSilence = () => {
+          if (mediaRecorderRef.current?.state === 'inactive') return;
+          
+          analyser.getByteFrequencyData(dataArray);
+          let sum = 0;
+          for (let i = 0; i < bufferLength; i++) sum += dataArray[i];
+          const averageVolume = sum / bufferLength;
+          
+          if (averageVolume > SILENCE_THRESHOLD) {
+            isSpeaking = true;
+            silenceStart = Date.now();
+          } else {
+            const timeQuiet = Date.now() - silenceStart;
+            if ((isSpeaking && timeQuiet > SILENCE_DURATION) || (!isSpeaking && timeQuiet > NO_SPEECH_TIMEOUT)) {
+              if (mediaRecorderRef.current && mediaRecorderRef.current.state !== 'inactive') {
+                mediaRecorderRef.current.stop();
+                setIsRecording(false);
+              }
+              return;
+            }
+          }
+          silenceTimerRef.current = requestAnimationFrame(checkSilence);
+        };
+        setTimeout(() => checkSilence(), 500);
+        // -------------------------
+
         mediaRecorder.ondataavailable = (event) => {
           if (event.data.size > 0) {
             audioChunksRef.current.push(event.data);
@@ -102,6 +146,12 @@ export default function ChatbotWidget() {
         };
 
         mediaRecorder.onstop = async () => {
+          // Cleanup silence detection
+          if (silenceTimerRef.current) cancelAnimationFrame(silenceTimerRef.current);
+          if (audioContextRef.current && audioContextRef.current.state !== 'closed') {
+             audioContextRef.current.close().catch(console.error);
+          }
+
           const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
           const formData = new FormData();
           formData.append('audio', audioBlob, 'recording.webm');
