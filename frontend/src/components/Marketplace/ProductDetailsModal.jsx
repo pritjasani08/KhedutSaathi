@@ -76,10 +76,6 @@ export default function ProductDetailsModal({ product, onClose, onAddToCart }) {
           <div className="md:w-1/2 p-6 md:p-10 flex flex-col overflow-y-auto custom-scrollbar">
             <div className="flex items-center gap-3 mb-4">
               <span className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-2.5 py-1 rounded-lg">{product.seller?.full_name || product.brand || 'Verified Seller'}</span>
-              <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-2.5 py-1 rounded-lg text-amber-500 dark:text-amber-400 text-xs font-bold">
-                <Star className="w-4 h-4 fill-amber-400" />
-                {product.rating || '4.5'} <span className="text-slate-500 font-medium">({product.reviewsCount || '12'} reviews)</span>
-              </div>
             </div>
 
             <h2 className="font-display text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight leading-tight">{product.name}</h2>
