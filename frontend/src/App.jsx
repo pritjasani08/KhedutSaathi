@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider } from './context/AuthContext';
 import { ChatProvider } from './context/ChatContext';
+import { WishlistProvider } from './context/WishlistContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ChatbotWidget from './components/ChatbotWidget';
@@ -29,6 +30,7 @@ const CropDiagnosis = lazy(() => import('./pages/CropDiagnosis/CropDiagnosis'));
 const MarketHub = lazy(() => import('./pages/MarketHub/MarketHub'));
 const AgriMarketplace = lazy(() => import('./pages/AgriMarketplace/AgriMarketplace'));
 const SellerDashboard = lazy(() => import('./pages/SellerDashboard/SellerDashboard'));
+const Wishlist = lazy(() => import('./pages/AgriMarketplace/Wishlist'));
 const Resources = lazy(() => import('./pages/Resources/Resources'));
 const NewsDetail = lazy(() => import('./pages/Resources/NewsDetail'));
 const SchemeDetail = lazy(() => import('./pages/Resources/SchemeDetail'));
@@ -74,6 +76,7 @@ function AnimatedRoutes() {
         {/* Market Intelligence & Marketplace Feed (accessible by both, but UI will restrict features) */}
         <Route path="/market-prices" element={<PageWrapper><MarketHub /></PageWrapper>} />
         <Route path="/agri-marketplace" element={<PageWrapper><AgriMarketplace /></PageWrapper>} />
+        <Route path="/wishlist" element={<PageWrapper><Wishlist /></PageWrapper>} />
         <Route path="/seller-dashboard" element={<Navigate to="/seller-dashboard/products" replace />} />
         <Route path="/seller-dashboard/:tab" element={<PageWrapper><SellerDashboard /></PageWrapper>} />
         <Route path="/crop-market" element={<ProtectedRoute><PageWrapper><CropMarket /></PageWrapper></ProtectedRoute>} />
@@ -140,12 +143,14 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <AuthProvider>
-          <ChatProvider>
-            <Router>
-              <ScrollToTop />
-              <AppContent />
-            </Router>
-          </ChatProvider>
+          <WishlistProvider>
+            <ChatProvider>
+              <Router>
+                <ScrollToTop />
+                <AppContent />
+              </Router>
+            </ChatProvider>
+          </WishlistProvider>
         </AuthProvider>
       </ThemeProvider>
     </QueryClientProvider>
