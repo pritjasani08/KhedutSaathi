@@ -1,17 +1,35 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, IndianRupee, Star, ShoppingCart, Heart, ShieldCheck, PhoneCall } from 'lucide-react';
+import { X, IndianRupee, Star, ShoppingCart, Heart, ShieldCheck, PhoneCall, ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 export default function ProductDetailsModal({ product, onClose, onAddToCart }) {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [isFavourited, setIsFavourited] = useState(false);
 
-  if (!product) return null;
-
-  const images = product.image_urls?.length > 0 
+  const images = product?.image_urls?.length > 0 
     ? product.image_urls 
-    : [product.image_url || product.imageUrl || 'https://images.unsplash.com/photo-1595841696677-6489ff3f8cd1?w=400'];
+    : [product?.image_url || product?.imageUrl || 'https://images.unsplash.com/photo-1595841696677-6489ff3f8cd1?w=400'];
+
+  const handlePrev = () => {
+    setActiveImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setActiveImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (images.length <= 1) return;
+      if (e.key === 'ArrowLeft') handlePrev();
+      if (e.key === 'ArrowRight') handleNext();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [images.length]);
+
+  if (!product) return null;
 
   return (
     <AnimatePresence>
@@ -38,12 +56,19 @@ export default function ProductDetailsModal({ product, onClose, onAddToCart }) {
           </button>
 
           <div className="md:w-1/2 bg-slate-50 dark:bg-slate-950 relative min-h-[300px] flex flex-col overflow-hidden p-6">
-            <div className="flex-1 relative rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-inner bg-slate-100 dark:bg-slate-900 mb-4">
-              <img 
-                src={images[activeImageIndex]} 
-                alt={product.name}
-                className="w-full h-full object-cover opacity-90"
-              />
+            <div className="flex-1 relative rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-inner bg-slate-100 dark:bg-slate-900 mb-4 group">
+              <AnimatePresence initial={false}>
+                <motion.img 
+                  key={activeImageIndex}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  src={images[activeImageIndex]} 
+                  alt={product.name}
+                  className="w-full h-full object-cover opacity-90 absolute inset-0"
+                />
+              </AnimatePresence>
               <div className="absolute top-4 left-4 bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-700 backdrop-blur px-3 py-1.5 rounded-xl text-sm font-bold text-green-600 dark:text-green-400 shadow-sm z-10">
                 {product.category}
               </div>
@@ -51,6 +76,29 @@ export default function ProductDetailsModal({ product, onClose, onAddToCart }) {
                 <div className="absolute top-4 left-32 bg-red-500 text-white px-3 py-1.5 rounded-xl text-sm font-bold shadow-sm z-10">
                   {product.discountPercentage}% OFF
                 </div>
+              )}
+
+              {images.length > 1 && (
+                <>
+                  <div className="absolute bottom-4 right-4 bg-slate-900/70 backdrop-blur-md text-white px-3 py-1.5 rounded-lg text-sm font-bold shadow-sm z-10 tracking-widest">
+                    {activeImageIndex + 1} / {images.length}
+                  </div>
+
+                  <button
+                    onClick={(e) => { e.stopPropagation(); handlePrev(); }}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 p-2 bg-white/90 dark:bg-slate-900/90 hover:bg-white dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 border border-slate-200 dark:border-slate-700 hover:scale-110"
+                    aria-label="Previous image"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); handleNext(); }}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 p-2 bg-white/90 dark:bg-slate-900/90 hover:bg-white dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 border border-slate-200 dark:border-slate-700 hover:scale-110"
+                    aria-label="Next image"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                </>
               )}
             </div>
             
