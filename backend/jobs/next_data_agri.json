@@ -1,0 +1,35 @@
+{
+  "props": {
+    "pageProps": {}
+  },
+  "page": "/search/category/[name]",
+  "query": {},
+  "buildId": "ogqeeipEXMk71f8jfOOm1",
+  "assetPrefix": "https://cdn.myscheme.in",
+  "nextExport": true,
+  "autoExport": true,
+  "isFallback": false,
+  "dynamicIds": [
+    59586
+  ],
+  "locale": "en",
+  "locales": [
+    "en",
+    "hi",
+    "or",
+    "as",
+    "bn",
+    "gu",
+    "kn",
+    "ml",
+    "mr",
+    "pa",
+    "ta",
+    "te",
+    "ur",
+    "ks",
+    "mai"
+  ],
+  "defaultLocale": "en",
+  "scriptLoader": []
+}

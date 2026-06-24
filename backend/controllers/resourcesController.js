@@ -254,15 +254,63 @@ const getNews = async (req, res) => {
   }
 };
 
-const getSchemes = (req, res) => {
+const supabase = require('../config/supabaseClient');
+
+const getSchemes = async (req, res) => {
   try {
-    const filePath = path.join(__dirname, '../data/schemes.json');
-    const fileData = fs.readFileSync(filePath, 'utf8');
-    const schemes = JSON.parse(fileData);
+    const { 
+      page = 1, 
+      limit = 10, 
+      search = '', 
+      state = '', 
+      category = '', 
+      level = '' 
+    } = req.query;
+
+    const pageNum = parseInt(page);
+    const limitNum = parseInt(limit);
+    const from = (pageNum - 1) * limitNum;
+    const to = from + limitNum - 1;
+
+    let query = supabase.from('schemes').select('*', { count: 'exact' }).eq('source_verified', true);
+
+    if (search) {
+      // Using pg_trgm and text search if possible, or simple ilike
+      query = query.or(`name.ilike.%${search}%,description.ilike.%${search}%`);
+    }
     
-    res.status(200).json({ success: true, data: schemes });
+    if (state && state !== 'All India') {
+      query = query.or(`state.eq.All India,state.ilike.%${state}%`);
+    }
+    
+    if (category && category !== 'All') {
+      query = query.eq('category', category);
+    }
+    
+    if (level && level !== 'All') {
+      query = query.eq('level', level);
+    }
+
+    const { data: schemes, error, count } = await query
+      .order('created_at', { ascending: false })
+      .range(from, to);
+
+    if (error) throw error;
+
+    // Maintain existing response shape partially but add pagination
+    // The existing frontend expected an array directly in data.
+    res.status(200).json({ 
+      success: true, 
+      data: schemes,
+      pagination: {
+        total: count,
+        page: pageNum,
+        limit: limitNum,
+        totalPages: Math.ceil(count / limitNum)
+      }
+    });
   } catch (error) {
-    console.error('Error reading schemes file:', error);
+    console.error('Error fetching schemes from DB:', error);
     res.status(500).json({ success: false, message: 'Failed to load government schemes.' });
   }
 };

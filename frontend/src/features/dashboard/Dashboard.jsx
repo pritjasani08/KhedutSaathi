@@ -24,6 +24,8 @@ const DiagnosesSection = React.lazy(() => import('./components/Sections').then(m
 const ListingsSection = React.lazy(() => import('./components/Sections').then(module => ({ default: module.ListingsSection })));
 const OrdersSection = React.lazy(() => import('./components/Sections').then(module => ({ default: module.OrdersSection })));
 
+import RecommendedSchemesWidget from '../../components/dashboard/RecommendedSchemesWidget';
+
 const Dashboard = () => {
   const { user } = useAuth();
   
@@ -60,7 +62,12 @@ const Dashboard = () => {
               <ProfileCompletionCard completionPercentage={completionPercentage} isLoading={isOverviewLoading} />
             </div>
 
-            {/* Group B UI (Progressive parallel fetch triggered inside components via React Query) */}
+            <div className="mb-8">
+              <ErrorBoundary>
+                <RecommendedSchemesWidget />
+              </ErrorBoundary>
+            </div>
+
             <div className="grid lg:grid-cols-2 gap-6 mb-8">
               <ErrorBoundary>
                 <WeatherCard profile={profile} />

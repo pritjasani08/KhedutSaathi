@@ -60,7 +60,7 @@ export default function AdvancedMarketTable({ data = [], isLoading }) {
     setCurrentPage(1); // Reset page on sort
   };
 
-  const SortIcon = ({ columnKey }) => {
+  const renderSortIcon = (columnKey) => {
     if (sortConfig.key !== columnKey) return <div className="w-4 h-4 opacity-0 group-hover:opacity-30" />;
     return sortConfig.direction === 'asc' ? <ChevronUp className="w-4 h-4 text-primary" /> : <ChevronDown className="w-4 h-4 text-primary" />;
   };
@@ -104,20 +104,20 @@ export default function AdvancedMarketTable({ data = [], isLoading }) {
           <thead>
             <tr className="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800">
               <th className="p-4 cursor-pointer group hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" onClick={() => handleSort('commodity')}>
-                <div className="flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-slate-500">Crop <SortIcon columnKey="commodity" /></div>
+                <div className="flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-slate-500">Crop {renderSortIcon('commodity')}</div>
               </th>
               <th className="p-4 cursor-pointer group hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" onClick={() => handleSort('market')}>
-                <div className="flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-slate-500">Market <SortIcon columnKey="market" /></div>
+                <div className="flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-slate-500">Market {renderSortIcon('market')}</div>
               </th>
               <th className="p-4 cursor-pointer group hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" onClick={() => handleSort('modal_price')}>
-                <div className="flex items-center justify-end gap-1 text-xs font-bold uppercase tracking-wider text-slate-500">Price <SortIcon columnKey="modal_price" /></div>
+                <div className="flex items-center justify-end gap-1 text-xs font-bold uppercase tracking-wider text-slate-500">Price {renderSortIcon('modal_price')}</div>
               </th>
               <th className="p-4 cursor-pointer group hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" onClick={() => handleSort('max_price')}>
-                <div className="flex items-center justify-end gap-1 text-xs font-bold uppercase tracking-wider text-slate-500">Max <SortIcon columnKey="max_price" /></div>
+                <div className="flex items-center justify-end gap-1 text-xs font-bold uppercase tracking-wider text-slate-500">Max {renderSortIcon('max_price')}</div>
               </th>
               <th className="p-4 text-xs font-bold uppercase tracking-wider text-slate-500 text-right">Trend</th>
               <th className="p-4 cursor-pointer group hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" onClick={() => handleSort('arrival_date')}>
-                <div className="flex items-center justify-end gap-1 text-xs font-bold uppercase tracking-wider text-slate-500">Updated <SortIcon columnKey="arrival_date" /></div>
+                <div className="flex items-center justify-end gap-1 text-xs font-bold uppercase tracking-wider text-slate-500">Updated {renderSortIcon('arrival_date')}</div>
               </th>
             </tr>
           </thead>

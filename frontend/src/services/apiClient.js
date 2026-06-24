@@ -35,7 +35,7 @@ apiClient.interceptors.response.use(
   },
   (error) => {
     // Centralized error handling
-    let errorMsg = 'An unexpected error occurred';
+    let errorMsg;
     
     if (error.response) {
       // The request was made and the server responded with a status code outside 2xx

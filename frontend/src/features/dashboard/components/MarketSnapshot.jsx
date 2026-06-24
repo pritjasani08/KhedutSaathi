@@ -88,7 +88,7 @@ export default function MarketSnapshot({ profileData }) {
   }
 
   // Determine intelligent messaging based on fallback level
-  let intelligentMessage = "";
+  let intelligentMessage;
   if (sourceLevel === 'State') {
     intelligentMessage = `No district-level data for ${profileData.district || 'your area'}. Showing ${profileData.state || 'state'}-wide market intelligence.`;
   } else if (sourceLevel === 'National') {

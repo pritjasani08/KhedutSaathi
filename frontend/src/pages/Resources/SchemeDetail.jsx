@@ -1,213 +1,292 @@
 import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Landmark, AlertCircle, CheckCircle2, XCircle, HelpCircle } from 'lucide-react';
+import { ArrowLeft, ExternalLink, BookmarkPlus, BookmarkCheck, CheckCircle2, FileText, Globe, MapPin, Tag } from 'lucide-react';
 import apiClient from '../../services/apiClient';
 import { useAuth } from '../../context/AuthContext';
 
-export default function SchemeDetail() {
-  const { id } = useParams();
+export default function SchemeDetails() {
+  const { id: slug } = useParams();
+  const navigate = useNavigate();
   const { user } = useAuth();
-  const [scheme, setScheme] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [profile, setProfile] = useState(null);
-  const [isEligible, setIsEligible] = useState(null);
+  
+  const [isBookmarked, setIsBookmarked] = useState(false);
 
+  const { data: scheme, isLoading, isError } = useQuery({
+    queryKey: ['scheme', slug],
+    queryFn: async () => {
+      const res = await apiClient.get(`/schemes/${slug}`);
+      if (res.data.success === false) throw new Error('Scheme not found');
+      return res.data.data;
+    }
+  });
+
+  // Verify if it's bookmarked
   useEffect(() => {
-    const fetchSchemeDetail = async () => {
-      try {
-        const res = await apiClient.get('/resources/schemes');
-        if (res.data && res.data.success) {
-          const found = res.data.data.find(s => s.id === id || s.id === parseInt(id));
-          setScheme(found);
+    if (user && scheme) {
+      apiClient.get('/schemes/user/bookmarks', {
+        headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+      }).then(res => {
+        if (res.data.success) {
+          const found = res.data.data.find(b => b.slug === scheme.slug);
+          setIsBookmarked(!!found);
         }
-      } catch (err) {
-        console.error('Error fetching scheme:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchSchemeDetail();
-  }, [id]);
+      }).catch(err => console.error(err));
+    }
+  }, [user, scheme]);
 
-  useEffect(() => {
-    if (user && user.user_type === 'farmer') {
+  const toggleBookmark = async () => {
+    if (!user) {
+      // Need to login
+      navigate('/login');
+      return;
+    }
+    
+    try {
       const token = localStorage.getItem('token');
-      apiClient.get('/profile', {
-        headers: { 'Authorization': `Bearer ${token}` }
-      })
-      .then(res => {
-        if (res.data && res.data.profile) {
-          setProfile(res.data.profile);
-        }
-      })
-      .catch(err => console.error("Error fetching profile", err));
-    }
-  }, [user]);
-
-  useEffect(() => {
-    if (scheme && profile) {
-      let eligible = true;
-      const { criteria } = scheme;
+      const headers = { 'Authorization': `Bearer ${token}` };
       
-      if (criteria) {
-        // State check
-        if (criteria.state && !criteria.state.includes('All India') && profile.state) {
-          if (!criteria.state.includes(profile.state)) {
-            eligible = false;
-          }
-        }
-        
-        // Age check
-        if (profile.age) {
-          if (criteria.minAge && profile.age < criteria.minAge) eligible = false;
-          if (criteria.maxAge && profile.age > criteria.maxAge) eligible = false;
-        }
-        
-        // Gender check
-        if (criteria.gender && !criteria.gender.includes('All') && profile.gender) {
-          if (!criteria.gender.includes(profile.gender)) {
-            eligible = false;
-          }
-        }
-        
-        // Land Size check
-        if (profile.farm_size) {
-          const farmSize = parseFloat(profile.farm_size);
-          if (criteria.minLandSize && farmSize < criteria.minLandSize) eligible = false;
-          if (criteria.maxLandSize && farmSize > criteria.maxLandSize) eligible = false;
-        }
-        
-        // Category check
-        if (criteria.farmerCategory && !criteria.farmerCategory.includes('All') && profile.farmer_category) {
-          if (!criteria.farmerCategory.includes(profile.farmer_category)) {
-            eligible = false;
-          }
-        }
-        
-        // Primary Crop check
-        if (criteria.eligibleCrops && !criteria.eligibleCrops.includes('All') && profile.primary_crop) {
-          if (!criteria.eligibleCrops.includes(profile.primary_crop)) {
-            eligible = false;
-          }
-        }
-
-        // Irrigation check
-        if (criteria.eligibleIrrigation && !criteria.eligibleIrrigation.includes('All') && profile.irrigation_type) {
-          if (!criteria.eligibleIrrigation.includes(profile.irrigation_type)) {
-            eligible = false;
-          }
-        }
+      if (isBookmarked) {
+        await apiClient.delete(`/schemes/bookmark/${scheme.slug}`, { headers });
+        setIsBookmarked(false);
+      } else {
+        await apiClient.post('/schemes/bookmark', { scheme_slug: scheme.slug }, { headers });
+        setIsBookmarked(true);
       }
-      
-      setIsEligible(eligible);
+    } catch (err) {
+      console.error('Error toggling bookmark', err);
     }
-  }, [scheme, profile]);
+  };
 
-  if (loading) {
+  if (isLoading) {
     return (
-      <div className="min-h-screen bg-background pt-24 pb-16 flex items-center justify-center">
-        <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+      <div className="min-h-screen flex justify-center pt-32 bg-background">
+        <div className="w-10 h-10 border-4 border-primary/30 border-t-primary rounded-full animate-spin"></div>
       </div>
     );
   }
 
-  if (!scheme) {
+  if (isError || !scheme) {
     return (
-      <div className="min-h-screen bg-background pt-24 pb-16">
-        <div className="container-custom px-4 sm:px-6 lg:px-8 text-center pt-20">
-          <div className="w-16 h-16 bg-red-50 dark:bg-red-900/20 text-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
-            <AlertCircle className="w-8 h-8" />
-          </div>
-          <h2 className="text-2xl font-bold text-heading mb-4">Scheme Not Found</h2>
-          <p className="text-slate-500 mb-8 max-w-md mx-auto">The government scheme you are looking for does not exist or may have been removed.</p>
-          <Link to="/resources" state={{ activeTab: 'schemes' }} className="btn-primary inline-flex items-center gap-2">
-            <ArrowLeft className="w-4 h-4" /> Back to Resources
-          </Link>
-        </div>
+      <div className="min-h-screen flex flex-col items-center pt-32 bg-background">
+        <h2 className="text-2xl font-bold text-heading">Scheme not found</h2>
+        <button onClick={() => navigate(-1)} className="mt-4 text-primary font-medium flex items-center gap-2">
+          <ArrowLeft className="w-4 h-4" /> Go Back
+        </button>
       </div>
     );
   }
 
   return (
     <div className="min-h-screen bg-background pt-24 pb-16">
-      <div className="container-custom px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-        <Link to="/resources" state={{ activeTab: 'schemes' }} className="inline-flex items-center gap-2 text-primary hover:underline mb-8 font-medium">
-          <ArrowLeft className="w-4 h-4" /> Back to Schemes
-        </Link>
+      <div className="container-custom px-4 sm:px-6 lg:px-8">
         
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="bg-surface rounded-3xl p-6 sm:p-10 shadow-sm border border-subtle">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-12 h-12 rounded-xl bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
-              <Landmark className="w-6 h-6 text-green-600 dark:text-green-400" />
-            </div>
-            <div>
-              <span className="px-3 py-1 bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-400 text-xs font-bold rounded-full">
-                {scheme.category}
-              </span>
-            </div>
+        {/* Navigation & Actions */}
+        <div className="flex items-center justify-between mb-8">
+          <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-slate-500 hover:text-primary transition-colors">
+            <ArrowLeft className="w-5 h-5" />
+            <span className="font-medium">Back</span>
+          </button>
+          
+          <button 
+            onClick={toggleBookmark}
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl border transition-all ${
+              isBookmarked 
+                ? 'bg-primary/10 border-primary text-primary' 
+                : 'bg-surface border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:border-primary'
+            }`}
+          >
+            {isBookmarked ? <BookmarkCheck className="w-5 h-5" /> : <BookmarkPlus className="w-5 h-5" />}
+            <span className="text-sm font-medium">{isBookmarked ? 'Saved' : 'Save Scheme'}</span>
+          </button>
+        </div>
+
+        {/* Hero Section */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-surface rounded-3xl p-8 md:p-10 shadow-card mb-8 relative overflow-hidden"
+        >
+          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
+          
+          <div className="flex flex-wrap gap-3 mb-6">
+            <span className="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-bold rounded-full uppercase tracking-wider flex items-center gap-1">
+              <Globe className="w-3 h-3" />
+              {scheme.level}
+            </span>
+            <span className="px-3 py-1 bg-green-50 dark:bg-green-900/30 text-green-600 dark:text-green-400 text-xs font-bold rounded-full uppercase tracking-wider flex items-center gap-1">
+              <MapPin className="w-3 h-3" />
+              {scheme.state}
+            </span>
+            <span className="px-3 py-1 bg-orange-50 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 text-xs font-bold rounded-full uppercase tracking-wider flex items-center gap-1">
+              <Tag className="w-3 h-3" />
+              {scheme.category}
+            </span>
           </div>
+
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-heading mb-6 max-w-4xl leading-tight">
+            {scheme.name}
+          </h1>
           
-          <h1 className="text-3xl md:text-4xl font-bold text-heading mb-4">{scheme.title}</h1>
-          <p className="text-xl text-primary font-semibold mb-8">{scheme.benefit}</p>
-          
-          <div className="grid sm:grid-cols-3 gap-6 mb-8 p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl">
-            <div>
-              <p className="text-sm text-slate-500 mb-1">Deadline</p>
-              <p className="font-semibold text-heading">{scheme.deadline}</p>
-            </div>
-            <div>
-              <p className="text-sm text-slate-500 mb-1">Status</p>
-              <p className="font-semibold text-green-600 dark:text-green-400 flex items-center gap-1">
-                <CheckCircle2 className="w-4 h-4" /> Active
-              </p>
-            </div>
-            <div>
-              <p className="text-sm text-slate-500 mb-1">Eligibility</p>
-              {isEligible === true && (
-                <p className="font-semibold text-green-600 dark:text-green-400 flex items-center gap-1">
-                  <CheckCircle2 className="w-4 h-4" /> Eligible
-                </p>
-              )}
-              {isEligible === false && (
-                <p className="font-semibold text-red-600 dark:text-red-400 flex items-center gap-1">
-                  <XCircle className="w-4 h-4" /> Not Eligible
-                </p>
-              )}
-              {isEligible === null && (
-                <p className="font-semibold text-slate-500 dark:text-slate-400 flex items-center gap-1">
-                  <HelpCircle className="w-4 h-4" /> Login to Check
-                </p>
-              )}
-            </div>
-          </div>
-          
-          {scheme.description && (
-            <div className="mb-8">
-              <h3 className="text-xl font-bold text-heading mb-4">About the Scheme</h3>
-              <p className="text-body leading-relaxed">{scheme.description}</p>
-            </div>
-          )}
-          
-          {scheme.eligibility && (
-            <div className="mb-8">
-              <h3 className="text-xl font-bold text-heading mb-4">Eligibility Criteria</h3>
-              <ul className="list-disc pl-5 space-y-2 text-body">
-                {Array.isArray(scheme.eligibility) ? scheme.eligibility.map((item, i) => (
-                  <li key={i}>{item}</li>
-                )) : <li>{scheme.eligibility}</li>}
-              </ul>
-            </div>
-          )}
-          
-          {scheme.applyLink && (
-            <div className="pt-6 border-t border-subtle">
-              <a href={scheme.applyLink} target="_blank" rel="noopener noreferrer" className="btn-primary w-full sm:w-auto text-center block">
-                Apply Now / Official Website
+          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-3xl leading-relaxed mb-8">
+            {scheme.description}
+          </p>
+
+          <div className="flex flex-wrap items-center gap-4">
+            {scheme.official_url && (
+              <a 
+                href={scheme.official_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary py-3 px-8 text-base flex items-center gap-2"
+              >
+                Apply on Official Website
+                <ExternalLink className="w-4 h-4" />
               </a>
+            )}
+            <div className="text-sm text-slate-500 font-medium">
+              Department: {scheme.department}
             </div>
-          )}
+          </div>
         </motion.div>
+
+        {/* Details Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          
+          {/* Main Content */}
+          <div className="lg:col-span-2 space-y-8">
+            
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="bg-surface rounded-3xl p-8 shadow-card"
+            >
+              <h3 className="text-2xl font-bold text-heading mb-6 flex items-center gap-3">
+                <CheckCircle2 className="w-6 h-6 text-primary" />
+                Target Beneficiaries & Eligibility
+              </h3>
+              
+              {scheme.beneficiary_keywords && scheme.beneficiary_keywords.length > 0 ? (
+                <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {scheme.beneficiary_keywords.map((kw, i) => (
+                    <li key={i} className="flex items-start gap-3 p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50">
+                      <div className="w-2 h-2 rounded-full bg-primary mt-2 shrink-0"></div>
+                      <span className="text-slate-700 dark:text-slate-300 capitalize">{kw.replace(/-/g, ' ')}</span>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-slate-500 italic">Information not currently available from the source.</p>
+              )}
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.15 }}
+              className="bg-surface rounded-3xl p-8 shadow-card"
+            >
+              <h3 className="text-2xl font-bold text-heading mb-6 flex items-center gap-3">
+                <CheckCircle2 className="w-6 h-6 text-primary" />
+                Benefits
+              </h3>
+              <p className="text-slate-500 italic">Information not currently available from the source.</p>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="bg-surface rounded-3xl p-8 shadow-card"
+            >
+              <h3 className="text-2xl font-bold text-heading mb-6 flex items-center gap-3">
+                <FileText className="w-6 h-6 text-primary" />
+                Required Documents
+              </h3>
+              <p className="text-slate-500 italic">Information not currently available from the source.</p>
+            </motion.div>
+
+            {/* Applicable Crops */}
+            {scheme.crop_keywords && scheme.crop_keywords.length > 0 && (
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.25 }}
+                className="bg-surface rounded-3xl p-8 shadow-card"
+              >
+                <h3 className="text-2xl font-bold text-heading mb-6 flex items-center gap-3">
+                  <FileText className="w-6 h-6 text-primary" />
+                  Applicable Crops
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {scheme.crop_keywords.map((crop, i) => (
+                    <span key={i} className="px-4 py-2 rounded-lg bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 text-sm font-medium capitalize">
+                      {crop}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="bg-surface rounded-3xl p-8 shadow-card"
+            >
+              <h3 className="text-2xl font-bold text-heading mb-6 flex items-center gap-3">
+                <Globe className="w-6 h-6 text-primary" />
+                Application Process
+              </h3>
+              {scheme.official_url ? (
+                <div>
+                  <p className="text-slate-600 dark:text-slate-400 mb-4">Please visit the official government portal to apply or learn more about the application process.</p>
+                  <a 
+                    href={scheme.official_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary py-3 px-8 text-base flex items-center gap-2 inline-flex"
+                  >
+                    Go to Official Portal
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                </div>
+              ) : (
+                <p className="text-slate-500 italic">Information not currently available from the source.</p>
+              )}
+            </motion.div>
+
+          </div>
+
+          {/* Sidebar */}
+          <div className="space-y-8">
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3 }}
+              className="bg-primary/5 rounded-3xl p-8 border border-primary/10"
+            >
+              <h3 className="text-lg font-bold text-heading mb-4">Quick Facts</h3>
+              <ul className="space-y-4">
+                <li className="flex justify-between items-center border-b border-slate-200 dark:border-slate-700 pb-2">
+                  <span className="text-slate-500">State</span>
+                  <span className="font-medium text-slate-700 dark:text-slate-300">{scheme.state}</span>
+                </li>
+                <li className="flex justify-between items-center border-b border-slate-200 dark:border-slate-700 pb-2">
+                  <span className="text-slate-500">Category</span>
+                  <span className="font-medium text-slate-700 dark:text-slate-300">{scheme.category}</span>
+                </li>
+                <li className="flex justify-between items-center border-b border-slate-200 dark:border-slate-700 pb-2">
+                  <span className="text-slate-500">Department</span>
+                  <span className="font-medium text-slate-700 dark:text-slate-300 text-right w-3/4">{scheme.department}</span>
+                </li>
+              </ul>
+            </motion.div>
+          </div>
+
+        </div>
       </div>
     </div>
   );
