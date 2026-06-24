@@ -4,8 +4,8 @@ def clean_response(text: str) -> str:
     if not text:
         return text
 
-    # Remove bold markdown symbols
-    text = re.sub(r'\*\*(.*?)\*\*', r'\1', text)
+    # Remove all asterisks to prevent any markdown bullet points or bold text
+    text = text.replace("*", "")
     
     # Remove markdown headings
     text = text.replace("###", "")
