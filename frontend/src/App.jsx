@@ -8,6 +8,7 @@ import { ChatProvider } from './context/ChatContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ChatbotWidget from './components/ChatbotWidget';
+import BackToTop from './components/BackToTop';
 import Home from './pages/Home/Home';
 
 // Eagerly loaded routes
@@ -119,6 +120,7 @@ function AppContent() {
         <AnimatedRoutes />
       </main>
       <Footer />
+      <BackToTop />
       <ChatbotWidget />
     </div>
   );
