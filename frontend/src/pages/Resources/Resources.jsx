@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Newspaper, Landmark, Loader2, AlertCircle, Globe, MapPin, Calculator, ChevronDown } from 'lucide-react';
+import { Newspaper, Landmark, Loader2, AlertCircle, Globe, MapPin, Calculator, ChevronDown, Search, Filter, Bookmark } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
 import PageHero from '../../components/shared/PageHero';
 import NewsCard from '../../components/shared/NewsCard';
 import SchemeCard from '../../components/shared/SchemeCard';
@@ -9,6 +10,7 @@ import SkeletonCard from '../../components/shared/SkeletonCard';
 import SchemeEligibilityEngine from './SchemeEligibilityEngine';
 import { useAuth } from '../../context/AuthContext';
 import apiClient from '../../services/apiClient';
+import { useBookmarks } from '../../hooks/useBookmarks';
 
 const CustomDropdown = ({ value, onChange, options, icon: Icon }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,17 +26,17 @@ const CustomDropdown = ({ value, onChange, options, icon: Icon }) => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const selectedOption = options.find(opt => opt.value === value);
+  const selectedOption = options.find(opt => opt.value === value) || { label: 'Select' };
 
   return (
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 bg-surface px-4 py-2 rounded-xl shadow-card focus:outline-none cursor-pointer"
+        className="flex items-center gap-2 bg-surface px-4 py-2 rounded-xl shadow-card focus:outline-none cursor-pointer border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-colors"
       >
         <Icon className="w-4 h-4 text-primary" />
-        <span className="text-sm font-medium text-slate-700 dark:text-slate-200">
-          {selectedOption?.label}
+        <span className="text-sm font-medium text-slate-700 dark:text-slate-200 whitespace-nowrap">
+          {selectedOption.label}
         </span>
         <ChevronDown className={`w-4 h-4 text-slate-500 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
@@ -46,7 +48,7 @@ const CustomDropdown = ({ value, onChange, options, icon: Icon }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full mt-2 left-0 min-w-full w-max bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl shadow-lg dark:shadow-[0_8px_30px_rgb(0,0,0,0.5)] z-50 overflow-hidden"
+            className="absolute top-full mt-2 left-0 min-w-full w-max max-h-60 overflow-y-auto hide-scrollbar bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl shadow-lg z-50"
           >
             {options.map((opt) => (
               <button
@@ -81,20 +83,20 @@ export default function Resources() {
       setActiveTab(location.state.activeTab);
     }
   }, [location.state]);
-  const [news, setNews] = useState([]);
-  const [schemes, setSchemes] = useState([]);
-  
-  const [newsLoading, setNewsLoading] = useState(true);
-  const [schemesLoading, setSchemesLoading] = useState(true);
-  
-  const [newsError, setNewsError] = useState(false);
-  const [schemesError, setSchemesError] = useState(false);
 
+  // News State
   const [language, setLanguage] = useState('gu');
   const [region, setRegion] = useState('Gujarat');
   const [crop, setCrop] = useState('');
 
-  // Fetch user profile defaults if logged in
+  // Schemes State
+  const [schemeSearch, setSchemeSearch] = useState('');
+  const [schemeState, setSchemeState] = useState('');
+  const [schemeCategory, setSchemeCategory] = useState('');
+  const [schemeLevel, setSchemeLevel] = useState('');
+  const [schemePage, setSchemePage] = useState(1);
+
+  // Fetch user profile defaults
   useEffect(() => {
     if (user && user.user_type === 'farmer') {
       const token = localStorage.getItem('token');
@@ -108,7 +110,10 @@ export default function Resources() {
             else if (data.profile.preferred_language === 'English') setLanguage('en');
             else setLanguage('gu');
             
-            if (data.profile.state) setRegion(data.profile.state);
+            if (data.profile.state) {
+              setRegion(data.profile.state);
+              setSchemeState(data.profile.state);
+            }
             if (data.profile.primary_crop) setCrop(data.profile.primary_crop);
           }
         })
@@ -116,73 +121,59 @@ export default function Resources() {
     }
   }, [user]);
 
-  // Fetch Schemes once on mount
-  useEffect(() => {
-    const fetchSchemes = async () => {
-      setSchemesLoading(true);
-      try {
-        const res = await apiClient.get('/resources/schemes');
-        if (res.data && res.data.success !== false) {
-          setSchemes(res.data.data || []);
-          setSchemesError(false);
-        } else {
-          setSchemes([]);
-          setSchemesError(true);
-        }
-      } catch (err) {
-        console.error('Error fetching schemes:', err);
-        setSchemes([]);
-        setSchemesError(true);
-      } finally {
-        setSchemesLoading(false);
-      }
-    };
-    fetchSchemes();
-  }, []);
+  // React Query for News
+  const { data: newsData, isLoading: newsLoading, isError: newsError } = useQuery({
+    queryKey: ['agri-news', language, region, crop],
+    queryFn: async () => {
+      const res = await apiClient.get('/resources/agri-news', {
+        params: { language, region, crop }
+      });
+      if (res.data.success === false) throw new Error('Failed to fetch news');
+      return res.data.data;
+    },
+    enabled: activeTab === 'news',
+    staleTime: 5 * 60 * 1000, // 5 minutes
+  });
 
-  // Fetch News when language or region changes
-  useEffect(() => {
-    const fetchNews = async () => {
-      setNewsLoading(true);
-      try {
-        const res = await apiClient.get('/resources/agri-news', {
-          params: { language, region, crop }
-        });
-        if (res.data && res.data.success !== false) {
-          setNews(res.data.data || []);
-          setNewsError(false);
-        } else {
-          setNews([]);
-          setNewsError(true);
+  // React Query for Schemes
+  const { data: schemesResponse, isLoading: schemesLoading, isError: schemesError } = useQuery({
+    queryKey: ['schemes', schemePage, schemeSearch, schemeState, schemeCategory, schemeLevel],
+    queryFn: async () => {
+      const res = await apiClient.get('/resources/schemes', {
+        params: { 
+          page: schemePage, 
+          limit: 10, 
+          search: schemeSearch, 
+          state: schemeState,
+          category: schemeCategory,
+          level: schemeLevel
         }
-      } catch (err) {
-        console.error('Error fetching news:', err);
-        setNews([]);
-        setNewsError(true);
-      } finally {
-        setNewsLoading(false);
-      }
-    };
-    fetchNews();
-  }, [language, region, crop]);
+      });
+      if (res.data.success === false) throw new Error('Failed to fetch schemes');
+      return res.data;
+    },
+    enabled: activeTab === 'schemes',
+    keepPreviousData: true,
+  });
+
+  const { data: bookmarksData, isLoading: bookmarksLoading } = useBookmarks();
+
+  const schemes = schemesResponse?.data || [];
+  const pagination = schemesResponse?.pagination || { page: 1, totalPages: 1 };
 
   const tabs = [
     { key: 'news', label: 'Latest News', icon: Newspaper },
     { key: 'schemes', label: 'Government Schemes', icon: Landmark },
+    { key: 'bookmarks', label: 'Saved Schemes', icon: Bookmark },
     { key: 'eligibility', label: 'Eligibility Engine', icon: Calculator },
   ];
-
-  const fadeUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: (i = 0) => ({ opacity: 1, y: 0, transition: { delay: i * 0.06, duration: 0.4 } }),
-  };
 
   return (
     <div className="min-h-screen bg-background pt-24 pb-16">
       <div className="container-custom px-4 sm:px-6 lg:px-8">
         <PageHero
           title="Agricultural Resources"
-          subtitle="Stay updated with the latest agricultural news and government schemes to empower your farming journey."
+          subtitle="Stay updated with the latest agricultural news and dynamic government schemes to empower your farming journey."
         >
           <div className="inline-flex bg-surface rounded-2xl p-1.5 shadow-card overflow-x-auto max-w-full hide-scrollbar">
             {tabs.map((tab) => (
@@ -234,90 +225,190 @@ export default function Resources() {
           </motion.div>
         )}
 
-        {/* Global Error State (Both failed) */}
-        {!newsLoading && !schemesLoading && newsError && schemesError && (
-          <div className="flex flex-col items-center justify-center py-20 text-center">
-            <div className="w-16 h-16 bg-red-50 dark:bg-red-900/20 text-red-500 rounded-full flex items-center justify-center mb-4">
-              <AlertCircle className="w-8 h-8" />
+        {/* Schemes Filters */}
+        {activeTab === 'schemes' && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex flex-col md:flex-row items-center justify-between gap-4 mb-8 bg-surface p-4 rounded-2xl shadow-card"
+          >
+            <div className="relative w-full md:w-96">
+              <input 
+                type="text" 
+                placeholder="Search schemes..." 
+                value={schemeSearch}
+                onChange={(e) => { setSchemeSearch(e.target.value); setSchemePage(1); }}
+                className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm focus:ring-2 focus:ring-primary/50"
+              />
+              <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
             </div>
-            <h3 className="text-xl font-bold text-heading mb-2">Oops! Something went wrong</h3>
-            <p className="text-slate-500 max-w-md">Resources temporarily unavailable. Please try again later.</p>
-          </div>
+            
+            <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
+              <CustomDropdown
+                icon={MapPin}
+                value={schemeState}
+                onChange={(v) => { setSchemeState(v); setSchemePage(1); }}
+                options={[
+                  { value: '', label: 'All States' },
+                  { value: 'All India', label: 'All India (Central)' },
+                  { value: 'Gujarat', label: 'Gujarat' },
+                  { value: 'Maharashtra', label: 'Maharashtra' }
+                ]}
+              />
+              <CustomDropdown
+                icon={Filter}
+                value={schemeCategory}
+                onChange={(v) => { setSchemeCategory(v); setSchemePage(1); }}
+                options={[
+                  { value: '', label: 'All Categories' },
+                  { value: 'Agriculture', label: 'Agriculture' },
+                  { value: 'Finance', label: 'Finance' },
+                  { value: 'Irrigation', label: 'Irrigation' }
+                ]}
+              />
+            </div>
+          </motion.div>
         )}
 
         {/* Tab Content */}
-        {!(newsError && schemesError) && (
-          <AnimatePresence mode="wait">
-            {activeTab === 'news' ? (
-              <motion.div
-                key="news"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="notranslate"
-              >
-                {newsLoading ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {[1, 2, 3, 4, 5, 6].map((i) => (
-                      <SkeletonCard key={i} index={i} />
-                    ))}
-                  </div>
-                ) : (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {news && news.length > 0 ? (
-                      news.map((item, idx) => (
-                        <NewsCard key={item.id || idx} {...item} index={idx} />
-                      ))
-                    ) : (
-                      <div className="col-span-full text-center py-12 text-slate-500">
-                        News temporarily unavailable
-                      </div>
-                    )}
-                  </div>
-                )}
-              </motion.div>
-            ) : activeTab === 'schemes' ? (
-              <motion.div
-                key="schemes"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-              >
-                {schemesLoading ? (
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    {[1, 2, 3, 4].map((i) => (
-                      <SkeletonCard key={i} index={i} />
-                    ))}
-                  </div>
-                ) : (
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    {schemes && schemes.length > 0 ? (
+        <AnimatePresence mode="wait">
+          {activeTab === 'news' ? (
+            <motion.div
+              key="news"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              className="notranslate"
+            >
+              {newsLoading ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {[1, 2, 3, 4, 5, 6].map((i) => <SkeletonCard key={i} index={i} />)}
+                </div>
+              ) : newsError ? (
+                <div className="text-center py-12 text-slate-500">Failed to load news</div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {newsData && newsData.length > 0 ? (
+                    newsData.map((item, idx) => (
+                      <NewsCard key={item.id || idx} {...item} index={idx} />
+                    ))
+                  ) : (
+                    <div className="col-span-full text-center py-12 text-slate-500">No news available</div>
+                  )}
+                </div>
+              )}
+            </motion.div>
+          ) : activeTab === 'schemes' ? (
+            <motion.div
+              key="schemes"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              {schemesLoading ? (
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  {[1, 2, 3, 4].map((i) => <SkeletonCard key={i} index={i} />)}
+                </div>
+              ) : schemesError ? (
+                <div className="text-center py-12 text-slate-500">Failed to load schemes</div>
+              ) : (
+                <>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                    {schemes.length > 0 ? (
                       schemes.map((scheme, idx) => (
-                        <SchemeCard key={scheme.id || idx} {...scheme} index={idx} />
+                        <SchemeCard 
+                          key={scheme.id || idx} 
+                          id={scheme.id}
+                          title={scheme.name}
+                          description={scheme.description}
+                          slug={scheme.slug}
+                          eligibility={scheme.beneficiary_keywords}
+                          applyLink={scheme.official_url}
+                          index={idx} 
+                        />
                       ))
                     ) : (
-                      <div className="col-span-full text-center py-12 text-slate-500">
-                        No schemes available at the moment.
+                      <div className="col-span-full text-center py-12 text-slate-500">No schemes found matching criteria.</div>
+                    )}
+                  </div>
+                  
+                  {/* Pagination Controls */}
+                  {pagination.totalPages > 1 && (
+                    <div className="flex justify-center items-center gap-4 mt-8">
+                      <button 
+                        disabled={pagination.page === 1}
+                        onClick={() => setSchemePage(p => Math.max(1, p - 1))}
+                        className="btn-secondary px-4 py-2 disabled:opacity-50"
+                      >
+                        Previous
+                      </button>
+                      <span className="text-sm font-medium text-slate-600 dark:text-slate-300">
+                        Page {pagination.page} of {pagination.totalPages}
+                      </span>
+                      <button 
+                        disabled={pagination.page >= pagination.totalPages}
+                        onClick={() => setSchemePage(p => p + 1)}
+                        className="btn-secondary px-4 py-2 disabled:opacity-50"
+                      >
+                        Next
+                      </button>
+                    </div>
+                  )}
+                </>
+              )}
+            </motion.div>
+          ) : activeTab === 'bookmarks' ? (
+            <motion.div
+              key="bookmarks"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              {bookmarksLoading ? (
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  {[1, 2].map((i) => <SkeletonCard key={i} index={i} />)}
+                </div>
+              ) : (
+                <>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                    {bookmarksData && bookmarksData.length > 0 ? (
+                      bookmarksData.map((scheme, idx) => (
+                        <SchemeCard 
+                          key={scheme.id || idx}
+                          id={scheme.id}
+                          title={scheme.name}
+                          description={scheme.description}
+                          slug={scheme.slug}
+                          eligibility={scheme.beneficiary_keywords}
+                          applyLink={scheme.official_url}
+                          index={idx} 
+                        />
+                      ))
+                    ) : (
+                      <div className="col-span-full text-center py-12">
+                        <Bookmark className="w-12 h-12 text-slate-300 mx-auto mb-3" />
+                        <p className="text-slate-500">You haven't saved any schemes yet.</p>
                       </div>
                     )}
                   </div>
-                )}
-              </motion.div>
-            ) : activeTab === 'eligibility' ? (
-              <motion.div
-                key="eligibility"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-              >
-                <SchemeEligibilityEngine />
-              </motion.div>
-            ) : null}
-          </AnimatePresence>
-        )}
+                </>
+              )}
+            </motion.div>
+          ) : activeTab === 'eligibility' ? (
+            <motion.div
+              key="eligibility"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <SchemeEligibilityEngine />
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
         </div>
       </div>
     </div>

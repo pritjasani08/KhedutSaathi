@@ -4,13 +4,15 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "node --watch index.js"
+    "dev": "node --watch index.js",
+    "sync": "node jobs/seedAgri.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.108.2",
     "@vitalets/google-translate-api": "^9.2.1",
-    "axios": "^1.18.0",
+    "axios": "^1.18.1",
     "bcrypt": "^6.0.0",
+    "cheerio": "^1.2.0",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
@@ -23,6 +25,7 @@
     "multer": "^2.2.0",
     "node-cache": "^5.1.2",
     "nodemailer": "^9.0.1",
+    "puppeteer": "^25.2.0",
     "rss-parser": "^3.13.0",
     "uuid": "^14.0.0"
   }
