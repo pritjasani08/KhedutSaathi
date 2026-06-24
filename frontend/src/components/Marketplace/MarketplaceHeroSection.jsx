@@ -1,9 +1,9 @@
 import { Search, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-export default function MarketplaceHeroSection({ onSearch, maxPrice = 5000, onPriceChange }) {
+export default function MarketplaceHeroSection({ onSearch }) {
   return (
-    <section className="relative w-full flex flex-col justify-center pt-16 pb-16 px-4 items-center text-center">
+    <section className="relative w-full flex flex-col justify-center pt-16 pb-8 px-4 items-center text-center">
       {/* Ambient Radial Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] md:w-[600px] h-[300px] md:h-[400px] bg-green-500/15 dark:bg-green-500/10 blur-[100px] md:blur-[120px] rounded-full pointer-events-none" />
       
@@ -28,7 +28,7 @@ export default function MarketplaceHeroSection({ onSearch, maxPrice = 5000, onPr
           <Search className="w-6 h-6 text-slate-400 mr-3 shrink-0" />
           <input 
             type="text"
-            placeholder="Search for seeds, tractors, or fertilizers..."
+            placeholder="Search for seeds, pesticides, or fertilizers..."
             className="w-full bg-transparent border-none focus:outline-none text-slate-900 dark:text-white placeholder-slate-500 dark:placeholder-slate-400 py-4 text-lg font-medium"
             onChange={(e) => onSearch(e.target.value)}
           />
@@ -37,33 +37,6 @@ export default function MarketplaceHeroSection({ onSearch, maxPrice = 5000, onPr
           Search
           <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
         </button>
-      </motion.div>
-
-      {/* Price Filter Slider */}
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2, duration: 0.5 }}
-        className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8 text-sm font-medium relative z-10 bg-white/40 dark:bg-slate-900/40 backdrop-blur-md p-4 rounded-2xl border border-white/50 dark:border-slate-700/50 shadow-sm min-w-[300px] sm:min-w-[400px]"
-      >
-        <div className="flex flex-col w-full px-2">
-          <div className="flex justify-between items-center mb-2">
-            <span className="text-slate-500 dark:text-slate-400 font-bold">Max Price: <span className="text-green-600 dark:text-green-400">₹{maxPrice}</span></span>
-          </div>
-          <input 
-            type="range" 
-            min="0" 
-            max="5000" 
-            step="100"
-            value={maxPrice}
-            onChange={(e) => onPriceChange(Number(e.target.value))}
-            className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer dark:bg-slate-700 accent-green-600"
-          />
-          <div className="flex justify-between text-xs text-slate-400 mt-1">
-            <span>₹0</span>
-            <span>₹5,000</span>
-          </div>
-        </div>
       </motion.div>
     </section>
   );
