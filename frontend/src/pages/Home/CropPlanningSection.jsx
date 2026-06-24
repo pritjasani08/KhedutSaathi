@@ -68,7 +68,7 @@ export default function CropPlanningSection() {
                 <Target className="w-4 h-4" /> AI Precision Planning
               </motion.div>
               <motion.h2 variants={fadeUp} className="font-display text-3xl md:text-4xl font-bold text-heading mb-6">
-                Maximize Yields with Smart Crop Planning
+                Maximize Yields with Smart Crop Planner
               </motion.h2>
               <motion.p variants={fadeUp} className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
                 Take the guesswork out of farming. Our AI analyzes your soil data, local weather patterns, and historical trends to recommend the best crops, optimal sowing times, and precise irrigation schedules.
