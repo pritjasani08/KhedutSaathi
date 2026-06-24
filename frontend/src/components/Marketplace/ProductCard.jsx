@@ -1,10 +1,11 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { IndianRupee, Star, ShoppingCart, Heart, Eye } from 'lucide-react';
 import { cn } from '../../lib/utils';
+import { useWishlist } from '../../context/WishlistContext';
 
 export default function ProductCard({ product, onClick, onAddToCart }) {
-  const [isFavourited, setIsFavourited] = useState(false);
+  const { isInWishlist, toggleWishlist } = useWishlist();
+  const isFavourited = isInWishlist(product.id);
 
   return (
     <div
@@ -42,7 +43,7 @@ export default function ProductCard({ product, onClick, onAddToCart }) {
 
         {/* Wishlist Button */}
         <button 
-          onClick={(e) => { e.stopPropagation(); setIsFavourited(!isFavourited); }}
+          onClick={(e) => { e.stopPropagation(); toggleWishlist(product); }}
           className={cn(
             "absolute top-3 right-3 p-2.5 bg-white/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700 backdrop-blur hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-all shadow-sm opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 duration-300 z-10",
             isFavourited ? 'text-red-500 dark:text-red-400' : 'text-slate-600 dark:text-slate-400'

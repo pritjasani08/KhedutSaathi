@@ -1,5 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
-import { ShoppingCart } from 'lucide-react';
+import { ShoppingCart, Heart } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { useWishlist } from '../../context/WishlistContext';
 import { supabase } from '../../services/supabase/client';
 
 // Section Imports
@@ -36,6 +38,9 @@ export default function AgriMarketplace() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
+  
+  // Wishlist Context
+  const { wishlistCount } = useWishlist();
 
   // Fetch from Supabase
   useEffect(() => {
@@ -166,26 +171,43 @@ export default function AgriMarketplace() {
                 </span>
               </div>
 
-              {/* Sort By Dropdown */}
-              <div className="flex items-center gap-3 w-full sm:w-auto">
-                <span className="text-sm font-medium text-slate-500 dark:text-slate-400 whitespace-nowrap hidden sm:block">Sort By:</span>
-                <select 
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value)}
-                  className="w-full sm:w-auto bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-sm rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500/50 cursor-pointer font-medium appearance-none"
-                  style={{
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-chevron-down'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")`,
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'right 0.75rem center',
-                    backgroundSize: '16px 16px',
-                    paddingRight: '2.5rem'
-                  }}
+              {/* Right Side Actions */}
+              <div className="flex items-center justify-between sm:justify-end gap-4 sm:gap-6 w-full sm:w-auto">
+                {/* Wishlist Link */}
+                <Link 
+                  to="/wishlist" 
+                  className="group flex items-center gap-2 text-sm font-bold text-slate-700 dark:text-slate-300 hover:text-rose-600 dark:hover:text-rose-400 transition-colors shrink-0"
                 >
-                  <option value="newest">Newest</option>
-                  <option value="price-low">Price: Low to High</option>
-                  <option value="price-high">Price: High to Low</option>
-                  <option value="popular">Most Popular</option>
-                </select>
+                  <Heart className="w-[18px] h-[18px] text-rose-500 dark:text-rose-400 group-hover:scale-110 group-hover:fill-rose-500/20 transition-all" />
+                  <span className="relative">
+                    My Wishlist {wishlistCount > 0 && `(${wishlistCount})`}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-rose-500/50 group-hover:w-full transition-all duration-300"></span>
+                  </span>
+                </Link>
+
+                <div className="w-px h-6 bg-slate-200 dark:bg-slate-700 hidden sm:block"></div>
+
+                {/* Sort By Dropdown */}
+                <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+                  <span className="text-sm font-medium text-slate-500 dark:text-slate-400 whitespace-nowrap hidden sm:block">Sort By:</span>
+                  <select 
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value)}
+                    className="w-full sm:w-auto bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-sm rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500/50 cursor-pointer font-medium appearance-none"
+                    style={{
+                      backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-chevron-down'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")`,
+                      backgroundRepeat: 'no-repeat',
+                      backgroundPosition: 'right 0.75rem center',
+                      backgroundSize: '16px 16px',
+                      paddingRight: '2.5rem'
+                    }}
+                  >
+                    <option value="newest">Newest</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="popular">Most Popular</option>
+                  </select>
+                </div>
               </div>
             </div>
 
