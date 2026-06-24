@@ -30,6 +30,7 @@ export default function AgriMarketplace() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [maxPrice, setMaxPrice] = useState(5000);
+  const [sortBy, setSortBy] = useState('newest');
 
   // UI State
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -56,17 +57,40 @@ export default function AgriMarketplace() {
     fetchProducts();
   }, []);
 
-  // Filter Logic
+  // Filter and Sort Logic
   const filteredProducts = useMemo(() => {
-    return products.filter(p => {
-      const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    let result = products.filter(p => {
+      const matchesSearch = p.name?.toLowerCase().includes(searchQuery.toLowerCase()) || 
                             (p.seller?.full_name || '').toLowerCase().includes(searchQuery.toLowerCase());
       const matchesCategory = selectedCategory === 'All' || p.category === selectedCategory;
-      const matchesPrice = p.price <= maxPrice;
+      const matchesPrice = (p.price || 0) <= maxPrice;
       
       return matchesSearch && matchesCategory && matchesPrice;
     });
-  }, [products, searchQuery, selectedCategory, maxPrice]);
+
+    // Apply Sorting
+    switch (sortBy) {
+      case 'price-low':
+        result.sort((a, b) => (Number(a.price) || 0) - (Number(b.price) || 0));
+        break;
+      case 'price-high':
+        result.sort((a, b) => (Number(b.price) || 0) - (Number(a.price) || 0));
+        break;
+      case 'popular':
+        result.sort((a, b) => String(a.id || '').localeCompare(String(b.id || '')));
+        break;
+      case 'newest':
+      default:
+        result.sort((a, b) => {
+          const timeA = a.created_at ? new Date(a.created_at).getTime() : 0;
+          const timeB = b.created_at ? new Date(b.created_at).getTime() : 0;
+          return timeB - timeA;
+        });
+        break;
+    }
+
+    return result;
+  }, [products, searchQuery, selectedCategory, maxPrice, sortBy]);
 
   // Cart Handlers
   const handleAddToCart = (product) => {
@@ -116,8 +140,6 @@ export default function AgriMarketplace() {
         {/* 1. Hero Section */}
         <MarketplaceHeroSection 
           onSearch={setSearchQuery} 
-          maxPrice={maxPrice} 
-          onPriceChange={setMaxPrice} 
         />
 
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 mb-16">
@@ -127,6 +149,8 @@ export default function AgriMarketplace() {
               <FilterSidebar 
                 selectedCategory={selectedCategory}
                 setSelectedCategory={setSelectedCategory}
+                maxPrice={maxPrice}
+                setMaxPrice={setMaxPrice}
                 categories={MARKETPLACE_CATEGORIES}
               />
             </div>
@@ -134,11 +158,35 @@ export default function AgriMarketplace() {
 
           {/* Product Grid Area */}
           <main className="flex-1">
-            <div className="flex items-center justify-between mb-6 bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
-              <h2 className="text-xl font-display font-bold text-slate-900 dark:text-white">Browse Products</h2>
-              <span className="text-sm font-bold text-green-400 bg-green-500/10 px-4 py-1.5 rounded-xl border border-green-500/20">
-                {filteredProducts.length} Results
-              </span>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm gap-4">
+              <div className="flex items-center gap-4">
+                <h2 className="text-xl font-display font-bold text-slate-900 dark:text-white">Browse Products</h2>
+                <span className="text-sm font-bold text-green-400 bg-green-500/10 px-4 py-1.5 rounded-xl border border-green-500/20">
+                  {filteredProducts.length} Results
+                </span>
+              </div>
+
+              {/* Sort By Dropdown */}
+              <div className="flex items-center gap-3 w-full sm:w-auto">
+                <span className="text-sm font-medium text-slate-500 dark:text-slate-400 whitespace-nowrap hidden sm:block">Sort By:</span>
+                <select 
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="w-full sm:w-auto bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-sm rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500/50 cursor-pointer font-medium appearance-none"
+                  style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-chevron-down'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'right 0.75rem center',
+                    backgroundSize: '16px 16px',
+                    paddingRight: '2.5rem'
+                  }}
+                >
+                  <option value="newest">Newest</option>
+                  <option value="price-low">Price: Low to High</option>
+                  <option value="price-high">Price: High to Low</option>
+                  <option value="popular">Most Popular</option>
+                </select>
+              </div>
             </div>
 
             <ProductGrid 
