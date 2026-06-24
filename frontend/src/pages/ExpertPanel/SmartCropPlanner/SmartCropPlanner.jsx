@@ -12,9 +12,29 @@ const fadeUp = {
   visible: (i = 0) => ({ opacity: 1, y: 0, transition: { delay: i * 0.05, duration: 0.4 } }),
 };
 
-const soilTypes = ['Alluvial Soil', 'Black Soil', 'Red Soil', 'Laterite Soil', 'Sandy Soil', 'Clayey Soil', 'Loamy Soil'];
-const waterOptions = ['High', 'Medium', 'Low'];
-const seasons = ['Kharif', 'Rabi', 'Zaid', 'Summer', 'Winter', 'Whole Year'];
+const soilTypes = [
+  { value: 'Alluvial Soil', label: 'Alluvial Soil' },
+  { value: 'Black Soil', label: 'Black Soil' },
+  { value: 'Clay Soil', label: 'Clay Soil' },
+  { value: 'Cold Desert Soil', label: 'Cold Desert Soil' },
+  { value: 'Forest Soil', label: 'Forest Soil' },
+  { value: 'Laterite Soil', label: 'Laterite Soil' },
+  { value: 'Loamy Soil', label: 'Loamy Soil' },
+  { value: 'Mountain Soil', label: 'Mountain Soil' },
+  { value: 'Red Soil', label: 'Red Soil' },
+  { value: 'Sandy Soil', label: 'Sandy Soil' },
+  { value: 'Silty Soil', label: 'Silty Soil' }
+];
+const waterOptions = [
+  { value: 'High', label: 'High' },
+  { value: 'Medium', label: 'Medium' },
+  { value: 'Low', label: 'Low' }
+];
+const seasons = [
+  { value: 'Kharif', label: 'Kharif (Monsoon)' },
+  { value: 'Rabi', label: 'Rabi (Winter)' },
+  { value: 'Summer', label: 'Summer / Zaid' }
+];
 const durations = [1, 2, 3, 4, 5, 6, 9, 12];
 
 export default function SmartCropPlanner() {
@@ -149,7 +169,7 @@ export default function SmartCropPlanner() {
               className="select-field"
             >
               <option value="">Select Soil Type</option>
-              {soilTypes.map((s) => <option key={s} value={s}>{s}</option>)}
+              {soilTypes.map((s) => <option key={s.value} value={s.value}>{s.label}</option>)}
             </select>
           </motion.div>
 
@@ -161,7 +181,7 @@ export default function SmartCropPlanner() {
               className="select-field"
             >
               <option value="">Select Water Availability</option>
-              {waterOptions.map((w) => <option key={w} value={w}>{w}</option>)}
+              {waterOptions.map((w) => <option key={w.value} value={w.value}>{w.label}</option>)}
             </select>
           </motion.div>
 
@@ -173,7 +193,7 @@ export default function SmartCropPlanner() {
               className="select-field"
             >
               <option value="">Select Season</option>
-              {seasons.map((s) => <option key={s} value={s}>{s}</option>)}
+              {seasons.map((s) => <option key={s.value} value={s.value}>{s.label}</option>)}
             </select>
           </motion.div>
 

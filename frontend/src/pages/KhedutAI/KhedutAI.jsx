@@ -203,7 +203,7 @@ export default function KhedutAI() {
         </p>
       </div>
 
-      <div className="flex-1 max-w-[1600px] w-[96%] mx-auto px-2 sm:px-4 lg:px-6 flex gap-6 h-[calc(100vh-160px)] min-h-[500px] relative z-10">
+      <div className="flex-1 max-w-[1600px] w-[96%] mx-auto px-2 sm:px-4 lg:px-6 flex gap-6 h-[calc(100vh-160px)] min-h-[500px] relative z-10 notranslate">
         
         {/* Left Sidebar - Chat History */}
         <div className="hidden lg:flex flex-col w-80 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-3xl border border-slate-200/60 dark:border-slate-800/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] overflow-hidden h-full">
