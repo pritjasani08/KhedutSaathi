@@ -3,7 +3,7 @@
     "home": "Home",
     "cropDiagnosis": "Crop Health",
     "marketHub": "Market Prices",
-    "expertPanel": "Crop Planning",
+    "expertPanel": "Crop Planner",
     "smartIrrigation": "Smart Irrigation",
     "agriMarketplace": "Agri Marketplace",
     "features": "Features",
@@ -37,8 +37,8 @@
       "description": "Access real-time mandi prices and sell your yield directly to buyers without middlemen."
     },
     "expertPanel": {
-      "title": "Crop Planning",
-      "description": "Get AI-powered crop planning and yield predictions based on your specific conditions."
+      "title": "Crop Planner",
+      "description": "Get AI-powered crop planner and yield predictions based on your specific conditions."
     },
     "smartIrrigation": {
       "title": "Smart Irrigation",
@@ -163,7 +163,7 @@
     "selectCrop": "Select Crop"
   },
   "expertPanel": {
-    "title": "Crop Planning",
+    "title": "Crop Planner",
     "subtitle": "Advanced AI analytics for precision farming",
     "smartCropPlanner": "Smart Crop Planner",
     "yieldPredictor": "Yield Predictor",

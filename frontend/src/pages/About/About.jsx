@@ -267,7 +267,7 @@ function WhyKhedutSaathiSection() {
     },
     {
       icon: <Sprout className="w-6 h-6" />,
-      title: 'Crop Planning',
+      title: 'Crop Planner',
       desc: 'Data-driven recommendations based on soil, season, and water availability.',
       bg: 'bg-emerald-50 dark:bg-emerald-900/30',
       hoverBg: 'hover:bg-emerald-50 dark:hover:bg-emerald-900/40',
