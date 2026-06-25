@@ -73,19 +73,19 @@ function AnimatedRoutes() {
         <Route path="/crop-recommendation" element={<ProtectedRoute allowedRoles={['farmer']}><PageWrapper><ExpertPanel /></PageWrapper></ProtectedRoute>} />
         <Route path="/crop-health" element={<ProtectedRoute allowedRoles={['farmer']}><PageWrapper><CropDiagnosis /></PageWrapper></ProtectedRoute>} />
 
-        {/* Market Intelligence & Marketplace Feed (accessible by both, but UI will restrict features) */}
-        <Route path="/market-prices" element={<PageWrapper><MarketHub /></PageWrapper>} />
-        <Route path="/agri-marketplace" element={<PageWrapper><AgriMarketplace /></PageWrapper>} />
-        <Route path="/wishlist" element={<PageWrapper><Wishlist /></PageWrapper>} />
+        {/* Market Intelligence & Marketplace Feed */}
+        <Route path="/market-prices" element={<ProtectedRoute><PageWrapper><MarketHub /></PageWrapper></ProtectedRoute>} />
+        <Route path="/agri-marketplace" element={<ProtectedRoute><PageWrapper><AgriMarketplace /></PageWrapper></ProtectedRoute>} />
+        <Route path="/wishlist" element={<ProtectedRoute><PageWrapper><Wishlist /></PageWrapper></ProtectedRoute>} />
         <Route path="/seller-dashboard" element={<Navigate to="/seller-dashboard/products" replace />} />
-        <Route path="/seller-dashboard/:tab" element={<PageWrapper><SellerDashboard /></PageWrapper>} />
+        <Route path="/seller-dashboard/:tab" element={<ProtectedRoute><PageWrapper><SellerDashboard /></PageWrapper></ProtectedRoute>} />
         <Route path="/crop-market" element={<ProtectedRoute><PageWrapper><CropMarket /></PageWrapper></ProtectedRoute>} />
 
-        <Route path="/smart-irrigation" element={<PageWrapper><SmartIrrigation /></PageWrapper>} />
-        <Route path="/features" element={<PageWrapper><Features /></PageWrapper>} />
-        <Route path="/resources" element={<PageWrapper><Resources /></PageWrapper>} />
-        <Route path="/resources/news/:id" element={<PageWrapper><NewsDetail /></PageWrapper>} />
-        <Route path="/resources/schemes/:id" element={<PageWrapper><SchemeDetail /></PageWrapper>} />
+        <Route path="/smart-irrigation" element={<ProtectedRoute><PageWrapper><SmartIrrigation /></PageWrapper></ProtectedRoute>} />
+        <Route path="/features" element={<ProtectedRoute><PageWrapper><Features /></PageWrapper></ProtectedRoute>} />
+        <Route path="/resources" element={<ProtectedRoute><PageWrapper><Resources /></PageWrapper></ProtectedRoute>} />
+        <Route path="/resources/news/:id" element={<ProtectedRoute><PageWrapper><NewsDetail /></PageWrapper></ProtectedRoute>} />
+        <Route path="/resources/schemes/:id" element={<ProtectedRoute><PageWrapper><SchemeDetail /></PageWrapper></ProtectedRoute>} />
         <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
         <Route path="/login" element={<PageWrapper><Login /></PageWrapper>} />
         <Route path="/register" element={<PageWrapper><Register /></PageWrapper>} />
@@ -94,7 +94,7 @@ function AnimatedRoutes() {
         <Route path="/dashboard-legacy" element={<ProtectedRoute><PageWrapper><Dashboard /></PageWrapper></ProtectedRoute>} />
         <Route path="/dashboard" element={<ProtectedRoute><PageWrapper><NewDashboard /></PageWrapper></ProtectedRoute>} />
         <Route path="/deals" element={<ProtectedRoute><PageWrapper><Deals /></PageWrapper></ProtectedRoute>} />
-        <Route path="/khedut-ai" element={<PageWrapper><KhedutAI /></PageWrapper>} />
+        <Route path="/khedut-ai" element={<ProtectedRoute><PageWrapper><KhedutAI /></PageWrapper></ProtectedRoute>} />
 
         {/* Placeholder Routes */}
         <Route path="/expert-help" element={<PageWrapper><PlaceholderPage title="Expert Help" /></PageWrapper>} />
