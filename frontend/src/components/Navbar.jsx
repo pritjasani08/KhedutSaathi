@@ -6,31 +6,7 @@ import { Menu, X, Globe, LogIn, Sun, Moon, User, LogOut } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { useAuth } from '../context/AuthContext';
 
-const languages = [
-  { code: 'en', label: 'English' },
-  { code: 'hi', label: 'हिन्दी' },
-  { code: 'gu', label: 'ગુજરાતી' },
-  { code: 'mr', label: 'मराठी' },
-  { code: 'pa', label: 'ਪੰਜਾਬੀ' },
-  { code: 'bn', label: 'বাংলা' },
-  { code: 'ta', label: 'தமிழ்' },
-  { code: 'te', label: 'తెలుగు' },
-  { code: 'kn', label: 'ಕನ್ನಡ' },
-  { code: 'ml', label: 'മലയാളം' },
-  { code: 'or', label: 'ଓଡ଼ିଆ' },
-  { code: 'as', label: 'অসমীয়া' },
-  { code: 'ur', label: 'اردو' },
-  { code: 'sa', label: 'संस्कृत' },
-  { code: 'ks', label: 'كأشُر' },
-  { code: 'gom', label: 'कोंकणी' },
-  { code: 'mai', label: 'मैथिली' },
-  { code: 'mni', label: 'মৈতৈলোন্' },
-  { code: 'ne', label: 'नेपाली' },
-  { code: 'doi', label: 'डोगरी' },
-  { code: 'sat', label: 'ᱥᱟᱱᱛᱟᱲᱤ' },
-  { code: 'sd', label: 'سنڌي' },
-  { code: 'brx', label: 'बड़ो' }
-];
+import { ALL_LANGUAGES } from '../constants/languages';
 
 export default function Navbar() {
   const { t, i18n } = useTranslation();
@@ -45,6 +21,8 @@ export default function Navbar() {
   const profileRef = useRef(null);
   
   const { isDarkMode, toggleTheme } = useTheme();
+
+  const languages = ALL_LANGUAGES;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
