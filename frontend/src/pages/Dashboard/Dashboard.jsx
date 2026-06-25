@@ -155,7 +155,7 @@ export default function Dashboard() {
       {/* 1. Header & Analytics Strip (Combined Edge-to-Edge) */}
       <header className="bg-white dark:bg-[#0a0a0a] border-b border-slate-200 dark:border-slate-800 sticky top-16 z-20">
         <div className="max-w-[1440px] mx-auto">
-          <div className="px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="px-4 sm:px-6 lg:px-8 py-4">
             <div>
               <h1 className="text-xl font-semibold tracking-tight">Operations Center</h1>
               <div className="flex items-center gap-3 mt-1 text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider">
@@ -167,20 +167,6 @@ export default function Dashboard() {
                   </>
                 )}
               </div>
-            </div>
-
-            {/* 2. Command Dock */}
-            <div className="flex items-center gap-2 bg-slate-100 dark:bg-slate-900/50 p-1 rounded-md border border-slate-200 dark:border-slate-800 overflow-x-auto hide-scrollbar">
-              {isFarmer && (
-                <>
-                  <DockButton to="/crop-health" icon={Activity} label="Health" />
-                  <DockButton to="/crop-recommendation" icon={Sprout} label="Recs" />
-                  <DockButton to="/smart-irrigation" icon={Droplets} label="Water" />
-                  <div className="w-px h-4 bg-slate-300 dark:bg-slate-700 mx-1"></div>
-                </>
-              )}
-              <DockButton to="/khedut-ai" icon={Zap} label="Ask AI" highlight />
-              <DockButton to="/marketplace" icon={Package} label="Market" />
             </div>
           </div>
 
@@ -499,14 +485,6 @@ function StripMetric({ label, value, icon: Icon }) {
   );
 }
 
-function DockButton({ to, icon: Icon, label, highlight }) {
-  return (
-    <Link to={to} className={`flex items-center justify-center gap-1.5 px-3 py-1.5 rounded text-xs font-semibold tracking-wide transition-colors ${highlight ? 'bg-indigo-600 text-white hover:bg-indigo-700' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800'}`}>
-      <Icon className="w-3.5 h-3.5" />
-      <span className="hidden sm:inline">{label}</span>
-    </Link>
-  );
-}
 
 function PropertyRow({ label, value, highlight }) {
   return (
