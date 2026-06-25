@@ -26,7 +26,7 @@ def main():
         print("[INFO] Identifying unique input combinations and resolving conflicts...")
         original_unique_combinations = len(df.groupby(input_cols))
         
-        # Aggregating by finding the mode (most frequent item)
+        # Aggregating by finding the  mode (most frequent item)
         # using value_counts().index[0] to reliably get the most frequent crop
         cleaned_df = df.groupby(input_cols, as_index=False).agg(
             Recommended_Crop=('Recommended_Crop', lambda x: x.value_counts().index[0])
