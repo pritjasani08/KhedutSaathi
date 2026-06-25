@@ -57,33 +57,32 @@ const Dashboard = () => {
   const isFarmer = user?.user_type === 'farmer';
 
   return (
-    <div className="min-h-screen gradient-bg pt-16 pb-24 text-slate-900 dark:text-slate-100 font-sans selection:bg-primary/30">
+    <div className="min-h-screen gradient-bg pt-24 pb-24 text-slate-900 dark:text-slate-100 font-sans selection:bg-primary/30">
       
-      {/* 1. Header & Analytics Strip (Combined Edge-to-Edge) */}
-      <header className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-subtle sticky top-16 z-20 shadow-sm">
-        <div className="max-w-[1440px] mx-auto">
-          <div className="px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div>
-              <h1 className="font-display text-3xl font-bold text-heading mb-2">Dashboard</h1>
-              <div className="flex items-center gap-2 text-base text-slate-500 font-medium">
-                <span>Manage your farm and monitor today's activities.</span>
-                {profile && (
-                  <>
-                    <span className="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-600 mx-2"></span>
-                    <span className="flex items-center gap-1.5 text-primary">
-                      <MapPin className="w-4 h-4"/> 
-                      {profile.district || 'Location Not Set'}
-                    </span>
-                  </>
-                )}
+      {/* 1. Page Header */}
+      <header className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-6">
+        <div>
+          <h1 className="font-display text-[32px] sm:text-[36px] font-extrabold text-heading tracking-tight mb-3">Dashboard</h1>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-[15px] text-slate-500 font-medium">
+            <span>Manage your farm and monitor today's activities.</span>
+            {profile && (
+              <div className="flex items-center">
+                <span className="hidden sm:block w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-600 mx-3"></span>
+                <span className="flex items-center gap-1.5 text-primary">
+                  <MapPin className="w-4 h-4"/> 
+                  {profile.district || 'Location Not Set'}
+                </span>
               </div>
-            </div>
-
-
+            )}
           </div>
+        </div>
+      </header>
 
-          {/* Analytics Strip */}
-          <div className="grid grid-cols-2 md:grid-cols-5 divide-x divide-y md:divide-y-0 divide-subtle border-t border-subtle bg-slate-50/50 dark:bg-slate-900/20">
+      <main className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-4 space-y-10">
+        
+        {/* Analytics Strip */}
+        <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-subtle overflow-hidden">
+          <div className="grid grid-cols-2 md:grid-cols-5 divide-x divide-y md:divide-y-0 divide-subtle bg-slate-50/50 dark:bg-slate-900/20">
             {isFarmer ? (
               <>
                 <StripMetric label="Farm Size" value={profile?.farm_size ? `${profile.farm_size} Ac` : '-'} icon={Trees} color="text-green-600" bg="bg-green-100 dark:bg-green-500/20" />
@@ -101,9 +100,6 @@ const Dashboard = () => {
             )}
           </div>
         </div>
-      </header>
-
-      <main className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
 
         {/* ABOVE THE FOLD ARCHITECTURE */}
         {isFarmer && (
