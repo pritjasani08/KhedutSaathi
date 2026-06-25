@@ -8,8 +8,8 @@ export default function BestSellingOpp({ topGainers = [], isLoading }) {
     return (
       <div className="mb-10">
         <h3 className="text-lg font-bold text-slate-800 dark:text-slate-100 mb-4">Best Selling Opportunities</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {[1, 2, 3].map(i => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {[1, 2].map(i => (
             <div key={i} className="h-32 bg-slate-100 dark:bg-slate-800/50 rounded-2xl animate-pulse" />
           ))}
         </div>
@@ -30,14 +30,14 @@ export default function BestSellingOpp({ topGainers = [], isLoading }) {
   }
 
   return (
-    <div className="mb-10">
+    <div className="h-full flex flex-col mb-10">
       <h3 className="text-lg font-bold text-slate-800 dark:text-slate-100 mb-4 flex items-center gap-2">
         <TrendingUp className="w-5 h-5 text-emerald-500" />
         Best Selling Opportunities
       </h3>
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {topGainers.map((item, idx) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 my-auto">
+        {topGainers.slice(0, 2).map((item, idx) => (
           <motion.div
             key={`${item.commodity}-${item.market}-${idx}`}
             initial={{ opacity: 0, scale: 0.95 }}
@@ -49,11 +49,11 @@ export default function BestSellingOpp({ topGainers = [], isLoading }) {
             <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/0 to-emerald-50/50 dark:from-emerald-900/0 dark:to-emerald-900/10 opacity-0 group-hover:opacity-100 transition-opacity" />
             
             <div className="relative z-10">
-              <div className="flex justify-between items-start mb-3">
-                <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/40 rounded-full flex items-center justify-center text-xl shadow-inner border border-emerald-200 dark:border-emerald-800/50">
+              <div className="flex justify-between items-start gap-2 mb-3">
+                <div className="w-12 h-12 shrink-0 bg-emerald-100 dark:bg-emerald-900/40 rounded-full flex items-center justify-center text-xl shadow-inner border border-emerald-200 dark:border-emerald-800/50">
                   🌱
                 </div>
-                <div className="bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1 border border-emerald-200 dark:border-emerald-800/50">
+                <div className="shrink-0 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1 border border-emerald-200 dark:border-emerald-800/50">
                   <TrendingUp className="w-3 h-3" />
                   Strong
                 </div>

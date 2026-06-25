@@ -38,9 +38,9 @@ export default function PriceIntelligenceChart({ data = [], isLoading }) {
       price: Math.round(stats.sum / stats.count)
     }));
 
-    // Sort descending by price and take top 7
+    // Sort descending by price and take top 6
     averages.sort((a, b) => b.price - a.price);
-    return averages.slice(0, 7);
+    return averages.slice(0, 6);
 
   }, [data]);
 
