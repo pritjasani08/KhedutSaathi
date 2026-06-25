@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { Bot, User, Send, Mic, MicOff, Sparkles, Clock, MapPin, Paperclip, ChevronRight, Droplets, Leaf, Thermometer, FileText, PlusCircle, UserCircle2, Layers, Tractor, Activity, CheckCircle2 } from 'lucide-react';
+import { Bot, User, Send, Mic, MicOff, Sparkles, Clock, MapPin, Paperclip, ChevronRight, Droplets, Leaf, Thermometer, FileText, PlusCircle, UserCircle2, Layers, Tractor, Activity, CheckCircle2, TrendingUp } from 'lucide-react';
 import { useChat } from '../../context/ChatContext';
 import { useAuth } from '../../context/AuthContext';
 import { useDashboardOverview } from '../../features/dashboard/hooks/useDashboardQueries';
@@ -183,34 +183,35 @@ export default function KhedutAI() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-950 pt-28 pb-4 h-screen overflow-hidden selection:bg-primary/30">
+    <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-950 pt-24 pb-2 h-screen overflow-hidden selection:bg-primary/30">
       
       {/* Workspace Header - Reimagined as Page Header */}
-      <header className="shrink-0 bg-transparent px-4 sm:px-10 lg:px-20 py-4 flex items-end justify-between z-20 relative">
-        <div className="flex flex-col gap-1.5">
-          <div className="flex items-center gap-3.5">
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-primary-500 to-primary-600 text-white shadow-md shadow-primary/20 flex items-center justify-center">
+      <header className="shrink-0 bg-transparent px-4 sm:px-10 lg:px-20 py-2 flex flex-col justify-center z-20 relative">
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-primary-600 text-white shadow-md shadow-primary/20 flex items-center justify-center shrink-0">
               <Bot className="w-6 h-6" />
             </div>
-            <h1 className="text-2xl sm:text-[28px] font-display font-extrabold text-slate-900 dark:text-white tracking-tight leading-none">
-              Khedut AI Workspace
-            </h1>
+            <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
+              <h1 className="text-2xl sm:text-[28px] font-display font-extrabold text-slate-900 dark:text-white tracking-tight leading-none">
+                Khedut AI Workspace
+              </h1>
+              <div className="hidden sm:flex items-center gap-3 mt-1 sm:mt-0 opacity-80">
+                <span className="flex items-center gap-1.5 text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse"></span> Connected
+                </span>
+                <span className="flex items-center gap-1.5 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">
+                  <Sparkles className="w-3 h-3" /> AI Ready
+                </span>
+                <span className="flex items-center gap-1.5 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">
+                  <Mic className="w-3 h-3" /> Voice Enabled
+                </span>
+              </div>
+            </div>
           </div>
-          <p className="text-sm font-medium text-slate-500 dark:text-slate-400 ml-[58px] hidden sm:block">
+          <p className="text-sm font-medium text-slate-500 dark:text-slate-400 sm:ml-[56px] hidden sm:block">
             Your intelligent farming assistant for localized insights and operations.
           </p>
-        </div>
-        
-        <div className="hidden lg:flex items-center gap-5 pb-1 opacity-80">
-          <span className="flex items-center gap-1.5 text-[11px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse"></span> Connected
-          </span>
-          <span className="flex items-center gap-1.5 text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">
-            <Sparkles className="w-3.5 h-3.5" /> AI Ready
-          </span>
-          <span className="flex items-center gap-1.5 text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">
-            <Mic className="w-3.5 h-3.5" /> Voice Enabled
-          </span>
         </div>
       </header>
 
@@ -229,12 +230,26 @@ export default function KhedutAI() {
             </button>
           </div>
 
-          <div className="flex-1 flex flex-col p-4 overflow-hidden">
-            <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 px-2 flex items-center gap-2">
-              <Clock className="w-3.5 h-3.5" /> Recent Sessions
-            </h4>
+          <div className="flex-1 flex flex-col p-4 overflow-hidden gap-6">
             
-            <div className="flex-1 overflow-y-auto space-y-1 custom-scrollbar">
+            {/* Pinned Section */}
+            <div>
+              <h4 className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-3 px-2 flex items-center gap-2">
+                <MapPin className="w-3.5 h-3.5" /> Pinned
+              </h4>
+              <div className="px-2">
+                <div className="px-3 py-3 rounded-xl border border-dashed border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 flex flex-col items-center justify-center text-center">
+                   <p className="text-xs text-slate-400 font-medium">No pinned conversations</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Recent Section */}
+            <div className="flex-1 flex flex-col min-h-0">
+              <h4 className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-3 px-2 flex items-center gap-2">
+                <Clock className="w-3.5 h-3.5" /> Recent Sessions
+              </h4>
+              <div className="flex-1 overflow-y-auto space-y-1 custom-scrollbar">
               {sessions.map(session => (
                 <button 
                   key={session.id}
@@ -249,51 +264,87 @@ export default function KhedutAI() {
                   <span className="truncate">{session.title || 'Conversation'}</span>
                 </button>
               ))}
+              </div>
             </div>
           </div>
 
         </aside>
 
         {/* CENTER WORKSPACE (75-80%) */}
-        <main className="flex-1 flex flex-col min-w-0 bg-white/40 dark:bg-slate-900/10 h-full relative">
+        <main className="flex-1 flex flex-col min-w-0 bg-gradient-to-b from-slate-50/50 to-slate-100/50 dark:from-slate-900/20 dark:to-slate-900/40 h-full relative">
           
           {/* Subtle Watermark */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.015] dark:opacity-[0.02]">
             <Sparkles className="w-[500px] h-[500px]" />
           </div>
 
-          <div className="flex-1 overflow-y-auto px-4 sm:px-10 lg:px-20 py-8 relative z-10 custom-scrollbar flex flex-col">
+          <div className="flex-1 overflow-y-auto px-4 sm:px-10 lg:px-20 pt-4 pb-2 relative z-10 custom-scrollbar flex flex-col">
             
-            {/* Empty State: AI Command Center */}
+            {/* Empty State: Rich Welcome Experience */}
             {messages.length === 0 && (
-              <div className="flex flex-col items-center justify-center flex-1 w-full max-w-4xl mx-auto py-10">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-100 to-primary-50 dark:from-primary-900/50 dark:to-primary-800/30 text-primary border border-primary/20 flex items-center justify-center shadow-sm mb-6">
-                  <Bot className="w-8 h-8" />
+              <div className="flex flex-col items-center justify-center flex-1 w-full max-w-4xl mx-auto py-4">
+                
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 text-white shadow-xl shadow-primary/20 flex items-center justify-center mb-6 relative">
+                  <Sparkles className="w-8 h-8" />
+                  <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-emerald-500 border-2 border-white dark:border-slate-900 rounded-full"></div>
                 </div>
-                <h2 className="text-3xl font-display font-bold text-heading mb-3">How can I assist your farm today?</h2>
-                <p className="text-slate-500 text-lg mb-12 text-center max-w-2xl">
-                  Select a workflow below, use voice input, or type a custom command. I already have your farm context loaded.
+                
+                <h2 className="text-3xl font-display font-bold text-slate-900 dark:text-white mb-3 text-center">
+                  Welcome to Khedut AI
+                </h2>
+                
+                <p className="text-slate-500 text-base mb-8 text-center max-w-xl leading-relaxed">
+                  I'm your intelligent farming companion. I can analyze your crop health, track market trends, recommend fertilizers, and help you make data-driven decisions.
                 </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
-                  {aiCommands.map((cmd, idx) => {
-                    const Icon = cmd.icon;
-                    return (
-                    <motion.button
-                      key={idx}
-                      initial={{ opacity: 0, y: 15 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: idx * 0.05 }}
-                      onClick={() => sendMessage(cmd.query)}
-                      className="flex flex-col p-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm hover:shadow-md hover:border-primary/40 dark:hover:border-primary/40 transition-all text-left group"
-                    >
-                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${cmd.bg} ${cmd.color}`}>
-                        <Icon className="w-5 h-5" />
-                      </div>
-                      <h4 className="font-bold text-heading text-[15px] mb-1 group-hover:text-primary transition-colors">{cmd.label}</h4>
-                      <p className="text-xs text-slate-500 leading-relaxed font-medium">{cmd.query}</p>
-                    </motion.button>
-                  )})}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-3xl mb-10">
+                  <div className="bg-white/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl p-4 flex flex-col items-center text-center">
+                    <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400 flex items-center justify-center mb-3">
+                      <FileText className="w-4 h-4" />
+                    </div>
+                    <h5 className="text-sm font-bold text-slate-900 dark:text-white mb-1">Context Aware</h5>
+                    <p className="text-xs text-slate-500 font-medium">I already know your farm location and primary crop.</p>
+                  </div>
+                  <div className="bg-white/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl p-4 flex flex-col items-center text-center">
+                    <div className="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400 flex items-center justify-center mb-3">
+                      <Mic className="w-4 h-4" />
+                    </div>
+                    <h5 className="text-sm font-bold text-slate-900 dark:text-white mb-1">Voice & Multi-Lingual</h5>
+                    <p className="text-xs text-slate-500 font-medium">Speak naturally in English, Hindi, or Gujarati.</p>
+                  </div>
+                  <div className="bg-white/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl p-4 flex flex-col items-center text-center">
+                    <div className="w-8 h-8 rounded-full bg-amber-100 text-amber-600 dark:bg-amber-500/20 dark:text-amber-400 flex items-center justify-center mb-3">
+                      <TrendingUp className="w-4 h-4" />
+                    </div>
+                    <h5 className="text-sm font-bold text-slate-900 dark:text-white mb-1">Real-Time Data</h5>
+                    <p className="text-xs text-slate-500 font-medium">Live market prices and weather integrations.</p>
+                  </div>
+                </div>
+
+                <div className="w-full">
+                  <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 px-2 text-center">
+                    Suggested Workflows
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 w-full">
+                    {aiCommands.map((cmd, idx) => {
+                      const Icon = cmd.icon;
+                      return (
+                      <motion.button
+                        key={idx}
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: idx * 0.05 }}
+                        onClick={() => sendMessage(cmd.query)}
+                        className="flex flex-col p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm hover:shadow-md hover:border-primary/40 dark:hover:border-primary/40 transition-all text-left group"
+                      >
+                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center mb-3 ${cmd.bg} ${cmd.color}`}>
+                          <Icon className="w-4 h-4" />
+                        </div>
+                        <h4 className="font-bold text-heading text-[13px] mb-1 group-hover:text-primary transition-colors">{cmd.label}</h4>
+                        <p className="text-[11px] text-slate-500 leading-relaxed font-medium line-clamp-2">{cmd.query}</p>
+                      </motion.button>
+                    )})}
+                  </div>
                 </div>
               </div>
             )}
@@ -355,7 +406,7 @@ export default function KhedutAI() {
           </div>
 
           {/* Smart Command Dock (Full Width of Workspace) */}
-          <div className="px-4 sm:px-10 lg:px-20 pb-6 pt-2 bg-gradient-to-t from-slate-50 via-slate-50 dark:from-slate-950 dark:via-slate-950 to-transparent relative z-10 shrink-0">
+          <div className="px-4 sm:px-10 lg:px-20 pb-8 pt-4 bg-gradient-to-t from-slate-50 via-slate-50 dark:from-slate-950 dark:via-slate-950 to-transparent relative z-10 shrink-0">
             <div className="w-full max-w-5xl mx-auto">
               
               <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-300 dark:border-slate-700 shadow-lg shadow-slate-200/50 dark:shadow-black/20 flex items-end p-2 transition-all focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10">
@@ -389,13 +440,13 @@ export default function KhedutAI() {
                 </div>
 
                 {/* Input Field */}
-                <div className="flex-1 flex flex-col justify-center min-h-[52px]">
+                <div className="flex-1 flex flex-col justify-center min-h-[56px]">
                   <textarea
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={handleKeyDown}
                     placeholder="Ask Khedut AI..."
-                    className="w-full bg-transparent border-0 outline-none px-3 py-3.5 text-[15px] text-slate-900 dark:text-slate-100 placeholder:text-slate-400 resize-none max-h-40 min-h-[52px] custom-scrollbar font-medium"
+                    className="w-full bg-transparent border-0 outline-none px-3 py-3.5 text-[15px] text-slate-900 dark:text-slate-100 placeholder:text-slate-400 resize-none max-h-40 min-h-[56px] custom-scrollbar font-medium"
                     rows="1"
                   />
                 </div>
@@ -405,9 +456,9 @@ export default function KhedutAI() {
                   <button
                     onClick={handleSend}
                     disabled={!input.trim() || isTyping}
-                    className="w-11 h-11 flex items-center justify-center bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl hover:bg-primary dark:hover:bg-primary disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                    className="w-11 h-11 flex items-center justify-center bg-primary hover:bg-primary-dark text-white rounded-xl disabled:opacity-50 disabled:bg-slate-200 disabled:text-slate-400 dark:disabled:bg-slate-800 disabled:cursor-not-allowed shadow-md shadow-primary/20 transition-all"
                   >
-                    <Send className="w-4 h-4 ml-0.5" />
+                    <Send className="w-5 h-5 ml-0.5" />
                   </button>
                 </div>
               </div>
