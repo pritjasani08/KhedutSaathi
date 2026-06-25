@@ -67,17 +67,7 @@ export default function Navbar() {
     { path: '/seller-dashboard/orders', label: 'Incoming Orders' }
   ];
 
-  const publicLinks = [
-    { path: '/', label: t('nav.home') || 'Home' },
-    { path: '/market-prices', label: t('marketHub.livePrices') || 'Market Intelligence' },
-    { path: '/agri-marketplace', label: t('nav.agriMarketplace') || 'Marketplace Feed' },
-    { path: '/khedut-ai', label: t('chatbot.title') || 'Khedut AI' },
-    { path: '/resources', label: t('nav.resources') || 'News & Schemes' },
-    { path: '/features', label: t('nav.features') || 'Features' },
-    { path: '/about', label: t('nav.about') || 'About' },
-  ];
-
-  let navLinks = publicLinks;
+  let navLinks = farmerLinks;
   if (location.pathname.includes('/seller-dashboard')) {
     navLinks = sellerLinks;
   } else if (user) {
