@@ -1,15 +1,9 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { supabase } from '../../services/supabase/client';
-import { LayoutDashboard, Package, Tag, CheckCircle, TrendingUp, Loader2, Check, MapPin, Trees, Sprout, ShieldCheck, Activity, MessageSquare, Zap, CloudRain, LineChart, Leaf, Droplets, Wind, ArrowUpRight, ArrowDownRight, ArrowRight, IndianRupee } from 'lucide-react';
+import { Package, Tag, CheckCircle, TrendingUp, Loader2, MapPin, Trees, Sprout, Activity, Zap, CloudRain, LineChart, Droplets, Wind, IndianRupee, FileText, Clock, AlertTriangle, ArrowRight } from 'lucide-react';
 import MarketSnapshot from '../../features/dashboard/components/MarketSnapshot';
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i = 0) => ({ opacity: 1, y: 0, transition: { delay: i * 0.05, duration: 0.4 } }),
-};
 
 export default function Dashboard() {
   const { user } = useAuth();
@@ -17,7 +11,6 @@ export default function Dashboard() {
   const [farmerListings, setFarmerListings] = useState([]);
   const [profileData, setProfileData] = useState(null);
   const [schemes, setSchemes] = useState(null);
-  const [news, setNews] = useState([]);
   const [weather, setWeather] = useState(null);
   const [completionPercentage, setCompletionPercentage] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -52,7 +45,6 @@ export default function Dashboard() {
     try {
       const token = localStorage.getItem('token');
       
-      // Fetch Profile Data (For Farmer)
       if (user.user_type === 'farmer') {
         const profileRes = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/profile`, {
           headers: { 'Authorization': `Bearer ${token}` }
@@ -63,7 +55,6 @@ export default function Dashboard() {
           setCompletionPercentage(pData.completionPercentage || 0);
 
           if (pData.profile) {
-            // Fetch Personalized Schemes
             try {
               const schemeRes = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/schemes/eligible`, {
                 method: 'POST',
@@ -86,26 +77,6 @@ export default function Dashboard() {
               console.error("Failed fetching schemes", e);
             }
 
-            // Fetch Personalized News
-            try {
-              const langMap = { 'Gujarati': 'gu', 'Hindi': 'hi', 'English': 'en' };
-              const langCode = langMap[pData.profile.preferred_language] || 'en';
-              const query = new URLSearchParams({
-                language: langCode,
-                region: pData.profile.state || 'Gujarat',
-                crop: pData.profile.primary_crop || '' // For Crop-aware News Personalization (Step 5)
-              }).toString();
-              
-              const newsRes = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/resources/agri-news?${query}`);
-              if (newsRes.ok) {
-                const nData = await newsRes.json();
-                if (nData.success) setNews(nData.data?.slice(0, 3) || []);
-              }
-            } catch(e) {
-              console.error("Failed fetching news", e);
-            }
-
-            // Fetch Weather
             try {
               const wRes = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/resources/weather?region=${pData.profile.state || 'Gujarat'}`);
               if (wRes.ok) {
@@ -117,7 +88,6 @@ export default function Dashboard() {
         }
       }
 
-      // Fetch Marketplace Stats
       const statsRes = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/marketplace/dashboard`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -126,7 +96,6 @@ export default function Dashboard() {
         setStats(statsData);
       }
 
-      // Fetch Farmer Listings if Farmer
       if (user.user_type === 'farmer') {
         const listingsRes = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/marketplace/listings/me`, {
           headers: { 'Authorization': `Bearer ${token}` }
@@ -162,7 +131,7 @@ export default function Dashboard() {
       if (!res.ok) throw new Error(data.message);
       
       await fetchDashboardData();
-      alert('Bid accepted successfully! Deal closed.');
+      alert('Bid accepted successfully!');
     } catch (err) {
       alert(`Error: ${err.message}`);
     } finally {
@@ -172,472 +141,378 @@ export default function Dashboard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Loader2 className="w-10 h-10 animate-spin text-primary" />
+      <div className="min-h-screen bg-slate-50 dark:bg-[#0a0a0a] flex items-center justify-center">
+        <Loader2 className="w-5 h-5 animate-spin text-slate-400" />
       </div>
     );
   }
 
+  const isFarmer = user.user_type === 'farmer';
+
   return (
-    <div className="min-h-screen gradient-bg pt-24 pb-16">
-      <div className="container-custom px-4 sm:px-6 lg:px-8">
-        
-        {/* SECTION 1: Welcome Header */}
-        <motion.div
-          initial="hidden" animate="visible"
-          variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
-          className="mb-8"
-        >
-          <motion.div variants={fadeUp} className="flex items-center gap-3 mb-2">
-            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center overflow-hidden">
-              <img src="/logo.png" alt="Logo" className="w-8 h-8 object-contain" />
-            </div>
-            <h1 className="font-display text-3xl font-bold text-heading">
-              Welcome back, {user.first_name}!
-            </h1>
-          </motion.div>
-          <motion.p variants={fadeUp} className="text-slate-500">
-            {user.user_type === 'farmer' ? "Here is your farm overview and recent activities." : "Overview of your marketplace activities"}
-          </motion.p>
-        </motion.div>
-
-        
-        {user.user_type === 'farmer' && (
-          <>
-            <div className="grid lg:grid-cols-3 gap-6 mb-8">
-              {/* 1. Farm Summary */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
-                className="lg:col-span-2 glass-card p-6"
-              >
-                <div className="flex justify-between items-center mb-6">
-                  <h2 className="font-display text-xl font-bold text-heading flex items-center gap-2">
-                    <Trees className="w-5 h-5 text-primary" />
-                    My Farm Summary
-                  </h2>
-                  <Link to="/profile" className="text-sm font-semibold text-primary hover:underline">Edit Profile</Link>
-                </div>
-                
-                {profileData ? (
-                  <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
-                    <div>
-                      <p className="text-sm font-medium text-slate-500 mb-1 flex items-center gap-1"><MapPin className="w-3.5 h-3.5"/> Location</p>
-                      <p className="font-semibold text-heading">{[profileData.district, profileData.state].filter(Boolean).join(', ') || 'Not specified'}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-slate-500 mb-1 flex items-center gap-1"><Trees className="w-3.5 h-3.5"/> Farm Size</p>
-                      <p className="font-semibold text-heading">{profileData.farm_size ? `${profileData.farm_size} Acres` : 'Not specified'}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-slate-500 mb-1 flex items-center gap-1"><Sprout className="w-3.5 h-3.5"/> Primary Crop</p>
-                      <p className="font-semibold text-heading">{profileData.primary_crop || 'Not specified'}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-slate-500 mb-1 flex items-center gap-1"><Activity className="w-3.5 h-3.5"/> Soil Type</p>
-                      <p className="font-semibold text-heading">{profileData.soil_type || 'Not specified'}</p>
-                    </div>
-                  </div>
-                ) : (
-                  <p className="text-slate-500 text-sm">Please update your farm profile to see details here.</p>
-                )}
-              </motion.div>
-
-              {/* 2. Profile Completion */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
-                className="glass-card p-6 flex flex-col justify-center items-center text-center relative overflow-hidden"
-              >
-                <div className="absolute top-0 left-0 w-full h-1 bg-slate-100">
-                  <div className="h-full bg-primary transition-all duration-1000" style={{ width: `${completionPercentage}%` }}></div>
-                </div>
-                <ShieldCheck className="w-12 h-12 text-primary/80 mb-3" />
-                <h3 className="font-display text-lg font-bold text-heading mb-1">Profile Completion</h3>
-                <p className="text-3xl font-black text-primary mb-2">{completionPercentage}%</p>
-                {completionPercentage < 100 && (
-                  <Link to="/profile" className="btn-secondary w-full text-center text-sm py-2">Complete Profile</Link>
-                )}
-              </motion.div>
-            </div>
-
-            <div className="grid lg:grid-cols-2 gap-6 mb-8">
-              {/* 3. Weather Advisory */}
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="glass-card p-6 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 border border-blue-100 dark:border-blue-800">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="font-display font-bold text-heading flex items-center gap-2">
-                    <CloudRain className="w-5 h-5 text-blue-500" />
-                    Weather Advisory
-                  </h3>
-                  {weather?.locationName && <span className="text-xs font-semibold text-blue-600 bg-blue-100 px-2 py-1 rounded-full">{weather.locationName}</span>}
-                </div>
-                
-                {weather ? (
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0a0a0a] pt-16 pb-20 text-slate-900 dark:text-slate-100 font-sans selection:bg-indigo-500/30">
+      
+      {/* 1. Header & Analytics Strip (Combined Edge-to-Edge) */}
+      <header className="bg-white dark:bg-[#0a0a0a] border-b border-slate-200 dark:border-slate-800 sticky top-16 z-20">
+        <div className="max-w-[1440px] mx-auto">
+          <div className="px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+              <h1 className="text-xl font-semibold tracking-tight">Operations Center</h1>
+              <div className="flex items-center gap-3 mt-1 text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider">
+                <span>{user.first_name}</span>
+                {profileData && (
                   <>
-                    <div className="flex items-center gap-6 mb-4">
-                      <div>
-                        <p className="text-5xl font-display font-bold text-heading">{weather.temperature}°C</p>
-                        <p className="text-sm font-semibold text-blue-600 mt-1">{weather.condition}</p>
-                      </div>
-                      <div className="flex-1 grid grid-cols-3 gap-2 text-center">
-                        <div className="bg-white/50 dark:bg-slate-800/50 p-2 rounded-lg">
-                          <Droplets className="w-4 h-4 mx-auto text-blue-500 mb-1" />
-                          <p className="text-xs text-slate-500">Rain</p>
-                          <p className="font-semibold text-sm">{weather.rainProbability}%</p>
-                        </div>
-                        <div className="bg-white/50 dark:bg-slate-800/50 p-2 rounded-lg">
-                          <Activity className="w-4 h-4 mx-auto text-blue-500 mb-1" />
-                          <p className="text-xs text-slate-500">Humidity</p>
-                          <p className="font-semibold text-sm">{weather.humidity}%</p>
-                        </div>
-                        <div className="bg-white/50 dark:bg-slate-800/50 p-2 rounded-lg">
-                          <Wind className="w-4 h-4 mx-auto text-blue-500 mb-1" />
-                          <p className="text-xs text-slate-500">Wind</p>
-                          <p className="font-semibold text-sm">{weather.windSpeed}km/h</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-lg border border-blue-100 dark:border-blue-800/50">
-                      <p className="text-sm text-blue-800 dark:text-blue-300"><span className="font-bold">Farmer Advisory:</span> {weather.advisory}</p>
-                    </div>
+                    <span className="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-700"></span>
+                    <span className="flex items-center gap-1"><MapPin className="w-3 h-3"/> {profileData.district || 'Loc Not Set'}</span>
                   </>
-                ) : (
-                  <p className="text-sm text-slate-500">Loading weather data...</p>
                 )}
-              </motion.div>
+              </div>
+            </div>
 
-              {/* 4. Market Snapshot */}
+            {/* 2. Command Dock */}
+            <div className="flex items-center gap-2 bg-slate-100 dark:bg-slate-900/50 p-1 rounded-md border border-slate-200 dark:border-slate-800 overflow-x-auto hide-scrollbar">
+              {isFarmer && (
+                <>
+                  <DockButton to="/crop-health" icon={Activity} label="Health" />
+                  <DockButton to="/crop-recommendation" icon={Sprout} label="Recs" />
+                  <DockButton to="/smart-irrigation" icon={Droplets} label="Water" />
+                  <div className="w-px h-4 bg-slate-300 dark:bg-slate-700 mx-1"></div>
+                </>
+              )}
+              <DockButton to="/khedut-ai" icon={Zap} label="Ask AI" highlight />
+              <DockButton to="/marketplace" icon={Package} label="Market" />
+            </div>
+          </div>
+
+          {/* Analytics Strip */}
+          <div className="grid grid-cols-2 md:grid-cols-5 divide-x divide-y md:divide-y-0 divide-slate-200 dark:divide-slate-800 border-t border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-[#0a0a0a]">
+            {isFarmer ? (
+              <>
+                <StripMetric label="Farm Size" value={profileData?.farm_size ? `${profileData.farm_size} Ac` : '-'} icon={Trees} />
+                <StripMetric label="Listings" value={stats?.totalListings || 0} icon={Package} />
+                <StripMetric label="Active" value={stats?.activeListings || 0} icon={TrendingUp} />
+                <StripMetric label="Sold" value={stats?.soldListings || 0} icon={CheckCircle} />
+                <StripMetric label="Deals" value={stats?.totalDeals || 0} icon={Tag} />
+              </>
+            ) : (
+              <>
+                <StripMetric label="Bids Placed" value={stats?.totalBidsPlaced || 0} icon={Tag} />
+                <StripMetric label="Purchases" value={stats?.acceptedPurchases || 0} icon={CheckCircle} />
+                <div className="hidden md:block col-span-3"></div>
+              </>
+            )}
+          </div>
+        </div>
+      </header>
+
+      <main className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+        {/* ABOVE THE FOLD ARCHITECTURE */}
+        {isFarmer && (
+          <div className="grid grid-cols-1 xl:grid-cols-12 gap-6">
+            
+            {/* Left Column (Farm Workspace & AI Insights) */}
+            <div className="xl:col-span-8 flex flex-col gap-6">
+              
+              {/* 3. Farm Overview Workspace (Split Pane) */}
+              <section className="bg-white dark:bg-[#0a0a0a] border border-slate-200 dark:border-slate-800 flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-slate-200 dark:divide-slate-800">
+                
+                {/* Left: Property List */}
+                <div className="flex-1 p-5">
+                  <h2 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-4 flex items-center gap-2">
+                    <Sprout className="w-3.5 h-3.5" /> Core Parameters
+                  </h2>
+                  <div className="space-y-0">
+                    <PropertyRow label="Primary Crop" value={profileData?.primary_crop || 'Not Set'} highlight />
+                    <PropertyRow label="Soil Type" value={profileData?.soil_type || 'Unknown'} />
+                    <PropertyRow label="Irrigation System" value={profileData?.irrigation_type || 'Unknown'} />
+                    <PropertyRow label="Category" value={profileData?.farmer_category || 'Unknown'} />
+                  </div>
+                </div>
+
+                {/* Right: Weather Native Integration */}
+                <div className="md:w-[45%] p-5 bg-slate-50 dark:bg-slate-900/20">
+                  <h2 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-4 flex items-center gap-2">
+                    <CloudRain className="w-3.5 h-3.5" /> Meteorological Data
+                  </h2>
+                  {weather ? (
+                    <div className="flex flex-col h-full justify-between pb-1">
+                      <div className="flex items-baseline gap-2 mb-3">
+                        <span className="text-4xl font-light tracking-tighter font-mono">{weather.temperature}°</span>
+                        <span className="text-sm font-medium text-slate-600 dark:text-slate-400">{weather.condition}</span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-4 text-sm font-medium text-slate-700 dark:text-slate-300">
+                         <div className="flex flex-col">
+                           <span className="text-[10px] uppercase text-slate-400 mb-0.5">Precipitation</span>
+                           <span>{weather.rainProbability}% Prob</span>
+                         </div>
+                         <div className="flex flex-col">
+                           <span className="text-[10px] uppercase text-slate-400 mb-0.5">Wind Velocity</span>
+                           <span>{weather.windSpeed} km/h</span>
+                         </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="text-xs text-slate-400 font-mono">No telemetry data.</div>
+                  )}
+                </div>
+              </section>
+
+              {/* 4. AI Daily Intelligence Panel (Inline Banner) */}
+              <section className="bg-indigo-50/50 dark:bg-indigo-900/10 border border-indigo-100 dark:border-indigo-800/50 p-4 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+                <div className="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
+                  <Zap className="w-4 h-4" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xs font-bold uppercase tracking-wider text-indigo-800 dark:text-indigo-300 mb-1">Active Recommendation</h3>
+                  <p className="text-sm text-indigo-900 dark:text-indigo-200 leading-snug">
+                    {profileData?.primary_crop 
+                      ? `Based on ${weather?.rainProbability > 30 ? 'high precipitation' : 'current conditions'}, maintain focus on ${profileData.primary_crop}. ${weather?.advisory ? weather.advisory : ''}` 
+                      : `Complete farm profile to generate targeted intelligence.`}
+                  </p>
+                </div>
+                <Link to="/khedut-ai" className="text-xs font-bold text-indigo-600 dark:text-indigo-400 whitespace-nowrap flex items-center gap-1 hover:underline">
+                  Open AI <ArrowRight className="w-3 h-3" />
+                </Link>
+              </section>
+
+            </div>
+
+            {/* Right Column (Terminal) */}
+            <div className="xl:col-span-4">
+              {/* 5. Market Intelligence Trading Terminal */}
               <MarketSnapshot profileData={profileData} />
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-6 mb-8">
-              {/* 5. Eligible Schemes */}
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="glass-card p-6 flex items-center justify-between border-green-200 relative overflow-hidden">
-                <div className="relative z-10">
-                  <p className="text-sm font-medium text-slate-500 mb-1">Eligible Schemes</p>
-                  <p className="text-3xl font-display font-bold text-heading text-green-600">{schemes?.data ? schemes.data.length : '-'}</p>
-                </div>
-                <div className="w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center text-green-500 relative z-10">
-                  <CheckCircle className="w-6 h-6" />
-                </div>
-              </motion.div>
+          </div>
+        )}
 
-              {/* 6. Potential Benefits */}
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="glass-card p-6 flex items-center justify-between border-amber-200 relative overflow-hidden">
-                <div className="relative z-10">
-                  <p className="text-sm font-medium text-slate-500 mb-1">Potential Benefits</p>
-                  <p className="text-3xl font-display font-bold text-heading text-amber-600">₹{schemes?.totalBenefit ? schemes.totalBenefit.toLocaleString('en-IN') : '-'}</p>
-                </div>
-                <div className="w-12 h-12 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-500 relative z-10">
-                  <Tag className="w-6 h-6" />
-                </div>
-              </motion.div>
-            </div>
-
-            {/* 7. Quick Actions */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}
-              className="mb-8"
-            >
-              <h2 className="font-display text-lg font-bold text-heading mb-4">Quick Actions</h2>
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-                <ActionCard to="/crop-health" icon={Activity} label="Crop Health" color="text-red-500" bg="bg-red-500/10" />
-                <ActionCard to="/crop-recommendation" icon={Sprout} label="Crop Rec." color="text-green-500" bg="bg-green-500/10" />
-                <ActionCard to="/khedut-ai" icon={Zap} label="Khedut AI" color="text-amber-500" bg="bg-amber-500/10" />
-                <ActionCard to="/market-prices" icon={LineChart} label="Market Intel" color="text-purple-500" bg="bg-purple-500/10" />
-                <ActionCard to="/smart-irrigation" icon={CloudRain} label="Irrigation" color="text-blue-500" bg="bg-blue-500/10" />
-              </div>
-            </motion.div>
-
-            {/* 8. Manage My Listings */}
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }} className="mb-8">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="font-display text-xl font-bold text-heading">Manage My Listings</h2>
-                <Link to="/marketplace" className="text-sm font-semibold text-primary hover:underline">Marketplace</Link>
-              </div>
-              {(!farmerListings || farmerListings.length === 0) ? (
-                <div className="glass-card p-8 text-center text-slate-500">You haven't created any listings yet.</div>
-              ) : (
-                <div className="space-y-6">
-                  {farmerListings.map(listing => (
-                    <div key={listing.id} className="glass-card p-6">
-                      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6 pb-6 border-b border-subtle">
-                        <div>
-                          <h3 className="font-display font-bold text-xl text-body">{listing.crop_name}</h3>
-                          <div className="flex gap-4 text-sm text-slate-500 mt-1">
-                            <span>Qty: {listing.quantity_quintals} Qtl</span>
-                            <span>Expected: ₹{listing.expected_price}/Qtl</span>
-                          </div>
-                        </div>
-                        <span className={`badge ${listing.status === 'SOLD' ? 'badge-success' : 'bg-blue-100 text-blue-700'}`}>
-                          {listing.status}
-                        </span>
-                      </div>
-
-                      <div>
-                        <h4 className="text-sm font-semibold text-slate-600 mb-3">Received Bids ({listing.bids.length})</h4>
-                        {listing.bids.length === 0 ? (
-                          <p className="text-xs text-slate-400">No bids received yet.</p>
-                        ) : (
-                          <div className="space-y-3">
-                            {listing.bids.sort((a,b) => b.bid_price - a.bid_price).map(bid => (
-                              <div key={bid.id} className="flex flex-col sm:flex-row justify-between items-center p-4 bg-slate-50 dark:bg-slate-800/30 rounded-xl border border-subtle">
-                                <div className="flex items-center gap-3">
-                                  <div className="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold text-sm">
-                                    {bid.users.first_name[0]}
-                                  </div>
-                                  <div>
-                                    <p className="text-sm font-medium text-heading">{bid.users.first_name} {bid.users.last_name}</p>
-                                    <p className="text-xs text-slate-500">{new Date(bid.created_at).toLocaleDateString()}</p>
-                                  </div>
-                                </div>
-                                <div className="flex items-center gap-4 mt-3 sm:mt-0">
-                                  <span className="font-bold text-primary">₹{bid.bid_price}</span>
-                                  {listing.status === 'OPEN' && (
-                                    <button
-                                      onClick={() => handleAcceptBid(bid.id)}
-                                      disabled={acceptLoading === bid.id}
-                                      className="btn-primary !py-1.5 !px-3 text-xs flex items-center gap-1"
-                                    >
-                                      {acceptLoading === bid.id ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Check className="w-3.5 h-3.5" />}
-                                      Accept Bid
-                                    </button>
-                                  )}
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </motion.div>
-
-            {/* 9. Latest News For You */}
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }} className="mb-10 glass-card p-6 mt-8">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="font-display font-bold text-heading text-lg">Latest News for You</h3>
-                <Link to="/resources" className="text-xs text-primary font-semibold hover:underline">View All News</Link>
-              </div>
-              <div className="grid md:grid-cols-3 gap-4">
-                {(news && news.length > 0) ? news.map((item, i) => (
-                  <a key={i} href={item.link || item.url} target="_blank" rel="noopener noreferrer" className="block p-4 border border-subtle rounded-xl hover:border-primary/50 transition-colors flex flex-col gap-3">
-                    <img src={item.image} alt="" className="w-full h-32 object-cover rounded-lg shrink-0 bg-slate-100" />
-                    <div>
-                      <h4 className="text-sm font-bold text-heading line-clamp-2 mb-1">{item.title}</h4>
-                      <p className="text-xs text-slate-500 line-clamp-2">{item.excerpt || item.summary}</p>
-                    </div>
-                  </a>
-                )) : (
-                  <p className="text-sm text-slate-500 col-span-3">Loading personalized news...</p>
-                )}
-              </div>
-            </motion.div>
-
-            <div className="grid md:grid-cols-2 gap-6 mb-10">
-              {/* 10. Recent AI Chats */}
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9 }} className="glass-card p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-display font-bold text-heading flex items-center gap-2">
-                    <MessageSquare className="w-4 h-4 text-primary" />
-                    Recent AI Chats
-                  </h3>
-                  <Link to="/khedut-ai" className="text-xs text-primary font-semibold hover:underline">View All</Link>
-                </div>
-                <div className="space-y-3">
-                  <div className="p-3 bg-slate-50 dark:bg-slate-800/30 rounded-xl border border-subtle flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                      <Zap className="w-4 h-4 text-primary" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-heading">Best fertilizer for {profileData?.primary_crop || 'wheat'}?</p>
-                      <p className="text-xs text-slate-500">2 days ago</p>
-                    </div>
-                  </div>
-                  <div className="p-3 bg-slate-50 dark:bg-slate-800/30 rounded-xl border border-subtle flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                      <Zap className="w-4 h-4 text-primary" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-heading">Weather forecast for next week</p>
-                      <p className="text-xs text-slate-500">5 days ago</p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* 11. Recent Diagnoses */}
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0 }} className="glass-card p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-display font-bold text-heading flex items-center gap-2">
-                    <Leaf className="w-4 h-4 text-green-500" />
-                    Recent Diagnoses
-                  </h3>
-                  <Link to="/crop-health" className="text-xs text-primary font-semibold hover:underline">New Diagnosis</Link>
-                </div>
-                <div className="space-y-3">
-                  <div className="p-3 bg-slate-50 dark:bg-slate-800/30 rounded-xl border border-subtle flex justify-between items-center">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center shrink-0">
-                        <img src="https://picsum.photos/seed/leaf/40/40" alt="scan" className="w-full h-full object-cover rounded-lg opacity-80" />
-                      </div>
-                      <div>
-                        <p className="text-sm font-semibold text-heading">Healthy Leaf</p>
-                        <p className="text-xs text-slate-500">1 week ago</p>
-                      </div>
-                    </div>
-                    <span className="badge badge-success text-[10px] px-2 py-0.5">Healthy</span>
-                  </div>
-                  <div className="p-3 bg-slate-50 dark:bg-slate-800/30 rounded-xl border border-subtle flex justify-between items-center">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center shrink-0">
-                        <img src="https://picsum.photos/seed/leaf2/40/40" alt="scan" className="w-full h-full object-cover rounded-lg opacity-80" />
-                      </div>
-                      <div>
-                        <p className="text-sm font-semibold text-heading">Yellow Rust Suspected</p>
-                        <p className="text-xs text-slate-500">2 weeks ago</p>
-                      </div>
-                    </div>
-                    <span className="badge bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 text-[10px] px-2 py-0.5">Warning</span>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
+        {/* BELOW THE FOLD ARCHITECTURE */}
+        {isFarmer && (
+          <div className="grid grid-cols-1 xl:grid-cols-12 gap-6 pt-6 border-t border-slate-200 dark:border-slate-800">
             
-          </>
-        )}
+            <div className="xl:col-span-8 flex flex-col gap-6">
+              {/* 6. Activity Data Tables */}
+              <section className="space-y-6">
+                
+                {/* Orders Table */}
+                <div>
+                  <div className="flex items-center justify-between mb-3 px-1">
+                    <h2 className="text-sm font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+                      <Package className="w-4 h-4 text-slate-400" /> Procurement Orders
+                    </h2>
+                  </div>
+                  <div className="border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0a0a0a] overflow-x-auto">
+                    <table className="w-full text-left text-sm whitespace-nowrap">
+                      <thead className="bg-slate-50 dark:bg-slate-900/50 border-b border-slate-200 dark:border-slate-800 text-[10px] uppercase tracking-wider text-slate-500">
+                        <tr>
+                          <th className="px-4 py-3 font-semibold">Order Date</th>
+                          <th className="px-4 py-3 font-semibold">Product</th>
+                          <th className="px-4 py-3 font-semibold">Amount</th>
+                          <th className="px-4 py-3 font-semibold text-right">Status</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+                        {farmerOrders?.length > 0 ? farmerOrders.map(order => (
+                          <tr key={order.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-900/30 transition-colors">
+                            <td className="px-4 py-3 text-slate-500 font-mono text-xs">{new Date(order.created_at).toISOString().split('T')[0]}</td>
+                            <td className="px-4 py-3 font-medium text-slate-900 dark:text-slate-100">
+                               <div className="flex items-center gap-2">
+                                 {order.seller_products?.image_url && <img src={order.seller_products.image_url} className="w-5 h-5 rounded object-cover" alt="" />}
+                                 {order.seller_products?.name || 'Unknown'}
+                               </div>
+                            </td>
+                            <td className="px-4 py-3 font-mono text-slate-900 dark:text-slate-100">₹{order.total_amount}</td>
+                            <td className="px-4 py-3 text-right">
+                              <span className={`inline-flex items-center px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-widest rounded ${order.status === 'Completed' ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400' : 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300'}`}>
+                                {order.status || 'Pending'}
+                              </span>
+                            </td>
+                          </tr>
+                        )) : (
+                          <tr><td colSpan="4" className="px-4 py-6 text-center text-xs text-slate-500">No procurement orders found.</td></tr>
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
 
+                {/* Bids Table */}
+                <div>
+                  <div className="flex items-center justify-between mb-3 px-1">
+                    <h2 className="text-sm font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+                      <Tag className="w-4 h-4 text-slate-400" /> Active Bids on Listings
+                    </h2>
+                  </div>
+                  <div className="border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0a0a0a] overflow-x-auto">
+                    <table className="w-full text-left text-sm whitespace-nowrap">
+                      <thead className="bg-slate-50 dark:bg-slate-900/50 border-b border-slate-200 dark:border-slate-800 text-[10px] uppercase tracking-wider text-slate-500">
+                        <tr>
+                          <th className="px-4 py-3 font-semibold">Listing</th>
+                          <th className="px-4 py-3 font-semibold">Bidder</th>
+                          <th className="px-4 py-3 font-semibold">Bid Amount</th>
+                          <th className="px-4 py-3 font-semibold text-right">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+                        {farmerListings?.some(l => l.bids.length > 0) ? farmerListings.flatMap(listing => 
+                          listing.bids.map(bid => (
+                            <tr key={bid.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-900/30 transition-colors">
+                              <td className="px-4 py-3 font-medium text-slate-900 dark:text-slate-100">
+                                <div className="flex flex-col">
+                                  <span>{listing.crop_name}</span>
+                                  <span className="text-[10px] text-slate-500 uppercase">Target: ₹{listing.expected_price}</span>
+                                </div>
+                              </td>
+                              <td className="px-4 py-3 text-slate-600 dark:text-slate-400 text-xs">
+                                {bid.users?.first_name} {bid.users?.last_name}
+                              </td>
+                              <td className="px-4 py-3 font-mono font-medium text-indigo-600 dark:text-indigo-400">₹{bid.bid_price}</td>
+                              <td className="px-4 py-3 text-right">
+                                {listing.status === 'OPEN' ? (
+                                  <button
+                                    onClick={() => handleAcceptBid(bid.id)}
+                                    disabled={acceptLoading === bid.id}
+                                    className="text-[10px] font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 disabled:opacity-50"
+                                  >
+                                    {acceptLoading === bid.id ? 'Processing...' : 'Accept'}
+                                  </button>
+                                ) : (
+                                  <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">{listing.status}</span>
+                                )}
+                              </td>
+                            </tr>
+                          ))
+                        ) : (
+                          <tr><td colSpan="4" className="px-4 py-6 text-center text-xs text-slate-500">No active bids found.</td></tr>
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
 
+              </section>
+            </div>
 
-        {/* EXISTING MARKETPLACE SECTIONS */}
-        <h2 className="font-display text-2xl font-bold text-heading mb-6">Marketplace Activities</h2>
-
-        {/* STATS CARDS */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-          {user.user_type === 'farmer' ? (
-            <>
-              <StatCard title="Total Listings" value={stats?.totalListings || 0} icon={Package} color="blue" delay={0} />
-              <StatCard title="Active Listings" value={stats?.activeListings || 0} icon={TrendingUp} color="green" delay={1} />
-              <StatCard title="Sold Listings" value={stats?.soldListings || 0} icon={CheckCircle} color="amber" delay={2} />
-              <StatCard title="Total Deals" value={stats?.totalDeals || 0} icon={Tag} color="purple" delay={3} />
-            </>
-          ) : (
-            <>
-              <StatCard title="Bids Placed" value={stats?.totalBidsPlaced || 0} icon={Tag} color="blue" delay={0} />
-              <StatCard title="Accepted Purchases" value={stats?.acceptedPurchases || 0} icon={CheckCircle} color="green" delay={1} />
-            </>
-          )}
-        </div>
-
-        
-
-        {/* FARMER SPECIFIC: My Marketplace Orders */}
-        {user.user_type === 'farmer' && (
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="mt-10">
-            <h2 className="font-display text-xl font-bold text-heading mb-4">My Marketplace Orders</h2>
-            {(!farmerOrders || farmerOrders.length === 0) ? (
-              <div className="glass-card p-8 text-center text-slate-500">You haven't placed any orders yet.</div>
-            ) : (
-              <div className="space-y-4">
-                {farmerOrders.map(order => (
-                  <div key={order.id} className="glass-card p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-l-4 border-l-primary">
-                    <div className="flex items-center gap-4">
-                      <img 
-                        src={order.seller_products?.image_urls?.[0] || order.seller_products?.image_url || 'https://images.unsplash.com/photo-1595841696677-6489ff3f8cd1?w=100'} 
-                        alt={order.seller_products?.name} 
-                        className="w-16 h-16 rounded-xl object-cover border border-subtle shrink-0"
-                      />
-                      <div>
-                        <div className="flex items-center gap-3 mb-1">
-                          <h3 className="font-bold text-lg text-heading line-clamp-1">{order.seller_products?.name || 'Unknown Product'}</h3>
-                          <span className={`badge shrink-0 ${order.status === 'Completed' ? 'badge-success' : 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400'}`}>
-                            {order.status || 'Pending'}
-                          </span>
+            {/* 7. Government Schemes List View */}
+            <div className="xl:col-span-4">
+              <section className="bg-white dark:bg-[#0a0a0a] border border-slate-200 dark:border-slate-800 flex flex-col h-full">
+                <div className="px-5 py-4 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center bg-slate-50 dark:bg-slate-900/50">
+                  <h2 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-1.5">
+                    <FileText className="w-3.5 h-3.5 text-emerald-500" /> Eligible Schemes
+                  </h2>
+                  <span className="text-xs font-mono font-medium bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-400 px-1.5 py-0.5 rounded">
+                    {schemes?.data ? schemes.data.length : '0'} Active
+                  </span>
+                </div>
+                
+                <div className="flex-1 overflow-y-auto p-0 divide-y divide-slate-100 dark:divide-slate-800/50">
+                  {schemes?.data && schemes.data.length > 0 ? (
+                    schemes.data.map((scheme, idx) => (
+                      <div key={idx} className="p-4 hover:bg-slate-50/50 dark:hover:bg-slate-900/20 transition-colors">
+                        <h4 className="text-sm font-semibold text-slate-900 dark:text-white mb-1 leading-tight">{scheme.schemeName || 'Government Scheme'}</h4>
+                        <div className="flex flex-col gap-1.5 mt-2">
+                          <div className="flex justify-between items-end text-xs">
+                            <span className="text-slate-500">Benefit Summary</span>
+                            <span className="font-mono text-emerald-600 dark:text-emerald-400 font-medium">{scheme.benefits ? 'Financial Support' : 'Advisory'}</span>
+                          </div>
+                          <div className="flex justify-between items-end text-xs mt-1">
+                            <span className="text-slate-500">Eligibility</span>
+                            <span className="text-slate-700 dark:text-slate-300 capitalize">{profileData?.farmer_category || 'All Farmers'}</span>
+                          </div>
                         </div>
-                        <p className="text-sm text-slate-500">Ordered: {new Date(order.created_at).toLocaleDateString()}</p>
                       </div>
+                    ))
+                  ) : (
+                    <div className="p-8 text-center text-xs text-slate-500">
+                      No matching schemes found.
                     </div>
-                    <div className="text-left sm:text-right bg-primary/5 px-4 py-2 rounded-xl flex items-center gap-6">
-                      <div>
-                        <p className="text-xs text-slate-500 mb-1">Qty</p>
-                        <p className="font-bold text-lg text-heading text-center">{order.quantity}</p>
-                      </div>
-                      <div>
-                        <p className="text-xs text-slate-500 mb-1">Total</p>
-                        <p className="font-bold text-xl text-primary flex items-center">
-                          <IndianRupee className="w-4 h-4 mr-0.5" />{order.total_amount}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </motion.div>
+                  )}
+                </div>
+
+                <div className="px-5 py-3 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 flex justify-between items-center">
+                   <span className="text-[10px] uppercase font-semibold text-slate-500 tracking-wider">Total Potential Value</span>
+                   <span className="text-sm font-bold font-mono text-emerald-600 dark:text-emerald-400">
+                     ₹{schemes?.totalBenefit ? schemes.totalBenefit.toLocaleString('en-IN') : '0'}
+                   </span>
+                </div>
+              </section>
+            </div>
+
+          </div>
+        )}
+        
+        {/* BUYER SPECIFIC UI (Tabular) */}
+        {!isFarmer && (
+          <section className="mt-8">
+            <div className="flex items-center justify-between mb-3 px-1">
+              <h2 className="text-sm font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+                <Tag className="w-4 h-4 text-slate-400" /> Bids Placed
+              </h2>
+            </div>
+            <div className="border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0a0a0a] overflow-x-auto">
+              <table className="w-full text-left text-sm whitespace-nowrap">
+                <thead className="bg-slate-50 dark:bg-slate-900/50 border-b border-slate-200 dark:border-slate-800 text-[10px] uppercase tracking-wider text-slate-500">
+                  <tr>
+                    <th className="px-4 py-3 font-semibold">Listing</th>
+                    <th className="px-4 py-3 font-semibold">Expected</th>
+                    <th className="px-4 py-3 font-semibold">My Bid</th>
+                    <th className="px-4 py-3 font-semibold text-right">Status</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+                  {stats?.myBids?.length > 0 ? stats.myBids.map(bid => (
+                    <tr key={bid.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-900/30 transition-colors">
+                      <td className="px-4 py-3 font-medium text-slate-900 dark:text-slate-100">{bid.crop_listings?.crop_name || 'Unknown'}</td>
+                      <td className="px-4 py-3 font-mono text-slate-500">₹{bid.crop_listings?.expected_price}</td>
+                      <td className="px-4 py-3 font-mono font-medium text-indigo-600 dark:text-indigo-400">₹{bid.bid_price}</td>
+                      <td className="px-4 py-3 text-right">
+                        <span className={`inline-flex items-center px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-widest rounded ${bid.crop_listings?.status === 'SOLD' ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400' : 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300'}`}>
+                          {bid.crop_listings?.status || 'OPEN'}
+                        </span>
+                      </td>
+                    </tr>
+                  )) : (
+                    <tr><td colSpan="4" className="px-4 py-6 text-center text-xs text-slate-500">You haven't placed any bids.</td></tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </section>
         )}
 
-        {/* BUYER SPECIFIC: My Bids */}
-        {user.user_type === 'buyer' && (
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
-            <h2 className="font-display text-xl font-bold text-heading mb-4">My Placed Bids</h2>
-            {!stats?.myBids || stats.myBids.length === 0 ? (
-              <div className="glass-card p-8 text-center text-slate-500">You haven't placed any bids yet.</div>
-            ) : (
-              <div className="space-y-4">
-                {stats.myBids.map(bid => (
-                  <div key={bid.id} className="glass-card p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-l-4 border-l-primary">
-                    <div>
-                      <div className="flex items-center gap-3 mb-1">
-                        <h3 className="font-bold text-lg text-heading">{bid.crop_listings?.crop_name || 'Unknown Crop'}</h3>
-                        <span className={`badge ${bid.crop_listings?.status === 'SOLD' ? 'badge-success' : 'bg-blue-100 text-blue-700'}`}>
-                          {bid.crop_listings?.status || 'UNKNOWN'}
-                        </span>
-                      </div>
-                      <p className="text-sm text-slate-500">Expected Price: ₹{bid.crop_listings?.expected_price}/Qtl</p>
-                    </div>
-                    <div className="text-left sm:text-right bg-primary/5 px-4 py-2 rounded-xl">
-                      <p className="text-xs text-slate-500 mb-1">Your Bid Amount</p>
-                      <p className="font-bold text-xl text-primary">₹{bid.bid_price}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </motion.div>
-        )}
-      </div>
+      </main>
     </div>
   );
 }
 
-function StatCard({ title, value, icon: Icon, color, delay }) {
-  const colorClasses = {
-    blue: 'bg-blue-50 text-blue-600 border-blue-100 dark:bg-blue-900/20 dark:border-blue-800',
-    green: 'bg-green-50 text-green-600 border-green-100 dark:bg-green-900/20 dark:border-green-800',
-    amber: 'bg-amber-50 text-amber-600 border-amber-100 dark:bg-amber-900/20 dark:border-amber-800',
-    purple: 'bg-purple-50 text-purple-600 border-purple-100 dark:bg-purple-900/20 dark:border-purple-800'
-  };
-
+// Subcomponents for the new architecture
+function StripMetric({ label, value, icon: Icon }) {
   return (
-    <motion.div variants={fadeUp} custom={delay} className="glass-card p-6 flex items-center gap-4">
-      <div className={`w-12 h-12 rounded-2xl flex items-center justify-center border ${colorClasses[color]}`}>
-        <Icon className="w-6 h-6" />
+    <div className="px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
+      <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400">
+        <Icon className="w-3.5 h-3.5" />
+        <span className="text-[10px] font-semibold uppercase tracking-wider">{label}</span>
       </div>
-      <div>
-        <p className="text-sm font-medium text-slate-500 mb-1">{title}</p>
-        <p className="text-2xl font-bold text-heading">{value}</p>
-      </div>
-    </motion.div>
+      <span className="text-sm font-bold font-mono text-slate-900 dark:text-white">{value}</span>
+    </div>
   );
 }
 
-function ActionCard({ to, icon: Icon, label, color, bg }) {
+function DockButton({ to, icon: Icon, label, highlight }) {
   return (
-    <Link to={to} className="group glass-card p-4 flex flex-col items-center justify-center text-center hover:-translate-y-1 transition-all duration-300">
-      <div className={`w-12 h-12 rounded-2xl ${bg} ${color} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}>
-        <Icon className="w-6 h-6" />
-      </div>
-      <p className="text-sm font-semibold text-heading">{label}</p>
+    <Link to={to} className={`flex items-center justify-center gap-1.5 px-3 py-1.5 rounded text-xs font-semibold tracking-wide transition-colors ${highlight ? 'bg-indigo-600 text-white hover:bg-indigo-700' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800'}`}>
+      <Icon className="w-3.5 h-3.5" />
+      <span className="hidden sm:inline">{label}</span>
     </Link>
+  );
+}
+
+function PropertyRow({ label, value, highlight }) {
+  return (
+    <div className="flex justify-between items-center py-2 border-b border-slate-100 dark:border-slate-800/50 last:border-0">
+      <span className="text-xs text-slate-500">{label}</span>
+      <span className={`text-sm font-medium ${highlight ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-900 dark:text-slate-100'}`}>{value}</span>
+    </div>
   );
 }
