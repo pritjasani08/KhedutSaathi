@@ -67,9 +67,9 @@ export default function Navbar() {
 
   const farmerLinks = [
     { path: '/', label: t('nav.home') || 'Home' },
-    { path: '/crop-recommendation', label: t('expertPanel.title') || 'Crop Recommendation' },
-    { path: '/market-prices', label: t('marketHub.livePrices') || 'Market Intelligence' },
     { path: '/crop-health', label: t('nav.cropDiagnosis') || 'Crop Health' },
+    { path: '/market-prices', label: t('marketHub.livePrices') || 'Market Intelligence' },
+    { path: '/crop-recommendation', label: t('expertPanel.title') || 'Crop Recommendation' },
     { path: '/agri-marketplace', label: t('nav.agriMarketplace') || 'Marketplace Feed' },
     { path: '/khedut-ai', label: t('chatbot.title') || 'Khedut AI' },
     { path: '/resources', label: t('nav.resources') || 'News & Schemes' },
