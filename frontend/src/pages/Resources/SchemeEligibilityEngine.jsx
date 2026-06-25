@@ -275,10 +275,12 @@ export default function SchemeEligibilityEngine() {
             {results.data.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {results.data.map((scheme, idx) => (
-                  <div key={scheme.id || idx} className="relative group">
-                    <SchemeCard {...scheme} index={idx} />
+                  <div key={scheme.id || idx} className="relative group flex flex-col h-full">
+                    <div className="flex-1">
+                      <SchemeCard {...scheme} index={idx} />
+                    </div>
                     {scheme.matchReason && (
-                      <div className="mt-2 text-xs font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20 px-3 py-1.5 rounded-lg border border-emerald-100 dark:border-emerald-800/30">
+                      <div className="mt-2 shrink-0 text-xs font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20 px-3 py-1.5 rounded-lg border border-emerald-100 dark:border-emerald-800/30">
                         ✓ {scheme.matchReason}
                       </div>
                     )}
