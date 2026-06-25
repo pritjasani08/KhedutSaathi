@@ -37,6 +37,13 @@ const seasons = [
 ];
 const durations = [1, 2, 3, 4, 5, 6, 9, 12];
 
+const toTitleCase = (str) => {
+  if (!str) return '';
+  return str.split(' ').map(word => 
+    word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+  ).join(' ');
+};
+
 export default function SmartCropPlanner() {
   const { t } = useTranslation();
   
@@ -154,7 +161,7 @@ export default function SmartCropPlanner() {
                   <option value="">Select State First</option>
                 )}
                 {form.state && stateDistrictMap[form.state]?.map((d) => (
-                  <option key={d} value={d}>{d}</option>
+                  <option key={d} value={d}>{toTitleCase(d)}</option>
                 ))}
               </select>
             </div>
