@@ -90,18 +90,18 @@ export default function LivePrices() {
       />
 
       {/* Dashboard Split: Chart & Top Opportunities */}
-      <div className="grid lg:grid-cols-3 gap-6 lg:gap-8 mb-10">
+      <div className="grid lg:grid-cols-5 gap-6 lg:gap-8 mb-10">
         
-        {/* Left 70%: Price Intelligence Chart */}
-        <div className="lg:col-span-2">
+        {/* Left 60%: Price Intelligence Chart */}
+        <div className="lg:col-span-3">
           <PriceIntelligenceChart 
             data={data} 
             isLoading={isLoading} 
           />
         </div>
 
-        {/* Right 30%: Best Selling Opportunities */}
-        <div className="lg:col-span-1">
+        {/* Right 40%: Best Selling Opportunities */}
+        <div className="lg:col-span-2">
           <BestSellingOpp 
             topGainers={topGainers} 
             isLoading={isLoading} 

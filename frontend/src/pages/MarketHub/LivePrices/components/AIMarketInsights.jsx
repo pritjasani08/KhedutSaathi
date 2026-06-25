@@ -10,9 +10,9 @@ export default function AIMarketInsights({ insights = [], isLoading }) {
           <Sparkles className="w-5 h-5 text-indigo-500" />
           AI Market Insights
         </h3>
-        <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[1, 2, 3].map(i => (
-            <div key={i} className="min-w-[280px] h-24 bg-slate-100 dark:bg-slate-800/50 rounded-2xl animate-pulse" />
+            <div key={i} className="h-24 bg-slate-100 dark:bg-slate-800/50 rounded-2xl animate-pulse" />
           ))}
         </div>
       </div>
@@ -48,14 +48,14 @@ export default function AIMarketInsights({ insights = [], isLoading }) {
         Data-Driven Insights
       </h3>
       
-      <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide snap-x">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pb-4">
         {insights.map((insight, idx) => (
           <motion.div
             key={insight.id}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: idx * 0.1 }}
-            className={`min-w-[280px] md:min-w-[320px] max-w-[350px] p-5 rounded-2xl border snap-start flex gap-4 ${getBgColor(insight.type)}`}
+            className={`p-5 rounded-2xl border flex gap-4 ${getBgColor(insight.type)}`}
           >
             <div className="shrink-0 mt-0.5">
               {getIcon(insight.type)}
