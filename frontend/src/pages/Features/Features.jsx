@@ -77,15 +77,6 @@ export default function Features() {
           hoverBg: 'hover:bg-purple-50 dark:hover:bg-purple-900/40',
           emoji: '🤖',
         },
-        {
-          title: 'Expert Help',
-          desc: 'Connect with agricultural experts for personalized advice and advanced Crop Planner.',
-          path: '/expert-help',
-          bg: 'bg-violet-50 dark:bg-violet-900/30',
-          hoverBg: 'hover:bg-violet-50 dark:hover:bg-violet-900/40',
-          emoji: '🧑‍🌾',
-          isComingSoon: true,
-        },
       ]
     },
     {
