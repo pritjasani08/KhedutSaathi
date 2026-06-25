@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import {
-  MapPin, Droplets, Clock, Sprout, Leaf, Loader2, AlertCircle
+  MapPin, Droplets, Clock, Sprout, Leaf, Loader2, AlertCircle,
+  TrendingUp, Compass, ShoppingBag, Landmark, ArrowRight, CheckCircle2, ChevronRight, CloudSun
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { stateDistrictMap } from '../../../data/stateDistrictMap';
 
@@ -33,7 +35,8 @@ const waterOptions = [
 const seasons = [
   { value: 'Kharif', label: 'Kharif (Monsoon)' },
   { value: 'Rabi', label: 'Rabi (Winter)' },
-  { value: 'Summer', label: 'Summer / Zaid' }
+  { value: 'Summer', label: 'Summer / Zaid' },
+  { value: 'Whole Year', label: 'Whole Year' }
 ];
 const durations = [1, 2, 3, 4, 5, 6, 9, 12];
 
@@ -44,16 +47,13 @@ const toTitleCase = (str) => {
   ).join(' ');
 };
 
-export default function SmartCropPlanner() {
+export default function SmartCropPlanner({ sharedForm, setSharedForm, switchToYieldPredictor }) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   
-  // 3. Create React state management
-  const [form, setForm] = useState({ 
-    state: '', 
-    district: '', 
+  const [localForm, setLocalForm] = useState({ 
     soil_type: '', 
     water_availability: '', 
-    season: '', 
     crop_duration_months: 4 
   });
   
@@ -61,19 +61,16 @@ export default function SmartCropPlanner() {
   const [results, setResults] = useState(null);
   const [error, setError] = useState(null);
 
-  // Handle state change specifically to reset district
   const handleStateChange = (e) => {
-    setForm({
-      ...form,
+    setSharedForm(prev => ({
+      ...prev,
       state: e.target.value,
-      district: '' // Reset district when state changes
-    });
+      district: ''
+    }));
   };
 
-  // 4. On form submit send POST request
   const handleSubmit = async () => {
-    // Basic validation
-    if (!form.state || !form.district || !form.soil_type || !form.water_availability || !form.season) {
+    if (!sharedForm.state || !sharedForm.district || !localForm.soil_type || !localForm.water_availability || !sharedForm.season) {
         setError('Please fill in all fields before submitting.');
         return;
     }
@@ -84,22 +81,20 @@ export default function SmartCropPlanner() {
     
     try {
       const response = await axios.post('http://localhost:8003/predict', {
-        state: form.state,
-        district: form.district,
-        soil_type: form.soil_type,
-        water_availability: form.water_availability,
-        season: form.season,
-        crop_duration_months: Number(form.crop_duration_months)
+        state: sharedForm.state,
+        district: sharedForm.district,
+        soil_type: localForm.soil_type,
+        water_availability: localForm.water_availability,
+        season: sharedForm.season,
+        crop_duration_months: Number(localForm.crop_duration_months)
       });
       
       if (response.data && response.data.recommended_crops) {
-        // 7. Store response
         setResults(response.data.recommended_crops);
       } else {
         throw new Error('Invalid response format from API');
       }
     } catch (err) {
-      // Safely extract error message
       let errorMsg = err.message || 'Failed to get recommendations. Please ensure the API is running.';
       if (err.response?.data?.detail) {
         const detail = err.response.data.detail;
@@ -119,196 +114,275 @@ export default function SmartCropPlanner() {
 
   return (
     <div className="space-y-8">
-      {/* Input Form */}
+      {/* Parameter Groups */}
       <motion.div
         initial="hidden" animate="visible"
         variants={{ visible: { transition: { staggerChildren: 0.05 } } }}
-        className="glass-card p-6 md:p-8"
+        className="grid md:grid-cols-3 gap-6"
       >
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {/* State Dropdown */}
-          <motion.div variants={fadeUp}>
+        {/* Location Group */}
+        <motion.div variants={fadeUp} className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col gap-5">
+          <div className="flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+            <MapPin className="w-4 h-4 text-primary" />
+            <h3 className="font-semibold text-slate-800 dark:text-slate-200">Location</h3>
+          </div>
+          
+          <div>
             <label className="text-xs font-semibold text-slate-500 mb-1.5 block">State</label>
-            <div className="relative">
-              <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-              <select
-                value={form.state}
-                onChange={handleStateChange}
-                className="select-field !pl-10"
-              >
-                <option value="">Select State</option>
-                {Object.keys(stateDistrictMap).sort().map((s) => (
-                  <option key={s} value={s}>{s}</option>
-                ))}
-              </select>
-            </div>
-          </motion.div>
+            <select
+              value={sharedForm.state}
+              onChange={handleStateChange}
+              className="select-field w-full"
+            >
+              <option value="">Select State</option>
+              {Object.keys(stateDistrictMap).sort().map((s) => (
+                <option key={s} value={s}>{s}</option>
+              ))}
+            </select>
+          </div>
 
-          {/* District Dropdown */}
-          <motion.div variants={fadeUp} custom={1}>
+          <div>
             <label className="text-xs font-semibold text-slate-500 mb-1.5 block">District</label>
-            <div className="relative">
-              <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-              <select
-                value={form.district}
-                onChange={(e) => setForm({ ...form, district: e.target.value })}
-                disabled={!form.state}
-                className={`select-field !pl-10 ${!form.state ? 'opacity-50 cursor-not-allowed' : ''}`}
-              >
-                {form.state ? (
-                  <option value="">Select District</option>
-                ) : (
-                  <option value="">Select State First</option>
-                )}
-                {form.state && stateDistrictMap[form.state]?.map((d) => (
-                  <option key={d} value={d}>{toTitleCase(d)}</option>
-                ))}
-              </select>
-            </div>
-          </motion.div>
+            <select
+              value={sharedForm.district}
+              onChange={(e) => setSharedForm(prev => ({ ...prev, district: e.target.value }))}
+              disabled={!sharedForm.state}
+              className={`select-field w-full ${!sharedForm.state ? 'opacity-50 cursor-not-allowed' : ''}`}
+            >
+              {sharedForm.state ? (
+                <option value="">Select District</option>
+              ) : (
+                <option value="">Select State First</option>
+              )}
+              {sharedForm.state && stateDistrictMap[sharedForm.state]?.map((d) => (
+                <option key={d} value={d}>{toTitleCase(d)}</option>
+              ))}
+            </select>
+          </div>
+        </motion.div>
 
-          {/* Other Form fields */}
-          <motion.div variants={fadeUp} custom={2}>
+        {/* Environment Group */}
+        <motion.div variants={fadeUp} custom={1} className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col gap-5">
+          <div className="flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+            <CloudSun className="w-4 h-4 text-amber-500" />
+            <h3 className="font-semibold text-slate-800 dark:text-slate-200">Environment</h3>
+          </div>
+
+          <div>
             <label className="text-xs font-semibold text-slate-500 mb-1.5 block">Soil Type</label>
             <select
-              value={form.soil_type}
-              onChange={(e) => setForm({ ...form, soil_type: e.target.value })}
-              className="select-field"
+              value={localForm.soil_type}
+              onChange={(e) => setLocalForm({ ...localForm, soil_type: e.target.value })}
+              className="select-field w-full"
             >
               <option value="">Select Soil Type</option>
               {soilTypes.map((s) => <option key={s.value} value={s.value}>{s.label}</option>)}
             </select>
-          </motion.div>
+          </div>
 
-          <motion.div variants={fadeUp} custom={3}>
+          <div>
             <label className="text-xs font-semibold text-slate-500 mb-1.5 block">Water Availability</label>
             <select
-              value={form.water_availability}
-              onChange={(e) => setForm({ ...form, water_availability: e.target.value })}
-              className="select-field"
+              value={localForm.water_availability}
+              onChange={(e) => setLocalForm({ ...localForm, water_availability: e.target.value })}
+              className="select-field w-full"
             >
               <option value="">Select Water Availability</option>
               {waterOptions.map((w) => <option key={w.value} value={w.value}>{w.label}</option>)}
             </select>
-          </motion.div>
+          </div>
 
-          <motion.div variants={fadeUp} custom={4}>
+          <div>
             <label className="text-xs font-semibold text-slate-500 mb-1.5 block">Season</label>
             <select
-              value={form.season}
-              onChange={(e) => setForm({ ...form, season: e.target.value })}
-              className="select-field"
+              value={sharedForm.season}
+              onChange={(e) => setSharedForm(prev => ({ ...prev, season: e.target.value }))}
+              className="select-field w-full"
             >
               <option value="">Select Season</option>
               {seasons.map((s) => <option key={s.value} value={s.value}>{s.label}</option>)}
             </select>
-          </motion.div>
+          </div>
+        </motion.div>
 
-          <motion.div variants={fadeUp} custom={5}>
-            <label className="text-xs font-semibold text-slate-500 mb-1.5 block">Crop Duration (Months)</label>
-            <div className="flex flex-wrap gap-2">
-              {durations.map((d) => (
-                <button
-                  key={d}
-                  onClick={() => setForm({ ...form, crop_duration_months: d })}
-                  className={`px-3 py-2 rounded-lg text-xs font-semibold transition-all duration-300 ${
-                    form.crop_duration_months === d
-                      ? 'bg-primary text-white shadow-green'
-                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                  }`}
-                >
-                  <span>{d} {d === 1 ? 'Month' : 'Months'}</span>
-                </button>
-              ))}
+        {/* Planning Group */}
+        <motion.div variants={fadeUp} custom={2} className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col justify-between">
+          <div>
+            <div className="flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-3 mb-5">
+              <Clock className="w-4 h-4 text-blue-500" />
+              <h3 className="font-semibold text-slate-800 dark:text-slate-200">Planning</h3>
             </div>
-          </motion.div>
+            
+            <div>
+              <label className="text-xs font-semibold text-slate-500 mb-2 block">Crop Duration (Months)</label>
+              <div className="flex flex-wrap gap-2">
+                {durations.map((d) => (
+                  <button
+                    key={d}
+                    onClick={() => setLocalForm({ ...localForm, crop_duration_months: d })}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-300 ${
+                      localForm.crop_duration_months === d
+                        ? 'bg-primary text-white shadow-sm'
+                        : 'bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700'
+                    }`}
+                  >
+                    <span>{d}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
 
-          <motion.div variants={fadeUp} custom={6} className="flex items-end">
-            <button onClick={handleSubmit} disabled={loading} className="btn-primary w-full flex items-center justify-center gap-2">
+          <div className="mt-6 pt-6 border-t border-slate-100 dark:border-slate-800">
+            <button onClick={handleSubmit} disabled={loading} className="btn-primary w-full flex items-center justify-center gap-2 py-3">
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sprout className="w-4 h-4" />}
-              <span>Get Recommendation</span>
+              <span>Generate Plan</span>
             </button>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </motion.div>
 
-      {/* 6. Error State */}
+      {/* Error State */}
       {error && (
         <motion.div
           initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
-          className="bg-red-50 text-red-600 p-4 rounded-xl flex items-center gap-3 border border-red-200"
+          className="bg-red-50 dark:bg-red-900/10 text-red-600 dark:text-red-400 p-4 rounded-xl flex items-center gap-3 border border-red-200 dark:border-red-900/50"
         >
           <AlertCircle className="w-5 h-5 flex-shrink-0" />
           <p className="font-medium text-sm"><span>{error}</span></p>
         </motion.div>
       )}
 
-      {/* 6. Loading State / 11. Spinner */}
+      {/* Loading Skeleton */}
       {loading && (
-        <div className="text-center py-12">
-          <div className="w-16 h-16 border-4 border-primary/20 border-t-primary rounded-full animate-spin mx-auto mb-4" />
-          <p className="text-slate-600 font-semibold"><span>Analyzing your farm conditions via API...</span></p>
+        <div className="space-y-6">
+          <div className="h-32 bg-slate-200 dark:bg-slate-800 rounded-2xl animate-pulse w-full"></div>
+          <div className="h-64 bg-slate-200 dark:bg-slate-800 rounded-2xl animate-pulse w-full"></div>
         </div>
       )}
 
-      {/* 6. Success State / 10. Only render if predictions available */}
-      {results && results.length > 0 && !loading && (
-        <div>
-          <h3 className="font-display text-xl font-bold text-body mb-6 flex items-center gap-2">
-            <Leaf className="w-5 h-5 text-primary" />
-            <span>Top Recommended Crops</span>
-          </h3>
-          <div className="grid md:grid-cols-3 gap-5">
-            {/* 8. Display Priority 1, 2, 3 */}
-            {results.map((cropName, i) => (
-              <motion.div
-                key={cropName + i}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-                // 9. Beautiful crop cards
-                className={`glass-card p-6 flex flex-col items-center justify-center text-center relative overflow-hidden card-hover ${
-                  i === 0 ? 'border-2 border-primary/50 bg-green-50/30' : ''
-                }`}
-              >
-                {/* 9. Rank */}
-                <div className={`absolute top-0 right-0 rounded-bl-2xl px-4 py-1.5 font-bold text-sm text-white ${
-                  i === 0 ? 'bg-primary shadow-lg' : i === 1 ? 'bg-blue-500' : 'bg-amber-500'
-                }`}>
-                  Priority {i + 1}
-                </div>
-                
-                {/* 9. Crop Image Placeholder */}
-                <div className="w-24 h-24 mb-4 rounded-full bg-slate-100 border-4 border-white shadow-md flex items-center justify-center text-5xl overflow-hidden mt-2">
-                  <span role="img" aria-label={cropName}>🌱</span>
-                </div>
-                
-                {/* 9. Crop Name */}
-                <h4 className="font-display font-bold text-2xl text-body mb-1"><span>{cropName}</span></h4>
-                <p className="text-sm text-slate-500 mb-4"><span>Highly recommended for your region</span></p>
-                
-                {/* Extra info based on form inputs to match existing UI aesthetic */}
-                <div className="flex gap-4 w-full pt-4 border-t border-slate-100">
-                  <div className="flex-1">
-                    <p className="text-xs text-slate-400 mb-0.5"><span>Duration</span></p>
-                    <p className="text-sm font-semibold text-slate-700 flex items-center justify-center gap-1">
-                      <Clock className="w-3 h-3 text-primary" />
-                      <span>{form.crop_duration_months} Months</span>
-                    </p>
-                  </div>
-                  <div className="w-px bg-slate-100"></div>
-                  <div className="flex-1">
-                    <p className="text-xs text-slate-400 mb-0.5"><span>Water</span></p>
-                    <p className="text-sm font-semibold text-slate-700 flex items-center justify-center gap-1">
-                      <Droplets className="w-3 h-3 text-blue-500" />
-                      <span>{form.water_availability || '-'}</span>
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+      {/* Empty State */}
+      {!results && !loading && !error && (
+        <motion.div 
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+          className="bg-white/50 dark:bg-slate-900/50 rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 p-12 text-center"
+        >
+          <div className="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Compass className="w-8 h-8 text-slate-400" />
           </div>
-        </div>
+          <h3 className="text-lg font-semibold text-slate-700 dark:text-slate-300 mb-2">Ready to Plan</h3>
+          <p className="text-sm text-slate-500 dark:text-slate-400 max-w-sm mx-auto">
+            Fill in your farm's location, environment, and planning constraints above to generate an AI-powered crop recommendation.
+          </p>
+        </motion.div>
+      )}
+
+      {/* Results Presentation */}
+      {results && results.length > 0 && !loading && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="space-y-6"
+        >
+          {/* AI Recommendation Summary */}
+          <div className="bg-gradient-to-br from-primary/10 to-transparent border border-primary/20 rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
+             
+             <div className="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-6 text-center md:text-left">
+               <div className="w-20 h-20 bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex items-center justify-center text-4xl shrink-0">
+                  <span role="img" aria-label={results[0]}>🌱</span>
+               </div>
+               <div>
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold mb-2 uppercase tracking-wide">
+                    <CheckCircle2 className="w-3.5 h-3.5" /> Primary Recommendation
+                  </div>
+                  <h2 className="text-3xl font-display font-bold text-slate-800 dark:text-slate-100 mb-1">{results[0]}</h2>
+                  <p className="text-sm text-slate-600 dark:text-slate-400">
+                    Highest priority match for {sharedForm.district || sharedForm.state} during {sharedForm.season || 'selected'} season.
+                  </p>
+               </div>
+             </div>
+
+             <div className="relative z-10 shrink-0 w-full md:w-auto">
+                <button 
+                  onClick={() => switchToYieldPredictor(results[0])}
+                  className="w-full md:w-auto flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-white px-6 py-3 rounded-xl font-semibold transition-all shadow-sm shadow-primary/20"
+                >
+                  Predict Yield <ArrowRight className="w-4 h-4" />
+                </button>
+             </div>
+          </div>
+
+          {/* Compact Recommendation Comparison Table */}
+          <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
+            <div className="px-6 py-4 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50/50 dark:bg-slate-900/50">
+              <h3 className="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2">
+                <Leaf className="w-4 h-4 text-primary" />
+                Recommendation Comparison
+              </h3>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-sm whitespace-nowrap">
+                <thead className="bg-slate-50 dark:bg-slate-900/50 text-slate-500 dark:text-slate-400">
+                  <tr>
+                    <th className="px-6 py-3 font-medium">Rank</th>
+                    <th className="px-6 py-3 font-medium">Recommended Crop</th>
+                    <th className="px-6 py-3 font-medium text-center">Priority Status</th>
+                    <th className="px-6 py-3 font-medium text-right">Action</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60">
+                  {results.map((cropName, i) => (
+                    <tr key={cropName + i} className="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+                      <td className="px-6 py-4 font-medium text-slate-700 dark:text-slate-300">#{i + 1}</td>
+                      <td className="px-6 py-4 font-semibold text-slate-900 dark:text-slate-100 flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-sm">🌱</div>
+                        {cropName}
+                      </td>
+                      <td className="px-6 py-4 text-center">
+                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                          i === 0 ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' :
+                          i === 1 ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400' :
+                          'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400'
+                        }`}>
+                          Priority {i + 1}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 text-right">
+                        <button 
+                          onClick={() => switchToYieldPredictor(cropName)}
+                          className="text-primary hover:text-primary-hover font-medium text-sm flex items-center gap-1 justify-end ml-auto group"
+                        >
+                          Predict Yield <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* AI Action Center */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 pt-6 border-t border-slate-200 dark:border-slate-800">
+            <button onClick={() => navigate('/market-prices')} className="flex flex-col items-center justify-center gap-2 p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-primary/50 hover:shadow-sm transition-all group">
+              <TrendingUp className="w-6 h-6 text-slate-400 group-hover:text-primary transition-colors" />
+              <span className="text-xs font-semibold text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-slate-200 text-center">Market Prices</span>
+            </button>
+            <button onClick={() => navigate('/khedut-ai')} className="flex flex-col items-center justify-center gap-2 p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-primary/50 hover:shadow-sm transition-all group">
+              <Sprout className="w-6 h-6 text-slate-400 group-hover:text-primary transition-colors" />
+              <span className="text-xs font-semibold text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-slate-200 text-center">Ask Khedut AI</span>
+            </button>
+            <button onClick={() => navigate('/resources')} className="flex flex-col items-center justify-center gap-2 p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-primary/50 hover:shadow-sm transition-all group">
+              <Landmark className="w-6 h-6 text-slate-400 group-hover:text-primary transition-colors" />
+              <span className="text-xs font-semibold text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-slate-200 text-center">Govt Schemes</span>
+            </button>
+            <button onClick={() => navigate('/agri-marketplace')} className="flex flex-col items-center justify-center gap-2 p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-primary/50 hover:shadow-sm transition-all group">
+              <ShoppingBag className="w-6 h-6 text-slate-400 group-hover:text-primary transition-colors" />
+              <span className="text-xs font-semibold text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-slate-200 text-center">Marketplace</span>
+            </button>
+          </div>
+        </motion.div>
       )}
     </div>
   );

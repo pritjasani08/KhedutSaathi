@@ -4,6 +4,7 @@ import { useAuth } from '../../context/AuthContext';
 import { useDashboardOverview, useWeather, useSchemes, useAcceptBid } from './hooks/useDashboardQueries';
 import { Package, Tag, CheckCircle, TrendingUp, Loader2, MapPin, Trees, Sprout, Activity, Zap, CloudRain, Droplets, Wind, IndianRupee, FileText, ArrowRight, Check } from 'lucide-react';
 import MarketSnapshot from './components/MarketSnapshot';
+import { PageLayout, PageHeader, PageContent } from '../../components/shared/PageLayout';
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -57,13 +58,13 @@ const Dashboard = () => {
   const isFarmer = user?.user_type === 'farmer';
 
   return (
-    <div className="min-h-screen gradient-bg pt-24 pb-24 text-slate-900 dark:text-slate-100 font-sans selection:bg-primary/30">
+    <PageLayout>
       
       {/* 1. Page Header */}
-      <header className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-6">
-        <div>
-          <h1 className="font-display text-[32px] sm:text-[36px] font-extrabold text-heading tracking-tight mb-3">Dashboard</h1>
-          <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-[15px] text-slate-500 font-medium">
+      <PageHeader 
+        title="Dashboard" 
+        subtitle={
+          <>
             <span>Manage your farm and monitor today's activities.</span>
             {profile && (
               <div className="flex items-center">
@@ -74,11 +75,11 @@ const Dashboard = () => {
                 </span>
               </div>
             )}
-          </div>
-        </div>
-      </header>
+          </>
+        }
+      />
 
-      <main className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-4 space-y-10">
+      <PageContent>
         
         {/* Analytics Strip */}
         <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-subtle overflow-hidden">
@@ -164,21 +165,21 @@ const Dashboard = () => {
             </div>
 
             {/* 4. AI Daily Intelligence Panel (Full Width Inline Banner) */}
-            <section className="glass-card p-10 flex flex-col sm:flex-row gap-8 items-start sm:items-center bg-gradient-to-r from-amber-500/5 to-primary/5 border-amber-200/50 dark:border-amber-800/30 relative overflow-hidden shadow-sm w-full">
+            <section className="glass-card p-6 flex flex-col sm:flex-row gap-6 items-start sm:items-center bg-gradient-to-r from-amber-500/5 to-primary/5 border-amber-200/50 dark:border-amber-800/30 relative overflow-hidden shadow-sm w-full">
               <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-amber-400 to-primary"></div>
-              <div className="w-14 h-14 rounded-2xl bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0 shadow-sm my-auto">
-                <Zap className="w-7 h-7" />
+              <div className="w-12 h-12 rounded-2xl bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0 shadow-sm my-auto">
+                <Zap className="w-6 h-6" />
               </div>
               <div className="flex-1 flex flex-col justify-center">
-                <h3 className="font-display font-bold text-heading text-xl mb-3">Khedut AI Assistant</h3>
-                <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-4xl">
+                <h3 className="font-display font-bold text-heading text-lg mb-2">Khedut AI Assistant</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-4xl">
                   {profile?.primary_crop 
                     ? `Based on your farm profile, maintain focus on ${profile.primary_crop}. ${weather?.advisory ? weather.advisory : 'Conditions look favorable for regular operations.'}` 
                     : `Complete your farm profile to receive personalized daily recommendations.`}
                 </p>
               </div>
-              <Link to="/khedut-ai" className="btn-primary !py-3.5 !px-8 text-base flex items-center justify-center gap-2 whitespace-nowrap shadow-md shadow-primary/20 hover:shadow-lg hover:shadow-primary/30 transition-all sm:my-auto h-fit">
-                Chat with AI <ArrowRight className="w-5 h-5" />
+              <Link to="/khedut-ai" className="btn-primary !py-2.5 !px-6 text-sm flex items-center justify-center gap-2 whitespace-nowrap shadow-md shadow-primary/20 hover:shadow-lg hover:shadow-primary/30 transition-all sm:my-auto h-fit">
+                Chat with AI <ArrowRight className="w-4 h-4" />
               </Link>
             </section>
 
@@ -390,9 +391,8 @@ const Dashboard = () => {
             </div>
           </section>
         )}
-
-      </main>
-    </div>
+      </PageContent>
+    </PageLayout>
   );
 };
 
@@ -401,7 +401,7 @@ export default Dashboard;
 // Structural Presentation Components
 function StripMetric({ label, value, icon: Icon, color, bg }) {
   return (
-    <div className="px-4 sm:px-8 py-5 flex items-center justify-between gap-6">
+    <div className="px-4 sm:px-8 py-3 flex items-center justify-between gap-4">
       <div className="flex items-center gap-3">
         <div className={`w-10 h-10 rounded-xl ${bg} ${color} flex items-center justify-center shadow-sm`}>
           <Icon className="w-5 h-5" />
