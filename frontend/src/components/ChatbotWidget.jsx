@@ -6,6 +6,7 @@ import {
   Stethoscope, TrendingUp, Sprout, Droplets, Bot, User, ChevronDown
 } from 'lucide-react';
 import { useChat } from '../context/ChatContext';
+import { ALL_LANGUAGES } from '../constants/languages';
 
 export default function ChatbotWidget() {
   const { t, i18n } = useTranslation();
@@ -40,31 +41,7 @@ export default function ChatbotWidget() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const languages = [
-    { code: 'en', label: 'English' },
-    { code: 'hi', label: 'हिन्दी' },
-    { code: 'gu', label: 'ગુજરાતી' },
-    { code: 'mr', label: 'मराठी' },
-    { code: 'pa', label: 'ਪੰਜਾਬੀ' },
-    { code: 'bn', label: 'বাংলা' },
-    { code: 'ta', label: 'தமிழ்' },
-    { code: 'te', label: 'తెలుగు' },
-    { code: 'kn', label: 'ಕನ್ನಡ' },
-    { code: 'ml', label: 'മലയാളം' },
-    { code: 'or', label: 'ଓଡ଼ିଆ' },
-    { code: 'as', label: 'অসমীয়া' },
-    { code: 'ur', label: 'اردو' },
-    { code: 'sa', label: 'संस्कृत' },
-    { code: 'ks', label: 'كأشُر' },
-    { code: 'gom', label: 'कोंकणी' },
-    { code: 'mai', label: 'मैथिली' },
-    { code: 'mni', label: 'মৈতৈলোন্' },
-    { code: 'ne', label: 'नेपाली' },
-    { code: 'doi', label: 'डोगरी' },
-    { code: 'sat', label: 'ᱥᱟᱱᱛᱟᱲᱤ' },
-    { code: 'sd', label: 'سنڌي' },
-    { code: 'brx', label: 'बड़ो' }
-  ];
+  const languages = ALL_LANGUAGES;
 
   const quickActions = [
     { key: 'diagnose', icon: Stethoscope, label: t('chatbot.quickActions.diagnose', { lng: chatLanguage }) },
