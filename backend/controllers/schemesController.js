@@ -83,7 +83,8 @@ const checkEligibility = async (req, res) => {
           applyLink: scheme.official_url || '#',
           matchReason: reasons.join(', '),
           estimatedBenefit: estimatedBenefit,
-          tags: scheme.tags
+          tags: scheme.tags,
+          slug: scheme.slug
         });
       }
     }

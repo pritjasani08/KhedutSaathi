@@ -22,6 +22,7 @@ export default function SchemeCard({ id, title, description, eligibility = [], d
 
   const toggleBookmark = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     if (!user) {
       alert("Please login to save schemes.");
       return;
@@ -48,8 +49,9 @@ export default function SchemeCard({ id, title, description, eligibility = [], d
           )}
           {id && (
             <button 
+              type="button"
               onClick={toggleBookmark}
-              className={`p-2 rounded-full transition-colors ${
+              className={`p-2 rounded-full transition-colors relative z-20 ${
                 isBookmarked 
                   ? 'bg-primary-100 text-primary dark:bg-primary-900/50' 
                   : 'bg-slate-100 text-slate-400 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700'
