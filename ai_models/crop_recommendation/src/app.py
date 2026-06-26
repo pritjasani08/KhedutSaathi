@@ -19,16 +19,16 @@ CROP_DURATIONS = {
     'Buckwheat': 3, 'Cabbage': 3, 'Capsicum': 4, 'Cardamom': 12, 'Carrot': 3, 'Cashew': 12, 
     'Castor': 6, 'Cauliflower': 3, 'Cherry': 12, 'Chickpea': 4, 'Chilli': 6, 'Clove': 12, 
     'Cocoa': 12, 'Coconut': 12, 'Coffee': 12, 'Coriander': 3, 'Cotton': 9, 'Cumin': 4, 
-    'Dragon Fruit': 12, 'Fenugreek': 2, 'Garlic': 5, 'Ginger': 9, 'Gram': 4, 'Grapes': 12, 
+    'Dragon Fruit': 12, 'Fenugreek': 3, 'Garlic': 5, 'Ginger': 9, 'Gram': 4, 'Grapes': 12, 
     'Green Pea': 3, 'Groundnut': 4, 'Jackfruit': 12, 'Jhangora': 4, 'Jowar': 4, 'Jute': 5, 
     'Kiwi': 12, 'Large Cardamom': 12, 'Litchi': 12, 'Maize': 4, 'Mandua': 4, 'Mango': 12, 
-    'Millet': 4, 'Mint': 2, 'Moong': 3, 'Mustard': 4, 'Naga Chilli': 6, 'Nutmeg': 12, 
+    'Millet': 4, 'Mint': 3, 'Moong': 3, 'Mustard': 4, 'Naga Chilli': 6, 'Nutmeg': 12, 
     'Onion': 4, 'Orange': 12, 'Papaya': 12, 'Passion Fruit': 12, 'Pea': 3, 'Peach': 12, 
     'Pear': 12, 'Pepper': 12, 'Pineapple': 12, 'Plum': 12, 'Pomegranate': 12, 'Potato': 4, 
     'Radish': 2, 'Ragi': 4, 'Rajma': 4, 'Rice': 4, 'Rubber': 12, 'Saffron': 4, 
     'Sesamum': 3, 'Soyabean': 4, 'Soybean': 4, 'Spinach': 2, 'Sugarcane': 12, 'Sunflower': 4, 
-    'Tapioca': 9, 'Tea': 12, 'Tobacco': 6, 'Tomato': 4, 'Tur': 8, 'Turmeric': 9, 
-    'Turnip': 2, 'Urad': 3, 'Vegetables': 3, 'Walnut': 12, 'Wheat': 5
+    'Tapioca': 9, 'Tea': 12, 'Tobacco': 12, 'Tomato': 4, 'Tur': 8, 'Turmeric': 9, 
+    'Turnip': 3, 'Urad': 3, 'Vegetables': 3, 'Walnut': 12, 'Wheat': 5
 }
 
 def get_crop_duration(crop_name):
@@ -122,17 +122,35 @@ def predict_crop(request: PredictionRequest):
         
         for idx in top20_indices:
             crop = target_encoder.inverse_transform([idx])[0]
+            
+            # Rule: Tobacco cannot be produced in Bhavnagar
+            if crop.lower() == 'tobacco' and request.district.lower() in ['bhavnagar', 'bhavanagr']:
+                continue
+                
+            # Rule: Cold-climate crops cannot be produced in warm/hot states (like Gujarat)
+            cold_crops = {'apple', 'apricot', 'cherry', 'kiwi', 'peach', 'pear', 'plum', 'saffron', 'walnut'}
+            cold_states = {'himachal pradesh', 'jammu and kashmir', 'uttarakhand', 'arunachal pradesh', 'sikkim', 'meghalaya'}
+            if crop.lower() in cold_crops and request.state.lower() not in cold_states:
+                continue
+                
             prob = probabilities[idx]
             crop_duration = get_crop_duration(crop)
             
+            # Crops taking longer than requested duration are impossible to grow within that timeframe
+            if crop_duration > user_duration:
+                continue
+            
             # Calculate how far off the crop's duration is from what the user asked
-            diff = abs(crop_duration - user_duration)
+            diff = user_duration - crop_duration
             
             candidate_crops.append({
                 'crop': crop,
                 'diff': diff,
                 'prob': prob
             })
+            
+        if not candidate_crops:
+            raise HTTPException(status_code=404, detail="No suitable crops found that fit within the requested duration limit.")
             
         # VERY IMPORTANT: Sort primarily by duration difference (ascending) so exact matches are first!
         # Secondary sort by environment suitability (descending).
