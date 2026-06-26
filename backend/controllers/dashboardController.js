@@ -45,23 +45,24 @@ const getOverview = async (req, res) => {
     if (userType === 'farmer') {
       const statsPromise = Promise.all([
         supabase.from('crop_listings').select('id, status', { count: 'exact' }).eq('farmer_id', userId),
-        supabase.from('bids').select('id', { count: 'exact' }).eq('farmer_id', userId)
-      ]).then(([listingsRes, bidsRes]) => {
+        supabase.from('accepted_bids').select('id', { count: 'exact' }).eq('farmer_id', userId)
+      ]).then(([listingsRes, dealsRes]) => {
         const listings = listingsRes.data || [];
         responseData.stats = {
           totalListings: listings.length,
           activeListings: listings.filter(l => l.status === 'OPEN').length,
           soldListings: listings.filter(l => l.status === 'SOLD').length,
-          totalDeals: bidsRes.data?.length || 0
+          totalDeals: dealsRes.data?.length || 0
         };
       });
       promises.push(statsPromise);
     } else {
       const statsPromise = Promise.all([
         supabase.from('bids').select('id', { count: 'exact' }).eq('buyer_id', userId),
-        supabase.from('bids').select('id', { count: 'exact' }).eq('buyer_id', userId).eq('status', 'ACCEPTED')
+        supabase.from('accepted_bids').select('id', { count: 'exact' }).eq('buyer_id', userId)
       ]).then(([bidsRes, acceptedRes]) => {
         responseData.stats = {
+          ...responseData.stats,
           totalBidsPlaced: bidsRes.data?.length || 0,
           acceptedPurchases: acceptedRes.data?.length || 0
         };
@@ -76,7 +77,7 @@ const getOverview = async (req, res) => {
         .select(`
           *,
           bids (
-            id, bid_price, status, created_at,
+            id, bid_price, created_at,
             users:buyer_id (first_name, last_name)
           )
         `)

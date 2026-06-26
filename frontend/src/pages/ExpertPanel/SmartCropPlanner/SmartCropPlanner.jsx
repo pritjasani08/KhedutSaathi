@@ -38,7 +38,7 @@ const seasons = [
   { value: 'Summer', label: 'Summer / Zaid' },
   { value: 'Whole Year', label: 'Whole Year' }
 ];
-const durations = [1, 2, 3, 4, 5, 6, 9, 12];
+const durations = [3, 4, 5, 6, 9, 12];
 
 const toTitleCase = (str) => {
   if (!str) return '';
