@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Calendar, ExternalLink, AlertCircle } from 'lucide-react';
-import apiClient from '../../services/apiClient';
+import api from '../../services/api';
 
 export default function NewsDetail() {
   const { id } = useParams();
@@ -12,9 +12,9 @@ export default function NewsDetail() {
   useEffect(() => {
     const fetchNewsDetail = async () => {
       try {
-        const res = await apiClient.get('/resources/agri-news');
-        if (res.data && res.data.success) {
-          const found = res.data.data.find(n => n.id === id || n.id === parseInt(id));
+        const data = await api.get('/resources/agri-news');
+        if (data && data.success) {
+          const found = data.data.find(n => n.id === id || n.id === parseInt(id));
           setNewsItem(found);
         }
       } catch (err) {

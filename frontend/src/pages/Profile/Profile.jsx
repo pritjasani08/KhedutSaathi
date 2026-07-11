@@ -39,13 +39,10 @@ export default function Profile() {
     try {
       const token = localStorage.getItem('token');
       const url = `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/profile`;
-      console.log('[Frontend] Requesting URL:', url);
       
       const res = await fetch(url, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
-      
-      console.log('[Frontend] Response status:', res.status);
       
       if (res.ok) {
         const data = await res.json();

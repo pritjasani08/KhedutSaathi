@@ -111,3 +111,6 @@ dist/
 ai_models/crop_recommendation/models/*.pkl
 
 frontend.zip
+
+# Documentation
+docs/
