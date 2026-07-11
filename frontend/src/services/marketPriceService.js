@@ -1,4 +1,4 @@
-import apiClient from './apiClient';
+import api from './api';
 
 const CACHE_EXPIRY = 5 * 60 * 1000;
 const cache = new Map();
@@ -9,9 +9,9 @@ const cache = new Map();
  */
 export const fetchMarketPrices = async (params = {}) => {
   try {
-    const response = await apiClient.get('/market-prices', { params });
-    // response.data = { success: true, data: [...records], meta: {...} }
-    return response.data;
+    const data = await api.get('/market-prices', { params });
+    // response data = { success: true, data: [...records], meta: {...} }
+    return data;
   } catch (error) {
     console.error('Error fetching market prices:', error);
     throw error.response?.data || { message: 'Failed to fetch market prices' };
@@ -28,9 +28,9 @@ const fetchWithCache = async (url, params = {}) => {
     }
   }
 
-  const response = await apiClient.get(url, { params });
-  cache.set(cacheKey, { data: response.data, timestamp: Date.now() });
-  return response.data;
+  const data = await api.get(url, { params });
+  cache.set(cacheKey, { data, timestamp: Date.now() });
+  return data;
 };
 
 export const fetchStates = async () => {
