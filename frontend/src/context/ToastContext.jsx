@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useState, useCallback } from 'react';
+import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
 import ToastContainer from '../components/shared/Toast/ToastContainer';
+import { notificationService } from '../services/notificationService';
 
 const ToastContext = createContext(null);
 
@@ -68,6 +69,20 @@ export const ToastProvider = ({ children }) => {
       }
     });
   }, [addToast, removeToast]);
+
+  useEffect(() => {
+    const unsubscribe = notificationService.subscribe((notification) => {
+      const { type, title, message } = notification;
+      addToast({ 
+        type, 
+        title, 
+        description: message, 
+        // Errors get a bit more time to read
+        duration: type === 'error' ? 7000 : 5000 
+      });
+    });
+    return unsubscribe;
+  }, [addToast]);
 
   return (
     <ToastContext.Provider value={{ toast, removeToast }}>

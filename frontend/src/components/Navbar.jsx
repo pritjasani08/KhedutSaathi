@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Globe, LogIn, Sun, Moon, User, LogOut } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { useAuth } from '../context/AuthContext';
+import NotificationCenter from '../features/notifications/NotificationCenter';
 
 import { ALL_LANGUAGES } from '../constants/languages';
 
@@ -168,6 +169,8 @@ export default function Navbar() {
             >
               {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
+
+            {user && <div className="hidden lg:block"><NotificationCenter /></div>}
 
             {/* Login / Profile Button */}
             {user ? (

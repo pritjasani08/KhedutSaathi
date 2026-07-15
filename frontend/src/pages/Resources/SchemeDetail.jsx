@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, ExternalLink, BookmarkPlus, BookmarkCheck, CheckCircle2, FileText, Globe, MapPin, Tag } from 'lucide-react';
 import api from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
+import PageLoader from '../../components/shared/PageLoader';
 
 export default function SchemeDetails() {
   const { id: slug } = useParams();
@@ -62,7 +63,7 @@ export default function SchemeDetails() {
   if (isLoading) {
     return (
       <div className="min-h-screen flex justify-center pt-32 bg-background">
-        <div className="w-10 h-10 border-4 border-primary/30 border-t-primary rounded-full animate-spin"></div>
+        <PageLoader message="Loading scheme details..." />
       </div>
     );
   }

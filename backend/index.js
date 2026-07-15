@@ -22,6 +22,8 @@ const dashboardRoutes = require('./routes/dashboardRoutes');
 const aiRoutes = require('./routes/aiRoutes');
 const chatHistoryRoutes = require('./routes/chatHistoryRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const notificationRoutes = require('./routes/notificationRoutes');
+const notificationScheduler = require('./jobs/notificationScheduler');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -69,6 +71,10 @@ app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/ai', aiRoutes);
 app.use('/api/chat-history', chatHistoryRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/notifications', notificationRoutes);
+
+// Initialize Scheduler
+notificationScheduler.start();
 
 // Health check endpoint
 app.get('/health', (req, res) => {

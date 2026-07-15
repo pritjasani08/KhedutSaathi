@@ -17,6 +17,7 @@ export default function Dashboard() {
   const [error, setError] = useState('');
   const [acceptLoading, setAcceptLoading] = useState(null);
   const [farmerOrders, setFarmerOrders] = useState([]);
+  const [topNotification, setTopNotification] = useState(null);
 
   const fetchFarmerOrders = async () => {
     try {
@@ -103,6 +104,16 @@ export default function Dashboard() {
         if (listingsRes.ok) {
           const listingsData = await listingsRes.json();
           setFarmerListings(listingsData || []);
+        }
+
+        const notifRes = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/notifications`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (notifRes.ok) {
+          const notifData = await notifRes.json();
+          if (notifData.data && notifData.data.length > 0) {
+            setTopNotification(notifData.data.find(n => !n.is_read) || notifData.data[0]);
+          }
         }
       }
     } catch (err) {
@@ -245,22 +256,61 @@ export default function Dashboard() {
               </section>
 
               {/* 4. AI Daily Intelligence Panel (Inline Banner) */}
-              <section className="bg-indigo-50/50 dark:bg-indigo-900/10 border border-indigo-100 dark:border-indigo-800/50 p-4 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
-                <div className="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
-                  <Zap className="w-4 h-4" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xs font-bold uppercase tracking-wider text-indigo-800 dark:text-indigo-300 mb-1">Active Recommendation</h3>
-                  <p className="text-sm text-indigo-900 dark:text-indigo-200 leading-snug">
-                    {profileData?.primary_crop 
-                      ? `Based on ${weather?.rainProbability > 30 ? 'high precipitation' : 'current conditions'}, maintain focus on ${profileData.primary_crop}. ${weather?.advisory ? weather.advisory : ''}` 
-                      : `Complete farm profile to generate targeted intelligence.`}
-                  </p>
-                </div>
-                <Link to="/khedut-ai" className="text-xs font-bold text-indigo-600 dark:text-indigo-400 whitespace-nowrap flex items-center gap-1 hover:underline">
-                  Open AI <ArrowRight className="w-3 h-3" />
-                </Link>
-              </section>
+              <div className="flex flex-col gap-4">
+                {/* AI Briefing (Daily) */}
+                <section className="bg-indigo-50/50 dark:bg-indigo-900/10 border border-indigo-100 dark:border-indigo-800/50 p-4 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+                  <div className="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
+                    <Zap className="w-4 h-4" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-indigo-800 dark:text-indigo-300 mb-1">Active Recommendation</h3>
+                    <p className="text-sm text-indigo-900 dark:text-indigo-200 leading-snug">
+                      {profileData?.primary_crop 
+                        ? `Based on ${weather?.rainProbability > 30 ? 'high precipitation' : 'current conditions'}, maintain focus on ${profileData.primary_crop}. ${weather?.advisory ? weather.advisory : ''}` 
+                        : `Complete farm profile to generate targeted intelligence.`}
+                    </p>
+                  </div>
+                  <Link to="/khedut-ai" className="text-xs font-bold text-indigo-600 dark:text-indigo-400 whitespace-nowrap flex items-center gap-1 hover:underline">
+                    Open AI <ArrowRight className="w-3 h-3" />
+                  </Link>
+                </section>
+
+                {/* Proactive AI Alert (If any) */}
+                {topNotification && (
+                  <section className={`p-4 flex flex-col sm:flex-row gap-4 items-start sm:items-center border 
+                    ${topNotification.priority === 'CRITICAL' ? 'bg-red-50/50 dark:bg-red-900/10 border-red-200 dark:border-red-800' : 
+                      topNotification.priority === 'HIGH' ? 'bg-orange-50/50 dark:bg-orange-900/10 border-orange-200 dark:border-orange-800' : 
+                      'bg-blue-50/50 dark:bg-blue-900/10 border-blue-200 dark:border-blue-800'}
+                  `}>
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0
+                      ${topNotification.priority === 'CRITICAL' ? 'bg-red-100 dark:bg-red-500/20 text-red-600 dark:text-red-400' : 
+                        topNotification.priority === 'HIGH' ? 'bg-orange-100 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400' : 
+                        'bg-blue-100 dark:bg-blue-500/20 text-blue-600 dark:text-blue-400'}
+                    `}>
+                      <AlertTriangle className="w-4 h-4" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <h3 className={`text-xs font-bold uppercase tracking-wider 
+                          ${topNotification.priority === 'CRITICAL' ? 'text-red-800 dark:text-red-300' : 
+                            topNotification.priority === 'HIGH' ? 'text-orange-800 dark:text-orange-300' : 
+                            'text-blue-800 dark:text-blue-300'}
+                        `}>{topNotification.title}</h3>
+                        {!topNotification.is_read && (
+                          <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                        )}
+                      </div>
+                      <p className={`text-sm leading-snug
+                        ${topNotification.priority === 'CRITICAL' ? 'text-red-900 dark:text-red-200' : 
+                          topNotification.priority === 'HIGH' ? 'text-orange-900 dark:text-orange-200' : 
+                          'text-blue-900 dark:text-blue-200'}
+                      `}>
+                        {topNotification.message}
+                      </p>
+                    </div>
+                  </section>
+                )}
+              </div>
 
             </div>
 

@@ -12,6 +12,7 @@ import Footer from './components/Footer';
 import ChatbotWidget from './components/ChatbotWidget';
 import BackToTop from './components/BackToTop';
 import Home from './pages/Home/Home';
+import PageLoader from './components/shared/PageLoader';
 
 // Eagerly loaded routes
 import ExpertPanel from './pages/ExpertPanel/ExpertPanel';
@@ -40,10 +41,8 @@ const KhedutAI = lazy(() => import('./pages/KhedutAI/KhedutAI'));
 const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard'));
 const NewDashboard = lazy(() => import('./features/dashboard/Dashboard'));
 
-const PageLoader = () => (
-  <div className="flex items-center justify-center min-h-[60vh]">
-    <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-  </div>
+const FallbackLoader = () => (
+  <PageLoader message="Loading KhedutSaathi..." fullScreen={true} />
 );
 
 /* Page transition wrapper with Suspense fallback */
@@ -55,7 +54,7 @@ function PageWrapper({ children }) {
       exit={{ opacity: 0, y: -12 }}
       transition={{ duration: 0.35, ease: 'easeInOut' }}
     >
-      <Suspense fallback={<PageLoader />}>
+      <Suspense fallback={<FallbackLoader />}>
         {children}
       </Suspense>
     </motion.div>

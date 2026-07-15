@@ -9,7 +9,8 @@ import {
   ResponsiveContainer,
   Cell
 } from 'recharts';
-import { BarChart3, Loader2, Info } from 'lucide-react';
+import { BarChart3, Info } from 'lucide-react';
+import SectionLoader from '../../../../components/shared/SectionLoader';
 
 export default function PriceIntelligenceChart({ data = [], isLoading }) {
   
@@ -47,8 +48,7 @@ export default function PriceIntelligenceChart({ data = [], isLoading }) {
   if (isLoading) {
     return (
       <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 flex flex-col items-center justify-center min-h-[300px]">
-        <Loader2 className="w-8 h-8 animate-spin text-primary mb-4" />
-        <p className="text-slate-500 font-medium">Generating Market Intelligence...</p>
+        <SectionLoader message="Generating Market Intelligence..." />
       </div>
     );
   }

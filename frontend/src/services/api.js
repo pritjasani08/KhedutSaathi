@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { notificationService } from './notificationService';
 
 // Custom Error Class
 export class AuthenticationError extends Error {
@@ -10,7 +11,8 @@ export class AuthenticationError extends Error {
 }
 
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const rawBaseURL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_BASE_URL = rawBaseURL.endsWith('/api') ? rawBaseURL : `${rawBaseURL}/api`;
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -67,6 +69,13 @@ api.interceptors.response.use(
 
     error.customMessage = errorMsg;
     console.error('API Error:', errorMsg);
+    
+    // Only alert for actionable, non-silent errors
+    // Skip 401 (handled by auth interceptor) and 404 (often checked silently)
+    const isSilent = error.config?.silent === true;
+    if (!isSilent && error.response?.status !== 401 && error.response?.status !== 404) {
+      notificationService.error(errorMsg, 'Network Error');
+    }
     
     return Promise.reject(error);
   }
@@ -130,6 +139,15 @@ export const chatbotAPI = {
   sendVoice: (formData) => api.post('/chatbot/voice', formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
   }),
+};
+
+// AI Engine
+export const aiEngineAPI = {
+  getBriefing: () => api.post('/ai/briefing'),
+};
+
+export const aiPlannerAPI = {
+  generate: (data) => api.post('/ai/planner', data),
 };
 
 export default api;

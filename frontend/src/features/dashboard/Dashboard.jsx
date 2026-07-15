@@ -4,7 +4,9 @@ import { useAuth } from '../../context/AuthContext';
 import { useDashboardOverview, useWeather, useSchemes, useAcceptBid } from './hooks/useDashboardQueries';
 import { Package, Tag, CheckCircle, TrendingUp, Loader2, MapPin, Trees, Sprout, Activity, Zap, CloudRain, Droplets, Wind, IndianRupee, FileText, ArrowRight, Check } from 'lucide-react';
 import MarketSnapshot from './components/MarketSnapshot';
+import AIDailyBriefing from './components/AIDailyBriefing';
 import { PageLayout, PageHeader, PageContent } from '../../components/shared/PageLayout';
+import PageLoader from '../../components/shared/PageLoader';
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -50,7 +52,7 @@ const Dashboard = () => {
   if (isOverviewLoading) {
     return (
       <div className="min-h-screen gradient-bg flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+        <PageLoader message="Loading dashboard..." />
       </div>
     );
   }
@@ -81,8 +83,13 @@ const Dashboard = () => {
 
       <PageContent>
         
-        {/* Analytics Strip */}
-        <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-subtle overflow-hidden">
+        {/* NEW: AI Daily Briefing (Hero) */}
+        {isFarmer && (
+          <AIDailyBriefing profile={profile} weather={weather} schemes={schemes} />
+        )}
+
+        {/* Compact Analytics Strip */}
+        <div className="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-subtle overflow-hidden mb-10">
           <div className="grid grid-cols-2 md:grid-cols-5 divide-x divide-y md:divide-y-0 divide-subtle bg-slate-50/50 dark:bg-slate-900/20">
             {isFarmer ? (
               <>
@@ -102,250 +109,230 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* ABOVE THE FOLD ARCHITECTURE */}
+        {/* FARMER JOURNEY ARCHITECTURE */}
         {isFarmer && (
           <div className="flex flex-col gap-10">
-            <div className="grid grid-cols-1 xl:grid-cols-3 gap-10 items-stretch">
+            
+            {/* 1. IMMEDIATE ACTIONS (Operational) */}
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-10">
               
-              {/* Left Column (Farm Workspace & Weather) */}
-              <div className="xl:col-span-2">
-                {/* 3. Farm Overview Workspace (Split Pane) */}
-                <section className="glass-card flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-subtle overflow-hidden shadow-sm h-full">
-                  
-                  {/* Left: Property List */}
-                  <div className="flex-1 p-8 flex flex-col">
-                    <h2 className="font-display font-bold text-heading flex items-center gap-2.5 text-xl mb-6">
-                      <Sprout className="w-6 h-6 text-primary" /> My Farm Profile
-                    </h2>
-                    <div className="flex flex-col flex-1 justify-center">
-                      <PropertyRow label="Primary Crop" value={profile?.primary_crop || 'Not Set'} highlight />
-                      <PropertyRow label="Soil Type" value={profile?.soil_type || 'Unknown'} />
-                      <PropertyRow label="Irrigation System" value={profile?.irrigation_type || 'Unknown'} />
-                      <PropertyRow label="Category" value={profile?.farmer_category || 'Unknown'} />
+              {/* Orders Table */}
+              <div className="flex flex-col">
+                <div className="flex items-center justify-between mb-4 px-1">
+                  <h2 className="font-display font-bold text-heading text-lg flex items-center gap-2.5">
+                    <Package className="w-5 h-5 text-primary" /> Procurement Orders
+                  </h2>
+                </div>
+                <div className="glass-card overflow-hidden shadow-sm flex-1">
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left text-sm whitespace-nowrap">
+                      <thead className="bg-slate-50 dark:bg-slate-800/50 border-b border-subtle text-slate-500 font-semibold text-xs uppercase tracking-wider">
+                        <tr>
+                          <th className="px-5 py-4">Order Date</th>
+                          <th className="px-5 py-4">Product</th>
+                          <th className="px-5 py-4">Amount</th>
+                          <th className="px-5 py-4 text-right">Status</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-subtle">
+                        {orders?.length > 0 ? orders.slice(0, 3).map(order => (
+                          <tr key={order.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                            <td className="px-5 py-4 text-slate-500 font-medium">{new Date(order.created_at).toLocaleDateString()}</td>
+                            <td className="px-5 py-4 font-semibold text-heading">
+                               <div className="flex items-center gap-3">
+                                 {order.seller_products?.image_url && <img src={order.seller_products.image_url} className="w-8 h-8 rounded-lg object-cover border border-subtle" alt="" />}
+                                 {order.seller_products?.name || 'Unknown Product'}
+                               </div>
+                            </td>
+                            <td className="px-5 py-4 font-bold text-heading">₹{order.total_amount}</td>
+                            <td className="px-5 py-4 text-right">
+                              <span className={`badge px-2.5 py-1 text-xs ${order.status === 'Completed' ? 'badge-success' : 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400'}`}>
+                                {order.status || 'Pending'}
+                              </span>
+                            </td>
+                          </tr>
+                        )) : (
+                          <tr><td colSpan="4" className="px-5 py-8 text-center text-sm text-slate-500">No active procurement orders.</td></tr>
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                  {orders?.length > 3 && (
+                     <div className="p-3 text-center border-t border-subtle bg-slate-50/50 dark:bg-slate-900/20">
+                        <span className="text-xs font-semibold text-primary cursor-pointer hover:underline">View All Orders</span>
+                     </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Bids Table */}
+              <div className="flex flex-col">
+                <div className="flex items-center justify-between mb-4 px-1">
+                  <h2 className="font-display font-bold text-heading text-lg flex items-center gap-2.5">
+                    <Tag className="w-5 h-5 text-primary" /> Active Bids on Listings
+                  </h2>
+                </div>
+                <div className="glass-card overflow-hidden shadow-sm flex-1">
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left text-sm whitespace-nowrap">
+                      <thead className="bg-slate-50 dark:bg-slate-800/50 border-b border-subtle text-slate-500 font-semibold text-xs uppercase tracking-wider">
+                        <tr>
+                          <th className="px-5 py-4">Listing</th>
+                          <th className="px-5 py-4">Bidder</th>
+                          <th className="px-5 py-4">Amount</th>
+                          <th className="px-5 py-4 text-right">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-subtle">
+                        {listings?.some(l => l.bids?.length > 0) ? listings.flatMap(listing => 
+                          listing.bids.map(bid => (
+                            <tr key={bid.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                              <td className="px-5 py-4 font-bold text-heading">
+                                <div className="flex flex-col">
+                                  <span>{listing.crop_name}</span>
+                                  <span className="text-xs text-slate-500 font-medium">Expected: ₹{listing.expected_price}/Qtl</span>
+                                </div>
+                              </td>
+                              <td className="px-5 py-4 text-slate-600 dark:text-slate-300 font-medium">
+                                <div className="flex items-center gap-2">
+                                  <div className="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold shadow-sm">
+                                    {bid.users?.first_name?.[0] || 'U'}
+                                  </div>
+                                  {bid.users?.first_name} {bid.users?.last_name}
+                                </div>
+                              </td>
+                              <td className="px-5 py-4 font-bold text-primary text-base">₹{bid.bid_price}</td>
+                              <td className="px-5 py-4 text-right">
+                                {listing.status === 'OPEN' ? (
+                                  <button
+                                    onClick={() => handleAccept(bid.id)}
+                                    disabled={isAcceptingBid && acceptingId === bid.id}
+                                    className="btn-primary !py-1.5 !px-3 text-xs flex items-center gap-1.5 ml-auto shadow-sm"
+                                  >
+                                    {isAcceptingBid && acceptingId === bid.id ? <Loader2 className="w-3 h-3 animate-spin" /> : <Check className="w-3 h-3" />}
+                                    Accept
+                                  </button>
+                                ) : (
+                                  <span className={`badge px-2.5 py-1 text-xs ${listing.status === 'SOLD' ? 'badge-success' : 'bg-slate-100 text-slate-700'}`}>{listing.status}</span>
+                                )}
+                              </td>
+                            </tr>
+                          ))
+                        ).slice(0, 3) : (
+                          <tr><td colSpan="4" className="px-5 py-8 text-center text-sm text-slate-500">No active bids found on your listings.</td></tr>
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                   {listings?.some(l => l.bids?.length > 0) && listings.flatMap(l => l.bids).length > 3 && (
+                     <div className="p-3 text-center border-t border-subtle bg-slate-50/50 dark:bg-slate-900/20">
+                        <span className="text-xs font-semibold text-primary cursor-pointer hover:underline">View All Bids</span>
+                     </div>
+                  )}
+                </div>
+              </div>
+
+            </div>
+
+            {/* 2. TACTICAL (Farm & Weather) */}
+            <section className="glass-card flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-subtle overflow-hidden shadow-sm h-full">
+              
+              {/* Left: Property List */}
+              <div className="flex-1 p-8 flex flex-col">
+                <h2 className="font-display font-bold text-heading flex items-center gap-2.5 text-xl mb-6">
+                  <Sprout className="w-6 h-6 text-primary" /> My Farm Profile
+                </h2>
+                <div className="flex flex-col flex-1 justify-center">
+                  <PropertyRow label="Primary Crop" value={profile?.primary_crop || 'Not Set'} highlight />
+                  <PropertyRow label="Soil Type" value={profile?.soil_type || 'Unknown'} />
+                  <PropertyRow label="Irrigation System" value={profile?.irrigation_type || 'Unknown'} />
+                  <PropertyRow label="Category" value={profile?.farmer_category || 'Unknown'} />
+                </div>
+              </div>
+
+              {/* Right: Weather Native Integration */}
+              <div className="md:w-[45%] p-8 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 dark:from-blue-900/10 dark:to-cyan-900/10 flex flex-col">
+                <h2 className="font-display font-bold text-heading flex items-center gap-2.5 text-xl mb-6">
+                  <CloudRain className="w-6 h-6 text-blue-500" /> Weather Advisory
+                </h2>
+                {weather ? (
+                  <div className="flex flex-col flex-1 justify-center gap-8">
+                    <div className="flex items-center gap-5 mt-auto">
+                      <span className="text-6xl font-display font-bold text-heading tracking-tight">{weather.temperature}°C</span>
+                      <span className="text-base font-semibold text-blue-700 dark:text-blue-300 px-4 py-1.5 bg-blue-100 dark:bg-blue-900/40 rounded-full shadow-sm">{weather.condition}</span>
+                    </div>
+                    <div className="grid grid-cols-2 gap-5 text-sm mt-auto">
+                        <div className="bg-white/60 dark:bg-slate-800/60 p-5 rounded-xl border border-subtle flex flex-col items-center justify-center text-center shadow-sm aspect-[4/3] w-full">
+                          <Droplets className="w-6 h-6 text-blue-500 mb-2.5" />
+                          <span className="text-sm font-medium text-slate-500 mb-1">Precipitation</span>
+                          <span className="text-xl font-bold text-heading">{weather.rainProbability}%</span>
+                        </div>
+                        <div className="bg-white/60 dark:bg-slate-800/60 p-5 rounded-xl border border-subtle flex flex-col items-center justify-center text-center shadow-sm aspect-[4/3] w-full">
+                          <Wind className="w-6 h-6 text-blue-500 mb-2.5" />
+                          <span className="text-sm font-medium text-slate-500 mb-1">Wind Speed</span>
+                          <span className="text-xl font-bold text-heading">{weather.windSpeed} km/h</span>
+                        </div>
                     </div>
                   </div>
+                ) : (
+                  <div className="text-base text-slate-500 pt-4 flex-1 flex items-center">Weather data unavailable for this location.</div>
+                )}
+              </div>
+            </section>
 
-                  {/* Right: Weather Native Integration */}
-                  <div className="md:w-[45%] p-8 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 dark:from-blue-900/10 dark:to-cyan-900/10 flex flex-col">
-                    <h2 className="font-display font-bold text-heading flex items-center gap-2.5 text-xl mb-6">
-                      <CloudRain className="w-6 h-6 text-blue-500" /> Weather Advisory
+            {/* 3. STRATEGIC (Market & Schemes) */}
+            <div className="grid grid-cols-1 xl:grid-cols-3 gap-10 items-stretch">
+              
+              <div className="xl:col-span-1">
+                {/* Market Intelligence Trading Terminal */}
+                <MarketSnapshot profileData={profile} />
+              </div>
+
+              <div className="xl:col-span-2">
+                {/* Government Schemes List View */}
+                <section className="glass-card flex flex-col h-full overflow-hidden shadow-sm">
+                  <div className="px-6 py-5 border-b border-subtle flex justify-between items-center bg-green-50/50 dark:bg-green-900/10">
+                    <h2 className="font-display font-bold text-heading flex items-center gap-2.5 text-lg">
+                      <FileText className="w-5 h-5 text-green-500" /> Eligible Schemes
                     </h2>
-                    {weather ? (
-                      <div className="flex flex-col flex-1 justify-center gap-8">
-                        <div className="flex items-center gap-5 mt-auto">
-                          <span className="text-6xl font-display font-bold text-heading tracking-tight">{weather.temperature}°C</span>
-                          <span className="text-base font-semibold text-blue-700 dark:text-blue-300 px-4 py-1.5 bg-blue-100 dark:bg-blue-900/40 rounded-full shadow-sm">{weather.condition}</span>
+                    <span className="badge badge-success px-2.5 py-1 text-xs">
+                      {schemes?.data ? schemes.data.length : '0'} Active
+                    </span>
+                  </div>
+                  
+                  <div className="flex-1 overflow-y-auto p-0 divide-y divide-subtle max-h-[450px]">
+                    {schemes?.data && schemes.data.length > 0 ? (
+                      schemes.data.map((scheme, idx) => (
+                        <div key={idx} className="p-6 hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors group">
+                          <h4 className="text-base font-bold text-heading mb-3 group-hover:text-primary transition-colors leading-snug">{scheme.schemeName || 'Government Scheme'}</h4>
+                          <div className="flex flex-col gap-2">
+                            <div className="flex justify-between items-center text-sm">
+                              <span className="text-slate-500">Benefit Summary</span>
+                              <span className="font-semibold text-green-600 dark:text-green-400">{scheme.benefits ? 'Financial Support' : 'Advisory Support'}</span>
+                            </div>
+                            <div className="flex justify-between items-center text-sm">
+                              <span className="text-slate-500">Eligibility</span>
+                              <span className="font-semibold text-heading capitalize">{profile?.farmer_category || 'All Farmers'}</span>
+                            </div>
+                          </div>
                         </div>
-                        <div className="grid grid-cols-2 gap-5 text-sm mt-auto">
-                           <div className="bg-white/60 dark:bg-slate-800/60 p-5 rounded-xl border border-subtle flex flex-col items-center justify-center text-center shadow-sm aspect-[4/3] w-full">
-                             <Droplets className="w-6 h-6 text-blue-500 mb-2.5" />
-                             <span className="text-sm font-medium text-slate-500 mb-1">Precipitation</span>
-                             <span className="text-xl font-bold text-heading">{weather.rainProbability}%</span>
-                           </div>
-                           <div className="bg-white/60 dark:bg-slate-800/60 p-5 rounded-xl border border-subtle flex flex-col items-center justify-center text-center shadow-sm aspect-[4/3] w-full">
-                             <Wind className="w-6 h-6 text-blue-500 mb-2.5" />
-                             <span className="text-sm font-medium text-slate-500 mb-1">Wind Speed</span>
-                             <span className="text-xl font-bold text-heading">{weather.windSpeed} km/h</span>
-                           </div>
-                        </div>
-                      </div>
+                      ))
                     ) : (
-                      <div className="text-base text-slate-500 pt-4 flex-1 flex items-center">Weather data unavailable for this location.</div>
+                      <div className="p-10 text-center text-sm text-slate-500">
+                        No matching schemes found for your profile.
+                      </div>
                     )}
+                  </div>
+
+                  <div className="px-6 py-4 border-t border-subtle bg-slate-50 dark:bg-slate-900/50 flex justify-between items-center">
+                     <span className="text-sm font-semibold text-slate-500">Total Potential Value</span>
+                     <span className="text-xl font-display font-bold text-green-600 dark:text-green-400">
+                       ₹{schemes?.totalBenefit ? schemes.totalBenefit.toLocaleString('en-IN') : '0'}
+                     </span>
                   </div>
                 </section>
               </div>
 
-              {/* Right Column (Terminal) */}
-              <div className="xl:col-span-1">
-                {/* 5. Market Intelligence Trading Terminal */}
-                <MarketSnapshot profileData={profile} />
-              </div>
-
-            </div>
-
-            {/* 4. AI Daily Intelligence Panel (Full Width Inline Banner) */}
-            <section className="glass-card p-6 flex flex-col sm:flex-row gap-6 items-start sm:items-center bg-gradient-to-r from-amber-500/5 to-primary/5 border-amber-200/50 dark:border-amber-800/30 relative overflow-hidden shadow-sm w-full">
-              <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-amber-400 to-primary"></div>
-              <div className="w-12 h-12 rounded-2xl bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0 shadow-sm my-auto">
-                <Zap className="w-6 h-6" />
-              </div>
-              <div className="flex-1 flex flex-col justify-center">
-                <h3 className="font-display font-bold text-heading text-lg mb-2">Khedut AI Assistant</h3>
-                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-4xl">
-                  {profile?.primary_crop 
-                    ? `Based on your farm profile, maintain focus on ${profile.primary_crop}. ${weather?.advisory ? weather.advisory : 'Conditions look favorable for regular operations.'}` 
-                    : `Complete your farm profile to receive personalized daily recommendations.`}
-                </p>
-              </div>
-              <Link to="/khedut-ai" className="btn-primary !py-2.5 !px-6 text-sm flex items-center justify-center gap-2 whitespace-nowrap shadow-md shadow-primary/20 hover:shadow-lg hover:shadow-primary/30 transition-all sm:my-auto h-fit">
-                Chat with AI <ArrowRight className="w-4 h-4" />
-              </Link>
-            </section>
-
-          </div>
-        )}
-
-        {/* BELOW THE FOLD ARCHITECTURE */}
-        {isFarmer && (
-          <div className="grid grid-cols-1 xl:grid-cols-12 gap-10 pt-10 border-t border-subtle">
-            
-            <div className="xl:col-span-8 flex flex-col gap-10">
-              {/* 6. Activity Data Tables */}
-              <section className="space-y-10">
-                
-                {/* Orders Table */}
-                <div>
-                  <div className="flex items-center justify-between mb-6 px-1">
-                    <h2 className="font-display font-bold text-heading text-xl flex items-center gap-2.5">
-                      <Package className="w-6 h-6 text-primary" /> Procurement Orders
-                    </h2>
-                  </div>
-                  <div className="glass-card overflow-hidden shadow-sm">
-                    <div className="overflow-x-auto">
-                      <table className="w-full text-left text-sm whitespace-nowrap">
-                        <thead className="bg-slate-50 dark:bg-slate-800/50 border-b border-subtle text-slate-500 font-semibold text-sm">
-                          <tr>
-                            <th className="px-6 py-5">Order Date</th>
-                            <th className="px-6 py-5">Product</th>
-                            <th className="px-6 py-5">Total Amount</th>
-                            <th className="px-6 py-5 text-right">Status</th>
-                          </tr>
-                        </thead>
-                        <tbody className="divide-y divide-subtle">
-                          {orders?.length > 0 ? orders.map(order => (
-                            <tr key={order.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
-                              <td className="px-6 py-5 text-slate-500 font-medium">{new Date(order.created_at).toLocaleDateString()}</td>
-                              <td className="px-6 py-5 font-semibold text-heading text-base">
-                                 <div className="flex items-center gap-4">
-                                   {order.seller_products?.image_url && <img src={order.seller_products.image_url} className="w-10 h-10 rounded-xl object-cover border border-subtle" alt="" />}
-                                   {order.seller_products?.name || 'Unknown Product'}
-                                 </div>
-                              </td>
-                              <td className="px-6 py-5 font-bold text-heading text-base">₹{order.total_amount}</td>
-                              <td className="px-6 py-5 text-right">
-                                <span className={`badge px-3 py-1 text-xs ${order.status === 'Completed' ? 'badge-success' : 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400'}`}>
-                                  {order.status || 'Pending'}
-                                </span>
-                              </td>
-                            </tr>
-                          )) : (
-                            <tr><td colSpan="4" className="px-6 py-10 text-center text-base text-slate-500">No procurement orders found.</td></tr>
-                          )}
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Bids Table */}
-                <div>
-                  <div className="flex items-center justify-between mb-6 px-1">
-                    <h2 className="font-display font-bold text-heading text-xl flex items-center gap-2.5">
-                      <Tag className="w-6 h-6 text-primary" /> Active Bids on Listings
-                    </h2>
-                  </div>
-                  <div className="glass-card overflow-hidden shadow-sm">
-                    <div className="overflow-x-auto">
-                      <table className="w-full text-left text-sm whitespace-nowrap">
-                        <thead className="bg-slate-50 dark:bg-slate-800/50 border-b border-subtle text-slate-500 font-semibold text-sm">
-                          <tr>
-                            <th className="px-6 py-5">Listing</th>
-                            <th className="px-6 py-5">Bidder</th>
-                            <th className="px-6 py-5">Bid Amount</th>
-                            <th className="px-6 py-5 text-right">Action</th>
-                          </tr>
-                        </thead>
-                        <tbody className="divide-y divide-subtle">
-                          {listings?.some(l => l.bids?.length > 0) ? listings.flatMap(listing => 
-                            listing.bids.map(bid => (
-                              <tr key={bid.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
-                                <td className="px-6 py-5 font-bold text-heading text-base">
-                                  <div className="flex flex-col gap-1">
-                                    <span>{listing.crop_name}</span>
-                                    <span className="text-sm text-slate-500 font-medium">Target: ₹{listing.expected_price}/Qtl</span>
-                                  </div>
-                                </td>
-                                <td className="px-6 py-5 text-slate-600 dark:text-slate-300 font-medium">
-                                  <div className="flex items-center gap-3">
-                                    <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm font-bold shadow-sm">
-                                      {bid.users?.first_name?.[0] || 'U'}
-                                    </div>
-                                    {bid.users?.first_name} {bid.users?.last_name}
-                                  </div>
-                                </td>
-                                <td className="px-6 py-5 font-bold text-primary text-lg">₹{bid.bid_price}</td>
-                                <td className="px-6 py-5 text-right">
-                                  {listing.status === 'OPEN' ? (
-                                    <button
-                                      onClick={() => handleAccept(bid.id)}
-                                      disabled={isAcceptingBid && acceptingId === bid.id}
-                                      className="btn-primary !py-2 !px-4 text-sm flex items-center gap-2 ml-auto shadow-sm"
-                                    >
-                                      {isAcceptingBid && acceptingId === bid.id ? <Loader2 className="w-4 h-4 animate-spin" /> : <Check className="w-4 h-4" />}
-                                      Accept Bid
-                                    </button>
-                                  ) : (
-                                    <span className={`badge px-3 py-1 ${listing.status === 'SOLD' ? 'badge-success' : 'bg-slate-100 text-slate-700'}`}>{listing.status}</span>
-                                  )}
-                                </td>
-                              </tr>
-                            ))
-                          ) : (
-                            <tr><td colSpan="4" className="px-6 py-10 text-center text-base text-slate-500">No active bids found on your listings.</td></tr>
-                          )}
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-
-              </section>
-            </div>
-
-            {/* 7. Government Schemes List View */}
-            <div className="xl:col-span-4">
-              <section className="glass-card flex flex-col h-full overflow-hidden shadow-sm">
-                <div className="px-8 py-6 border-b border-subtle flex justify-between items-center bg-green-50/50 dark:bg-green-900/10">
-                  <h2 className="font-display font-bold text-heading flex items-center gap-2.5 text-xl">
-                    <FileText className="w-6 h-6 text-green-500" /> Eligible Schemes
-                  </h2>
-                  <span className="badge badge-success px-3 py-1 text-sm">
-                    {schemes?.data ? schemes.data.length : '0'} Active
-                  </span>
-                </div>
-                
-                <div className="flex-1 overflow-y-auto p-0 divide-y divide-subtle max-h-[700px]">
-                  {schemes?.data && schemes.data.length > 0 ? (
-                    schemes.data.map((scheme, idx) => (
-                      <div key={idx} className="p-8 hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors group">
-                        <h4 className="text-lg font-bold text-heading mb-4 group-hover:text-primary transition-colors leading-snug">{scheme.schemeName || 'Government Scheme'}</h4>
-                        <div className="flex flex-col gap-3">
-                          <div className="flex justify-between items-center text-base">
-                            <span className="text-slate-500">Benefit Summary</span>
-                            <span className="font-semibold text-green-600 dark:text-green-400">{scheme.benefits ? 'Financial Support' : 'Advisory Support'}</span>
-                          </div>
-                          <div className="flex justify-between items-center text-base">
-                            <span className="text-slate-500">Eligibility</span>
-                            <span className="font-semibold text-heading capitalize">{profile?.farmer_category || 'All Farmers'}</span>
-                          </div>
-                        </div>
-                      </div>
-                    ))
-                  ) : (
-                    <div className="p-12 text-center text-base text-slate-500">
-                      No matching schemes found for your profile.
-                    </div>
-                  )}
-                </div>
-
-                <div className="px-8 py-6 border-t border-subtle bg-slate-50 dark:bg-slate-900/50 flex justify-between items-center">
-                   <span className="text-base font-semibold text-slate-500">Total Potential Value</span>
-                   <span className="text-2xl font-display font-bold text-green-600 dark:text-green-400">
-                     ₹{schemes?.totalBenefit ? schemes.totalBenefit.toLocaleString('en-IN') : '0'}
-                   </span>
-                </div>
-              </section>
             </div>
 
           </div>
@@ -401,14 +388,14 @@ export default Dashboard;
 // Structural Presentation Components
 function StripMetric({ label, value, icon: Icon, color, bg }) {
   return (
-    <div className="px-4 sm:px-8 py-3 flex items-center justify-between gap-4">
-      <div className="flex items-center gap-3">
-        <div className={`w-10 h-10 rounded-xl ${bg} ${color} flex items-center justify-center shadow-sm`}>
-          <Icon className="w-5 h-5" />
+    <div className="px-4 sm:px-5 py-2.5 flex items-center justify-between gap-3">
+      <div className="flex items-center gap-2.5">
+        <div className={`w-8 h-8 rounded-lg ${bg} ${color} flex items-center justify-center shadow-sm`}>
+          <Icon className="w-4 h-4" />
         </div>
-        <span className="text-sm font-semibold text-slate-500">{label}</span>
+        <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">{label}</span>
       </div>
-      <span className="text-2xl font-display font-bold text-heading">{value}</span>
+      <span className="text-xl font-display font-bold text-heading">{value}</span>
     </div>
   );
 }

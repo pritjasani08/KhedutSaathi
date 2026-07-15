@@ -11,6 +11,7 @@ import SchemeEligibilityEngine from './SchemeEligibilityEngine';
 import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import { useBookmarks } from '../../hooks/useBookmarks';
+import EmptyState from '../../components/shared/EmptyState';
 
 const CustomDropdown = ({ value, onChange, options, icon: Icon }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -293,7 +294,14 @@ export default function Resources() {
                       <NewsCard key={item.id || idx} {...item} index={idx} />
                     ))
                   ) : (
-                    <div className="col-span-full text-center py-12 text-slate-500">No news available</div>
+                    <div className="col-span-full">
+                      <EmptyState 
+                        icon={Newspaper}
+                        title="No news available" 
+                        description="There is no recent news for your selected region."
+                        variant="page"
+                      />
+                    </div>
                   )}
                 </div>
               )}
@@ -329,7 +337,14 @@ export default function Resources() {
                         />
                       ))
                     ) : (
-                      <div className="col-span-full text-center py-12 text-slate-500">No schemes found matching criteria.</div>
+                      <div className="col-span-full">
+                        <EmptyState 
+                          icon={Landmark}
+                          title="No schemes found"
+                          description="We couldn't find any schemes matching your current criteria."
+                          variant="page"
+                        />
+                      </div>
                     )}
                   </div>
                   
