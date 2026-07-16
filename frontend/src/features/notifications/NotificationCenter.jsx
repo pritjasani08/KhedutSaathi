@@ -41,6 +41,18 @@ const NotificationCenter = () => {
     }
   };
 
+  const addToTimeline = async (id) => {
+    try {
+      await api.post(`/timeline/convert`, { notification_id: id });
+      // Optionally dismiss the notification or show a success toast
+      alert('Successfully added to Timeline!');
+      setNotifications(prev => prev.filter(n => n.id !== id));
+    } catch (err) {
+      console.error('Failed to convert to timeline task:', err);
+      alert(err.response?.data?.error || err.response?.data?.message || err.message || 'Failed to add to Timeline');
+    }
+  };
+
   const unreadCount = notifications.filter(n => !n.is_read).length;
 
   const getPriorityIcon = (priority) => {
@@ -135,6 +147,15 @@ const NotificationCenter = () => {
                           </ul>
                         </div>
                       )}
+                      
+                      <div className="mt-3">
+                        <button 
+                          onClick={() => addToTimeline(notif.id)} 
+                          className="text-xs font-semibold px-3 py-1.5 bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-300 rounded-md transition-colors"
+                        >
+                          Add to Timeline
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>

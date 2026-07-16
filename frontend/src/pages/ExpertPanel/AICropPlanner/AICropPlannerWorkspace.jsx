@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { aiPlannerAPI } from '../../../services/api';
 import { stateDistrictMap } from '../../../data/stateDistrictMap';
+import TimelineWorkspace from '../../../features/dashboard/components/TimelineWorkspace';
 
 const soilTypes = [
   'Alluvial Soil', 'Black Soil', 'Clay Soil', 'Cold Desert Soil', 
@@ -290,6 +291,16 @@ export default function AICropPlannerWorkspace() {
                                     <button onClick={() => setStep(1)} className="w-full btn-secondary">
                                         Start Over
                                     </button>
+                                </div>
+                            </div>
+                            
+                            {/* Render Seasonal Timeline */}
+                            <div className="mt-8 border-t border-slate-200 dark:border-slate-800 pt-8">
+                                <h3 className="text-xl font-bold text-slate-800 dark:text-slate-100 mb-6 flex items-center gap-2">
+                                    <Target className="w-6 h-6 text-primary" /> Seasonal Farm Timeline
+                                </h3>
+                                <div className="h-[500px]">
+                                    <TimelineWorkspace />
                                 </div>
                             </div>
                         </motion.div>

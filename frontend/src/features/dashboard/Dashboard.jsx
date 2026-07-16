@@ -7,6 +7,7 @@ import MarketSnapshot from './components/MarketSnapshot';
 import AIDailyBriefing from './components/AIDailyBriefing';
 import { PageLayout, PageHeader, PageContent } from '../../components/shared/PageLayout';
 import PageLoader from '../../components/shared/PageLoader';
+import TimelineWorkspace from './components/TimelineWorkspace';
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -116,7 +117,12 @@ const Dashboard = () => {
             {/* 1. IMMEDIATE ACTIONS (Operational) */}
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-10">
               
-              {/* Orders Table */}
+              {/* Left: AI Timeline Workspace */}
+              <div className="flex flex-col h-full min-h-[400px]">
+                <TimelineWorkspace />
+              </div>
+
+              {/* Right: Orders Table */}
               <div className="flex flex-col">
                 <div className="flex items-center justify-between mb-4 px-1">
                   <h2 className="font-display font-bold text-heading text-lg flex items-center gap-2.5">
@@ -160,73 +166,6 @@ const Dashboard = () => {
                   {orders?.length > 3 && (
                      <div className="p-3 text-center border-t border-subtle bg-slate-50/50 dark:bg-slate-900/20">
                         <span className="text-xs font-semibold text-primary cursor-pointer hover:underline">View All Orders</span>
-                     </div>
-                  )}
-                </div>
-              </div>
-
-              {/* Bids Table */}
-              <div className="flex flex-col">
-                <div className="flex items-center justify-between mb-4 px-1">
-                  <h2 className="font-display font-bold text-heading text-lg flex items-center gap-2.5">
-                    <Tag className="w-5 h-5 text-primary" /> Active Bids on Listings
-                  </h2>
-                </div>
-                <div className="glass-card overflow-hidden shadow-sm flex-1">
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-left text-sm whitespace-nowrap">
-                      <thead className="bg-slate-50 dark:bg-slate-800/50 border-b border-subtle text-slate-500 font-semibold text-xs uppercase tracking-wider">
-                        <tr>
-                          <th className="px-5 py-4">Listing</th>
-                          <th className="px-5 py-4">Bidder</th>
-                          <th className="px-5 py-4">Amount</th>
-                          <th className="px-5 py-4 text-right">Action</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-subtle">
-                        {listings?.some(l => l.bids?.length > 0) ? listings.flatMap(listing => 
-                          listing.bids.map(bid => (
-                            <tr key={bid.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
-                              <td className="px-5 py-4 font-bold text-heading">
-                                <div className="flex flex-col">
-                                  <span>{listing.crop_name}</span>
-                                  <span className="text-xs text-slate-500 font-medium">Expected: ₹{listing.expected_price}/Qtl</span>
-                                </div>
-                              </td>
-                              <td className="px-5 py-4 text-slate-600 dark:text-slate-300 font-medium">
-                                <div className="flex items-center gap-2">
-                                  <div className="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold shadow-sm">
-                                    {bid.users?.first_name?.[0] || 'U'}
-                                  </div>
-                                  {bid.users?.first_name} {bid.users?.last_name}
-                                </div>
-                              </td>
-                              <td className="px-5 py-4 font-bold text-primary text-base">₹{bid.bid_price}</td>
-                              <td className="px-5 py-4 text-right">
-                                {listing.status === 'OPEN' ? (
-                                  <button
-                                    onClick={() => handleAccept(bid.id)}
-                                    disabled={isAcceptingBid && acceptingId === bid.id}
-                                    className="btn-primary !py-1.5 !px-3 text-xs flex items-center gap-1.5 ml-auto shadow-sm"
-                                  >
-                                    {isAcceptingBid && acceptingId === bid.id ? <Loader2 className="w-3 h-3 animate-spin" /> : <Check className="w-3 h-3" />}
-                                    Accept
-                                  </button>
-                                ) : (
-                                  <span className={`badge px-2.5 py-1 text-xs ${listing.status === 'SOLD' ? 'badge-success' : 'bg-slate-100 text-slate-700'}`}>{listing.status}</span>
-                                )}
-                              </td>
-                            </tr>
-                          ))
-                        ).slice(0, 3) : (
-                          <tr><td colSpan="4" className="px-5 py-8 text-center text-sm text-slate-500">No active bids found on your listings.</td></tr>
-                        )}
-                      </tbody>
-                    </table>
-                  </div>
-                   {listings?.some(l => l.bids?.length > 0) && listings.flatMap(l => l.bids).length > 3 && (
-                     <div className="p-3 text-center border-t border-subtle bg-slate-50/50 dark:bg-slate-900/20">
-                        <span className="text-xs font-semibold text-primary cursor-pointer hover:underline">View All Bids</span>
                      </div>
                   )}
                 </div>
