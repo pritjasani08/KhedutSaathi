@@ -242,19 +242,19 @@ const Dashboard = () => {
                   <div className="flex-1 overflow-y-auto p-0 divide-y divide-subtle max-h-[450px]">
                     {schemes?.data && schemes.data.length > 0 ? (
                       schemes.data.map((scheme, idx) => (
-                        <div key={idx} className="p-6 hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors group">
-                          <h4 className="text-base font-bold text-heading mb-3 group-hover:text-primary transition-colors leading-snug">{scheme.schemeName || 'Government Scheme'}</h4>
+                        <Link to={`/resources/schemes/${scheme.slug || scheme.id}`} key={scheme.id || idx} className="p-6 hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors group block">
+                          <h4 className="text-base font-bold text-heading mb-3 group-hover:text-primary transition-colors leading-snug">{scheme.title || 'Government Scheme'}</h4>
                           <div className="flex flex-col gap-2">
                             <div className="flex justify-between items-center text-sm">
                               <span className="text-slate-500">Benefit Summary</span>
-                              <span className="font-semibold text-green-600 dark:text-green-400">{scheme.benefits ? 'Financial Support' : 'Advisory Support'}</span>
+                              <span className="font-semibold text-green-600 dark:text-green-400">{scheme.estimatedBenefit > 0 ? 'Financial Support' : 'Advisory Support'}</span>
                             </div>
                             <div className="flex justify-between items-center text-sm">
                               <span className="text-slate-500">Eligibility</span>
                               <span className="font-semibold text-heading capitalize">{profile?.farmer_category || 'All Farmers'}</span>
                             </div>
                           </div>
-                        </div>
+                        </Link>
                       ))
                     ) : (
                       <div className="p-10 text-center text-sm text-slate-500">
