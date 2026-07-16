@@ -34,6 +34,15 @@ const getOverview = async (req, res) => {
             });
             responseData.completionPercentage = Math.round((filled / fields.length) * 100);
           }
+        })
+        .catch(err => {
+          if (err.name === 'FarmerProfileNotFoundError') {
+             // Graceful degradation: The user has no profile, but we can still load the dashboard empty states.
+             responseData.profile = null;
+             responseData.completionPercentage = 0;
+          } else {
+             throw err;
+          }
         });
       promises.push(profilePromise);
     }
