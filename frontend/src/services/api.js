@@ -1,6 +1,18 @@
 import axios from 'axios';
+import { notificationService } from './notificationService';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+// Custom Error Class
+export class AuthenticationError extends Error {
+  constructor(message = 'Session expired. Please log in again.') {
+    super(message);
+    this.name = 'AuthenticationError';
+    this.isAuthError = true;
+  }
+}
+
+
+const rawBaseURL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_BASE_URL = rawBaseURL.endsWith('/api') ? rawBaseURL : `${rawBaseURL}/api`;
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -26,11 +38,51 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response.data,
   (error) => {
-    const message = error.response?.data?.message || 'Something went wrong';
-    console.error('API Error:', message);
+    let errorMsg;
+    
+    if (error.response) {
+      if (error.response.status === 401) {
+        localStorage.removeItem('token');
+        error.customMessage = 'Session expired. Please log in again.';
+        return Promise.reject(new AuthenticationError());
+      }
+
+      const data = error.response.data;
+      if (data && data.detail) {
+        if (Array.isArray(data.detail)) {
+          errorMsg = data.detail.map(d => typeof d === 'object' ? d.msg || JSON.stringify(d) : String(d)).join(', ');
+        } else if (typeof data.detail === 'string') {
+          errorMsg = data.detail;
+        } else {
+          errorMsg = JSON.stringify(data.detail);
+        }
+      } else if (data && data.message) {
+        errorMsg = data.message;
+      } else {
+        errorMsg = `Server error: ${error.response.status}`;
+      }
+    } else if (error.request) {
+      errorMsg = 'No response from server. Please check your connection.';
+    } else {
+      errorMsg = error.message;
+    }
+
+    error.customMessage = errorMsg;
+    console.error('API Error:', errorMsg);
+    
+    // Only alert for actionable, non-silent errors
+    // Skip 401 (handled by auth interceptor) and 404 (often checked silently)
+    const isSilent = error.config?.silent === true;
+    if (!isSilent && error.response?.status !== 401 && error.response?.status !== 404) {
+      notificationService.error(errorMsg, 'Network Error');
+    }
+    
     return Promise.reject(error);
   }
 );
+
+// [TEMPORARY] Domain API Objects
+// These will be extracted into dedicated service files during Sprint 2.
 
 // Crop Diagnosis
 export const cropDiagnosisAPI = {
@@ -87,6 +139,15 @@ export const chatbotAPI = {
   sendVoice: (formData) => api.post('/chatbot/voice', formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
   }),
+};
+
+// AI Engine
+export const aiEngineAPI = {
+  getBriefing: () => api.post('/ai/briefing'),
+};
+
+export const aiPlannerAPI = {
+  generate: (data) => api.post('/ai/planner', data),
 };
 
 export default api;

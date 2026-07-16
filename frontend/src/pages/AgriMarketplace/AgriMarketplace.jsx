@@ -64,9 +64,9 @@ export default function AgriMarketplace() {
 
   // Filter and Sort Logic
   const filteredProducts = useMemo(() => {
-    return products.filter(p => {
-      const matchesSearch = (p.name || '').toLowerCase().includes(searchQuery.toLowerCase()) || 
-                            (p.seller?.full_name || '').toLowerCase().includes(searchQuery.toLowerCase());
+    const result = products.filter(p => {
+      const matchesSearch = p.name?.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                            p.description?.toLowerCase().includes(searchQuery.toLowerCase());
       const matchesCategory = selectedCategory === 'All' || p.category === selectedCategory;
       const matchesPrice = (p.price || 0) <= maxPrice;
       

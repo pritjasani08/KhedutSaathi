@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { PackageX } from 'lucide-react';
 import ProductCard from './ProductCard';
+import EmptyState from '../shared/EmptyState';
 
 export default function ProductGrid({ 
   products, 
@@ -28,21 +29,20 @@ export default function ProductGrid({
 
   if (products.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center py-32 bg-slate-50 dark:bg-slate-900 rounded-3xl border border-dashed border-slate-300 dark:border-slate-700 shadow-sm">
-        <div className="w-24 h-24 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center mb-6 shadow-inner border border-slate-200 dark:border-slate-700">
-          <PackageX className="w-12 h-12 text-slate-500" />
-        </div>
-        <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white mb-2">No products found</h3>
-        <p className="text-slate-600 dark:text-slate-400 text-center max-w-sm mb-8">
-          We couldn't find any products matching your current filters or search query.
-        </p>
-        <button 
-          onClick={onClearFilters}
-          className="px-8 py-3 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-white rounded-xl font-bold transition-all shadow-sm"
-        >
-          Clear All Filters
-        </button>
-      </div>
+      <EmptyState 
+        icon={PackageX}
+        title="No products found"
+        description="We couldn't find any products matching your current filters or search query."
+        variant="page"
+        action={
+          <button 
+            onClick={onClearFilters}
+            className="btn-secondary"
+          >
+            Clear All Filters
+          </button>
+        }
+      />
     );
   }
 

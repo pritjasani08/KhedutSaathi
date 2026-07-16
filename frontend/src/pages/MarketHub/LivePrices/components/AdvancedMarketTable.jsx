@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
-import { Search, ChevronUp, ChevronDown, ArrowRight, Loader2, MapPin } from 'lucide-react';
+import { Search, ChevronUp, ChevronDown, ArrowRight, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
+import LoadingSkeleton from '../../../../components/market-prices/LoadingSkeleton';
 
 const ITEMS_PER_PAGE = 15;
 
@@ -66,12 +67,7 @@ export default function AdvancedMarketTable({ data = [], isLoading }) {
   };
 
   if (isLoading) {
-    return (
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-8 flex flex-col items-center justify-center text-slate-500 min-h-[400px]">
-        <Loader2 className="w-8 h-8 animate-spin text-primary mb-4" />
-        <p>Loading market data...</p>
-      </div>
-    );
+    return <LoadingSkeleton />;
   }
 
   return (

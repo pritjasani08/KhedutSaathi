@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { User, Mail, Phone, Users, Save, X, Edit2, MapPin, Languages, Sprout, Droplets, Trees } from 'lucide-react';
+import LoadingButton from '../../components/shared/LoadingButton';
 
 export default function Profile() {
   const { user, updateUser } = useAuth();
@@ -39,13 +40,10 @@ export default function Profile() {
     try {
       const token = localStorage.getItem('token');
       const url = `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/profile`;
-      console.log('[Frontend] Requesting URL:', url);
       
       const res = await fetch(url, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
-      
-      console.log('[Frontend] Response status:', res.status);
       
       if (res.ok) {
         const data = await res.json();
@@ -438,14 +436,25 @@ export default function Profile() {
                   )}
 
                   <div className="flex gap-3 pt-6 border-t border-subtle">
-                    <button type="submit" disabled={loading} className="flex-1 btn-primary flex items-center justify-center gap-2">
-                      <Save className="w-4 h-4" />
-                      {loading ? 'Saving...' : 'Save Changes'}
-                    </button>
-                    <button type="button" onClick={cancelEdit} disabled={loading} className="flex-1 btn-secondary flex items-center justify-center gap-2">
-                      <X className="w-4 h-4" />
+                    <LoadingButton
+                      type="submit"
+                      isLoading={loading}
+                      loadingText="Saving..."
+                      icon={Save}
+                      className="flex-1"
+                    >
+                      Save Changes
+                    </LoadingButton>
+                    <LoadingButton
+                      type="button"
+                      onClick={cancelEdit}
+                      isLoading={loading}
+                      icon={X}
+                      variant="secondary"
+                      className="flex-1"
+                    >
                       Cancel
-                    </button>
+                    </LoadingButton>
                   </div>
                 </form>
               ) : (

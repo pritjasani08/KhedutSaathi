@@ -9,8 +9,9 @@ import SchemeCard from '../../components/shared/SchemeCard';
 import SkeletonCard from '../../components/shared/SkeletonCard';
 import SchemeEligibilityEngine from './SchemeEligibilityEngine';
 import { useAuth } from '../../context/AuthContext';
-import apiClient from '../../services/apiClient';
+import api from '../../services/api';
 import { useBookmarks } from '../../hooks/useBookmarks';
+import EmptyState from '../../components/shared/EmptyState';
 
 const CustomDropdown = ({ value, onChange, options, icon: Icon }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -100,11 +101,10 @@ export default function Resources() {
   useEffect(() => {
     if (user && user.user_type === 'farmer') {
       const token = localStorage.getItem('token');
-      apiClient.get('/profile', {
+      api.get('/profile', {
         headers: { 'Authorization': `Bearer ${token}` }
       })
-        .then(res => {
-          const data = res.data;
+        .then(data => {
           if (data.profile) {
             if (data.profile.preferred_language === 'Hindi') setLanguage('hi');
             else if (data.profile.preferred_language === 'English') setLanguage('en');
@@ -125,11 +125,11 @@ export default function Resources() {
   const { data: newsData, isLoading: newsLoading, isError: newsError } = useQuery({
     queryKey: ['agri-news', language, region, crop],
     queryFn: async () => {
-      const res = await apiClient.get('/resources/agri-news', {
+      const data = await api.get('/resources/agri-news', {
         params: { language, region, crop }
       });
-      if (res.data.success === false) throw new Error('Failed to fetch news');
-      return res.data.data;
+      if (data.success === false) throw new Error('Failed to fetch news');
+      return data.data;
     },
     enabled: activeTab === 'news',
     staleTime: 5 * 60 * 1000, // 5 minutes
@@ -139,7 +139,7 @@ export default function Resources() {
   const { data: schemesResponse, isLoading: schemesLoading, isError: schemesError } = useQuery({
     queryKey: ['schemes', schemePage, schemeSearch, schemeState, schemeCategory, schemeLevel],
     queryFn: async () => {
-      const res = await apiClient.get('/resources/schemes', {
+      const data = await api.get('/resources/schemes', {
         params: { 
           page: schemePage, 
           limit: 10, 
@@ -149,8 +149,8 @@ export default function Resources() {
           level: schemeLevel
         }
       });
-      if (res.data.success === false) throw new Error('Failed to fetch schemes');
-      return res.data;
+      if (data.success === false) throw new Error('Failed to fetch schemes');
+      return data;
     },
     enabled: activeTab === 'schemes',
     keepPreviousData: true,
@@ -294,7 +294,14 @@ export default function Resources() {
                       <NewsCard key={item.id || idx} {...item} index={idx} />
                     ))
                   ) : (
-                    <div className="col-span-full text-center py-12 text-slate-500">No news available</div>
+                    <div className="col-span-full">
+                      <EmptyState 
+                        icon={Newspaper}
+                        title="No news available" 
+                        description="There is no recent news for your selected region."
+                        variant="page"
+                      />
+                    </div>
                   )}
                 </div>
               )}
@@ -330,7 +337,14 @@ export default function Resources() {
                         />
                       ))
                     ) : (
-                      <div className="col-span-full text-center py-12 text-slate-500">No schemes found matching criteria.</div>
+                      <div className="col-span-full">
+                        <EmptyState 
+                          icon={Landmark}
+                          title="No schemes found"
+                          description="We couldn't find any schemes matching your current criteria."
+                          variant="page"
+                        />
+                      </div>
                     )}
                   </div>
                   

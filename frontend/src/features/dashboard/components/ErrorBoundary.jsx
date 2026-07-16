@@ -1,31 +1,36 @@
 import React from 'react';
+import ErrorDisplay from '../../../components/shared/ErrorDisplay';
+import { generateErrorId } from '../../../utils/errorUtils';
 
 export class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { hasError: false, error: null };
+    this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(error) {
-    return { hasError: true, error };
+  static getDerivedStateFromError() {
+    return { hasError: true };
   }
 
   componentDidCatch(error, errorInfo) {
-    console.error('Card Error:', error, errorInfo);
+    const errorId = generateErrorId();
+    console.error(`[${errorId}] Dashboard Component Error:`, error, errorInfo);
   }
+
+  handleRetry = () => {
+    this.setState({ hasError: false });
+  };
 
   render() {
     if (this.state.hasError) {
       return (
-        <div className="glass-card p-6 flex flex-col items-center justify-center text-center h-full min-h-[150px] border-red-100 dark:border-red-900/30">
-          <p className="text-sm font-semibold text-red-500 mb-2">Failed to load content</p>
-          <button 
-            onClick={() => this.setState({ hasError: false, error: null })}
-            className="text-xs text-slate-500 hover:text-primary underline"
-          >
-            Try again
-          </button>
-        </div>
+        <ErrorDisplay 
+          variant="component"
+          title="Widget unavailable"
+          message="Failed to load this dashboard widget."
+          onRetry={this.handleRetry}
+          showHome={false}
+        />
       );
     }
 

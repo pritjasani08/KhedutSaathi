@@ -6,9 +6,12 @@ import { motion } from 'framer-motion';
 import { useMarketPrices } from '../../../hooks/useMarketPrices';
 import { useMarketInsights } from '../../../hooks/useMarketInsights';
 
-// Components
+// Shared Components
+import { PageLayout, PageHeader, PageContent } from '../../../components/shared/PageLayout';
+
+// Domain Components
 import MarketPriceFilters from '../../../components/market-prices/MarketPriceFilters';
-import MarketOverviewKPIs from './components/MarketOverviewKPIs';
+import SellingDecisionHero from './components/SellingDecisionHero';
 import BestSellingOpp from './components/BestSellingOpp';
 import AIMarketInsights from './components/AIMarketInsights';
 import PriceIntelligenceChart from './components/PriceIntelligenceChart';
@@ -55,67 +58,76 @@ export default function LivePrices() {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="max-w-7xl mx-auto space-y-6 pt-24 pb-16 px-4 sm:px-6 lg:px-8"
-    >
-      {/* Page Header (No Marketing Hero, just simple title) */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-display font-bold text-heading">Live Market Intelligence</h1>
-        <p className="text-slate-500 text-sm mt-1">Real-time agricultural pricing data, derived trends, and best selling opportunities.</p>
-      </div>
+    <PageLayout>
+      <PageHeader 
+        title="Live Market Intelligence" 
+        subtitle="Make data-driven selling decisions for your crop based on real-time mandis."
+      />
 
-      {/* Filters */}
-      <div className="mb-10">
-        <MarketPriceFilters
-          filters={filters}
-          setFilters={setFilters}
-          onRefresh={refetch}
-          onExport={handleExportCSV}
+      <PageContent>
+        {/* Filters */}
+        <div className="mb-10">
+          <MarketPriceFilters
+            filters={filters}
+            setFilters={setFilters}
+            onRefresh={refetch}
+            onExport={handleExportCSV}
+          />
+        </div>
+
+        {/* Selling Recommendation Hero (Answers "Should I sell today?") */}
+        <SellingDecisionHero 
+          data={data}
+          insights={insights}
+          overview={overview}
+          isLoading={isLoading}
+          isError={isError}
         />
-      </div>
 
-      {/* KPI Overview */}
-      <MarketOverviewKPIs 
-        overview={overview} 
-        isLoading={isLoading} 
-        isError={isError} 
-      />
-
-      {/* AI Text Insights */}
-      <AIMarketInsights 
-        insights={insights} 
-        isLoading={isLoading} 
-      />
-
-      {/* Dashboard Split: Chart & Top Opportunities */}
-      <div className="grid lg:grid-cols-5 gap-6 lg:gap-8 mb-10">
-        
-        {/* Left 60%: Price Intelligence Chart */}
-        <div className="lg:col-span-3">
+        {/* 1. PRICE TRENDS */}
+        <div className="mb-10">
+          <div className="flex items-center gap-2 mb-4">
+            <h2 className="text-lg font-display font-bold text-heading">Price Movement (30 Days)</h2>
+          </div>
           <PriceIntelligenceChart 
             data={data} 
             isLoading={isLoading} 
           />
         </div>
 
-        {/* Right 40%: Best Selling Opportunities */}
-        <div className="lg:col-span-2">
-          <BestSellingOpp 
-            topGainers={topGainers} 
+        {/* 2. MARKET OPPORTUNITIES & INSIGHTS */}
+        <div className="mb-10">
+          <div className="flex items-center gap-2 mb-4">
+            <h2 className="text-lg font-display font-bold text-heading">Market Opportunities & Insights</h2>
+          </div>
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
+            <div className="lg:col-span-1">
+              <BestSellingOpp 
+                topGainers={topGainers} 
+                isLoading={isLoading} 
+              />
+            </div>
+            <div className="lg:col-span-1">
+              <AIMarketInsights 
+                insights={insights} 
+                isLoading={isLoading} 
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* 3. FULL MARKET DATA */}
+        <div className="mb-10">
+          <div className="flex items-center gap-2 mb-4">
+            <h2 className="text-lg font-display font-bold text-heading">Full Market Data</h2>
+          </div>
+          <AdvancedMarketTable 
+            data={data} 
             isLoading={isLoading} 
           />
         </div>
 
-      </div>
-
-      {/* The Core Product: Advanced Market Table */}
-      <AdvancedMarketTable 
-        data={data} 
-        isLoading={isLoading} 
-      />
-
-    </motion.div>
+      </PageContent>
+    </PageLayout>
   );
 }

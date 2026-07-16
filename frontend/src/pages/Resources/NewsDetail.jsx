@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Calendar, ExternalLink, AlertCircle } from 'lucide-react';
-import apiClient from '../../services/apiClient';
+import api from '../../services/api';
+import PageLoader from '../../components/shared/PageLoader';
 
 export default function NewsDetail() {
   const { id } = useParams();
@@ -12,9 +13,9 @@ export default function NewsDetail() {
   useEffect(() => {
     const fetchNewsDetail = async () => {
       try {
-        const res = await apiClient.get('/resources/agri-news');
-        if (res.data && res.data.success) {
-          const found = res.data.data.find(n => n.id === id || n.id === parseInt(id));
+        const data = await api.get('/resources/agri-news');
+        if (data && data.success) {
+          const found = data.data.find(n => n.id === id || n.id === parseInt(id));
           setNewsItem(found);
         }
       } catch (err) {
@@ -29,7 +30,7 @@ export default function NewsDetail() {
   if (loading) {
     return (
       <div className="min-h-screen bg-background pt-24 pb-16 flex items-center justify-center">
-        <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+        <PageLoader message="Loading news article..." />
       </div>
     );
   }

@@ -5,6 +5,7 @@ import { useWishlist } from '../../context/WishlistContext';
 import ProductGrid from '../../components/Marketplace/ProductGrid';
 import ProductDetailsModal from '../../components/Marketplace/ProductDetailsModal';
 import ShoppingCartDrawer from '../../components/Marketplace/ShoppingCartDrawer';
+import EmptyState from '../../components/shared/EmptyState';
 
 export default function Wishlist() {
   const { wishlistItems } = useWishlist();
@@ -52,22 +53,21 @@ export default function Wishlist() {
         </div>
 
         {wishlistItems.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-32 bg-white dark:bg-slate-900 rounded-3xl border border-dashed border-slate-300 dark:border-slate-700 shadow-sm mt-8">
-            <div className="w-24 h-24 bg-rose-50 dark:bg-rose-900/20 rounded-full flex items-center justify-center mb-6 shadow-inner border border-rose-100 dark:border-rose-900/50">
-              <Heart className="w-12 h-12 text-rose-300 dark:text-rose-800" />
-            </div>
-            <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white mb-2">No products in your wishlist yet</h3>
-            <p className="text-slate-600 dark:text-slate-400 text-center max-w-sm mb-8">
-              Explore the marketplace and save your favorite products to view them later.
-            </p>
-            <Link 
-              to="/agri-marketplace"
-              className="flex items-center gap-2 px-8 py-3 bg-green-600 hover:bg-green-500 text-white rounded-xl font-bold transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
-            >
-              <ShoppingBag className="w-5 h-5" />
-              Browse Products
-            </Link>
-          </div>
+          <EmptyState
+            icon={Heart}
+            title="No products in your wishlist yet"
+            description="Explore the marketplace and save your favorite products to view them later."
+            variant="page"
+            action={
+              <Link 
+                to="/agri-marketplace"
+                className="btn-primary flex items-center gap-2"
+              >
+                <ShoppingBag className="w-5 h-5" />
+                Browse Products
+              </Link>
+            }
+          />
         ) : (
           <main className="mt-8">
             <ProductGrid 

@@ -4,11 +4,12 @@ import { motion } from 'framer-motion';
 import { Sprout, BarChart3 } from 'lucide-react';
 import SmartCropPlanner from './SmartCropPlanner/SmartCropPlanner';
 import YieldPredictor from './YieldPredictor/YieldPredictor';
+import AICropPlannerWorkspace from './AICropPlanner/AICropPlannerWorkspace';
 import PageHero from '../../components/shared/PageHero';
 
 export default function ExpertPanel() {
   const { t } = useTranslation();
-  const [activeTab, setActiveTab] = useState('planner');
+  const [activeTab, setActiveTab] = useState('ai_planner');
 
   // Lifted state to preserve context between tools
   const [sharedForm, setSharedForm] = useState({
@@ -19,7 +20,8 @@ export default function ExpertPanel() {
   });
 
   const tabs = [
-    { key: 'planner', label: t('expertPanel.smartCropPlanner') || 'Smart Crop Planner', icon: Sprout },
+    { key: 'ai_planner', label: 'AI Crop Planner', icon: Sprout },
+    { key: 'planner', label: t('expertPanel.smartCropPlanner') || 'Legacy Crop Planner', icon: Sprout },
     { key: 'predictor', label: t('expertPanel.yieldPredictor') || 'Yield Predictor', icon: BarChart3 },
   ];
 
@@ -31,12 +33,12 @@ export default function ExpertPanel() {
           subtitle="AI powered crop planning and yield intelligence."
         >
           {/* Professional Workspace Switcher */}
-          <div className="inline-flex items-center bg-white dark:bg-slate-900 rounded-xl p-1 shadow-sm border border-slate-200 dark:border-slate-800 relative z-10 mt-6">
+          <div className="inline-flex items-center bg-white dark:bg-slate-900 rounded-xl p-1 shadow-sm border border-slate-200 dark:border-slate-800 relative z-10 mt-6 overflow-x-auto max-w-full">
             {tabs.map((tab) => (
               <button
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key)}
-                className={`flex items-center gap-2.5 px-6 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 relative ${
+                className={`flex items-center gap-2.5 px-4 sm:px-6 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 relative whitespace-nowrap ${
                   activeTab === tab.key
                     ? 'text-primary shadow-sm'
                     : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800/50'
@@ -65,7 +67,9 @@ export default function ExpertPanel() {
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3 }}
           >
-            {activeTab === 'planner' ? (
+            {activeTab === 'ai_planner' ? (
+              <AICropPlannerWorkspace />
+            ) : activeTab === 'planner' ? (
               <SmartCropPlanner
                 sharedForm={sharedForm}
                 setSharedForm={setSharedForm}

@@ -7,7 +7,7 @@
     "number_of_crops": 89,
     "training_accuracy": 51.49,
     "testing_accuracy": 8.33,
-    "training_time_seconds": 4.95,
+    "training_time_seconds": 5.82,
     "model_size_mb": 2514.4,
-    "training_date": "2026-06-20 01:42:13"
+    "training_date": "2026-07-13 23:44:16"
 }

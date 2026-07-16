@@ -1,10 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { MessageSquare, Zap, Leaf, IndianRupee, Loader2, Check } from 'lucide-react';
+import { MessageSquare, Zap, Leaf, IndianRupee, Loader2, Check, Newspaper } from 'lucide-react';
 import { useNews, useAcceptBid } from '../hooks/useDashboardQueries';
 import { NewsSkeleton } from '../skeletons/Skeletons';
 import { ErrorBoundary } from './ErrorBoundary';
+import EmptyState from '../../../components/shared/EmptyState';
 
 export const NewsSection = ({ profile }) => {
   const { data: news, isLoading, error } = useNews(profile);
@@ -33,7 +34,14 @@ export const NewsSection = ({ profile }) => {
             </div>
           </a>
         )) : (
-          <p className="text-sm text-slate-500 col-span-3">No news available for your region.</p>
+          <div className="col-span-3">
+            <EmptyState 
+              icon={Newspaper}
+              title="No news available"
+              description="No news available for your region."
+              variant="inline"
+            />
+          </div>
         )}
       </div>
     </motion.div>
@@ -145,7 +153,11 @@ export const ListingsSection = ({ listings, isLoading }) => {
               <div>
                 <h4 className="text-sm font-semibold text-slate-600 mb-3">Received Bids ({listing.bids?.length || 0})</h4>
                 {!listing.bids || listing.bids.length === 0 ? (
-                  <p className="text-xs text-slate-400">No bids received yet.</p>
+                  <EmptyState 
+                    title="No bids yet"
+                    description="No bids received yet."
+                    variant="inline"
+                  />
                 ) : (
                   <div className="space-y-3">
                     {listing.bids.sort((a,b) => b.bid_price - a.bid_price).map(bid => (

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, LogIn, ArrowRight, Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../../../context/AuthContext';
+import LoadingButton from '../../../components/shared/LoadingButton';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -122,15 +123,16 @@ export default function Login() {
               </div>
             </div>
 
-            <button
+            <LoadingButton
               type="submit"
-              disabled={loading}
-              className="w-full btn-primary flex items-center justify-center gap-2 group mt-6 disabled:opacity-70"
+              isLoading={loading}
+              loadingText="Signing In..."
+              icon={LogIn}
+              className="w-full group mt-6"
             >
-              <LogIn className="w-5 h-5" />
-              {loading ? 'Signing In...' : 'Sign In'}
-              {!loading && <ArrowRight className="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />}
-            </button>
+              Sign In
+              <ArrowRight className="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />
+            </LoadingButton>
           </form>
 
 

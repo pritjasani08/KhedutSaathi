@@ -25,7 +25,7 @@ function normalizeDistrict(district) {
 const getApiKey = () => {
   const apiKey = process.env.DATA_GOV_API_KEY;
   if (!apiKey || apiKey.trim() === 'YOUR_DATA_GOV_API_KEY') {
-    throw new Error('API_KEY_MISSING: The Data.gov.in API key is missing or invalid.');
+    return null;
   }
   return apiKey.trim();
 };
@@ -45,6 +45,7 @@ const fetchAllRecentData = async () => {
   if (cachedData) return cachedData;
 
   const apiKey = getApiKey();
+  if (!apiKey) return [];
   const url = `${apiConfig.AGMARKNET.BASE_URL}/${getResourceId()}`;
 
   try {
@@ -111,6 +112,18 @@ const fetchMarketPrices = async (queryParams) => {
   const { state, market, commodity, sortBy, order = 'desc' } = queryParams;
   const district = normalizeDistrict(queryParams.district);
   const apiKey = getApiKey();
+  if (!apiKey) {
+    return {
+      status: 'unavailable',
+      reason: 'API_KEY_MISSING',
+      records: [],
+      totalRecordsFetched: 0,
+      totalRecordsAfterFiltering: 0,
+      totalCommodities: 0,
+      total: 0,
+      count: 0
+    };
+  }
   const resourceId = getResourceId();
 
   // Build the external API params — fetch a large set, let Data.gov filter by state/district/market

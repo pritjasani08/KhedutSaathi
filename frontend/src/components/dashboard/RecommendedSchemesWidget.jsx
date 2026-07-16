@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
 import { Landmark, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import apiClient from '../../services/apiClient';
+import api from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
 import SchemeCard from '../shared/SchemeCard';
 import SkeletonCard from '../shared/SkeletonCard';
@@ -15,9 +15,9 @@ export default function RecommendedSchemesWidget() {
     queryKey: ['recommended-schemes', user?.id],
     queryFn: async () => {
       // It passes state, district, crop implicitly via backend if logged in
-      const res = await apiClient.get('/schemes/recommendations', { params: { limit: 3 } });
-      if (res.data.success === false) throw new Error('Failed to fetch recommendations');
-      return res.data.data;
+      const data = await api.get('/schemes/recommendations', { params: { limit: 3 } });
+      if (data.success === false) throw new Error('Failed to fetch recommendations');
+      return data.data;
     },
     staleTime: 5 * 60 * 1000, // 5 minutes
   });

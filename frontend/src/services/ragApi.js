@@ -1,7 +1,6 @@
 const API_URL = 'http://localhost:8001';
 
 export async function askRag(question) {
-  console.log(`Sending RAG question to: ${API_URL}/ask`);
   try {
     const response = await fetch(`${API_URL}/ask`, {
       method: 'POST',
@@ -11,7 +10,6 @@ export async function askRag(question) {
       body: JSON.stringify({ question }),
     });
 
-    console.log(`RAG Response Status: ${response.status}`);
     if (!response.ok) {
       throw new Error(`API Error: ${response.status} ${response.statusText}`);
     }
