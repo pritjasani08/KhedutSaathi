@@ -1,6 +1,6 @@
 from typing import Dict, Any, List
 import re
-from .schemas import AIResponse, Decision
+from schemas import AIResponse, Decision
 
 class ResponseValidator:
     @staticmethod

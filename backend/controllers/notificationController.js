@@ -1,18 +1,21 @@
 const supabase = require('../config/supabaseClient');
 const logger = require('../utils/logger');
+const { resolveFarmerProfile, FarmerProfileNotFoundError } = require('../services/profileResolver');
 
 exports.getNotifications = async (req, res) => {
     try {
-        const authId = req.user.id;
+        const userId = req.user.id;
         
-        // Fetch farmer profile ID
-        const { data: profile } = await supabase
-            .from('farmer_profiles')
-            .select('id')
-            .eq('user_id', authId)
-            .single();
-            
-        const profileId = profile ? profile.id : authId;
+        let profileId;
+        try {
+            const resolution = await resolveFarmerProfile(userId);
+            profileId = resolution.farmerProfileId;
+        } catch (err) {
+            if (err instanceof FarmerProfileNotFoundError) {
+                return res.status(404).json({ status: 'error', message: 'Farmer profile not found' });
+            }
+            throw err;
+        }
         
         // Fetch active notifications for user
         const { data, error } = await supabase
@@ -33,9 +36,9 @@ exports.getNotifications = async (req, res) => {
 
 exports.markAsRead = async (req, res) => {
     try {
-        const authId = req.user.id;
-        const { data: profile } = await supabase.from('farmer_profiles').select('id').eq('user_id', authId).single();
-        const profileId = profile ? profile.id : authId;
+        const userId = req.user.id;
+        const resolution = await resolveFarmerProfile(userId);
+        const profileId = resolution.farmerProfileId;
         const notificationId = req.params.id;
         
         const { data, error } = await supabase
@@ -59,9 +62,9 @@ exports.markAsRead = async (req, res) => {
 
 exports.dismissNotification = async (req, res) => {
     try {
-        const authId = req.user.id;
-        const { data: profile } = await supabase.from('farmer_profiles').select('id').eq('user_id', authId).single();
-        const profileId = profile ? profile.id : authId;
+        const userId = req.user.id;
+        const resolution = await resolveFarmerProfile(userId);
+        const profileId = resolution.farmerProfileId;
         const notificationId = req.params.id;
         
         const { data, error } = await supabase

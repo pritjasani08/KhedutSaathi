@@ -1,5 +1,5 @@
 from typing import Dict, Any
-from .schemas import PlannerResponse, PlannerRequest
+from schemas import PlannerResponse, PlannerRequest
 
 class PlannerResponseValidator:
     @staticmethod

@@ -1,6 +1,6 @@
 from typing import List, Dict, Any
-from .schemas import NotificationResponse, NotificationRequest
-from .logger import get_logger
+from schemas import NotificationResponse, NotificationRequest
+from logger import get_logger
 
 logger = get_logger("notification_validators")
 

@@ -3,6 +3,7 @@ const crypto = require('crypto');
 const supabase = require('../config/supabaseClient');
 const logger = require('../utils/logger');
 const farmerMemoryService = require('../services/farmerMemoryService');
+const { resolveFarmerProfile, FarmerProfileNotFoundError } = require('../services/profileResolver');
 
 const PYTHON_AI_URL = 'http://localhost:8000/api/ai/generate';
 
@@ -14,20 +15,21 @@ exports.generateBriefing = async (req, res) => {
   const logMeta = { requestId, farmerId: userId };
 
   try {
-    // 1. Fetch Profile
-    const { data: profile, error: profileError } = await supabase
-      .from('farmer_profiles')
-      .select('*')
-      .eq('user_id', userId)
-      .single();
-
-    if (profileError) {
-      logger.error('Error fetching profile', { ...logMeta, error: profileError });
-      return res.status(500).json({ error: 'Failed to fetch user profile' });
+    // 1. Fetch Profile using central resolver
+    let profile;
+    try {
+        const resolution = await resolveFarmerProfile(userId);
+        profile = resolution.profile;
+    } catch (err) {
+        if (err instanceof FarmerProfileNotFoundError) {
+             return res.status(404).json({ error: 'Farmer profile not found' });
+        }
+        throw err;
     }
     
     // Fetch deterministic memory
-    const { memory, recentDecisions } = await farmerMemoryService.getFarmerMemory(profile.id || userId);
+    // Strict contract: Controllers ALWAYS pass users.id
+    const { memory, recentDecisions } = await farmerMemoryService.getFarmerMemory(userId);
 
     // 2. Fetch Disease History
     const { data: diseaseHistory, error: diseaseError } = await supabase
@@ -204,17 +206,8 @@ exports.updateFeedback = async (req, res) => {
     if (!['UP', 'DOWN', 'NONE'].includes(feedback)) {
       return res.status(400).json({ status: 'error', message: 'Invalid feedback value' });
     }
-    
-    // Resolve profile ID from Auth ID to ensure we're updating the right records
-    const { data: profile } = await supabase
-      .from('farmer_profiles')
-      .select('id')
-      .eq('user_id', userId)
-      .single();
-      
-    const profileId = profile ? profile.id : userId;
-
-    await farmerMemoryService.processFeedback(profileId, decisionId, feedback);
+    // Strict Contract: Controllers ALWAYS pass users.id down
+    await farmerMemoryService.processFeedback(userId, decisionId, feedback);
     
     return res.status(200).json({ status: 'success', message: 'Feedback processed' });
   } catch (error) {

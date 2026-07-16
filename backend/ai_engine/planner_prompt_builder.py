@@ -1,6 +1,6 @@
 import json
 from typing import List
-from .schemas import PlannerRequest
+from schemas import PlannerRequest
 
 class PlannerPromptBuilder:
     @staticmethod

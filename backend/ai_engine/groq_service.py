@@ -1,6 +1,6 @@
 import os
 from groq import AsyncGroq
-from .output_formatter import OutputFormatter
+from output_formatter import OutputFormatter
 
 class GroqService:
     def __init__(self):

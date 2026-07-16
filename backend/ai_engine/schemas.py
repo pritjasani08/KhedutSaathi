@@ -120,3 +120,45 @@ class NotificationResponse(BaseModel):
     requestId: str
     notifications: List[NotificationExplained] = Field(default_factory=list)
     error: Optional[str] = None
+
+class TimelineCandidate(BaseModel):
+    id: str
+    task_type: str
+    title: str
+    description: Optional[str] = None
+    scheduled_date: str
+    priority: str
+    source: str
+    trigger: Optional[str] = None
+    rawFacts: Dict[str, Any] = Field(default_factory=dict)
+    confidence: int
+
+class TimelineRequest(BaseModel):
+    requestId: str
+    farmer_id: str
+    profile: Dict[str, Any] = Field(default_factory=dict)
+    memory: Optional[Dict[str, Any]] = None
+    recent_decisions: Optional[List[Dict[str, Any]]] = None
+    candidates: List[TimelineCandidate] = Field(default_factory=list)
+
+class TimelineTask(BaseModel):
+    id: str
+    task_type: str
+    title: str
+    description: Optional[str] = None
+    scheduled_date: str
+    priority: str
+    source: str
+    confidence: int
+    rawFacts: Dict[str, Any] = Field(default_factory=dict)
+    why: str
+    impact: Optional[str] = None
+    risks: Optional[str] = None
+    next_actions: Optional[List[str]] = None
+    personalization_factors: Optional[List[str]] = None
+
+class TimelineResponse(BaseModel):
+    status: str = "success"
+    requestId: str
+    tasks: List[TimelineTask] = Field(default_factory=list)
+    error: Optional[str] = None

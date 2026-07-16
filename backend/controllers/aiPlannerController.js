@@ -5,6 +5,7 @@ const weatherService = require('../services/weatherService');
 const marketPriceService = require('../services/marketPriceService');
 const farmerMemoryService = require('../services/farmerMemoryService');
 const supabase = require('../config/supabaseClient');
+const { resolveFarmerProfile, FarmerProfileNotFoundError } = require('../services/profileResolver');
 
 const CROP_ML_URL = 'http://localhost:8003/predict';
 const YIELD_ML_URL = 'http://127.0.0.1:8002/predict';
@@ -33,8 +34,8 @@ function calculateRiskLevel(weather, yieldPrediction) {
 exports.generatePlannerSynthesis = async (req, res) => {
     const startTime = performance.now();
     const requestId = req.headers['x-request-id'] || crypto.randomUUID();
-    const logMeta = { requestId, endpoint: '/api/ai/planner' };
     const userId = req.user.id;
+    const logMeta = { requestId, farmerId: userId };
     
     const { 
         state, district, soilType, waterAvailability, 
@@ -46,15 +47,21 @@ exports.generatePlannerSynthesis = async (req, res) => {
     }
 
     try {
-        // Resolve profile ID from Auth ID
-        const { data: profile } = await supabase
-            .from('farmer_profiles')
-            .select('id')
-            .eq('user_id', userId)
-            .single();
+        // 1. Fetch Profile using central resolver
+        let profile;
+        try {
+            const resolution = await resolveFarmerProfile(userId);
+            profile = resolution.profile;
+        } catch (err) {
+            if (err instanceof FarmerProfileNotFoundError) {
+                return res.status(404).json({ error: "Farmer profile not found. Please complete your profile." });
+            }
+            throw err;
+        }
             
-        const profileId = profile ? profile.id : userId;
-        const { memory, recentDecisions } = await farmerMemoryService.getFarmerMemory(profileId);
+        // Strict contract: Controllers ALWAYS pass users.id
+        const { memory, recentDecisions } = await farmerMemoryService.getFarmerMemory(userId);
+        
         // 1. Crop Recommendation ML
         let recommendedCrops = [];
         try {

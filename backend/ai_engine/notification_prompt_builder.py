@@ -1,6 +1,6 @@
 import json
 from typing import List
-from .schemas import NotificationRequest, NotificationCandidate
+from schemas import NotificationRequest, NotificationCandidate
 
 class NotificationPromptBuilder:
     @staticmethod

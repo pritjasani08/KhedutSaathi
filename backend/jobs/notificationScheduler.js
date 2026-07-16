@@ -2,6 +2,7 @@ const cron = require('node-cron');
 const supabase = require('../config/supabaseClient');
 const logger = require('../utils/logger');
 const { generateProactiveNotificationsForUser } = require('../services/notificationService');
+const profileResolver = require('../services/profileResolver');
 
 class NotificationScheduler {
     constructor() {
@@ -24,12 +25,7 @@ class NotificationScheduler {
         logger.info('Starting proactive notification iteration...');
         
         try {
-            // Fetch users (In a real scenario, use pagination/batching)
-            const { data: users, error } = await supabase
-                .from('farmer_profiles')
-                .select('*');
-                
-            if (error) throw error;
+            const users = await profileResolver.getAllFarmerProfiles();
             if (!users || users.length === 0) return;
             
             // Batch processing: process 5 users concurrently to prevent overloading Python/Groq
@@ -38,7 +34,8 @@ class NotificationScheduler {
                 const batch = users.slice(i, i + batchSize);
                 
                 const promises = batch.map(async (user) => {
-                    const newNotifications = await generateProactiveNotificationsForUser(user.id, user);
+                    // Strict Identity Flow: Pass users.id to AI Services, not farmer_profiles.id
+                    const newNotifications = await generateProactiveNotificationsForUser(user.user_id, user);
                     
                     if (newNotifications && newNotifications.length > 0) {
                         const { error: insertError, data: insertedData } = await supabase

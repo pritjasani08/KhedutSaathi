@@ -1,7 +1,7 @@
 import uuid
 from typing import List
-from .schemas import AIRequest, CandidateDecision
-from .utils import get_current_utc_time
+from schemas import AIRequest, CandidateDecision
+from utils import get_current_utc_time
 
 class DecisionEngine:
     """

@@ -1,6 +1,6 @@
 import json
 from typing import List
-from .schemas import AIRequest, CandidateDecision
+from schemas import AIRequest, CandidateDecision
 
 class PromptBuilder:
     @staticmethod

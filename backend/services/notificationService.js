@@ -1,7 +1,9 @@
 const crypto = require('crypto');
-const supabase = require('../config/supabaseClient');
+const { getDbClient } = require('../config/db');
 const logger = require('../utils/logger');
 const axios = require('axios');
+const farmerMemoryService = require('./farmerMemoryService');
+const { resolveFarmerProfile } = require('./profileResolver');
 
 const PYTHON_AI_URL = 'http://127.0.0.1:8000/api/ai/notifications/generate';
 
@@ -16,8 +18,9 @@ function generateSignature(userId, type, trigger) {
 /**
  * Service to deterministically detect alerts and fetch AI explanations.
  */
-exports.generateProactiveNotificationsForUser = async (userId, profile) => {
+exports.generateProactiveNotificationsForUser = async (userId, userProfile) => {
     try {
+        const { farmerProfileId, profile } = await resolveFarmerProfile(userId);
         const candidates = [];
         
         // 1. Fetch recent weather (Simulated or real fetch)
@@ -28,41 +31,37 @@ exports.generateProactiveNotificationsForUser = async (userId, profile) => {
                 id: crypto.randomUUID(),
                 type: 'WEATHER',
                 title: 'Heavy Rainfall Warning',
+                message: 'Heavy rainfall expected in your area in the next 48 hours.',
                 priority: 'HIGH',
-                trigger: 'WEATHER_HEAVY_RAIN',
-                rawFacts: weather,
-                expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString() // 24 hours
+                expiresAt: new Date(Date.now() + 48 * 60 * 60 * 1000).toISOString(),
+                trigger: 'WEATHER_RAIN_HEAVY',
+                rawFacts: { weather: "Heavy Rain" }
             });
         }
-
-        // 2. Market Alert Detection
-        // e.g. check if primary_crop price dropped/spiked > 10%
-        // (Skipped for brevity, but logic would live here)
         
-        if (candidates.length === 0) return []; // No meaningful events detected
-        
-        // 3. Filter out candidates that have already been generated (prevent duplicates)
+        // Deduplicate using recent notifications
+        const adminClient = getDbClient(true);
         const newCandidates = [];
+        
         for (const candidate of candidates) {
             const signature = generateSignature(userId, candidate.type, candidate.trigger);
-            const { data } = await supabase
+            const { data: existing } = await adminClient
                 .from('notifications')
                 .select('id')
                 .eq('notification_signature', signature)
+                .gte('created_at', new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString())
                 .limit(1);
                 
-            if (!data || data.length === 0) {
-                // Attach signature for downstream insertion
+            if (!existing || existing.length === 0) {
                 candidate._signature = signature;
                 newCandidates.push(candidate);
             }
         }
         
         if (newCandidates.length === 0) return [];
-
-        // 4. Send to Python Engine for explanation (Enrichment only)
-        const farmerMemoryService = require('./farmerMemoryService');
-        const { memory, recentDecisions } = await farmerMemoryService.getFarmerMemory(profile.id || userId);
+        
+        // Use users.id for farmerMemoryService strictly!
+        const { memory, recentDecisions } = await farmerMemoryService.getFarmerMemory(userId);
 
         const payload = {
             requestId: crypto.randomUUID(),
@@ -82,7 +81,7 @@ exports.generateProactiveNotificationsForUser = async (userId, profile) => {
         return aiResponse.data.notifications.map(n => {
             const originalCandidate = newCandidates.find(c => c.id === n.id);
             return {
-                user_id: userId,
+                user_id: farmerProfileId, // STRICT CONTRACT: Use farmerProfileId for database insertion!
                 type: n.type,
                 title: n.title,
                 message: n.message,

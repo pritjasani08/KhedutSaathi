@@ -1,5 +1,6 @@
-const supabase = require('../config/supabaseClient');
+const { getDbClient } = require('../config/db');
 const logger = require('../utils/logger');
+const { resolveFarmerProfile } = require('./profileResolver');
 
 /**
  * Service to manage Farmer Memory and History seamlessly
@@ -11,11 +12,14 @@ class FarmerMemoryService {
      */
     async getFarmerMemory(userId) {
         try {
+            const adminClient = getDbClient(true);
+            const { farmerProfileId } = await resolveFarmerProfile(userId);
+            
             // 1. Fetch persistent memory
-            const { data: memory, error: memoryError } = await supabase
+            const { data: memory, error: memoryError } = await adminClient
                 .from('farmer_memory')
                 .select('*')
-                .eq('user_id', userId)
+                .eq('user_id', farmerProfileId)
                 .single();
                 
             if (memoryError && memoryError.code !== 'PGRST116') {
@@ -23,10 +27,10 @@ class FarmerMemoryService {
             }
             
             // 2. Fetch recent decisions (up to 5 for context)
-            const { data: recentDecisions, error: decisionsError } = await supabase
+            const { data: recentDecisions, error: decisionsError } = await adminClient
                 .from('ai_decisions')
                 .select('id, title, decision_type, status, feedback, created_at, actual_crop_planted, actual_yield')
-                .eq('user_id', userId)
+                .eq('user_id', farmerProfileId)
                 .order('created_at', { ascending: false })
                 .limit(5);
                 
@@ -49,28 +53,31 @@ class FarmerMemoryService {
      */
     async updateMemory(userId, updates) {
         try {
+            const adminClient = getDbClient(true);
+            const { farmerProfileId } = await resolveFarmerProfile(userId);
+            
             // Upsert mechanism
-            const { data: existing } = await supabase
+            const { data: existing } = await adminClient
                 .from('farmer_memory')
                 .select('id, memory_version')
-                .eq('user_id', userId)
+                .eq('user_id', farmerProfileId)
                 .single();
                 
             let result;
             if (existing) {
-                result = await supabase
+                result = await adminClient
                     .from('farmer_memory')
                     .update({ 
                         ...updates,
                         memory_version: existing.memory_version + 1,
                         updated_at: new Date().toISOString()
                     })
-                    .eq('user_id', userId);
+                    .eq('user_id', farmerProfileId);
             } else {
-                result = await supabase
+                result = await adminClient
                     .from('farmer_memory')
                     .insert({
-                        user_id: userId,
+                        user_id: farmerProfileId,
                         ...updates
                     });
             }
@@ -89,14 +96,17 @@ class FarmerMemoryService {
      */
     async processFeedback(userId, decisionId, feedback) {
         try {
+            const adminClient = getDbClient(true);
+            const { farmerProfileId } = await resolveFarmerProfile(userId);
+            
             // 1. Update the decision
             const validFeedback = ['UP', 'DOWN', 'NONE'].includes(feedback) ? (feedback === 'NONE' ? null : feedback) : null;
             
-            const { error: updateError } = await supabase
+            const { error: updateError } = await adminClient
                 .from('ai_decisions')
                 .update({ feedback: validFeedback })
                 .eq('id', decisionId)
-                .eq('user_id', userId);
+                .eq('user_id', farmerProfileId);
                 
             if (updateError) throw updateError;
             
@@ -114,10 +124,12 @@ class FarmerMemoryService {
      * Internal deterministic recalculation of feedback and acceptance scores
      */
     async _recalculateMetrics(userId) {
-        const { data: decisions, error } = await supabase
+        const adminClient = getDbClient(true);
+        const { farmerProfileId } = await resolveFarmerProfile(userId);
+        const { data: decisions, error } = await adminClient
             .from('ai_decisions')
             .select('status, feedback')
-            .eq('user_id', userId);
+            .eq('user_id', farmerProfileId);
             
         if (error || !decisions) return;
         
