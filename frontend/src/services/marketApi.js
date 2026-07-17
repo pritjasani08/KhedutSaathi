@@ -10,6 +10,10 @@ export const marketApi = {
     return await api.get('/market-prices', { params });
   },
 
+  getPersonalizedFeed: async (params = {}) => {
+    return await api.get('/market-prices/feed', { params });
+  },
+
   /**
    * Fetch distinct states
    */

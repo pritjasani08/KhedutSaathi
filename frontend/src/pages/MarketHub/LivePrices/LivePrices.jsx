@@ -3,8 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 
 // Hooks
-import { useMarketPrices } from '../../../hooks/useMarketPrices';
+import { useMarketPrices, useMarketFeed } from '../../../hooks/useMarketPrices';
 import { useMarketInsights } from '../../../hooks/useMarketInsights';
+import { useAuth } from '../../../context/AuthContext';
 
 // Shared Components
 import { PageLayout, PageHeader, PageContent } from '../../../components/shared/PageLayout';
@@ -19,6 +20,7 @@ import AdvancedMarketTable from './components/AdvancedMarketTable';
 
 export default function LivePrices() {
   const { t } = useTranslation();
+  const { user } = useAuth();
 
   // Filters State
   const [filters, setFilters] = useState({
@@ -28,8 +30,18 @@ export default function LivePrices() {
     commodity: '',
   });
 
+  const isAuth = !!user;
+
   // Fetch data (React Query handles loading/error internally)
-  const { data, isLoading, isError, refetch } = useMarketPrices(filters);
+  const feedQuery = useMarketFeed(filters);
+  const priceQuery = useMarketPrices(filters);
+  
+  const queryToUse = isAuth ? feedQuery : priceQuery;
+  const { data: rawData, isLoading, isError, refetch } = queryToUse;
+  
+  const data = isAuth ? rawData?.markets || [] : rawData || [];
+  const feedSummary = isAuth ? rawData?.summary : null;
+  const feedFarmer = isAuth ? rawData?.farmer : null;
 
   // Derive mathematical insights
   const { insights, topGainers, overview } = useMarketInsights(data);
@@ -116,7 +128,7 @@ export default function LivePrices() {
           </div>
         </div>
 
-        {/* 3. FULL MARKET DATA */}
+        {/* 3. LIVE MARKET FEED */}
         <div className="mb-10">
           <div className="flex items-center gap-2 mb-4">
             <h2 className="text-lg font-display font-bold text-heading">Full Market Data</h2>
@@ -124,6 +136,8 @@ export default function LivePrices() {
           <AdvancedMarketTable 
             data={data} 
             isLoading={isLoading} 
+            feedSummary={feedSummary}
+            feedFarmer={feedFarmer}
           />
         </div>
 
