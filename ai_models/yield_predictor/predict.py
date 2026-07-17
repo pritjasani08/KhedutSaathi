@@ -1,6 +1,20 @@
 import joblib
 import pandas as pd
 
+import pickle
+import pickle as _pickle_module
+
+class CustomUnpickler(_pickle_module._Unpickler):
+    def find_class(self, module, name):
+        if module.startswith("numpy._core"):
+            module = module.replace("numpy._core", "numpy.core")
+        return super().find_class(module, name)
+
+def custom_pickle_load(file, **kwargs):
+    return CustomUnpickler(file, **kwargs).load()
+
+pickle.load = custom_pickle_load
+
 # Load model
 model = joblib.load("model/yield_model.pkl")
 
