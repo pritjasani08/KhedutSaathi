@@ -1,6 +1,7 @@
 import React from 'react';
-import { ArrowUpRight, ArrowDownRight, ArrowRight, Loader2, AlertTriangle, RefreshCcw, LineChart } from 'lucide-react';
+import { ArrowUpRight, ArrowDownRight, ArrowRight, AlertTriangle, RefreshCcw, LineChart } from 'lucide-react';
 import { useMarketIntelligence } from '../hooks/useMarketIntelligence';
+import SectionLoader from '../../../components/shared/SectionLoader';
 
 export default function MarketSnapshot({ profileData }) {
   const { data: intelligenceResult, isLoading, isError, refetch } = useMarketIntelligence(profileData);
@@ -26,13 +27,13 @@ export default function MarketSnapshot({ profileData }) {
 
   if (isLoading) {
     return (
-      <div className={`${containerClasses} animate-pulse`}>
+      <div className={containerClasses}>
         <div className="p-8 flex flex-col h-full">
           <div className="flex items-center justify-between mb-6">
-            <div className="h-6 w-48 bg-slate-200 dark:bg-slate-800 rounded"></div>
+            <h3 className="font-display font-bold text-heading text-lg">Market Intelligence</h3>
           </div>
           <div className="flex-1 flex items-center justify-center">
-            <Loader2 className="w-8 h-8 animate-spin text-primary" />
+            <SectionLoader minHeight="min-h-[100px]" message="Loading market data..." />
           </div>
         </div>
       </div>

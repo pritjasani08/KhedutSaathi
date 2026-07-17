@@ -1,11 +1,11 @@
-import apiClient from './apiClient';
+import api from './api';
 
 export const getIrrigationAdvice = async (lat, lon, crop = 'Wheat') => {
   try {
-    const response = await apiClient.get('/irrigation/advice', {
+    const data = await api.get('/irrigation/advice', {
       params: { lat, lon, crop }
     });
-    return response.data;
+    return data;
   } catch (error) {
     console.error('Error fetching irrigation advice:', error);
     throw error;

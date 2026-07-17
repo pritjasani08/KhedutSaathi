@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, KeyRound, ArrowRight, Eye, EyeOff, ShieldCheck } from 'lucide-react';
+import LoadingButton from '../../../components/shared/LoadingButton';
 
 export default function ForgotPassword() {
   const navigate = useNavigate();
@@ -136,15 +137,16 @@ export default function ForgotPassword() {
                 </div>
               </div>
 
-              <button
+              <LoadingButton
                 type="submit"
-                disabled={loading}
-                className="w-full btn-primary flex items-center justify-center gap-2 group mt-6 disabled:opacity-70"
+                isLoading={loading}
+                loadingText="Sending OTP..."
+                icon={KeyRound}
+                className="w-full group mt-6"
               >
-                <KeyRound className="w-5 h-5" />
-                {loading ? 'Sending OTP...' : 'Send OTP'}
-                {!loading && <ArrowRight className="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />}
-              </button>
+                Send OTP
+                <ArrowRight className="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />
+              </LoadingButton>
             </form>
           ) : (
             <form onSubmit={handleResetPassword} className="space-y-5">
@@ -214,14 +216,15 @@ export default function ForgotPassword() {
                 </div>
               </div>
 
-              <button
+              <LoadingButton
                 type="submit"
-                disabled={loading}
-                className="w-full btn-primary flex items-center justify-center gap-2 group mt-6 disabled:opacity-70"
+                isLoading={loading}
+                loadingText="Resetting..."
+                icon={KeyRound}
+                className="w-full group mt-6"
               >
-                <KeyRound className="w-5 h-5" />
-                {loading ? 'Resetting...' : 'Reset Password'}
-              </button>
+                Reset Password
+              </LoadingButton>
 
               <div className="text-center mt-4">
                 <button

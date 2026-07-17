@@ -20,6 +20,18 @@ export const useMarketPrices = (filters = {}) => {
   });
 };
 
+export const useMarketFeed = (filters = {}) => {
+  return useQuery({
+    queryKey: ['marketFeed', filters],
+    queryFn: async () => {
+      const res = await marketApi.getPersonalizedFeed(filters);
+      return res.data; // { farmer, summary, markets }
+    },
+    staleTime: 5 * 60 * 1000,
+    placeholderData: (previousData) => previousData,
+  });
+};
+
 /**
  * Hook for dropdown filters
  */

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { User, Mail, Lock, UserPlus, ArrowRight, Eye, EyeOff, Phone, Users, ShieldCheck } from 'lucide-react';
+import LoadingButton from '../../../components/shared/LoadingButton';
 
 export default function Register() {
   const navigate = useNavigate();
@@ -249,15 +250,16 @@ export default function Register() {
               </div>
             </div>
 
-            <button
+            <LoadingButton
               type="submit"
-              disabled={loading}
-              className="w-full btn-primary flex items-center justify-center gap-2 group mt-6 disabled:opacity-70"
+              isLoading={loading}
+              loadingText="Sending OTP..."
+              icon={UserPlus}
+              className="w-full group mt-6"
             >
-              <UserPlus className="w-5 h-5" />
-              {loading ? 'Sending OTP...' : 'Create Account'}
-              {!loading && <ArrowRight className="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />}
-            </button>
+              Create Account
+              <ArrowRight className="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />
+            </LoadingButton>
           </form>
           ) : (
             <form onSubmit={handleVerifyOTP} className="space-y-5">
@@ -279,14 +281,15 @@ export default function Register() {
                 </div>
               </div>
 
-              <button
+              <LoadingButton
                 type="submit"
-                disabled={loading}
-                className="w-full btn-primary flex items-center justify-center gap-2 group mt-6 disabled:opacity-70"
+                isLoading={loading}
+                loadingText="Verifying..."
+                icon={ShieldCheck}
+                className="w-full group mt-6"
               >
-                <ShieldCheck className="w-5 h-5" />
-                {loading ? 'Verifying...' : 'Verify OTP & Register'}
-              </button>
+                Verify OTP &amp; Register
+              </LoadingButton>
 
               <div className="text-center mt-4">
                 <button

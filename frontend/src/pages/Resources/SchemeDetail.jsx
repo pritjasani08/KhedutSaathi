@@ -3,8 +3,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ExternalLink, BookmarkPlus, BookmarkCheck, CheckCircle2, FileText, Globe, MapPin, Tag } from 'lucide-react';
-import apiClient from '../../services/apiClient';
+import api from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
+import PageLoader from '../../components/shared/PageLoader';
 
 export default function SchemeDetails() {
   const { id: slug } = useParams();
@@ -16,20 +17,20 @@ export default function SchemeDetails() {
   const { data: scheme, isLoading, isError } = useQuery({
     queryKey: ['scheme', slug],
     queryFn: async () => {
-      const res = await apiClient.get(`/schemes/${slug}`);
-      if (res.data.success === false) throw new Error('Scheme not found');
-      return res.data.data;
+      const data = await api.get(`/schemes/${slug}`);
+      if (data.success === false) throw new Error('Scheme not found');
+      return data.data;
     }
   });
 
   // Verify if it's bookmarked
   useEffect(() => {
     if (user && scheme) {
-      apiClient.get('/schemes/user/bookmarks', {
+      api.get('/schemes/user/bookmarks', {
         headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
-      }).then(res => {
-        if (res.data.success) {
-          const found = res.data.data.find(b => b.slug === scheme.slug);
+      }).then(data => {
+        if (data.success) {
+          const found = data.data.find(b => b.slug === scheme.slug);
           setIsBookmarked(!!found);
         }
       }).catch(err => console.error(err));
@@ -48,10 +49,10 @@ export default function SchemeDetails() {
       const headers = { 'Authorization': `Bearer ${token}` };
       
       if (isBookmarked) {
-        await apiClient.delete(`/schemes/bookmark/${scheme.slug}`, { headers });
+        await api.delete(`/schemes/bookmark/${scheme.slug}`, { headers });
         setIsBookmarked(false);
       } else {
-        await apiClient.post('/schemes/bookmark', { scheme_slug: scheme.slug }, { headers });
+        await api.post('/schemes/bookmark', { scheme_slug: scheme.slug }, { headers });
         setIsBookmarked(true);
       }
     } catch (err) {
@@ -62,7 +63,7 @@ export default function SchemeDetails() {
   if (isLoading) {
     return (
       <div className="min-h-screen flex justify-center pt-32 bg-background">
-        <div className="w-10 h-10 border-4 border-primary/30 border-t-primary rounded-full animate-spin"></div>
+        <PageLoader message="Loading scheme details..." />
       </div>
     );
   }

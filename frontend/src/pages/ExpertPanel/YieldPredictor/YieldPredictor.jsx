@@ -2,11 +2,12 @@ import { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import {
-  BarChart3, Sprout, Ruler, Loader2, TrendingUp,
+  BarChart3, Sprout, Ruler, TrendingUp,
   MapPin, Map, Sun, Info, AlertCircle, Compass, Calculator,
   ShoppingBag, Landmark, ArrowRight, CheckCircle2, ChevronRight
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import LoadingButton from '../../../components/shared/LoadingButton';
 import stateDistrictMap from './stateDistrictMap.json';
 
 const fadeUp = {
@@ -185,10 +186,15 @@ export default function YieldPredictor({ sharedForm, setSharedForm }) {
             </div>
           </div>
           <div className="mt-6 pt-6 border-t border-slate-100 dark:border-slate-800">
-            <button onClick={handleSubmit} disabled={loading} className="btn-primary w-full flex items-center justify-center gap-2 py-3">
-              {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <BarChart3 className="w-4 h-4" />}
-              <span>{loading ? 'Predicting...' : 'Predict Yield'}</span>
-            </button>
+            <LoadingButton
+              onClick={handleSubmit}
+              isLoading={loading}
+              loadingText="Predicting..."
+              icon={BarChart3}
+              className="w-full py-3"
+            >
+              Predict Yield
+            </LoadingButton>
           </div>
         </motion.div>
       </motion.div>

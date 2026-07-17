@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Upload, MapPin, Package, IndianRupee, Image as ImageIcon, Scale, Loader2 } from 'lucide-react';
+import { Upload, MapPin, Package, IndianRupee, Image as ImageIcon, Scale } from 'lucide-react';
+import LoadingButton from '../../../components/shared/LoadingButton';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -220,10 +221,15 @@ export default function SellYield() {
           </motion.div>
 
           <motion.div variants={fadeUp} custom={6} className="md:col-span-2 flex items-end mt-4">
-            <button type="submit" disabled={loading} className="btn-primary w-full flex items-center justify-center gap-2 py-3 disabled:opacity-70">
-              {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Upload className="w-5 h-5" />}
-              {loading ? 'Posting...' : 'Post Listing'}
-            </button>
+            <LoadingButton
+              type="submit"
+              isLoading={loading}
+              loadingText="Posting..."
+              icon={Upload}
+              className="w-full py-3"
+            >
+              Post Listing
+            </LoadingButton>
           </motion.div>
         </form>
       </motion.div>

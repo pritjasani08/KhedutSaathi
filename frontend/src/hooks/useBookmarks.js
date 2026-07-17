@@ -1,12 +1,12 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import apiClient from '../services/apiClient';
+import api from '../services/api';
 
 export const useBookmarks = () => {
   return useQuery({
     queryKey: ['bookmarks'],
     queryFn: async () => {
       const token = localStorage.getItem('token');
-      const { data } = await apiClient.get('/schemes/user/bookmarks', {
+      const data = await api.get('/schemes/user/bookmarks', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       return data.data; // Array of schemes
@@ -21,7 +21,7 @@ export const useAddBookmark = () => {
   return useMutation({
     mutationFn: async (schemeSlug) => {
       const token = localStorage.getItem('token');
-      const { data } = await apiClient.post('/schemes/bookmark', 
+      const data = await api.post('/schemes/bookmark', 
         { scheme_slug: schemeSlug },
         { headers: { 'Authorization': `Bearer ${token}` } }
       );
@@ -55,7 +55,7 @@ export const useRemoveBookmark = () => {
   return useMutation({
     mutationFn: async (schemeSlug) => {
       const token = localStorage.getItem('token');
-      const { data } = await apiClient.delete(`/schemes/bookmark/${schemeSlug}`, {
+      const data = await api.delete(`/schemes/bookmark/${schemeSlug}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       return data;

@@ -1,0 +1,15 @@
+{
+  "reqUser": {
+    "id": "d3bb8bc9-6cf3-4f17-8f38-be1173e2caf5",
+    "email": "rudrajadvani416@gmail.com",
+    "user_type": "farmer"
+  },
+  "userId": "d3bb8bc9-6cf3-4f17-8f38-be1173e2caf5",
+  "profileData": null,
+  "profileError": {
+    "code": "PGRST205",
+    "details": null,
+    "hint": "Perhaps you meant the table 'public.farmer_profiles'",
+    "message": "Could not find the table 'public.profiles' in the schema cache"
+  }
+}

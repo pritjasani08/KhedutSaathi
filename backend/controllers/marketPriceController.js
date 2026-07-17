@@ -36,6 +36,32 @@ const getMarketPrices = async (req, res, next) => {
   }
 };
 
+const { resolveFarmerProfile } = require('../services/profileResolver');
+
+const getPersonalizedFeed = async (req, res, next) => {
+  try {
+    const { state, district, market, commodity } = req.query;
+    
+    let farmerProfile = { state: '', district: '', primary_crop: '' };
+    if (req.user && req.user.id) {
+       try {
+           const resolved = await resolveFarmerProfile(req.user.id);
+           farmerProfile = resolved.profile || farmerProfile;
+           console.log(`[ProfileResolver] Successfully resolved user ${req.user.id} -> farmer_profiles.id: ${resolved.profile.id}`);
+           console.log(`[MarketFeed] Using profile context: ${farmerProfile.state}, ${farmerProfile.district}, ${farmerProfile.primary_crop}`);
+       } catch (err) {
+           console.warn('[MarketFeed] Profile not found for personalized feed, using empty profile', err.message);
+       }
+    }
+
+    const data = await marketPriceService.getPersonalizedFeed(farmerProfile, { state, district, market, commodity });
+    return successResponse(res, 'Personalized feed retrieved successfully', data);
+  } catch (error) {
+    console.error('[MarketPriceController.getPersonalizedFeed] Error:', error.message);
+    return errorResponse(res, error.message, null, 500);
+  }
+};
+
 const getStates = async (req, res, next) => {
   try {
     const states = await marketPriceService.getStates();
@@ -122,5 +148,6 @@ module.exports = {
   getMarkets,
   getCommodities,
   getMarketPricesByState,
+  getPersonalizedFeed,
   checkHealth
 };

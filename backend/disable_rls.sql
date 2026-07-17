@@ -1,0 +1,1 @@
+ALTER TABLE public.notifications DISABLE ROW LEVEL SECURITY;

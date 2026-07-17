@@ -1,4 +1,5 @@
 const supabase = require('../config/supabaseClient');
+const { resolveFarmerProfile } = require('../services/profileResolver');
 const { calculateCompletion } = require('./profileController'); // Needs export or reimplementation
 
 const getOverview = async (req, res) => {
@@ -21,12 +22,8 @@ const getOverview = async (req, res) => {
 
     // 1. Profile (if farmer)
     if (userType === 'farmer') {
-      const profilePromise = supabase
-        .from('farmer_profiles')
-        .select('*')
-        .eq('user_id', userId)
-        .single()
-        .then(({ data }) => {
+      const profilePromise = resolveFarmerProfile(userId)
+        .then(({ profile: data }) => {
           if (data) {
             responseData.profile = data;
             // calculate completion percentage locally here to avoid cross-controller deps
@@ -36,6 +33,15 @@ const getOverview = async (req, res) => {
               if (data[field] !== null && data[field] !== undefined && data[field] !== '') filled++;
             });
             responseData.completionPercentage = Math.round((filled / fields.length) * 100);
+          }
+        })
+        .catch(err => {
+          if (err.name === 'FarmerProfileNotFoundError') {
+             // Graceful degradation: The user has no profile, but we can still load the dashboard empty states.
+             responseData.profile = null;
+             responseData.completionPercentage = 0;
+          } else {
+             throw err;
           }
         });
       promises.push(profilePromise);

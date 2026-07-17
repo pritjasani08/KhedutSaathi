@@ -1,10 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { PackageSearch, ShoppingBag, PlusCircle, IndianRupee, UploadCloud, Box, LayoutGrid, Tractor, Loader2 } from 'lucide-react';
+import { PackageSearch, ShoppingBag, PlusCircle, IndianRupee, UploadCloud, Box, LayoutGrid, Tractor } from 'lucide-react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { supabase } from '../../services/supabase/client';
+import LoadingButton from '../../components/shared/LoadingButton';
 import { useAuth } from '../../context/AuthContext';
 import SkeletonCard from '../../components/shared/SkeletonCard';
+import EmptyState from '../../components/shared/EmptyState';
 
 const UNIT_MAP = {
   'Seeds': ['Kg', 'Gram', 'Packet'],
@@ -262,18 +264,21 @@ export default function SellerDashboard() {
                     </div>
                   ))}
                   {products.length === 0 && (
-                    <div className="col-span-full py-24 flex flex-col items-center justify-center bg-surface rounded-3xl border border-dashed border-subtle transition-colors duration-300">
-                      <div className="w-20 h-20 bg-surface-muted rounded-full flex items-center justify-center mb-6 shadow-sm border border-subtle transition-colors duration-300">
-                        <PackageSearch className="w-10 h-10 text-slate-400 dark:text-slate-500" />
-                      </div>
-                      <h3 className="text-xl font-bold text-heading mb-2 transition-colors duration-300">Your inventory is empty</h3>
-                      <p className="text-body opacity-80 mb-6 text-center max-w-sm transition-colors duration-300">You haven't listed any products for sale yet. Add your first product to start selling to farmers.</p>
-                      <button 
-                        onClick={() => navigate('/seller-dashboard/add')}
-                        className="btn-primary flex items-center gap-2"
-                      >
-                        <PlusCircle className="w-5 h-5" /> List a Product
-                      </button>
+                    <div className="col-span-full">
+                      <EmptyState
+                        icon={PackageSearch}
+                        title="Your inventory is empty"
+                        description="You haven't listed any products for sale yet. Add your first product to start selling to farmers."
+                        variant="page"
+                        action={
+                          <button 
+                            onClick={() => navigate('/seller-dashboard/add')}
+                            className="btn-primary flex items-center gap-2"
+                          >
+                            <PlusCircle className="w-5 h-5" /> List a Product
+                          </button>
+                        }
+                      />
                     </div>
                   )}
                 </div>
@@ -366,13 +371,14 @@ export default function SellerDashboard() {
                 </div>
 
                 <div className="pt-6 border-t border-subtle transition-colors duration-300">
-                  <button type="submit" disabled={isSubmitting} className="btn-primary w-full text-lg py-4 flex items-center justify-center disabled:opacity-70">
-                    {isSubmitting ? (
-                      <><Loader2 className="w-5 h-5 mr-2 animate-spin" /> Publishing...</>
-                    ) : (
-                      'Publish Product to Marketplace'
-                    )}
-                  </button>
+                  <LoadingButton
+                    type="submit"
+                    isLoading={isSubmitting}
+                    loadingText="Publishing..."
+                    className="w-full text-lg py-4"
+                  >
+                    Publish Product to Marketplace
+                  </LoadingButton>
                 </div>
               </form>
             </motion.div>

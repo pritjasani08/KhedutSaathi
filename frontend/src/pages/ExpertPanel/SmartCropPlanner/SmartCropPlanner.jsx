@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import {
-  MapPin, Droplets, Clock, Sprout, Leaf, Loader2, AlertCircle,
+  MapPin, Droplets, Clock, Sprout, Leaf, AlertCircle,
   TrendingUp, Compass, ShoppingBag, Landmark, ArrowRight, CheckCircle2, ChevronRight, CloudSun
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import LoadingButton from '../../../components/shared/LoadingButton';
 import axios from 'axios';
 import { stateDistrictMap } from '../../../data/stateDistrictMap';
 
@@ -234,10 +235,15 @@ export default function SmartCropPlanner({ sharedForm, setSharedForm, switchToYi
           </div>
 
           <div className="mt-6 pt-6 border-t border-slate-100 dark:border-slate-800">
-            <button onClick={handleSubmit} disabled={loading} className="btn-primary w-full flex items-center justify-center gap-2 py-3">
-              {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sprout className="w-4 h-4" />}
-              <span>Generate Plan</span>
-            </button>
+            <LoadingButton
+              onClick={handleSubmit}
+              isLoading={loading}
+              loadingText="Generating..."
+              icon={Sprout}
+              className="w-full py-3"
+            >
+              Generate Plan
+            </LoadingButton>
           </div>
         </motion.div>
       </motion.div>

@@ -1,10 +1,11 @@
 import React, { useState, useMemo } from 'react';
-import { Search, ChevronUp, ChevronDown, ArrowRight, Loader2, MapPin } from 'lucide-react';
+import { Search, ChevronUp, ChevronDown, ArrowRight, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
+import LoadingSkeleton from '../../../../components/market-prices/LoadingSkeleton';
 
 const ITEMS_PER_PAGE = 15;
 
-export default function AdvancedMarketTable({ data = [], isLoading }) {
+export default function AdvancedMarketTable({ data = [], isLoading, feedSummary, feedFarmer }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [sortConfig, setSortConfig] = useState({ key: 'modal_price', direction: 'desc' });
   const [currentPage, setCurrentPage] = useState(1);
@@ -65,13 +66,16 @@ export default function AdvancedMarketTable({ data = [], isLoading }) {
     return sortConfig.direction === 'asc' ? <ChevronUp className="w-4 h-4 text-primary" /> : <ChevronDown className="w-4 h-4 text-primary" />;
   };
 
+  const getBadgeClass = (label) => {
+    if (label === 'Same District') return 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/50';
+    if (label === 'Recommended') return 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400 border border-blue-200 dark:border-blue-800/50';
+    if (label === 'Nearby District') return 'bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-400 border border-teal-200 dark:border-teal-800/50';
+    if (label === 'Same State') return 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800/50';
+    return 'bg-slate-100 text-slate-600 border border-slate-200';
+  };
+
   if (isLoading) {
-    return (
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-8 flex flex-col items-center justify-center text-slate-500 min-h-[400px]">
-        <Loader2 className="w-8 h-8 animate-spin text-primary mb-4" />
-        <p>Loading market data...</p>
-      </div>
-    );
+    return <LoadingSkeleton />;
   }
 
   return (
@@ -106,7 +110,10 @@ export default function AdvancedMarketTable({ data = [], isLoading }) {
               <th className="p-4 cursor-pointer group hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" onClick={() => handleSort('commodity')}>
                 <div className="flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-slate-500">Crop {renderSortIcon('commodity')}</div>
               </th>
-              <th className="p-4 cursor-pointer group hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" onClick={() => handleSort('market')}>
+              {feedSummary && (
+              <th className="p-4 text-xs font-bold uppercase tracking-wider text-slate-500">Relevance</th>
+            )}
+            <th className="p-4 cursor-pointer group hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" onClick={() => handleSort('market')}>
                 <div className="flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-slate-500">Market {renderSortIcon('market')}</div>
               </th>
               <th className="p-4 cursor-pointer group hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" onClick={() => handleSort('modal_price')}>

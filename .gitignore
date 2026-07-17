@@ -111,3 +111,10 @@ dist/
 ai_models/crop_recommendation/models/*.pkl
 
 frontend.zip
+
+# Documentation
+docs/
+
+# Chroma Vector Database
+rag_system/vector_db/
+*.sqlite3

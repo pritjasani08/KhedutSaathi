@@ -40,8 +40,8 @@ def main():
         X = df[input_columns]
         y = df[target_column]
 
-        # Encode categorical features using OrdinalEncoder
-        feature_encoder = OrdinalEncoder()
+        # Encode categorical features using OrdinalEncoder with handle_unknown
+        feature_encoder = OrdinalEncoder(handle_unknown='use_encoded_value', unknown_value=-1)
         X_encoded = X.copy()
         X_encoded[categorical_features] = feature_encoder.fit_transform(X[categorical_features])
 

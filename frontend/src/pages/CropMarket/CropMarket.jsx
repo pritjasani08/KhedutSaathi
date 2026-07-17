@@ -6,6 +6,7 @@ import {
   Search, ShoppingCart, MapPin, IndianRupee, Image as ImageIcon, Gavel, User, Loader2, PackageOpen, X, ChevronLeft, ChevronRight
 } from 'lucide-react';
 import SkeletonCard from '../../components/shared/SkeletonCard';
+import EmptyState from '../../components/shared/EmptyState';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -132,12 +133,12 @@ export default function CropMarket() {
         ) : error ? (
           <div className="text-center text-red-500 py-10">{error}</div>
         ) : filteredListings.length === 0 ? (
-          <div className="text-center py-16">
-            <div className="w-24 h-24 bg-slate-100 rounded-3xl flex items-center justify-center mx-auto mb-4">
-              <PackageOpen className="w-12 h-12 text-slate-300" />
-            </div>
-            <p className="text-slate-400 text-lg">No listings available right now.</p>
-          </div>
+          <EmptyState 
+            icon={PackageOpen}
+            title="No listings available"
+            description="There are no listings available right now matching your criteria."
+            variant="page"
+          />
         ) : (
           <motion.div
             initial="hidden" animate="visible"
