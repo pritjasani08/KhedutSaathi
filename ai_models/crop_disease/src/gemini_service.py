@@ -2,11 +2,8 @@ import os
 import google.generativeai as genai
 from dotenv import load_dotenv
 
-# Path to the main KhedutSaathi/.env
-ENV_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', '.env'))
-
 def get_gemini_client():
-    load_dotenv(ENV_PATH)
+    load_dotenv()
     api_key = os.getenv("CROP_DISEASE_GEMINI_API_KEY")
     
     if not api_key:

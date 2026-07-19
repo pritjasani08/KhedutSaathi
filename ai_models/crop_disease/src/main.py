@@ -3,12 +3,7 @@ import uvicorn
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from src.inference import DiseasePredictor
-import sys
-import os
-
-# Add parent directory to path to import translator_utils
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(os.path.dirname(__file__)))))
-from translator_utils import translate_dict
+from src.translator_utils import translate_dict
 
 app = FastAPI(title="Crop Disease Detection API", description="API for detecting crop diseases from images")
 
