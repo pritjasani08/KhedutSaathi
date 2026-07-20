@@ -34,7 +34,7 @@ if not has_gemini_key:
     raise ValueError("Missing GEMINI_API_KEY in project root .env")
 
 GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
-EMBEDDING_MODEL_NAME = os.getenv("EMBEDDING_MODEL", "BAAI/bge-m3")
+EMBEDDING_MODEL_NAME = os.getenv("EMBEDDING_MODEL", "sentence-transformers/all-MiniLM-L6-v2")
 EMBEDDING_DEVICE = os.getenv("EMBEDDING_DEVICE", "auto")
 EMBEDDING_BATCH_SIZE = os.getenv("EMBEDDING_BATCH_SIZE", "")
 
