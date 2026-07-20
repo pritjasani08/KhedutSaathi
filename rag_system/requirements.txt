@@ -8,3 +8,5 @@ beautifulsoup4
 requests
 python-dotenv
 sentence-transformers
+PyMuPDF
+PyYAML

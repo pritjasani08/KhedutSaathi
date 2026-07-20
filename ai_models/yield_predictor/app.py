@@ -13,16 +13,21 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+import os
+
+# Define the absolute directory where the model files are located
+models_dir = os.path.join(os.path.dirname(__file__), "model")
+
 # Load model
-model = joblib.load("model/yield_model.pkl")
+model = joblib.load(os.path.join(models_dir, "yield_model.pkl"))
 
 # Load encoders
-state_encoder = joblib.load("model/state_encoder.pkl")
-district_encoder = joblib.load("model/district_encoder.pkl")
-crop_encoder = joblib.load("model/crop_encoder.pkl")
-season_encoder = joblib.load("model/season_encoder.pkl")
-state_crop_encoder = joblib.load("model/state_crop_encoder.pkl")
-district_crop_encoder = joblib.load("model/district_crop_encoder.pkl")
+state_encoder = joblib.load(os.path.join(models_dir, "state_encoder.pkl"))
+district_encoder = joblib.load(os.path.join(models_dir, "district_encoder.pkl"))
+crop_encoder = joblib.load(os.path.join(models_dir, "crop_encoder.pkl"))
+season_encoder = joblib.load(os.path.join(models_dir, "season_encoder.pkl"))
+state_crop_encoder = joblib.load(os.path.join(models_dir, "state_crop_encoder.pkl"))
+district_crop_encoder = joblib.load(os.path.join(models_dir, "district_crop_encoder.pkl"))
 def find_match(user_input, encoder):
     user_input = user_input.strip().lower()
 

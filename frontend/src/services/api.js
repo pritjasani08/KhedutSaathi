@@ -111,7 +111,8 @@ export const sellYieldAPI = {
 
 // Expert Panel - Crop Planner
 export const cropPlannerAPI = {
-  getRecommendations: (data) => api.post('/crop-planner/recommend', data),
+  getRecommendations: (data) => api.post('/crop-planner/recommend', data), // Legacy
+  getPlan: (data) => api.post('/crop-planner/plan', data), // 3.0
 };
 
 // Yield Predictor

@@ -35,6 +35,8 @@ if not has_gemini_key:
 
 GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
 EMBEDDING_MODEL_NAME = os.getenv("EMBEDDING_MODEL", "BAAI/bge-m3")
+EMBEDDING_DEVICE = os.getenv("EMBEDDING_DEVICE", "auto")
+EMBEDDING_BATCH_SIZE = os.getenv("EMBEDDING_BATCH_SIZE", "")
 
 chroma_path_env = os.getenv("CHROMA_DB_PATH", "rag_system/vector_db")
 CHROMA_DB_PATH = PROJECT_ROOT / chroma_path_env if not Path(chroma_path_env).is_absolute() else Path(chroma_path_env)
