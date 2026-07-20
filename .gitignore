@@ -116,4 +116,27 @@ docs/
 
 # Chroma Vector Database
 rag_system/vector_db/
+chroma/
 *.sqlite3
+
+# Models
+*.pt
+*.pth
+*.bin
+*.safetensors
+
+# Cache
+.cache/
+
+# Temporary
+tmp/
+temp/
+scratch/
+/knowledge/
+
+# RAG Runtime Knowledge Assets
+rag_system/knowledge/downloads/
+rag_system/knowledge/metadata/
+rag_system/knowledge/rejected/
+rag_system/knowledge/documents/**/*.pdf
+rag_system/knowledge/documents/**/*.structure.json

@@ -1,0 +1,69 @@
+# Knowledge Acquisition Configuration
+
+sources:
+  ICAR:
+    include_keywords:
+      - production
+      - cultivation
+      - irrigation
+      - fertilizer
+      - disease
+      - pest
+      - handbook
+      - practice
+      - recommendation
+    exclude_keywords:
+      - recruitment
+      - tender
+      - annual report
+      - newsletter
+      - finance
+      - syllabus
+  
+  FAO:
+    include_keywords:
+      - manual
+      - guide
+      - guidelines
+      - technical
+      - agriculture
+      - pest
+    exclude_keywords:
+      - meeting
+      - administrative
+      - job
+      - financial
+      
+  JAU:
+    include_keywords:
+      - package of practices
+      - saurashtra
+      - recommendation
+      - extension
+    exclude_keywords:
+      - tender
+      - admission
+      - result
+      - circular
+      
+  PAU:
+    include_keywords:
+      - package of practices
+      - punjab
+      - rabi
+      - kharif
+    exclude_keywords:
+      - notification
+      - tender
+      - result
+      
+  TNAU:
+    include_keywords:
+      - agritech
+      - portal
+      - practices
+      - crop
+    exclude_keywords:
+      - events
+      - tender
+      - admission

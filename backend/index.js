@@ -26,6 +26,7 @@ const notificationRoutes = require('./routes/notificationRoutes');
 const notificationScheduler = require('./jobs/notificationScheduler');
 const timelineScheduler = require('./jobs/timelineScheduler');
 const timelineRoutes = require('./routes/timelineRoutes');
+const knowledgeRoutes = require('./modules/knowledge/routes/knowledgeRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -75,6 +76,13 @@ app.use('/api/chat-history', chatHistoryRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/timeline', timelineRoutes);
+app.use('/api/knowledge', knowledgeRoutes);
+
+const cropPlannerRoutes = require('./routes/cropPlannerRoutes');
+app.use('/api/crop-planner', cropPlannerRoutes);
+
+const yieldPredictorRoutes = require('./routes/yieldPredictorRoutes');
+app.use('/api/yield-predictor', yieldPredictorRoutes);
 
 // Initialize Scheduler
 notificationScheduler.start();

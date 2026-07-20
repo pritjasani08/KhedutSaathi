@@ -158,9 +158,12 @@ def predict_crop(request: PredictionRequest):
         
         # Extract the top 3 crops that match the requested duration best
         recommended_crops = [item['crop'] for item in candidate_crops[:3]]
+        
+        ranking = [{"crop": item['crop'], "probability": float(item['prob'])} for item in candidate_crops[:3]]
             
         return {
-            "recommended_crops": recommended_crops
+            "recommended_crops": recommended_crops,
+            "ranking": ranking
         }
 
     except Exception as e:

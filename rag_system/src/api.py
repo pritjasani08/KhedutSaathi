@@ -14,8 +14,11 @@ dotenv_path = os.path.join(
 load_dotenv(dotenv_path)
 
 # FIXED IMPORTS
-from rag_system.src.schemas import AskRequest, AskResponse
+from rag_system.src.schemas import AskRequest, AskResponse, KnowledgeSearchRequest, KnowledgeSearchResponse
 from rag_system.src.api_utils import process_query
+from rag_system.src.knowledge_engine.retriever import KnowledgeRetriever
+
+retriever = KnowledgeRetriever()
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -74,3 +77,30 @@ def ask_question(request: AskRequest):
             success=False,
             error=str(e)
         )
+
+@app.post("/knowledge/search", response_model=KnowledgeSearchResponse)
+def knowledge_search(request: KnowledgeSearchRequest):
+    if not request.query or not request.query.strip():
+        return KnowledgeSearchResponse(success=False, error="Query cannot be empty.")
+        
+    try:
+        logger.info(f"Knowledge API received query: {request.query}")
+        
+        results = retriever.search(
+            query=request.query,
+            filters=request.filters,
+            crop=request.crop,
+            topic=request.topic
+        )
+        
+        return KnowledgeSearchResponse(
+            success=True,
+            retrievedDocuments=results.get("retrievedDocuments", []),
+            retrievedSections=results.get("retrievedSections", []),
+            retrievedChunks=results.get("retrievedChunks", []),
+            citations=results.get("citations", [])
+        )
+        
+    except Exception as e:
+        logger.exception("Error processing knowledge search")
+        return KnowledgeSearchResponse(success=False, error=str(e))

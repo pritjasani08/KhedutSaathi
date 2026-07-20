@@ -7,6 +7,8 @@ import { ToastProvider } from './context/ToastContext';
 import { AuthProvider } from './context/AuthContext';
 import { ChatProvider } from './context/ChatContext';
 import { WishlistProvider } from './context/WishlistContext';
+import { FarmProvider } from './context/FarmContext';
+import { CrossModuleProvider } from './context/CrossModuleContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ChatbotWidget from './components/ChatbotWidget';
@@ -146,10 +148,14 @@ export default function App() {
           <AuthProvider>
             <WishlistProvider>
               <ChatProvider>
-                <Router>
-                  <ScrollToTop />
-                  <AppContent />
-                </Router>
+                <FarmProvider>
+                  <CrossModuleProvider>
+                    <Router>
+                      <ScrollToTop />
+                      <AppContent />
+                    </Router>
+                  </CrossModuleProvider>
+                </FarmProvider>
               </ChatProvider>
             </WishlistProvider>
           </AuthProvider>
