@@ -4,8 +4,10 @@ const schemesController = require('../controllers/schemesController');
 // If auth is not exported correctly from auth middleware, I will just try to import it.
 // Checking earlier: `auth.js` in routes might be handling it, but usually there's a middleware. Let's assume it's there or I will provide a simple verify token if needed. Wait, in `backend/routes/profileRoutes.js` they use `require('../middleware/auth')`. Let's assume `../middleware/auth` exists.
 
-router.post('/eligible', schemesController.checkEligibility);
-router.get('/recommendations', schemesController.getRecommendations);
+const { optionalAuth } = require('../middleware/authMiddleware');
+
+router.post('/eligible', optionalAuth, schemesController.checkEligibility);
+router.get('/recommendations', optionalAuth, schemesController.getRecommendations);
 router.get('/:slug', schemesController.getSchemeBySlug);
 
 // Protected routes

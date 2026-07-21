@@ -1,5 +1,9 @@
 const supabase = require('../config/supabaseClient');
 const { v4: uuidv4 } = require('uuid');
+const eventBus = require('../utils/eventBus');
+const { 
+  MARKETPLACE_LISTING_CREATED, MARKETPLACE_BID_PLACED, MARKETPLACE_ORDER_CREATED, buildEventPayload 
+} = require('../constants/events');
 
 // Create a new listing (Farmer only)
 const createListing = async (req, res) => {
@@ -63,6 +67,7 @@ const createListing = async (req, res) => {
       }
     }
 
+    eventBus.emit(MARKETPLACE_LISTING_CREATED, buildEventPayload(MARKETPLACE_LISTING_CREATED, farmerId, listing.id, 'marketplace', { cropName }));
     res.status(201).json({ message: 'Listing created successfully!', listing });
   } catch (error) {
     console.error('Error creating listing:', error);
@@ -179,6 +184,7 @@ const placeBid = async (req, res) => {
 
     if (bidError) throw bidError;
 
+    eventBus.emit(MARKETPLACE_BID_PLACED, buildEventPayload(MARKETPLACE_BID_PLACED, buyerId, bid.id, 'marketplace', { bidPrice, listingId }));
     res.status(201).json({ message: 'Bid placed successfully!', bid });
   } catch (error) {
     console.error('Error placing bid:', error);
@@ -235,6 +241,7 @@ const acceptBid = async (req, res) => {
 
     if (updateError) throw updateError;
 
+    eventBus.emit(MARKETPLACE_ORDER_CREATED, buildEventPayload(MARKETPLACE_ORDER_CREATED, farmerId, acceptedDeal.id, 'marketplace', { buyerId: bid.buyer_id, finalPrice: bid.bid_price }));
     res.status(200).json({ message: 'Bid accepted successfully! Deal closed.', deal: acceptedDeal });
   } catch (error) {
     console.error('Error accepting bid:', error);

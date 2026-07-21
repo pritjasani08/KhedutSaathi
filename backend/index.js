@@ -25,8 +25,13 @@ const adminRoutes = require('./routes/adminRoutes');
 const notificationRoutes = require('./routes/notificationRoutes');
 const notificationScheduler = require('./jobs/notificationScheduler');
 const timelineScheduler = require('./jobs/timelineScheduler');
+const weatherScheduler = require('./jobs/weatherScheduler');
+const schemeScheduler = require('./jobs/schemeScheduler');
+const lifecycleScheduler = require('./jobs/lifecycleScheduler');
+const maintenanceScheduler = require('./services/maintenanceScheduler');
 const timelineRoutes = require('./routes/timelineRoutes');
 const knowledgeRoutes = require('./modules/knowledge/routes/knowledgeRoutes');
+const eventsRoutes = require('./routes/eventsRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -77,6 +82,7 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/timeline', timelineRoutes);
 app.use('/api/knowledge', knowledgeRoutes);
+app.use('/api/events', eventsRoutes);
 
 const cropPlannerRoutes = require('./routes/cropPlannerRoutes');
 app.use('/api/crop-planner', cropPlannerRoutes);
@@ -84,9 +90,16 @@ app.use('/api/crop-planner', cropPlannerRoutes);
 const yieldPredictorRoutes = require('./routes/yieldPredictorRoutes');
 app.use('/api/yield-predictor', yieldPredictorRoutes);
 
-// Initialize Scheduler
+// Initialize Schedulers
 notificationScheduler.start();
 timelineScheduler.start();
+weatherScheduler();
+schemeScheduler();
+lifecycleScheduler();
+maintenanceScheduler.start();
+
+// Initialize Event-Driven Automation Orchestrator
+const automationOrchestrator = require('./services/automationOrchestrator');
 
 // Health check endpoint
 app.get('/health', (req, res) => {
@@ -115,7 +128,7 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500).json(response);
 });
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`KhedutSaathi Backend Server running on http://localhost:${PORT}`);
   
   if (process.env.NODE_ENV !== 'production') {
@@ -130,3 +143,31 @@ app.listen(PORT, () => {
     } catch (e) {}
   }
 });
+
+// Graceful Shutdown Handler
+const gracefulShutdown = async () => {
+    console.log('Received shutdown signal. Initiating graceful shutdown...');
+    try {
+        // Stop Express server
+        server.close(() => console.log('HTTP server closed.'));
+        
+        // Stop schedulers
+        maintenanceScheduler.stop();
+        notificationScheduler.stop();
+        timelineScheduler.stop();
+        
+        // Wait for in-flight events in Orchestrator
+        if (automationOrchestrator.gracefulShutdown) {
+            await automationOrchestrator.gracefulShutdown();
+        }
+        
+        console.log('Graceful shutdown complete. Exiting.');
+        process.exit(0);
+    } catch (error) {
+        console.error('Error during shutdown:', error);
+        process.exit(1);
+    }
+};
+
+process.on('SIGTERM', gracefulShutdown);
+process.on('SIGINT', gracefulShutdown);

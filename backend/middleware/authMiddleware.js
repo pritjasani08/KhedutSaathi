@@ -24,6 +24,19 @@ const requireAuth = (req, res, next) => {
   }
 };
 
+const optionalAuth = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+  if (authHeader && authHeader.startsWith('Bearer ')) {
+    const token = authHeader.split(' ')[1];
+    try {
+      req.user = jwt.verify(token, process.env.JWT_SECRET || 'fallback_secret_for_dev_only');
+    } catch (error) {
+      // Ignore invalid token for optional auth
+    }
+  }
+  next();
+};
+
 const requireFarmer = (req, res, next) => {
   requireAuth(req, res, () => {
     if (req.user && req.user.user_type === 'farmer') {
@@ -44,4 +57,4 @@ const requireBuyer = (req, res, next) => {
   });
 };
 
-module.exports = { requireAuth, requireFarmer, requireBuyer };
+module.exports = { requireAuth, requireFarmer, requireBuyer, optionalAuth };

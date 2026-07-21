@@ -1,0 +1,240 @@
+{
+    "_metadata": {
+        "chunk_version": "2.1",
+        "embedding_model": "BAAI/bge-m3",
+        "index_version": "1.1",
+        "ingestion_timestamp": "1784641465.4593756"
+    },
+    "documents": {
+        "C:\\Users\\amit0\\Desktop\\MyProjects\\KhedutSaathi\\rag_system\\scripts\\..\\knowledge\\documents\\FAO\\wheat_dummy.pdf": {
+            "document_id": "wheat_dummy",
+            "file_name": "wheat_dummy.pdf",
+            "sha256": "6e11cd1d8fc56004ca46fb290e181fd0bb521d12cca86101a93c76190e093506",
+            "chunk_count": 2,
+            "embedding_model": "BAAI/bge-m3",
+            "chunk_version": "2.1",
+            "index_version": "1.1",
+            "last_indexed": "1784639000.6556683"
+        },
+        "C:\\Users\\amit0\\Desktop\\MyProjects\\KhedutSaathi\\rag_system\\scripts\\..\\knowledge\\documents\\TNAU\\ACRC__South_West_Monsoon_2026.pdf": {
+            "document_id": "ACRC__South_West_Monsoon_2026",
+            "file_name": "ACRC__South_West_Monsoon_2026.pdf",
+            "sha256": "36f46a39a8bab6661b099b06f245a1e8b1493526451a15dc6035aaf6ff489a3c",
+            "chunk_count": 6,
+            "embedding_model": "BAAI/bge-m3",
+            "chunk_version": "2.1",
+            "index_version": "1.1",
+            "last_indexed": "1784639002.0406935"
+        },
+        "C:\\Users\\amit0\\Desktop\\MyProjects\\KhedutSaathi\\rag_system\\scripts\\..\\knowledge\\documents\\TNAU\\Crop_Guide_Agri.pdf": {
+            "document_id": "Crop_Guide_Agri",
+            "file_name": "Crop_Guide_Agri.pdf",
+            "sha256": "adbb66a8efc7bc24cb6b4afc99782519cf41d8b1ca0414c486db6627d7bc5c7f",
+            "chunk_count": 1167,
+            "embedding_model": "BAAI/bge-m3",
+            "chunk_version": "2.1",
+            "index_version": "1.1",
+            "last_indexed": "1784639415.901315"
+        },
+        "C:\\Users\\amit0\\Desktop\\MyProjects\\KhedutSaathi\\rag_system\\scripts\\..\\knowledge\\documents\\TNAU\\Crop_Guide_Horti.pdf": {
+            "document_id": "Crop_Guide_Horti",
+            "file_name": "Crop_Guide_Horti.pdf",
+            "sha256": "39c5b8a2ef5579c7de426f89a8232ac9c4be48919a2afbe47fcaf8e53217f693",
+            "chunk_count": 828,
+            "embedding_model": "BAAI/bge-m3",
+            "chunk_version": "2.1",
+            "index_version": "1.1",
+            "last_indexed": "1784639977.3462477"
+        },
+        "C:\\Users\\amit0\\Desktop\\MyProjects\\KhedutSaathi\\rag_system\\scripts\\..\\knowledge\\documents\\TNAU\\Crop_Specific_SOP.pdf": {
+            "document_id": "Crop_Specific_SOP",
+            "file_name": "Crop_Specific_SOP.pdf",
+            "sha256": "caea32c71506f423f6efb69fcb3aba944d021fa1d9fc8e1403281c495a6a6b25",
+            "chunk_count": 83,
+            "embedding_model": "BAAI/bge-m3",
+            "chunk_version": "2.1",
+            "index_version": "1.1",
+            "last_indexed": "1784640003.6791072"
+        },
+        "C:\\Users\\amit0\\Desktop\\MyProjects\\KhedutSaathi\\rag_system\\scripts\\..\\knowledge\\documents\\TNAU\\Disasters_on_Agriculture_and_Food_Security.pdf": {
+            "document_id": "Disasters_on_Agriculture_and_Food_Security",
+            "file_name": "Disasters_on_Agriculture_and_Food_Security.pdf",
+            "sha256": "7e01b8a52721b295602a0aa35abbfc3b7eb7e7cde3f05ad07341efe3444eae52",
+            "chunk_count": 610,
+            "embedding_model": "BAAI/bge-m3",
+            "chunk_version": "2.1",
+            "index_version": "1.1",
+            "last_indexed": "1784640171.3439214"
+        },
+        "C:\\Users\\amit0\\Desktop\\MyProjects\\KhedutSaathi\\rag_system\\scripts\\..\\knowledge\\documents\\TNAU\\District_Level_Seasonal_Rainfall_Forecast_for_Southwest_Monsoon_2025.pdf": {
+            "document_id": "District_Level_Seasonal_Rainfall_Forecast_for_Southwest_Monsoon_2025",
+            "file_name": "District_Level_Seasonal_Rainfall_Forecast_for_Southwest_Monsoon_2025.pdf",
+            "sha256": "995a5ef327d5c76c968d4cc6ba9152cf29430f78801f37ad2f804eea7d110ed5",
+            "chunk_count": 5,
+            "embedding_model": "BAAI/bge-m3",
+            "chunk_version": "2.1",
+            "index_version": "1.1",
+            "last_indexed": "1784640173.255165"
+        },
+        "C:\\Users\\amit0\\Desktop\\MyProjects\\KhedutSaathi\\rag_system\\scripts\\..\\knowledge\\documents\\TNAU\\FAO_Agricultural_Outlook_20242033.pdf": {
+            "document_id": "FAO_Agricultural_Outlook_20242033",
+            "file_name": "FAO_Agricultural_Outlook_20242033.pdf",
+            "sha256": "a7f5cc5dca794e48ab444e15c8e0b34cb730703e242cdde79910cbd4d5ff9706",
+            "chunk_count": 1308,
+            "embedding_model": "BAAI/bge-m3",
+            "chunk_version": "2.1",
+            "index_version": "1.1",
+            "last_indexed": "1784640741.5815046"
+        },
+        "C:\\Users\\amit0\\Desktop\\MyProjects\\KhedutSaathi\\rag_system\\scripts\\..\\knowledge\\documents\\TNAU\\Farmers_Innovations_2025.pdf": {
+            "document_id": "Farmers_Innovations_2025",
+            "file_name": "Farmers_Innovations_2025.pdf",
+            "sha256": "99dbe3260cd43284f8eb78e00a415f4f1a92a3cd8d5741bdc9f2b20225d2efc1",
+            "chunk_count": 838,
+            "embedding_model": "BAAI/bge-m3",
+            "chunk_version": "2.1",
+            "index_version": "1.1",
+            "last_indexed": "1784640854.1191022"
+        },
+        "C:\\Users\\amit0\\Desktop\\MyProjects\\KhedutSaathi\\rag_system\\scripts\\..\\knowledge\\documents\\TNAU\\Four_Scenarios_for_the_World_of_2050.pdf": {
+            "document_id": "Four_Scenarios_for_the_World_of_2050",
+            "file_name": "Four_Scenarios_for_the_World_of_2050.pdf",
+            "sha256": "5e264d2e9d275c12e0164ee27971cfff00415e2945c35e4f536e12f51560c58a",
+            "chunk_count": 186,
+            "embedding_model": "BAAI/bge-m3",
+            "chunk_version": "2.1",
+            "index_version": "1.1",
+            "last_indexed": "1784640890.8331127"
+        },
+        "C:\\Users\\amit0\\Desktop\\MyProjects\\KhedutSaathi\\rag_system\\scripts\\..\\knowledge\\documents\\TNAU\\globalwarmingpdf.pdf": {
+            "document_id": "globalwarmingpdf",
+            "file_name": "globalwarmingpdf.pdf",
+            "sha256": "19e64c3a355b735f960623eea9b8aebebdf9990d942b5685132552f627d22d57",
+            "chunk_count": 9,
+            "embedding_model": "BAAI/bge-m3",
+            "chunk_version": "2.1",
+            "index_version": "1.1",
+            "last_indexed": "1784640891.2716353"
+        },
+        "C:\\Users\\amit0\\Desktop\\MyProjects\\KhedutSaathi\\rag_system\\scripts\\..\\knowledge\\documents\\TNAU\\ICAR_Insights_Outcomes_Booklet.pdf": {
+            "document_id": "ICAR_Insights_Outcomes_Booklet",
+            "file_name": "ICAR_Insights_Outcomes_Booklet.pdf",
+            "sha256": "db97897b7c9d01f73380d3c053271fe8d0cc0cb743fee4bf3a0277ca734c6a8b",
+            "chunk_count": 294,
+            "embedding_model": "BAAI/bge-m3",
+            "chunk_version": "2.1",
+            "index_version": "1.1",
+            "last_indexed": "1784640964.0621395"
+        },
+        "C:\\Users\\amit0\\Desktop\\MyProjects\\KhedutSaathi\\rag_system\\scripts\\..\\knowledge\\documents\\TNAU\\Indian_Agriculture_by_2047.pdf": {
+            "document_id": "Indian_Agriculture_by_2047",
+            "file_name": "Indian_Agriculture_by_2047.pdf",
+            "sha256": "cc22d09c6b9a7c4d47c860f0d74ae11c5d6dbddfdba98084ea0a1f087b067f58",
+            "chunk_count": 1145,
+            "embedding_model": "BAAI/bge-m3",
+            "chunk_version": "2.1",
+            "index_version": "1.1",
+            "last_indexed": "1784641210.8709373"
+        },
+        "C:\\Users\\amit0\\Desktop\\MyProjects\\KhedutSaathi\\rag_system\\scripts\\..\\knowledge\\documents\\TNAU\\Management_Strategies_suggested_to_Mitigate_Water_Stress.pdf": {
+            "document_id": "Management_Strategies_suggested_to_Mitigate_Water_Stress",
+            "file_name": "Management_Strategies_suggested_to_Mitigate_Water_Stress.pdf",
+            "sha256": "6db3b224493ad8c7e9ee25396aee874a5e6a13a7a9d27472678267431f884b39",
+            "chunk_count": 7,
+            "embedding_model": "BAAI/bge-m3",
+            "chunk_version": "2.1",
+            "index_version": "1.1",
+            "last_indexed": "1784641211.746617"
+        },
+        "C:\\Users\\amit0\\Desktop\\MyProjects\\KhedutSaathi\\rag_system\\scripts\\..\\knowledge\\documents\\TNAU\\NITI_Aayog_Working_Paper_on_Indian_Agri__From_Agroindustry_to_Agroecology.pdf": {
+            "document_id": "NITI_Aayog_Working_Paper_on_Indian_Agri__From_Agroindustry_to_Agroecology",
+            "file_name": "NITI_Aayog_Working_Paper_on_Indian_Agri__From_Agroindustry_to_Agroecology.pdf",
+            "sha256": "f0e91987b6842fdee3d2ec4db030fe61b36a6852fb64f86cd086c6acfb945a9f",
+            "chunk_count": 139,
+            "embedding_model": "BAAI/bge-m3",
+            "chunk_version": "2.1",
+            "index_version": "1.1",
+            "last_indexed": "1784641249.1685128"
+        },
+        "C:\\Users\\amit0\\Desktop\\MyProjects\\KhedutSaathi\\rag_system\\scripts\\..\\knowledge\\documents\\TNAU\\Policy_Notes_2026.pdf": {
+            "document_id": "Policy_Notes_2026",
+            "file_name": "Policy_Notes_2026.pdf",
+            "sha256": "f23896c9e39929cd615ec480d02afde477fe2771420471febccb3b3b9a4d6717",
+            "chunk_count": 97,
+            "embedding_model": "BAAI/bge-m3",
+            "chunk_version": "2.1",
+            "index_version": "1.1",
+            "last_indexed": "1784641267.4640625"
+        },
+        "C:\\Users\\amit0\\Desktop\\MyProjects\\KhedutSaathi\\rag_system\\scripts\\..\\knowledge\\documents\\TNAU\\Press_Release__Ministry_of_Agriculture__Farmers_Welfare.pdf": {
+            "document_id": "Press_Release__Ministry_of_Agriculture__Farmers_Welfare",
+            "file_name": "Press_Release__Ministry_of_Agriculture__Farmers_Welfare.pdf",
+            "sha256": "df5a5075d3cb51e4bd4d7180a4950a27480bc0b38a930b1f0ddc8544fe32bd04",
+            "chunk_count": 8,
+            "embedding_model": "BAAI/bge-m3",
+            "chunk_version": "2.1",
+            "index_version": "1.1",
+            "last_indexed": "1784641268.0882814"
+        },
+        "C:\\Users\\amit0\\Desktop\\MyProjects\\KhedutSaathi\\rag_system\\scripts\\..\\knowledge\\documents\\TNAU\\Statistical_Year_Book2024.pdf": {
+            "document_id": "Statistical_Year_Book2024",
+            "file_name": "Statistical_Year_Book2024.pdf",
+            "sha256": "eafe02ea84b42fdc2b15ee193430385923681dabd7f980cd82182228463b2eb9",
+            "chunk_count": 12,
+            "embedding_model": "BAAI/bge-m3",
+            "chunk_version": "2.1",
+            "index_version": "1.1",
+            "last_indexed": "1784641269.2443302"
+        },
+        "C:\\Users\\amit0\\Desktop\\MyProjects\\KhedutSaathi\\rag_system\\scripts\\..\\knowledge\\documents\\TNAU\\SWM_2025_Seasonal_Forecast_and_Contingency.pdf": {
+            "document_id": "SWM_2025_Seasonal_Forecast_and_Contingency",
+            "file_name": "SWM_2025_Seasonal_Forecast_and_Contingency.pdf",
+            "sha256": "9ea4fb8e7e3d34596d1ea22ffe24bc2dfd745f800e958df4ab7972087ce7b7ba",
+            "chunk_count": 15,
+            "embedding_model": "BAAI/bge-m3",
+            "chunk_version": "2.1",
+            "index_version": "1.1",
+            "last_indexed": "1784641271.58362"
+        },
+        "C:\\Users\\amit0\\Desktop\\MyProjects\\KhedutSaathi\\rag_system\\scripts\\..\\knowledge\\documents\\TNAU\\TNAU_New_Variety_Release_2025.pdf": {
+            "document_id": "TNAU_New_Variety_Release_2025",
+            "file_name": "TNAU_New_Variety_Release_2025.pdf",
+            "sha256": "bcc323b3ce9c4b983be6e112d7c5f8f2fde26dec9eb4c49f327e56ed94167580",
+            "chunk_count": 10,
+            "embedding_model": "BAAI/bge-m3",
+            "chunk_version": "2.1",
+            "index_version": "1.1",
+            "last_indexed": "1784641273.0113056"
+        },
+        "C:\\Users\\amit0\\Desktop\\MyProjects\\KhedutSaathi\\rag_system\\scripts\\..\\knowledge\\documents\\TNAU\\TN_White_Paper_Press_Briefing.pdf": {
+            "document_id": "TN_White_Paper_Press_Briefing",
+            "file_name": "TN_White_Paper_Press_Briefing.pdf",
+            "sha256": "5d841b6db14768a3a32bc62de54873a381e8143e441d97c2f193493ce56bd44f",
+            "chunk_count": 67,
+            "embedding_model": "BAAI/bge-m3",
+            "chunk_version": "2.1",
+            "index_version": "1.1",
+            "last_indexed": "1784641290.1267242"
+        },
+        "C:\\Users\\amit0\\Desktop\\MyProjects\\KhedutSaathi\\rag_system\\scripts\\..\\knowledge\\documents\\TNAU\\Union_Budget_2026.pdf": {
+            "document_id": "Union_Budget_2026",
+            "file_name": "Union_Budget_2026.pdf",
+            "sha256": "f874eeb4f4e6c1a3e50340c31ac76815d72a8777cc08c5ac4845701006fcc8fc",
+            "chunk_count": 125,
+            "embedding_model": "BAAI/bge-m3",
+            "chunk_version": "2.1",
+            "index_version": "1.1",
+            "last_indexed": "1784641307.1958218"
+        },
+        "C:\\Users\\amit0\\Desktop\\MyProjects\\KhedutSaathi\\rag_system\\scripts\\..\\knowledge\\documents\\TNAU\\World_Inequality_Report.pdf": {
+            "document_id": "World_Inequality_Report",
+            "file_name": "World_Inequality_Report.pdf",
+            "sha256": "94bd353a28c79f0df095b10f77dc06dbb51e2b1639d4d389ccbbc72ba618bb90",
+            "chunk_count": 825,
+            "embedding_model": "BAAI/bge-m3",
+            "chunk_version": "2.1",
+            "index_version": "1.1",
+            "last_indexed": "1784641465.4593756"
+        }
+    }
+}

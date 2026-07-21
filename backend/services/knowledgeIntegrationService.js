@@ -7,9 +7,10 @@ const RAG_API_URL = process.env.RAG_API_URL || 'http://localhost:8001';
  * This service is generic and can be used by any KhedutSaathi module.
  * 
  * @param {Array} items - An array of objects. Each object may optionally have a `ragQuery` string.
+ * @param {Object} context - Optional context (e.g. farm location, season) to pass as metadata filters.
  * @returns {Object} { enrichedItems, metadata }
  */
-async function enrichWithKnowledge(items) {
+async function enrichWithKnowledge(items, context = {}) {
   const startTime = Date.now();
   let totalDocumentsFound = 0;
   
@@ -25,12 +26,18 @@ async function enrichWithKnowledge(items) {
         console.log(`URL: ${RAG_API_URL}/knowledge/search`);
         console.log(`PORT: ${new URL(RAG_API_URL).port || 'default'}`);
         
-        const response = await axios.post(`${RAG_API_URL}/knowledge/search`, {
+        const payload = {
           query: enrichedItem.ragQuery,
           filters: {}, // Add any default filters if necessary
-          crop: null, 
-          topic: null
-        }, {
+          crop: enrichedItem.crop || context.farm?.crop || context.farm?.selectedCrop || null,
+          topic: enrichedItem.topic || null,
+          state: context.farm?.state || null,
+          district: context.farm?.district || null,
+          season: context.farm?.season || null,
+          soilType: context.farm?.soilType || null
+        };
+
+        const response = await axios.post(`${RAG_API_URL}/knowledge/search`, payload, {
           timeout: 5000 // 5-second timeout to prevent blocking the planner
         });
 

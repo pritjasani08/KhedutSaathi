@@ -1,5 +1,7 @@
 const supabase = require('../config/supabaseClient');
 const recommendationService = require('../services/recommendationService');
+const eventBus = require('../utils/eventBus');
+const { SCHEME_MATCHED, buildEventPayload } = require('../constants/events');
 
 /**
  * Endpoint for eligibility engine.
@@ -94,6 +96,11 @@ const checkEligibility = async (req, res) => {
       data: eligibleSchemes,
       totalBenefit: totalPotentialBenefit
     });
+
+    if (req.user && req.user.id && eligibleSchemes.length > 0) {
+        const topScheme = eligibleSchemes[0];
+        eventBus.emit(SCHEME_MATCHED, buildEventPayload(SCHEME_MATCHED, req.user.id, topScheme.id, 'schemes', { schemeTitle: topScheme.title }));
+    }
   } catch (error) {
     console.error('Error in checkEligibility:', error);
     res.status(500).json({ success: false, message: 'Failed to process scheme eligibility.' });

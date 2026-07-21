@@ -1,6 +1,8 @@
 const { spawn } = require('child_process');
 const path = require('path');
 const fs = require('fs');
+const eventBus = require('../utils/eventBus');
+const { DISEASE_DETECTED, buildEventPayload } = require('../constants/events');
 
 exports.analyzeCrop = (req, res) => {
   if (!req.file) {
@@ -97,6 +99,8 @@ exports.saveHistory = async (req, res) => {
       .select();
 
     if (error) throw error;
+    
+    eventBus.emit(DISEASE_DETECTED, buildEventPayload(DISEASE_DETECTED, req.user.id, data[0].id, 'diagnosis', { diseaseName: finalResult.disease }));
     return res.status(201).json({ success: true, data: data[0] });
   } catch (error) {
     console.error("Error saving diagnosis history:", error);

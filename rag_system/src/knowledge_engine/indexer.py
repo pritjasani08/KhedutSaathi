@@ -2,11 +2,16 @@ import json
 import os
 import hashlib
 import logging
+import time
 from typing import List, Dict, Any
 
 from rag_system.src.chroma_manager import ChromaDBManager
+from rag_system.src.config import EMBEDDING_MODEL_NAME
 
 logger = logging.getLogger(__name__)
+
+INDEX_VERSION = "1.1"
+CHUNK_VERSION = "2.1"
 
 class KnowledgeIndexer:
     def __init__(self, manifest_path: str):
@@ -14,111 +19,141 @@ class KnowledgeIndexer:
         self.chroma_manager = ChromaDBManager()
         self.manifest = self._load_manifest()
         
-    def _load_manifest(self) -> Dict[str, str]:
+    def _load_manifest(self) -> Dict[str, Any]:
         if os.path.exists(self.manifest_path):
             try:
                 with open(self.manifest_path, 'r', encoding='utf-8') as f:
-                    return json.load(f)
+                    data = json.load(f)
+                    if "documents" in data:
+                        return data
+                    else:
+                        return {"_metadata": {}, "documents": {}}
             except Exception as e:
                 logger.error(f"Error loading manifest: {e}")
-        return {}
+        return {"_metadata": {}, "documents": {}}
         
     def _save_manifest(self):
+        self.manifest["_metadata"] = {
+            "chunk_version": CHUNK_VERSION,
+            "embedding_model": EMBEDDING_MODEL_NAME,
+            "index_version": INDEX_VERSION,
+            "ingestion_timestamp": str(time.time())
+        }
         with open(self.manifest_path, 'w', encoding='utf-8') as f:
             json.dump(self.manifest, f, indent=4)
             
-    def _calculate_hash(self, file_path: str) -> str:
-        hasher = hashlib.md5()
+    def _calculate_sha256(self, file_path: str) -> str:
+        hasher = hashlib.sha256()
         with open(file_path, 'rb') as f:
             buf = f.read()
             hasher.update(buf)
         return hasher.hexdigest()
 
-    def integrity_check(self):
+    def check_environment_compatibility(self, force_full: bool = False) -> bool:
         """
-        Validates ChromaDB against the manifest.
-        Deletes chunks for any documents in ChromaDB that aren't in the manifest (partial indexing).
-        Removes manifest entries for documents that aren't in ChromaDB.
+        Returns True if environment is compatible for incremental updates.
+        Returns False if a full rebuild is required (e.g. model changed).
         """
-        logger.info("Performing integrity check between ChromaDB and manifest...")
-        
-        try:
-            # Note: chromadb collection.get() can return metadata. 
-            # To get all unique sources, we might have to get all metadatas, but that might be large.
-            # Using get(include=["metadatas"])
-            all_docs = self.chroma_manager.collection.get(include=["metadatas"])
-            metadatas = all_docs.get("metadatas", [])
+        if force_full:
+            return False
             
-            chroma_sources = set()
-            for meta in metadatas:
-                if meta and "source" in meta:
-                    chroma_sources.add(meta["source"])
-                    
-            manifest_sources = set()
-            for path in list(self.manifest.keys()):
-                source = os.path.basename(path)
-                # some chunks store source as just filename, or documentId.
-                # our ingestion uses documentId (the filename without extension, or the URL).
-                # Actually, in ingest_knowledge, we pass file_path to should_process, and documentId to index_chunks.
-                # documentId is usually the filename. Let's just track file paths.
-                
-                # We'll just map file_path in manifest to its base name, which is documentId.
-                manifest_sources.add(path)
-                
-            # Actually, `chunk["documentId"]` is often the filename without .pdf, or just filename.
-            # Let's clean up partial documents based on `source`.
-            for source in chroma_sources:
-                # Find if any file in manifest matches this source
-                # The manifest keys are full paths. The source in chroma is `documentId`.
-                found = any(source in os.path.basename(p) for p in self.manifest.keys())
-                if not found:
-                    logger.warning(f"Found partial/inconsistent document in ChromaDB not in manifest: {source}")
-                    logger.info(f"Deleting chunks for {source} to allow clean re-indexing.")
-                    self.chroma_manager.collection.delete(where={"source": source})
-                    
-            # Check for manifest entries that are missing in ChromaDB
-            for path in list(self.manifest.keys()):
-                base_name = os.path.basename(path)
-                # Check if base_name or similar is in chroma_sources
-                found_in_chroma = any(base_name in s or s in base_name for s in chroma_sources)
-                if not found_in_chroma and len(chroma_sources) > 0:
-                    logger.warning(f"Manifest claims {path} is indexed, but no chunks found in ChromaDB.")
-                    logger.info("Removing from manifest to force re-indexing.")
-                    del self.manifest[path]
-                    
+        meta = self.manifest.get("_metadata", {})
+        if not meta:
+            return False
+            
+        if meta.get("embedding_model") != EMBEDDING_MODEL_NAME:
+            logger.warning(f"Embedding model changed from {meta.get('embedding_model')} to {EMBEDDING_MODEL_NAME}. Full rebuild required.")
+            return False
+            
+        if meta.get("chunk_version") != CHUNK_VERSION:
+            logger.warning(f"Chunk version changed from {meta.get('chunk_version')} to {CHUNK_VERSION}. Full rebuild required.")
+            return False
+            
+        if meta.get("index_version") != INDEX_VERSION:
+            logger.warning(f"Index version changed from {meta.get('index_version')} to {INDEX_VERSION}. Full rebuild required.")
+            return False
+            
+        return True
+        
+    def clear_index(self):
+        """Clears the entire index for a full rebuild."""
+        logger.info("Clearing ChromaDB collection and manifest for full rebuild...")
+        try:
+            self.chroma_manager.client.delete_collection(self.chroma_manager.collection.name)
+            self.chroma_manager = ChromaDBManager() # Re-init
+            self.manifest = {"_metadata": {}, "documents": {}}
             self._save_manifest()
-            logger.info("Integrity check complete.")
         except Exception as e:
-            logger.error(f"Integrity check failed: {e}")
+            logger.error(f"Failed to clear index: {e}")
+
+    def remove_document(self, file_path: str, document_id: str):
+        """Removes a document and its vectors from the index."""
+        logger.info(f"Removing vectors for document: {document_id}")
+        try:
+            self.chroma_manager.collection.delete(where={"source": document_id})
+            if file_path in self.manifest["documents"]:
+                del self.manifest["documents"][file_path]
+                self._save_manifest()
+        except Exception as e:
+            logger.error(f"Failed to remove document {document_id}: {e}")
 
     def should_process(self, file_path: str) -> bool:
         """Returns True if the file is new or modified."""
         if not os.path.exists(file_path):
             return False
-        current_hash = self._calculate_hash(file_path)
-        last_hash = self.manifest.get(file_path)
+            
+        current_hash = self._calculate_sha256(file_path)
+        doc_entry = self.manifest["documents"].get(file_path)
+        
+        # Support legacy manifest format (just a string hash)
+        if isinstance(doc_entry, str):
+            # Treat as modified to upgrade to new rich schema
+            return True
+            
+        if not doc_entry:
+            return True
+            
+        last_hash = doc_entry.get("sha256")
         return current_hash != last_hash
         
     def index_chunks(self, file_path: str, chunks: List[Dict[str, Any]], doc_metadata: Dict[str, Any] = None):
         """
         Indexes chunks into ChromaDB and updates the manifest.
         """
+        if not chunks:
+            return
+            
+        document_id = chunks[0]["documentId"]
+        file_hash = self._calculate_sha256(file_path)
+        
+        # Remove existing chunks for this document if this is an update
+        self.chroma_manager.collection.delete(where={"source": document_id})
+        
         chroma_chunks = []
         for i, chunk in enumerate(chunks):
             metadata = {
-                "source": chunk["documentId"],
+                "source": document_id,
                 "chunk_index": i,
                 "page": chunk["page"],
                 "section": chunk["section"],
                 "subSection": chunk["subSection"],
                 "title": chunk["title"],
-                "chunk_id": chunk["id"]
+                "chunk_id": chunk["id"],
+                "document_hash": file_hash,
+                "chunk_version": CHUNK_VERSION,
+                "embedding_model": EMBEDDING_MODEL_NAME,
+                "index_version": INDEX_VERSION,
+                "ingestion_timestamp": str(time.time())
             }
             
-            for key in ["crop", "topic", "growth_stage", "season", "region", "document_type"]:
+            for key in ["crop", "topic", "growth_stage", "season", "region", "document_type", "institution", "state", "soil_type", "irrigation_method"]:
                 val = chunk.get(key)
                 if val is not None:
                     metadata[key] = val
+                    
+            crops = chunk.get("crops")
+            if crops and isinstance(crops, list):
+                metadata["crops"] = ", ".join(crops)
                     
             languages = chunk.get("languages")
             if languages:
@@ -132,6 +167,15 @@ class KnowledgeIndexer:
         logger.info(f"Indexing {len(chroma_chunks)} chunks for {file_path}")
         self.chroma_manager.insert_chunks(chroma_chunks)
         
-        self.manifest[file_path] = self._calculate_hash(file_path)
+        self.manifest["documents"][file_path] = {
+            "document_id": document_id,
+            "file_name": os.path.basename(file_path),
+            "sha256": file_hash,
+            "chunk_count": len(chunks),
+            "embedding_model": EMBEDDING_MODEL_NAME,
+            "chunk_version": CHUNK_VERSION,
+            "index_version": INDEX_VERSION,
+            "last_indexed": str(time.time())
+        }
         self._save_manifest()
         logger.info(f"Updated manifest for {file_path}")

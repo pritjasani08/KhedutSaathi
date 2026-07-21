@@ -1,5 +1,7 @@
 const timelineService = require('../services/timelineService');
 const logger = require('../utils/logger');
+const eventBus = require('../utils/eventBus');
+const { TIMELINE_TASK_COMPLETED, buildEventPayload } = require('../constants/events');
 
 // GET /api/timeline
 exports.getTimeline = async (req, res) => {
@@ -39,6 +41,8 @@ exports.completeTask = async (req, res) => {
             status: 'COMPLETED',
             completed_at: new Date().toISOString()
         });
+
+        eventBus.emit(TIMELINE_TASK_COMPLETED, buildEventPayload(TIMELINE_TASK_COMPLETED, userId, id, 'timeline', { taskTitle: data.title }));
 
         res.json({ success: true, data });
     } catch (err) {

@@ -130,7 +130,12 @@ function generateIrrigationPlan(config, weatherData) {
       title: "Heatwave Detected",
       category: "weather",
       severity: "warning",
-      ragQuery: `Best ${irrigationMethod} irrigation practices during heatwave for ${crop} ${currentStage.name} stage`
+      ragQuery: `Best ${irrigationMethod} irrigation practices during heatwave for ${crop} ${currentStage.name} stage`,
+      actionableInsights: [
+        "Increase irrigation frequency or duration to combat enhanced soil evaporation.",
+        "Consider applying mulch to retain soil moisture around the plant roots.",
+        "Avoid irrigating during peak sun hours to minimize evaporation losses."
+      ]
     });
   }
 
@@ -140,7 +145,12 @@ function generateIrrigationPlan(config, weatherData) {
       title: "Heavy Rainfall Expected",
       category: "weather",
       severity: "info",
-      ragQuery: `How to manage soil drainage for ${crop} during heavy rainfall in ${currentStage.name} stage`
+      ragQuery: `How to manage soil drainage for ${crop} during heavy rainfall in ${currentStage.name} stage`,
+      actionableInsights: [
+        "Delay scheduled irrigation to prevent waterlogging and root rot.",
+        "Ensure field drainage channels are clear of debris.",
+        "Monitor for fungal diseases which thrive in high humidity after rain."
+      ]
     });
   }
 
@@ -150,7 +160,12 @@ function generateIrrigationPlan(config, weatherData) {
       title: "High Wind Alert",
       category: "weather",
       severity: "warning",
-      ragQuery: `Managing sprinkler irrigation efficiency during high winds for ${crop}`
+      ragQuery: `Managing sprinkler irrigation efficiency during high winds for ${crop}`,
+      actionableInsights: [
+        "Pause sprinkler operations until wind speeds subside below 15 km/h.",
+        "Wind drift significantly reduces water distribution uniformity.",
+        "If irrigation is critical, switch to drip irrigation if available."
+      ]
     });
   }
   
@@ -160,7 +175,8 @@ function generateIrrigationPlan(config, weatherData) {
     title: `${currentStage.name} Stage Guidelines`,
     category: "cropStage",
     severity: "info",
-    ragQuery: `Water management and fertilization for ${crop} during ${currentStage.name} stage`
+    ragQuery: `Water management and fertilization for ${crop} during ${currentStage.name} stage`,
+    actionableInsights: []
   });
 
   // 5. Summary
