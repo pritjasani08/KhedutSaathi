@@ -16,20 +16,19 @@ import BackToTop from './components/BackToTop';
 import Home from './pages/Home/Home';
 import PageLoader from './components/shared/PageLoader';
 
-// Eagerly loaded routes
-import ExpertPanel from './pages/ExpertPanel/ExpertPanel';
-import SmartIrrigation from './pages/SmartIrrigation/SmartIrrigation';
-import CropMarket from './pages/CropMarket/CropMarket';
-import Features from './pages/Features/Features';
-import Login from './pages/Auth/Login/Login';
-import Register from './pages/Auth/Register/Register';
-import ForgotPassword from './pages/Auth/ForgotPassword/ForgotPassword';
-import PlaceholderPage from './pages/Placeholder/PlaceholderPage';
-import Profile from './pages/Profile/Profile';
 import ProtectedRoute from './components/ProtectedRoute';
-import Deals from './pages/Deals/Deals';
 
-// Lazy loaded routes (Code Splitting)
+// Lazy loaded routes (Code Splitting & Performance Optimization)
+const ExpertPanel = lazy(() => import('./pages/ExpertPanel/ExpertPanel'));
+const SmartIrrigation = lazy(() => import('./pages/SmartIrrigation/SmartIrrigation'));
+const CropMarket = lazy(() => import('./pages/CropMarket/CropMarket'));
+const Features = lazy(() => import('./pages/Features/Features'));
+const Login = lazy(() => import('./pages/Auth/Login/Login'));
+const Register = lazy(() => import('./pages/Auth/Register/Register'));
+const ForgotPassword = lazy(() => import('./pages/Auth/ForgotPassword/ForgotPassword'));
+const PlaceholderPage = lazy(() => import('./pages/Placeholder/PlaceholderPage'));
+const Profile = lazy(() => import('./pages/Profile/Profile'));
+const Deals = lazy(() => import('./pages/Deals/Deals'));
 const Subscriptions = lazy(() => import('./pages/Profile/Subscriptions'));
 const CropDiagnosis = lazy(() => import('./pages/CropDiagnosis/CropDiagnosis'));
 const MarketHub = lazy(() => import('./pages/MarketHub/MarketHub'));

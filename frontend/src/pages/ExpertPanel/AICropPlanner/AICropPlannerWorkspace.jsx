@@ -328,48 +328,79 @@ export default function AICropPlannerWorkspace() {
                                             {/* Knowledge Panel */}
                                             <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800">
                                                 <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Supporting Documents</p>
-                                                {rec.evidenceSummaries && rec.evidenceSummaries.length > 0 ? (
-                                                    <div className="space-y-4">
-                                                        {rec.evidenceSummaries.map((summary, idx) => (
-                                                            <div key={idx} className="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-200 dark:border-slate-700 relative overflow-hidden">
-                                                                <div className="absolute top-0 left-0 w-1 h-full bg-primary/40"></div>
-                                                                <h4 className="font-bold text-slate-800 dark:text-slate-100 text-sm mb-1">{summary.title}</h4>
-                                                                <div className="flex items-center gap-3 text-[10px] uppercase font-bold text-slate-500 mb-3">
-                                                                    <span className="text-primary">{summary.source}</span>
-                                                                    {summary.page && <span>Page {summary.page}</span>}
-                                                                    {summary.score > 0 && <span className="text-green-600">Match: {(summary.score * 100).toFixed(0)}%</span>}
-                                                                </div>
-                                                                
-                                                                <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed mb-3">
-                                                                    {summary.summary}
-                                                                </p>
-                                                                
-                                                                <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-700 p-3 rounded-lg flex items-start gap-2">
-                                                                    <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0 mt-0.5" />
-                                                                    <p className="text-xs font-medium text-slate-600 dark:text-slate-400">
-                                                                        <span className="font-bold text-slate-700 dark:text-slate-300">Key Takeaway: </span>
-                                                                        {summary.keyRecommendation}
-                                                                    </p>
-                                                                </div>
-                                                                
-                                                                {/* Raw Evidence Toggle */}
-                                                                <details className="mt-3 group">
-                                                                    <summary className="text-[10px] font-bold uppercase text-slate-400 cursor-pointer hover:text-primary transition-colors flex items-center gap-1 select-none">
-                                                                        View Original Excerpt
-                                                                    </summary>
-                                                                    <div className="mt-2 text-xs italic text-slate-500 border-l-2 border-slate-200 pl-3 leading-relaxed">
-                                                                        {/* Find corresponding raw evidence if available */}
-                                                                        {rec.rawEvidence?.find(r => r.title === summary.title || r.source === summary.source)?.content || "Original excerpt not available."}
-                                                                    </div>
-                                                                </details>
+                                                {(() => {
+                                                    const summaries = rec.evidenceSummaries && rec.evidenceSummaries.length > 0 ? rec.evidenceSummaries : [];
+                                                    const rawDocs = rec.knowledge && rec.knowledge.length > 0 ? rec.knowledge : (rec.rawEvidence || []);
+                                                    const sourceDocs = summaries.length > 0 ? summaries : rawDocs;
+
+                                                    const seenKeys = new Set();
+                                                    const uniqueDocs = sourceDocs.filter(doc => {
+                                                        const titleKey = (doc.title || doc.document_title || '').trim().toLowerCase();
+                                                        const contentKey = (doc.summary || doc.content || doc.text || '').trim().toLowerCase().substring(0, 100);
+                                                        const combinedKey = `${titleKey}:::${contentKey}`;
+                                                        if (!contentKey || seenKeys.has(combinedKey)) return false;
+                                                        seenKeys.add(combinedKey);
+                                                        return true;
+                                                    });
+
+                                                    if (uniqueDocs.length === 0) {
+                                                        return (
+                                                            <div className="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-lg border border-slate-200 dark:border-slate-700 text-center">
+                                                                <p className="text-sm text-slate-500 italic">No supporting agricultural document available.</p>
                                                             </div>
-                                                        ))}
-                                                    </div>
-                                                ) : (
-                                                    <div className="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-lg border border-slate-200 dark:border-slate-700 text-center">
-                                                        <p className="text-sm text-slate-500 italic">No supporting agricultural document available.</p>
-                                                    </div>
-                                                )}
+                                                        );
+                                                    }
+
+                                                    return (
+                                                        <div className="space-y-4">
+                                                            {uniqueDocs.map((doc, idx) => {
+                                                                const title = doc.title || doc.document_title || 'Agricultural Document';
+                                                                const source = doc.source || doc.source_organization || 'External Source';
+                                                                const page = doc.page || doc.page_number;
+                                                                const textContent = doc.summary || doc.content || doc.text || '';
+                                                                const keyRec = doc.keyRecommendation;
+
+                                                                return (
+                                                                    <div key={idx} className="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-200 dark:border-slate-700 relative overflow-hidden">
+                                                                        <div className="absolute top-0 left-0 w-1 h-full bg-primary/40"></div>
+                                                                        <h4 className="font-bold text-slate-800 dark:text-slate-100 text-sm mb-1">{title}</h4>
+                                                                        <div className="flex items-center gap-3 text-[10px] uppercase font-bold text-slate-500 mb-3">
+                                                                            <span className="text-primary">{source}</span>
+                                                                            {page && <span>Page {page}</span>}
+                                                                            {doc.score > 0 && <span className="text-green-600">Match: {(doc.score * 100).toFixed(0)}%</span>}
+                                                                        </div>
+                                                                        
+                                                                        <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed mb-3">
+                                                                            "{textContent}"
+                                                                        </p>
+                                                                        
+                                                                        {keyRec && (
+                                                                            <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-700 p-3 rounded-lg flex items-start gap-2">
+                                                                                <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0 mt-0.5" />
+                                                                                <p className="text-xs font-medium text-slate-600 dark:text-slate-400">
+                                                                                    <span className="font-bold text-slate-700 dark:text-slate-300">Key Takeaway: </span>
+                                                                                    {keyRec}
+                                                                                </p>
+                                                                            </div>
+                                                                        )}
+                                                                        
+                                                                        {/* Raw Excerpt Details toggle if summary is available */}
+                                                                        {doc.summary && rec.rawEvidence && (
+                                                                            <details className="mt-3 group">
+                                                                                <summary className="text-[10px] font-bold uppercase text-slate-400 cursor-pointer hover:text-primary transition-colors flex items-center gap-1 select-none">
+                                                                                    View Original Excerpt
+                                                                                </summary>
+                                                                                <div className="mt-2 text-xs italic text-slate-500 border-l-2 border-slate-200 pl-3 leading-relaxed">
+                                                                                    {rec.rawEvidence.find(r => r.title === title || r.source === source)?.content || "Original excerpt not available."}
+                                                                                </div>
+                                                                            </details>
+                                                                        )}
+                                                                    </div>
+                                                                );
+                                                            })}
+                                                        </div>
+                                                    );
+                                                })()}
                                             </div>
                                         </div>
                                     ))}
