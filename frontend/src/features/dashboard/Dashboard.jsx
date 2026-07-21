@@ -141,29 +141,44 @@ const Dashboard = () => {
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-subtle">
-                        {orders?.length > 0 ? orders.slice(0, 3).map(order => (
+                        {orders?.length > 0 ? orders.slice(0, 5).map(order => {
+                          const productImage = order.seller_products?.image_urls?.[0] || order.seller_products?.image_url;
+                          const productName = order.seller_products?.name || 'Unknown Product';
+                          
+                          return (
                           <tr key={order.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
                             <td className="px-5 py-4 text-slate-500 font-medium">{new Date(order.created_at).toLocaleDateString()}</td>
                             <td className="px-5 py-4 font-semibold text-heading">
                                <div className="flex items-center gap-3">
-                                 {order.seller_products?.image_url && <img src={order.seller_products.image_url} className="w-8 h-8 rounded-lg object-cover border border-subtle" alt="" />}
-                                 {order.seller_products?.name || 'Unknown Product'}
+                                 {productImage ? (
+                                   <img src={productImage} className="w-8 h-8 rounded-lg object-cover border border-subtle" alt={productName} />
+                                 ) : (
+                                   <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 border border-subtle flex items-center justify-center">
+                                     <Package className="w-4 h-4 text-slate-400" />
+                                   </div>
+                                 )}
+                                 {productName}
                                </div>
                             </td>
                             <td className="px-5 py-4 font-bold text-heading">₹{order.total_amount}</td>
                             <td className="px-5 py-4 text-right">
-                              <span className={`badge px-2.5 py-1 text-xs ${order.status === 'Completed' ? 'badge-success' : 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400'}`}>
+                              <span className={`badge px-2.5 py-1 text-xs ${order.status === 'Completed' || order.status === 'Delivered' ? 'badge-success' : 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400'}`}>
                                 {order.status || 'Pending'}
                               </span>
                             </td>
                           </tr>
-                        )) : (
-                          <tr><td colSpan="4" className="px-5 py-8 text-center text-sm text-slate-500">No active procurement orders.</td></tr>
+                        )}) : (
+                          <tr><td colSpan="4" className="px-5 py-10 text-center text-sm text-slate-500">
+                            <div className="flex flex-col items-center justify-center">
+                              <Package className="w-8 h-8 text-slate-300 mb-2" />
+                              <span>No active procurement orders.</span>
+                            </div>
+                          </td></tr>
                         )}
                       </tbody>
                     </table>
                   </div>
-                  {orders?.length > 3 && (
+                  {orders?.length > 5 && (
                      <div className="p-3 text-center border-t border-subtle bg-slate-50/50 dark:bg-slate-900/20">
                         <span className="text-xs font-semibold text-primary cursor-pointer hover:underline">View All Orders</span>
                      </div>

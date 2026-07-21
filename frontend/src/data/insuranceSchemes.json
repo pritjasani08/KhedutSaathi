@@ -1,0 +1,77 @@
+[
+  {
+    "id": "pmfby",
+    "name": "PMFBY",
+    "fullName": "Pradhan Mantri Fasal Bima Yojana",
+    "description": "Provides insurance coverage and financial support to farmers in case of crop failure.",
+    "supported_claim_types": [
+      "Flood",
+      "Cyclone",
+      "Drought",
+      "Excess Rainfall",
+      "Pest Attack",
+      "Disease"
+    ],
+    "required_documents": [
+      "Crop Damage Photos",
+      "Damage Date",
+      "Farmer Details",
+      "Insurance Policy Details",
+      "Bank Details",
+      "Sowing Certificate"
+    ]
+  },
+  {
+    "id": "rwbcis",
+    "name": "RWBCIS",
+    "fullName": "Restructured Weather Based Crop Insurance Scheme",
+    "description": "Provides insurance against adverse weather conditions.",
+    "supported_claim_types": [
+      "Rainfall Deficit",
+      "Excess Rainfall",
+      "Cyclone",
+      "High Temperature",
+      "Low Temperature"
+    ],
+    "required_documents": [
+      "Weather Information",
+      "Farmer Details",
+      "Insurance Policy Details",
+      "Local Authority Report"
+    ]
+  },
+  {
+    "id": "cpis",
+    "name": "CPIS",
+    "fullName": "Coconut Palm Insurance Scheme",
+    "description": "Insurance scheme for coconut palm growers.",
+    "supported_claim_types": [
+      "Cyclone",
+      "Natural Calamity",
+      "Pest Attack"
+    ],
+    "required_documents": [
+      "Farmer Details",
+      "Damage Photos",
+      "Plantation Record",
+      "Policy Number"
+    ]
+  },
+  {
+    "id": "upis",
+    "name": "UPIS",
+    "fullName": "Unified Package Insurance Scheme",
+    "description": "Integrated insurance package for farmers.",
+    "supported_claim_types": [
+      "Crop Loss",
+      "Weather Damage",
+      "Natural Calamity"
+    ],
+    "required_documents": [
+      "Farmer Details",
+      "Damage Details",
+      "Policy Details",
+      "Asset Proofs"
+    ]
+  }
+]

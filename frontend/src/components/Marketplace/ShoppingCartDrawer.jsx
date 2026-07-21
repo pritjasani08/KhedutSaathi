@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, ShoppingCart, IndianRupee, Minus, Plus, Trash2, CheckCircle2, Loader2 } from 'lucide-react';
 import { supabase } from '../../services/supabase/client';
 import { useAuth } from '../../context/AuthContext';
+import { useQueryClient } from '@tanstack/react-query';
 
 export default function ShoppingCartDrawer({ 
   isOpen, 
@@ -13,6 +14,7 @@ export default function ShoppingCartDrawer({
   onClearCart
 }) {
   const { user } = useAuth();
+  const queryClient = useQueryClient();
   const [isPlacingOrder, setIsPlacingOrder] = useState(false);
   const [orderSuccess, setOrderSuccess] = useState(false);
 
@@ -40,6 +42,9 @@ export default function ShoppingCartDrawer({
         .insert(ordersToInsert);
 
       if (error) throw error;
+
+      // Invalidate dashboard cache to show new orders instantly
+      queryClient.invalidateQueries({ queryKey: ['dashboard'] });
 
       setOrderSuccess(true);
       if (onClearCart) onClearCart();

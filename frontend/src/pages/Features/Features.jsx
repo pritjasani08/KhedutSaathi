@@ -91,6 +91,19 @@ export default function Features() {
           emoji: '📰',
         },
       ]
+    },
+    {
+      title: 'Insurance & Safety',
+      features: [
+        {
+          title: 'Khedut Suraksha',
+          desc: 'Crop Insurance Assistant to evaluate eligibility and generate claim evidence packages.',
+          path: '/khedut-suraksha',
+          bg: 'bg-emerald-50 dark:bg-emerald-900/30',
+          hoverBg: 'hover:bg-emerald-50 dark:hover:bg-emerald-900/40',
+          emoji: '🛡️',
+        },
+      ]
     }
   ];
 
