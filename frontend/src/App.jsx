@@ -30,6 +30,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Deals from './pages/Deals/Deals';
 
 // Lazy loaded routes (Code Splitting)
+const Subscriptions = lazy(() => import('./pages/Profile/Subscriptions'));
 const CropDiagnosis = lazy(() => import('./pages/CropDiagnosis/CropDiagnosis'));
 const MarketHub = lazy(() => import('./pages/MarketHub/MarketHub'));
 const AgriMarketplace = lazy(() => import('./pages/AgriMarketplace/AgriMarketplace'));
@@ -95,6 +96,7 @@ function AnimatedRoutes() {
         <Route path="/register" element={<PageWrapper><Register /></PageWrapper>} />
         <Route path="/forgot-password" element={<PageWrapper><ForgotPassword /></PageWrapper>} />
         <Route path="/profile" element={<ProtectedRoute><PageWrapper><Profile /></PageWrapper></ProtectedRoute>} />
+        <Route path="/profile/subscriptions" element={<ProtectedRoute><PageWrapper><Subscriptions /></PageWrapper></ProtectedRoute>} />
         <Route path="/dashboard-legacy" element={<ProtectedRoute><PageWrapper><Dashboard /></PageWrapper></ProtectedRoute>} />
         <Route path="/dashboard" element={<ProtectedRoute><PageWrapper><NewDashboard /></PageWrapper></ProtectedRoute>} />
         <Route path="/deals" element={<ProtectedRoute><PageWrapper><Deals /></PageWrapper></ProtectedRoute>} />

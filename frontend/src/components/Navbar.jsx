@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Globe, LogIn, Sun, Moon, User, LogOut } from 'lucide-react';
+import { Menu, X, Globe, LogIn, Sun, Moon, User, LogOut, CreditCard } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { useAuth } from '../context/AuthContext';
 import NotificationCenter from '../features/notifications/NotificationCenter';
@@ -223,6 +223,14 @@ export default function Navbar() {
                           >
                             <User className="w-4 h-4" />
                             My Deals
+                          </Link>
+                          <Link 
+                            to="/profile/subscriptions"
+                            onClick={() => setProfileDropdown(false)}
+                            className="w-full flex items-center gap-2 px-4 py-2.5 text-left text-sm font-medium text-body hover:bg-surface-muted transition-colors"
+                          >
+                            <CreditCard className="w-4 h-4" />
+                            Subscriptions
                           </Link>
                         </>
                       )}
