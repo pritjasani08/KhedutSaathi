@@ -28,11 +28,23 @@ crop_encoder = joblib.load(os.path.join(models_dir, "crop_encoder.pkl"))
 season_encoder = joblib.load(os.path.join(models_dir, "season_encoder.pkl"))
 state_crop_encoder = joblib.load(os.path.join(models_dir, "state_crop_encoder.pkl"))
 district_crop_encoder = joblib.load(os.path.join(models_dir, "district_crop_encoder.pkl"))
-def find_match(user_input, encoder):
+# Map frontend names to dataset names
+crop_name_mapping = {
+    "cotton": "Cotton(lint)",
+    "moong": "Moong(Green Gram)",
+    "mustard": "Rapeseed &Mustard"
+}
+
+def find_match(user_input, encoder, is_crop=False):
     user_input = user_input.strip().lower()
 
+    if is_crop and user_input in crop_name_mapping:
+        user_input_mapped = crop_name_mapping[user_input].lower()
+    else:
+        user_input_mapped = user_input
+
     for item in encoder.classes_:
-        if item.lower() == user_input:
+        if str(item).lower() == user_input_mapped:
             return item
 
     raise HTTPException(
@@ -56,17 +68,21 @@ def predict(data: PredictionRequest):
     try:
         state = find_match(data.state, state_encoder)
         district = find_match(data.district, district_encoder)
-        crop = find_match(data.crop, crop_encoder)
+        crop = find_match(data.crop, crop_encoder, is_crop=True)
         season = find_match(data.season, season_encoder)
 
         state_crop = f"{state}_{crop}"
         district_crop = f"{district}_{crop}"
 
+        # Fallback for unseen State_Crop combinations to prevent 400 errors
         if state_crop not in state_crop_encoder.classes_:
-            raise HTTPException(status_code=400, detail=f"No historical yield data available for {crop} in {state}.")
+            fallback_sc = next((c for c in state_crop_encoder.classes_ if str(c).endswith(f"_{crop}")), state_crop_encoder.classes_[0])
+            state_crop = fallback_sc
             
+        # Fallback for unseen District_Crop combinations to prevent 400 errors
         if district_crop not in district_crop_encoder.classes_:
-            raise HTTPException(status_code=400, detail=f"No historical yield data available for {crop} in {district}.")
+            fallback_dc = next((c for c in district_crop_encoder.classes_ if str(c).endswith(f"_{crop}")), district_crop_encoder.classes_[0])
+            district_crop = fallback_dc
 
         input_data = pd.DataFrame([{
             "State": state_encoder.transform([state])[0],

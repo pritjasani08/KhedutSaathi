@@ -248,9 +248,6 @@ export default function AICropPlannerWorkspace() {
                                     <div className="flex items-center gap-2 mb-4">
                                         <Target className={`w-5 h-5 ${plan.mlValidation.agreement ? 'text-green-600 dark:text-green-400' : 'text-amber-600 dark:text-amber-400'}`} />
                                         <h3 className="font-bold text-slate-800 dark:text-slate-100">Machine Learning Validation</h3>
-                                        <span className={`ml-auto text-xs font-bold px-3 py-1 rounded-full ${plan.mlValidation.agreement ? 'bg-green-100 text-green-700 dark:bg-green-800/50 dark:text-green-300' : 'bg-amber-100 text-amber-700 dark:bg-amber-800/50 dark:text-amber-300'}`}>
-                                            {plan.mlValidation.confidenceLabel} Confidence ({plan.mlValidation.confidence.toFixed(1)}%)
-                                        </span>
                                     </div>
                                     
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -272,9 +269,9 @@ export default function AICropPlannerWorkspace() {
                                             <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">ML Ranking</p>
                                             <div className="space-y-2">
                                                 {plan.mlValidation.ranking.map((r, i) => (
-                                                    <div key={i} className="flex justify-between text-sm">
+                                                    <div key={i} className="flex justify-start gap-2 text-sm">
+                                                        <span className="font-medium text-slate-900 dark:text-slate-100">{i + 1})</span>
                                                         <span className="text-slate-700 dark:text-slate-300">{r.crop}</span>
-                                                        <span className="font-medium text-slate-900 dark:text-slate-100">{r.probability.toFixed(1)}%</span>
                                                     </div>
                                                 ))}
                                             </div>
