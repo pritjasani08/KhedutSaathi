@@ -42,6 +42,7 @@ const About = lazy(() => import('./pages/About/About'));
 const KhedutAI = lazy(() => import('./pages/KhedutAI/KhedutAI'));
 const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard'));
 const NewDashboard = lazy(() => import('./features/dashboard/Dashboard'));
+const KhedutSuraksha = lazy(() => import('./features/insurance/KhedutSurakshaIndex'));
 
 const FallbackLoader = () => (
   <PageLoader message="Loading KhedutSaathi..." fullScreen={true} />
@@ -74,6 +75,7 @@ function AnimatedRoutes() {
         {/* Farmer Only Routes */}
         <Route path="/crop-recommendation" element={<ProtectedRoute allowedRoles={['farmer']}><PageWrapper><ExpertPanel /></PageWrapper></ProtectedRoute>} />
         <Route path="/crop-health" element={<ProtectedRoute allowedRoles={['farmer']}><PageWrapper><CropDiagnosis /></PageWrapper></ProtectedRoute>} />
+        <Route path="/khedut-suraksha" element={<ProtectedRoute allowedRoles={['farmer']}><PageWrapper><KhedutSuraksha /></PageWrapper></ProtectedRoute>} />
 
         {/* Market Intelligence & Marketplace Feed */}
         <Route path="/market-prices" element={<ProtectedRoute><PageWrapper><MarketHub /></PageWrapper></ProtectedRoute>} />

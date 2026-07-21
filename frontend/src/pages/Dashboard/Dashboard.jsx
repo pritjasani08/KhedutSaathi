@@ -349,24 +349,37 @@ export default function Dashboard() {
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
-                        {farmerOrders?.length > 0 ? farmerOrders.map(order => (
+                        {farmerOrders?.length > 0 ? farmerOrders.map(order => {
+                          const productImage = order.seller_products?.image_urls?.[0] || order.seller_products?.image_url;
+                          const productName = order.seller_products?.name || 'Unknown';
+                          
+                          return (
                           <tr key={order.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-900/30 transition-colors">
                             <td className="px-4 py-3 text-slate-500 font-mono text-xs">{new Date(order.created_at).toISOString().split('T')[0]}</td>
                             <td className="px-4 py-3 font-medium text-slate-900 dark:text-slate-100">
                                <div className="flex items-center gap-2">
-                                 {order.seller_products?.image_url && <img src={order.seller_products.image_url} className="w-5 h-5 rounded object-cover" alt="" />}
-                                 {order.seller_products?.name || 'Unknown'}
+                                 {productImage ? (
+                                   <img src={productImage} className="w-5 h-5 rounded object-cover" alt={productName} />
+                                 ) : (
+                                   <Package className="w-5 h-5 text-slate-400" />
+                                 )}
+                                 {productName}
                                </div>
                             </td>
                             <td className="px-4 py-3 font-mono text-slate-900 dark:text-slate-100">₹{order.total_amount}</td>
                             <td className="px-4 py-3 text-right">
-                              <span className={`inline-flex items-center px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-widest rounded ${order.status === 'Completed' ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400' : 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300'}`}>
+                              <span className={`inline-flex items-center px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-widest rounded ${order.status === 'Completed' || order.status === 'Delivered' ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400' : 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300'}`}>
                                 {order.status || 'Pending'}
                               </span>
                             </td>
                           </tr>
-                        )) : (
-                          <tr><td colSpan="4" className="px-4 py-6 text-center text-xs text-slate-500">No procurement orders found.</td></tr>
+                        )}) : (
+                          <tr><td colSpan="4" className="px-4 py-6 text-center text-xs text-slate-500">
+                            <div className="flex flex-col items-center justify-center">
+                              <Package className="w-6 h-6 text-slate-300 mb-2" />
+                              <span>No procurement orders found.</span>
+                            </div>
+                          </td></tr>
                         )}
                       </tbody>
                     </table>
