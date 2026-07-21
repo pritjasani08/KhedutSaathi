@@ -17,11 +17,12 @@ async function getPredictedYield(farmConfig) {
             state, district, crop, season, year, area
         }, { timeout: 10000 });
         
-        // The ML model returns total yield based on the area provided
-        const predictedTotalYield = Number(yieldRes.data?.predicted_yield);
+        // The ML model returns yield per hectare based on historical data
+        predictedYieldPerHa = Number(yieldRes.data?.predicted_yield);
         
-        // Calculate per hectare for analytical purposes
-        predictedYieldPerHa = area > 0 ? (predictedTotalYield / area) : predictedTotalYield;
+        if (isNaN(predictedYieldPerHa) || predictedYieldPerHa <= 0) {
+            throw new Error("Invalid ML prediction");
+        }
     } catch (e) {
         console.warn('Yield ML Error, falling back to simulated baseline:', e.message);
         // Fallback simulated logic if the model is down
