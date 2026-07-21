@@ -29,14 +29,14 @@ export default function SmartIrrigation() {
   const { t } = useTranslation();
   const { farmProfile, updateFarmContext } = useFarmContext();
   const { publishModuleOutput } = useCrossModuleContext();
-  
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [currentCoords, setCurrentCoords] = useState(null);
   const [planData, setPlanData] = useState(null);
-  
+
   const [showConfig, setShowConfig] = useState(true);
-  
+
   const [config, setConfig] = useState({
     crop: farmProfile.selectedCrop || 'Cotton',
     state: farmProfile.state || 'Gujarat',
@@ -69,7 +69,7 @@ export default function SmartIrrigation() {
   const handleConfigChange = (e) => {
     const { name, value } = e.target;
     setConfig(prev => ({ ...prev, [name]: value }));
-    
+
     const contextUpdate = { [name]: value };
     if (name === 'crop') contextUpdate.selectedCrop = value;
     if (name === 'farmArea') contextUpdate.farmArea = value;
@@ -81,7 +81,7 @@ export default function SmartIrrigation() {
       setError("Waiting for location access. Please enable location permissions.");
       return;
     }
-    
+
     setLoading(true);
     setError(null);
     try {
@@ -92,7 +92,7 @@ export default function SmartIrrigation() {
       };
       const plan = await getIrrigationPlan(payload);
       setPlanData(plan);
-      
+
       publishModuleOutput('SmartIrrigation', plan, config);
       setShowConfig(false);
     } catch (err) {
@@ -103,7 +103,7 @@ export default function SmartIrrigation() {
   };
 
   const renderConfigPanel = () => (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
       className="glass-card p-6 border border-slate-200 dark:border-slate-700 shadow-sm max-w-2xl mx-auto"
     >
@@ -154,8 +154,8 @@ export default function SmartIrrigation() {
       </div>
 
       {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
-      
-      <button 
+
+      <button
         onClick={generatePlan}
         disabled={loading}
         className="w-full btn-primary py-3 justify-center text-base"
@@ -171,7 +171,7 @@ export default function SmartIrrigation() {
 
     // Determine hero card styling based on status
     const isActionRequired = summary.overallStatus === 'Action Required' || summary.overallStatus === 'Monitor';
-    const heroBg = isActionRequired 
+    const heroBg = isActionRequired
       ? 'bg-gradient-to-br from-amber-500/10 to-orange-600/5 dark:from-amber-900/40 dark:to-orange-900/10 border-amber-200 dark:border-amber-800/50'
       : 'bg-gradient-to-br from-emerald-500/10 to-teal-600/5 dark:from-emerald-900/40 dark:to-teal-900/10 border-emerald-200 dark:border-emerald-800/50';
     const heroIconColor = isActionRequired ? 'text-amber-600 dark:text-amber-500' : 'text-emerald-600 dark:text-emerald-500';
@@ -203,8 +203,8 @@ export default function SmartIrrigation() {
               </div>
             </div>
             <div className="bg-white/60 dark:bg-slate-900/40 backdrop-blur-md px-5 py-3 rounded-2xl border border-white/20 dark:border-slate-700/50 flex flex-col items-center">
-               <span className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Next Irrigation</span>
-               <span className="font-display font-bold text-lg text-slate-800 dark:text-slate-200">{new Date(timeline.nextIrrigationDate).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric'})}</span>
+              <span className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Check next irrigation on date</span>
+              <span className="font-display font-bold text-lg text-slate-800 dark:text-slate-200">{new Date(timeline.nextIrrigationDate).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' })}</span>
             </div>
           </div>
         </motion.div>
@@ -243,13 +243,13 @@ export default function SmartIrrigation() {
         )}
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-          
+
           {/* 3. Water Analytics */}
           <motion.div variants={fadeUp} className="glass-card p-6 border border-slate-200 dark:border-slate-700 lg:col-span-2">
             <h3 className="text-sm font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider flex items-center gap-2 mb-6">
               <Activity className="w-4 h-4 text-primary" /> Water Analytics
             </h3>
-            
+
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-100 dark:border-slate-700/50">
                 <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Requirement</p>
@@ -282,22 +282,22 @@ export default function SmartIrrigation() {
             <div className="space-y-5">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                   <div className="w-8 h-8 rounded-lg bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center"><Thermometer className="w-4 h-4 text-orange-600 dark:text-orange-400" /></div>
-                   <span className="text-sm font-bold text-slate-700 dark:text-slate-300">Temperature</span>
+                  <div className="w-8 h-8 rounded-lg bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center"><Thermometer className="w-4 h-4 text-orange-600 dark:text-orange-400" /></div>
+                  <span className="text-sm font-bold text-slate-700 dark:text-slate-300">Temperature</span>
                 </div>
                 <span className="font-display font-bold text-slate-900 dark:text-white">{weather.temperature}°C</span>
               </div>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                   <div className="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center"><Droplets className="w-4 h-4 text-blue-600 dark:text-blue-400" /></div>
-                   <span className="text-sm font-bold text-slate-700 dark:text-slate-300">Rain Prob.</span>
+                  <div className="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center"><Droplets className="w-4 h-4 text-blue-600 dark:text-blue-400" /></div>
+                  <span className="text-sm font-bold text-slate-700 dark:text-slate-300">Rain Prob.</span>
                 </div>
                 <span className="font-display font-bold text-slate-900 dark:text-white">{weather.rainProbability}%</span>
               </div>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                   <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center"><Wind className="w-4 h-4 text-slate-600 dark:text-slate-400" /></div>
-                   <span className="text-sm font-bold text-slate-700 dark:text-slate-300">Wind</span>
+                  <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center"><Wind className="w-4 h-4 text-slate-600 dark:text-slate-400" /></div>
+                  <span className="text-sm font-bold text-slate-700 dark:text-slate-300">Wind</span>
                 </div>
                 <span className="font-display font-bold text-slate-900 dark:text-white">{weather.windSpeed} km/h</span>
               </div>
@@ -307,31 +307,31 @@ export default function SmartIrrigation() {
 
         {/* 4. Season Progress & Crop Stage */}
         <motion.div variants={fadeUp} className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-           <div className="glass-card p-6 border border-slate-200 dark:border-slate-700">
-              <h3 className="text-sm font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider flex items-center gap-2 mb-6">
-                <CalendarClock className="w-4 h-4 text-primary" /> Season Timeline
-              </h3>
-              <div className="mb-4">
-                 <div className="flex justify-between text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">
-                   <span>Day {timeline.currentDay} of {timeline.totalSeasonDays}</span>
-                   <span className="text-primary">{timeline.progress}%</span>
-                 </div>
-                 <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-3 overflow-hidden border border-slate-200 dark:border-slate-700">
-                    <div className="bg-gradient-to-r from-primary to-blue-500 h-3 rounded-full transition-all duration-1000" style={{ width: `${timeline.progress}%` }}></div>
-                 </div>
+          <div className="glass-card p-6 border border-slate-200 dark:border-slate-700">
+            <h3 className="text-sm font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider flex items-center gap-2 mb-6">
+              <CalendarClock className="w-4 h-4 text-primary" /> Season Timeline
+            </h3>
+            <div className="mb-4">
+              <div className="flex justify-between text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">
+                <span>Day {timeline.currentDay} of {timeline.totalSeasonDays}</span>
+                <span className="text-primary">{timeline.progress}%</span>
               </div>
-           </div>
+              <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-3 overflow-hidden border border-slate-200 dark:border-slate-700">
+                <div className="bg-gradient-to-r from-primary to-blue-500 h-3 rounded-full transition-all duration-1000" style={{ width: `${timeline.progress}%` }}></div>
+              </div>
+            </div>
+          </div>
 
-           <div className="glass-card p-6 border border-slate-200 dark:border-slate-700 flex flex-row items-center gap-6">
-              <div className="w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center border border-green-200 dark:border-green-800 shrink-0">
-                 <Leaf className="w-8 h-8 text-green-600 dark:text-green-400" />
-              </div>
-              <div>
-                 <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Crop Stage Intelligence</p>
-                 <h4 className="text-xl font-display font-bold text-slate-800 dark:text-slate-100 mb-1">{timeline.currentStage}</h4>
-                 <p className="text-sm text-slate-600 dark:text-slate-400">{timeline.daysRemaining} days remaining in this stage.</p>
-              </div>
-           </div>
+          <div className="glass-card p-6 border border-slate-200 dark:border-slate-700 flex flex-row items-center gap-6">
+            <div className="w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center border border-green-200 dark:border-green-800 shrink-0">
+              <Leaf className="w-8 h-8 text-green-600 dark:text-green-400" />
+            </div>
+            <div>
+              <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Crop Stage Intelligence</p>
+              <h4 className="text-xl font-display font-bold text-slate-800 dark:text-slate-100 mb-1">{timeline.currentStage}</h4>
+              <p className="text-sm text-slate-600 dark:text-slate-400">{timeline.daysRemaining} days remaining in this stage.</p>
+            </div>
+          </div>
         </motion.div>
 
         {/* 6. Actionable Advice & Explanations */}
@@ -339,21 +339,21 @@ export default function SmartIrrigation() {
           <h3 className="text-sm font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider flex items-center gap-2 mb-4">
             <Target className="w-4 h-4 text-primary" /> Knowledge & Recommendations
           </h3>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {recommendations.map((rec) => (
               <div key={rec.id} className="glass-card border border-slate-200 dark:border-slate-700 overflow-hidden flex flex-col h-full">
                 <div className={`p-4 border-b flex items-center gap-2 ${rec.category === 'weather' ? 'bg-blue-50/50 dark:bg-blue-900/10 border-blue-100 dark:border-blue-900/30 text-blue-900 dark:text-blue-300' : 'bg-slate-50 dark:bg-slate-800/50 border-slate-100 dark:border-slate-800 text-slate-900 dark:text-slate-200'}`}>
-                   {rec.severity === 'warning' ? <ShieldAlert className="w-4 h-4 text-amber-500" /> : <Info className="w-4 h-4 opacity-70" />}
-                   <h4 className="font-bold text-sm">{rec.title}</h4>
+                  {rec.severity === 'warning' ? <ShieldAlert className="w-4 h-4 text-amber-500" /> : <Info className="w-4 h-4 opacity-70" />}
+                  <h4 className="font-bold text-sm">{rec.title}</h4>
                 </div>
-                
+
                 <div className="p-5 flex-1 flex flex-col">
                   {rec.aiExplanation ? (
                     <div className="mb-4">
-                       <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-                         {rec.aiExplanation.text}
-                       </p>
+                      <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                        {rec.aiExplanation.text}
+                      </p>
                     </div>
                   ) : (
                     <div className="mb-4 flex-1 flex items-center justify-center p-6 bg-slate-50/50 dark:bg-slate-800/20 rounded-xl border border-dashed border-slate-200 dark:border-slate-700">
@@ -363,14 +363,14 @@ export default function SmartIrrigation() {
 
                   {rec.actionableInsights && rec.actionableInsights.length > 0 && (
                     <div className="mt-auto">
-                       <ul className="space-y-2">
-                         {rec.actionableInsights.map((insight, idx) => (
-                           <li key={idx} className="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-800/50 p-2.5 rounded-lg border border-slate-100 dark:border-slate-700/50">
-                             <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0 mt-0.5" />
-                             <span>{insight}</span>
-                           </li>
-                         ))}
-                       </ul>
+                      <ul className="space-y-2">
+                        {rec.actionableInsights.map((insight, idx) => (
+                          <li key={idx} className="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-800/50 p-2.5 rounded-lg border border-slate-100 dark:border-slate-700/50">
+                            <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0 mt-0.5" />
+                            <span>{insight}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   )}
                 </div>
@@ -385,7 +385,7 @@ export default function SmartIrrigation() {
   return (
     <div className="min-h-screen bg-slate-50/50 dark:bg-slate-950 pt-24 pb-16">
       <div className="container-custom px-4 sm:px-6 lg:px-8">
-        
+
         <div className="text-center max-w-3xl mx-auto mb-10">
           <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="inline-flex items-center justify-center p-3 bg-blue-100 dark:bg-blue-900/30 rounded-2xl mb-4">
             <Droplets className="w-8 h-8 text-blue-600 dark:text-blue-400" />
@@ -401,11 +401,11 @@ export default function SmartIrrigation() {
         <AnimatePresence mode="wait">
           {showConfig ? (
             <motion.div key="config">
-               {renderConfigPanel()}
+              {renderConfigPanel()}
             </motion.div>
           ) : (
             <motion.div key="workspace">
-               {renderPlannerWorkspace()}
+              {renderPlannerWorkspace()}
             </motion.div>
           )}
         </AnimatePresence>

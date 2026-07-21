@@ -89,25 +89,25 @@ export default function Navbar() {
           : 'bg-transparent'
       }`}
     >
-      <div className="w-full max-w-[1920px] mx-auto">
-        <div className="flex items-center justify-between h-16 lg:h-20 px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
+      <div className="w-full max-w-[1600px] mx-auto px-2 sm:px-4 lg:px-6">
+        <div className="flex items-center justify-between h-16 lg:h-20 w-full">
           {/* LEFT: Logo */}
-          <div className="flex-1 flex justify-start">
-            <Link to="/" className="inline-flex items-center gap-2 group shrink-0">
-              <img src="/logo.png" alt="KhedutSaathi Logo" className="w-8 h-8 sm:w-9 sm:h-9 lg:w-[38px] lg:h-[38px] object-contain group-hover:scale-105 transition-transform duration-300" />
-              <span className="font-display font-bold text-2xl lg:text-3xl gradient-text leading-none tracking-tight">
+          <div className="flex shrink-0 items-center z-10">
+            <Link to="/" className="inline-flex items-center gap-1.5 sm:gap-2 group shrink-0">
+              <img src="/logo.png" alt="KhedutSaathi Logo" className="w-7 h-7 sm:w-8 sm:h-8 lg:w-[32px] lg:h-[32px] object-contain group-hover:scale-105 transition-transform duration-300" />
+              <span className="font-display font-bold text-xl lg:text-2xl 2xl:text-3xl gradient-text leading-none tracking-tight">
                 KhedutSaathi
               </span>
             </Link>
           </div>
 
           {/* CENTER: Nav Links */}
-          <div className="hidden lg:flex items-center justify-center gap-1 xl:gap-2 2xl:gap-4 shrink w-full max-w-fit">
+          <div className="hidden xl:flex flex-1 items-center justify-center gap-0.5 px-2 min-w-0 overflow-x-auto no-scrollbar">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`px-2 xl:px-3 py-2 rounded-xl text-[13px] xl:text-sm font-medium transition-all duration-300 whitespace-nowrap ${
+                className={`px-1.5 2xl:px-2.5 py-1.5 2xl:py-2 rounded-lg text-[12px] 2xl:text-sm font-medium transition-all duration-300 whitespace-nowrap shrink-0 ${
                   location.pathname === link.path
                     ? 'text-primary bg-primary-50 dark:bg-primary-900/30 shadow-sm'
                     : 'text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary-light hover:bg-primary-50/50 dark:hover:bg-primary-900/20'
@@ -119,12 +119,12 @@ export default function Navbar() {
           </div>
 
           {/* FAR RIGHT: Utilities */}
-          <div className="flex items-center justify-end gap-2 xl:gap-3 flex-1 shrink-0">
+          <div className="flex items-center justify-end gap-1.5 2xl:gap-3 shrink-0 z-10">
             {/* Language Switcher */}
-            <div className="relative hidden lg:block notranslate" ref={langRef}>
+            <div className="relative hidden xl:block notranslate" ref={langRef}>
               <button
                 onClick={() => setLangDropdown(!langDropdown)}
-                className="p-2.5 rounded-xl bg-surface hover:bg-surface-muted border border-transparent hover:border-subtle text-slate-700 dark:text-slate-200 transition-all duration-300"
+                className="p-2 rounded-lg 2xl:rounded-xl bg-surface hover:bg-surface-muted border border-transparent hover:border-subtle text-slate-700 dark:text-slate-200 transition-all duration-300"
                 aria-label="Change Language"
               >
                 <Globe className="w-5 h-5" />
@@ -164,22 +164,22 @@ export default function Navbar() {
 
             <button 
               onClick={toggleTheme}
-              className="p-2.5 rounded-xl bg-surface hover:bg-surface-muted border border-transparent hover:border-subtle text-slate-700 dark:text-slate-200 transition-all duration-300"
+              className="p-2 rounded-lg 2xl:rounded-xl bg-surface hover:bg-surface-muted border border-transparent hover:border-subtle text-slate-700 dark:text-slate-200 transition-all duration-300"
               aria-label="Toggle Dark Mode"
             >
-              {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              {isDarkMode ? <Sun className="w-4 h-4 2xl:w-5 2xl:h-5" /> : <Moon className="w-4 h-4 2xl:w-5 2xl:h-5" />}
             </button>
 
-            {user && <div className="hidden lg:block"><NotificationCenter /></div>}
+            {user && <div className="hidden xl:block"><NotificationCenter /></div>}
 
             {/* Login / Profile Button */}
             {user ? (
-              <div className="relative hidden lg:block" ref={profileRef}>
+              <div className="relative hidden xl:block" ref={profileRef}>
                 <button
                   onClick={() => setProfileDropdown(!profileDropdown)}
-                  className="flex items-center gap-2 px-3 py-2 rounded-xl bg-primary-50 dark:bg-primary-900/30 border border-transparent hover:border-primary-200 dark:hover:border-primary-800 text-primary dark:text-primary-light text-sm font-medium transition-all duration-300"
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 2xl:px-3 2xl:py-2 rounded-lg 2xl:rounded-xl bg-primary-50 dark:bg-primary-900/30 border border-transparent hover:border-primary-200 dark:hover:border-primary-800 text-primary dark:text-primary-light text-[12px] 2xl:text-sm font-medium transition-all duration-300"
                 >
-                  <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
+                  <div className="w-5 h-5 2xl:w-6 2xl:h-6 rounded-full bg-primary/20 flex items-center justify-center">
                     <User className="w-3.5 h-3.5" />
                   </div>
                   {user.first_name}
@@ -252,7 +252,7 @@ export default function Navbar() {
             ) : (
               <Link 
                 to="/login"
-                className="hidden lg:flex items-center gap-2 px-4 py-2 rounded-xl bg-surface hover:bg-surface-muted border border-transparent hover:border-subtle text-slate-700 dark:text-slate-200 text-sm font-medium transition-all duration-300"
+                className="hidden xl:flex items-center gap-1.5 px-3 py-1.5 2xl:px-4 2xl:py-2 rounded-lg 2xl:rounded-xl bg-surface hover:bg-surface-muted border border-transparent hover:border-subtle text-slate-700 dark:text-slate-200 text-[12px] 2xl:text-sm font-medium transition-all duration-300"
               >
                 <LogIn className="w-4 h-4" />
                 Log In
@@ -262,7 +262,7 @@ export default function Navbar() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2 rounded-xl bg-surface hover:bg-surface-muted border border-transparent hover:border-subtle transition-colors duration-300"
+              className="xl:hidden p-2 rounded-xl bg-surface hover:bg-surface-muted border border-transparent hover:border-subtle transition-colors duration-300"
             >
               {isOpen ? <X className="w-6 h-6 text-slate-700 dark:text-slate-300" /> : <Menu className="w-6 h-6 text-slate-700 dark:text-slate-300" />}
             </button>
@@ -277,7 +277,7 @@ export default function Navbar() {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="lg:hidden overflow-hidden bg-surface/95 dark:bg-slate-900/95 backdrop-blur-xl border-t border-slate-100 dark:border-slate-800"
+              className="xl:hidden overflow-hidden bg-surface/95 dark:bg-slate-900/95 backdrop-blur-xl border-t border-slate-100 dark:border-slate-800"
             >
               <div className="px-4 py-4 space-y-1">
                 {navLinks.map((link) => (
