@@ -126,6 +126,15 @@ async function generateExplanation(context, recommendation, knowledge) {
           diagnostics: match ? (match.diagnostics || {}) : {}
         };
       });
+
+      // Deduplicate evidenceSummaries
+      const seenSummaryKeys = new Set();
+      generatedSummaries = generatedSummaries.filter(s => {
+        const key = `${(s.title || '').trim().toLowerCase()}|${(s.summary || '').trim().toLowerCase()}`;
+        if (seenSummaryKeys.has(key)) return false;
+        seenSummaryKeys.add(key);
+        return true;
+      });
     }
 
     return {

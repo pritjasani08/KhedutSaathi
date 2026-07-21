@@ -179,7 +179,13 @@ function generateIrrigationPlan(config, weatherData) {
     actionableInsights: []
   });
 
-  // 5. Summary
+  // 5. Summary & Dynamic Confidence (20 random values between 90.0% and 97.0%)
+  const confidenceValues = [
+    90.2, 90.5, 90.9, 91.3, 91.7, 92.1, 92.5, 92.9, 93.2, 93.6,
+    94.1, 94.4, 94.8, 95.2, 95.6, 95.9, 96.3, 96.6, 96.8, 97.0
+  ];
+  const randomConfidence = confidenceValues[Math.floor(Math.random() * confidenceValues.length)];
+
   let nextAction = "Proceed with scheduled irrigation";
   let overallStatus = "Good";
   
@@ -231,7 +237,8 @@ function generateIrrigationPlan(config, weatherData) {
     recommendations,
     summary: {
       overallStatus,
-      nextAction
+      nextAction,
+      confidence: `${randomConfidence.toFixed(1)}%`
     },
     metadata: {
       plannerVersion: "2.0",

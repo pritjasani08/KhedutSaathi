@@ -294,64 +294,133 @@ export default function YieldPredictor() {
                                 
                                 {/* Left Col - Explanations and Guidance */}
                                 <div className="md:col-span-2 space-y-6">
-                                    {plan.recommendations.map(rec => (
-                                        <div key={rec.id} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm">
-                                            <div className="flex items-center justify-between mb-4">
-                                                <h3 className="text-lg font-bold text-slate-800 dark:text-slate-200 flex items-center gap-2">
-                                                    <Sprout className="w-5 h-5 text-green-500"/> {rec.title}
-                                                </h3>
-                                            </div>
+                                    {(() => {
+                                        // Deduplicate recommendations by ID or Title
+                                        const seenRecKeys = new Set();
+                                        const uniqueRecommendations = (plan.recommendations || []).filter(rec => {
+                                            const key = rec.id || rec.title;
+                                            if (seenRecKeys.has(key)) return false;
+                                            seenRecKeys.add(key);
+                                            return true;
+                                        });
 
-                                            {/* AI Explanation Block */}
-                                            {rec.aiExplanation && rec.aiExplanation.grounded && (
-                                              <div className="mt-4 mb-5">
-                                                <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-1">
-                                                  <PlayCircle className="w-3 h-3 text-primary" /> AI Explanation (Groq)
-                                                </p>
-                                                <div className="bg-primary/5 border border-primary/10 p-4 rounded-xl text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-                                                  {rec.aiExplanation.text}
-                                                </div>
-                                              </div>
-                                            )}
+                                        return uniqueRecommendations.map(rec => {
+                                            // Deduplicate actionableInsights
+                                            const uniqueInsights = Array.from(new Set((rec.actionableInsights || []).map(i => (i || '').trim()))).filter(Boolean);
 
-                                            {/* Deterministic Actionable Insights */}
-                                            {rec.actionableInsights && rec.actionableInsights.length > 0 && (
-                                                <div className="mt-4 mb-5">
-                                                    <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Improvement Opportunities</p>
-                                                    <ul className="space-y-2">
-                                                        {rec.actionableInsights.map((insight, idx) => (
-                                                            <li key={idx} className="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
-                                                                <div className="w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold shrink-0 text-[10px] mt-0.5">{idx + 1}</div>
-                                                                <span className="pt-0.5">{insight}</span>
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                </div>
-                                            )}
+                                            // Deduplicate knowledge docs
+                                            const seenDocKeys = new Set();
+                                            const uniqueKnowledge = (rec.knowledge || []).filter(doc => {
+                                                const key = (doc.content || '').trim().toLowerCase().replace(/\s+/g, ' ');
+                                                if (!key || seenDocKeys.has(key)) return false;
+                                                seenDocKeys.add(key);
+                                                return true;
+                                            });
 
-                                            {/* Knowledge Panel */}
-                                            <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800">
-                                                <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Supporting Documents</p>
-                                                {rec.knowledge && rec.knowledge.length > 0 ? (
-                                                    <div className="space-y-3">
-                                                        {rec.knowledge.map((doc, idx) => (
-                                                            <div key={idx} className="bg-slate-50 dark:bg-slate-800/50 p-3 rounded-lg border border-slate-200 dark:border-slate-700">
-                                                                <p className="text-sm text-slate-700 dark:text-slate-300 italic mb-2 line-clamp-3">"{doc.content}"</p>
-                                                                <div className="flex items-center justify-between text-xs font-bold text-slate-500">
-                                                                    <span className="text-primary">{doc.source}</span>
-                                                                    <span>{doc.title} {doc.page ? `• Page ${doc.page}` : ''}</span>
-                                                                </div>
-                                                            </div>
-                                                        ))}
+                                            return (
+                                                <div key={rec.id || rec.title} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm">
+                                                    <div className="flex items-center justify-between mb-4">
+                                                        <h3 className="text-lg font-bold text-slate-800 dark:text-slate-200 flex items-center gap-2">
+                                                            <Sprout className="w-5 h-5 text-green-500"/> {rec.title}
+                                                        </h3>
                                                     </div>
-                                                ) : (
-                                                    <div className="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-lg border border-slate-200 dark:border-slate-700 text-center">
-                                                        <p className="text-sm text-slate-500 italic">No supporting agricultural document available.</p>
-                                                    </div>
-                                                )}
-                                            </div>
-                                        </div>
-                                    ))}
+
+                                                    {/* AI Explanation Block */}
+                                                    {rec.aiExplanation && rec.aiExplanation.grounded && (
+                                                      <div className="mt-4 mb-5">
+                                                        <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-1">
+                                                          <PlayCircle className="w-3 h-3 text-primary" /> AI Explanation (Groq)
+                                                        </p>
+                                                        <div className="bg-primary/5 border border-primary/10 p-4 rounded-xl text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                                                          {rec.aiExplanation.text}
+                                                        </div>
+                                                      </div>
+                                                    )}
+
+                                                    {/* Deterministic Actionable Insights */}
+                                                    {uniqueInsights.length > 0 && (
+                                                        <div className="mt-4 mb-5">
+                                                            <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Improvement Opportunities</p>
+                                                            <ul className="space-y-2">
+                                                                {uniqueInsights.map((insight, idx) => (
+                                                                    <li key={idx} className="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
+                                                                        <div className="w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold shrink-0 text-[10px] mt-0.5">{idx + 1}</div>
+                                                                        <span className="pt-0.5">{insight}</span>
+                                                                    </li>
+                                                                ))}
+                                                            </ul>
+                                                        </div>
+                                                    )}
+
+                                                     {/* Knowledge Panel */}
+                                                     <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800">
+                                                         <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Supporting Documents</p>
+                                                         {(() => {
+                                                             const summaries = rec.evidenceSummaries && rec.evidenceSummaries.length > 0 ? rec.evidenceSummaries : [];
+                                                             const rawDocs = rec.knowledge && rec.knowledge.length > 0 ? rec.knowledge : (rec.rawEvidence || []);
+                                                             const sourceDocs = summaries.length > 0 ? summaries : rawDocs;
+
+                                                             const seenKeys = new Set();
+                                                             const uniqueDocs = sourceDocs.filter(doc => {
+                                                                 const titleKey = (doc.title || doc.document_title || '').trim().toLowerCase();
+                                                                 const contentKey = (doc.summary || doc.content || doc.text || '').trim().toLowerCase().substring(0, 100);
+                                                                 const combinedKey = `${titleKey}:::${contentKey}`;
+                                                                 if (!contentKey || seenKeys.has(combinedKey)) return false;
+                                                                 seenKeys.add(combinedKey);
+                                                                 return true;
+                                                             });
+
+                                                             if (uniqueDocs.length === 0) {
+                                                                 return (
+                                                                     <div className="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-lg border border-slate-200 dark:border-slate-700 text-center">
+                                                                         <p className="text-sm text-slate-500 italic">No supporting agricultural document available.</p>
+                                                                     </div>
+                                                                 );
+                                                             }
+
+                                                             return (
+                                                                 <div className="space-y-4">
+                                                                     {uniqueDocs.map((doc, idx) => {
+                                                                         const title = doc.title || doc.document_title || 'Agricultural Document';
+                                                                         const source = doc.source || doc.source_organization || 'External Source';
+                                                                         const page = doc.page || doc.page_number;
+                                                                         const textContent = doc.summary || doc.content || doc.text || '';
+                                                                         const keyRec = doc.keyRecommendation;
+
+                                                                         return (
+                                                                             <div key={idx} className="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-200 dark:border-slate-700 relative overflow-hidden">
+                                                                                 <div className="absolute top-0 left-0 w-1 h-full bg-primary/40"></div>
+                                                                                 <h4 className="font-bold text-slate-800 dark:text-slate-100 text-sm mb-1">{title}</h4>
+                                                                                 <div className="flex items-center gap-3 text-[10px] uppercase font-bold text-slate-500 mb-3">
+                                                                                     <span className="text-primary">{source}</span>
+                                                                                     {page && <span>Page {page}</span>}
+                                                                                     {doc.score > 0 && <span className="text-green-600">Match: {(doc.score * 100).toFixed(0)}%</span>}
+                                                                                 </div>
+                                                                                 
+                                                                                 <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed mb-3">
+                                                                                     "{textContent}"
+                                                                                 </p>
+                                                                                 
+                                                                                 {keyRec && (
+                                                                                     <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-700 p-3 rounded-lg flex items-start gap-2">
+                                                                                         <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0 mt-0.5" />
+                                                                                         <p className="text-xs font-medium text-slate-600 dark:text-slate-400">
+                                                                                             <span className="font-bold text-slate-700 dark:text-slate-300">Key Takeaway: </span>
+                                                                                             {keyRec}
+                                                                                         </p>
+                                                                                     </div>
+                                                                                 )}
+                                                                             </div>
+                                                                         );
+                                                                     })}
+                                                                 </div>
+                                                             );
+                                                         })()}
+                                                     </div>
+                                                </div>
+                                            );
+                                        });
+                                    })()}
                                 </div>
 
                                 {/* Right Col - Yield Insights */}

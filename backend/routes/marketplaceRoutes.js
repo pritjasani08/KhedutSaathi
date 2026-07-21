@@ -15,7 +15,9 @@ router.get('/dashboard', requireAuth, marketplaceController.getDashboardStats);
 // Farmer Only
 router.post('/listings', requireFarmer, upload.array('images', 5), marketplaceController.createListing);
 router.get('/listings/me', requireFarmer, marketplaceController.getFarmerListings);
+router.get('/bids/incoming', requireFarmer, marketplaceController.getIncomingBids);
 router.post('/bids/:bidId/accept', requireFarmer, marketplaceController.acceptBid);
+router.post('/bids/:bidId/reject', requireFarmer, marketplaceController.rejectBid);
 
 // Buyer Only
 router.post('/listings/:id/bid', requireBuyer, marketplaceController.placeBid);

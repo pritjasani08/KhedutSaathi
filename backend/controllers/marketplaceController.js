@@ -316,12 +316,90 @@ const getDashboardStats = async (req, res) => {
   }
 };
 
+// Get incoming bids for farmer's active listings (Farmer only)
+const getIncomingBids = async (req, res) => {
+  try {
+    const farmerId = req.user.id;
+    
+    // Fetch all OPEN crop listings owned by this farmer
+    const { data: farmerListings, error: listingErr } = await supabase
+      .from('crop_listings')
+      .select('id')
+      .eq('farmer_id', farmerId)
+      .eq('status', 'OPEN');
+
+    if (listingErr) throw listingErr;
+    
+    if (!farmerListings || farmerListings.length === 0) {
+      return res.status(200).json([]);
+    }
+
+    const listingIds = farmerListings.map(l => l.id);
+
+    // Fetch all bids on those listings with listing & buyer user info
+    const { data: bids, error: bidsErr } = await supabase
+      .from('bids')
+      .select(`
+        *,
+        crop_listings (id, crop_name, quantity_quintals, expected_price, location, status),
+        buyer:users!bids_buyer_id_fkey (first_name, last_name, mobile)
+      `)
+      .in('listing_id', listingIds)
+      .order('created_at', { ascending: false });
+
+    if (bidsErr) throw bidsErr;
+
+    res.status(200).json(bids || []);
+  } catch (error) {
+    console.error('Error fetching incoming bids:', error);
+    res.status(500).json({ message: 'Failed to fetch incoming bids' });
+  }
+};
+
+// Reject a Bid (Farmer only)
+const rejectBid = async (req, res) => {
+  try {
+    const { bidId } = req.params;
+    const farmerId = req.user.id;
+
+    // Verify bid exists and listing belongs to farmer
+    const { data: bid, error: bidError } = await supabase
+      .from('bids')
+      .select('*, crop_listings(farmer_id)')
+      .eq('id', bidId)
+      .single();
+
+    if (bidError || !bid) {
+      return res.status(404).json({ message: 'Bid not found.' });
+    }
+
+    if (bid.crop_listings.farmer_id !== farmerId) {
+      return res.status(403).json({ message: 'You can only reject bids on your own listings.' });
+    }
+
+    // Delete bid
+    const { error: deleteError } = await supabase
+      .from('bids')
+      .delete()
+      .eq('id', bidId);
+
+    if (deleteError) throw deleteError;
+
+    res.status(200).json({ message: 'Bid rejected and removed successfully.' });
+  } catch (error) {
+    console.error('Error rejecting bid:', error);
+    res.status(500).json({ message: 'Failed to reject bid' });
+  }
+};
+
 module.exports = {
   createListing,
   getAllListings,
   getFarmerListings,
   placeBid,
   acceptBid,
+  rejectBid,
+  getIncomingBids,
   getDeals,
   getDashboardStats
 };

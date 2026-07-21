@@ -47,14 +47,26 @@ async function enrichWithKnowledge(items, context = {}) {
 
           console.log(`[TRACE] Knowledge Response Received\nStatus: ${response.status}\nKnowledge Count: ${chunks.length}`);
 
-          // Normalize the raw RAG response into the Knowledge Object Schema
-          enrichedItem.knowledge = chunks.map(chunk => ({
-            title: chunk.document_title || 'Agricultural Document',
-            source: chunk.source_organization || 'External Source',
-            page: chunk.page_number || null,
-            content: chunk.text || '',
-            score: chunk.score || 0
-          }));
+          // Normalize and deduplicate raw RAG response into the Knowledge Object Schema
+          const seenContents = new Set();
+          const normalizedKnowledge = [];
+          
+          for (const chunk of chunks) {
+            const rawContent = (chunk.text || '').trim();
+            const normalizedKey = rawContent.toLowerCase().replace(/\s+/g, ' ');
+            if (rawContent && !seenContents.has(normalizedKey)) {
+              seenContents.add(normalizedKey);
+              normalizedKnowledge.push({
+                title: chunk.document_title || 'Agricultural Document',
+                source: chunk.source_organization || 'External Source',
+                page: chunk.page_number || null,
+                content: rawContent,
+                score: chunk.score || 0
+              });
+            }
+          }
+          
+          enrichedItem.knowledge = normalizedKnowledge;
         }
       } catch (error) {
         // We catch and log the error but do not throw, 
