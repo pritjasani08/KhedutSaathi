@@ -2,6 +2,8 @@ const axios = require('axios');
 const { generateCropPlan } = require('../services/cropPlannerService');
 const { enrichWithKnowledge } = require('../services/knowledgeIntegrationService');
 const { explainRecommendations } = require('../services/aiExplanationService');
+const eventBus = require('../utils/eventBus');
+const { CROP_PLAN_GENERATED, buildEventPayload } = require('../constants/events');
 
 const CROP_ML_URL = 'http://localhost:8003/predict';
 
@@ -83,7 +85,7 @@ async function getCropPlan(req, res) {
     plan.mlValidation = mlValidation;
 
     // 3. Enrich recommendations with Knowledge Engine
-    const { enrichedItems, metadata: knowledgeMetadata } = await enrichWithKnowledge(plan.recommendations);
+    const { enrichedItems, metadata: knowledgeMetadata } = await enrichWithKnowledge(plan.recommendations, { farm: req.body });
     
     // 4. Generate AI Explanations using Groq (passing ML validation as context!)
     const plannerContext = { farm: plan.farm, environment: plan.environment, summary: plan.summary, mlValidation: plan.mlValidation };
@@ -92,6 +94,27 @@ async function getCropPlan(req, res) {
     plan.recommendations = fullyEnrichedItems;
     plan.knowledgeMetadata = knowledgeMetadata;
     plan.aiMetadata = aiMetadata;
+
+    // Contract Validation Layer
+    const isValidPlan = plan && plan.recommendations && Array.isArray(plan.recommendations);
+    if (!isValidPlan) {
+      console.error("CRITICAL: Crop plan response contract violated.");
+      return res.status(500).json({ message: "Internal Server Error: Malformed response from planner engine." });
+    }
+    
+    // Ensure nested objects always contain the expected keys
+    plan.recommendations.forEach((rec) => {
+       if (!rec.actionableInsights) {
+           rec.actionableInsights = [];
+       }
+       if (!rec.aiExplanation) {
+           rec.aiExplanation = { text: null, grounded: false, confidence: 0 };
+       }
+    });
+
+    if (req.user && req.user.id) {
+        eventBus.emit(CROP_PLAN_GENERATED, buildEventPayload(CROP_PLAN_GENERATED, req.user.id, null, 'crop_planner', { crop: plan.summary.bestCrop }));
+    }
 
     res.json(plan);
   } catch (error) {

@@ -84,4 +84,22 @@ exports.resolveFarmerProfile = async (userId) => {
     return result;
 };
 
+/**
+ * Fetch all farmer profiles for batch processing.
+ * @returns {Promise<Array<{user_id: string, id: string}>>}
+ */
+exports.getAllFarmerProfiles = async () => {
+    const adminClient = getDbClient(true);
+    const { data, error } = await adminClient
+        .from('farmer_profiles')
+        .select('*');
+
+    if (error) {
+        logger.error(`Failed to fetch all farmer profiles: ${error.message}`);
+        throw error;
+    }
+
+    return data || [];
+};
+
 exports.FarmerProfileNotFoundError = FarmerProfileNotFoundError;

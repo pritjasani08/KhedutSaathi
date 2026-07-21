@@ -2,6 +2,8 @@ const bcrypt = require('bcrypt');
 const supabase = require('../config/supabaseClient');
 const { generateOTP, sendOTPEmail } = require('../utils/emailService');
 const jwt = require('jsonwebtoken');
+const eventBus = require('../utils/eventBus');
+const { AUTH_REGISTERED, AUTH_LOGIN, buildEventPayload } = require('../constants/events');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'fallback_secret_for_dev_only';
 
@@ -112,6 +114,9 @@ const verifyOTPAndRegister = async (req, res) => {
     // 5. Success! Clear the OTP session
     otpStore.delete(email);
 
+    // Emit Event
+    eventBus.emit(AUTH_REGISTERED, buildEventPayload(AUTH_REGISTERED, newUser.id, newUser.id, 'auth', { userType: newUser.user_type }));
+
     // 6. Generate JWT
     const token = jwt.sign(
       { id: newUser.id, email: newUser.email, user_type: newUser.user_type },
@@ -159,6 +164,9 @@ const login = async (req, res) => {
     // 3. Login successful! Return user details (omit password_hash)
     const { password_hash, ...userWithoutPassword } = user;
     
+    // Emit Event
+    eventBus.emit(AUTH_LOGIN, buildEventPayload(AUTH_LOGIN, user.id, user.id, 'auth', { userType: user.user_type }));
+
     // 4. Generate JWT
     const token = jwt.sign(
       { id: user.id, email: user.email, user_type: user.user_type },

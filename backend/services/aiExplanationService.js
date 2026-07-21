@@ -13,8 +13,6 @@ const MODEL = 'llama-3.1-8b-instant'; // Using newer model for explanations
  * @returns {Object} { explanation, metadata }
  */
 async function generateExplanation(context, recommendation, knowledge) {
-
-  
   const startTime = Date.now();
   let metadata = {
     explanationGenerated: false,
@@ -22,6 +20,35 @@ async function generateExplanation(context, recommendation, knowledge) {
     generationTimeMs: 0,
     grounded: false
   };
+
+  const deterministicEvidenceSummaries = knowledge.map(k => {
+    // Strip injected context header if present (e.g. "Document: ... | Section: ...\n")
+    let cleanContent = k.content || "";
+    if (cleanContent.startsWith("Document:") && cleanContent.includes("\n")) {
+      cleanContent = cleanContent.split("\n").slice(1).join("\n").trim();
+    }
+    
+    // Extract first ~150 chars, but try to break at a sentence boundary or word boundary
+    let summary = cleanContent.substring(0, 150);
+    if (cleanContent.length > 150) {
+        const lastPeriod = summary.lastIndexOf('.');
+        if (lastPeriod > 50) {
+            summary = summary.substring(0, lastPeriod + 1);
+        } else {
+            summary += "...";
+        }
+    }
+    
+    return {
+      title: k.title,
+      summary: summary || "No summary available.",
+      keyRecommendation: "Refer to the original document for details.",
+      source: k.source,
+      page: k.page,
+      score: k.score,
+      diagnostics: k.diagnostics || {}
+    };
+  });
 
   const fallbackResponse = {
     explanation: {
@@ -31,25 +58,21 @@ async function generateExplanation(context, recommendation, knowledge) {
       model: MODEL,
       generatedAt: new Date().toISOString()
     },
+    evidenceSummaries: deterministicEvidenceSummaries,
     metadata
   };
 
   if (!GROQ_API_KEY) {
-
     console.warn("Groq API key not configured. Skipping explanation generation.");
     return fallbackResponse;
   }
 
-  // If no knowledge was retrieved, do not attempt to generate an explanation.
   if (!knowledge || knowledge.length === 0) {
-
-    return fallbackResponse;
+    return { ...fallbackResponse, evidenceSummaries: [] };
   }
 
   try {
     const { systemPrompt, userPrompt } = buildExplanationPrompt(context, recommendation, knowledge);
-
-
 
     const response = await axios.post(
       GROQ_API_URL,
@@ -59,7 +82,7 @@ async function generateExplanation(context, recommendation, knowledge) {
           { role: 'system', content: systemPrompt },
           { role: 'user', content: userPrompt }
         ],
-        temperature: 0.1, // Keep it deterministic and factual
+        temperature: 0.1,
         response_format: { type: 'json_object' }
       },
       {
@@ -67,32 +90,57 @@ async function generateExplanation(context, recommendation, knowledge) {
           'Authorization': `Bearer ${GROQ_API_KEY}`,
           'Content-Type': 'application/json'
         },
-        timeout: 8000 // Ensure we don't block the planner for too long
+        timeout: 10000 // Increased timeout for summarization
       }
     );
 
-
-
     const contentStr = response.data.choices[0].message.content;
-    const parsed = JSON.parse(contentStr);
+    
+    let parsed;
+    try {
+      parsed = JSON.parse(contentStr);
+    } catch (parseError) {
+      console.error(`AI JSON Parse Error for ${recommendation.id}:`, parseError.message);
+      return fallbackResponse; // Graceful deterministic fallback
+    }
 
     metadata.explanationGenerated = true;
-    metadata.grounded = parsed.grounded === true;
+    
+    // Safely extract explanation
+    const explanationData = parsed.explanation || parsed;
+    metadata.grounded = explanationData.grounded === true;
     metadata.generationTimeMs = Date.now() - startTime;
+
+    // Safely extract and map evidenceSummaries
+    let generatedSummaries = parsed.evidenceSummaries || [];
+    if (!Array.isArray(generatedSummaries) || generatedSummaries.length === 0) {
+      generatedSummaries = deterministicEvidenceSummaries; // Fallback if LLM didn't return them
+    } else {
+      // Map original scores and diagnostics back to the LLM summaries by finding matching sources/titles
+      generatedSummaries = generatedSummaries.map(summary => {
+        // Find closest matching knowledge chunk to inject the reranker score and diagnostics
+        const match = knowledge.find(k => k.source === summary.source || k.title === summary.title);
+        return {
+          ...summary,
+          score: match ? match.score : 0,
+          diagnostics: match ? (match.diagnostics || {}) : {}
+        };
+      });
+    }
 
     return {
       explanation: {
-        text: parsed.text || null,
-        grounded: parsed.grounded || false,
-        confidence: parsed.confidence || 0,
+        text: explanationData.text || null,
+        grounded: explanationData.grounded || false,
+        confidence: explanationData.confidence || 0,
         model: MODEL,
         generatedAt: new Date().toISOString()
       },
+      evidenceSummaries: generatedSummaries,
       metadata
     };
 
   } catch (error) {
-
     console.error(`AI Explanation error for ${recommendation.id}:`, error.message);
     metadata.generationTimeMs = Date.now() - startTime;
     return fallbackResponse;
@@ -112,10 +160,14 @@ async function explainRecommendations(context, enrichedItems) {
   const promises = enrichedItems.map(async (item) => {
     const enrichedItem = { ...item };
     
-    // Only generate explanation if it has knowledge
+    // Preserve raw evidence for debugging and UI fallback "View Original Excerpt"
+    enrichedItem.rawEvidence = enrichedItem.knowledge || [];
+    
     if (enrichedItem.knowledge && enrichedItem.knowledge.length > 0) {
-      const { explanation, metadata } = await generateExplanation(context, enrichedItem, enrichedItem.knowledge);
+      const { explanation, evidenceSummaries, metadata } = await generateExplanation(context, enrichedItem, enrichedItem.knowledge);
       enrichedItem.aiExplanation = explanation;
+      enrichedItem.evidenceSummaries = evidenceSummaries;
+      
       totalGenerationTimeMs += metadata.generationTimeMs;
       if (metadata.explanationGenerated) totalExplanationsGenerated++;
     } else {
@@ -126,6 +178,7 @@ async function explainRecommendations(context, enrichedItems) {
         model: MODEL,
         generatedAt: new Date().toISOString()
       };
+      enrichedItem.evidenceSummaries = [];
     }
     return enrichedItem;
   });

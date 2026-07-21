@@ -4,6 +4,7 @@ const logger = require('../utils/logger');
 const axios = require('axios');
 const farmerMemoryService = require('./farmerMemoryService');
 const { resolveFarmerProfile } = require('./profileResolver');
+const { getNotificationTemplates } = require('../constants/notificationTemplates');
 
 const PYTHON_AI_URL = 'http://127.0.0.1:8000/api/ai/notifications/generate';
 
@@ -17,32 +18,50 @@ function generateSignature(userId, type, trigger) {
 
 /**
  * Service to deterministically detect alerts and fetch AI explanations.
+ * Optionally accepts eventPayload for event-driven contextual generation.
  */
-exports.generateProactiveNotificationsForUser = async (userId, userProfile) => {
+exports.generateProactiveNotificationsForUser = async (userId, userProfile = null, eventPayload = null) => {
+    let farmerProfileId, profile, newCandidates = [];
+    
     try {
-        const { farmerProfileId, profile } = await resolveFarmerProfile(userId);
-        const candidates = [];
+        const resolved = await resolveFarmerProfile(userId);
+        farmerProfileId = resolved.farmerProfileId;
+        profile = resolved.profile;
         
-        // 1. Fetch recent weather (Simulated or real fetch)
-        // In a real app, this would use the weatherService
-        const weather = { condition: "Heavy Rain", alert: true };
-        if (weather.alert) {
-            candidates.push({
+        let candidates = [];
+        
+        if (eventPayload && eventPayload.eventType) {
+            const templates = getNotificationTemplates(eventPayload.eventType, eventPayload.metadata);
+            
+            candidates = templates.map(t => ({
                 id: crypto.randomUUID(),
-                type: 'WEATHER',
-                title: 'Heavy Rainfall Warning',
-                message: 'Heavy rainfall expected in your area in the next 48 hours.',
-                priority: 'HIGH',
-                expiresAt: new Date(Date.now() + 48 * 60 * 60 * 1000).toISOString(),
-                trigger: 'WEATHER_RAIN_HEAVY',
-                rawFacts: { weather: "Heavy Rain" }
-            });
+                type: t.type,
+                title: t.title,
+                message: t.message,
+                priority: t.type === 'ALERT' ? 'HIGH' : 'MEDIUM',
+                expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+                trigger: eventPayload.eventType,
+                rawFacts: eventPayload.metadata
+            }));
+        } else {
+            // 1. Fetch recent weather
+            const weather = { condition: "Heavy Rain", alert: true };
+            if (weather.alert) {
+                candidates.push({
+                    id: crypto.randomUUID(),
+                    type: 'WEATHER',
+                    title: 'Heavy Rainfall Warning',
+                    message: 'Heavy rainfall expected in your area in the next 48 hours.',
+                    priority: 'HIGH',
+                    expiresAt: new Date(Date.now() + 48 * 60 * 60 * 1000).toISOString(),
+                    trigger: 'WEATHER_RAIN_HEAVY',
+                    rawFacts: { weather: "Heavy Rain" }
+                });
+            }
         }
         
         // Deduplicate using recent notifications
         const adminClient = getDbClient(true);
-        const newCandidates = [];
-        
         for (const candidate of candidates) {
             const signature = generateSignature(userId, candidate.type, candidate.trigger);
             const { data: existing } = await adminClient
@@ -60,7 +79,7 @@ exports.generateProactiveNotificationsForUser = async (userId, userProfile) => {
         
         if (newCandidates.length === 0) return [];
         
-        // Use users.id for farmerMemoryService strictly!
+        // Fetch context
         const { memory, recentDecisions } = await farmerMemoryService.getFarmerMemory(userId);
 
         const payload = {
@@ -72,16 +91,29 @@ exports.generateProactiveNotificationsForUser = async (userId, userProfile) => {
             candidates: newCandidates
         };
         
-        const aiResponse = await axios.post(PYTHON_AI_URL, payload, { timeout: 15000 });
+        let aiResponse;
+        let retries = 2;
+        while (retries >= 0) {
+            try {
+                aiResponse = await axios.post(PYTHON_AI_URL, payload, { timeout: 15000 });
+                if (aiResponse.data.status === 'success') {
+                    break;
+                }
+            } catch (err) {
+                if (retries === 0) throw err;
+            }
+            retries--;
+            await new Promise(res => setTimeout(res, 1000));
+        }
         
-        if (aiResponse.data.status !== 'success') {
-            throw new Error(aiResponse.data.error || "AI generation failed");
+        if (!aiResponse || !aiResponse.data || aiResponse.data.status !== 'success') {
+            throw new Error(aiResponse?.data?.error || "AI generation failed after retries");
         }
         
         return aiResponse.data.notifications.map(n => {
             const originalCandidate = newCandidates.find(c => c.id === n.id);
             return {
-                user_id: farmerProfileId, // STRICT CONTRACT: Use farmerProfileId for database insertion!
+                user_id: farmerProfileId,
                 type: n.type,
                 title: n.title,
                 message: n.message,
@@ -98,7 +130,25 @@ exports.generateProactiveNotificationsForUser = async (userId, userProfile) => {
         });
         
     } catch (err) {
-        logger.error(`Failed to generate notifications for ${userId}: ${err.message}`);
-        return [];
+        logger.warn(`AI Notification Engine unreachable, falling back to basic rules for ${userId}: ${err.message}`);
+        
+        // If it failed before resolving profile, we can't insert.
+        if (!farmerProfileId || newCandidates.length === 0) {
+            return [];
+        }
+        
+        // Fallback: Map basic rule-based candidates directly
+        return newCandidates.map(c => ({
+            user_id: farmerProfileId,
+            type: c.type,
+            title: c.title,
+            message: c.message,
+            priority: c.priority,
+            expires_at: c.expiresAt,
+            source: 'SYSTEM',
+            generated_by: 'SYSTEM',
+            notification_signature: c._signature,
+            context_snapshot: { facts: c.rawFacts }
+        }));
     }
 };

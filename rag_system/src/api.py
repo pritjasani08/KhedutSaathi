@@ -14,6 +14,7 @@ dotenv_path = os.path.join(
 load_dotenv(dotenv_path)
 
 # FIXED IMPORTS
+from typing import Dict, Any
 from rag_system.src.schemas import AskRequest, AskResponse, KnowledgeSearchRequest, KnowledgeSearchResponse
 from rag_system.src.api_utils import process_query
 from rag_system.src.knowledge_engine.retriever import KnowledgeRetriever
@@ -90,7 +91,11 @@ def knowledge_search(request: KnowledgeSearchRequest):
             query=request.query,
             filters=request.filters,
             crop=request.crop,
-            topic=request.topic
+            topic=request.topic,
+            state=request.state,
+            district=request.district,
+            season=request.season,
+            soilType=request.soilType
         )
         
         return KnowledgeSearchResponse(
@@ -103,4 +108,47 @@ def knowledge_search(request: KnowledgeSearchRequest):
         
     except Exception as e:
         logger.exception("Error processing knowledge search")
-        return KnowledgeSearchResponse(success=False, error=str(e))
+        return KnowledgeSearchResponse(success=False, error=str(e))
+
+@app.post("/api/ai/timeline/generate")
+async def generate_timeline(request: Dict[str, Any]):
+    try:
+        candidates = request.get("candidates", [])
+        
+        # Stub logic: just return candidates with basic AI explanation
+        tasks = []
+        for c in candidates:
+            # We preserve the candidate's existing fields, and append AI fields
+            task = {**c}
+            task["why"] = f"AI believes this {c.get('task_type', 'task')} is necessary based on your recent activity."
+            task["impact"] = "High impact on yield."
+            task["risks"] = "Low risk if executed properly."
+            task["next_actions"] = ["Review task details", "Gather necessary resources"]
+            tasks.append(task)
+            
+        return {
+            "status": "success",
+            "tasks": tasks
+        }
+    except Exception as e:
+        logger.exception("Error generating timeline")
+        return {"status": "error", "error": str(e)}
+
+@app.post("/api/ai/notifications/generate")
+async def generate_notifications(request: Dict[str, Any]):
+    try:
+        candidates = request.get("candidates", [])
+        
+        notifications = []
+        for c in candidates:
+            notification = {**c}
+            notification["personalization_factors"] = ["Relevant to your registered crops"]
+            notifications.append(notification)
+            
+        return {
+            "status": "success",
+            "notifications": notifications
+        }
+    except Exception as e:
+        logger.exception("Error generating notifications")
+        return {"status": "error", "error": str(e)}

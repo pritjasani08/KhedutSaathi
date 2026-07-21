@@ -24,7 +24,14 @@ class ChromaDBManager:
 
         self.collection = self.client.get_or_create_collection(
             name=COLLECTION_NAME,
-            metadata={"hnsw:space": "cosine"}
+            metadata={
+                "hnsw:space": "cosine",
+                "chunk_version": "2.0",
+                "embedding_model": EMBEDDING_MODEL_NAME,
+                "reranker_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+                "index_version": "1.0",
+                "ingestion_timestamp": str(time.time())
+            }
         )
 
     def _check_and_update_schema(self):

@@ -1,4 +1,6 @@
 const supabase = require('../config/supabaseClient');
+const eventBus = require('../utils/eventBus');
+const { PROFILE_UPDATED, PROFILE_COMPLETED, buildEventPayload } = require('../constants/events');
 
 const calculateCompletion = (profile) => {
   if (!profile) return 0;
@@ -91,6 +93,12 @@ const upsertProfile = async (req, res) => {
     }
     
     const completion = calculateCompletion(result);
+    
+    // Emit Events
+    eventBus.emit(PROFILE_UPDATED, buildEventPayload(PROFILE_UPDATED, userId, result.id, 'profile', { completionPercentage: completion }));
+    if (completion === 100) {
+        eventBus.emit(PROFILE_COMPLETED, buildEventPayload(PROFILE_COMPLETED, userId, result.id, 'profile', {}));
+    }
     
     res.status(200).json({ 
       message: 'Profile saved successfully', 

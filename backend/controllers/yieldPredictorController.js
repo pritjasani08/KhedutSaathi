@@ -1,6 +1,8 @@
 const { getPredictedYield } = require('../services/yieldPredictionService');
 const { enrichWithKnowledge } = require('../services/knowledgeIntegrationService');
 const { explainRecommendations } = require('../services/aiExplanationService');
+const eventBus = require('../utils/eventBus');
+const { YIELD_PREDICTED, buildEventPayload } = require('../constants/events');
 
 async function getYieldPrediction(req, res) {
   try {
@@ -24,7 +26,7 @@ async function getYieldPrediction(req, res) {
     const result = await getPredictedYield(farmConfig);
 
     // 2. Enrich recommendations with Knowledge Engine
-    const { enrichedItems, metadata: knowledgeMetadata } = await enrichWithKnowledge(result.recommendations);
+    const { enrichedItems, metadata: knowledgeMetadata } = await enrichWithKnowledge(result.recommendations, { farm: req.body });
     
     // 3. Generate AI Explanations using Groq
     const plannerContext = { 
@@ -56,6 +58,27 @@ async function getYieldPrediction(req, res) {
             aiExplanation: aiMetadata
         }
     };
+
+    // Contract Validation Layer
+    const isValidPlan = finalResponse && finalResponse.recommendations && Array.isArray(finalResponse.recommendations);
+    if (!isValidPlan) {
+      console.error("CRITICAL: Yield prediction response contract violated.");
+      return res.status(500).json({ message: "Internal Server Error: Malformed response from planner engine." });
+    }
+    
+    // Ensure nested objects always contain the expected keys
+    finalResponse.recommendations.forEach((rec) => {
+       if (!rec.actionableInsights) {
+           rec.actionableInsights = [];
+       }
+       if (!rec.aiExplanation) {
+           rec.aiExplanation = { text: null, grounded: false, confidence: 0 };
+       }
+    });
+
+    if (req.user && req.user.id) {
+        eventBus.emit(YIELD_PREDICTED, buildEventPayload(YIELD_PREDICTED, req.user.id, null, 'yield_predictor', { predictedYield: result.prediction.totalYield }));
+    }
 
     res.json(finalResponse);
   } catch (error) {

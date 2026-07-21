@@ -4,6 +4,7 @@ const logger = require('../utils/logger');
 const axios = require('axios');
 const farmerMemoryService = require('./farmerMemoryService');
 const { resolveFarmerProfile } = require('./profileResolver');
+const { getTimelineTemplates } = require('../constants/timelineTemplates');
 
 const PYTHON_AI_TIMELINE_URL = 'http://127.0.0.1:8000/api/ai/timeline/generate';
 
@@ -17,159 +18,94 @@ function generateSignature(userId, taskType, trigger, scheduledDateStr) {
 
 /**
  * Core generation logic used by both user-triggered and scheduled generations
+ * Optionally accepts an eventPayload to generate contextual tasks based on the trigger event.
  */
-async function coreGenerateLogic(dbClient, userId) {
+async function coreGenerateLogic(dbClient, userId, eventPayload = null) {
     const { farmerProfileId, profile } = await resolveFarmerProfile(userId);
-    const candidates = [];
-    const now = new Date();
+    let candidates = [];
     
-    // 1. Weather Checks (Simulated)
-    const weatherAlert = true; 
-    if (weatherAlert) {
-        const tomorrow = new Date();
-        tomorrow.setDate(tomorrow.getDate() + 1);
+    if (eventPayload && eventPayload.eventType) {
+        // Event-driven contextual generation
+        const templates = getTimelineTemplates(eventPayload.eventType, eventPayload.metadata);
         
-        candidates.push({
+        candidates = templates.map(t => ({
             id: crypto.randomUUID(),
-            task_type: 'IRRIGATION',
-            title: 'Delay Irrigation',
-            description: 'Heavy rainfall expected.',
-            scheduled_date: tomorrow.toISOString(),
-            priority: 'HIGH',
-            source: 'WEATHER',
-            trigger: 'WEATHER_HEAVY_RAIN',
-            rawFacts: { condition: "Heavy Rain Forecast" },
-            confidence: 90
-        });
+            task_type: t.task_type.toUpperCase(),
+            title: t.title,
+            description: t.description,
+            scheduled_date: t.due_date,
+            priority: (t.priority || 'MEDIUM').toUpperCase(),
+            source: eventPayload.source.toUpperCase(),
+            trigger: eventPayload.eventType,
+            rawFacts: eventPayload.metadata,
+            confidence: 95
+            
+        }));
+    } else {
+        // Legacy fallback or user-requested refresh logic
+        const { memory } = await farmerMemoryService.getFarmerMemory(userId);
+        if (memory && memory.preferred_crops && memory.preferred_crops.length > 0) {
+            const nextWeek = new Date();
+            nextWeek.setDate(nextWeek.getDate() + 7);
+            
+            candidates.push({
+                id: crypto.randomUUID(),
+                task_type: 'SCOUTING',
+                title: `Scout ${memory.preferred_crops[0]} for pests`,
+                description: `Routine scouting for ${memory.preferred_crops[0]}`,
+                scheduled_date: nextWeek.toISOString(),
+                priority: 'MEDIUM',
+                source: 'MEMORY',
+                trigger: 'ROUTINE_SCOUTING',
+                rawFacts: { crop: memory.preferred_crops[0] },
+                confidence: 85
+            });
+        }
     }
 
-    // 2. Crop Growth Stages
-    const { memory, recentDecisions } = await farmerMemoryService.getFarmerMemory(userId);
-    
-    if (memory && memory.preferred_crops && memory.preferred_crops.length > 0) {
-        const nextWeek = new Date();
-        nextWeek.setDate(nextWeek.getDate() + 7);
-        
-        candidates.push({
-            id: crypto.randomUUID(),
-            task_type: 'SCOUTING',
-            title: `Scout ${memory.preferred_crops[0]} for pests`,
-            description: `Routine scouting for ${memory.preferred_crops[0]}`,
-            scheduled_date: nextWeek.toISOString(),
-            priority: 'MEDIUM',
-            source: 'MEMORY',
-            trigger: 'ROUTINE_SCOUTING',
-            rawFacts: { crop: memory.preferred_crops[0] },
-            confidence: 85
-        });
-    }
-
-    // 3. Government Scheme Deadline (Simulated)
-    const nextMonth = new Date();
-    nextMonth.setDate(nextMonth.getDate() + 15);
-    candidates.push({
-        id: crypto.randomUUID(),
-        task_type: 'GENERAL',
-        title: 'Apply for PM-Kisan Scheme',
-        description: 'Deadline approaching.',
-        scheduled_date: nextMonth.toISOString(),
-        priority: 'HIGH',
-        source: 'SCHEME',
-        trigger: 'SCHEME_DEADLINE',
-        rawFacts: { scheme: "PM-Kisan", deadline: nextMonth.toISOString() },
-        confidence: 95
-    });
-
-    if (candidates.length === 0) return [];
-
-    // 4. Filter duplicates via context_snapshot->signature
-    const newCandidates = [];
-    for (const candidate of candidates) {
-        const signature = generateSignature(userId, candidate.task_type, candidate.trigger, candidate.scheduled_date.split('T')[0]);
-        
-        const { data } = await dbClient
+    // Filter out candidates if a PENDING task with the same trigger already exists
+    const finalCandidates = [];
+    for (const c of candidates) {
+        const { data: existingPending } = await dbClient
             .from('farm_timeline')
             .select('id')
-            .eq('user_id', farmerProfileId) // Explicit ownership check
-            .contains('context_snapshot', { signature })
+            .eq('user_id', userId)
+            .eq('status', 'PENDING')
+            .contains('context_snapshot', { trigger: c.trigger })
             .limit(1);
             
-        if (!data || data.length === 0) {
-            candidate._signature = signature;
-            newCandidates.push(candidate);
+        if (!existingPending || existingPending.length === 0) {
+            finalCandidates.push(c);
         }
     }
     
-    if (newCandidates.length === 0) return [];
+    if (finalCandidates.length === 0) return [];
 
-    // 5. Send to Python Engine
-    const payload = {
-        requestId: crypto.randomUUID(),
-        farmer_id: userId,
-        profile: profile || {},
-        memory: memory,
-        recent_decisions: recentDecisions,
-        candidates: newCandidates
-    };
-    
-    let tasksToInsert = [];
-    try {
-        const aiResponse = await axios.post(PYTHON_AI_TIMELINE_URL, payload, { timeout: 5000 });
-        
-        if (aiResponse.data.status !== 'success') {
-            throw new Error(aiResponse.data.error || "AI timeline explanation failed");
-        }
-        
-        // 6. Map and Insert (AI enhanced)
-        tasksToInsert = aiResponse.data.tasks.map(t => {
-            const originalCandidate = newCandidates.find(c => c.id === t.id);
-            return {
-                user_id: farmerProfileId,
-                task_type: t.task_type,
-                title: t.title,
-                description: t.description,
-                scheduled_date: t.scheduled_date,
-                priority: t.priority,
-                status: 'PENDING',
-                source: t.source,
-                confidence: t.confidence,
-                context_snapshot: { 
-                    facts: t.rawFacts, 
-                    signature: originalCandidate._signature,
-                    personalization_factors: t.personalization_factors || [],
-                    explanation: {
-                        why: t.why,
-                        impact: t.impact,
-                        risks: t.risks,
-                        next_actions: t.next_actions
-                    }
-                }
-            };
-        });
-    } catch (err) {
-        logger.warn(`AI Timeline Engine unreachable, falling back to basic rules: ${err.message}`);
-        
-        // Fallback: Map basic rule-based candidates directly
-        tasksToInsert = newCandidates.map(c => ({
-            user_id: farmerProfileId,
-            task_type: c.task_type,
-            title: c.title,
-            description: c.description,
-            scheduled_date: c.scheduled_date,
-            priority: c.priority,
-            status: 'PENDING',
-            source: c.source,
-            confidence: c.confidence,
-            context_snapshot: { 
-                facts: c.rawFacts, 
-                signature: c._signature,
-                explanation: {
-                    why: "System generated recommendation.",
-                }
+    // Map candidates to DB format (Skipping AI loop for direct rules if preferred)
+    const tasksToInsert = finalCandidates.map(c => ({
+        user_id: userId,
+        task_type: c.task_type,
+        title: c.title,
+        description: c.description,
+        scheduled_date: c.scheduled_date,
+        priority: c.priority,
+        status: 'PENDING',
+        source: c.source,
+        confidence: c.confidence,
+        context_snapshot: { 
+            trigger: c.trigger,
+            facts: c.rawFacts, 
+            explanation: {
+                why: "System generated contextual recommendation.",
             }
-        }));
-    }
-
+        }
+    }));
+    
+    // We will still allow the Python AI to enhance these if they exist, but for now we skip AI 
+    // if it's already mapped contextually via templates, to save time and reduce errors.
+    // If AI enhancement is strictly needed, it should be done here on `finalCandidates`.
+    
+    // For now, insert directly for reliability
     if (tasksToInsert.length > 0) {
         const { error: insertError } = await dbClient
             .from('farm_timeline')
@@ -181,6 +117,7 @@ async function coreGenerateLogic(dbClient, userId) {
     }
     
     return tasksToInsert;
+
 }
 
 
@@ -205,7 +142,7 @@ exports.user = {
         const { data, error } = await adminClient
             .from('farm_timeline')
             .select('*')
-            .eq('user_id', farmerProfileId) // Defensive authorization check
+            .eq('user_id', userId) // Defensive authorization check
             .order('scheduled_date', { ascending: true });
 
         if (error) throw error;
@@ -221,7 +158,7 @@ exports.user = {
             .from('farm_timeline')
             .select('id')
             .eq('id', taskId)
-            .eq('user_id', farmerProfileId)
+            .eq('user_id', userId)
             .single();
             
         if (fetchErr || !existing) {
@@ -233,7 +170,7 @@ exports.user = {
             .from('farm_timeline')
             .update(statusUpdate)
             .eq('id', taskId)
-            .eq('user_id', farmerProfileId) // Double safeguard
+            .eq('user_id', userId) // Double safeguard
             .select()
             .single();
 
@@ -250,7 +187,7 @@ exports.user = {
             .from('farm_timeline')
             .select('scheduled_date')
             .eq('id', taskId)
-            .eq('user_id', farmerProfileId)
+            .eq('user_id', userId)
             .single();
             
         if (fetchErr || !task) {
@@ -287,7 +224,7 @@ exports.user = {
         tomorrow.setDate(tomorrow.getDate() + 1);
     
         const task = {
-            user_id: farmerProfileId,
+            user_id: userId,
             task_type: notification.type === 'WEATHER' ? 'GENERAL' : 'SCOUTING',
             title: notification.title,
             description: notification.message,
@@ -320,9 +257,9 @@ exports.admin = {
     /**
      * Triggered by background jobs for batch generation
      */
-    generateTimelineForUser: async (userId) => {
+    generateTimelineForUser: async (userId, eventPayload = null) => {
         const adminClient = getDbClient(true);
-        return await coreGenerateLogic(adminClient, userId);
+        return await coreGenerateLogic(adminClient, userId, eventPayload);
     },
     
     /**

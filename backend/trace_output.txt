@@ -1,0 +1,32 @@
+--- START E2E TRACE ---
+Login successful. Received real JWT.
+=== END-TO-END TRACE ===
+1. Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4OWNlYTUyLWUwM2ItNGY3NC05MWJmLWVmZTdlYWFjMzE1NiIsImVtYWlsIjoidGVzdF9hdXRvbWF0aW9uQGtoZWR1dHNhYXRoaS5jb20iLCJ1c2VyX3R5cGUiOiJmYXJtZXIiLCJpYXQiOjE3ODQ2NTg0OTcsImV4cCI6MTc4NTI2MzI5N30.UeIG68nlAzrif3e7Mq-WdIeqMjyOThxS1CWv7k2DzZ8
+2. Decoded JWT: {"id":"d89cea52-e03b-4f74-91bf-efe7eaac3156","email":"test_automation@khedutsaathi.com","user_type":"farmer","iat":1784658497,"exp":1785263297}
+3. JWT subject (sub): 
+4. req.user after requireAuth: {"id":"d89cea52-e03b-4f74-91bf-efe7eaac3156","email":"test_automation@khedutsaathi.com","user_type":"farmer","iat":1784658497,"exp":1785263297}
+5. req.user.id: d89cea52-e03b-4f74-91bf-efe7eaac3156
+6. req.user.user_id: 
+=== END-TO-END TRACE ===
+4. req.user after requireAuth: {"id":"d89cea52-e03b-4f74-91bf-efe7eaac3156","email":"test_automation@khedutsaathi.com","user_type":"farmer","iat":1784658497,"exp":1785263297}
+5. req.user.id: d89cea52-e03b-4f74-91bf-efe7eaac3156
+6. req.user.user_id: 
+7. Parameter passed into timelineService.getTimeline(): d89cea52-e03b-4f74-91bf-efe7eaac3156
+8. Exact Supabase Query:
+   .from('farm_timeline').select('*').eq('user_id', 'd89cea52-e03b-4f74-91bf-efe7eaac3156')
+9. Supabase rows: 2 Error: null
+10. Final JSON response: {
+  "success": true,
+  "data": [
+    {
+      "id": "053f19f9-b86e-4e35-b80c-c030edc0ee25",
+      "user_id": "d89cea52-e03b-4f74-91bf-efe7eaac3156",
+      "decision_id": null,
+      "depends_on_task_id": null,
+      "task_type": "TREATMENT",
+      "title": "Apply treatment for Rust",
+      "description": "Apply recommended fungicide/pesticide immediately to stop the spread.",
+      "scheduled_date": "2026-07-22T14:33:16.102+00:00",
+      "priority": "HIGH",
+      "status": "PENDING",
+      "sourc...

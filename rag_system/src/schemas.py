@@ -13,6 +13,10 @@ class KnowledgeSearchRequest(BaseModel):
     filters: dict | None = None
     crop: str | None = None
     topic: str | None = None
+    state: str | None = None
+    district: str | None = None
+    season: str | None = None
+    soilType: str | None = None
 
 class KnowledgeSearchResponse(BaseModel):
     success: bool
