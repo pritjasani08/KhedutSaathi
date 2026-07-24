@@ -100,7 +100,7 @@ exports.saveHistory = async (req, res) => {
 
     if (error) throw error;
     
-    eventBus.emit(DISEASE_DETECTED, buildEventPayload(DISEASE_DETECTED, req.user.id, data[0].id, 'diagnosis', { diseaseName: finalResult.disease }));
+    eventBus.emit(DISEASE_DETECTED, buildEventPayload(DISEASE_DETECTED, req.user.id, data[0].id, 'diagnosis', { diseaseName: disease }));
     return res.status(201).json({ success: true, data: data[0] });
   } catch (error) {
     console.error("Error saving diagnosis history:", error);

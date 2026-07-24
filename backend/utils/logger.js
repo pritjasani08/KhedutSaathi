@@ -4,11 +4,25 @@
  */
 
 const log = (level, message, metadata = {}) => {
+  const safeMetadata = { ...metadata };
+  
+  // If metadata is an Error object or has a 'message' property (e.g., Supabase error),
+  // preserve it without overriding the top-level message.
+  if (safeMetadata.message && typeof safeMetadata.message === 'string') {
+    safeMetadata.error_message = safeMetadata.message;
+    delete safeMetadata.message;
+  }
+  
+  // Don't override the log level
+  if (safeMetadata.level) {
+    delete safeMetadata.level;
+  }
+
   const logEntry = {
     timestamp: new Date().toISOString(),
     level,
     message,
-    ...metadata
+    ...safeMetadata
   };
   
   if (level === 'ERROR') {

@@ -67,10 +67,6 @@ async function generateExplanation(context, recommendation, knowledge) {
     return fallbackResponse;
   }
 
-  if (!knowledge || knowledge.length === 0) {
-    return { ...fallbackResponse, evidenceSummaries: [] };
-  }
-
   try {
     const { systemPrompt, userPrompt } = buildExplanationPrompt(context, recommendation, knowledge);
 
@@ -172,23 +168,15 @@ async function explainRecommendations(context, enrichedItems) {
     // Preserve raw evidence for debugging and UI fallback "View Original Excerpt"
     enrichedItem.rawEvidence = enrichedItem.knowledge || [];
     
-    if (enrichedItem.knowledge && enrichedItem.knowledge.length > 0) {
-      const { explanation, evidenceSummaries, metadata } = await generateExplanation(context, enrichedItem, enrichedItem.knowledge);
-      enrichedItem.aiExplanation = explanation;
-      enrichedItem.evidenceSummaries = evidenceSummaries;
-      
-      totalGenerationTimeMs += metadata.generationTimeMs;
-      if (metadata.explanationGenerated) totalExplanationsGenerated++;
-    } else {
-      enrichedItem.aiExplanation = {
-        text: null,
-        grounded: false,
-        confidence: 0,
-        model: MODEL,
-        generatedAt: new Date().toISOString()
-      };
-      enrichedItem.evidenceSummaries = [];
-    }
+    const knowledgeArray = enrichedItem.knowledge || [];
+    const { explanation, evidenceSummaries, metadata } = await generateExplanation(context, enrichedItem, knowledgeArray);
+    
+    enrichedItem.aiExplanation = explanation;
+    enrichedItem.evidenceSummaries = evidenceSummaries;
+    
+    totalGenerationTimeMs += metadata.generationTimeMs;
+    if (metadata.explanationGenerated) totalExplanationsGenerated++;
+
     return enrichedItem;
   });
 
