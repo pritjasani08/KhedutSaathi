@@ -1,6 +1,9 @@
 import api from './api';
 
-const ML_API_URL = import.meta.env.VITE_ML_API_URL || 'http://localhost:8000';
+let ML_API_URL = import.meta.env.VITE_ML_API_URL;
+if (!ML_API_URL || ML_API_URL.includes('8000')) {
+  ML_API_URL = 'http://localhost:8004'; // Crop Disease Microservice port
+}
 
 /**
  * Service to handle all Machine Learning model interactions
