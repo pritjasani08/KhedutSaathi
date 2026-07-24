@@ -465,10 +465,11 @@ To access the platform as a test user, use the following credentials:
 
 ## 🏆 Awards & Achievements
 
-- **🏆 [Placeholder: Biothon Grand Finale Winner 2024]** - Recognized for the most impactful agricultural innovation.
+- **🏆 [Placeholder: Biothon Grand Finale Winner 2026]** - Recognized for the most impactful agricultural innovation.
 - **🏆 [Placeholder: National Agri-Tech Innovation Challenge]** - Best use of AI in farming.
 - **🏆 [Placeholder: Smart India Hackathon]** - Top 3 Finalist in the Smart Agriculture track.
-
+- 🥉 **Biothon 2026 – 3rd Place Overall (Agriculture Department)** – Awarded for Khedut Saathi AI.
+- 🏆 **Biothon 2026 – Best Software Solution** – Ranked #1 for developing the best software-based agriculture application.
 ---
 
 ## 📄 License
