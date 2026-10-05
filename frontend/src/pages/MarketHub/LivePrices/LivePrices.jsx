@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-
+import { AlertCircle } from 'lucide-react';
 // Hooks
 import { useMarketPrices, useMarketFeed } from '../../../hooks/useMarketPrices';
 import { useMarketInsights } from '../../../hooks/useMarketInsights';
@@ -39,9 +39,10 @@ export default function LivePrices() {
   const queryToUse = isAuth ? feedQuery : priceQuery;
   const { data: rawData, isLoading, isError, refetch } = queryToUse;
   
-  const data = isAuth ? rawData?.markets || [] : rawData || [];
+  const data = isAuth ? rawData?.markets || [] : rawData?.data || [];
   const feedSummary = isAuth ? rawData?.summary : null;
   const feedFarmer = isAuth ? rawData?.farmer : null;
+  const dataSource = isAuth ? 'live' : rawData?.meta?.dataSource || 'live';
 
   // Derive mathematical insights
   const { insights, topGainers, overview } = useMarketInsights(data);
@@ -77,6 +78,15 @@ export default function LivePrices() {
       />
 
       <PageContent>
+        {dataSource === 'offline_seed' && (
+          <div className="mb-6 bg-yellow-500/10 border border-yellow-500/20 text-yellow-500 p-4 rounded-xl flex items-center gap-3 shadow-sm backdrop-blur-sm">
+            <AlertCircle className="w-5 h-5 flex-shrink-0" />
+            <p className="text-sm">
+              <strong className="font-semibold">Notice:</strong> The live government API is currently unreachable. You are viewing cached offline data.
+            </p>
+          </div>
+        )}
+
         {/* Filters */}
         <div className="mb-10">
           <MarketPriceFilters

@@ -212,20 +212,40 @@ Forecast your harvest based on environmental variables.
 ![Yield Predictor](assets/screenshots/yield-predictor.png)
 *Data visualization of expected crop yields.*
 
+### 💧 Smart Irrigation
+AI-driven water management for optimal crop health.
+![Smart Irrigation](assets/screenshots/smart-irrigation.png)
+*Automated irrigation scheduling based on weather patterns.*
+
 ### 💹 Market Prices
 Track real-time commodity prices.
 ![Market Prices](assets/screenshots/market-prices.png)
 *Live market trends and historical price charts.*
+
+### 📊 Live Market Feed
+Granular data on market prices across different APMCs.
+![Live Market Feed](assets/screenshots/market-feed.png)
+*Detailed feed of crop prices and active mandis.*
 
 ### 🛒 Marketplace
 Connect with buyers and sellers locally.
 ![Marketplace](assets/screenshots/marketplace.png)
 *Agri-marketplace for trading goods and equipment.*
 
+### 📦 Post Yield for Sale
+Easily list your harvested crops for direct buyers.
+![Post Yield](assets/screenshots/marketplace-post.png)
+*Simple form to create a new marketplace listing.*
+
 ### 🏛️ Government Schemes
 Discover and apply for agricultural subsidies.
 ![Government Schemes](assets/screenshots/schemes.png)
 *Curated list of beneficial government initiatives.*
+
+### 📰 Agricultural News
+Stay updated with localized farming news and weather forecasts.
+![Agricultural News](assets/screenshots/news.png)
+*Daily updates curated for your region.*
 
 ### 🤖 Khedut AI Workspace
 Your personal intelligent farming assistant.
@@ -405,9 +425,11 @@ uvicorn main:app --reload
 
 ---
 
-## 🎭 Demo Credentials
+## 🎭 Live Demo & Video
 
-> **Note:** The live demo is currently running at `[Demo Link Placeholder]`.
+📺 **Watch the full project walkthrough:** [KhedutSaathi AI Demo Video](https://www.youtube.com/watch?v=1-DKXEH5cdY)
+
+> **Note:** The live platform is currently running at `[Demo Link Placeholder]`.
 
 To access the platform as a test user, use the following credentials:
 
@@ -455,9 +477,21 @@ To access the platform as a test user, use the following credentials:
 
 ## 👥 Contributors
 
+<table align="center">
+  <tr>
+    <td align="center">
+      <a href="https://github.com/pritjasani08">
+        <img src="https://github.com/pritjasani08.png" width="100px;" alt="Prit Jasani" style="border-radius: 50%" /><br />
+        <sub><b>Prit Jasani (pritjasani08)</b></sub>
+      </a><br />
+      <em>Creator & Lead Developer</em>
+    </td>
+  </tr>
+</table>
+
 <div align="center">
   <a href="https://github.com/pritjasani08/KhedutSaathi/graphs/contributors">
-    <img src="https://contrib.rocks/image?repo=pritjasani08/KhedutSaathi" alt="Contributors" />
+    <img src="https://contrib.rocks/image?repo=pritjasani08/KhedutSaathi" alt="Other Contributors" />
   </a>
 </div>
 

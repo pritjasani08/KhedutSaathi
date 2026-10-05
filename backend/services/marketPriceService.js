@@ -38,6 +38,33 @@ const getResourceId = () => {
   return resourceId;
 };
 
+// Helper: Load local fallback data
+const loadFallbackData = () => {
+  try {
+    const fs = require('fs');
+    const path = require('path');
+    const dataPath = path.join(__dirname, '../data/mandiSeedData.json');
+    if (fs.existsSync(dataPath)) {
+      const raw = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+      return raw.map(item => ({
+        state: item.State,
+        district: item.District,
+        market: item.Market,
+        commodity: item.Commodity,
+        variety: item.Variety,
+        grade: item.Grade,
+        min_price: item.Min_Price,
+        max_price: item.Max_Price,
+        modal_price: item.Modal_Price,
+        arrival_date: item.Arrival_Date
+      }));
+    }
+  } catch (err) {
+    console.error('Failed to load fallback data:', err.message);
+  }
+  return [];
+};
+
 // Helper: Fetch a large recent dataset to derive unique states/districts/markets/commodities
 const fetchAllRecentData = async () => {
   const cacheKey = 'market-prices-recent-bulk-data';
@@ -45,7 +72,11 @@ const fetchAllRecentData = async () => {
   if (cachedData) return cachedData;
 
   const apiKey = getApiKey();
-  if (!apiKey) return [];
+  if (!apiKey) {
+    const fallback = loadFallbackData();
+    cache.set(cacheKey, fallback, 3600);
+    return fallback;
+  }
   const url = `${apiConfig.AGMARKNET.BASE_URL}/${getResourceId()}`;
 
   try {
@@ -56,17 +87,19 @@ const fetchAllRecentData = async () => {
         limit: 5000,
         offset: 0
       },
-      timeout: 30000
+      timeout: 10000
     });
 
     if (response.data && response.data.status === 'ok') {
       cache.set(cacheKey, response.data.records, 3600); // Cache for 1 hour
       return response.data.records;
     }
-    return [];
+    return loadFallbackData();
   } catch (error) {
-    console.error('Error fetching bulk data:', error.message);
-    return [];
+    console.warn('[MarketPriceService] Error fetching bulk data, using fallback data:', error.message);
+    const fallback = loadFallbackData();
+    cache.set(cacheKey, fallback, 3600);
+    return fallback;
   }
 };
 
@@ -144,27 +177,30 @@ const fetchMarketPrices = async (queryParams) => {
 
   let allRecords = [];
   let totalRecordsFetched = 0;
+  let dataSource = 'live';
 
   if (cachedData) {
     allRecords = cachedData.records;
     totalRecordsFetched = cachedData.totalRecordsFetched;
+    dataSource = cachedData.dataSource || 'cache';
   } else {
     try {
       const url = `${apiConfig.AGMARKNET.BASE_URL}/${resourceId}`;
-      const response = await axios.get(url, { params, timeout: 30000 });
+      const response = await axios.get(url, { params, timeout: 10000 });
 
       if (response.data && response.data.status === 'ok') {
         allRecords = response.data.records || [];
         totalRecordsFetched = response.data.total || allRecords.length;
-        cache.set(cacheKey, { records: allRecords, totalRecordsFetched });
+        cache.set(cacheKey, { records: allRecords, totalRecordsFetched, dataSource: 'live' });
       } else {
         throw new Error(`INVALID_RESPONSE: ${JSON.stringify(response.data)}`);
       }
     } catch (error) {
-      if (error.code === 'ECONNABORTED') throw new Error('API_TIMEOUT: Connection timed out.');
-      if (error.response) throw new Error(`EXTERNAL_API_ERROR: ${error.response.status}`);
-      if (error.message.startsWith('INVALID_RESPONSE')) throw error;
-      throw new Error(`API_COMMUNICATION_ERROR: ${error.message}`);
+      console.warn('[MarketPriceService] Error fetching direct data, using fallback data:', error.message);
+      allRecords = loadFallbackData();
+      totalRecordsFetched = allRecords.length;
+      dataSource = 'offline_seed';
+      cache.set(cacheKey, { records: allRecords, totalRecordsFetched, dataSource: 'offline_seed' });
     }
   }
 
@@ -212,7 +248,8 @@ const fetchMarketPrices = async (queryParams) => {
     totalRecordsAfterFiltering: filteredRecords.length,
     totalCommodities,
     total: filteredRecords.length,
-    count: filteredRecords.length
+    count: filteredRecords.length,
+    dataSource
   };
 };
 

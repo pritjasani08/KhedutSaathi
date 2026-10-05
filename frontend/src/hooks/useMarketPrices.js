@@ -10,8 +10,7 @@ export const useMarketPrices = (filters = {}) => {
     queryKey: ['marketPrices', filters],
     queryFn: async () => {
       const res = await marketApi.getPrices(filters);
-      // Assuming response format: { success: true, data: [...], meta: {...} }
-      return res.data || [];
+      return { data: res.data || [], meta: res.meta || {} };
     },
     // Keep data fresh for 5 minutes
     staleTime: 5 * 60 * 1000,

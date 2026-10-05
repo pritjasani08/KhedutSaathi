@@ -21,7 +21,8 @@ const getMarketPrices = async (req, res, next) => {
       count: data.count,
       totalRecordsFetched: data.totalRecordsFetched,
       totalRecordsAfterFiltering: data.totalRecordsAfterFiltering,
-      totalCommodities: data.totalCommodities
+      totalCommodities: data.totalCommodities,
+      dataSource: data.dataSource
     };
 
     return successResponse(res, 'Market prices retrieved successfully', data.records, meta);
@@ -122,7 +123,8 @@ const getMarketPricesByState = async (req, res, next) => {
       count: data.count,
       limit: data.limit,
       offset: data.offset,
-      page: data.page
+      page: data.page,
+      dataSource: data.dataSource
     };
 
     return successResponse(res, `Market prices for state ${stateParam} retrieved successfully`, data.records, meta);
